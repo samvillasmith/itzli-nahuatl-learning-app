@@ -40,20 +40,24 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   }, []);
 
   if (cards.length === 0) {
-    return <p className="text-stone-400 text-center py-12">No vocabulary for this unit.</p>;
+    return (
+      <p className="text-stone-400 text-center py-16">No vocabulary for this unit.</p>
+    );
   }
 
   const remaining = cards.length - done.size;
 
   if (remaining === 0) {
     return (
-      <div className="flex flex-col items-center gap-6 py-16 text-center">
-        <div className="text-5xl">✓</div>
+      <div className="max-w-lg mx-auto flex flex-col items-center gap-6 py-16 text-center">
+        <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
+          <span className="text-3xl">✓</span>
+        </div>
         <h2 className="text-2xl font-bold text-stone-900">All done!</h2>
         <p className="text-stone-500">You reviewed all {cards.length} cards.</p>
         <button
           onClick={reset}
-          className="bg-stone-900 text-white px-6 py-2.5 rounded-lg text-sm hover:bg-stone-700 transition-colors"
+          className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-2xl text-sm font-bold transition-colors shadow-sm"
         >
           Start over
         </button>
@@ -64,19 +68,19 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   return (
     <div className="max-w-lg mx-auto">
       {/* Progress */}
-      <div className="flex items-center justify-between text-sm text-stone-400 mb-6">
-        <span>
+      <div className="flex items-center justify-between text-sm mb-3">
+        <span className="text-stone-400 font-medium">
           {index + 1} / {cards.length}
         </span>
-        <span>
+        <span className="text-emerald-600 font-semibold">
           {done.size} learned · {remaining} remaining
         </span>
       </div>
 
       {/* Progress bar */}
-      <div className="w-full bg-stone-100 rounded-full h-1.5 mb-8">
+      <div className="w-full bg-stone-100 rounded-full h-2 mb-8">
         <div
-          className="bg-emerald-400 h-1.5 rounded-full transition-all duration-300"
+          className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full transition-all duration-300"
           style={{ width: `${(done.size / cards.length) * 100}%` }}
         />
       </div>
@@ -84,31 +88,46 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
       {/* Card */}
       <button
         onClick={flip}
-        className="w-full bg-white border-2 border-stone-200 rounded-2xl p-10 text-center hover:border-stone-300 transition-all cursor-pointer select-none shadow-sm hover:shadow-md"
-        style={{ minHeight: "220px" }}
+        className="w-full bg-white border-2 border-stone-100 rounded-3xl shadow-sm p-10 text-center hover:border-stone-200 hover:shadow-md transition-all cursor-pointer select-none"
+        style={{ minHeight: "240px" }}
       >
         {!flipped ? (
-          <div>
-            <p className="text-xs text-stone-300 uppercase tracking-widest mb-4">Nahuatl</p>
+          <div className="flex flex-col items-center justify-center gap-4 h-full">
+            <p className="text-xs text-stone-300 uppercase tracking-widest font-semibold">
+              Nahuatl
+            </p>
             <p className="text-3xl font-bold text-stone-900 leading-tight">{card.headword}</p>
-            <p className="text-stone-300 text-sm mt-6">tap to reveal</p>
+            {card.part_of_speech && (
+              <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">
+                {card.part_of_speech}
+              </span>
+            )}
+            <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">
+              tap to reveal
+            </p>
           </div>
         ) : (
-          <div>
-            <p className="text-xs text-stone-300 uppercase tracking-widest mb-4">English</p>
-            <p className="text-2xl font-semibold text-stone-800 leading-snug">{displayGloss(card.gloss_en)}</p>
+          <div className="flex flex-col items-center justify-center gap-4 h-full">
+            <p className="text-xs text-stone-300 uppercase tracking-widest font-semibold">
+              English
+            </p>
+            <p className="text-2xl font-bold text-emerald-600 leading-snug">
+              {displayGloss(card.gloss_en)}
+            </p>
             {card.part_of_speech && (
-              <p className="text-stone-400 text-sm mt-3 font-mono">{card.part_of_speech}</p>
+              <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-500 border border-emerald-100">
+                {card.part_of_speech}
+              </span>
             )}
           </div>
         )}
       </button>
 
       {/* Controls */}
-      <div className="flex items-center justify-between mt-6 gap-3">
+      <div className="flex items-center gap-2.5 mt-5">
         <button
           onClick={prev}
-          className="flex-1 py-2.5 rounded-xl border border-stone-200 text-sm text-stone-500 hover:bg-stone-50 transition-colors"
+          className="flex-1 py-3 rounded-2xl border-2 border-stone-200 text-sm font-semibold text-stone-500 hover:bg-white hover:border-stone-300 transition-colors"
         >
           ← Back
         </button>
@@ -116,7 +135,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
         {flipped && (
           <button
             onClick={markDone}
-            className="flex-1 py-2.5 rounded-xl bg-emerald-500 text-white text-sm font-medium hover:bg-emerald-600 transition-colors"
+            className="flex-[2] py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold transition-colors shadow-sm"
           >
             Got it ✓
           </button>
@@ -124,7 +143,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
 
         <button
           onClick={next}
-          className="flex-1 py-2.5 rounded-xl border border-stone-200 text-sm text-stone-500 hover:bg-stone-50 transition-colors"
+          className="flex-1 py-3 rounded-2xl border-2 border-stone-200 text-sm font-semibold text-stone-500 hover:bg-white hover:border-stone-300 transition-colors"
         >
           Skip →
         </button>

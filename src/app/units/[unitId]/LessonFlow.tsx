@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { displayGloss } from "@/lib/gloss";
-import { markChunkDone } from "@/lib/progress";
+import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 
 const CHUNK_SIZE = 10;
 
@@ -24,8 +24,6 @@ type FillBlank = {
   options: string[];
 };
 
-// A token-level match within a conversation line: the full inflected word is
-// blanked so answer tiles are in the same form as the surrounding text.
 type DialogueMatch = {
   vocabCard: VocabCard;
   answer: string;
@@ -34,7 +32,6 @@ type DialogueMatch = {
   options: string[];
 } | null;
 
-// Per-chunk conversation block produced by buildChunkConversations.
 type ConvBlock = { lines: DialogueLine[]; matches: DialogueMatch[] };
 
 type Props = {
@@ -53,13 +50,19 @@ type Props = {
 
 type Phase =
   | { kind: "intro" }
-  | { kind: "learn"; idx: number; revealed: boolean }
-  | { kind: "quizFwd"; idx: number; chosen: string | null; checked: boolean }
-  | { kind: "quizRev"; idx: number; chosen: string | null; checked: boolean }
+  | { kind: "learn"; srsIdx: number; revealed: boolean }
+  | { kind: "quizFwd"; srsIdx: number; chosen: string | null; checked: boolean }
+  | { kind: "quizRev"; srsIdx: number; chosen: string | null; checked: boolean }
   | { kind: "fillBlank"; idx: number; chosen: string | null; checked: boolean }
   | { kind: "chunkDone"; correct: number; total: number }
-  // pendingChunkDone: score to show in chunkDone after conversation; null if last chunk (→ done)
-  | { kind: "dialogue"; idx: number; match: DialogueMatch; chosen: string | null; checked: boolean; pendingChunkDone: { correct: number; total: number } | null }
+  | {
+      kind: "dialogue";
+      idx: number;
+      match: DialogueMatch;
+      chosen: string | null;
+      checked: boolean;
+      pendingChunkDone: { correct: number; total: number } | null;
+    }
   | { kind: "done" };
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
@@ -107,7 +110,6 @@ function buildFillBlanks(
       if (pos === -1) continue;
 
       const blanked = ex.slice(0, pos) + "___" + ex.slice(pos + card.headword.length);
-
       const distractors = shuffle(
         pool.filter((v) => v.headword !== card.headword && v.headword.length >= 2)
       )
@@ -129,13 +131,12 @@ function buildFillBlanks(
   return results;
 }
 
-// Strip Unicode combining diacritics so plain-ASCII vocab stems match
-// accented dialogue text (e.g. "toca" finds "motōcah").
+// Strip Unicode combining diacritics for matching.
 function stripDiacritics(s: string): string {
   return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// Split an utterance into clean tokens, stripping leading/trailing punctuation.
+// Split an utterance into clean tokens.
 function dialogueTokens(text: string): string[] {
   return text
     .split(/\s+/)
@@ -143,22 +144,89 @@ function dialogueTokens(text: string): string[] {
     .filter((t) => t.length >= 2);
 }
 
+// Common EHN verb prefixes to strip before stem matching.
+// Order: longer first to avoid partial-stripping.
+const EHN_PREFIXES = [
+  "ōtiquitt", "ōtimom", "ōniqu", "ōnim", "nimom", "timom",
+  "nimo", "timo", "ni", "ti", "mo", "no", "to", "on",
+  "qui", "ki", "mi", "in ",
+];
+
+// Common EHN suffixes to strip.
+const EHN_SUFFIXES = [
+  "tzin", "tzintli", "tztli", "tli", "tic", "toc", "teh",
+  "huah", "queh", "meh", "neh", "iah", "tiah",
+  "lia", "ltia", "ia", "ah", "h",
+];
+
+/**
+ * Improved stem matching: strip common EHN prefixes/suffixes from both token
+ * and vocab headword before comparing. Returns true if either direction
+ * contains the other (for stems ≥ 3 chars).
+ */
+function stemMatch(token: string, headword: string): boolean {
+  const plain = stripDiacritics(token.toLowerCase());
+  const stem = stripDiacritics(headword.toLowerCase());
+
+  // Direct substring match
+  if (stem.length >= 3 && plain.includes(stem)) return true;
+  if (stem.length >= 3 && stem.includes(plain)) return true;
+
+  // Strip prefixes from token, then compare
+  let stripped = plain;
+  for (const pfx of EHN_PREFIXES) {
+    if (plain.startsWith(pfx) && plain.length - pfx.length >= 3) {
+      stripped = plain.slice(pfx.length);
+      break;
+    }
+  }
+
+  // Strip suffixes from token
+  let stemFromToken = stripped;
+  for (const sfx of EHN_SUFFIXES) {
+    if (stripped.endsWith(sfx) && stripped.length - sfx.length >= 3) {
+      stemFromToken = stripped.slice(0, stripped.length - sfx.length);
+      break;
+    }
+  }
+
+  // Strip suffixes from headword too
+  let stemFromHead = stem;
+  for (const sfx of EHN_SUFFIXES) {
+    if (stem.endsWith(sfx) && stem.length - sfx.length >= 3) {
+      stemFromHead = stem.slice(0, stem.length - sfx.length);
+      break;
+    }
+  }
+
+  if (stemFromHead.length >= 3 && stemFromToken.includes(stemFromHead)) return true;
+  if (stemFromToken.length >= 3 && stemFromHead.includes(stemFromToken)) return true;
+  return false;
+}
+
 // ── Progress bar ───────────────────────────────────────────────────────────────
 
-function ProgressBar({ value }: { value: number }) {
+function ProgressBar({ value, label }: { value: number; label?: string }) {
+  const pct = Math.min(100, Math.round(value * 100));
   return (
-    <div className="w-full bg-stone-100 rounded-full h-2 mb-8">
-      <div
-        className="bg-stone-800 h-2 rounded-full transition-all duration-500"
-        style={{ width: `${Math.min(100, value * 100)}%` }}
-      />
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-1.5">
+        {label && <span className="text-xs font-medium text-stone-400">{label}</span>}
+        <span className="text-xs font-semibold text-emerald-600 ml-auto">{pct}%</span>
+      </div>
+      <div className="w-full bg-stone-100 rounded-full h-2.5">
+        <div
+          className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2.5 rounded-full transition-all duration-500"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
     </div>
   );
 }
 
-// ── Word tile button ───────────────────────────────────────────────────────────
+// ── Answer tile ────────────────────────────────────────────────────────────────
 
-function WordTile({
+function AnswerTile({
   word,
   onClick,
   state,
@@ -167,19 +235,93 @@ function WordTile({
   onClick: () => void;
   state: "idle" | "selected" | "correct" | "wrong" | "dim";
 }) {
-  const base =
-    "px-4 py-3 rounded-xl border-2 text-sm font-bold transition-colors text-center cursor-pointer ";
   const styles: Record<string, string> = {
-    idle: "border-stone-200 bg-white text-stone-800 hover:border-stone-400",
-    selected: "border-stone-800 bg-stone-50 text-stone-900",
-    correct: "border-emerald-400 bg-emerald-50 text-emerald-800",
-    wrong: "border-red-300 bg-red-50 text-red-700",
-    dim: "border-stone-100 bg-white text-stone-300",
+    idle: "border-2 border-stone-200 bg-white text-stone-800 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-900",
+    selected: "border-2 border-stone-700 bg-stone-50 text-stone-900 shadow-sm",
+    correct: "border-2 border-emerald-400 bg-emerald-50 text-emerald-800 shadow-sm",
+    wrong: "border-2 border-red-300 bg-red-50 text-red-700",
+    dim: "border-2 border-stone-100 bg-stone-50 text-stone-300",
   };
   return (
-    <button className={base + styles[state]} onClick={onClick}>
+    <button
+      className={`px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-150 text-center cursor-pointer w-full ${styles[state]}`}
+      onClick={onClick}
+    >
       {word}
     </button>
+  );
+}
+
+// ── Feedback banner ────────────────────────────────────────────────────────────
+
+function FeedbackBanner({
+  correct,
+  message,
+}: {
+  correct: boolean;
+  message: string;
+}) {
+  return (
+    <div
+      className={`rounded-2xl px-5 py-4 mb-4 flex items-start gap-3 ${
+        correct
+          ? "bg-emerald-50 border border-emerald-200 text-emerald-800"
+          : "bg-red-50 border border-red-200 text-red-800"
+      }`}
+    >
+      <span className="text-lg shrink-0">{correct ? "✓" : "✗"}</span>
+      <p className="text-sm font-semibold leading-snug">{message}</p>
+    </div>
+  );
+}
+
+// ── Step counter ───────────────────────────────────────────────────────────────
+
+function StepLabel({
+  current,
+  total,
+  kind,
+  chunkIndex,
+  totalChunks,
+}: {
+  current: number;
+  total: number;
+  kind: string;
+  chunkIndex: number;
+  totalChunks: number;
+}) {
+  const kindLabel: Record<string, string> = {
+    learn: "Learn",
+    quizFwd: "Meaning quiz",
+    quizRev: "Word recall",
+    fillBlank: "Fill in the blank",
+    dialogue: "Conversation",
+  };
+  const prefix = totalChunks > 1 ? `Lesson ${chunkIndex + 1}/${totalChunks} · ` : "";
+  return (
+    <p className="text-xs font-semibold text-stone-400 text-center mb-5 uppercase tracking-widest">
+      {prefix}
+      {kindLabel[kind] ?? kind} · {current}/{total}
+    </p>
+  );
+}
+
+// ── Band badge ─────────────────────────────────────────────────────────────────
+
+function BandBadge({ band }: { band: string }) {
+  const colors: Record<string, string> = {
+    A1: "bg-emerald-100 text-emerald-700 border border-emerald-200",
+    A2: "bg-sky-100 text-sky-700 border border-sky-200",
+    B1: "bg-violet-100 text-violet-700 border border-violet-200",
+  };
+  return (
+    <span
+      className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full ${
+        colors[band] ?? "bg-stone-100 text-stone-500"
+      }`}
+    >
+      {band}
+    </span>
   );
 }
 
@@ -215,68 +357,66 @@ export default function LessonFlow({
   const currentChunk = chunks[chunkIndex] ?? [];
   const totalChunks = chunks.length;
   const isLastChunk = chunkIndex === totalChunks - 1;
+  const chunkStartIdx = chunkIndex * CHUNK_SIZE;
+
+  // SRS-ordered indices for this chunk (worst words first)
+  const srsIndices = useMemo(
+    () => srsOrder(unitNum, chunkStartIdx, currentChunk.length),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [unitNum, chunkIndex]
+  );
+
+  // Resolve word from srs position
+  function wordAt(srsIdx: number): VocabCard {
+    return currentChunk[srsIndices[srsIdx]];
+  }
+  function globalIdx(srsIdx: number): number {
+    return chunkStartIdx + srsIndices[srsIdx];
+  }
 
   // ── Per-chunk exercise options (memoized per chunk) ──────────────────────────
 
+  const pool =
+    allVocabPool.length >= 4 ? allVocabPool : currentChunk.concat(allVocabPool);
+
   const fwdOptions = useMemo(
-    () =>
-      currentChunk.map((v) =>
-        buildFwdOptions(v, allVocabPool.length >= 4 ? allVocabPool : currentChunk.concat(allVocabPool))
-      ),
+    () => srsIndices.map((wi) => buildFwdOptions(currentChunk[wi], pool)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
 
   const revOptions = useMemo(
-    () =>
-      currentChunk.map((v) =>
-        buildRevOptions(v, allVocabPool.length >= 4 ? allVocabPool : currentChunk.concat(allVocabPool))
-      ),
+    () => srsIndices.map((wi) => buildRevOptions(currentChunk[wi], pool)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
 
   const fillBlanks = useMemo(
-    () =>
-      buildFillBlanks(
-        currentChunk,
-        constructions,
-        allVocabPool.length >= 4 ? allVocabPool : currentChunk.concat(allVocabPool)
-      ),
+    () => buildFillBlanks(currentChunk, constructions, pool),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
 
   // ── Per-chunk conversation blocks ─────────────────────────────────────────────
-  //
-  // Only real A/B dialogue from lesson_dialogues is used (4 units have data).
-  // Dialogue lines are distributed evenly across chunks.  If a unit has no
-  // real dialogue, the conversation phase is skipped for all its chunks.
-  //
-  // For each line we find the first token whose stripped form contains a vocab
-  // stem; that full token becomes the blank.  Distractors come from the pool of
-  // tokens appearing in that chunk's conversation lines, topped up with vocab
-  // headwords so there are always 4 tile choices.
 
   const chunkConversations = useMemo((): ConvBlock[] => {
-    const pool = allVocabPool.length >= 4 ? allVocabPool : vocab.concat(allVocabPool);
-
-    function buildMatch(line: DialogueLine, chunk: VocabCard[], allTokens: string[]): DialogueMatch {
+    function buildMatch(
+      line: DialogueLine,
+      chunk: VocabCard[],
+      allTokens: string[]
+    ): DialogueMatch {
       const tokens = dialogueTokens(line.utterance_normalized);
       for (const token of tokens) {
-        const tokenStripped = stripDiacritics(token.toLowerCase());
-        const matchedCard = chunk.find((v) => {
-          const stem = stripDiacritics(v.headword.toLowerCase());
-          return stem.length >= 3 && tokenStripped.includes(stem);
-        });
+        const matchedCard = chunk.find((v) => stemMatch(token, v.headword));
         if (!matchedCard) continue;
         const pos = line.utterance_normalized.indexOf(token);
         if (pos === -1) continue;
         const before = line.utterance_normalized.slice(0, pos);
         const after = line.utterance_normalized.slice(pos + token.length);
-        // Distractors: real tokens first, vocab headwords as fallback
         const tokenCandidates = allTokens.filter(
-          (t) => stripDiacritics(t.toLowerCase()) !== tokenStripped && t.length >= 2
+          (t) =>
+            stripDiacritics(t.toLowerCase()) !==
+              stripDiacritics(token.toLowerCase()) && t.length >= 2
         );
         const vocabCandidates = pool
           .filter((v) => v.headword !== matchedCard.headword && v.headword.length >= 2)
@@ -294,15 +434,8 @@ export default function LessonFlow({
       return null;
     }
 
-    return chunks.map((chunk, ci) => {
-      let lines: DialogueLine[] = [];
-
-      // Show the full dialogue after every chunk so the flow is always:
-      // Learn → Quiz → Dialogue → Completion screen
-      if (dialogues.length > 0) {
-        lines = dialogues;
-      }
-
+    return chunks.map((chunk) => {
+      const lines = dialogues.length > 0 ? dialogues : [];
       const allTokens = [
         ...new Set(lines.flatMap((l) => dialogueTokens(l.utterance_normalized))),
       ];
@@ -311,11 +444,11 @@ export default function LessonFlow({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitNum]);
 
-  // ── Progress ─────────────────────────────────────────────────────────────────
+  // ── Progress calculation ──────────────────────────────────────────────────────
 
-  const totalVocabSteps = vocab.length * 3; // learn + fwd + rev per word
+  const totalVocabSteps = vocab.length * 2; // fwd + rev per word (learn is free)
   const totalConvSteps = chunkConversations.reduce((s, c) => s + c.lines.length, 0);
-  const totalSteps = 1 + totalVocabSteps + totalConvSteps + 1;
+  const totalSteps = 1 + vocab.length + totalVocabSteps + totalConvSteps + 1;
   const wordsBeforeChunk = chunkIndex * CHUNK_SIZE;
   const convStepsBeforeChunk = chunkConversations
     .slice(0, chunkIndex)
@@ -324,36 +457,27 @@ export default function LessonFlow({
   function progress(): number {
     if (phase.kind === "intro") return 0;
     if (phase.kind === "learn")
-      return (1 + wordsBeforeChunk + phase.idx) / totalSteps;
+      return (1 + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "quizFwd")
-      return (1 + vocab.length + wordsBeforeChunk + phase.idx) / totalSteps;
+      return (1 + vocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "quizRev")
-      return (1 + vocab.length * 2 + wordsBeforeChunk + phase.idx) / totalSteps;
+      return (1 + vocab.length + vocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "fillBlank")
-      return (1 + totalVocabSteps + phase.idx) / totalSteps;
-    if (phase.kind === "chunkDone")
-      return (1 + vocab.length * 2 + wordsBeforeChunk + currentChunk.length) / totalSteps;
-    if (phase.kind === "dialogue")
-      return (1 + totalVocabSteps + convStepsBeforeChunk + phase.idx) / totalSteps;
+      return (1 + vocab.length + totalVocabSteps + phase.idx) / totalSteps;
+    if (phase.kind === "chunkDone" || phase.kind === "dialogue")
+      return (1 + vocab.length + totalVocabSteps + convStepsBeforeChunk +
+        (phase.kind === "dialogue" ? phase.idx : chunkConversations[chunkIndex]?.lines.length ?? 0)) /
+        totalSteps;
     return 1;
   }
 
-  // ── Step label ────────────────────────────────────────────────────────────────
-
-  function stepLabel(current: number, total: number) {
-    const prefix =
-      totalChunks > 1 ? `Lesson ${chunkIndex + 1} of ${totalChunks} · ` : "";
-    return `${prefix}${current} / ${total}`;
-  }
-
-  // ── Advance helpers ───────────────────────────────────────────────────────────
+  // ── finishChunk ───────────────────────────────────────────────────────────────
 
   function finishChunk(correct: number) {
     const total = currentChunk.length * 2 + fillBlanks.length;
     markChunkDone(unitNum, chunkIndex, totalChunks, correct, total);
     const conv = chunkConversations[chunkIndex];
     if (conv && conv.lines.length > 0) {
-      // Conversation after every chunk; carry the score so chunkDone can show it
       setPhase({
         kind: "dialogue",
         idx: 0,
@@ -372,7 +496,7 @@ export default function LessonFlow({
   function startNextChunk() {
     setChunkIndex((i) => i + 1);
     setChunkCorrect(0);
-    setPhase({ kind: "learn", idx: 0, revealed: false });
+    setPhase({ kind: "learn", srsIdx: 0, revealed: false });
   }
 
   // ── INTRO ─────────────────────────────────────────────────────────────────────
@@ -382,29 +506,44 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={0} />
-        <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center shadow-sm">
-          <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-stone-100 text-stone-500 mb-6">
-            Unit {unitNum} · {targetBand}
-          </span>
-          <h1 className="text-3xl font-bold text-stone-900 mb-3">{themeEn}</h1>
-          <p className="text-stone-500 mb-8">{communicativeGoal}</p>
-          <div className="flex justify-center gap-6 text-sm text-stone-400 mb-10">
+
+        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 text-center">
+          <div className="flex justify-center gap-2 mb-6">
+            <BandBadge band={targetBand} />
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-100 text-stone-500 border border-stone-200">
+              Unit {unitNum}
+            </span>
+          </div>
+
+          <h1 className="text-3xl font-bold text-stone-900 mb-3 leading-tight">{themeEn}</h1>
+          <p className="text-stone-500 text-sm mb-8 max-w-sm mx-auto">{communicativeGoal}</p>
+
+          {/* Lesson stats */}
+          <div className="flex justify-center gap-8 mb-8">
             {vocab.length > 0 && (
-              <span>
-                {totalChunks} lesson{totalChunks !== 1 ? "s" : ""} ·{" "}
-                {chunks[0]?.length ?? vocab.length} words each
-              </span>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-stone-900">{vocab.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">words</div>
+              </div>
+            )}
+            {totalChunks > 1 && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-stone-900">{totalChunks}</div>
+                <div className="text-xs text-stone-400 mt-0.5">lessons</div>
+              </div>
             )}
             {totalConv > 0 && (
-              <span>
-                {totalConv} conversation exercise{totalConv !== 1 ? "s" : ""}
-              </span>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-stone-900">{totalConv}</div>
+                <div className="text-xs text-stone-400 mt-0.5">dialogues</div>
+              </div>
             )}
           </div>
+
           {vocab.length > 0 ? (
             <button
-              onClick={() => setPhase({ kind: "learn", idx: 0, revealed: false })}
-              className="bg-stone-900 text-white px-8 py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
+              onClick={() => setPhase({ kind: "learn", srsIdx: 0, revealed: false })}
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors shadow-sm"
             >
               Start Lesson →
             </button>
@@ -412,17 +551,18 @@ export default function LessonFlow({
             <p className="text-stone-400 text-sm">No content available yet.</p>
           )}
         </div>
+
         {(prevUnit || nextUnit) && (
-          <div className="flex justify-between mt-8 text-sm text-stone-400">
+          <div className="flex justify-between mt-6 text-sm text-stone-400">
             {prevUnit ? (
-              <a href={`/units/${prevUnit.num}`} className="hover:text-stone-700">
+              <a href={`/units/${prevUnit.num}`} className="hover:text-stone-700 transition-colors">
                 ← {prevUnit.themeEn}
               </a>
             ) : (
               <span />
             )}
             {nextUnit && (
-              <a href={`/units/${nextUnit.num}`} className="hover:text-stone-700">
+              <a href={`/units/${nextUnit.num}`} className="hover:text-stone-700 transition-colors">
                 {nextUnit.themeEn} →
               </a>
             )}
@@ -435,51 +575,66 @@ export default function LessonFlow({
   // ── LEARN ─────────────────────────────────────────────────────────────────────
 
   if (phase.kind === "learn") {
-    const { idx, revealed } = phase;
-    const word = currentChunk[idx];
-    const isLast = idx === currentChunk.length - 1;
+    const { srsIdx, revealed } = phase;
+    const word = wordAt(srsIdx);
+    const isLast = srsIdx === currentChunk.length - 1;
 
     function advanceLearn() {
       if (isLast) {
         setChunkCorrect(0);
-        setPhase({ kind: "quizFwd", idx: 0, chosen: null, checked: false });
+        setPhase({ kind: "quizFwd", srsIdx: 0, chosen: null, checked: false });
       } else {
-        setPhase({ kind: "learn", idx: idx + 1, revealed: false });
+        setPhase({ kind: "learn", srsIdx: srsIdx + 1, revealed: false });
       }
     }
 
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <p className="text-xs text-stone-400 text-center mb-6 uppercase tracking-widest">
-          {stepLabel(idx + 1, currentChunk.length)} · New word
-        </p>
+        <StepLabel
+          current={srsIdx + 1}
+          total={currentChunk.length}
+          kind="learn"
+          chunkIndex={chunkIndex}
+          totalChunks={totalChunks}
+        />
+
         <button
           onClick={() =>
             !revealed
-              ? setPhase({ kind: "learn", idx, revealed: true })
+              ? setPhase({ kind: "learn", srsIdx, revealed: true })
               : advanceLearn()
           }
-          className="w-full bg-white border-2 border-stone-200 rounded-2xl p-10 text-center hover:border-stone-300 transition-all shadow-sm hover:shadow-md cursor-pointer select-none"
-          style={{ minHeight: "220px" }}
+          className="w-full bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center hover:shadow-md transition-all cursor-pointer select-none"
+          style={{ minHeight: "240px" }}
         >
           {!revealed ? (
-            <>
-              <p className="text-4xl font-bold text-stone-900 mb-4">{word.headword}</p>
+            <div className="flex flex-col items-center justify-center h-full gap-4">
+              <p className="text-4xl font-bold text-stone-900 leading-tight">{word.headword}</p>
               {word.part_of_speech && (
-                <p className="text-stone-400 text-sm font-mono">{word.part_of_speech}</p>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
+                  {word.part_of_speech}
+                </span>
               )}
-              <p className="text-stone-300 text-sm mt-8">tap to see meaning</p>
-            </>
+              <p className="text-stone-300 text-xs mt-4 uppercase tracking-widest">
+                tap to reveal meaning
+              </p>
+            </div>
           ) : (
-            <>
-              <p className="text-stone-400 text-sm mb-2">{word.headword}</p>
-              <p className="text-3xl font-semibold text-stone-900 mb-4">{displayGloss(word.gloss_en)}</p>
+            <div className="flex flex-col items-center justify-center h-full gap-4">
+              <p className="text-stone-400 text-sm font-medium">{word.headword}</p>
+              <p className="text-3xl font-bold text-emerald-600 leading-tight">
+                {displayGloss(word.gloss_en)}
+              </p>
               {word.part_of_speech && (
-                <p className="text-stone-400 text-sm font-mono">{word.part_of_speech}</p>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+                  {word.part_of_speech}
+                </span>
               )}
-              <p className="text-stone-300 text-sm mt-8">tap to continue</p>
-            </>
+              <p className="text-stone-300 text-xs mt-4 uppercase tracking-widest">
+                tap to continue
+              </p>
+            </div>
           )}
         </button>
       </div>
@@ -489,50 +644,64 @@ export default function LessonFlow({
   // ── QUIZ FORWARD — "What does this mean?" ─────────────────────────────────────
 
   if (phase.kind === "quizFwd") {
-    const { idx, chosen, checked } = phase;
-    const word = currentChunk[idx];
-    const options = fwdOptions[idx] ?? [displayGloss(word.gloss_en)];
-    const isLast = idx === currentChunk.length - 1;
+    const { srsIdx, chosen, checked } = phase;
+    const word = wordAt(srsIdx);
+    const options = fwdOptions[srsIdx] ?? [displayGloss(word.gloss_en)];
+    const isLast = srsIdx === currentChunk.length - 1;
+    const correctGloss = displayGloss(word.gloss_en);
+    const isCorrect = chosen === correctGloss;
 
     function check(choice: string) {
       if (checked) return;
-      if (choice === displayGloss(word.gloss_en)) setChunkCorrect((c) => c + 1);
-      setPhase({ kind: "quizFwd", idx, chosen: choice, checked: true });
+      const correct = choice === correctGloss;
+      recordWordResult(unitNum, globalIdx(srsIdx), correct);
+      if (correct) setChunkCorrect((c) => c + 1);
+      setPhase({ kind: "quizFwd", srsIdx, chosen: choice, checked: true });
     }
 
     function advance() {
       if (isLast) {
-        setPhase({ kind: "quizRev", idx: 0, chosen: null, checked: false });
+        setPhase({ kind: "quizRev", srsIdx: 0, chosen: null, checked: false });
       } else {
-        setPhase({ kind: "quizFwd", idx: idx + 1, chosen: null, checked: false });
+        setPhase({ kind: "quizFwd", srsIdx: srsIdx + 1, chosen: null, checked: false });
       }
     }
 
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <p className="text-xs text-stone-400 text-center mb-6 uppercase tracking-widest">
-          {stepLabel(idx + 1, currentChunk.length)} · Select the meaning
-        </p>
-        <div className="bg-white border border-stone-200 rounded-2xl p-8 mb-6 text-center shadow-sm">
-          <p className="text-xs text-stone-400 uppercase tracking-widest mb-3">
+        <StepLabel
+          current={srsIdx + 1}
+          total={currentChunk.length}
+          kind="quizFwd"
+          chunkIndex={chunkIndex}
+          totalChunks={totalChunks}
+        />
+
+        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
+          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
             What does this mean?
           </p>
           <p className="text-3xl font-bold text-stone-900">{word.headword}</p>
+          {word.part_of_speech && (
+            <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
+          )}
         </div>
-        <div className="space-y-3 mb-6">
+
+        <div className="space-y-2.5 mb-5">
           {options.map((opt) => {
             let cls =
-              "w-full text-left px-5 py-4 rounded-xl border-2 text-sm font-medium transition-colors ";
+              "w-full text-left px-5 py-4 rounded-2xl border-2 text-sm font-semibold transition-all duration-150 ";
             if (!checked) {
               cls +=
                 chosen === opt
-                  ? "border-stone-800 bg-stone-50 text-stone-900"
-                  : "border-stone-200 bg-white text-stone-700 hover:border-stone-400";
+                  ? "border-stone-700 bg-stone-50 text-stone-900"
+                  : "border-stone-200 bg-white text-stone-700 hover:border-emerald-400 hover:bg-emerald-50";
             } else {
-              if (opt === displayGloss(word.gloss_en)) cls += "border-emerald-400 bg-emerald-50 text-emerald-800";
+              if (opt === correctGloss)
+                cls += "border-emerald-400 bg-emerald-50 text-emerald-800";
               else if (opt === chosen) cls += "border-red-300 bg-red-50 text-red-700";
-              else cls += "border-stone-100 bg-white text-stone-400";
+              else cls += "border-stone-100 bg-white text-stone-300";
             }
             return (
               <button key={opt} className={cls} onClick={() => check(opt)}>
@@ -541,30 +710,44 @@ export default function LessonFlow({
             );
           })}
         </div>
+
         {checked && (
-          <button
-            onClick={advance}
-            className="w-full bg-stone-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
-          >
-            Continue →
-          </button>
+          <>
+            <FeedbackBanner
+              correct={isCorrect}
+              message={
+                isCorrect
+                  ? `Correct! "${word.headword}" means "${correctGloss}"`
+                  : `"${word.headword}" means "${correctGloss}"`
+              }
+            />
+            <button
+              onClick={advance}
+              className="w-full bg-stone-900 hover:bg-stone-700 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors"
+            >
+              Continue →
+            </button>
+          </>
         )}
       </div>
     );
   }
 
-  // ── QUIZ REVERSE — "How do you say this?" (word tiles) ────────────────────────
+  // ── QUIZ REVERSE — "How do you say this?" ─────────────────────────────────────
 
   if (phase.kind === "quizRev") {
-    const { idx, chosen, checked } = phase;
-    const word = currentChunk[idx];
-    const options = revOptions[idx] ?? [word.headword];
-    const isLast = idx === currentChunk.length - 1;
+    const { srsIdx, chosen, checked } = phase;
+    const word = wordAt(srsIdx);
+    const options = revOptions[srsIdx] ?? [word.headword];
+    const isLast = srsIdx === currentChunk.length - 1;
+    const isCorrect = chosen === word.headword;
 
     function check(choice: string) {
       if (checked) return;
-      if (choice === word.headword) setChunkCorrect((c) => c + 1);
-      setPhase({ kind: "quizRev", idx, chosen: choice, checked: true });
+      const correct = choice === word.headword;
+      recordWordResult(unitNum, globalIdx(srsIdx), correct);
+      if (correct) setChunkCorrect((c) => c + 1);
+      setPhase({ kind: "quizRev", srsIdx, chosen: choice, checked: true });
     }
 
     function advance() {
@@ -575,7 +758,7 @@ export default function LessonFlow({
           finishChunk(chunkCorrect);
         }
       } else {
-        setPhase({ kind: "quizRev", idx: idx + 1, chosen: null, checked: false });
+        setPhase({ kind: "quizRev", srsIdx: srsIdx + 1, chosen: null, checked: false });
       }
     }
 
@@ -589,21 +772,27 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <p className="text-xs text-stone-400 text-center mb-6 uppercase tracking-widest">
-          {stepLabel(idx + 1, currentChunk.length)} · Fill in the blank
-        </p>
-        <div className="bg-white border border-stone-200 rounded-2xl p-8 mb-6 text-center shadow-sm">
-          <p className="text-xs text-stone-400 uppercase tracking-widest mb-3">
+        <StepLabel
+          current={srsIdx + 1}
+          total={currentChunk.length}
+          kind="quizRev"
+          chunkIndex={chunkIndex}
+          totalChunks={totalChunks}
+        />
+
+        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
+          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
             How do you say this?
           </p>
-          <p className="text-3xl font-semibold text-stone-900">{displayGloss(word.gloss_en)}</p>
+          <p className="text-3xl font-bold text-stone-900">{displayGloss(word.gloss_en)}</p>
           {word.part_of_speech && (
-            <p className="text-stone-400 text-sm font-mono mt-2">{word.part_of_speech}</p>
+            <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-3 mb-6">
+
+        <div className="grid grid-cols-2 gap-2.5 mb-5">
           {options.map((opt) => (
-            <WordTile
+            <AnswerTile
               key={opt}
               word={opt}
               state={tileState(opt)}
@@ -611,24 +800,36 @@ export default function LessonFlow({
             />
           ))}
         </div>
+
         {checked && (
-          <button
-            onClick={advance}
-            className="w-full bg-stone-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
-          >
-            Continue →
-          </button>
+          <>
+            <FeedbackBanner
+              correct={isCorrect}
+              message={
+                isCorrect
+                  ? `Correct! "${displayGloss(word.gloss_en)}" = "${word.headword}"`
+                  : `The answer is "${word.headword}"`
+              }
+            />
+            <button
+              onClick={advance}
+              className="w-full bg-stone-900 hover:bg-stone-700 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors"
+            >
+              Continue →
+            </button>
+          </>
         )}
       </div>
     );
   }
 
-  // ── FILL IN THE BLANK — sentence from constructions ───────────────────────────
+  // ── FILL IN THE BLANK ─────────────────────────────────────────────────────────
 
   if (phase.kind === "fillBlank") {
     const { idx, chosen, checked } = phase;
     const ex = fillBlanks[idx];
     const isLast = idx === fillBlanks.length - 1;
+    const isCorrect = chosen === ex.answer;
 
     function check(choice: string) {
       if (checked) return;
@@ -654,22 +855,29 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <p className="text-xs text-stone-400 text-center mb-6 uppercase tracking-widest">
-          {stepLabel(idx + 1, fillBlanks.length)} · Complete the phrase
-        </p>
-        <div className="bg-white border border-stone-200 rounded-2xl p-8 mb-4 shadow-sm">
-          <p className="text-lg font-semibold text-stone-900 leading-snug mb-3">
-            {ex.prompt}
+        <StepLabel
+          current={idx + 1}
+          total={fillBlanks.length}
+          kind="fillBlank"
+          chunkIndex={chunkIndex}
+          totalChunks={totalChunks}
+        />
+
+        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5">
+          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
+            Complete the phrase
           </p>
+          <p className="text-lg font-bold text-stone-900 leading-snug mb-3">{ex.prompt}</p>
           {ex.gloss && (
-            <p className="text-xs text-stone-400 uppercase tracking-widest">
-              Hint: {ex.gloss}
+            <p className="text-xs text-stone-400 font-medium">
+              Hint: <span className="text-emerald-600">{ex.gloss}</span>
             </p>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-3 mb-6">
+
+        <div className="grid grid-cols-2 gap-2.5 mb-5">
           {ex.options.map((opt) => (
-            <WordTile
+            <AnswerTile
               key={opt}
               word={opt}
               state={tileState(opt)}
@@ -677,13 +885,20 @@ export default function LessonFlow({
             />
           ))}
         </div>
+
         {checked && (
-          <button
-            onClick={advance}
-            className="w-full bg-stone-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
-          >
-            Continue →
-          </button>
+          <>
+            <FeedbackBanner
+              correct={isCorrect}
+              message={isCorrect ? `Correct! "${ex.answer}"` : `The answer is "${ex.answer}"`}
+            />
+            <button
+              onClick={advance}
+              className="w-full bg-stone-900 hover:bg-stone-700 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors"
+            >
+              Continue →
+            </button>
+          </>
         )}
       </div>
     );
@@ -693,27 +908,36 @@ export default function LessonFlow({
 
   if (phase.kind === "chunkDone") {
     const pct = phase.total > 0 ? phase.correct / phase.total : 1;
+    const star = pct === 1 ? "🌟" : pct >= 0.7 ? "✓" : "📖";
+    const msg =
+      pct === 1
+        ? "Perfect score!"
+        : pct >= 0.7
+        ? "Great work!"
+        : "Keep practicing — you'll get it!";
+
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center shadow-sm">
-          <div className="text-4xl mb-6">{pct === 1 ? "🎉" : "✓"}</div>
-          <h2 className="text-xl font-bold text-stone-900 mb-2">
-            Lesson {chunkIndex + 1} of {totalChunks} complete!
+        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center">
+          <div className="text-5xl mb-5">{star}</div>
+          <h2 className="text-xl font-bold text-stone-900 mb-1">
+            Lesson {chunkIndex + 1} of {totalChunks} done!
           </h2>
-          <p className="text-stone-500 mb-2">{themeEn}</p>
-          <p className="text-stone-800 font-semibold mb-8">
-            {phase.correct} / {phase.total} correct
+          <p className="text-stone-400 text-sm mb-3">{themeEn}</p>
+          <p className="text-emerald-600 font-bold text-lg mb-1">
+            {phase.correct}/{phase.total} correct
           </p>
+          <p className="text-stone-400 text-sm mb-8">{msg}</p>
           <button
             onClick={startNextChunk}
-            className="w-full bg-stone-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
+            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors shadow-sm"
           >
-            Keep going →
+            Next lesson →
           </button>
           <a
             href="/units"
-            className="block w-full text-center text-sm text-stone-400 hover:text-stone-600 py-2 mt-2"
+            className="block text-center text-xs text-stone-400 hover:text-stone-600 py-2 mt-3"
           >
             ← Back to all units
           </a>
@@ -722,7 +946,7 @@ export default function LessonFlow({
     );
   }
 
-  // ── DIALOGUE (conversation after each chunk) ──────────────────────────────────
+  // ── DIALOGUE ──────────────────────────────────────────────────────────────────
 
   if (phase.kind === "dialogue") {
     const { idx, match, chosen, checked, pendingChunkDone } = phase;
@@ -732,7 +956,6 @@ export default function LessonFlow({
     const isPassive = match === null;
     const options = match?.options ?? [];
 
-    // First unique speaker → left bubble; second → right bubble.
     const allSpeakers = [...new Set(conv.lines.map((l) => l.speaker_label))];
     const isRight = (speaker: string) => allSpeakers.indexOf(speaker) === 1;
 
@@ -771,36 +994,41 @@ export default function LessonFlow({
       return match.before + "___" + match.after;
     }
 
-    const bubbleRight = isRight(line.speaker_label);
-
-    // Label: "Conversation after lesson X" for multi-chunk units, or just "Conversation"
     const convLabel =
-      totalChunks > 1
-        ? `Conversation · after lesson ${chunkIndex + 1}`
-        : "Conversation";
+      totalChunks > 1 ? `Conversation · after lesson ${chunkIndex + 1}` : "Conversation";
 
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progress()} />
-        <p className="text-xs text-stone-400 text-center mb-4 uppercase tracking-widest">
-          {convLabel} · {idx + 1} of {conv.lines.length}
-        </p>
+        <StepLabel
+          current={idx + 1}
+          total={conv.lines.length}
+          kind="dialogue"
+          chunkIndex={chunkIndex}
+          totalChunks={totalChunks}
+        />
+        <p className="text-xs text-stone-400 text-center -mt-3 mb-4">{convLabel}</p>
 
-        {/* ── Chat history ── */}
-        <div className="flex flex-col gap-3 mb-4">
+        {/* Chat history */}
+        <div className="flex flex-col gap-2.5 mb-3">
           {conv.lines.slice(0, idx).map((pastLine, i) => {
             const right = isRight(pastLine.speaker_label);
             return (
-              <div key={i} className={`flex flex-col gap-0.5 ${right ? "items-end" : "items-start"}`}>
+              <div
+                key={i}
+                className={`flex flex-col gap-0.5 ${right ? "items-end" : "items-start"}`}
+              >
                 <p className="text-[10px] text-stone-400 px-1">{pastLine.speaker_label}</p>
-                <div className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm leading-snug ${
-                  right
-                    ? "bg-stone-800 text-white rounded-br-sm"
-                    : "bg-stone-100 text-stone-800 rounded-bl-sm"
-                }`}>
+                <div
+                  className={`max-w-[78%] px-3.5 py-2.5 rounded-2xl text-sm leading-snug ${
+                    right
+                      ? "bg-emerald-600 text-white rounded-br-sm"
+                      : "bg-stone-100 text-stone-800 rounded-bl-sm"
+                  }`}
+                >
                   {pastLine.utterance_normalized}
                   {pastLine.translation_en && (
-                    <p className="text-xs mt-1 opacity-50 italic">{pastLine.translation_en}</p>
+                    <p className="text-xs mt-1 opacity-60 italic">{pastLine.translation_en}</p>
                   )}
                 </div>
               </div>
@@ -808,55 +1036,65 @@ export default function LessonFlow({
           })}
         </div>
 
-        {/* ── Current line bubble ── */}
-        <div className={`flex flex-col gap-0.5 mb-5 ${bubbleRight ? "items-end" : "items-start"}`}>
+        {/* Current line */}
+        <div
+          className={`flex flex-col gap-0.5 mb-4 ${
+            isRight(line.speaker_label) ? "items-end" : "items-start"
+          }`}
+        >
           <p className="text-[10px] text-stone-400 px-1">{line.speaker_label}</p>
-          <div className={`max-w-[80%] px-4 py-3 rounded-2xl text-base font-semibold leading-snug ${
-            bubbleRight
-              ? "bg-stone-800 text-white rounded-br-sm"
-              : "bg-stone-100 text-stone-900 rounded-bl-sm"
-          }`}>
+          <div
+            className={`max-w-[82%] px-4 py-3 rounded-2xl text-base font-semibold leading-snug shadow-sm ${
+              isRight(line.speaker_label)
+                ? "bg-emerald-600 text-white rounded-br-sm"
+                : "bg-stone-100 text-stone-900 rounded-bl-sm"
+            }`}
+          >
             {utteranceDisplay()}
             {line.translation_en && (
-              <p className="text-xs mt-1.5 opacity-60 italic font-normal">{line.translation_en}</p>
+              <p className="text-xs mt-1.5 opacity-60 italic font-normal">
+                {line.translation_en}
+              </p>
             )}
           </div>
           {!isPassive && !checked && match && (
-            <p className={`text-xs text-stone-400 mt-1 px-1 ${bubbleRight ? "self-end" : "self-start"}`}>
+            <p
+              className={`text-xs text-emerald-600 mt-1 px-1 font-medium ${
+                isRight(line.speaker_label) ? "self-end" : "self-start"
+              }`}
+            >
               Hint: {displayGloss(match.vocabCard.gloss_en)}
             </p>
           )}
         </div>
 
-        {/* ── Word tiles ── */}
+        {/* Word tiles */}
         {!isPassive && !checked && (
-          <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="grid grid-cols-2 gap-2.5 mb-4">
             {options.map((opt) => (
-              <WordTile key={opt} word={opt} state={tileState(opt)} onClick={() => pickTile(opt)} />
+              <AnswerTile key={opt} word={opt} state={tileState(opt)} onClick={() => pickTile(opt)} />
             ))}
           </div>
         )}
 
-        {/* ── Feedback banner ── */}
+        {/* Feedback */}
         {!isPassive && checked && (
-          <div className={`rounded-xl px-4 py-3 mb-4 text-sm font-semibold text-center border ${
-            chosen === match?.answer
-              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-              : "bg-red-50 text-red-700 border-red-200"
-          }`}>
-            {chosen === match?.answer
-              ? `Correct! "${match.answer}" — ${displayGloss(match.vocabCard.gloss_en)}`
-              : `The answer is "${match?.answer}" — ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`}
-          </div>
+          <FeedbackBanner
+            correct={chosen === match?.answer}
+            message={
+              chosen === match?.answer
+                ? `Correct! "${match.answer}" — ${displayGloss(match.vocabCard.gloss_en)}`
+                : `The answer is "${match?.answer}" — ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`
+            }
+          />
         )}
 
-        {/* ── Continue / Next lesson / Finish ── */}
         {(isPassive || checked) && (
           <button
             onClick={advanceDialogue}
-            className="w-full bg-stone-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-stone-700 transition-colors"
+            className="w-full bg-stone-900 hover:bg-stone-700 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors"
           >
-            {isLast && !pendingChunkDone ? "Finish" : "Continue →"}
+            {isLast && !pendingChunkDone ? "Finish →" : "Continue →"}
           </button>
         )}
       </div>
@@ -868,32 +1106,40 @@ export default function LessonFlow({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={1} />
-      <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center shadow-sm">
-        <div className="text-5xl mb-6">🎉</div>
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center">
+        <div className="text-5xl mb-5">🎉</div>
         <h2 className="text-2xl font-bold text-stone-900 mb-2">Unit complete!</h2>
-        <p className="text-stone-500 mb-8">{themeEn}</p>
+        <p className="text-stone-500 mb-2">{themeEn}</p>
+        <p className="text-emerald-600 text-sm font-semibold mb-8">All lessons finished</p>
+
         <div className="flex flex-col gap-3">
+          {nextUnit && (
+            <a
+              href={`/units/${nextUnit.num}`}
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold text-center transition-colors shadow-sm"
+            >
+              Next: {nextUnit.themeEn} →
+            </a>
+          )}
+          <a
+            href={`/practice/${unitNum}`}
+            className="w-full border-2 border-stone-200 hover:border-emerald-300 text-stone-600 hover:text-emerald-700 py-3 rounded-2xl text-sm font-semibold text-center transition-colors"
+          >
+            Review flashcards
+          </a>
           <button
             onClick={() => {
               setChunkIndex(0);
               setChunkCorrect(0);
               setPhase({ kind: "intro" });
             }}
-            className="w-full border border-stone-200 text-stone-600 py-2.5 rounded-xl text-sm hover:bg-stone-50 transition-colors"
+            className="w-full border border-stone-200 text-stone-400 hover:text-stone-600 py-2.5 rounded-2xl text-sm transition-colors"
           >
             Repeat unit
           </button>
-          {nextUnit && (
-            <a
-              href={`/units/${nextUnit.num}`}
-              className="w-full bg-stone-900 text-white py-2.5 rounded-xl text-sm font-medium text-center hover:bg-stone-700 transition-colors"
-            >
-              Next: {nextUnit.themeEn} →
-            </a>
-          )}
           <a
             href="/units"
-            className="block w-full text-center text-sm text-stone-400 hover:text-stone-600 py-1"
+            className="block text-center text-xs text-stone-400 hover:text-stone-600 py-1"
           >
             ← Back to all units
           </a>

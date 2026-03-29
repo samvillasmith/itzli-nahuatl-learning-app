@@ -6,9 +6,9 @@ import { loadProgress, resetProgress, type ProgressData } from "@/lib/progress";
 import type { Unit } from "@/lib/db";
 
 const BAND_COLOR: Record<string, string> = {
-  A1: "bg-emerald-100 text-emerald-700",
-  A2: "bg-sky-100 text-sky-700",
-  B1: "bg-violet-100 text-violet-700",
+  A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
+  A2: "text-sky-700 bg-sky-100 border-sky-200",
+  B1: "text-violet-700 bg-violet-100 border-violet-200",
 };
 
 const BAND_LABEL: Record<string, string> = {
@@ -32,7 +32,6 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
   }
 
   const unitProgress = progress.units;
-
   const completedUnits = units.filter(
     (u) => unitProgress[u.lesson_number]?.status === "completed"
   );
@@ -43,6 +42,10 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
     (sum, u) => sum + u.english_vocab_count,
     0
   );
+  const overallPct =
+    completedUnits.length > 0
+      ? Math.round((completedUnits.length / units.length) * 100)
+      : 0;
 
   const hasAnyProgress = Object.keys(unitProgress).length > 0;
   const bands = ["A1", "A2", "B1"] as const;
@@ -52,26 +55,48 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">Your Progress</h1>
-        <p className="text-stone-500">
-          Track your journey through Eastern Huasteca Nahuatl.
-        </p>
+        <p className="text-stone-500">Track your journey through Eastern Huasteca Nahuatl.</p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        <div className="bg-white border border-stone-200 rounded-xl p-5">
-          <div className="text-2xl font-bold text-stone-900">{completedUnits.length}</div>
-          <div className="text-sm text-stone-500 mt-1">
-            of {units.length} units complete
+      {/* Overall progress bar */}
+      {hasAnyProgress && (
+        <div className="bg-white rounded-2xl border border-stone-100 shadow-sm p-6 mb-8">
+          <div className="flex items-end justify-between mb-3">
+            <div>
+              <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-1">
+                Overall
+              </p>
+              <p className="text-2xl font-bold text-stone-900">
+                {completedUnits.length}{" "}
+                <span className="text-stone-400 text-base font-medium">
+                  / {units.length} units complete
+                </span>
+              </p>
+            </div>
+            <p className="text-3xl font-bold text-emerald-500">{overallPct}%</p>
+          </div>
+          <div className="w-full bg-stone-100 rounded-full h-3">
+            <div
+              className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-3 rounded-full transition-all duration-700"
+              style={{ width: `${overallPct}%` }}
+            />
           </div>
         </div>
-        <div className="bg-white border border-stone-200 rounded-xl p-5">
-          <div className="text-2xl font-bold text-stone-900">{inProgressUnits.length}</div>
-          <div className="text-sm text-stone-500 mt-1">units in progress</div>
+      )}
+
+      {/* Stat cards */}
+      <div className="grid grid-cols-3 gap-3 mb-10">
+        <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
+          <div className="text-2xl font-bold text-emerald-600">{completedUnits.length}</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">completed</div>
         </div>
-        <div className="bg-white border border-stone-200 rounded-xl p-5">
-          <div className="text-2xl font-bold text-stone-900">{wordsEncountered}</div>
-          <div className="text-sm text-stone-500 mt-1">words encountered</div>
+        <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
+          <div className="text-2xl font-bold text-amber-500">{inProgressUnits.length}</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">in progress</div>
+        </div>
+        <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
+          <div className="text-2xl font-bold text-stone-700">{wordsEncountered}</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">words seen</div>
         </div>
       </div>
 
@@ -79,33 +104,51 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
       {bands.map((band) => {
         const bandUnits = units.filter((u) => u.target_band === band);
         if (!bandUnits.length) return null;
+
+        const done = bandUnits.filter(
+          (u) => unitProgress[u.lesson_number]?.status === "completed"
+        ).length;
+
         return (
           <section key={band} className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${BAND_COLOR[band]}`}>
-                {band}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span
+                  className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}
+                >
+                  {band}
+                </span>
+                <h2 className="text-base font-semibold text-stone-600">{BAND_LABEL[band]}</h2>
+              </div>
+              <span className="text-xs text-stone-400 font-medium">
+                {done}/{bandUnits.length} done
               </span>
-              <h2 className="text-base font-semibold text-stone-600">
-                {BAND_LABEL[band]}
-              </h2>
             </div>
-            <div className="bg-white border border-stone-200 rounded-2xl divide-y divide-stone-100 overflow-hidden">
+
+            <div className="bg-white border border-stone-100 rounded-2xl shadow-sm divide-y divide-stone-50 overflow-hidden">
               {bandUnits.map((unit) => {
                 const p = unitProgress[unit.lesson_number];
                 const status = p?.status ?? "not_started";
+
                 return (
                   <div
                     key={unit.lesson_number}
-                    className="flex items-center gap-4 px-5 py-4"
+                    className="flex items-center gap-4 px-5 py-4 hover:bg-stone-50/50 transition-colors"
                   >
                     {/* Status icon */}
-                    <div className="w-6 shrink-0 text-center">
+                    <div className="w-7 h-7 shrink-0 flex items-center justify-center">
                       {status === "completed" ? (
-                        <span className="text-emerald-500 font-bold text-base">✓</span>
+                        <span className="w-7 h-7 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 text-xs font-bold">
+                          ✓
+                        </span>
                       ) : status === "in_progress" ? (
-                        <span className="text-amber-400 font-bold text-base">◑</span>
+                        <span className="w-7 h-7 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-600 text-xs font-bold">
+                          ◑
+                        </span>
                       ) : (
-                        <span className="text-stone-200 font-bold text-base">○</span>
+                        <span className="w-7 h-7 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-300 text-xs">
+                          ○
+                        </span>
                       )}
                     </div>
 
@@ -120,22 +163,24 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                         </span>
                       </div>
                       {p && (
-                        <div className="flex items-center gap-3 mt-1">
-                          {/* Chunk progress bar */}
-                          <div className="w-20 bg-stone-100 rounded-full h-1">
+                        <div className="flex items-center gap-3 mt-1.5">
+                          <div className="w-20 bg-stone-100 rounded-full h-1.5">
                             <div
-                              className={`h-1 rounded-full ${
+                              className={`h-1.5 rounded-full ${
                                 status === "completed" ? "bg-emerald-400" : "bg-amber-300"
                               }`}
                               style={{
-                                width: `${Math.min(100, (p.completedChunks / p.totalChunks) * 100)}%`,
+                                width: `${Math.min(
+                                  100,
+                                  (p.completedChunks / p.totalChunks) * 100
+                                )}%`,
                               }}
                             />
                           </div>
                           <span className="text-xs text-stone-400">
                             {p.completedChunks}/{p.totalChunks} lessons
                             {p.lastTotal > 0 && (
-                              <> · {Math.round((p.lastCorrect / p.lastTotal) * 100)}% last score</>
+                              <> · {Math.round((p.lastCorrect / p.lastTotal) * 100)}%</>
                             )}
                           </span>
                         </div>
@@ -147,19 +192,19 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                       {status !== "not_started" && (
                         <Link
                           href={`/practice/${unit.lesson_number}`}
-                          className="text-xs px-3 py-1.5 rounded-lg border border-stone-200 text-stone-600 hover:bg-stone-50 transition-colors"
+                          className="text-xs px-3 py-1.5 rounded-lg border border-stone-200 text-stone-500 hover:bg-stone-50 transition-colors"
                         >
-                          Review vocab
+                          Review
                         </Link>
                       )}
                       <Link
                         href={`/units/${unit.lesson_number}`}
-                        className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                        className={`text-xs px-3 py-1.5 rounded-lg font-semibold transition-colors ${
                           status === "completed"
                             ? "border border-stone-200 text-stone-500 hover:bg-stone-50"
                             : status === "in_progress"
-                            ? "bg-amber-500 text-white hover:bg-amber-600"
-                            : "bg-stone-900 text-white hover:bg-stone-700"
+                            ? "bg-amber-400 hover:bg-amber-500 text-white"
+                            : "bg-emerald-500 hover:bg-emerald-600 text-white"
                         }`}
                       >
                         {status === "completed"
@@ -194,7 +239,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
             </span>
             <button
               onClick={handleReset}
-              className="text-sm font-medium text-red-600 hover:text-red-700"
+              className="text-sm font-bold text-red-600 hover:text-red-700"
             >
               Yes, reset
             </button>
