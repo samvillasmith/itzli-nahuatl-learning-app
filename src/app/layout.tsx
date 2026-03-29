@@ -36,6 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Vocabulary
               </Link>
               <Link
+                href="/grammar"
+                className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium"
+              >
+                Grammar
+              </Link>
+              <Link
                 href="/progress"
                 className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium"
               >

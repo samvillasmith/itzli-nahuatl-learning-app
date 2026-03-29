@@ -238,3 +238,32 @@ export function searchVocab(query: string, limit = 40): LexiconEntry[] {
     )
     .all(q, q, q, limit) as LexiconEntry[];
 }
+
+export type GrammarDialogue = {
+  speaker_label: string;
+  utterance_normalized: string;
+  translation_en: string | null;
+};
+
+export function getGrammarDialogues(lessonNumbers: number[]): GrammarDialogue[] {
+  if (lessonNumbers.length === 0) return [];
+  const placeholders = lessonNumbers.map(() => '?').join(',');
+  return getDb()
+    .prepare(
+      `SELECT ld.speaker_label, ld.utterance_normalized, ld.translation_en
+       FROM lesson_dialogues ld
+       JOIN phase82_unit_plan u ON u.english_lesson_unit_id = ld.lesson_unit_id
+       WHERE u.lesson_number IN (${placeholders})
+         AND ld.translation_en IS NOT NULL
+         AND (ld.utterance_normalized LIKE '%ā%'
+              OR ld.utterance_normalized LIKE '%ē%'
+              OR ld.utterance_normalized LIKE '%ī%'
+              OR ld.utterance_normalized LIKE '%ō%'
+              OR ld.utterance_normalized LIKE '%¿%')
+         AND length(ld.utterance_normalized) > 8
+         AND length(ld.utterance_normalized) < 150
+       ORDER BY ld.lesson_dialogue_id
+       LIMIT 12`
+    )
+    .all(...lessonNumbers) as GrammarDialogue[];
+}

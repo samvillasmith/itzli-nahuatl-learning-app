@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { displayGloss } from "@/lib/gloss";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
+import { getWordImage } from "@/data/word-images";
 
 const CHUNK_SIZE = 10;
 
@@ -605,36 +606,78 @@ export default function LessonFlow({
               ? setPhase({ kind: "learn", srsIdx, revealed: true })
               : advanceLearn()
           }
-          className="w-full bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center hover:shadow-md transition-all cursor-pointer select-none"
+          className="w-full bg-white rounded-3xl shadow-sm border border-stone-100 text-center hover:shadow-md transition-all cursor-pointer select-none overflow-hidden"
           style={{ minHeight: "240px" }}
         >
           {!revealed ? (
-            <div className="flex flex-col items-center justify-center h-full gap-4">
-              <p className="text-4xl font-bold text-stone-900 leading-tight">{word.headword}</p>
-              {word.part_of_speech && (
-                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
-                  {word.part_of_speech}
-                </span>
-              )}
-              <p className="text-stone-300 text-xs mt-4 uppercase tracking-widest">
-                tap to reveal meaning
-              </p>
-            </div>
+            (() => {
+              const img = getWordImage(word.headword);
+              return (
+                <div className="flex flex-col h-full">
+                  {img && (
+                    <div className="relative h-44 w-full overflow-hidden rounded-t-3xl bg-stone-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.url}
+                        alt={word.headword}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
+                      />
+                      <span className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl">
+                        {img.license}
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
+                    <p className="text-4xl font-bold text-stone-900 leading-tight">{word.headword}</p>
+                    {word.part_of_speech && (
+                      <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
+                        {word.part_of_speech}
+                      </span>
+                    )}
+                    <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">
+                      tap to reveal meaning
+                    </p>
+                  </div>
+                </div>
+              );
+            })()
           ) : (
-            <div className="flex flex-col items-center justify-center h-full gap-4">
-              <p className="text-stone-400 text-sm font-medium">{word.headword}</p>
-              <p className="text-3xl font-bold text-emerald-600 leading-tight">
-                {displayGloss(word.gloss_en)}
-              </p>
-              {word.part_of_speech && (
-                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
-                  {word.part_of_speech}
-                </span>
-              )}
-              <p className="text-stone-300 text-xs mt-4 uppercase tracking-widest">
-                tap to continue
-              </p>
-            </div>
+            (() => {
+              const img = getWordImage(word.headword);
+              return (
+                <div className="flex flex-col h-full">
+                  {img && (
+                    <div className="relative h-44 w-full overflow-hidden rounded-t-3xl bg-stone-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.url}
+                        alt={word.headword}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
+                      />
+                      <span className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl">
+                        {img.license}
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
+                    <p className="text-stone-400 text-sm font-medium">{word.headword}</p>
+                    <p className="text-3xl font-bold text-emerald-600 leading-tight">
+                      {displayGloss(word.gloss_en)}
+                    </p>
+                    {word.part_of_speech && (
+                      <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+                        {word.part_of_speech}
+                      </span>
+                    )}
+                    <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">
+                      tap to continue
+                    </p>
+                  </div>
+                </div>
+              );
+            })()
           )}
         </button>
       </div>
