@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { displayGloss } from "@/lib/gloss";
 
 type Card = {
   headword: string;
@@ -95,7 +96,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
         ) : (
           <div>
             <p className="text-xs text-stone-300 uppercase tracking-widest mb-4">English</p>
-            <p className="text-2xl font-semibold text-stone-800 leading-snug">{card.gloss_en}</p>
+            <p className="text-2xl font-semibold text-stone-800 leading-snug">{displayGloss(card.gloss_en)}</p>
             {card.part_of_speech && (
               <p className="text-stone-400 text-sm mt-3 font-mono">{card.part_of_speech}</p>
             )}

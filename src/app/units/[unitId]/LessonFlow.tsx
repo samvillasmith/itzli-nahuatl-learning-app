@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { displayGloss } from "@/lib/gloss";
+import { markChunkDone } from "@/lib/progress";
 
 const CHUNK_SIZE = 10;
 
@@ -69,14 +71,6 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
-}
-
-// Strip audit-annotation suffixes from gloss_en before display.
-// DB stores correction notes like "[❌ CORRECTED: ...]" or "[⚠️ NOTE: ...]" appended to
-// glosses; these must never appear in quiz options, learn cards, or hints.
-function displayGloss(gloss: string): string {
-  const cleaned = gloss.replace(/\s*\[(?:❌|⚠️)[^\]]*\].*$/, "").trim();
-  return cleaned.length > 0 ? cleaned : "—";
 }
 
 function buildFwdOptions(correct: VocabCard, pool: VocabCard[]): string[] {
@@ -356,6 +350,7 @@ export default function LessonFlow({
 
   function finishChunk(correct: number) {
     const total = currentChunk.length * 2 + fillBlanks.length;
+    markChunkDone(unitNum, chunkIndex, totalChunks, correct, total);
     const conv = chunkConversations[chunkIndex];
     if (conv && conv.lines.length > 0) {
       // Conversation after every chunk; carry the score so chunkDone can show it

@@ -31,6 +31,9 @@ export default function RootLayout({
               <Link href="/vocabulary" className="hover:text-stone-800 transition-colors">
                 Vocabulary
               </Link>
+              <Link href="/progress" className="hover:text-stone-800 transition-colors">
+                Progress
+              </Link>
             </div>
           </div>
         </nav>
