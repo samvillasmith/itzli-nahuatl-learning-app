@@ -128,6 +128,7 @@ export function getAllPrimerVocab(): VocabItem[] {
       `SELECT id, display_form AS headword, gloss_en, part_of_speech,
               lesson_number AS first_lesson_number, semantic_domain
        FROM lesson_vocab
+       WHERE gloss_en NOT LIKE '%MISPLACED%'
        ORDER BY lesson_number, rank`
     )
     .all() as VocabItem[];
@@ -146,13 +147,66 @@ export function getUnitDialogues(lessonNumber: number): DialogueLine[] {
     .all(lessonNumber) as DialogueLine[];
 }
 
+export type DialogueLineContent = {
+  speaker_label: string;
+  utterance_normalized: string;
+  translation_en: string | null;
+};
+
+// Returns real A/B dialogue and named-character conversation lines from
+// lesson_dialogues, filtered to actual EHN text (lines with macron vowels
+// or ¿).  English translations that were stored as sibling rows are excluded
+// by the diacritic/¿ requirement.  Named speakers Rufina, Martha, and Angela
+// appear in lesson 19 and produce a genuine three-way conversation there.
+export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
+  return getDb()
+    .prepare(
+      `SELECT ld.speaker_label, ld.utterance_normalized, ld.translation_en
+       FROM lesson_dialogues ld
+       JOIN phase82_unit_plan u ON u.english_lesson_unit_id = ld.lesson_unit_id
+       WHERE u.lesson_number = ?
+         AND (ld.speaker_label GLOB '[A-Z]'
+              OR ld.speaker_label IN ('Rufina', 'Martha', 'Angela'))
+         AND (ld.utterance_normalized LIKE '%ā%'
+              OR ld.utterance_normalized LIKE '%ē%'
+              OR ld.utterance_normalized LIKE '%ō%'
+              OR ld.utterance_normalized LIKE '%ī%'
+              OR ld.utterance_normalized LIKE '%ū%'
+              OR ld.utterance_normalized LIKE '%¿%')
+       ORDER BY ld.lesson_dialogue_id`
+    )
+    .all(lessonNumber) as DialogueLineContent[];
+}
+
+export type LessonBlock = {
+  text_normalized: string;
+};
+
+// Returns short, high-nahuatliness lesson blocks for a unit — used as
+// conversation-exercise fallback when no real dialogue lines are available.
+export function getUnitLessonBlocks(lessonNumber: number): LessonBlock[] {
+  return getDb()
+    .prepare(
+      `SELECT lb.text_normalized
+       FROM lesson_blocks lb
+       JOIN phase82_unit_plan u ON u.english_lesson_unit_id = lb.lesson_unit_id
+       WHERE u.lesson_number = ?
+         AND lb.nahuatliness_score > 0.5
+         AND lb.text_normalized IS NOT NULL
+         AND length(lb.text_normalized) > 8
+         AND length(lb.text_normalized) < 120
+       ORDER BY lb.block_order`
+    )
+    .all(lessonNumber) as LessonBlock[];
+}
+
 export function getUnitConstructions(lessonNumber: number): Construction[] {
   return getDb()
     .prepare(
       `SELECT priority_id, construction_label, pattern_text,
               proficiency_band, first_lesson_number, example_original, avg_confidence
        FROM primer_constructions
-       WHERE first_lesson_number = ?
+       WHERE first_lesson_number <= ?
        ORDER BY avg_confidence DESC`
     )
     .all(lessonNumber) as Construction[];

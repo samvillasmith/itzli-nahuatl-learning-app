@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import {
   getUnit,
   getUnitVocab,
-  getUnitDialogues,
+  getUnitDialogueContent,
+  getUnitConstructions,
+  getUnitLessonBlocks,
   getAllUnits,
   getAllPrimerVocab,
 } from "@/lib/db";
@@ -27,7 +29,9 @@ export default async function UnitPage({
   if (!unit) notFound();
 
   const vocab = getUnitVocab(num);
-  const dialogues = getUnitDialogues(num);
+  const dialogues = getUnitDialogueContent(num);
+  const constructions = getUnitConstructions(num);
+  const lessonBlocks = getUnitLessonBlocks(num);
   const allVocabPool = getAllPrimerVocab();
   const allUnits = getAllUnits();
   const idx = allUnits.findIndex((u) => u.lesson_number === num);
@@ -56,6 +60,12 @@ export default async function UnitPage({
           speaker_label: d.speaker_label,
           utterance_normalized: d.utterance_normalized,
           translation_en: d.translation_en,
+        }))}
+        constructions={constructions.map((c) => ({
+          example_original: c.example_original,
+        }))}
+        lessonBlocks={lessonBlocks.map((b) => ({
+          text_normalized: b.text_normalized,
         }))}
         allVocabPool={allVocabPool.map((v) => ({
           headword: v.headword,

@@ -29,7 +29,7 @@ export default function Home() {
         </h1>
         <p className="text-lg text-stone-500 max-w-2xl">
           A structured A1–B1 curriculum built from the Flor y Canto Nahuatl
-          infrastructure — 32 units, 1,008 vocabulary items, spoken-first.
+          infrastructure — 43 units, 101 bite-sized lessons, spoken-first.
         </p>
         <div className="flex gap-6 mt-6">
           <Link
@@ -50,8 +50,8 @@ export default function Home() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-12">
         {[
-          { label: "Units", value: "32" },
-          { label: "Vocabulary items", value: "37k+" },
+          { label: "Units", value: "43" },
+          { label: "Lessons", value: "101" },
           { label: "CEFR bands", value: "A1 – B1" },
         ].map((s) => (
           <div

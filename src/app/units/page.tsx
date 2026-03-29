@@ -14,8 +14,8 @@ export default function UnitsPage() {
     <div>
       <h1 className="text-3xl font-bold text-stone-900 mb-2">All Units</h1>
       <p className="text-stone-500 mb-8">
-        32 units covering A1–B1. Each unit includes vocabulary, grammar
-        constructions, and practice dialogues.
+        {units.length} units covering A1–B1. Each unit is split into
+        bite-sized lessons of up to 10 words.
       </p>
 
       <div className="divide-y divide-stone-100">
@@ -44,7 +44,7 @@ export default function UnitsPage() {
               </p>
             </div>
             <div className="text-xs text-stone-300 shrink-0 pt-0.5 font-mono">
-              {unit.english_vocab_count}v
+              {unit.english_vocab_count}w
             </div>
           </Link>
         ))}
