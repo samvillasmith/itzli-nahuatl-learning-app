@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { displayGloss } from "@/lib/gloss";
 import { vocabAudioUrl, dialogueAudioUrl } from "@/lib/audio";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
+import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
 
 const CHUNK_SIZE = 10;
@@ -530,6 +531,7 @@ export default function LessonFlow({
   function finishChunk(correct: number) {
     const total = currentChunk.length * 2 + fillBlanks.length;
     markChunkDone(unitNum, chunkIndex, totalChunks, correct, total);
+    pushToCloud();
     const conv = chunkConversations[chunkIndex];
     if (conv && conv.lines.length > 0) {
       setPhase({

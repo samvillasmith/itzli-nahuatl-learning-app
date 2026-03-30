@@ -50,6 +50,10 @@ function persist(data: ProgressData): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
+export function saveProgress(data: ProgressData): void {
+  persist(data);
+}
+
 export function markChunkDone(
   unitNum: number,
   chunkIdx: number,
@@ -96,6 +100,10 @@ export function loadSrs(): SrsData {
 
 function persistSrs(data: SrsData): void {
   localStorage.setItem(SRS_KEY, JSON.stringify(data));
+}
+
+export function saveSrs(data: SrsData): void {
+  persistSrs(data);
 }
 
 export function recordWordResult(

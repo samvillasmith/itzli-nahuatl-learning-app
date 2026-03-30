@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 import { loadProgress, resetProgress, type ProgressData } from "@/lib/progress";
+import { pullAndMerge, deleteCloudProgress } from "@/lib/cloudSync";
 import type { Unit } from "@/lib/db";
 
 const BAND_COLOR: Record<string, string> = {
@@ -20,13 +22,20 @@ const BAND_LABEL: Record<string, string> = {
 export default function ProgressDashboard({ units }: { units: Unit[] }) {
   const [progress, setProgress] = useState<ProgressData>({ version: 1, units: {} });
   const [confirmReset, setConfirmReset] = useState(false);
+  const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
-    setProgress(loadProgress());
-  }, []);
+    if (!isLoaded) return;
+    if (isSignedIn) {
+      pullAndMerge().then(({ progress: merged }) => setProgress(merged));
+    } else {
+      setProgress(loadProgress());
+    }
+  }, [isLoaded, isSignedIn]);
 
   function handleReset() {
     resetProgress();
+    if (isSignedIn) deleteCloudProgress();
     setProgress({ version: 1, units: {} });
     setConfirmReset(false);
   }

@@ -46,3 +46,4 @@ next-env.d.ts
 
 # Audio files (served from S3 — see scripts/fetch-db.js and src/lib/audio.ts)
 /public/audio/
+image-gallery.html
