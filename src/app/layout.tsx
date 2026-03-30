@@ -4,9 +4,52 @@ import Link from "next/link";
 import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import DisclaimerBanner from "./DisclaimerBanner";
 
+const SITE_URL = "https://itzli.app";
+const DESCRIPTION =
+  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 703 vocabulary words, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
+
 export const metadata: Metadata = {
-  title: "Itzli — Learn Eastern Huasteca Nahuatl",
-  description: "A structured A1–B1 curriculum for Eastern Huasteca Nahuatl.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Itzli — Learn Eastern Huasteca Nahuatl",
+    template: "%s | Itzli",
+  },
+  description: DESCRIPTION,
+  keywords: [
+    "learn nahuatl",
+    "nahuatl language learning",
+    "nahuatl course",
+    "nahuatl lessons",
+    "nahuatl for beginners",
+    "eastern huasteca nahuatl",
+    "nahuatl app",
+    "nahuatl vocabulary",
+    "nahuatl grammar",
+    "indigenous mexican language",
+    "aztec language",
+    "language revitalization",
+    "nahuatl online",
+    "nahuatl heritage learner",
+    "learn aztec",
+    "nhe nahuatl",
+    "huasteca nahuatl",
+  ],
+  authors: [{ name: "Sam Villa-Smith", url: "https://amoxcalli.org" }],
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Itzli",
+    title: "Itzli — Learn Eastern Huasteca Nahuatl",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: "Itzli — Learn Eastern Huasteca Nahuatl",
+    description: DESCRIPTION,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -61,6 +104,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Show>
             </div>
           </nav>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                name: "Itzli",
+                url: "https://itzli.app",
+                description: DESCRIPTION,
+                applicationCategory: "EducationApplication",
+                operatingSystem: "Web",
+                offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+                author: {
+                  "@type": "Person",
+                  name: "Sam Villa-Smith",
+                  url: "https://amoxcalli.org",
+                },
+                about: {
+                  "@type": "Language",
+                  name: "Eastern Huasteca Nahuatl",
+                  alternateName: ["Nahuatl", "Náhuatl", "NHE"],
+                },
+                educationalLevel: "Beginner to Intermediate (A1–B1)",
+                inLanguage: "nhe",
+                isAccessibleForFree: true,
+                license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+              }),
+            }}
+          />
           <DisclaimerBanner />
           <main className="max-w-5xl mx-auto px-4 py-10">{children}</main>
           <footer className="border-t border-stone-200 mt-16 py-8 text-xs text-stone-400">
