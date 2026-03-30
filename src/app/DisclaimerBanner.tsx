@@ -49,7 +49,7 @@ export default function DisclaimerBanner() {
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative"
+            className="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 relative max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button

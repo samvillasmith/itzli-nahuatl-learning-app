@@ -33,10 +33,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/units" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Units
                   </Link>
-                  <Link href="/vocabulary" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/vocabulary" className="hidden sm:block px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Vocabulary
                   </Link>
-                  <Link href="/grammar" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/grammar" className="hidden sm:block px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Grammar
                   </Link>
                   <Link href="/progress" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="mx-2 text-stone-300">·</span>
                 <span>Eastern Huasteca Nahuatl · A1–B1 curriculum</span>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
                 <a
                   href="https://github.com/samvillasmith/itzli-nahuatl-learning-app"
                   target="_blank"
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   GitHub
                 </a>
-                <span className="text-stone-300">·</span>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
                   href="https://amoxcalli.org/"
                   target="_blank"
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   Amoxcalli
                 </a>
-                <span className="text-stone-300">·</span>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
                   href="https://www.linkedin.com/in/dr-sam-villa-smith-phd-mba-ccsk-cczt-a803a0109/"
                   target="_blank"
@@ -98,14 +98,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   LinkedIn
                 </a>
-                <span className="text-stone-300">·</span>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
                   href="mailto:svillasmith3@gmail.com"
                   className="hover:text-stone-600 transition-colors select-all"
                 >
                   svillasmith3@gmail.com
                 </a>
-                <span className="text-stone-300">·</span>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
                   href="https://www.pexels.com"
                   target="_blank"
