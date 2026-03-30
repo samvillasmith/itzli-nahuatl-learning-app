@@ -676,9 +676,15 @@ export default function LessonFlow({
                         className="w-full h-full object-contain"
                         onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                       />
-                      <span className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl">
-                        {img.license}
-                      </span>
+                      <a
+                        href={img.pexels_url ?? "https://www.pexels.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {img.author ? `${img.author.slice(0, 20)} · Pexels` : "Pexels"}
+                      </a>
                     </div>
                   )}
                   <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
@@ -709,9 +715,15 @@ export default function LessonFlow({
                         className="w-full h-full object-contain"
                         onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                       />
-                      <span className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl">
-                        {img.license}
-                      </span>
+                      <a
+                        href={img.pexels_url ?? "https://www.pexels.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {img.author ? `${img.author.slice(0, 20)} · Pexels` : "Pexels"}
+                      </a>
                     </div>
                   )}
                   <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">

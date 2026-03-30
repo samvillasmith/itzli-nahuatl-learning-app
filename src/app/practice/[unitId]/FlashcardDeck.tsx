@@ -28,13 +28,15 @@ function WordImage({ headword, className = "" }: { headword: string; className?:
         onError={() => setFailed(true)}
       />
       <a
-        href={`https://openverse.org`}
+        href={img.pexels_url ?? "https://www.pexels.com"}
         target="_blank"
         rel="noopener noreferrer"
         className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        {img.license} · {img.author.slice(0, 24)}
+        {img.author_url
+          ? <span>Photo by <span className="underline">{img.author.slice(0, 20)}</span> · Pexels</span>
+          : "Pexels"}
       </a>
     </div>
   );

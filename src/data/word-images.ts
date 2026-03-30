@@ -4,6 +4,11 @@ export type WordImage = {
   url: string;
   license: string;
   author: string;
+  author_url?: string;
+  pexels_id?: number;
+  pexels_url?: string;
+  alt?: string;
+  // legacy fields
   source?: string;
   title?: string;
 };
