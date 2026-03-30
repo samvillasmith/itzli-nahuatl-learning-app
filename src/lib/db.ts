@@ -3,10 +3,7 @@ import path from "path";
 
 const DB_PATH =
   process.env.DATABASE_PATH ||
-  path.join(
-    process.cwd(),
-    "../molina/curriculum/fcn_master_lexicon_phase8_6_primer.sqlite"
-  );
+  path.join(process.cwd(), "fcn_master_lexicon_phase8_6_primer.sqlite");
 
 let _db: Database.Database | null = null;
 
@@ -148,6 +145,7 @@ export function getUnitDialogues(lessonNumber: number): DialogueLine[] {
 }
 
 export type DialogueLineContent = {
+  lesson_dialogue_id: string;
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
@@ -161,7 +159,7 @@ export type DialogueLineContent = {
 export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
   return getDb()
     .prepare(
-      `SELECT ld.speaker_label, ld.utterance_normalized, ld.translation_en
+      `SELECT ld.lesson_dialogue_id, ld.speaker_label, ld.utterance_normalized, ld.translation_en
        FROM lesson_dialogues ld
        JOIN phase82_unit_plan u ON u.english_lesson_unit_id = ld.lesson_unit_id
        WHERE u.lesson_number = ?
@@ -240,6 +238,7 @@ export function searchVocab(query: string, limit = 40): LexiconEntry[] {
 }
 
 export type GrammarDialogue = {
+  lesson_dialogue_id: string;
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
@@ -250,7 +249,7 @@ export function getGrammarDialogues(lessonNumbers: number[]): GrammarDialogue[] 
   const placeholders = lessonNumbers.map(() => '?').join(',');
   return getDb()
     .prepare(
-      `SELECT ld.speaker_label, ld.utterance_normalized, ld.translation_en
+      `SELECT ld.lesson_dialogue_id, ld.speaker_label, ld.utterance_normalized, ld.translation_en
        FROM lesson_dialogues ld
        JOIN phase82_unit_plan u ON u.english_lesson_unit_id = ld.lesson_unit_id
        WHERE u.lesson_number IN (${placeholders})

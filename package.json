@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/fetch-db.js",
+    "prebuild": "node scripts/fetch-db.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"

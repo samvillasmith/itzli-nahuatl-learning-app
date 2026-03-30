@@ -52,11 +52,13 @@ export default async function UnitPage({
         communicativeGoal={unit.communicative_goal}
         targetBand={unit.target_band}
         vocab={vocab.map((v) => ({
+          id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
           part_of_speech: v.part_of_speech,
         }))}
         dialogues={dialogues.map((d) => ({
+          lesson_dialogue_id: d.lesson_dialogue_id,
           speaker_label: d.speaker_label,
           utterance_normalized: d.utterance_normalized,
           translation_en: d.translation_en,
@@ -68,6 +70,7 @@ export default async function UnitPage({
           text_normalized: b.text_normalized,
         }))}
         allVocabPool={allVocabPool.map((v) => ({
+          id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
           part_of_speech: v.part_of_speech,

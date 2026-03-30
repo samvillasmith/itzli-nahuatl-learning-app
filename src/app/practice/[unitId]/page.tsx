@@ -44,6 +44,7 @@ export default async function PracticePage({
 
       <FlashcardDeck
         cards={vocab.map((v) => ({
+          id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
           part_of_speech: v.part_of_speech,

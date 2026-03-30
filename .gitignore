@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# SQLite databases (exceed GitHub's 100MB limit)
+# SQLite databases (exceed GitHub's 100MB limit — fetched from S3 at build time)
 *.sqlite
 *.db
+
+# Audio files (served from S3 — see scripts/fetch-db.js and src/lib/audio.ts)
+/public/audio/

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { displayGloss } from "@/lib/gloss";
+import { vocabAudioUrl, dialogueAudioUrl } from "@/lib/audio";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { getWordImage } from "@/data/word-images";
 
@@ -9,8 +10,9 @@ const CHUNK_SIZE = 10;
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type VocabCard = { headword: string; gloss_en: string; part_of_speech: string };
+type VocabCard = { id: number; headword: string; gloss_en: string; part_of_speech: string };
 type DialogueLine = {
+  lesson_dialogue_id: string;
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
@@ -273,6 +275,57 @@ function FeedbackBanner({
       <span className="text-lg shrink-0">{correct ? "✓" : "✗"}</span>
       <p className="text-sm font-semibold leading-snug">{message}</p>
     </div>
+  );
+}
+
+// ── Audio play button ──────────────────────────────────────────────────────────
+
+function AudioButton({
+  src,
+  size = "md",
+}: {
+  src: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const [playing, setPlaying] = useState(false);
+
+  function handlePlay(e: React.MouseEvent) {
+    e.stopPropagation();
+    if (playing) return;
+    const audio = new Audio(src);
+    setPlaying(true);
+    audio.onended = () => setPlaying(false);
+    audio.onerror = () => setPlaying(false);
+    audio.play().catch(() => setPlaying(false));
+  }
+
+  const sizeClasses = {
+    sm: "p-1.5 rounded-lg",
+    md: "p-2.5 rounded-xl",
+    lg: "p-3 rounded-2xl",
+  };
+  const iconSize = { sm: "w-3.5 h-3.5", md: "w-4 h-4", lg: "w-5 h-5" };
+
+  return (
+    <button
+      onClick={handlePlay}
+      title="Play pronunciation"
+      className={`flex items-center justify-center transition-all ${sizeClasses[size]} ${
+        playing
+          ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
+          : "bg-stone-100 text-stone-400 hover:bg-stone-200 hover:text-stone-600 border border-stone-200"
+      }`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={iconSize[size]}
+      >
+        <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+        <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.061z" />
+      </svg>
+    </button>
   );
 }
 
@@ -680,6 +733,11 @@ export default function LessonFlow({
             })()
           )}
         </button>
+
+        {/* Pronunciation */}
+        <div className="flex justify-center mt-4">
+          <AudioButton src={vocabAudioUrl(word.id)} size="lg" />
+        </div>
       </div>
     );
   }
@@ -725,7 +783,10 @@ export default function LessonFlow({
           <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
             What does this mean?
           </p>
-          <p className="text-3xl font-bold text-stone-900">{word.headword}</p>
+          <div className="flex items-center justify-center gap-3">
+            <p className="text-3xl font-bold text-stone-900">{word.headword}</p>
+            <AudioButton src={vocabAudioUrl(word.id)} size="sm" />
+          </div>
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
           )}
@@ -830,6 +891,11 @@ export default function LessonFlow({
           <p className="text-3xl font-bold text-stone-900">{displayGloss(word.gloss_en)}</p>
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
+          )}
+          {checked && (
+            <div className="flex justify-center mt-3">
+              <AudioButton src={vocabAudioUrl(word.id)} size="sm" />
+            </div>
           )}
         </div>
 
@@ -1085,7 +1151,10 @@ export default function LessonFlow({
             isRight(line.speaker_label) ? "items-end" : "items-start"
           }`}
         >
-          <p className="text-[10px] text-stone-400 px-1">{line.speaker_label}</p>
+          <div className={`flex items-center gap-1.5 px-1 ${isRight(line.speaker_label) ? "flex-row-reverse" : ""}`}>
+            <p className="text-[10px] text-stone-400">{line.speaker_label}</p>
+            <AudioButton src={dialogueAudioUrl(line.lesson_dialogue_id)} size="sm" />
+          </div>
           <div
             className={`max-w-[82%] px-4 py-3 rounded-2xl text-base font-semibold leading-snug shadow-sm ${
               isRight(line.speaker_label)
