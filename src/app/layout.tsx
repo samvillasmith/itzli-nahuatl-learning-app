@@ -63,15 +63,59 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
           <DisclaimerBanner />
           <main className="max-w-5xl mx-auto px-4 py-10">{children}</main>
-          <footer className="border-t border-stone-200 mt-16 py-6 text-center text-xs text-stone-400">
-            <a
-              href="https://www.pexels.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-stone-600 transition-colors"
-            >
-              Photos provided by Pexels
-            </a>
+          <footer className="border-t border-stone-200 mt-16 py-8 text-xs text-stone-400">
+            <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-1">
+                <span className="w-5 h-5 rounded-sm bg-emerald-500 flex items-center justify-center text-white text-xs font-black">✦</span>
+                <span className="font-semibold text-stone-500">Itzli</span>
+                <span className="mx-2 text-stone-300">·</span>
+                <span>Eastern Huasteca Nahuatl · A1–B1 curriculum</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://github.com/samvillasmith/itzli-nahuatl-learning-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-stone-600 transition-colors"
+                >
+                  GitHub
+                </a>
+                <span className="text-stone-300">·</span>
+                <a
+                  href="https://amoxcalli.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-stone-600 transition-colors"
+                >
+                  Amoxcalli
+                </a>
+                <span className="text-stone-300">·</span>
+                <a
+                  href="https://www.linkedin.com/in/dr-sam-villa-smith-phd-mba-ccsk-cczt-a803a0109/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-stone-600 transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <span className="text-stone-300">·</span>
+                <a
+                  href="mailto:svillasmith3@gmail.com"
+                  className="hover:text-stone-600 transition-colors select-all"
+                >
+                  svillasmith3@gmail.com
+                </a>
+                <span className="text-stone-300">·</span>
+                <a
+                  href="https://www.pexels.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-stone-600 transition-colors"
+                >
+                  Photos: Pexels
+                </a>
+              </div>
+            </div>
           </footer>
         </body>
       </html>
