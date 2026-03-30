@@ -54,7 +54,7 @@ export default function LandingPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-16">
         {[
           { value: "43", label: "Units", sub: "A1 → B1" },
-          { value: "703", label: "Vocabulary words", sub: "IDIEZ-audited" },
+          { value: "703", label: "Vocabulary words", sub: "IDIEZ-referenced" },
           { value: "113", label: "Dialogues", sub: "in context" },
           { value: "37k+", label: "Lexicon entries", sub: "searchable" },
         ].map((s) => (
