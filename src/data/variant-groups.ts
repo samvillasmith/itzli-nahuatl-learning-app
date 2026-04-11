@@ -1,0 +1,371 @@
+/**
+ * Variant groups per unit.
+ *
+ * Each group defines one canonical vocab ID (the form to teach) and one or
+ * more variant IDs (alternate spellings / dialect forms / loanword synonyms
+ * that are suppressed from quizzes but displayed as "also written: …" notes
+ * on the learn card).
+ *
+ * Rules used to pick the canonical form:
+ *   1. Prefer forms without ⚠️/❌ annotations (non-standard flag).
+ *   2. Among un-annotated forms, prefer the IDIEZ-attested / absolutive form.
+ *   3. For Spanish loanwords vs. native EHN equivalents, prefer native EHN.
+ *   4. Tie-break: lowest rank (first introduced in the source curriculum).
+ */
+
+export type VariantGroup = {
+  canonicalId: number;
+  variantIds: number[];
+};
+
+export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
+  // ── Unit 2: Questions ──────────────────────────────────────────────────────
+  2: [
+    // "now": axcan (std) · variants: ama (colloquial), axan, nama, axkan
+    { canonicalId: 40, variantIds: [16, 36, 37, 42] },
+    // "where": campa · variants: canque, canin
+    { canonicalId: 19, variantIds: [27, 38] },
+    // "yes": quena · variants: quema (was mis-glossed), kemah, kehme
+    { canonicalId: 22, variantIds: [21, 41, 43] },
+    // "how": queha · variants: quehatza, kezki
+    { canonicalId: 25, variantIds: [31, 44] },
+  ],
+
+  // ── Unit 3: What is your name? ────────────────────────────────────────────
+  3: [
+    // "you (sg)": taha (full independent form) · variant: ta (clitic)
+    { canonicalId: 49, variantIds: [45] },
+    // "I": naha (full independent) · variant: na (clitic)
+    { canonicalId: 50, variantIds: [46] },
+    // "he/she": yaha · variants: ya, yahaya
+    { canonicalId: 51, variantIds: [47, 52] },
+    // "they": yahuanti · variant: ininhuanti
+    { canonicalId: 55, variantIds: [60] },
+    // "name": tocaitl (absolutive) · variant: toca (bare stem)
+    { canonicalId: 61, variantIds: [48] },
+  ],
+
+  // ── Unit 4: Colors and Numbers ────────────────────────────────────────────
+  4: [
+    // "one": ce · variants: se, ze
+    { canonicalId: 62, variantIds: [82, 83] },
+    // "three": eyi · variant: yeyi
+    { canonicalId: 64, variantIds: [85] },
+    // "four": nahui · variant: naui
+    { canonicalId: 65, variantIds: [84] },
+    // "big/great": hueyi · variant: ueyi
+    { canonicalId: 66, variantIds: [86] },
+    // "five": macuilli · variant: makuil
+    { canonicalId: 71, variantIds: [89] },
+    // "black": yayahuic · variant: tliltic
+    { canonicalId: 76, variantIds: [91] },
+    // "white": chipahuac · variant: istak
+    { canonicalId: 77, variantIds: [87] },
+  ],
+
+  // ── Unit 5: The Professions ───────────────────────────────────────────────
+  5: [
+    // "doctor/healer": ticitl (native EHN) · variants: tepahtihquetl, médico
+    { canonicalId: 118, variantIds: [92, 99] },
+    // "father/priest form": tahtzi · variant: tatahtzi
+    { canonicalId: 93, variantIds: [96] },
+    // "soldier": yaotl (native) · variant: soldado (Spanish loanword)
+    { canonicalId: 103, variantIds: [94] },
+    // "priest": teopixqui · variants: totahtzi, teopixquetl, teopixcatzin, padre
+    { canonicalId: 104, variantIds: [95, 110, 114, 117] },
+    // "teacher": tlamachtihquetl · variant: temachtijk
+    { canonicalId: 101, variantIds: [108] },
+    // "handkerchief": tlaxkalpayo · variant: amatlaxkalyoyomitl
+    { canonicalId: 112, variantIds: [116] },
+  ],
+
+  // ── Unit 6: Intransitive Verbs ────────────────────────────────────────────
+  6: [
+    // "to be": eli · variants: eltoc, itztoc, ca
+    { canonicalId: 122, variantIds: [128, 131, 135] },
+    // "to arrive": ahsi · variants: asi, azi, ahci, ahzi
+    { canonicalId: 124, variantIds: [136, 137, 138, 142] },
+    // "to sleep": cochi · variant: kochi
+    { canonicalId: 127, variantIds: [145] },
+  ],
+
+  // ── Unit 7: How to divide up the day ─────────────────────────────────────
+  7: [
+    // "sun": tonatih · variant: tonal
+    { canonicalId: 160, variantIds: [173] },
+    // "morning": ihnalpa · variant: ihnaloc
+    { canonicalId: 161, variantIds: [163] },
+    // "night": tlayohua · variant: tlayohuilotl (nominalized form)
+    { canonicalId: 166, variantIds: [170] },
+  ],
+
+  // ── Unit 8: Possessive markers ────────────────────────────────────────────
+  8: [
+    // "this": inin (std independent dem.) · variants: ni, imin (non-std), in
+    { canonicalId: 189, variantIds: [174, 190, 200] },
+    // "that": inon (std independent dem.) · variants: ne, nopa, on
+    { canonicalId: 188, variantIds: [175, 179, 199] },
+    // "here": nica · variant: nicani
+    { canonicalId: 176, variantIds: [183] },
+    // "there": neca · variant: nepa
+    { canonicalId: 177, variantIds: [178] },
+    // "all": nochi · variant: mochi
+    { canonicalId: 181, variantIds: [201] },
+    // "other": occe (std) · variants: ceyoc, ohze, ohzequi
+    { canonicalId: 191, variantIds: [182, 192, 193] },
+    // "alligator": cipactli · variants: zipaktli, aketspali, acuetzpalin
+    // (four words for the same animal — off-theme for this unit)
+    { canonicalId: 194, variantIds: [195, 197, 198] },
+  ],
+
+  // ── Unit 9: The Family ────────────────────────────────────────────────────
+  9: [
+    // "brother": icni · variant: ikni
+    { canonicalId: 203, variantIds: [219] },
+    // "sister": huelti · variant: uelti
+    { canonicalId: 210, variantIds: [222] },
+    // "child": conetl (absolutive) · variant: pilconetzi (diminutive)
+    { canonicalId: 226, variantIds: [214] },
+    // "aunt": ahuitl (absolutive) · variant: aui (bare stem)
+    { canonicalId: 227, variantIds: [216] },
+    // "father": tahtli (absolutive) · variant: tata (familiar short form)
+    { canonicalId: 224, variantIds: [217] },
+    // "mother": nantli (absolutive) · variant: nana (familiar short form)
+    { canonicalId: 223, variantIds: [218] },
+  ],
+
+  // ── Unit 10: My Appearance ────────────────────────────────────────────────
+  10: [
+    // "good": cualli · variant: kuali
+    { canonicalId: 231, variantIds: [254] },
+    // "long": huehueyac · variant: hueyac
+    { canonicalId: 242, variantIds: [255] },
+    // "tall": huehcapantic · variant: hueyic
+    { canonicalId: 249, variantIds: [257] },
+    // "cold": cecic · variant: sejsek
+    { canonicalId: 252, variantIds: [256] },
+  ],
+
+  // ── Unit 11: When you greet and say farewell ──────────────────────────────
+  11: [
+    // "hello": pialli · variant: niltze
+    { canonicalId: 260, variantIds: [272] },
+    // "thank you": tlazohcamati (std) · variants: tlazcamati, tlazohkamati
+    { canonicalId: 266, variantIds: [263, 267] },
+    // "great-grandfather": achtontli · variant: achcolli
+    { canonicalId: 264, variantIds: [273] },
+  ],
+
+  // ── Unit 12: Future tense and indefinite verbs ────────────────────────────
+  12: [
+    // "to open the mouth / speak": camati · variant: kamati
+    { canonicalId: 280, variantIds: [288] },
+    // "to speak": tlahtohua · variants: camanalohua (to chat), tlahtoa
+    { canonicalId: 281, variantIds: [284, 290] },
+    // "to say": ilia · variant: ihtoa
+    { canonicalId: 286, variantIds: [301] },
+    // "to call / summon": nonoza · variant: nonotza
+    { canonicalId: 287, variantIds: [289] },
+    // "to write": tlahcuilohua · variant: ihcuiloa
+    { canonicalId: 285, variantIds: [304] },
+  ],
+
+  // ── Unit 13: Verbs with specific object ───────────────────────────────────
+  13: [
+    // "to eat (s.t.)": cua · variants: tlacua (tla-prefixed), cuā (macron variant)
+    { canonicalId: 321, variantIds: [309, 322] },
+    // "to make tortillas": tlaxcaloa · variants: tlaxkaloa, tlaxkalchiua
+    { canonicalId: 311, variantIds: [312, 318] },
+    // "to give": maca · variant: maka
+    { canonicalId: 314, variantIds: [315] },
+    // "to make / do": chihua · variants: ayi (non-std), chīhua (macron variant)
+    { canonicalId: 316, variantIds: [320, 330] },
+    // "to cut": tequi · variant: cotona
+    { canonicalId: 326, variantIds: [329] },
+    // "to cook": huicci · variant: iucci
+    { canonicalId: 331, variantIds: [328] },
+  ],
+
+  // ── Unit 14: Past Tense Verbs Part 1 ─────────────────────────────────────
+  14: [
+    // "to die": miqui · variant: miki
+    { canonicalId: 335, variantIds: [341] },
+    // "to flee": cholohua · variant: choloa
+    { canonicalId: 339, variantIds: [349] },
+    // "to close": tzacui · variant: tzacua
+    { canonicalId: 345, variantIds: [346] },
+    // "to be born": tlacati · variant: tlalticpacquiza (lit. "come out onto the earth")
+    { canonicalId: 350, variantIds: [356] },
+  ],
+
+  // ── Unit 15: Past Tense Verbs Part 2 ─────────────────────────────────────
+  15: [
+    // "to dig": tlaxahua · variant: tataca
+    { canonicalId: 359, variantIds: [368] },
+    // "to sing": cuica · variant: kuika
+    { canonicalId: 362, variantIds: [366] },
+    // "to cry": choca · variants: chuca, choka
+    { canonicalId: 363, variantIds: [364, 365] },
+  ],
+
+  // ── Unit 17: I Sit in the Chair ───────────────────────────────────────────
+  17: [
+    // "table": huapalli (native EHN plank/bench) · variant: mesa (Spanish)
+    { canonicalId: 408, variantIds: [392] },
+    // "shirt": coto · variant: koto (annotated)
+    { canonicalId: 394, variantIds: [416] },
+    // "fire": tletl (std) · variant: tlitl (annotated as non-std)
+    { canonicalId: 417, variantIds: [396] },
+  ],
+
+  // ── Unit 18: What I Like and Do Not Like ──────────────────────────────────
+  18: [
+    // "sour": xococ · variant: xokok
+    { canonicalId: 427, variantIds: [429] },
+    // "sweet corn tamale": xamitl · variant: xamili
+    { canonicalId: 430, variantIds: [434] },
+    // "tasty / pleasant": huelic · variant: ajuiyak
+    { canonicalId: 431, variantIds: [435] },
+  ],
+
+  // ── Unit 20: The Grammar of -pil and -tzin ────────────────────────────────
+  20: [
+    // "friend": huampo (native EHN) · variant: amigo (Spanish)
+    { canonicalId: 445, variantIds: [442] },
+    // "man / person": tlacatl · variants: oquichtli (specifically male), tacat (variant spelling)
+    { canonicalId: 447, variantIds: [451, 467] },
+    // "deceased person": mihquetl · variant: mihcatzi (diminutive/reverential)
+    { canonicalId: 449, variantIds: [450] },
+    // "mango": mango · variant: manco (spelling variant)
+    { canonicalId: 463, variantIds: [464] },
+    // "skin (of humans)": ehuatl (std) · variants: euatl, ewatl
+    { canonicalId: 468, variantIds: [465, 466] },
+  ],
+
+  // ── Unit 21: What We Have in the Field ───────────────────────────────────
+  21: [
+    // "cat": mistli (absolutive) · variant: mizto (colloquial)
+    { canonicalId: 485, variantIds: [471] },
+    // "dried corncob / corn": olotl · variant: cintli (ear of corn)
+    { canonicalId: 472, variantIds: [482] },
+    // "turkey": totoli · variant: palach
+    { canonicalId: 483, variantIds: [484] },
+    // "river": hueyatl (lit. "big water", std) · variant: atemitl (annotated)
+    { canonicalId: 491, variantIds: [489] },
+    // "grasshopper": chapolin (absolutive) · variant: chapoli (bare stem)
+    { canonicalId: 496, variantIds: [492] },
+  ],
+
+  // ── Unit 22: Our Cornfield and Our Food ──────────────────────────────────
+  22: [
+    // "bean seed": exinachtli (std) · variant: eyoli (annotated)
+    { canonicalId: 515, variantIds: [499] },
+    // "food": tlacualli (noun) · variant: tlacualiztli (nominalized action)
+    { canonicalId: 513, variantIds: [516] },
+  ],
+
+  // ── Unit 23: What is Inside the House ────────────────────────────────────
+  23: [
+    // "house": calli · variants: kal, kali, kalli, cal·li
+    { canonicalId: 518, variantIds: [527, 528, 530, 534] },
+    // "book": amoxtli (absolutive, std) · variants: libro (Spanish), amox (bare stem), amochtli
+    { canonicalId: 538, variantIds: [520, 529, 543] },
+    // "medicine": pahtli · variant: pajtli
+    { canonicalId: 521, variantIds: [535] },
+    // "bag": folsah · variant: folzah
+    { canonicalId: 523, variantIds: [524] },
+  ],
+
+  // ── Unit 24: I Had Gone to the City Part 1 ───────────────────────────────
+  24: [
+    // "church": teopan (std) · variant: tiopa (contracted)
+    { canonicalId: 562, variantIds: [545] },
+    // "state / territory": tlatilantli · variant: estado (Spanish)
+    { canonicalId: 552, variantIds: [546] },
+    // "road / way": ojtli · variant: ojtl (dropped final vowel)
+    { canonicalId: 560, variantIds: [557] },
+  ],
+
+  // ── Unit 25: I Had Gone to the City Part 2 ───────────────────────────────
+  25: [
+    // "then / already": yeca · variant: huahca
+    { canonicalId: 566, variantIds: [569] },
+    // "underwear": calzomitl · variant: kaltsomitl
+    { canonicalId: 574, variantIds: [576] },
+    // "eleven": mahtlactli huan ce (std) · variants: majtlaktl uan se, matlaktli uan se
+    { canonicalId: 580, variantIds: [578, 579] },
+    // "flatulence": ihyelli · variant: iyelli
+    { canonicalId: 588, variantIds: [584] },
+  ],
+
+  // ── Unit 26: I Came to Buy a Tortilla Napkin ─────────────────────────────
+  26: [
+    // "money": tomin (absolutive) · variant: tomi (bare stem)
+    { canonicalId: 591, variantIds: [589] },
+    // "orange / citrus fruit": alaxox · variants: chilcoz, xokotl
+    { canonicalId: 593, variantIds: [595, 600] },
+    // "bread": pantzi · variant: pantsij
+    { canonicalId: 594, variantIds: [608] },
+    // "tamale": tamali (absolutive) · variant: tamal (Spanish-influenced)
+    { canonicalId: 604, variantIds: [598] },
+    // "traditional garment / underwear": maxtli · variants: kalson, calzon (Spanish loanwords)
+    { canonicalId: 599, variantIds: [601, 603] },
+    // "comal (griddle)": comalli · variant: komali
+    { canonicalId: 605, variantIds: [602] },
+  ],
+
+  // ── Unit 27: It's market day today! ──────────────────────────────────────
+  27: [
+    // "pineapple": matzahtli · variant: matzohtli
+    { canonicalId: 615, variantIds: [618] },
+  ],
+
+  // ── Unit 28: I Was Passing By Your House ─────────────────────────────────
+  28: [
+    // "doorway / threshold": caltentli · variant: calaquiyan (entrance place)
+    { canonicalId: 629, variantIds: [631] },
+  ],
+
+  // ── Unit 29: What Illnesses Do You Know? ─────────────────────────────────
+  29: [
+    // "someone": aca · variants: aka, acah
+    { canonicalId: 648, variantIds: [649, 650] },
+    // "head": cuaitl · variant: kwaitl
+    { canonicalId: 652, variantIds: [654] },
+  ],
+
+  // ── Unit 30: The conditional, Part 1 ─────────────────────────────────────
+  30: [
+    // "never": aic · variants: ax quema (annotated), aik
+    { canonicalId: 666, variantIds: [664, 667] },
+    // "buttock": tsimpa · variant: tzintamalli
+    { canonicalId: 669, variantIds: [671] },
+    // "nothing": ahtle · variant: ahmotlein
+    { canonicalId: 677, variantIds: [670] },
+    // "butter": chichiualayotl · variant: chichihualayotl (spelling variant)
+    { canonicalId: 673, variantIds: [674] },
+  ],
+
+  // ── Unit 31: Cleansing ceremonies / conditional Part 2 ───────────────────
+  31: [
+    // "wind / air": ahacatl · variants: ahakatl, yecatl
+    { canonicalId: 681, variantIds: [683, 692] },
+    // "sea / ocean": weyiatl · variant: hueyi atl (written as two words)
+    { canonicalId: 684, variantIds: [687] },
+  ],
+
+  // ── Unit 32: Tē- and tla- object markers ─────────────────────────────────
+  32: [
+    // "with / by means of": ica · variant: ika
+    { canonicalId: 693, variantIds: [703] },
+    // "very / really": tlahuel · variant: eltoya
+    { canonicalId: 699, variantIds: [697] },
+  ],
+};
+
+/** All variant IDs across every unit — used to clean the distractor pool. */
+export const ALL_VARIANT_IDS: Set<number> = new Set(
+  Object.values(VARIANT_GROUPS).flatMap((groups) =>
+    groups.flatMap((g) => g.variantIds)
+  )
+);

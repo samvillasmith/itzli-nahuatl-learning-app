@@ -6,6 +6,8 @@ import { vocabAudioUrl, dialogueAudioUrl } from "@/lib/audio";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
+import { VARIANT_GROUPS, ALL_VARIANT_IDS } from "@/data/variant-groups";
+import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 
 const CHUNK_SIZE = 10;
 
@@ -398,12 +400,40 @@ export default function LessonFlow({
   const [chunkIndex, setChunkIndex] = useState(0);
   const [chunkCorrect, setChunkCorrect] = useState(0);
 
+  // ── Variant collapsing ────────────────────────────────────────────────────────
+  // Suppress alternate spellings / dialect forms from quiz word lists.
+  // Variant forms are shown as "also written: …" notes on the learn card.
+
+  const { filteredVocab, variantNotes } = useMemo(() => {
+    const groups = VARIANT_GROUPS[unitNum] ?? [];
+    const excludeIds = new Set(
+      groups
+        .filter((g) => vocab.some((v) => v.id === g.canonicalId))
+        .flatMap((g) => g.variantIds)
+    );
+    const notes: Record<number, string[]> = {};
+    for (const g of groups) {
+      if (!vocab.some((v) => v.id === g.canonicalId)) continue;
+      const forms = vocab
+        .filter((v) => g.variantIds.includes(v.id))
+        .map((v) => v.headword);
+      if (forms.length > 0) notes[g.canonicalId] = forms;
+    }
+    return {
+      filteredVocab: vocab.filter(
+        (v) => !excludeIds.has(v.id) && !EXCLUDED_VOCAB_IDS.has(v.id)
+      ),
+      variantNotes: notes,
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unitNum]);
+
   // ── Chunk split ──────────────────────────────────────────────────────────────
 
   const chunks = useMemo(() => {
     const result: VocabCard[][] = [];
-    for (let i = 0; i < vocab.length; i += CHUNK_SIZE) {
-      result.push(vocab.slice(i, i + CHUNK_SIZE));
+    for (let i = 0; i < filteredVocab.length; i += CHUNK_SIZE) {
+      result.push(filteredVocab.slice(i, i + CHUNK_SIZE));
     }
     return result.length > 0 ? result : [[]];
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -431,8 +461,11 @@ export default function LessonFlow({
 
   // ── Per-chunk exercise options (memoized per chunk) ──────────────────────────
 
+  const cleanPool = allVocabPool.filter(
+    (v) => !ALL_VARIANT_IDS.has(v.id) && !EXCLUDED_VOCAB_IDS.has(v.id)
+  );
   const pool =
-    allVocabPool.length >= 4 ? allVocabPool : currentChunk.concat(allVocabPool);
+    cleanPool.length >= 4 ? cleanPool : currentChunk.concat(cleanPool);
 
   const fwdOptions = useMemo(
     () => srsIndices.map((wi) => buildFwdOptions(currentChunk[wi], pool)),
@@ -501,9 +534,9 @@ export default function LessonFlow({
 
   // ── Progress calculation ──────────────────────────────────────────────────────
 
-  const totalVocabSteps = vocab.length * 2; // fwd + rev per word (learn is free)
+  const totalVocabSteps = filteredVocab.length * 2; // fwd + rev per word (learn is free)
   const totalConvSteps = chunkConversations.reduce((s, c) => s + c.lines.length, 0);
-  const totalSteps = 1 + vocab.length + totalVocabSteps + totalConvSteps + 1;
+  const totalSteps = 1 + filteredVocab.length + totalVocabSteps + totalConvSteps + 1;
   const wordsBeforeChunk = chunkIndex * CHUNK_SIZE;
   const convStepsBeforeChunk = chunkConversations
     .slice(0, chunkIndex)
@@ -514,11 +547,11 @@ export default function LessonFlow({
     if (phase.kind === "learn")
       return (1 + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "quizFwd")
-      return (1 + vocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
+      return (1 + filteredVocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "quizRev")
-      return (1 + vocab.length + vocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
+      return (1 + filteredVocab.length + filteredVocab.length + wordsBeforeChunk + phase.srsIdx) / totalSteps;
     if (phase.kind === "fillBlank")
-      return (1 + vocab.length + totalVocabSteps + phase.idx) / totalSteps;
+      return (1 + filteredVocab.length + totalVocabSteps + phase.idx) / totalSteps;
     if (phase.kind === "chunkDone" || phase.kind === "dialogue")
       return (1 + vocab.length + totalVocabSteps + convStepsBeforeChunk +
         (phase.kind === "dialogue" ? phase.idx : chunkConversations[chunkIndex]?.lines.length ?? 0)) /
@@ -576,9 +609,9 @@ export default function LessonFlow({
 
           {/* Lesson stats */}
           <div className="flex justify-center gap-8 mb-8">
-            {vocab.length > 0 && (
+            {filteredVocab.length > 0 && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-stone-900">{vocab.length}</div>
+                <div className="text-2xl font-bold text-stone-900">{filteredVocab.length}</div>
                 <div className="text-xs text-stone-400 mt-0.5">words</div>
               </div>
             )}
@@ -596,7 +629,7 @@ export default function LessonFlow({
             )}
           </div>
 
-          {vocab.length > 0 ? (
+          {filteredVocab.length > 0 ? (
             <button
               onClick={() => setPhase({ kind: "learn", srsIdx: 0, revealed: false })}
               className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors shadow-sm"
@@ -737,6 +770,14 @@ export default function LessonFlow({
                       <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
                         {word.part_of_speech}
                       </span>
+                    )}
+                    {variantNotes[word.id] && variantNotes[word.id].length > 0 && (
+                      <p className="text-xs text-stone-400 text-center">
+                        Also written:{" "}
+                        <span className="font-medium text-stone-500">
+                          {variantNotes[word.id].join(", ")}
+                        </span>
+                      </p>
                     )}
                     <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">
                       tap to continue
