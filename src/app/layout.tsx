@@ -83,6 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/grammar" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Grammar
                   </Link>
+                  <Link href="/tutor" className="px-2 sm:px-3 py-1.5 rounded-lg text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 transition-colors font-medium">
+                    Tutor
+                  </Link>
                   <Link href="/progress" className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Progress
                   </Link>
