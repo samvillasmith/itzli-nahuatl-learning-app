@@ -1004,9 +1004,11 @@ export default function LessonFlow({
           )}
         </button>
 
-        <div className="flex justify-center mt-4">
-          <AudioButton src={vocabAudioUrl(word.id)} size="lg" />
-        </div>
+        {word.part_of_speech !== "letter" && (
+          <div className="flex justify-center mt-4">
+            <AudioButton src={vocabAudioUrl(word.id)} size="lg" />
+          </div>
+        )}
       </div>
     );
   }
@@ -1066,7 +1068,7 @@ export default function LessonFlow({
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
           <div className="flex items-center justify-center gap-3">
             <p className="text-3xl font-bold text-stone-900">{word.headword}</p>
-            <AudioButton src={vocabAudioUrl(word.id)} size="sm" />
+            {word.part_of_speech !== "letter" && <AudioButton src={vocabAudioUrl(word.id)} size="sm" />}
           </div>
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
@@ -1141,7 +1143,7 @@ export default function LessonFlow({
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
           )}
-          {checked && (
+          {checked && word.part_of_speech !== "letter" && (
             <div className="flex justify-center mt-3">
               <AudioButton src={vocabAudioUrl(word.id)} size="sm" />
             </div>
