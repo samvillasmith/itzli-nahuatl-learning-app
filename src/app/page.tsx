@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Show } from "@clerk/nextjs";
+import { getVocabCount } from "@/lib/db";
 
 export default function LandingPage() {
+  const vocabCount = getVocabCount();
   return (
     <div>
       {/* Hero */}
@@ -54,7 +56,7 @@ export default function LandingPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-16">
         {[
           { value: "43", label: "Units", sub: "A1 → B1" },
-          { value: "703", label: "Vocabulary words", sub: "IDIEZ-referenced" },
+          { value: vocabCount.toLocaleString(), label: "Vocabulary words", sub: "IDIEZ-referenced" },
           { value: "113", label: "Dialogues", sub: "in context" },
           { value: "37k+", label: "Lexicon entries", sub: "searchable" },
         ].map((s) => (
@@ -88,7 +90,7 @@ export default function LandingPage() {
             color: "text-violet-500",
             bg: "bg-violet-50",
             title: "Audio for everything",
-            body: "Machine-synthesized pronunciations for all 703 vocabulary words and 113 dialogue lines, using the only open TTS model trained on EHN native speech.",
+            body: `Machine-synthesized pronunciations for all ${vocabCount.toLocaleString()} vocabulary words and 113 dialogue lines, using the only open TTS model trained on EHN native speech.`,
           },
         ].map((f) => (
           <div key={f.title} className="bg-white border border-stone-200 rounded-2xl p-6">

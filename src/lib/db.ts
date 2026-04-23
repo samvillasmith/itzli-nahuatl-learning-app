@@ -146,6 +146,14 @@ export function getUnitVocab(lessonNumber: number): VocabItem[] {
     .all(lessonNumber) as VocabItem[];
 }
 
+export function getVocabCount(): number {
+  return (
+    getDb()
+      .prepare("SELECT COUNT(*) as n FROM lesson_vocab WHERE gloss_en NOT LIKE '%MISPLACED%'")
+      .get() as { n: number }
+  ).n;
+}
+
 export function getAllPrimerVocab(): VocabItem[] {
   return getDb()
     .prepare(
