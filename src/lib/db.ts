@@ -1,15 +1,42 @@
 import Database from "better-sqlite3";
 import path from "path";
+import fs from "fs";
+import os from "os";
+import { execFileSync } from "child_process";
 
-const DB_PATH =
-  process.env.DATABASE_PATH ||
-  path.join(process.cwd(), "fcn_master_lexicon_phase8_6_primer.sqlite");
+const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
+const DB_URL =
+  "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/database/" +
+  DB_FILENAME;
+
+// Resolve the DB path with three fallbacks so we stay up even if the build
+// bundler (Webpack or Turbopack) fails to copy the file into the serverless
+// output. On Vercel, /tmp is writable (up to 512 MB) and persists for the
+// lifetime of the warm Lambda, so the cold-start download cost is amortized.
+function resolveDbPath(): string {
+  if (process.env.DATABASE_PATH) return process.env.DATABASE_PATH;
+
+  const localPath = path.join(process.cwd(), DB_FILENAME);
+  if (fs.existsSync(localPath)) return localPath;
+
+  const tmpPath = path.join(os.tmpdir(), DB_FILENAME);
+  if (!fs.existsSync(tmpPath)) {
+    // Synchronous curl fetch — Vercel Lambda base image ships with curl.
+    // Blocking here is fine: this only fires on a cold start where the
+    // bundler dropped the file, and better-sqlite3 is sync throughout.
+    console.log(`[db] DB not bundled at ${localPath}; downloading to ${tmpPath}`);
+    execFileSync("curl", ["-fsSL", "-o", tmpPath, DB_URL], {
+      stdio: "inherit",
+    });
+  }
+  return tmpPath;
+}
 
 let _db: Database.Database | null = null;
 
 export function getDb(): Database.Database {
   if (!_db) {
-    _db = new Database(DB_PATH, { readonly: true });
+    _db = new Database(resolveDbPath(), { readonly: true });
     _db.pragma("journal_mode = WAL");
   }
   return _db;
