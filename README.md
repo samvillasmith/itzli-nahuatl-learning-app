@@ -96,7 +96,73 @@ These are the best machine approximations currently possible without a large cor
 - **Tailwind CSS v4** — CSS variable-based theming, no config file
 - **better-sqlite3** — synchronous SQLite, all data fetched at build time
 - **TypeScript 5** — strict throughout
+- **OpenAI `gpt-4o-mini`** — drives the Nahuatl tutor (`/tutor`)
+- **Clerk** — authentication (middleware-gated)
+- **Neon Postgres** — cloud progress sync and chat audit log
 - No external state management — `useState`/`useEffect` + `localStorage`
+
+---
+
+## AI Tutor Guardrails
+
+The `/tutor` route exposes an LLM to signed-in users. Because that's a real abuse and cost surface, every request to `/api/chat` goes through a layered defense. Each layer is independently useful — no single layer is load-bearing, and transparency about the architecture (this section) is treated as compatible with security, per Kerckhoffs's principle.
+
+### Request pipeline
+
+```
+Clerk auth → payload validation → per-user rate limit
+         → prompt-injection heuristics (local regex)
+         → OpenAI input moderation (omni-moderation-latest)
+         → hardened system prompt + <user_input> spotlight
+         → OpenAI completion (non-streamed)
+         → OpenAI output moderation
+         → clean response released to client
+```
+
+Flagged events at any layer write a row to `chat_audit` in Neon — **sha256 of the content, never the content itself** — so recurring attack patterns and repeat offenders surface without retaining user text.
+
+### What each layer does
+
+| Layer | Defends against | Failure mode |
+|---|---|---|
+| Clerk auth (middleware) | Anonymous abuse, cost scraping | 401 before the route even runs |
+| Payload validation | Malformed requests, oversize inputs | 400 / 413 |
+| Rate limit (sliding window, per-user) | Brute-force probing, bill explosions | 429 with `Retry-After` |
+| Prompt-injection heuristics | Known jailbreak templates, instruction overrides, fake system tokens, "reveal your prompt", DAN/STAN/DevMode personas | Canned refusal |
+| Input moderation | Sexual/minors, harassment/threatening, hate/threatening, self-harm, violence, illicit | Canned refusal, **fails closed** if the moderation API is unreachable |
+| Hardened system prompt | Off-topic drift, role hijack, prompt leakage | Model-level refusal |
+| `<user_input>` spotlighting | Instruction-in-data attacks | Structural separation: user content framed as data inside a tag |
+| Output moderation | Jailbreaks that slipped past earlier layers | Response replaced with refusal before any bytes reach the client |
+| Audit log | Invisible abuse, pattern recurrence | Hashed events in Neon, fire-and-forget |
+
+### Design decisions and tradeoffs
+
+- **Buffer-then-stream, not token-by-token streaming.** The chat route deliberately disables OpenAI streaming and moderates the full response before releasing it to the client. This costs ~3–8s of perceived latency on a 800-token reply, but it's the only way to guarantee nothing harmful reaches the browser. The existing loading UX (bouncing dots) covers the wait.
+- **Fail closed on moderation errors.** If the moderation API is unreachable, the wrapper treats the request as flagged rather than letting unmoderated text through. Availability of the tutor is less important than safety.
+- **Rate limits are in-process memory.** A sliding-window limiter per Clerk `userId` (20/10min burst + 100/hour ceiling). Good enough for a single-instance deploy; swap to Upstash/Redis when horizontal scaling matters.
+- **Canned refusal, never a reason.** Blocked responses return a single fixed sentence regardless of which layer tripped, so attackers can't binary-search their way to a bypass by observing differential error text.
+- **Env-var tuning for the parts that benefit from obscurity.** The exact refusal wording (`GUARDRAIL_REFUSAL_TEXT`) and any deploy-specific extra hard-block patterns (`GUARDRAIL_EXTRA_PATTERNS`, a JSON array) are loaded from environment at startup, so the public source shows the architecture without handing attackers a literal cheat sheet. See `.env.example`.
+- **No PII in audit rows.** Rows store `(user_id, kind, categories, sha256, meta, timestamp)` — enough to detect patterns and repeat offenders, nothing reconstructable back to the user's actual message.
+
+### Files
+
+```
+src/app/api/chat/route.ts    orchestrator; implements the pipeline above
+src/lib/rate-limit.ts        per-user sliding window
+src/lib/moderation.ts        OpenAI moderation wrapper, fails closed
+src/lib/prompt-injection.ts  public heuristics + env-loaded private patterns
+src/lib/audit.ts             sha256-hashed event logger (write-only)
+scripts/audit-setup.js       one-shot migration for the chat_audit Neon table
+```
+
+### Threat model — what this does NOT cover
+
+Honest limits are part of the design:
+
+- **Image-based CSAM / abuse vectors.** The tutor is text-only. Adding image upload would require a separate pipeline (PhotoDNA / Thorn / NCMEC reporting), not just another moderation call.
+- **Sophisticated obfuscation.** Base64, homoglyph, and token-smuggled attacks that survive both the heuristic layer and OpenAI's moderation will reach the model. The hardened system prompt and output moderation are the backstop.
+- **Distributed abuse across accounts.** Rate limits are per-user; a motivated attacker signing up many Clerk accounts isn't stopped by this layer. Clerk's own abuse controls (email verification, anomaly detection) handle that tier.
+- **Model regressions.** If a future OpenAI model update weakens moderation or increases jailbreak susceptibility, the heuristic and audit layers provide detection but not full prevention.
 
 ---
 

@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import DisclaimerBanner from "./DisclaimerBanner";
+import LegalModal from "./LegalModal";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
@@ -86,8 +87,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/tutor" className="px-2 sm:px-3 py-1.5 rounded-lg text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 transition-colors font-medium">
                     Tutor
                   </Link>
-                  <Link href="/progress" className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
-                    Progress
+                  <Link href="/progress" className="inline-flex px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                    <span className="hidden sm:inline">Progress</span>
+                    <span className="sm:hidden">Stats</span>
                   </Link>
                   <div className="ml-1 sm:ml-2">
                     <UserButton />
@@ -138,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
           <DisclaimerBanner />
+          <LegalModal />
           <main className="max-w-5xl mx-auto px-4 py-10">{children}</main>
           <footer className="border-t border-stone-200 mt-16 py-8 text-xs text-stone-400">
             <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -148,6 +151,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span>Eastern Huasteca Nahuatl · A1–B1 curriculum</span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                <Link href="/terms" className="hover:text-stone-600 transition-colors">
+                  Terms
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">·</span>
+                <Link href="/privacy" className="hover:text-stone-600 transition-colors">
+                  Privacy
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">·</span>
+                <Link href="/eula" className="hover:text-stone-600 transition-colors">
+                  EULA
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
                   href="https://github.com/samvillasmith/itzli-nahuatl-learning-app"
                   target="_blank"

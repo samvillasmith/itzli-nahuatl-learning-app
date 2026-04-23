@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 
 type Message = { role: "user" | "assistant"; content: string };
+type Mode = "tutor" | "practice";
 
-const SUGGESTIONS = [
+const TUTOR_SUGGESTIONS = [
   "How do I say \"my name is...\" in Nahuatl?",
   "Explain the verb prefixes ni-, ti-, etc.",
   "What's the difference between -tl and -tli?",
@@ -13,7 +14,34 @@ const SUGGESTIONS = [
   "How do possessives work? (my, your, his)",
 ];
 
+const PRACTICE_SUGGESTIONS = [
+  "Pialli! (Hello!)",
+  "Notoca Sam. (My name is Sam.)",
+  "¿Quenin tiitztoc? (How are you?)",
+  "¿Tlen motoca? (What's your name?)",
+];
+
+const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: string; emptyHeadline: string; emptyBody: string }> = {
+  tutor: {
+    title: "Nahuatl Tutor",
+    subtitle: "Ask about grammar, vocabulary, pronunciation, or culture.",
+    placeholder: "Ask about Nahuatl grammar, vocabulary, culture...",
+    emptyHeadline: "Pialli! Hello!",
+    emptyBody:
+      "I'm your Nahuatl language tutor. Ask me anything about Eastern Huasteca Nahuatl — grammar, vocabulary, how to say something, or how the language works.",
+  },
+  practice: {
+    title: "Conversation Practice",
+    subtitle: "Practice speaking Nahuatl in a real conversation.",
+    placeholder: "Write in Nahuatl (or English to get help)...",
+    emptyHeadline: "Pialli! Let's talk.",
+    emptyBody:
+      "I'll respond in Nahuatl with an English translation. Try greeting me in Nahuatl — or click a starter below. Don't worry about perfect spelling; I'll understand common variants.",
+  },
+};
+
 export default function TutorPage() {
+  const [mode, setMode] = useState<Mode>("tutor");
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +55,14 @@ export default function TutorPage() {
       behavior: "smooth",
     });
   }, [messages]);
+
+  function switchMode(next: Mode) {
+    if (next === mode) return;
+    setMode(next);
+    setMessages([]);
+    setInput("");
+    setError(null);
+  }
 
   const sendMessage = useCallback(
     async (text: string) => {
@@ -43,15 +79,16 @@ export default function TutorPage() {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: newMessages }),
+          body: JSON.stringify({ messages: newMessages, mode }),
         });
 
         if (!res.ok) {
-          throw new Error(
-            res.status === 401
-              ? "Unauthorized — please sign in."
-              : `Error ${res.status}: ${res.statusText}`
-          );
+          let msg: string;
+          if (res.status === 401) msg = "Unauthorized — please sign in.";
+          else if (res.status === 429) msg = "Too many messages. Please wait a moment.";
+          else if (res.status === 413) msg = "That message is too long. Please shorten it.";
+          else msg = `Error ${res.status}: ${res.statusText}`;
+          throw new Error(msg);
         }
 
         const reader = res.body?.getReader();
@@ -82,7 +119,7 @@ export default function TutorPage() {
         inputRef.current?.focus();
       }
     },
-    [messages, isLoading]
+    [messages, isLoading, mode],
   );
 
   function handleSubmit(e: React.FormEvent) {
@@ -90,20 +127,52 @@ export default function TutorPage() {
     sendMessage(input);
   }
 
+  const meta = MODE_META[mode];
+  const suggestions = mode === "tutor" ? TUTOR_SUGGESTIONS : PRACTICE_SUGGESTIONS;
+
   return (
     <div className="flex flex-col h-[calc(100vh-4.5rem)]">
       {/* Header */}
       <div className="border-b border-stone-200 bg-white px-4 py-3 shrink-0">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-lg font-bold text-stone-900">
-            Tlamachtihquetl
-            <span className="text-stone-400 font-normal text-sm ml-2">
-              Nahuatl Tutor
-            </span>
-          </h1>
-          <p className="text-xs text-stone-400 mt-0.5">
-            Ask about grammar, vocabulary, pronunciation, or culture.
-          </p>
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h1 className="text-lg font-bold text-stone-900 truncate">
+              Tlamachtihquetl
+              <span className="text-stone-400 font-normal text-sm ml-2">
+                {meta.title}
+              </span>
+            </h1>
+            <p className="text-xs text-stone-400 mt-0.5 truncate">
+              {meta.subtitle}
+            </p>
+          </div>
+          {/* Mode toggle */}
+          <div className="inline-flex p-0.5 bg-stone-100 rounded-full text-xs font-semibold shrink-0">
+            <button
+              type="button"
+              onClick={() => switchMode("tutor")}
+              className={`px-3 py-1 rounded-full transition-colors ${
+                mode === "tutor"
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-500 hover:text-stone-700"
+              }`}
+              aria-pressed={mode === "tutor"}
+            >
+              Tutor
+            </button>
+            <button
+              type="button"
+              onClick={() => switchMode("practice")}
+              className={`px-3 py-1 rounded-full transition-colors ${
+                mode === "practice"
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-500 hover:text-stone-700"
+              }`}
+              aria-pressed={mode === "practice"}
+            >
+              Practice
+            </button>
+          </div>
         </div>
       </div>
 
@@ -116,18 +185,16 @@ export default function TutorPage() {
           {messages.length === 0 && (
             <div className="text-center py-12">
               <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center text-3xl mx-auto mb-4">
-                🦅
+                {mode === "practice" ? "🗣️" : "🦅"}
               </div>
               <h2 className="text-xl font-bold text-stone-800 mb-2">
-                Pialli! Hello!
+                {meta.emptyHeadline}
               </h2>
               <p className="text-stone-500 text-sm max-w-md mx-auto mb-8">
-                I&apos;m your Nahuatl language tutor. Ask me anything about
-                Eastern Huasteca Nahuatl — grammar, vocabulary, how to say
-                something, or how the language works.
+                {meta.emptyBody}
               </p>
               <div className="flex flex-wrap justify-center gap-2">
-                {SUGGESTIONS.map((s) => (
+                {suggestions.map((s) => (
                   <button
                     key={s}
                     onClick={() => sendMessage(s)}
@@ -200,7 +267,7 @@ export default function TutorPage() {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about Nahuatl grammar, vocabulary, culture..."
+            placeholder={meta.placeholder}
             className="flex-1 px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400 transition-shadow"
             disabled={isLoading}
           />

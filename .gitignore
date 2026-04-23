@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -51,3 +52,12 @@ next-env.d.ts
 # Audio files (served from S3 — see scripts/fetch-db.js and src/lib/audio.ts)
 /public/audio/
 image-gallery.html
+
+# Python build artifacts (ml/* has its own .gitignore too)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Generated morphology cache — regenerate via: python -m ehn_morph build-cache --out data/morphology_cache.json
+/data/
