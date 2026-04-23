@@ -33,12 +33,12 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 3: What is your name? ────────────────────────────────────────────
   3: [
-    // "you (sg)": taha (full independent form) · variant: ta (clitic)
-    { canonicalId: 49, variantIds: [45] },
-    // "I": naha (full independent) · variant: na (clitic)
-    { canonicalId: 50, variantIds: [46] },
-    // "he/she": yaha · variants: ya, yahaya
-    { canonicalId: 51, variantIds: [47, 52] },
+    // "you (sg)": ta (everyday short form) · variant: taha (emphatic)
+    { canonicalId: 45, variantIds: [49] },
+    // "I": na (everyday short form) · variant: naha (emphatic)
+    { canonicalId: 46, variantIds: [50] },
+    // "he/she": ya (everyday short form) · variants: yaha (emphatic), yahaya
+    { canonicalId: 47, variantIds: [51, 52] },
     // "they": yahuanti · variant: ininhuanti
     { canonicalId: 55, variantIds: [60] },
     // "name": tocaitl (absolutive) · variant: toca (bare stem)
