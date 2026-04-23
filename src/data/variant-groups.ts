@@ -33,12 +33,9 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 3: What is your name? ────────────────────────────────────────────
   3: [
-    // "you (sg)": ta (everyday short form) · variant: taha (emphatic)
-    { canonicalId: 45, variantIds: [49] },
-    // "I": na (everyday short form) · variant: naha (emphatic)
-    { canonicalId: 46, variantIds: [50] },
-    // "he/she": ya (everyday short form) · variants: yaha (emphatic), yahaya
-    { canonicalId: 47, variantIds: [51, 52] },
+    // "you (sg)": ta (DB row renamed from taha; emphatic form naha/taha/yaha
+    // were the old canonical IDs — variant rows 45/46/47 were deleted by
+    // delete-variant-duplicates.js so there's nothing left to collapse)
     // "they": yahuanti · variant: ininhuanti
     { canonicalId: 55, variantIds: [60] },
     // "name": tocaitl (absolutive) · variant: toca (bare stem)
