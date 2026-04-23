@@ -10,6 +10,7 @@ type Card = {
   headword: string;
   gloss_en: string;
   part_of_speech: string;
+  alsoWritten?: string[];
 };
 
 function WordImage({ headword, className = "" }: { headword: string; className?: string }) {
@@ -159,6 +160,14 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
               <p className="text-3xl font-bold text-stone-900 leading-tight">{card.headword}</p>
               {card.part_of_speech && (
                 <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{card.part_of_speech}</span>
+              )}
+              {card.alsoWritten && card.alsoWritten.length > 0 && (
+                <p className="text-xs text-stone-400 text-center">
+                  Also written:{" "}
+                  <span className="font-medium text-stone-500">
+                    {card.alsoWritten.join(", ")}
+                  </span>
+                </p>
               )}
               <div className="flex justify-center mt-2" onClick={(e) => e.stopPropagation()}>
                 <AudioButton src={vocabAudioUrl(card.id)} />

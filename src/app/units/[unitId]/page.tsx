@@ -46,6 +46,23 @@ export default async function UnitPage({
         </Link>
       </div>
 
+      {num === 1 && (
+        <div className="mb-8 bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <p className="text-xs font-bold text-amber-800 uppercase tracking-widest mb-1.5">
+            New to Nahuatl spelling?
+          </p>
+          <p className="text-sm text-stone-600 leading-relaxed mb-3">
+            This course uses the <strong>IDIEZ</strong> orthographic standard. You may encounter Nahuatl spelled differently elsewhere (INALI, SEP, or older conventions). A 2-minute explainer covers the differences and what to expect.
+          </p>
+          <Link
+            href="/grammar/orthographic-systems"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
+          >
+            Read: Orthographic Systems →
+          </Link>
+        </div>
+      )}
+
       <LessonFlow
         unitNum={num}
         themeEn={unit.theme_en}

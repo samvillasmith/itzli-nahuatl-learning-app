@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getUnit, getUnitVocab, getAllUnits } from "@/lib/db";
+import { collapseVariants } from "@/data/variant-groups";
+import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import FlashcardDeck from "./FlashcardDeck";
 
 export async function generateStaticParams() {
@@ -20,7 +22,8 @@ export default async function PracticePage({
   const unit = getUnit(num);
   if (!unit) notFound();
 
-  const vocab = getUnitVocab(num);
+  const rawVocab = getUnitVocab(num).filter((v) => !EXCLUDED_VOCAB_IDS.has(v.id));
+  const { cards, notes } = collapseVariants(rawVocab, num);
 
   return (
     <div>
@@ -38,16 +41,17 @@ export default async function PracticePage({
           Flashcard Practice
         </h1>
         <p className="text-stone-500 text-sm">
-          Unit {num} · {vocab.length} words
+          Unit {num} · {cards.length} words
         </p>
       </div>
 
       <FlashcardDeck
-        cards={vocab.map((v) => ({
+        cards={cards.map((v) => ({
           id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
           part_of_speech: v.part_of_speech,
+          alsoWritten: notes[v.id],
         }))}
       />
     </div>

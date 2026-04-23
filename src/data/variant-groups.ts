@@ -361,6 +361,11 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     // "very / really": tlahuel · variant: eltoya
     { canonicalId: 699, variantIds: [697] },
   ],
+
+  // ── NOTE: Units 33–43 originated as INALI-orthography alternates for earlier
+  //    IDIEZ vocabulary. When their IDs are verified against the canonical rows
+  //    in Units 1–32, add groups here to collapse cross-unit duplicates.
+  //    For now, these units stand alone.
 };
 
 /** All variant IDs across every unit — used to clean the distractor pool. */
@@ -369,3 +374,39 @@ export const ALL_VARIANT_IDS: Set<number> = new Set(
     groups.flatMap((g) => g.variantIds)
   )
 );
+
+/**
+ * Collapse variants for a single unit's vocab list.
+ *
+ * Returns:
+ *   - `cards`: the original vocab list with variant rows removed (canonical forms only)
+ *   - `notes`: { [canonicalId]: ["also written: X", "also written: Y"] } for rendering
+ *
+ * Used by both LessonFlow (learn cards) and FlashcardDeck (practice page) so they
+ * show the same canonical set.
+ */
+export function collapseVariants<T extends { id: number; headword: string }>(
+  vocab: T[],
+  unitNum: number
+): { cards: T[]; notes: Record<number, string[]> } {
+  const groups = VARIANT_GROUPS[unitNum] ?? [];
+  const excludeIds = new Set(
+    groups
+      .filter((g) => vocab.some((v) => v.id === g.canonicalId))
+      .flatMap((g) => g.variantIds)
+  );
+
+  const notes: Record<number, string[]> = {};
+  for (const g of groups) {
+    if (!vocab.some((v) => v.id === g.canonicalId)) continue;
+    const forms = vocab
+      .filter((v) => g.variantIds.includes(v.id))
+      .map((v) => v.headword);
+    if (forms.length > 0) notes[g.canonicalId] = forms;
+  }
+
+  return {
+    cards: vocab.filter((v) => !excludeIds.has(v.id)),
+    notes,
+  };
+}

@@ -6,7 +6,7 @@ import { vocabAudioUrl, dialogueAudioUrl } from "@/lib/audio";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
-import { VARIANT_GROUPS, ALL_VARIANT_IDS } from "@/data/variant-groups";
+import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 
 const CHUNK_SIZE = 10;
@@ -405,26 +405,9 @@ export default function LessonFlow({
   // Variant forms are shown as "also written: …" notes on the learn card.
 
   const { filteredVocab, variantNotes } = useMemo(() => {
-    const groups = VARIANT_GROUPS[unitNum] ?? [];
-    const excludeIds = new Set(
-      groups
-        .filter((g) => vocab.some((v) => v.id === g.canonicalId))
-        .flatMap((g) => g.variantIds)
-    );
-    const notes: Record<number, string[]> = {};
-    for (const g of groups) {
-      if (!vocab.some((v) => v.id === g.canonicalId)) continue;
-      const forms = vocab
-        .filter((v) => g.variantIds.includes(v.id))
-        .map((v) => v.headword);
-      if (forms.length > 0) notes[g.canonicalId] = forms;
-    }
-    return {
-      filteredVocab: vocab.filter(
-        (v) => !excludeIds.has(v.id) && !EXCLUDED_VOCAB_IDS.has(v.id)
-      ),
-      variantNotes: notes,
-    };
+    const afterExclusions = vocab.filter((v) => !EXCLUDED_VOCAB_IDS.has(v.id));
+    const { cards, notes } = collapseVariants(afterExclusions, unitNum);
+    return { filteredVocab: cards, variantNotes: notes };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitNum]);
 

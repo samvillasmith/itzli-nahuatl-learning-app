@@ -61,6 +61,17 @@ All scripts in `scripts/` have already been run against the DB. **Do not run the
    - `maua` (id=6149): "to frighten; to cause fear" (not "to infect")
    - `imin` (id=190): annotated as non-standard (use `inin`)
 
+### IDIEZ-orthography cleanup pass (NEW — run in order once, against a fresh DB)
+
+These scripts use `scripts/_db-path.js` to auto-locate the DB (checks `DATABASE_PATH` env var → project-local SQLite → legacy `../molina/curriculum/` path). Unless otherwise noted they are **idempotent** and support `--apply` (omit the flag for a dry run).
+
+1. **`scripts/delete-misplaced-country-names.js`** — Deletes 8 rows (Roma, Malta, Rusia, Japon, Suiza, Oman, Chile, Palestina) that were mis-slotted into household/food units. No `--apply` flag; deletion is the only mode. Skips already-absent IDs.
+2. **`scripts/delete-variant-duplicates.js [--apply]`** — Deletes `lesson_vocab` rows whose IDs appear in `variantIds` of any group in `src/data/variant-groups.ts`. The canonical row is kept; the "Also written: …" hint on learn cards comes from the static metadata, so no spelling information is lost. Re-read `variant-groups.ts` if you add new groups.
+3. **`scripts/apply-remaining-gloss-fixes.js [--apply]`** — Matches by `(lesson_number, display_form)` and applies the ~25 remaining ⚠️ gloss corrections from `EHN_Vocabulary_Exhaustive_Revisions.md`. Skips rows whose gloss already contains `[⚠️` or `[❌` (i.e. a prior fix script handled them).
+4. **`scripts/regenerate-dialogues-33-43.js [--apply]`** — Replacement for `generate-dialogues-33-43.js`. Deletes the old AI-generated rows for lesson_units 33–43 and inserts IDIEZ-consistent dialogues. Keep `generate-dialogues-33-43.js` for history; do not run both.
+
+After running the four scripts, commit the DB if you ship the `.sqlite` file; otherwise trust `scripts/fetch-db.js` + S3 upload.
+
 ### Gloss Annotation Format
 
 Many `gloss_en` values have audit notes appended:
@@ -100,9 +111,16 @@ src/
 │   ├── gloss.ts                displayGloss() — strips [❌...]/[⚠️...] annotations
 │   └── progress.ts             localStorage progress: markChunkDone(), resetProgress()
 scripts/
-├── generate-dialogues.js       (already run — do not re-run)
-├── fix-vocab-errors.js         (already run — do not re-run)
-└── audit-fix-all.js            (already run — do not re-run)
+├── _db-path.js                        Shared DB path resolver
+├── fetch-db.js                        Pulls .sqlite from S3 on dev/build
+├── generate-dialogues.js              (already run — do not re-run)
+├── generate-dialogues-33-43.js        (superseded — use regenerate-*)
+├── fix-vocab-errors.js                (already run — do not re-run)
+├── audit-fix-all.js                   (already run — do not re-run)
+├── delete-misplaced-country-names.js  IDIEZ cleanup (new)
+├── delete-variant-duplicates.js       IDIEZ cleanup (new)
+├── apply-remaining-gloss-fixes.js     IDIEZ cleanup (new)
+└── regenerate-dialogues-33-43.js      IDIEZ cleanup (new)
 ```
 
 ---
