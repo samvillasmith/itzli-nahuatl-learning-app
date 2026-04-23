@@ -85,7 +85,7 @@ const UNIT_TIPS: Record<number, TipData[]> = {
     { icon: "❓", title: "Asking Questions", body: "In EHN, questions often keep the same word order as statements. The question word (tlen, aqui, canin) goes at the beginning, and your voice rises at the end." },
   ],
   3: [
-    { icon: "👤", title: "Pronouns Are Optional", body: "In everyday speech, people usually drop the pronoun (na, ta, ya) because the verb prefix already shows who's acting. Pronouns are added for emphasis: \"NA nitequiti\" = \"I work\" (not someone else)." },
+    { icon: "👤", title: "Pronouns Are Optional", body: "In everyday speech, people usually drop the pronoun (na, ta, ya) because the verb prefix already shows who's acting. Pronouns are added for emphasis: \"NA nitequiti\" = \"I work\" (not someone else). Not sure what \"first person\" or \"second person\" means? Check the grammar lesson \"Who's Talking? Person & Number Explained\" under Grammar." },
     { icon: "🌸", title: "Nahua Names", body: "Traditional names come from nature and qualities: Xochitl (flower), Cuauhtli (eagle), Citlali (star). Today many speakers use Spanish first names with Nahuatl family names." },
   ],
   4: [

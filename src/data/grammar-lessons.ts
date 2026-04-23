@@ -242,7 +242,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `EHN does not require an independent pronoun to be stated — the verb itself carries all the information about who is performing the action. Subject prefixes are attached directly to the front of the verb. The independent pronouns exist but are used mainly for emphasis or contrast.\n\n**Short vs. long forms.** In everyday EHN speech, the singular pronouns are simply **na** (I), **ta** (you), **ya** (he/she). These are the forms you will hear most often and the ones returned by most Nahuatl dictionaries and translators. The longer forms **naha / taha / yaha** exist as emphatic variants (roughly "I myself," "you yourself"), and the Classical Central Nahuatl forms *nehhuatl / tehhuatl / yehhuatl* appear in older texts but are rare in spoken EHN. **Learn the short forms first.**`,
+        text: `EHN does not require an independent pronoun to be stated — the verb itself carries all the information about who is performing the action. Subject prefixes are attached directly to the front of the verb. The independent pronouns exist but are used mainly for emphasis or contrast.\n\n**Short vs. long forms.** In everyday EHN speech, the singular pronouns are simply **na** (I), **ta** (you), **ya** (he/she). These are the forms you will hear most often and the ones returned by most Nahuatl dictionaries and translators. The longer forms **naha / taha / yaha** exist as emphatic variants (roughly "I myself," "you yourself"), and the Classical Central Nahuatl forms *nehhuatl / tehhuatl / yehhuatl* appear in older texts but are rare in spoken EHN. **Learn the short forms first.**\n\nNew to grammar terms like "first person" and "third person plural"? See the "Who's Talking? Person & Number Explained" lesson for a plain-English guide.`,
       },
       {
         kind: 'paradigm',
@@ -1297,6 +1297,732 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             breakdown: 'Mā ti·yāz·queh.',
             translation: "Let's go. / May we go.",
             note: 'mā + 1pl future = hortative "let us…"',
+          },
+        ],
+      },
+    ],
+  },
+  // ── NEW LESSONS ────────────────────────────────────────────────────────────
+
+  {
+    id: 'person-and-number',
+    title: "Who's Talking? Person & Number Explained",
+    nahuatlTitle: 'Āquiya tlahtoa?',
+    band: 'A1',
+    shortDesc: 'A plain-English guide to what "first person," "second person," and "plural" mean.',
+    relatedUnits: [3],
+    sections: [
+      {
+        kind: 'prose',
+        text: `Grammar books love terms like "first person singular" and "third person plural." If that sounds confusing, this page is for you. The idea is simple — every sentence has someone doing the action, and we need a quick way to label who that is.\n\n**Person** tells you WHO is involved. **Number** tells you HOW MANY.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Person — who is involved?',
+        caption: 'Think of a conversation between two people talking about a third.',
+        headers: ['Label', 'Who it means', 'English examples'],
+        rows: [
+          { person: '1st person', form: 'The speaker — the one talking right now', gloss: 'I, me, my, we, us, our' },
+          { person: '2nd person', form: 'The listener — the one being spoken to', gloss: 'you, your, you all' },
+          { person: '3rd person', form: 'Everyone else — whoever is being talked about', gloss: 'he, she, it, they, them' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'An easy way to remember',
+        text: `Imagine three people in a room:\n\n• **1st person** = **me** (I'm the one talking)\n• **2nd person** = **you** (I'm talking TO you)\n• **3rd person** = **that person over there** (we're talking ABOUT them)\n\nThat's it. "First," "second," and "third" just count outward from the speaker.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Number — how many?',
+        caption: 'Each person can be singular (one) or plural (more than one).',
+        headers: ['', 'Singular (one)', 'Plural (more than one)'],
+        rows: [
+          { person: '1st person', form: 'I', gloss: 'we' },
+          { person: '2nd person', form: 'you', gloss: 'you all / you guys' },
+          { person: '3rd person', form: 'he / she / it', gloss: 'they' },
+        ],
+      },
+      {
+        kind: 'prose',
+        heading: 'Why does this matter for Nahuatl?',
+        text: `In English, you use separate words: "I run," "you run," "they run." In Nahuatl, who is doing the action is shown by a **prefix stuck onto the verb**:\n\n• ni·tequiti = I work (ni- = 1st person singular)\n• ti·tequiti = you work (ti- = 2nd person singular)\n• tequiti = he/she works (no prefix = 3rd person singular)\n• ti·tequiti·h = we work (ti- plus -h = 1st person plural)\n\nSo when you see "1sg" in a grammar table, it just means "I." When you see "2pl" it means "you all." The table below gives you the full cheatsheet.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Complete cheatsheet',
+        caption: 'Abbreviations you may see in grammar books, mapped to plain English and Nahuatl prefixes.',
+        headers: ['Abbreviation', 'Plain English', 'Nahuatl verb prefix'],
+        rows: [
+          { person: '1sg', form: 'I', gloss: 'ni-' },
+          { person: '2sg', form: 'you', gloss: 'ti-' },
+          { person: '3sg', form: 'he / she / it', gloss: '(nothing)' },
+          { person: '1pl', form: 'we', gloss: 'ti- … -h' },
+          { person: '2pl', form: 'you all', gloss: 'an- … -h' },
+          { person: '3pl', form: 'they', gloss: '… -h' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'EHN pronouns — same idea, plain labels',
+        caption: 'These are optional in conversation because the verb prefix already tells you who is acting.',
+        headers: ['Plain English', 'EHN pronoun', 'Emphatic form'],
+        rows: [
+          { person: 'I', form: 'na', gloss: 'naha' },
+          { person: 'you', form: 'ta', gloss: 'taha' },
+          { person: 'he / she', form: 'ya', gloss: 'yaha' },
+          { person: 'we', form: 'tohuantin', gloss: 'tohuanti' },
+          { person: 'you all', form: 'amohuantin', gloss: 'amohuanti' },
+          { person: 'they', form: 'yahuantin', gloss: 'yahuanti' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'Bottom line',
+        text: `Whenever you see "first person," "second person," or "third person" in this course, just think: **me, you, or someone else.** Add "singular" for one person or "plural" for more than one. That's all there is to it.`,
+      },
+    ],
+  },
+
+  {
+    id: 'verb-overview',
+    title: 'How Nahuatl Verbs Work',
+    nahuatlTitle: 'Quēn tequitih tlahtōlchihuallōtl',
+    band: 'A1',
+    shortDesc: 'The "sandwich" structure: prefix + root + suffix — and why one word can be a whole sentence.',
+    relatedUnits: [3, 5, 6],
+    sections: [
+      {
+        kind: 'prose',
+        text: `In English, "I will eat it" is four separate words. In Nahuatl, the same idea fits into a single word: **niccuaz**. Everything — who is doing it, what they're doing it to, and when — is packed into one verb. This is the key difference between Nahuatl and English, and once you understand the pattern, the whole language opens up.`,
+      },
+      {
+        kind: 'rule',
+        title: 'The verb sandwich',
+        text: `Every Nahuatl verb follows the same layered structure. Think of it like a sandwich:\n\n**[tense] + [subject] + [object] + [VERB ROOT] + [tense/plural suffix]**\n\nNot every slot is always filled — a simple present-tense intransitive verb like *nitequiti* only uses subject + root. But the slots are always in this order when they appear.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Breaking down real verbs',
+        caption: 'Each column shows one "slot" in the verb sandwich.',
+        headers: ['Full verb', 'Pieces', 'English'],
+        rows: [
+          { person: 'nitequiti', form: 'ni- + tequiti', gloss: 'I work' },
+          { person: 'ticcua', form: 'ti- + c- + cua', gloss: 'you eat it' },
+          { person: 'niccuaz', form: 'ni- + c- + cua + -z', gloss: 'I will eat it' },
+          { person: 'nimomachtia', form: 'ni- + mo- + machtia', gloss: 'I study (teach myself)' },
+          { person: 'ōnihuetz', form: 'ō- + ni- + huetz', gloss: 'I fell (past)' },
+          { person: 'titequitih', form: 'ti- + tequiti + -h', gloss: 'we work' },
+          { person: 'antequitizqueh', form: 'an- + tequiti + -zqueh', gloss: 'you all will work' },
+          { person: 'xitlacua', form: 'xi- + tlacua', gloss: 'eat! (command)' },
+        ],
+      },
+      {
+        kind: 'prose',
+        heading: 'The five slots explained',
+        text: `1. **Tense prefix (optional)**: ō- for past tense. Present and future use no prefix here.\n\n2. **Subject prefix**: ni- (I), ti- (you), nothing (he/she), ti-…-h (we), an-…-h (you all), …-h (they). For commands, xi- replaces the subject prefix.\n\n3. **Object prefix (optional)**: c-/qui- (him/her/it), nēch- (me), mitz- (you), tech- (us), mo- (reflexive "self"), tla- (something unspecified). Only present when the verb is transitive (acts on something).\n\n4. **Verb root**: The core meaning — tequiti (work), cua (eat), machtia (teach), etc.\n\n5. **Tense/plural suffix**: -z (future singular), -zqueh (future plural), -h (present plural), -queh (past plural). Present singular has no suffix.`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Practice reading verb sandwiches',
+        items: [
+          {
+            nahuatl: 'Nitlamachtia nāhuatl.',
+            breakdown: 'ni- (I) + tlamachtia (teach)',
+            translation: 'I teach Nahuatl.',
+            note: 'Subject + root only — simple present intransitive',
+          },
+          {
+            nahuatl: 'Ticchihua in tlacualli.',
+            breakdown: 'ti- (you) + c- (it) + chihua (make) = you make it',
+            translation: 'You are making the food.',
+            note: 'Subject + object + root — present transitive',
+          },
+          {
+            nahuatl: 'Ōquicuac in tamalli.',
+            breakdown: 'ō- (past) + qui- (it) + cua-c (eat-past) = he ate it',
+            translation: 'He/she ate the tamal.',
+            note: 'Tense prefix + object + root with past suffix',
+          },
+          {
+            nahuatl: 'Titlacuazqueh tiotlac.',
+            breakdown: 'ti- (we) + tlacua (eat) + -zqueh (future plural)',
+            translation: 'We will eat in the afternoon.',
+            note: 'Subject + root + future plural suffix',
+          },
+          {
+            nahuatl: 'Nimomachtiznequi.',
+            breakdown: 'ni- (I) + mo- (self) + machti-z (teach-future) + nequi (want)',
+            translation: 'I want to learn.',
+            note: 'Compound: "I want to teach-myself" — two verbs fused',
+          },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'One word = one sentence',
+        text: `Because Nahuatl packs so much into the verb, a single word can express a complete thought. *Niccuaz* is "I will eat it" — subject (I), object (it), action (eat), tense (future), all in six letters. As you learn more prefixes and suffixes, you build longer and more expressive verbs from the same basic pattern.`,
+      },
+    ],
+  },
+
+  {
+    id: 'plurals',
+    title: 'Plural Nouns: -meh, -tin, and -h',
+    nahuatlTitle: 'Miac tlahtōlcuauhmeh',
+    band: 'A1',
+    shortDesc: 'Three strategies for making nouns plural and when to use each one.',
+    relatedUnits: [3, 4],
+    sections: [
+      {
+        kind: 'prose',
+        text: `English adds "-s" to make things plural: one book, two books. Nahuatl has three main plural strategies, and which one you use depends on the noun. The good news: the most common strategy (-meh) covers the majority of nouns.`,
+      },
+      {
+        kind: 'rule',
+        title: 'Strategy 1: -meh (the default)',
+        text: `Drop the absolutive suffix (-tl, -tli, -li) and add **-meh**. This works for most inanimate nouns and many animate ones.\n\n• cihuātl → cihuā**meh** (women)\n• āmoxtli → āmox**meh** (books)\n• cōmalli → comal**meh** (cooking griddles)\n• tepōztli → tepōz**meh** (machines/metals)\n• mācēhualli → mācēhual**meh** (indigenous people)`,
+      },
+      {
+        kind: 'rule',
+        title: 'Strategy 2: -tin (animate nouns)',
+        text: `Some animate nouns — especially those referring to people — take **-tin** instead of -meh. This is less common but appears in important words:\n\n• tohuantin (we — from tohuān + -tin)\n• yahuantin (they)\n• amohuantin (you all)\n• pipiltin (nobles / children of nobles — from pilli)\n\nIn practice, many nouns that historically took -tin now also accept -meh in spoken EHN.`,
+      },
+      {
+        kind: 'rule',
+        title: 'Strategy 3: reduplication + -h',
+        text: `A smaller class of nouns forms the plural by **repeating the first syllable** and/or adding **-h**:\n\n• tēuctli → tētēuctin (lords)\n• cihuātl → cicihuah (women — reduplicated alternative)\n• piltzintli → pipiltzitzin (children — with honorific plural)\n\nThis strategy is most common with kinship terms, old words, and the honorific plural -tzitzin.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Common plurals at a glance',
+        headers: ['Singular', 'Plural', 'Meaning'],
+        rows: [
+          { person: 'cihuātl', form: 'cihuāmeh', gloss: 'woman → women' },
+          { person: 'āmoxtli', form: 'āmoxmeh', gloss: 'book → books' },
+          { person: 'cōmalli', form: 'comalmeh', gloss: 'griddle → griddles' },
+          { person: 'tepōztli', form: 'tepōzmeh', gloss: 'metal/machine → metals' },
+          { person: 'tōtolin', form: 'tōtolmeh', gloss: 'turkey → turkeys' },
+          { person: 'mācēhualli', form: 'mācēhualmeh', gloss: 'indigenous person → people' },
+          { person: 'pilli', form: 'pipiltin', gloss: 'noble/child → nobles' },
+          { person: 'piltzintli', form: 'pipiltzitzin', gloss: 'child → children (honorific)' },
+          { person: 'conētl', form: 'conēmeh', gloss: 'baby → babies' },
+          { person: 'chichi', form: 'chichimeh', gloss: 'dog → dogs' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'Quick rule of thumb',
+        text: `When in doubt, use **-meh**. It covers about 80% of nouns. You'll pick up the -tin and reduplicated forms naturally as you learn specific vocabulary.`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Plurals in context',
+        items: [
+          {
+            nahuatl: 'Cihuāmeh tequitih pan mīllah.',
+            breakdown: 'cihuā-meh tequiti-h pan mīllah.',
+            translation: 'The women work in the milpa.',
+            note: 'Both noun (-meh) and verb (-h) carry plural markers',
+          },
+          {
+            nahuatl: 'Nopiltzitzin mohmōztlah yohuih caltlamachticān.',
+            breakdown: 'no-pil-tzitzin mohmōztlah yohuih caltlamachticān.',
+            translation: 'My children go to school every day.',
+            note: '-tzitzin = honorific plural of -tzin',
+          },
+          {
+            nahuatl: 'Quezqui āmoxmeh ticpiya?',
+            breakdown: 'Quezqui āmox-meh ti-c-piya?',
+            translation: 'How many books do you have?',
+            note: 'Standard -meh plural',
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'locatives',
+    title: 'Places: Locative Suffixes',
+    nahuatlTitle: 'Cāmpa? — Tlatēcpānaliztli tlen cānōc',
+    band: 'A1',
+    shortDesc: 'How Nahuatl names places using suffixes like -co, -pan, -can, and -tlan.',
+    relatedUnits: [6, 7],
+    sections: [
+      {
+        kind: 'prose',
+        text: `Many Nahuatl place names you already know — Mexico, Chicontepec, Tenochtitlan — end in locative suffixes that mean "at," "in," or "near." These same suffixes are used productively to create new place words. Once you recognize them, place names stop being opaque strings and start telling you what the place is about.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'The main locative suffixes',
+        headers: ['Suffix', 'Meaning', 'Examples'],
+        rows: [
+          { person: '-co', form: 'in / at (a contained place)', gloss: 'Mexco (in Mexico), ātoyaco (at the river)' },
+          { person: '-pan', form: 'on / upon / at (a surface)', gloss: 'tlālpan (on the ground), tepēpan (on the hill)' },
+          { person: '-can', form: 'place of / where X happens', gloss: 'tlacuācan (eating place), tequitican (workplace)' },
+          { person: '-tlan', form: 'near / among / place of', gloss: 'cuauhtlan (in the forest), Mazatlān (place of deer)' },
+          { person: '-nāhuac', form: 'next to / beside', gloss: 'ātenāhuac (beside the water), Cuauhnāhuac (Cuernavaca)' },
+          { person: '-yan', form: 'place where X is done', gloss: 'caltlamachtiloyan (school — place of teaching)' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'How locatives are built',
+        text: `Take a noun stem (drop the absolutive suffix) and add the locative:\n\n• cāl- (from cālli, house) + -tlamachtiloyan → **caltlamachtiloyan** (school — lit. "house where teaching is done")\n• cuauh- (from cuahuitl, tree/wood) + -tlan → **cuauhtlan** (forest — lit. "among the trees")\n• ā- (from ātl, water) + -tēnco → **ātēnco** (riverbank — "at the edge of water")\n• mīl- (from mīlli, cultivated field) + -lah → **mīllah** (in the milpa)\n\nThe suffix -lah (variant of -tlan) appears in many EHN place words.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Place names decoded',
+        headers: ['Place name', 'Pieces', 'Literal meaning'],
+        rows: [
+          { person: 'Mexco', form: 'Mex- (moon/navel?) + -co', gloss: 'At the navel of the moon' },
+          { person: 'Chicōntepēc', form: 'chicōn- (seven) + tepē- (hill) + -c', gloss: 'At the seven hills' },
+          { person: 'Cuauhnāhuac', form: 'cuauh- (tree) + -nāhuac (near)', gloss: 'Near the trees (= Cuernavaca)' },
+          { person: 'Mazatlān', form: 'maza- (deer) + -tlan', gloss: 'Place of deer' },
+          { person: 'Tenochtitlān', form: 'te- (stone) + nochtli (cactus) + -tlan', gloss: 'Among the stone cacti' },
+          { person: 'caltlamachtiloyan', form: 'cal- (house) + tlamachtilo- (teaching) + -yan', gloss: 'Place where teaching happens (= school)' },
+        ],
+      },
+      {
+        kind: 'examples',
+        heading: 'Locatives in dialogue',
+        items: [
+          {
+            nahuatl: 'Na niēhua Tecomate, Chicōntepēc.',
+            breakdown: 'Na ni·ēhua Tecomate, Chicōntepēc.',
+            translation: 'I am from Tecomate, Chicontepec.',
+            note: 'Both place names carry locative meaning',
+          },
+          {
+            nahuatl: 'Nitequiti pan caltlamachtiloyan.',
+            breakdown: 'Ni·tequiti pan caltlamachtiloyan.',
+            translation: 'I work at the school.',
+            note: '-yan locative = "place of teaching"',
+          },
+          {
+            nahuatl: 'Niyāuh tiānquiz.',
+            breakdown: 'Ni·yāuh tiānquiz.',
+            translation: 'I am going to the market.',
+            note: 'tiānquiz = marketplace (from tiānquiztli)',
+          },
+          {
+            nahuatl: 'Pan tomīllah ticcuahcuepaāh etl.',
+            breakdown: 'Pan to·mīllah ti·c·cuahcuepāh etl.',
+            translation: 'In our milpa we cultivate beans.',
+            note: 'mīllah = "in the milpa" — locative of mīlli',
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'directionals',
+    title: 'Coming & Going: on-, hual-',
+    nahuatlTitle: 'Ōntiyāuh, huālniyāuh',
+    band: 'A2',
+    shortDesc: 'Directional prefixes that show whether the action moves toward or away from the speaker.',
+    relatedUnits: [12, 14],
+    sections: [
+      {
+        kind: 'prose',
+        text: `English uses separate words like "come" vs. "go" or "bring" vs. "take" to show direction. Nahuatl has a more elegant system: **directional prefixes** that can be attached to ANY verb to show whether the action is moving toward the speaker or away.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'The two directional prefixes',
+        headers: ['Prefix', 'Direction', 'English equivalent'],
+        rows: [
+          { person: 'on-', form: 'away from the speaker', gloss: '"go and do X" / "do X over there"' },
+          { person: 'hual- / huāl-', form: 'toward the speaker', gloss: '"come and do X" / "do X here"' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'Where they go in the verb',
+        text: `Directionals sit between the subject prefix and the object prefix (or verb root):\n\n**[subject] + [directional] + [object] + [verb root] + [suffix]**\n\n• ni- + on- + tequiti = **nontequiti** (I go to work / I work over there)\n• ni- + hual- + lāuh = **nihuāllāuh** (I come — literally "I here-go")\n• ti- + on- + c- + cua = **tonccua** (you go eat it over there)\n• xi- + hual- + lā = **xihuāllā** (come! — the most common greeting command)`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Directionals in action',
+        caption: 'Same base verb, different direction.',
+        headers: ['With on- (going)', 'With hual- (coming)', 'Base verb'],
+        rows: [
+          { person: 'nontequiti (I go work)', form: 'nihuāltequiti (I come to work)', gloss: 'tequiti (to work)' },
+          { person: 'xoncua! (go eat it!)', form: 'xihuālcua! (come eat it!)', gloss: 'cua (to eat)' },
+          { person: 'onyāuh (he goes away)', form: 'huāllāuh (he comes)', gloss: 'yāuh (to go)' },
+          { person: 'toncuāzqueh (we\'ll go eat)', form: 'tihuālcuāzqueh (we\'ll come eat)', gloss: 'cua (to eat)' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'on- and hual- with specific verbs',
+        text: `Some directional + verb combinations are so common they feel like their own vocabulary words:\n\n• **huāllāuh** (hual- + yāuh) = "to come" — the most frequent word using hual-\n• **on-nēhnemi** = "to go for a walk / to walk away"\n• **hual-mocuepa** = "to come back / return here"\n• **on-mocuepa** = "to go back / return there"\n\nYou already know *xihuāllā* (come!) — that's the imperative of huāllāuh.`,
+      },
+      {
+        kind: 'examples',
+        heading: 'In dialogue',
+        items: [
+          {
+            nahuatl: 'Xihuāllā, titlacuāzqueh!',
+            breakdown: 'Xi·huāl·lā, ti·tlacuā·zqueh!',
+            translation: 'Come, we will eat!',
+            note: 'xi- (imperative) + huāl- (toward speaker) + lā (go)',
+          },
+          {
+            nahuatl: 'Tiotlac nihuāllāz.',
+            breakdown: 'Tiotlac ni·huāl·lā·z.',
+            translation: "I'll come back in the afternoon.",
+            note: 'hual- + yāuh + -z (future) = "I will come"',
+          },
+          {
+            nahuatl: 'Onyāuh mīllah.',
+            breakdown: 'On·yāuh mīllah.',
+            translation: 'He went off to the milpa.',
+            note: 'on- = away; yāuh = go; 3sg so no subject prefix',
+          },
+          {
+            nahuatl: 'Mōztla nihuālmocuepaz.',
+            breakdown: 'Mōztla ni·huāl·mo·cuepa·z.',
+            translation: 'Tomorrow I will come back.',
+            note: 'hual- (toward) + mo- (reflexive) + cuepa (turn) + -z (future)',
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'relational-nouns',
+    title: 'Relational Nouns: How Nahuatl Says "in," "on," "with"',
+    nahuatlTitle: 'Tlahtōlcēntilīztli',
+    band: 'A2',
+    shortDesc: 'Nahuatl uses possessed nouns instead of prepositions — "my-face" means "in front of me."',
+    relatedUnits: [8, 10],
+    sections: [
+      {
+        kind: 'prose',
+        text: `English uses prepositions: in, on, with, for, about. Nahuatl does something different — it uses **relational nouns**. These are ordinary nouns (body parts, spatial concepts) that take a possessive prefix to express relationships. "On top of the table" becomes literally "its-top the table." Once you see the pattern, it's intuitive.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Common relational nouns',
+        caption: 'The 3sg possessed form (ī-) is shown; swap in no-/mo-/to- for other persons.',
+        headers: ['Relational noun', 'Literal meaning', 'Used as…'],
+        rows: [
+          { person: '-pan', form: 'surface / on top of', gloss: '"on, upon, at" — īpan (on it)' },
+          { person: '-tech', form: 'body / substance', gloss: '"on, touching, about" — ītech (on/about it)' },
+          { person: '-ica', form: 'face / means', gloss: '"with, by means of" — īca (with it)' },
+          { person: '-tlan', form: 'teeth / base / near', gloss: '"near, beside" — ītlan (near it/him)' },
+          { person: '-nahuac', form: 'close-to', gloss: '"beside, next to" — īnāhuac (next to it)' },
+          { person: '-pampa', form: 'cause / reason', gloss: '"because of" — īpampa (because of it)' },
+          { person: '-huān', form: 'companion', gloss: '"with (a person)" — īhuān (with him/her)' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'How they work',
+        text: `Relational nouns take a possessive prefix (no-, mo-, ī-, to-, amo-, in-) just like any possessed noun. The "possessor" is whoever/whatever the relationship is about.\n\n• **no-pan** = on me / at my place\n• **mo-pampa** = because of you\n• **ī-ca** = with it / by means of it\n• **to-tlan** = near us\n\nThe most common standalone form is **pan**, which often appears without an explicit possessive prefix as a general preposition meaning "in/at/on."`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Relational nouns in dialogue',
+        items: [
+          {
+            nahuatl: 'Nitequiti pan caltlamachtiloyan.',
+            breakdown: 'Ni·tequiti pan caltlamachtiloyan.',
+            translation: 'I work at the school.',
+            note: 'pan = general locative "at/in" (relational noun without possessor)',
+          },
+          {
+            nahuatl: 'Huānya nocihuāuh niyāuh tiānquiz.',
+            breakdown: 'Huānya no·cihuāuh ni·yāuh tiānquiz.',
+            translation: 'With my wife I go to the market.',
+            note: 'huānya = with (from -huān relational noun + ya)',
+          },
+          {
+            nahuatl: 'Ipampa in ātl, āmo tiyāzqueh.',
+            breakdown: 'I·pampa in ātl, āmo ti·yāz·queh.',
+            translation: "Because of the water (rain), we won't go.",
+            note: 'ī-pampa = because of it; referring to ātl (water/rain)',
+          },
+          {
+            nahuatl: 'Nitlamachtia nāhuatl īca yāhuatzinco.',
+            breakdown: 'Ni·tlamachtia nāhuatl ī·ca yāhuatzinco.',
+            translation: 'I teach Nahuatl in the morning.',
+            note: 'īca = "with/by/during" — temporal use of relational noun',
+          },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'pan — the Swiss Army knife',
+        text: `The relational noun **pan** deserves special attention because it's everywhere in EHN:\n\n• pan mīllah = in the milpa\n• pan caltlamachtiloyan = at school\n• pan ohtli = on the road\n• pan āltepētl = in the town\n\nThink of it as the default "at/in/on" — similar to how English speakers overuse "at."`,
+      },
+    ],
+  },
+
+  {
+    id: 'verb-conjugation-summary',
+    title: 'Complete Verb Conjugation Table',
+    nahuatlTitle: 'Tlahtōlchihuallōtl mochīn cāhuitl',
+    band: 'A2',
+    shortDesc: 'A master reference showing one verb fully conjugated across all tenses and persons.',
+    relatedUnits: [5, 6, 7, 11],
+    sections: [
+      {
+        kind: 'prose',
+        text: `This page is a reference card. It shows the intransitive verb **tequiti** (to work) fully conjugated in every major tense, plus a second table for the transitive verb **cua** (to eat) with a 3rd-person object. Bookmark this and come back whenever you need a quick check.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'tequiti (to work) — Present',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'nitequiti', gloss: 'I work' },
+          { person: 'you', form: 'titequiti', gloss: 'you work' },
+          { person: 'he / she', form: 'tequiti', gloss: 'he/she works' },
+          { person: 'we', form: 'titequitih', gloss: 'we work' },
+          { person: 'you all', form: 'antequitih', gloss: 'you all work' },
+          { person: 'they', form: 'tequitih', gloss: 'they work' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'tequiti — Future (-z / -zqueh)',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'nitequitiz', gloss: 'I will work' },
+          { person: 'you', form: 'titequitiz', gloss: 'you will work' },
+          { person: 'he / she', form: 'tequitiz', gloss: 'he/she will work' },
+          { person: 'we', form: 'titequitizqueh', gloss: 'we will work' },
+          { person: 'you all', form: 'antequitizqueh', gloss: 'you all will work' },
+          { person: 'they', form: 'tequitizqueh', gloss: 'they will work' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'tequiti — Past (ō- + perfective)',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'ōnitequitic', gloss: 'I worked' },
+          { person: 'you', form: 'ōtitequitic', gloss: 'you worked' },
+          { person: 'he / she', form: 'ōtequitic', gloss: 'he/she worked' },
+          { person: 'we', form: 'ōtitequitiqueh', gloss: 'we worked' },
+          { person: 'you all', form: 'ōantequitiqueh', gloss: 'you all worked' },
+          { person: 'they', form: 'ōtequitiqueh', gloss: 'they worked' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'tequiti — Imperative (xi-)',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'you (command)', form: 'xitequiti!', gloss: 'work!' },
+          { person: 'you all (command)', form: 'xitequiticān!', gloss: 'work, all of you!' },
+          { person: 'let him/her (optative)', form: 'mā tequiti', gloss: 'may he/she work' },
+          { person: "let's (hortative)", form: 'mā titequiticān', gloss: "let's work" },
+        ],
+      },
+      {
+        kind: 'prose',
+        heading: 'Transitive verb: cua (to eat) with object "it"',
+        text: `When the verb takes an object, the object prefix (c-/qui-) appears between the subject prefix and the verb root. Below is cua conjugated with a 3rd-person singular object ("it").`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'cua (to eat it) — Present',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'niccua', gloss: 'I eat it' },
+          { person: 'you', form: 'ticcua', gloss: 'you eat it' },
+          { person: 'he / she', form: 'quicua', gloss: 'he/she eats it' },
+          { person: 'we', form: 'ticcuah', gloss: 'we eat it' },
+          { person: 'they', form: 'quicuah', gloss: 'they eat it' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'cua (to eat it) — Future',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'niccuaz', gloss: 'I will eat it' },
+          { person: 'you', form: 'ticcuaz', gloss: 'you will eat it' },
+          { person: 'he / she', form: 'quicuaz', gloss: 'he/she will eat it' },
+          { person: 'we', form: 'ticcuazqueh', gloss: 'we will eat it' },
+          { person: 'they', form: 'quicuazqueh', gloss: 'they will eat it' },
+        ],
+      },
+      {
+        kind: 'paradigm',
+        heading: 'cua (to eat it) — Past',
+        headers: ['Person', 'Form', 'Meaning'],
+        rows: [
+          { person: 'I', form: 'ōniccuac', gloss: 'I ate it' },
+          { person: 'you', form: 'ōticcuac', gloss: 'you ate it' },
+          { person: 'he / she', form: 'ōquicuac', gloss: 'he/she ate it' },
+          { person: 'we', form: 'ōticcuaqueh', gloss: 'we ate it' },
+          { person: 'they', form: 'ōquicuaqueh', gloss: 'they ate it' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'Pattern summary',
+        text: `Once you know one conjugation, you know them all. The formula is always:\n\n**[ō- past] + [subject: ni-/ti-/an-/ø] + [object: c-/qui-] + [root] + [tense: -z/-zqueh/-c/-queh] + [plural: -h]**\n\nMost irregularity comes from stem changes in the past tense (e.g. cua → cuac, yāuh → yāc). The prefix/suffix pattern stays the same.`,
+      },
+    ],
+  },
+
+  {
+    id: 'compound-verbs',
+    title: 'Compound Verbs & Noun Incorporation',
+    nahuatlTitle: 'Tlahtōlnēnepanōlli',
+    band: 'B1',
+    shortDesc: 'How Nahuatl builds new verbs by folding nouns into the verb or chaining verb roots.',
+    relatedUnits: [15, 20],
+    sections: [
+      {
+        kind: 'prose',
+        text: `One of Nahuatl's most distinctive features is **noun incorporation** — taking a noun and fusing it directly into the verb. English does this rarely ("babysit," "breastfeed"), but Nahuatl does it constantly. The incorporated noun replaces the generic object prefix (tla-) with something specific, creating a single compact word.`,
+      },
+      {
+        kind: 'rule',
+        title: 'How noun incorporation works',
+        text: `Instead of saying "I eat tortillas" as two words (*niccua tlaxcalli*), you can fold the noun into the verb:\n\n**ni- + tlaxcal- + cua** → **nitlaxcalcua** ("I tortilla-eat")\n\nThe noun stem (without its absolutive suffix) goes directly before the verb root. This creates a new intransitive verb — the object is now baked in.\n\nFormula: **[subject prefix] + [noun stem] + [verb root]**`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Common incorporated verbs',
+        caption: 'The noun stem appears in bold within the compound.',
+        headers: ['Compound verb', 'Pieces', 'Meaning'],
+        rows: [
+          { person: 'nitlaxcalcua', form: 'ni- + tlaxcal- + cua', gloss: 'I eat tortillas' },
+          { person: 'nitlaxcalchihua', form: 'ni- + tlaxcal- + chihua', gloss: 'I make tortillas' },
+          { person: 'nitlacua', form: 'ni- + tla- + cua', gloss: 'I eat (something)' },
+          { person: 'niātli', form: 'ni- + ā- + tli…', gloss: 'I drink water (ā- = water)' },
+          { person: 'nicuachīhua', form: 'ni- + cuā- + chīhua', gloss: 'I do woodwork (cuahuitl = wood)' },
+          { person: 'nimīxxāmia', form: 'ni- + m- + īx- + xāmia', gloss: 'I wash my face (reflexive + face)' },
+          { person: 'nitlachpāna', form: 'ni- + tla- + chpāna', gloss: 'I sweep (something)' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'tla- and tē- as generic objects',
+        text: `Two special "noun" prefixes appear constantly:\n\n• **tla-** = "something / things" (indefinite inanimate object)\n• **tē-** = "someone / people" (indefinite animate object)\n\nThese aren't really nouns but they fill the noun-incorporation slot:\n\n• ni-**tla**-cua = I eat (things) — generic eating\n• ni-**tla**-machtia = I teach (things/knowledge)\n• ni-**tē**-māca = I give (to people)\n• ni-**tē**-pālēhuia = I help (people)\n\nWhen you see tla- or tē- in a verb, you know it has a generic object built in.`,
+      },
+      {
+        kind: 'prose',
+        heading: 'Verb + verb compounds',
+        text: `Nahuatl also chains verbs together. The most common pattern is **verb stem + nequi** ("to want"):\n\n• ni-tlacua-**znequi** = I want to eat (future stem + nequi)\n• ni-momachti-**znequi** = I want to learn\n• ni-cochi-**znequi** = I want to sleep\n\nOther combining verbs include **-tia** (to cause), **-huetzi** (to fall into doing = to start suddenly), and **-cāhua** (to stop/leave = to stop doing).`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Compounds in context',
+        items: [
+          {
+            nahuatl: 'Nitlaxcalchihua mohmōztlah.',
+            breakdown: 'Ni-tlaxcal-chihua mohmōztlah.',
+            translation: 'I make tortillas every day.',
+            note: 'tlaxcal- (tortilla) incorporated into chihua (to make)',
+          },
+          {
+            nahuatl: 'Nimomachtiznequi nāhuatl.',
+            breakdown: 'Ni-mo-machti-z-nequi nāhuatl.',
+            translation: 'I want to learn Nahuatl.',
+            note: 'momachtia + future -z + nequi (want) = compound verb',
+          },
+          {
+            nahuatl: 'Nonanā tēchmāca cafen yāhuatzinco.',
+            breakdown: 'No-nanā tēch-māca cafen yāhuatzinco.',
+            translation: 'My mother gives us coffee in the morning.',
+            note: 'tēch- (us, object) + māca (give) — not incorporation but shows tē-type object',
+          },
+          {
+            nahuatl: 'Āmo niccochiznequi āxcan.',
+            breakdown: 'Āmo ni-c-cochi-z-nequi āxcan.',
+            translation: "I don't want to sleep now.",
+            note: 'Negation + verb compound: cochi (sleep) + znequi (want)',
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'aspect-mood',
+    title: 'Beyond Tense: Aspect & Mood',
+    nahuatlTitle: 'Oc cequin tlen cāhuitl',
+    band: 'B1',
+    shortDesc: 'Habitual actions, ongoing processes, wishes, and other ways to talk about time beyond past/present/future.',
+    relatedUnits: [18, 22],
+    sections: [
+      {
+        kind: 'prose',
+        text: `You've learned past (ō-), present, and future (-z). But not everything fits neatly into those three boxes. What about "I used to work there" or "I was eating when…"? Nahuatl handles these through **aspect** (how an action unfolds in time) and **mood** (the speaker's attitude toward the action — is it a fact, a wish, a possibility?).`,
+      },
+      {
+        kind: 'rule',
+        title: 'Habitual: "I always / I usually"',
+        text: `In EHN, the present tense already covers habitual actions — "nitequiti" can mean both "I work (right now)" and "I work (in general / as my job)." Context and time words make the habitual reading clear:\n\n• **mohmōztlah** nitequiti = "I work every day" (habitual)\n• **quēmman** nitequiti = "sometimes I work" (occasional habitual)\n• **nochipa** nitlacua etl = "I always eat beans" (persistent habitual)`,
+      },
+      {
+        kind: 'rule',
+        title: 'Progressive: "I am doing it right now"',
+        text: `To emphasize that something is happening right now (not habitual), EHN often uses the existential verb **cah** (to be located) or **itztoc** (to be sitting/existing) alongside the main verb:\n\n• Nicān ni**cah** ni**tequiti** = "I am (here) working" (right now)\n• Ti**itztoc** ti**tlacua** = "you are (sitting) eating"\n\nThe auxiliary verb carries the "in progress" meaning. The main verb stays in its present form.`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Aspect and mood markers',
+        headers: ['Marker', 'What it expresses', 'Example'],
+        rows: [
+          { person: '(present form)', form: 'Present / habitual', gloss: 'nitequiti — I work / I am working' },
+          { person: 'cah / itztoc +', form: 'Progressive (right now)', gloss: 'nicah nitequiti — I am working (right now)' },
+          { person: 'ō- + perfective', form: 'Completed past', gloss: 'ōnitequitic — I worked (finished)' },
+          { person: '-z / -zqueh', form: 'Future / intention', gloss: 'nitequitiz — I will work' },
+          { person: 'mā', form: 'Optative / wish', gloss: 'mā nitequiti — may I work / let me work' },
+          { person: 'quēmman', form: 'Habitual (with time word)', gloss: 'quēmman nitequiti — sometimes I work' },
+          { person: '-toya / -ticah', form: 'Imperfect (was doing)', gloss: 'nitequititoya — I was working / I used to work' },
+        ],
+      },
+      {
+        kind: 'rule',
+        title: 'Imperfect: "I was doing / I used to"',
+        text: `For past actions that were ongoing (not completed), EHN uses the suffix **-toya** (from "to be lying/existing"):\n\n• ni-tequiti-**toya** = "I was working / I used to work"\n• ti-cochi-**toya** = "you were sleeping"\n• tlacua-**toya** = "he/she was eating"\n\nThis is similar to the Spanish imperfect (trabajaba vs. trabajé). Use -toya when the action was in progress or repeated in the past, and ō- + perfective when it was a one-time completed event.`,
+      },
+      {
+        kind: 'rule',
+        title: 'Optative / wish: mā',
+        text: `The particle **mā** before a verb expresses a wish, permission, or gentle command:\n\n• **mā cuālli pano** = "may it go well" (farewell blessing)\n• **mā tiyāzqueh** = "let's go" (hortative — 1pl)\n• **mā nicān cah** = "let him/her be here"\n• **mā Dios mitzpalēhui** = "may God help you"\n\nWith 2nd person, mā softens an imperative into a polite request (see the Commands lesson).`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Aspect and mood in context',
+        items: [
+          {
+            nahuatl: 'Mohmōztlah nitequiti pan caltlamachtiloyan.',
+            breakdown: 'Mohmōztlah ni-tequiti pan caltlamachtiloyan.',
+            translation: 'Every day I work at the school.',
+            note: 'Habitual: present tense + time word mohmōztlah (every day)',
+          },
+          {
+            nahuatl: 'Nicah nitlaxcalchihua.',
+            breakdown: 'Ni-cah ni-tlaxcal-chihua.',
+            translation: 'I am making tortillas (right now).',
+            note: 'Progressive: nicah (I am here) + main verb',
+          },
+          {
+            nahuatl: 'Nitequititoya quēmman ōhuāllāc.',
+            breakdown: 'Ni-tequiti-toya quēmman ō-huāllā-c.',
+            translation: 'I was working when he arrived.',
+            note: 'Imperfect -toya for ongoing past; ō- perfective for the interrupting event',
+          },
+          {
+            nahuatl: 'Mā cuālli ximopano.',
+            breakdown: 'Mā cuālli xi-mo-pano.',
+            translation: 'May things go well for you.',
+            note: 'Optative mā expressing a wish/blessing',
           },
         ],
       },
