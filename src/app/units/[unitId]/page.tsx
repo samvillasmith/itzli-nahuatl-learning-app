@@ -82,6 +82,7 @@ export default async function UnitPage({
         }))}
         constructions={constructions.map((c) => ({
           example_original: c.example_original,
+          construction_label: c.construction_label,
         }))}
         lessonBlocks={lessonBlocks.map((b) => ({
           text_normalized: b.text_normalized,
