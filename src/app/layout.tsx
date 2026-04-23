@@ -6,7 +6,7 @@ import DisclaimerBanner from "./DisclaimerBanner";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
-  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 703 vocabulary words, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
+  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 2,000+ vocabulary words, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -72,20 +72,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Signed-in nav */}
               <Show when="signed-in">
-                <div className="flex items-center gap-1 text-sm">
-                  <Link href="/units" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                <div className="flex items-center gap-0.5 sm:gap-1 text-sm">
+                  <Link href="/units" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Units
                   </Link>
-                  <Link href="/vocabulary" className="hidden sm:block px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
-                    Vocabulary
+                  <Link href="/vocabulary" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                    <span className="hidden sm:inline">Vocabulary</span>
+                    <span className="sm:hidden">Vocab</span>
                   </Link>
-                  <Link href="/grammar" className="hidden sm:block px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/grammar" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Grammar
                   </Link>
-                  <Link href="/progress" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/progress" className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
                     Progress
                   </Link>
-                  <div className="ml-2">
+                  <div className="ml-1 sm:ml-2">
                     <UserButton />
                   </div>
                 </div>
