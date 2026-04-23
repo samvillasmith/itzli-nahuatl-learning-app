@@ -359,10 +359,79 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 699, variantIds: [697] },
   ],
 
-  // ── NOTE: Units 33–43 originated as INALI-orthography alternates for earlier
-  //    IDIEZ vocabulary. When their IDs are verified against the canonical rows
-  //    in Units 1–32, add groups here to collapse cross-unit duplicates.
-  //    For now, these units stand alone.
+  // ── Unit 33: The Months of the Year ──────────────────────────────────────────
+  33: [
+    { canonicalId: 6221, variantIds: [7125] },  // "morning": ihnaloc / kualkan
+    { canonicalId: 6330, variantIds: [6742] },  // "night": tlayohuilotl / youali
+  ],
+
+  // ── Unit 35: Colors, Sizes and Shapes ──────────────────────────────────────
+  35: [
+    { canonicalId: 6737, variantIds: [7295] },          // "black": yayauik / tliltic
+    { canonicalId: 6383, variantIds: [7140, 7326] },    // "blue": asultik / matlaltic / yahuitl
+    { canonicalId: 6194, variantIds: [6988] },           // "orange": chilcoz / chichilkostik
+    { canonicalId: 6505, variantIds: [7041, 7067] },    // "tall": lalakatik / cuauhtic / hueyic
+    { canonicalId: 6424, variantIds: [6447] },           // "white": chipauak / istak
+    { canonicalId: 7034, variantIds: [7479] },           // "yellow": coztic / cozauhqui
+  ],
+
+  // ── Unit 36: Describing Things ─────────────────────────────────────────────
+  36: [
+    { canonicalId: 6379, variantIds: [6239] },           // "book": amochtli (native) / libro (Spanish)
+    { canonicalId: 6589, variantIds: [7288, 7290] },     // "quesadilla": pompoj / tlaxcalpacholli / variant
+  ],
+
+  // ── Unit 37: Animals ───────────────────────────────────────────────────────
+  37: [
+    { canonicalId: 6342, variantIds: [6394] },   // "ant": tzicatl / axkaneli
+    { canonicalId: 6076, variantIds: [6542] },   // "cat": cihuamizto / misto
+    { canonicalId: 6072, variantIds: [6743] },   // "dragonfly": apipiyalotl / aabiontzin
+    { canonicalId: 6476, variantIds: [6616] },   // "owl": koamojmoktli / tekolotl
+    { canonicalId: 6174, variantIds: [6443] },   // "sheep": axcahua / ichkatlapiyali
+    { canonicalId: 6175, variantIds: [6496] },   // "turtle": ayotl / koxualij
+  ],
+
+  // ── Unit 38: More Food and Ingredients ─────────────────────────────────────
+  38: [
+    { canonicalId: 6238, variantIds: [6983] },   // "milk": lechi / chichihualatl
+    { canonicalId: 6304, variantIds: [6497] },   // "to eat": tlacua / kua
+  ],
+
+  // ── Unit 39: Around the House ──────────────────────────────────────────────
+  39: [
+    { canonicalId: 6300, variantIds: [6621] },           // "church": tiopa / teokali
+    { canonicalId: 6249, variantIds: [6346] },           // "garden": miltitla / xochimilli
+    { canonicalId: 6703, variantIds: [6800] },           // "soap": xapo / ahmolli
+    { canonicalId: 6247, variantIds: [6797] },           // "table": mesa / ahcopechtli
+    { canonicalId: 6301, variantIds: [7235] },           // "temple": tiopamitl / teohcalli
+  ],
+
+  // ── Unit 40: Nature and the World ──────────────────────────────────────────
+  40: [
+    { canonicalId: 6122, variantIds: [6880] },   // "lake": ateskatl / atecochtzacualli
+    { canonicalId: 6173, variantIds: [6924] },   // "river": atemitl / azezenca
+    { canonicalId: 6594, variantIds: [6968] },   // "snow": sepayauitl / cececatl
+  ],
+
+  // ── Unit 41: People and Roles ──────────────────────────────────────────────
+  41: [
+    { canonicalId: 6284, variantIds: [6252] },   // "doctor": tepahtihquetl (native) / médico (Spanish)
+    { canonicalId: 6170, variantIds: [7339] },   // "friend": amigo / yoloihni
+    { canonicalId: 6320, variantIds: [6857] },   // "hunter": tlapehquetl / amini
+  ],
+
+  // ── Unit 42: More Action Words ─────────────────────────────────────────────
+  42: [
+    { canonicalId: 6181, variantIds: [6463, 7258] },  // "to speak": camanalohua / kamati / tlahtoa
+    { canonicalId: 6210, variantIds: [6227, 7390] },   // "to be": eltoc / itztoc / cah
+  ],
+
+  // ── Unit 43: Adverbs and Modifiers ─────────────────────────────────────────
+  43: [
+    { canonicalId: 6182, variantIds: [6958] },  // "where": canque / canin
+    { canonicalId: 6255, variantIds: [7593] },  // "there": nepa / oncan
+    { canonicalId: 6187, variantIds: [7185] },  // "other": ceyoc / ohze
+  ],
 };
 
 /** All variant IDs across every unit — used to clean the distractor pool. */
