@@ -82,6 +82,7 @@ export type Construction = {
   proficiency_band: string;
   first_lesson_number: number;
   example_original: string;
+  translation_en: string | null;
   avg_confidence: number;
 };
 
@@ -228,7 +229,8 @@ export function getUnitConstructions(lessonNumber: number): Construction[] {
   return getDb()
     .prepare(
       `SELECT priority_id, construction_label, pattern_text,
-              proficiency_band, first_lesson_number, example_original, avg_confidence
+              proficiency_band, first_lesson_number, example_original,
+              translation_en, avg_confidence
        FROM primer_constructions
        WHERE first_lesson_number <= ?
        ORDER BY avg_confidence DESC`

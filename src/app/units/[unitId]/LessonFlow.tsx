@@ -23,7 +23,7 @@ type DialogueLine = {
   utterance_normalized: string;
   translation_en: string | null;
 };
-type ConstructionItem = { example_original: string; construction_label?: string };
+type ConstructionItem = { example_original: string; construction_label?: string; translation_en?: string | null };
 type LessonBlockItem = { text_normalized: string };
 
 type FillBlank = {
@@ -201,7 +201,8 @@ function buildFillBlanks(
     const ex = c.example_original?.trim();
     if (!ex || ex.length < 8) continue;
 
-    const { nahuatl, translation } = extractTranslation(ex);
+    const { nahuatl, translation: parenTranslation } = extractTranslation(ex);
+    const translation = c.translation_en || parenTranslation;
 
     for (const card of chunk) {
       if (card.headword.length < 3 || usedWords.has(card.headword)) continue;

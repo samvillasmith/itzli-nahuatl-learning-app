@@ -11,8 +11,9 @@ const path  = require("path");
 const DB_URL   = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/database/fcn_master_lexicon_phase8_6_primer.sqlite";
 const OUT_PATH = path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite");
 
-if (fs.existsSync(OUT_PATH)) {
-  console.log("DB already present, skipping download.");
+// Always re-download on CI/Vercel so build-cache never serves a stale DB.
+if (fs.existsSync(OUT_PATH) && !process.env.CI && !process.env.VERCEL) {
+  console.log("DB already present (local dev), skipping download.");
   process.exit(0);
 }
 
