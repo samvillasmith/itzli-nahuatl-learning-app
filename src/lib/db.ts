@@ -36,8 +36,7 @@ let _db: Database.Database | null = null;
 
 export function getDb(): Database.Database {
   if (!_db) {
-    _db = new Database(resolveDbPath(), { readonly: true });
-    _db.pragma("journal_mode = WAL");
+    _db = new Database(resolveDbPath(), { readonly: true, fileMustExist: true });
   }
   return _db;
 }
