@@ -226,16 +226,25 @@ export function getUnitLessonBlocks(lessonNumber: number): LessonBlock[] {
 }
 
 export function getUnitConstructions(lessonNumber: number): Construction[] {
-  return getDb()
+  const db = getDb();
+  const cols = (db.prepare("PRAGMA table_info('primer_constructions')").all() as { name: string }[])
+    .map((c) => c.name);
+  const hasTranslation = cols.includes("translation_en");
+
+  return db
     .prepare(
       `SELECT priority_id, construction_label, pattern_text,
               proficiency_band, first_lesson_number, example_original,
-              translation_en, avg_confidence
+              ${hasTranslation ? "translation_en," : ""} avg_confidence
        FROM primer_constructions
        WHERE first_lesson_number <= ?
        ORDER BY avg_confidence DESC`
     )
-    .all(lessonNumber) as Construction[];
+    .all(lessonNumber)
+    .map((row) => ({
+      ...(row as Construction),
+      translation_en: (row as Record<string, unknown>).translation_en as string | null ?? null,
+    }));
 }
 
 export function getUnitAssessments(lessonNumber: number): Assessment[] {
