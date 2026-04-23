@@ -28,6 +28,7 @@ type LessonBlockItem = { text_normalized: string };
 
 type FillBlank = {
   prompt: string;
+  translation?: string;
   gloss: string;
   answer: string;
   options: string[];
@@ -178,6 +179,16 @@ function buildRevOptions(correct: VocabCard, pool: VocabCard[]): string[] {
   return shuffle([correct.headword, ...distractors]);
 }
 
+function extractTranslation(text: string): { nahuatl: string; translation?: string } {
+  const parenMatch = text.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+  if (parenMatch) return { nahuatl: parenMatch[1].trim(), translation: parenMatch[2].trim() };
+
+  const colonMatch = text.match(/^([A-Z]):\s*(.+)/);
+  if (colonMatch) return { nahuatl: text, translation: undefined };
+
+  return { nahuatl: text, translation: undefined };
+}
+
 function buildFillBlanks(
   chunk: VocabCard[],
   constructions: ConstructionItem[],
@@ -190,13 +201,15 @@ function buildFillBlanks(
     const ex = c.example_original?.trim();
     if (!ex || ex.length < 8) continue;
 
+    const { nahuatl, translation } = extractTranslation(ex);
+
     for (const card of chunk) {
       if (card.headword.length < 3 || usedWords.has(card.headword)) continue;
 
-      const pos = ex.toLowerCase().indexOf(card.headword.toLowerCase());
+      const pos = nahuatl.toLowerCase().indexOf(card.headword.toLowerCase());
       if (pos === -1) continue;
 
-      const blanked = ex.slice(0, pos) + "___" + ex.slice(pos + card.headword.length);
+      const blanked = nahuatl.slice(0, pos) + "___" + nahuatl.slice(pos + card.headword.length);
       const distractors = shuffle(
         pool.filter((v) => v.headword !== card.headword && v.headword.length >= 2)
       )
@@ -205,6 +218,7 @@ function buildFillBlanks(
 
       results.push({
         prompt: blanked,
+        translation,
         gloss: displayGloss(card.gloss_en),
         answer: card.headword,
         options: shuffle([card.headword, ...distractors]),
@@ -1179,12 +1193,15 @@ export default function LessonFlow({
         <StepLabel text={`${chunkLabel}Complete the sentence`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5">
-          {ex.patternLabel && (
+          {ex.patternLabel && !ex.patternLabel.startsWith("Construction ") && (
             <p className="text-xs font-medium text-sky-600 mb-2 uppercase tracking-wide">
               {ex.patternLabel}
             </p>
           )}
-          <p className="text-lg font-bold text-stone-900 leading-snug mb-3">{ex.prompt}</p>
+          <p className="text-lg font-bold text-stone-900 leading-snug mb-2">{ex.prompt}</p>
+          {ex.translation && (
+            <p className="text-sm text-stone-400 italic mb-2">{ex.translation}</p>
+          )}
           <p className="text-sm text-stone-500">
             The missing word means: <span className="font-semibold text-emerald-600">{ex.gloss}</span>
           </p>
