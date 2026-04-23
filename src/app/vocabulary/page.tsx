@@ -14,12 +14,13 @@ function posColor(pos: string) {
   return POS_COLOR[key] ?? "bg-stone-100 text-stone-500";
 }
 
-export default function VocabularyPage({
+export default async function VocabularyPage({
   searchParams,
 }: {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
-  const query = searchParams.q?.trim() ?? "";
+  const { q } = await searchParams;
+  const query = q?.trim() ?? "";
 
   if (query.length > 0) {
     const results = searchVocab(query, 100);
