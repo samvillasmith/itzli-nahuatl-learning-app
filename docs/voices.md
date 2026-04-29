@@ -1,7 +1,13 @@
 # Voice and Audio Generation
 
 This app serves learner audio from a static audio prefix. In normal use,
-`src/lib/audio.ts` points to the S3-backed production prefix:
+`src/lib/audio.ts` points to the checked-in Google audio directory first:
+
+```ts
+/audio-google
+```
+
+If a local file is missing, playback falls back to the S3-backed legacy prefix:
 
 ```ts
 https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app
@@ -126,7 +132,8 @@ npm run audio:google:test
 $env:CONFIRM_TTS_SPEND='YES'; npm run audio:google:test -- --execute --force
 ```
 
-It writes to `public/audio-google` by default. For local testing, set:
+It writes to `public/audio-google` by default. The app uses that directory by
+default. To override locally, set:
 
 ```env
 NEXT_PUBLIC_AUDIO_BASE_URL=/audio-google

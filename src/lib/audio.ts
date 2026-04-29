@@ -1,5 +1,5 @@
 const S3_BASE = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app";
-const BASE = trimBase(process.env.NEXT_PUBLIC_AUDIO_BASE_URL || S3_BASE);
+const BASE = trimBase(process.env.NEXT_PUBLIC_AUDIO_BASE_URL || "/audio-google");
 const FALLBACK_BASE = trimBase(
   process.env.NEXT_PUBLIC_AUDIO_FALLBACK_BASE_URL || (BASE === S3_BASE ? "" : S3_BASE)
 );
