@@ -62,8 +62,11 @@ type FlowMode =
 
 type Props = {
   unitNum: number;
+  pathCode: string;
   themeEn: string;
   communicativeGoal: string;
+  cefrDescriptor: string;
+  capstoneTask: string;
   targetBand: string;
   vocab: VocabCard[];
   dialogues: DialogueLine[];
@@ -490,7 +493,7 @@ function AudioButton({ src, size = "md" }: { src: string; size?: "sm" | "md" | "
 
 function StepLabel({ text }: { text: string }) {
   return (
-    <p className="text-xs font-semibold text-stone-400 text-center mb-5 uppercase tracking-widest">
+    <p className="text-xs font-semibold text-stone-400 text-center mb-5 uppercase">
       {text}
     </p>
   );
@@ -611,8 +614,11 @@ function MatchPairsExercise({
 
 export default function LessonFlow({
   unitNum,
+  pathCode,
   themeEn,
   communicativeGoal,
+  cefrDescriptor,
+  capstoneTask,
   targetBand,
   vocab,
   dialogues,
@@ -758,16 +764,17 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={0} />
-        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 text-center">
+        <div className="rounded-lg border border-stone-200 bg-white p-8 text-center shadow-sm">
           <div className="flex justify-center gap-2 mb-6">
             <BandBadge band={targetBand} />
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-100 text-stone-500 border border-stone-200">
-              Unit {unitNum}
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-950 text-white border border-stone-950">
+              {pathCode}
             </span>
           </div>
 
           <h1 className="text-3xl font-bold text-stone-900 mb-3 leading-tight">{themeEn}</h1>
-          <p className="text-stone-500 text-sm mb-8 max-w-sm mx-auto">{communicativeGoal}</p>
+          <p className="text-stone-600 text-sm mb-3 max-w-sm mx-auto">{communicativeGoal}</p>
+          <p className="text-stone-400 text-xs mb-8 max-w-sm mx-auto">{cefrDescriptor}</p>
 
           <div className="flex justify-center gap-8 mb-8">
             {filteredVocab.length > 0 && (
@@ -787,13 +794,18 @@ export default function LessonFlow({
           {filteredVocab.length > 0 ? (
             <button
               onClick={startLesson}
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors shadow-sm"
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
               Start Lesson →
             </button>
           ) : (
             <p className="text-stone-400 text-sm">No content available yet.</p>
           )}
+
+          <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 p-3 text-left">
+            <p className="text-xs font-bold uppercase text-stone-500">Target task</p>
+            <p className="mt-1 text-sm leading-snug text-stone-700">{capstoneTask}</p>
+          </div>
         </div>
 
         {(prevUnit || nextUnit) && (
@@ -957,7 +969,7 @@ export default function LessonFlow({
                     {word.part_of_speech}
                   </span>
                 )}
-                <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">tap to reveal meaning</p>
+                <p className="text-stone-300 text-xs mt-2 uppercase">tap to reveal meaning</p>
               </div>
             </div>
           ) : (
@@ -998,7 +1010,7 @@ export default function LessonFlow({
                     <span className="font-medium text-stone-500">{variantNotes[word.id].join(", ")}</span>
                   </p>
                 )}
-                <p className="text-stone-300 text-xs mt-2 uppercase tracking-widest">tap to continue</p>
+                <p className="text-stone-300 text-xs mt-2 uppercase">tap to continue</p>
               </div>
             </div>
           )}
@@ -1028,7 +1040,7 @@ export default function LessonFlow({
         <StepLabel text={`${chunkLabel}Match the pairs`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-6 mb-5">
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-1 text-center">
+          <p className="text-xs font-semibold text-stone-400 uppercase mb-1 text-center">
             Tap a Nahuatl word, then its English meaning
           </p>
           <div className="grid grid-cols-2 gap-2 text-center text-xs text-stone-400 mb-4">
@@ -1197,7 +1209,7 @@ export default function LessonFlow({
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5">
           {ex.patternLabel && !ex.patternLabel.startsWith("Construction ") && (
-            <p className="text-xs font-medium text-sky-600 mb-2 uppercase tracking-wide">
+            <p className="text-xs font-medium text-sky-600 mb-2 uppercase">
               {ex.patternLabel}
             </p>
           )}

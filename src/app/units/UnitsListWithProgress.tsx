@@ -41,15 +41,15 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
     <div className="space-y-8">
       {grouped.map(({ band, units: bandUnits }) => (
         <div key={band}>
-          <div className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border mb-2 ${BAND_SECTION[band]}`}>
-            <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${BAND_COLOR[band]}`}>
+          <div className={`mb-3 flex items-center gap-3 rounded-lg border px-4 py-2.5 ${BAND_SECTION[band]}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_COLOR[band]}`}>
               {band}
             </span>
             <span className="text-sm font-semibold">{BAND_LABEL[band]}</span>
             <span className="text-xs ml-auto opacity-60">{bandUnits.length} units</span>
           </div>
 
-          <div className="bg-white border border-stone-100 rounded-2xl shadow-sm divide-y divide-stone-50 overflow-hidden">
+          <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
             {bandUnits.map((unit) => {
               const p = progress.units[unit.lesson_number];
               const status = p?.status ?? "not_started";
@@ -57,23 +57,32 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
                 <Link
                   key={unit.lesson_number}
                   href={`/units/${unit.lesson_number}`}
-                  className="flex items-center gap-4 px-5 py-4 hover:bg-stone-50/60 transition-colors group"
+                  className="group grid grid-cols-[4rem_1fr_auto] items-center gap-4 border-b border-stone-100 px-5 py-4 transition-colors last:border-b-0 hover:bg-stone-50/70"
                 >
-                  <span className="text-xs font-mono text-stone-300 w-7 shrink-0">
-                    {String(unit.lesson_number).padStart(2, "0")}
-                  </span>
+                  <div>
+                    <span className="rounded-md bg-stone-950 px-2 py-1 text-xs font-bold text-white">
+                      {unit.path_code}
+                    </span>
+                  </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-stone-800 group-hover:text-stone-900 truncate">
-                      {unit.theme_en}
+                    <div className="mb-1 flex items-center gap-2">
+                      <p className="truncate font-semibold text-stone-900 group-hover:text-emerald-800">
+                        {unit.theme_en}
+                      </p>
+                      <span className="hidden text-xs text-stone-400 sm:inline">
+                        {unit.stage_title}
+                      </span>
+                    </div>
+                    <p className="line-clamp-2 text-sm leading-snug text-stone-600">
+                      {unit.cefr_descriptor}
                     </p>
-                    <p className="text-xs text-stone-400 truncate">{unit.communicative_goal}</p>
+                    <p className="mt-1 text-xs text-stone-400">
+                      {unit.english_vocab_count} words · {unit.english_dialogue_count} dialogue lines
+                    </p>
                   </div>
 
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="text-xs text-stone-300 font-mono hidden sm:block">
-                      {unit.english_vocab_count}w
-                    </span>
                     {status === "completed" && (
                       <span className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 text-xs font-bold">
                         ✓

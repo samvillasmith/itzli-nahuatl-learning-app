@@ -75,8 +75,9 @@ export default function TermsPage() {
         Vocabulary and grammar content has been audited against IDIEZ and other
         scholarly references, but some entries contain known limitations noted in
         the curriculum. Audio pronunciations are <strong>machine-synthesized</strong>
-        and have known limitations (including incorrect rendering of the &quot;ll&quot;
-        phoneme and dropping of macron vowels). Treat audio as approximate.
+        using language-specific machine synthesis where available.
+        Treat generated audio as educational support rather than a substitute for
+        a trained instructor or community speaker.
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">6. Intellectual property</h2>
@@ -85,10 +86,10 @@ export default function TermsPage() {
         available in the repository. Curriculum content (lessons, dialogues,
         worked examples) is copyrighted by its author and licensed for personal,
         non-commercial educational use via the app. Third-party assets are
-        licensed from their respective owners: photographs via Pexels (attribution
-        required per Pexels terms), reference materials from IDIEZ and other
-        scholarly sources (attributed in the README), and audio generated using
-        the MMS-NHE model from Meta AI and Kokoro-82M.
+        licensed from their respective owners: photographs via Pexels and/or the
+        app&apos;s S3 asset catalog where applicable, reference materials from IDIEZ
+        and other scholarly sources (attributed in the README), and machine audio
+        generated through the app&apos;s language-specific machine-audio pipeline.
       </p>
       <p className="mb-4">
         You retain rights to content you submit, but by submitting content to the

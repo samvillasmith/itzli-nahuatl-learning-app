@@ -156,7 +156,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
               </div>
             )}
             <div className="flex flex-col items-center justify-center gap-3 p-8 flex-1">
-              <p className="text-xs text-stone-300 uppercase tracking-widest font-semibold">Nahuatl</p>
+              <p className="text-xs text-stone-300 uppercase font-semibold">Nahuatl</p>
               <p className="text-3xl font-bold text-stone-900 leading-tight">{card.headword}</p>
               {card.part_of_speech && (
                 <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{card.part_of_speech}</span>
@@ -172,12 +172,12 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
               <div className="flex justify-center mt-2" onClick={(e) => e.stopPropagation()}>
                 <AudioButton src={vocabAudioUrl(card.id)} />
               </div>
-              <p className="text-stone-300 text-xs mt-1 uppercase tracking-widest">tap to reveal</p>
+              <p className="text-stone-300 text-xs mt-1 uppercase">tap to reveal</p>
             </div>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center gap-4 p-10 h-full" style={{ minHeight: "280px" }}>
-            <p className="text-xs text-stone-300 uppercase tracking-widest font-semibold">English</p>
+            <p className="text-xs text-stone-300 uppercase font-semibold">English</p>
             <p className="text-2xl font-bold text-emerald-600 leading-snug">{displayGloss(card.gloss_en)}</p>
             {card.part_of_speech && (
               <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-500 border border-emerald-100">{card.part_of_speech}</span>

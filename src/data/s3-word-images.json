@@ -1,0 +1,2162 @@
+{
+  "axtle": {
+    "key": "822001-no.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "no, negative response"
+  },
+  "moztla": {
+    "key": "813004-manana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "tomorrow"
+  },
+  "quezqui": {
+    "key": "2002-cuanto.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "how much?"
+  },
+  "yalhuaya": {
+    "key": "813005-ayer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "yesterday"
+  },
+  "quehatza tiitztoc": {
+    "key": "1005-como-esta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "how are you?"
+  },
+  "axcan": {
+    "key": "813003-hoy.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "now, today"
+  },
+  "ta": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you (singular)"
+  },
+  "na": {
+    "key": "801001-yo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "I"
+  },
+  "ya": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he, she, it"
+  },
+  "tohuanti": {
+    "key": "801006-nosotros.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "we"
+  },
+  "yahuanti": {
+    "key": "801009-ellos.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "they"
+  },
+  "imohuanti": {
+    "key": "801008-ustedes.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you all (non-standard; see amohuanti)"
+  },
+  "amohuanti": {
+    "key": "801008-ustedes.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you all"
+  },
+  "ce": {
+    "key": "803002-uno-una.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "one"
+  },
+  "ome": {
+    "key": "803003-dos.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "two"
+  },
+  "eyi": {
+    "key": "803004-tres.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "three"
+  },
+  "nahui": {
+    "key": "803005-cuatro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "four"
+  },
+  "hueyi": {
+    "key": "812005-grande.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "big, great"
+  },
+  "ciento": {
+    "key": "804004-cien.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hundred"
+  },
+  "macuilli": {
+    "key": "803006-cinco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "five"
+  },
+  "caxtolli": {
+    "key": "803008-quince.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fifteen"
+  },
+  "yayahuic": {
+    "key": "8009-negro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "black"
+  },
+  "chipahuac": {
+    "key": "8008-blanco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "white"
+  },
+  "mahtlactli": {
+    "key": "803007-diez.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "ten"
+  },
+  "chichiltik": {
+    "key": "8010-rojo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "red"
+  },
+  "siltik": {
+    "key": "15007-chiquito.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "small; fine-grained"
+  },
+  "tahtzi": {
+    "key": "11006-padre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "father, priest"
+  },
+  "tlamachtihquetl": {
+    "key": "200002-maestro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "teacher"
+  },
+  "momachtiani": {
+    "key": "230003-alumno.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "student"
+  },
+  "ticitl": {
+    "key": "110001-doctor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "doctor, healer, physician"
+  },
+  "ehua": {
+    "key": "210010-salir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "rise; to get up; to leave; to set out"
+  },
+  "ahsi": {
+    "key": "809010-llegar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "arrive"
+  },
+  "aqui": {
+    "key": "190005-entrada.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "enter"
+  },
+  "cochi": {
+    "key": "816009-dormir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sleep"
+  },
+  "yahua": {
+    "key": "811008-ir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "go"
+  },
+  "nehnemi": {
+    "key": "360004-caminar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "walk"
+  },
+  "nemi": {
+    "key": "818001-vivir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "live"
+  },
+  "cahua": {
+    "key": "210010-salir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "leave"
+  },
+  "huala": {
+    "key": "817004-come.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "come (toward here)"
+  },
+  "hualla": {
+    "key": "817004-come.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "come; to have come"
+  },
+  "tonatih": {
+    "key": "6005-sol.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sun"
+  },
+  "ihnalpa": {
+    "key": "813004-manana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "morning"
+  },
+  "tonalti": {
+    "key": "1002-buenos-dias.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good morning (greeting)"
+  },
+  "tiotlaquilti": {
+    "key": "1003-buenas-tardes.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good afternoon (greeting)"
+  },
+  "tlapoyahualti": {
+    "key": "1004-buenas-noches.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good night (greeting)"
+  },
+  "nica": {
+    "key": "814007-aqui.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "here"
+  },
+  "neca": {
+    "key": "814008-ahi.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "there"
+  },
+  "iaxca": {
+    "key": "801004-ella.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "of him, her, it"
+  },
+  "ihuaya": {
+    "key": "801004-ella.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "with him, her, it"
+  },
+  "tochan": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "home"
+  },
+  "motata": {
+    "key": "11006-padre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "father"
+  },
+  "icni": {
+    "key": "3004-hermano.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "brother"
+  },
+  "iicni": {
+    "key": "3004-hermano.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "brother"
+  },
+  "inana": {
+    "key": "3002-mama.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "mother"
+  },
+  "itata": {
+    "key": "11006-padre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "father"
+  },
+  "hueyitata": {
+    "key": "3007-abuelo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "grandfather"
+  },
+  "nantli": {
+    "key": "3002-mama.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Mother"
+  },
+  "tahtli": {
+    "key": "11006-padre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Father"
+  },
+  "conetl": {
+    "key": "3005-hijo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Child, son"
+  },
+  "tlatsi": {
+    "key": "3008-tio.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "uncle"
+  },
+  "familia": {
+    "key": "3001-familia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "family"
+  },
+  "konetl": {
+    "key": "3005-hijo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "son"
+  },
+  "pilconetzi": {
+    "key": "3005-hijo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "child"
+  },
+  "tatahtzi": {
+    "key": "11006-padre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "father, priest"
+  },
+  "kuikatl": {
+    "key": "370002-cancion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "song"
+  },
+  "machkonetl": {
+    "key": "3009-primo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cousin"
+  },
+  "calchiuhquetl": {
+    "key": "200010-albanil.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bricklayer, mason"
+  },
+  "colli": {
+    "key": "3007-abuelo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "grandfather"
+  },
+  "pilli": {
+    "key": "3005-hijo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "child"
+  },
+  "xiuhtlahcuiloh": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "(he or she is) a person who writes annals"
+  },
+  "cualli": {
+    "key": "409001-bueno.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good"
+  },
+  "zoquiyo": {
+    "key": "706007-sucio.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "dirty"
+  },
+  "totonic": {
+    "key": "6002-calor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hot"
+  },
+  "isocapa": {
+    "key": "508010-rapido.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fast"
+  },
+  "chicahuac": {
+    "key": "502001-fuerte.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "strong"
+  },
+  "yehyectzi": {
+    "key": "603002-bonita.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "beautiful"
+  },
+  "yolpactoc": {
+    "key": "260001-feliz.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "happy"
+  },
+  "cualantoc": {
+    "key": "260003-enojado.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "angry"
+  },
+  "cecic": {
+    "key": "110006-gripe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cold"
+  },
+  "ueyak": {
+    "key": "812005-grande.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "large, long"
+  },
+  "ahcoqui": {
+    "key": "502002-leve.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "light (in weight); easy to lift"
+  },
+  "iixtiyol": {
+    "key": "10002-ojo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eye"
+  },
+  "ixteyol": {
+    "key": "10002-ojo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eye"
+  },
+  "mayitl": {
+    "key": "10004-mano.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hand"
+  },
+  "ajkoli": {
+    "key": "10006-brazo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "arm"
+  },
+  "ixtioli": {
+    "key": "10002-ojo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eye, face"
+  },
+  "kamaktli": {
+    "key": "10003-boca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "mouth"
+  },
+  "cotztamalli": {
+    "key": "10007-pierna.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "leg"
+  },
+  "cuitlatecontli": {
+    "key": "10008-estomago.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "stomach"
+  },
+  "icxitl": {
+    "key": "10005-pie.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "foot"
+  },
+  "kwaitl": {
+    "key": "10001-cabeza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "head"
+  },
+  "pahcalli": {
+    "key": "120001-farmacia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pharmacy"
+  },
+  "catzana": {
+    "key": "10007-pierna.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "stretch one's arms and legs"
+  },
+  "ihtetl": {
+    "key": "10008-estomago.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "belly"
+  },
+  "pialli": {
+    "key": "1001-hola.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hello (greeting)"
+  },
+  "tlahpalolli": {
+    "key": "23006-saludos.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "greetings"
+  },
+  "nicca": {
+    "key": "1001-hola.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hello, what's up (greeting)"
+  },
+  "yalhua": {
+    "key": "813005-ayer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Yesterday"
+  },
+  "niltze": {
+    "key": "1001-hola.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hello (greeting)"
+  },
+  "tlanextia": {
+    "key": "1002-buenos-dias.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good morning (lit. it dawns)"
+  },
+  "pannotoc": {
+    "key": "1003-buenas-tardes.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good afternoon (lit. midday passes)"
+  },
+  "piya": {
+    "key": "811001-tener.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "have"
+  },
+  "camati": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak"
+  },
+  "tlahtohua": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak, talk"
+  },
+  "tlahcuilohua": {
+    "key": "818007-escribir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "write"
+  },
+  "amapohua": {
+    "key": "818007-escribir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "write"
+  },
+  "amoxmachi": {
+    "key": "818007-escribir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "write"
+  },
+  "pohua": {
+    "key": "250006-leer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "read"
+  },
+  "tlanahuatía": {
+    "key": "250007-mandar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "send"
+  },
+  "chihua": {
+    "key": "811005-hacer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "make"
+  },
+  "ī": {
+    "key": "817007-beber.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "drink"
+  },
+  "cua": {
+    "key": "817001-comer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eat"
+  },
+  "paca": {
+    "key": "340004-lavar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "wash"
+  },
+  "celia": {
+    "key": "818009-recibir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "receive"
+  },
+  "ahqui": {
+    "key": "210008-nadar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "swim"
+  },
+  "calaqui": {
+    "key": "190005-entrada.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "enter"
+  },
+  "tzacui": {
+    "key": "7010-cerca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "close"
+  },
+  "tlapoa": {
+    "key": "818008-abrir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "open"
+  },
+  "otlacuac": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she ate (past)"
+  },
+  "oquicac": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she heard (past)"
+  },
+  "mitoniya": {
+    "key": "360007-sudar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sweat"
+  },
+  "cuica": {
+    "key": "370009-cantar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sing"
+  },
+  "tequiti": {
+    "key": "17004-chamba.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "work"
+  },
+  "macehua": {
+    "key": "370010-bailar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "dance"
+  },
+  "mapohpohua": {
+    "key": "340001-limpiar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "clean, wipe or dry the hands"
+  },
+  "oahcic": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she arrived (past)"
+  },
+  "oquichihuac": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she made it (past)"
+  },
+  "mahposteki": {
+    "key": "10004-mano.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "break one's arm or hand, to fracture one's upper limb"
+  },
+  "quiza": {
+    "key": "210010-salir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "go out; to exit; to emerge; to come out"
+  },
+  "matoca": {
+    "key": "370007-tocar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "touch; fondle; masturbate"
+  },
+  "ichtequi": {
+    "key": "350008-robar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "steal, rob"
+  },
+  "otequitic": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she worked (past)"
+  },
+  "otlahtoc": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he/she spoke (past)"
+  },
+  "coto": {
+    "key": "8002-playera.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "shirt"
+  },
+  "siya": {
+    "key": "4008-silla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "chair"
+  },
+  "comitl": {
+    "key": "170004-olla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pot, pan"
+  },
+  "puerta": {
+    "key": "4010-puerta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "door"
+  },
+  "acahya": {
+    "key": "22004-companero.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "companion"
+  },
+  "huapalli": {
+    "key": "4007-mesa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "table"
+  },
+  "tlapechtli": {
+    "key": "4009-cama.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bed"
+  },
+  "cococ": {
+    "key": "5007-picante.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "spicy"
+  },
+  "kualli": {
+    "key": "409001-bueno.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good"
+  },
+  "ihca": {
+    "key": "130009-puesto.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "stand"
+  },
+  "xitlahcuilo": {
+    "key": "818007-escribir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "write!"
+  },
+  "xitlapohua": {
+    "key": "250006-leer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "read! / count!"
+  },
+  "xitlacua": {
+    "key": "817001-comer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eat!"
+  },
+  "xitlahto": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak!"
+  },
+  "siwatl": {
+    "key": "401006-senora.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "woman"
+  },
+  "tlacatl": {
+    "key": "401005-senor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "man"
+  },
+  "telpokatl": {
+    "key": "190002-joven.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "young person, young man"
+  },
+  "piyo": {
+    "key": "220005-pollo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "chicken, hen"
+  },
+  "elotl": {
+    "key": "17009-elote.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "A fresh ear of corn"
+  },
+  "chichi": {
+    "key": "220001-perro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "dog"
+  },
+  "huacax": {
+    "key": "220003-vaca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cow"
+  },
+  "tototl": {
+    "key": "220007-pajaro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bird"
+  },
+  "mistli": {
+    "key": "220002-gato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Cat"
+  },
+  "kawayoh": {
+    "key": "220004-caballo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "horse"
+  },
+  "atl": {
+    "key": "5008-agua.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "water"
+  },
+  "tixtli": {
+    "key": "5001-comida.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "dough (food)"
+  },
+  "tlaxcalli": {
+    "key": "5004-tortilla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "tortilla"
+  },
+  "tlacualli": {
+    "key": "5001-comida.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "food"
+  },
+  "calli": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "house"
+  },
+  "pahtli": {
+    "key": "110009-medicina.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "medicine"
+  },
+  "folsah": {
+    "key": "160006-bolsa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bag"
+  },
+  "amacamanalli": {
+    "key": "703004-el-mapa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "map"
+  },
+  "popotl": {
+    "key": "340007-escoba.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "broom"
+  },
+  "chantli": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "home"
+  },
+  "amoxtli": {
+    "key": "230009-libro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "book, codex"
+  },
+  "pachtli": {
+    "key": "814001-hay.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Hay"
+  },
+  "nopano": {
+    "key": "814008-ahi.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "there"
+  },
+  "escuela": {
+    "key": "230001-escuela.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "school"
+  },
+  "tianquiz": {
+    "key": "140003-plaza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "market, plaza"
+  },
+  "teopan": {
+    "key": "130008-iglesia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "church"
+  },
+  "peso": {
+    "key": "2001-peso.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "peso"
+  },
+  "tomin": {
+    "key": "2001-peso.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "money"
+  },
+  "comalli": {
+    "key": "170003-comal.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Comal, a pan used to grill tortillas"
+  },
+  "tlaxkal": {
+    "key": "5004-tortilla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "tortilla"
+  },
+  "cafe": {
+    "key": "180005-cafe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "coffee"
+  },
+  "michi": {
+    "key": "220008-pez.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fish"
+  },
+  "tzopelatl": {
+    "key": "180007-refresco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "soda (drink)"
+  },
+  "tzopelictli": {
+    "key": "509004-el-azucar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sugar"
+  },
+  "michtlacualli": {
+    "key": "220008-pez.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fish (food)"
+  },
+  "tomi": {
+    "key": "2001-peso.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "money"
+  },
+  "patiyoj": {
+    "key": "2009-caro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "expensive"
+  },
+  "tiankistli": {
+    "key": "140003-plaza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "market, flea market"
+  },
+  "tiyanquiztli": {
+    "key": "140003-plaza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "market"
+  },
+  "tlanamacac": {
+    "key": "200009-vendedor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "seller, merchant"
+  },
+  "icha": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "home"
+  },
+  "caltentli": {
+    "key": "4010-puerta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "door"
+  },
+  "tenamaztetl": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "home"
+  },
+  "-pan": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "A locative suffix: in or at the residence, home or lodgings of the root noun"
+  },
+  "ehco": {
+    "key": "809010-llegar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "arrive"
+  },
+  "cecuiliztli": {
+    "key": "110006-gripe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "the cold"
+  },
+  "yacatzompilli": {
+    "key": "110006-gripe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "a cold; respiratory congestion"
+  },
+  "payo": {
+    "key": "10001-cabeza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "head (informal/regional)"
+  },
+  "cuaitl": {
+    "key": "10001-cabeza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "head"
+  },
+  "tsonteko": {
+    "key": "10001-cabeza.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "head, skull"
+  },
+  "pajtli": {
+    "key": "110009-medicina.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "medicine"
+  },
+  "ticiyotl": {
+    "key": "110009-medicina.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "healing, medicine"
+  },
+  "aic": {
+    "key": "822004-nunca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "never"
+  },
+  "amatlajkuilol": {
+    "key": "230007-cuaderno.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "notebook"
+  },
+  "huicatl": {
+    "key": "370002-cancion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "song"
+  },
+  "weyiatl": {
+    "key": "380008-mar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sea"
+  },
+  "tlapohua": {
+    "key": "250006-leer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "count/read (something)"
+  },
+  "abril": {
+    "key": "9004-abril.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "April"
+  },
+  "agosto": {
+    "key": "9008-agosto.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "August"
+  },
+  "enero": {
+    "key": "9001-enero.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "January"
+  },
+  "febrero": {
+    "key": "9002-febrero.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "February"
+  },
+  "julio": {
+    "key": "9007-julio.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "July"
+  },
+  "junio": {
+    "key": "9006-junio.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "June"
+  },
+  "marzo": {
+    "key": "9003-marzo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "March"
+  },
+  "mayo": {
+    "key": "9005-mayo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "May"
+  },
+  "octubre": {
+    "key": "9010-octubre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "October"
+  },
+  "septiembre": {
+    "key": "9009-septiembre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "September"
+  },
+  "ihnaloc": {
+    "key": "813004-manana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "morning"
+  },
+  "aik": {
+    "key": "822004-nunca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "never"
+  },
+  "cahuitl": {
+    "key": "6001-tiempo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "time"
+  },
+  "kualkan": {
+    "key": "813004-manana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "morning"
+  },
+  "ihciuh": {
+    "key": "813004-manana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "tomorrow"
+  },
+  "semana": {
+    "key": "6007-semana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Week"
+  },
+  "āxān": {
+    "key": "813003-hoy.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "today"
+  },
+  "sempoali": {
+    "key": "803009-veinte.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "twenty."
+  },
+  "kaxtoli": {
+    "key": "803008-quince.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fifteen"
+  },
+  "mahtlahtli": {
+    "key": "803007-diez.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "ten"
+  },
+  "makuil": {
+    "key": "803006-cinco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "five"
+  },
+  "yeyi": {
+    "key": "803004-tres.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "three"
+  },
+  "cempohualli": {
+    "key": "803009-veinte.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "twenty"
+  },
+  "chilkostik": {
+    "key": "405002-el-color.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "orange (color)"
+  },
+  "chipauak": {
+    "key": "8008-blanco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "white"
+  },
+  "istak": {
+    "key": "8008-blanco.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "white"
+  },
+  "yayauik": {
+    "key": "8009-negro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "black"
+  },
+  "amox": {
+    "key": "230009-libro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "book"
+  },
+  "chichiltic": {
+    "key": "8010-rojo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "red"
+  },
+  "tliltic": {
+    "key": "8009-negro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "black"
+  },
+  "ueyi": {
+    "key": "812005-grande.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "big"
+  },
+  "cacatzac": {
+    "key": "8009-negro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "black (colour)"
+  },
+  "patiyo": {
+    "key": "2009-caro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "expensive."
+  },
+  "carro": {
+    "key": "7001-carro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "car"
+  },
+  "libro": {
+    "key": "230009-libro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "book"
+  },
+  "pastiya": {
+    "key": "110010-pastilla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pill"
+  },
+  "tlahuilli": {
+    "key": "502002-leve.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "light"
+  },
+  "amochtli": {
+    "key": "230009-libro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "book"
+  },
+  "kuali": {
+    "key": "409001-bueno.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "good"
+  },
+  "oktli": {
+    "key": "180010-vino.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "liquor, wine"
+  },
+  "tepostototl": {
+    "key": "380005-avion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "airplane"
+  },
+  "calmimilolli": {
+    "key": "7002-camion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bus, truck"
+  },
+  "cochihualoyan": {
+    "key": "380003-hotel.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hotel"
+  },
+  "mohquetl": {
+    "key": "260003-enojado.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "angry"
+  },
+  "octli": {
+    "key": "180010-vino.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "wine, liquor"
+  },
+  "sejsek": {
+    "key": "110006-gripe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cold"
+  },
+  "copalli": {
+    "key": "290007-copal.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "copal, incense"
+  },
+  "cihuamizto": {
+    "key": "220002-gato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cat"
+  },
+  "ketsaltototl": {
+    "key": "220007-pajaro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Quetzal (bird)."
+  },
+  "pio": {
+    "key": "220005-pollo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Chicken."
+  },
+  "pitzo": {
+    "key": "220006-cerdo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pig."
+  },
+  "tokatl": {
+    "key": "220010-arana.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "spider."
+  },
+  "cartilla": {
+    "key": "230009-libro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "card, book"
+  },
+  "tepoztototl": {
+    "key": "380005-avion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "airplane"
+  },
+  "amakalko": {
+    "key": "130006-papeleria.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "stationery"
+  },
+  "kauayo": {
+    "key": "220004-caballo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Horse"
+  },
+  "kimichi": {
+    "key": "111009-raton.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "mouse"
+  },
+  "michij": {
+    "key": "220008-pez.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fish"
+  },
+  "misto": {
+    "key": "220002-gato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cat"
+  },
+  "okuili": {
+    "key": "30005-bug.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bug"
+  },
+  "pitsotl": {
+    "key": "220006-cerdo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pig"
+  },
+  "uakax": {
+    "key": "220003-vaca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cow"
+  },
+  "chankaka": {
+    "key": "509004-el-azucar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Sugar, piloncillo."
+  },
+  "sintli": {
+    "key": "17009-elote.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "corn."
+  },
+  "cimolotl": {
+    "key": "17009-elote.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "cob(corn)"
+  },
+  "lechi": {
+    "key": "180004-leche.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "milk"
+  },
+  "tlacua": {
+    "key": "817001-comer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eat"
+  },
+  "tlacualiztli": {
+    "key": "5001-comida.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "food"
+  },
+  "chachapali": {
+    "key": "170004-olla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pot, kettle, stew"
+  },
+  "chanchaka": {
+    "key": "509004-el-azucar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sugar"
+  },
+  "ikni": {
+    "key": "3004-hermano.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "brother"
+  },
+  "komali": {
+    "key": "170003-comal.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "comal"
+  },
+  "kua": {
+    "key": "817001-comer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "eat"
+  },
+  "tlakuali": {
+    "key": "5001-comida.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "food, meal"
+  },
+  "tlakualistli": {
+    "key": "5001-comida.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Meal, food"
+  },
+  "tlaxkali": {
+    "key": "5004-tortilla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "tortilla"
+  },
+  "xikipili": {
+    "key": "160006-bolsa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bag"
+  },
+  "cafetzin": {
+    "key": "180005-cafe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "coffee"
+  },
+  "centli": {
+    "key": "17009-elote.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "corn"
+  },
+  "chichihualatl": {
+    "key": "180004-leche.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Milk"
+  },
+  "chachapale": {
+    "key": "170004-olla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pot, kettle, stew."
+  },
+  "mesa": {
+    "key": "4007-mesa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "table"
+  },
+  "tiopa": {
+    "key": "130008-iglesia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "church"
+  },
+  "kafej": {
+    "key": "180005-cafe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "coffee"
+  },
+  "kali": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "building, house"
+  },
+  "teokali": {
+    "key": "130008-iglesia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "church"
+  },
+  "teposkauayo": {
+    "key": "7001-carro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "car"
+  },
+  "tiopan": {
+    "key": "130008-iglesia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "church, temple"
+  },
+  "ahcopechtli": {
+    "key": "4007-mesa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "table"
+  },
+  "amacalli": {
+    "key": "120004-caja.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "box"
+  },
+  "apaztli": {
+    "key": "170009-plato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "plate"
+  },
+  "calaquiyan": {
+    "key": "4010-puerta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "door"
+  },
+  "caltemachtiloyan": {
+    "key": "230001-escuela.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "school"
+  },
+  "caxitl": {
+    "key": "170009-plato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "a plate"
+  },
+  "cochihuayan": {
+    "key": "4003-recamara.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bedroom"
+  },
+  "cochpanhuaztli": {
+    "key": "4009-cama.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bed"
+  },
+  "icpalli": {
+    "key": "4008-silla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "chair"
+  },
+  "kal": {
+    "key": "4001-casa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "house"
+  },
+  "komitl": {
+    "key": "170004-olla.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "pot"
+  },
+  "matlacualxopiloni": {
+    "key": "170007-cuchara.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "spoon"
+  },
+  "necpahtli": {
+    "key": "120005-jarabe.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "syrup"
+  },
+  "pelkaxitl": {
+    "key": "170009-plato.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "plate"
+  },
+  "tepoztlecuilli": {
+    "key": "170001-estufa.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "Stove"
+  },
+  "tlacualnemacoyan": {
+    "key": "4005-cocina.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "kitchen"
+  },
+  "tlakualteka": {
+    "key": "170007-cuchara.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "spoon"
+  },
+  "tlatequini": {
+    "key": "170006-cuchillo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "knife"
+  },
+  "xali": {
+    "key": "380007-arena.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sand."
+  },
+  "cuacarro": {
+    "key": "7001-carro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "car"
+  },
+  "tepozcahuayo": {
+    "key": "7002-camion.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "bus"
+  },
+  "tequitl": {
+    "key": "17004-chamba.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "work"
+  },
+  "kiyauitl": {
+    "key": "6004-lluvia.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "rain"
+  },
+  "tekiti": {
+    "key": "17004-chamba.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "work"
+  },
+  "uino": {
+    "key": "180010-vino.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "wine"
+  },
+  "acecec": {
+    "key": "180002-agua-fresca.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fresh water"
+  },
+  "atzintli": {
+    "key": "5008-agua.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "water"
+  },
+  "challi": {
+    "key": "380007-arena.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sand"
+  },
+  "ilhuitl": {
+    "key": "270002-fiesta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "fiesta, festival"
+  },
+  "médico": {
+    "key": "110001-doctor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "doctor"
+  },
+  "oquichtli": {
+    "key": "401005-senor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "man"
+  },
+  "tate": {
+    "key": "401005-senor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sir"
+  },
+  "tepahtihquetl": {
+    "key": "110001-doctor.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "doctor"
+  },
+  "sihuat": {
+    "key": "401006-senora.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "woman"
+  },
+  "tepajtiloya": {
+    "key": "140006-hospital.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "hospital"
+  },
+  "ixcopinalli": {
+    "key": "250008-foto.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "foto, image"
+  },
+  "temachtijk": {
+    "key": "200002-maestro.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "teacher"
+  },
+  "camanalohua": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak"
+  },
+  "tlanaquiliztli": {
+    "key": "250004-contestar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "answer, response"
+  },
+  "kamati": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak"
+  },
+  "kochi": {
+    "key": "816009-dormir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sleep"
+  },
+  "kuika": {
+    "key": "370009-cantar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sing"
+  },
+  "ahci": {
+    "key": "809010-llegar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "arrive"
+  },
+  "ixcuitlatl": {
+    "key": "816009-dormir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sleep"
+  },
+  "tehuatl": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you (singular, emphatic)"
+  },
+  "tlahtoa": {
+    "key": "809001-hablar.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "speak"
+  },
+  "ayi": {
+    "key": "811005-hacer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "make"
+  },
+  "chīhua": {
+    "key": "811005-hacer.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "do"
+  },
+  "cochiliztli": {
+    "key": "816009-dormir.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "sleep"
+  },
+  "huitz": {
+    "key": "817004-come.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "come"
+  },
+  "mocuepa": {
+    "key": "2007-cambio.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "transform, to change"
+  },
+  "nehhuatl": {
+    "key": "801001-yo.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "I, me, mine (singular, emphatic)"
+  },
+  "teh": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you (singular), thou"
+  },
+  "achi": {
+    "key": "15007-chiquito.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "a little"
+  },
+  "nepa": {
+    "key": "814008-ahi.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "there"
+  },
+  "nicani": {
+    "key": "814007-aqui.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "here"
+  },
+  "quentzi": {
+    "key": "15007-chiquito.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "little, not much"
+  },
+  "amehuantin": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you (plural)"
+  },
+  "yehuatl": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he, she, him, her (emphatic)"
+  },
+  "amehhuan": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you (plural, emphatic)"
+  },
+  "ompohualli": {
+    "key": "804002-cuarenta.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "forty"
+  },
+  "oncan": {
+    "key": "814008-ahi.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "there"
+  },
+  "tehhuan": {
+    "key": "801006-nosotros.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "we, us (emphatic)"
+  },
+  "tehhuantin": {
+    "key": "801006-nosotros.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "we, us, our, ours"
+  },
+  "tehhuatl": {
+    "key": "801002-tu.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "you, your, yours"
+  },
+  "yeh": {
+    "key": "801003-el.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "he, she, it"
+  },
+  "yehhuan": {
+    "key": "801009-ellos.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "they, them (emphatic)"
+  },
+  "nochipa": {
+    "key": "827009-siempre.webp",
+    "author": "Itzli / Mero Mero S3",
+    "license": "Project word-image asset",
+    "alt": "always"
+  }
+}

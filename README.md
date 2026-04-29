@@ -4,7 +4,7 @@ A structured, linguistically rigorous language learning app for **Eastern Huaste
 
 This is not a Classical Nahuatl app. EHN is a distinct, modern, spoken language with its own orthography, grammar, and vocabulary — and until now, almost no digital learning infrastructure.
 
-> **Work in progress** — Audio pronunciations are machine-generated and have known limitations (see [Audio disclaimer](#audio-disclaimer) below). Not all vocabulary words have images yet. More features are coming.
+> **Work in progress** — Audio pronunciations are machine-generated with a Nahuatl-specific model where available (see [Audio generation](#audio-generation) below). Not all vocabulary words have images yet. More features are coming.
 
 ---
 
@@ -35,7 +35,7 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 - **703 vocabulary words** — audited against IDIEZ, Karttunen, and attested EHN texts
 - **113 AI-assisted dialogues** — generated for units without attested dialogue data, marked `AI_generated`
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
-- **Synthesized audio** for all vocabulary and dialogue lines (see [Audio disclaimer](#audio-disclaimer))
+- **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
 - **Progress tracking** via localStorage — completions, accuracy, streaks
 - **Vocabulary search** across a 37,000-entry EHN lexicon
 
@@ -68,24 +68,40 @@ Notable corrections: `quema` ("yes", not "when?"), `yankuik` ("new", not "bad"),
 
 ---
 
-## Audio Disclaimer
+## Audio Generation
 
-Audio pronunciations are machine-generated using two models:
+Audio pronunciations are machine-generated. For the public learning app, do not
+use Spanish or English general-purpose TTS as the production source of truth. Those
+models can sound smoother, but they make unacceptable Nahuatl errors: short `a`
+can drift toward an off-glide, `ll` can become Spanish `y`, and words such as
+`chilli` can be read as English/Spanish-looking text.
 
-1. **[facebook/mms-tts-nhe](https://huggingface.co/facebook/mms-tts-nhe)** — Meta's Massively Multilingual Speech TTS, the only publicly available model trained directly on EHN speech (native Chicontepec, Veracruz recordings). Used for local generation.
+The production source should be **`facebook/mms-tts-nhe`**, the public MMS TTS
+checkpoint trained for Eastern Huasteca Nahuatl. It is less glossy than modern
+general-purpose voices, but it is the only public model in this repo's stack that is
+actually language-specific for `nhe`.
 
-2. **[Kokoro TTS](https://huggingface.co/hexgrad/Kokoro-82M)** with Spanish phoneme approximation — used for higher-quality synthesis on Colab GPUs, since EHN shares a 5-vowel system and similar consonant inventory with Spanish.
+The full voice pipeline is documented in [`docs/voices.md`](docs/voices.md).
 
-### Known pronunciation issues
+Recommended workflow:
 
-Machine synthesis has real limitations for EHN, and learners should be aware of them:
+1. Generate test clips with several seeds.
+2. Listen for the known hard cases: `na`, `ta`, `calli`, `chilli`, `xochitl`,
+   `tlahtoa`, `quema`.
+3. Regenerate weak clips with alternate seeds or slower synthesis settings.
+4. Prioritize full dialogue lines and context audio, because MMS was trained on
+   connected speech and is rougher on isolated one-word prompts.
+5. Upload selected WAV files to the S3 audio prefix used by the app.
 
-- **"ll"** — In EHN, *ll* is pronounced as a true double-L (e.g., *tlahtoa* is not like Spanish *ll*). However, the Spanish-based phonemizer renders it as /j/ (the "y" sound in *yo*), following Spanish convention. This is **incorrect for Nahuatl** and a known limitation of the current synthesis pipeline.
-- **Phoneme dropping** — The MMS model was trained on connected speech (Bible recordings). Isolated words occasionally suffer dropped or blurred phonemes (e.g., *intla*, *nelia*).
-- **Macron vowels** — Long vowels (ā, ē, ī, ō, ū) are stripped before synthesis; vowel length distinctions are not preserved in the audio.
-- **Saltillo (glottal stop)** — The glottal stop marker (ʼ or h in some EHN orthographies) may not be consistently rendered.
+```bash
+npm run audio:mms:test
+npm run audio:mms:generate
+```
 
-These are the best machine approximations currently possible without a large corpus of studio-recorded EHN audio. Native speaker audio contributions are a long-term goal of this project.
+`scripts/generate-openai-audio.js` is retained only as an experiment. Prompted
+general TTS did not hold Nahuatl phonology reliably enough for production.
+`scripts/colab_xtts.py` is also deprecated for production because it uses
+Spanish phonemization.
 
 ---
 
@@ -184,14 +200,14 @@ npm start         # serve built output
 
 ### Audio
 
-Audio files are served from S3 and do not need to be generated locally. If you want to regenerate them:
+Audio files are served from S3 and do not need to be generated locally. If you want to regenerate them with the Nahuatl-specific MMS pipeline:
 
 ```bash
-pip install -r scripts/requirements-audio.txt
-python scripts/generate-audio.py   # local CPU, MMS-NHE model
+npm run audio:mms:test
+npm run audio:mms:generate
 ```
 
-For higher-quality audio generation using Kokoro TTS on a free Colab GPU, see `scripts/colab_xtts.py`.
+Avoid using `scripts/colab_xtts.py` for production because its Spanish phonemizer causes Nahuatl-specific pronunciation errors. Avoid using the OpenAI prompt-controlled generator for production unless a fresh sample proves it is better on the hard cases.
 
 ---
 
@@ -211,8 +227,9 @@ src/
 │   ├── gloss.ts             displayGloss() — strips audit annotations
 │   └── progress.ts          localStorage progress tracking
 scripts/
-├── generate-audio.py        MMS-NHE audio generation (local CPU)
-├── colab_xtts.py            Kokoro TTS audio generation (Colab GPU)
+├── generate-audio.py        MMS-NHE audio generation (production source)
+├── generate-openai-audio.js Experimental prompt-controlled OpenAI TTS
+├── colab_xtts.py            Deprecated Kokoro Spanish-phonemizer script
 ├── fetch-db.js              Auto-downloads SQLite DB from S3
 └── fetch-images.js          Pexels image metadata fetcher
 ```
@@ -222,8 +239,9 @@ scripts/
 ## Acknowledgments
 
 - **IDIEZ** — Instituto de Docencia e Investigación Etnológica de Zacatecas, for their foundational EHN reference materials
-- **Meta AI / MMS Project** — for `facebook/mms-tts-nhe`, the only open TTS model trained on EHN speech
-- **hexgrad / Kokoro** — for the open-source neural TTS model used in high-quality audio generation
+- **Meta AI / MMS Project** — for `facebook/mms-tts-nhe`, the open TTS model trained on EHN speech
+- **OpenAI** — for the AI tutor and an experimental TTS comparison path
+- **hexgrad / Kokoro** — retained as a reference experiment, no longer recommended for production Nahuatl audio
 - **Pexels** — for the image API used to illustrate vocabulary (photos served from Pexels CDN with required attribution)
 - The speakers and communities of the Huasteca region whose language this is, and who have kept it alive
 
@@ -233,7 +251,7 @@ scripts/
 
 - User authentication and cloud progress sync
 - Spaced repetition (Leitner-style quiz scheduling)
-- Native speaker audio contributions
+- Automated audio QA and candidate selection for MMS-generated clips
 - Images for remaining vocabulary words
 - Dialogue audio and content for units 33–43
 - Progress indicators on the home page

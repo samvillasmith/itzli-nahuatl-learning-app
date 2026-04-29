@@ -54,6 +54,7 @@ next-env.d.ts
 image-gallery.html
 
 # Python build artifacts (ml/* has its own .gitignore too)
+.venv/
 __pycache__/
 *.py[cod]
 *.egg-info/

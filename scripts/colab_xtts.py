@@ -1,4 +1,8 @@
 """
+DEPRECATED FOR NAHUATL AUDIO: Kokoro Spanish phonemization causes known Nahuatl
+errors, including Spanish ll -> y and a/e/o vowel glide artifacts. Use
+scripts/generate-openai-audio.js for pronunciation-controlled machine audio.
+
 EHN Audio Generation via Kokoro TTS (Spanish voice)
 ====================================================
 Python 3.12 compatible. Runs on Google Colab free T4 GPU.

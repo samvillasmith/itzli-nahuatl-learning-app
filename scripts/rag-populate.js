@@ -115,37 +115,137 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Past tense (preterit)",
     content:
-      "Preterit: o- prefix + subject prefix + stem + -c/-qui suffix. Example: onitequitic = 'I worked' (o- PAST + ni- I + tequiti work + -c PRET).",
+      "Preterit: o- prefix + subject prefix + stem + -c/-qui suffix. Example: onitequitic = 'I worked' (o- PAST + ni- I + tequiti work + -c PRET). The -c form is used after vowels, -qui after consonants.",
   },
   {
     title: "Future tense",
     content:
-      "Future: subject prefix + stem + -z or -quiz. Example: nitequitiz = 'I will work'.",
+      "Future: subject prefix + stem + -z or -quiz. Example: nitequitiz = 'I will work'. Also used for 'going to' / near-future meanings. Plural adds -queh: titequitizqueh = 'we will work'.",
   },
   {
     title: "Imperfect",
     content:
-      "Imperfect: subject prefix + stem + -ya. Example: nitequitiya = 'I was working' / 'I used to work'.",
+      "Imperfect: subject prefix + stem + -ya. Example: nitequitiya = 'I was working' / 'I used to work'. Expresses ongoing, habitual, or background past action.",
+  },
+  {
+    title: "Progressive (-toc / -tok)",
+    content:
+      "Progressive aspect (action happening right now, in progress): verb stem + -toc (IDIEZ) or -tok (variant spelling). Examples: nitequititoc = 'I am working (at this moment)', titlahcuilohtoc = 'you are writing'. More immediate than the simple present; emphasizes ongoing action. Plural adds -eh: titequititoceh = 'we are working'.",
+  },
+  {
+    title: "Imperative (commands)",
+    content:
+      "Imperative (commands to 'you'): prefix xi- + verb stem. Object prefixes go between xi- and the stem. Examples: xitequiti = 'work!'; xinēchhuica = 'bring me (it)!' (xi- imperative + nēch- me + huica bring); xicchihua = 'do it!' (xi- + c- it + chihua). 2pl command adds -can: xitequitican = 'you all work!'. Negative command: ahmo + xi- + stem — ahmo xihuica = 'don't bring it'.",
+  },
+  {
+    title: "Negation",
+    content:
+      "Negation uses ahmo (or variant ax / ahmoh) placed BEFORE the verb. Examples: ahmo nitequiti = 'I don't work', ax nicmati = 'I don't know', ahmo cualli = 'not good'. Combine with imperative for negative commands: ahmo xihuica = 'don't bring it'. For 'nothing / no one' use ahmo tlen / ahmo aquin ('not anything / not anyone').",
+  },
+  {
+    title: "Directional prefixes (on-, hual-)",
+    content:
+      "Directional prefixes go between subject and object, indicating motion relative to the speaker: on- (away, thither — motion away from speaker) and hual- (hither, toward — motion toward speaker). Examples: niyah = 'I go'; nionyah = 'I go (away from here)'; nihualyah = 'I come (here, toward the speaker)'. Most common on verbs of motion but productive on other verbs for metaphorical direction.",
+  },
+  {
+    title: "Locative suffixes",
+    content:
+      "Locative suffixes attach to noun stems (after the absolutive drops) to form location phrases: -co (in, at — general), -pan (on, on top of, on the surface of), -tlan (near, among, with), -can (place where, place of), -nahuac (next to, alongside). Examples: calli 'house' → calco 'in the house'; atl 'water' → apan 'on the water'; tepetl 'mountain' → tepetlan 'among the mountains'; tequiti 'work' → tequican 'workplace'; tlacatl 'person' → tlacananahuac 'next to the person'.",
   },
   {
     title: "Possessive prefixes",
     content:
-      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). Absolutive suffix drops under possession. Examples: tocaitl → notoca (my name), calli → nocal (my house), chantli → nichan (my home).",
+      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The absolutive suffix (-tl/-tli/-li/-in) drops under possession. Examples: tocaitl → notoca (my name), calli → nocal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
   },
   {
     title: "Noun absolutive and plural",
     content:
-      "Absolutive suffixes (unpossessed singular): -tl, -tli, -li, -in. Plural: -meh, -tin. Reverential/diminutive: -tzin/-tzintli. The absolutive drops when the noun takes a possessive prefix or a plural suffix.",
+      "Absolutive suffixes (unpossessed singular): -tl (after vowel), -tli (after consonant), -li (after l), -in (for a smaller set of nouns). Plural: -meh, -tin, sometimes -h. Reverential/diminutive: -tzin or -tzintli. The absolutive drops when the noun is possessed or pluralized: calli → nocal (my house), calmeh (houses).",
   },
   {
-    title: "Pronouns",
+    title: "Diminutive / reverential -tzin",
     content:
-      "EHN independent pronouns: na (I), ta (you sg), ya (he/she), tahuan (we), amohuan (you all), yahuan (they). These are EHN, NOT Classical Nahuatl. Do NOT use nēhuatl/tēhuatl (those are Classical).",
+      "Suffix -tzin (or -tzintli with absolutive) expresses affection, smallness, respect, or reverence — extremely common in EHN speech. Examples: cihuatl 'woman' → cihuatzin 'dear/little woman'; nantli 'mother' → nantzin 'dear mother'; tahtli 'father' → tahtzin 'dear father'. Used in religious contexts (Jesustzin), with elders, and in affectionate address. Not literally diminutive in size — more about social/emotional register.",
+  },
+  {
+    title: "Pronouns (independent)",
+    content:
+      "EHN independent pronouns: na (I), ta (you sg), ya (he/she), tahuan (we), amohuan (you all), yahuan (they). These are the EHN forms, NOT Classical Nahuatl (Classical uses nēhuatl/tēhuatl/yēhuatl — do not use those for EHN). Independent pronouns are used for emphasis or topicalization; the verb's subject prefix normally carries the person information already.",
+  },
+  {
+    title: "Reflexive construction",
+    content:
+      "Reflexive: a prefix matching the subject's person goes in the object slot of the verb. 1sg: no-, 2sg/3sg/2pl/3pl: mo-, 1pl: to-. Note 3rd person uses mo- for both singular and plural. Examples: ninopahpaca = 'I wash myself' (ni- I + no- myself + pahpaca wash); timopahpaca = 'you wash yourself'; mopahpaca = 'he/she washes (him/her)self'. The reflexive prefix is identical in form to the possessive prefix but only attaches to verbs.",
   },
   {
     title: "No copula 'to be'",
     content:
-      "Nahuatl has no simple copula. Predicate nouns take subject prefixes directly. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl). Do NOT invent a verb 'eli' for 'to be'.",
+      "Nahuatl has no simple copula verb. Predicate nouns take subject prefixes directly. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Do NOT invent a verb like 'eli' for 'to be'.",
+  },
+  {
+    title: "Existence — 'there is / there are'",
+    content:
+      "'There is' / 'there are' = oncah (also onca). Used to assert existence or availability. Examples: Oncah atl. 'There is water.' Oncah miyac tlacatl. 'There are many people.' Negative: ahmo oncah = 'there isn't / there aren't'. Past: oncatca; future: oncaz.",
+  },
+  {
+    title: "Possession — 'to have'",
+    content:
+      "Nahuatl has no verb 'to have'. Possession is expressed by existence + a possessed noun. Pattern: oncah + POSS-noun. Examples: Oncah nomis. 'I have a cat' (lit. 'my-cat exists'). Oncah iconetl. 'She has a child' (lit. 'her-child exists'). The verb -pia 'to guard / keep' is used with Spanish-influenced framings in some modern speech but is not the native 'have'.",
+  },
+  {
+    title: "Question words",
+    content:
+      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Aquin? 'who?'; ¿Campa? / ¿Kanke? 'where?'; ¿Quenin? 'how?'; ¿Queman? / ¿Quemanian? 'when?'; ¿Quezquih? 'how many?'; ¿Catli? / ¿Catlih? 'which?'; ¿Tleca? 'why?'. Examples: ¿Tlen motoca? 'What's your name?'; ¿Campa ticha? 'Where do you live?'; ¿Quezquih tomimeh ticpia? 'How many cats do you have?'",
+  },
+  {
+    title: "Word order",
+    content:
+      "Word order is flexible; most common is VSO (verb-subject-object) or SVO. Nahuatl is head-marking: the verb already carries pronoun prefixes for subject and object, so explicit noun phrases are often dropped. Examples: Quita in chichi in tlacatl (VSO) = 'The man sees the dog'; In tlacatl quita in chichi (SVO) = same. With pronouns already encoded: Nēchita = 'he sees me' (no separate subject or object needed).",
+  },
+  {
+    title: "Numbers 1-10",
+    content:
+      "1 ce, 2 ome, 3 eyi (also yei), 4 nahui, 5 macuilli, 6 chicuace, 7 chicome, 8 chicueyi, 9 chicnahui, 10 mahtlactli. 11-14 are mahtlactli once, mahtlactli omome, mahtlactli omeyi, mahtlactli onnahui. 15 = caxtolli. Nahuatl is vigesimal (base-20): 20 = cempoalli, 40 = ompoalli, 400 = centzontli. For counting objects, some sets require numeral classifier suffixes (e.g., -tetl for round objects, -pantli for rows) — check the verified vocabulary for specific counted nouns.",
+  },
+  {
+    title: "Time adverbs",
+    content:
+      "Time expressions, typically placed at the start of a clause: axcan 'today / now', nāmān (also namān) 'right now', yalhua 'yesterday', mōztla 'tomorrow', huiptla 'day after tomorrow', yehueca 'long ago', zan / san 'just, only'. Examples: Yalhua nitequitic. 'Yesterday I worked.' Mōztla nihualaz. 'Tomorrow I will come.'",
+  },
+  {
+    title: "Comparison — 'like / as' (kej / quen)",
+    content:
+      "'Like' or 'as' or 'similar to' = kej (common student spelling) / quen (IDIEZ). Example: kej tlamachtihquetl = 'like a teacher'. For 'more than' or 'less than', EHN traditionally lacks a native comparative construction and often uses paraphrase or borrowed Spanish (mas, menos) in modern speech. Classical used phrases like 'it is very X' or 'it exceeds in X-ness'.",
+  },
+  {
+    title: "Greetings and responses",
+    content:
+      "Opening: Pialli = 'Hello'. Asking how someone is: ¿Quenin tiitztoc? = 'How are you?'. Reply: Cualli niitztoc = 'I am well'. Gratitude: Tlazohcamati = 'Thank you'. Affirm: Quena / Quemah = 'Yes'. Negate: Ahmo = 'No'. In conversational EHN, brief acknowledgments like 'Quena' or 'Cualli' often suffice instead of full sentences.",
+  },
+  {
+    title: "Relative clauses",
+    content:
+      "Relative clauses use tlen 'what / that' or in 'the (relative marker)'. Examples: In tlacatl tlen nicmachti = 'The man who(m) I teach' (lit. 'the-man that-I-teach-him'). In tlen ticnequi = 'What you want' (lit. 'the-what-you-want'). In tlahcuilolli tlen oniccualtoc = 'The writing that I finished' (tlen introduces the relative clause).",
+  },
+  {
+    title: "Applicative -lia (do for / to someone)",
+    content:
+      "Applicative suffix -lia (some variants -hia, -huia) adds a beneficiary — the person for whom the action is done — to a transitive verb. The beneficiary becomes the verb's new direct object and takes the usual object prefix. Examples: tequiti 'to work' + -lia → tequitilia 'to work for (someone)' → nēchtequitilia 'he works for me'. huica 'to bring' + -lia → huiquilia 'to bring to (someone)' → nēchhuiquilia 'he brings (it) to me'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
+  },
+  {
+    title: "Causative -tia (cause someone to do)",
+    content:
+      "Causative suffix -tia (some stems take -ltia) means 'cause X to do Y' or 'make X do Y'. The caused-person becomes the verb's direct object. Examples: cochi 'to sleep' + -tia → cochitia 'to put (someone) to sleep' → niccochitia = 'I put him to sleep'. tequiti 'to work' + -tia → tequititia 'to make (someone) work'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
+  },
+  {
+    title: "Noun incorporation",
+    content:
+      "A noun object can fuse into the verb as its first element, especially for generic objects. The incorporated noun drops its absolutive (-tl/-tli/-li). Example: tlaxcalli 'tortilla' + namaca 'sell' → tlaxcalnamaca 'to sell tortillas'; nitlaxcalnamaca = 'I sell tortillas (I am a tortilla-seller)'. Incorporation tends to mean a generic / habitual action; use a separate noun phrase for a specific referent.",
+  },
+  {
+    title: "Reduplication",
+    content:
+      "Reduplication — repeating a stem-initial CV — signals iteration, distribution, intensity, or plurality. Examples: cualli 'good' → cuacualli 'very good / each one good'; pehpena 'to pick up repeatedly' (from pena); tlahtoa 'to speak' → tlahtlahtoa 'to speak repeatedly / to gossip'. NOTE: productive in Nahuatl generally; EHN-specific patterns and which stems reduplicate productively should be verified against attested EHN corpus.",
   },
 ];
 

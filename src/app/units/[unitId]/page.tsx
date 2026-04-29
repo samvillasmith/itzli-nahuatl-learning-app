@@ -48,7 +48,7 @@ export default async function UnitPage({
 
       {num === 1 && (
         <div className="mb-8 bg-amber-50 border border-amber-200 rounded-2xl p-5">
-          <p className="text-xs font-bold text-amber-800 uppercase tracking-widest mb-1.5">
+          <p className="text-xs font-bold text-amber-800 uppercase mb-1.5">
             New to Nahuatl spelling?
           </p>
           <p className="text-sm text-stone-600 leading-relaxed mb-3">
@@ -65,8 +65,11 @@ export default async function UnitPage({
 
       <LessonFlow
         unitNum={num}
+        pathCode={unit.path_code}
         themeEn={unit.theme_en}
         communicativeGoal={unit.communicative_goal}
+        cefrDescriptor={unit.cefr_descriptor}
+        capstoneTask={unit.capstone_task}
         targetBand={unit.target_band}
         vocab={vocab.map((v) => ({
           id: v.id,

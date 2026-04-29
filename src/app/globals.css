@@ -1,72 +1,89 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Stone → warm clay / parchment ────────────────────────────────────────
-     The whole neutral palette shifts from cool grey to warm earth tones,
-     like sun-dried adobe and Huastecan clay.                               */
-  --color-stone-50:  #fdf8f0;
-  --color-stone-100: #f5e8d5;
-  --color-stone-200: #e8d5b5;
-  --color-stone-300: #d4b896;
-  --color-stone-400: #b89270;
-  --color-stone-500: #8b6040;
-  --color-stone-600: #6b4828;
-  --color-stone-700: #4e3318;
-  --color-stone-800: #32200e;
-  --color-stone-900: #1e1108;
-  --color-stone-950: #120a04;
+  --color-stone-50:  #fafaf7;
+  --color-stone-100: #efeee8;
+  --color-stone-200: #dedbd1;
+  --color-stone-300: #c7c1b2;
+  --color-stone-400: #9b9487;
+  --color-stone-500: #6f6a60;
+  --color-stone-600: #565145;
+  --color-stone-700: #3f3a31;
+  --color-stone-800: #27241f;
+  --color-stone-900: #181613;
+  --color-stone-950: #0c0b09;
 
-  /* ── Emerald → jade (chalchihuitl) ────────────────────────────────────────
-     Jade was the most sacred material in Mesoamerica — more valuable than
-     gold. Used for A1 band, primary buttons, and the brand accent.        */
-  --color-emerald-50:  #edf7f0;
-  --color-emerald-100: #c8eedd;
-  --color-emerald-200: #9adfc3;
-  --color-emerald-300: #5cc9a5;
-  --color-emerald-400: #2aab85;
-  --color-emerald-500: #1a7a62;
-  --color-emerald-600: #126652;
-  --color-emerald-700: #0d5244;
+  --color-emerald-50:  #edf8f4;
+  --color-emerald-100: #ccefe4;
+  --color-emerald-200: #99ddc9;
+  --color-emerald-300: #61c6a9;
+  --color-emerald-400: #29a98a;
+  --color-emerald-500: #13866d;
+  --color-emerald-600: #0f6f5c;
+  --color-emerald-700: #0b594d;
+  --color-emerald-800: #083f38;
+  --color-emerald-900: #052b27;
 
-  /* ── Sky → turquoise (xihuitl) ────────────────────────────────────────────
-     Turquoise mosaics adorned the most sacred ceremonial objects. Used for
-     the A2 band.                                                           */
-  --color-sky-50:  #eef9fb;
-  --color-sky-100: #cceff5;
-  --color-sky-200: #99dfea;
-  --color-sky-300: #55c8d8;
-  --color-sky-400: #1aaec0;
-  --color-sky-500: #1295a8;
-  --color-sky-600: #0c7e90;
-  --color-sky-700: #096878;
+  --color-sky-50:  #eef8fb;
+  --color-sky-100: #d3edf5;
+  --color-sky-200: #9ed9e8;
+  --color-sky-300: #61bfd3;
+  --color-sky-400: #279fb8;
+  --color-sky-500: #0f829b;
+  --color-sky-600: #0b687f;
+  --color-sky-700: #075266;
 
-  /* ── Violet → ochre / gold (teocuitlatl) ─────────────────────────────────
-     Aztec gold — hammered into discs representing the sun. Used for the
-     B1 band.                                                               */
-  --color-violet-50:  #fdf8e8;
-  --color-violet-100: #faedcc;
-  --color-violet-200: #f0d898;
-  --color-violet-300: #e0bd5e;
-  --color-violet-400: #cfa030;
-  --color-violet-500: #b88420;
-  --color-violet-600: #9c6d16;
-  --color-violet-700: #7e560e;
+  --color-violet-50:  #f5f2fb;
+  --color-violet-100: #e7def5;
+  --color-violet-200: #cdbde8;
+  --color-violet-300: #aa91d4;
+  --color-violet-400: #8465ba;
+  --color-violet-500: #68479f;
+  --color-violet-600: #52387f;
+  --color-violet-700: #402a63;
 
-  /* ── Amber stays warm — copal resin, the sacred incense ─────────────────
-     Already earthy enough; just a slight shift toward deeper honey.       */
-  --color-amber-300: #f0b840;
-  --color-amber-400: #d4952a;
-  --color-amber-500: #b87820;
+  --color-amber-50:  #fff8e8;
+  --color-amber-100: #fceac1;
+  --color-amber-200: #f6d17d;
+  --color-amber-300: #edb33c;
+  --color-amber-400: #d59622;
+  --color-amber-500: #b67816;
+  --color-amber-600: #925c10;
 }
 
 :root {
-  --background: #fdf4e7;   /* warm parchment — like an opened codex          */
-  --foreground: #1e1108;   /* deep cacao — ink ground from cacao shells       */
+  --background: #f7f8f3;
+  --foreground: #181613;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(247, 248, 243, 0.96) 34rem),
+    linear-gradient(90deg, rgba(19, 134, 109, 0.05) 0, transparent 14rem),
+    linear-gradient(270deg, rgba(15, 130, 155, 0.045) 0, transparent 16rem),
+    var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Aptos", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+a,
+button,
+input {
+  letter-spacing: 0;
+}
+
+::selection {
+  background: rgba(19, 134, 109, 0.22);
 }

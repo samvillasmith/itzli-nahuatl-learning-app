@@ -73,7 +73,7 @@ function ProseSection({ section }: { section: Extract<GrammarSection, { kind: 'p
 function RuleSection({ section }: { section: Extract<GrammarSection, { kind: 'rule' }> }) {
   return (
     <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-7">
-      <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase tracking-wide">{section.title}</h3>
+      <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase">{section.title}</h3>
       <p className="text-stone-700 leading-relaxed text-sm whitespace-pre-line">{renderInline(section.text)}</p>
     </div>
   );
@@ -89,7 +89,7 @@ function ParadigmSection({ section }: { section: Extract<GrammarSection, { kind:
           <thead>
             <tr className="bg-stone-50 border-y border-stone-200">
               {section.headers.map((h, i) => (
-                <th key={i} className="text-left px-3 py-2 text-xs font-bold text-stone-500 uppercase tracking-wide">
+                <th key={i} className="text-left px-3 py-2 text-xs font-bold text-stone-500 uppercase">
                   {h}
                 </th>
               ))}
@@ -204,7 +204,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
 
       {/* Related units */}
       <div className="bg-stone-50 border border-stone-100 rounded-xl p-4 mb-8">
-        <p className="text-xs font-bold text-stone-400 uppercase tracking-wide mb-2">Practice in context</p>
+        <p className="text-xs font-bold text-stone-400 uppercase mb-2">Practice in context</p>
         <p className="text-sm text-stone-500 mb-3">
           See these patterns in the course lessons:
         </p>

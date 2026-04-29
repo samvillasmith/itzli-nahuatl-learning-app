@@ -72,7 +72,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
         <div className="bg-white rounded-2xl border border-stone-100 shadow-sm p-6 mb-8">
           <div className="flex items-end justify-between mb-3">
             <div>
-              <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-1">
+              <p className="text-xs font-semibold text-stone-400 uppercase mb-1">
                 Overall
               </p>
               <p className="text-2xl font-bold text-stone-900">
@@ -164,8 +164,8 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                     {/* Unit info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono text-stone-400">
-                          {String(unit.lesson_number).padStart(2, "0")}
+                        <span className="text-xs font-bold text-stone-400">
+                          {unit.path_code}
                         </span>
                         <span className="text-sm font-semibold text-stone-800 truncate">
                           {unit.theme_en}

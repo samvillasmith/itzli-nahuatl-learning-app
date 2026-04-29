@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generates EHN pronunciation audio using facebook/mms-tts-nhe
-(Meta Massively Multilingual Speech — Eastern Huasteca Nahuatl).
+(Meta Massively Multilingual Speech - Eastern Huasteca Nahuatl).
 
 This model was trained on native EHN speaker recordings (New Testament,
 Chicontepec, Veracruz). It is the only publicly available TTS model
@@ -14,13 +14,13 @@ Usage:
     python scripts/generate-audio.py --test intla nelia ax  # test specific words
 
 Tuning parameters (edit SYNTH_PARAMS below if output is mumbled):
-    noise_scale         lower → fewer dropped phonemes (default 0.667, try 0.3)
-    noise_scale_duration lower → more even timing (default 0.8, try 0.6)
-    speaking_rate       lower → slower, clearer (default 1.0, try 0.85)
+    noise_scale         lower -> fewer dropped phonemes (default 0.667, try 0.3)
+    noise_scale_duration lower -> more even timing (default 0.8, try 0.6)
+    speaking_rate       lower -> slower, clearer (default 1.0, try 0.85)
 
 Output:
-    public/audio/vocab/{id}.wav        — one file per lesson_vocab row
-    public/audio/dialogue/{id}.wav     — one file per lesson_dialogues row
+    public/audio/vocab/{id}.wav        - one file per lesson_vocab row
+    public/audio/dialogue/{id}.wav     - one file per lesson_dialogues row
 
 The script is resumable: existing files are skipped.
 Add public/audio/ to .gitignore if the files are too large to commit.
@@ -31,38 +31,52 @@ import sqlite3
 import argparse
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-DB_PATH = PROJECT_ROOT.parent / "molina" / "curriculum" / "fcn_master_lexicon_phase8_6_primer.sqlite"
+DB_CANDIDATES = [
+    PROJECT_ROOT / "fcn_master_lexicon_phase8_6_primer.sqlite",
+    PROJECT_ROOT.parent / "molina" / "curriculum" / "fcn_master_lexicon_phase8_6_primer.sqlite",
+]
+DB_PATH = next((path for path in DB_CANDIDATES if path.exists()), DB_CANDIDATES[0])
 VOCAB_DIR = PROJECT_ROOT / "public" / "audio" / "vocab"
 DIALOGUE_DIR = PROJECT_ROOT / "public" / "audio" / "dialogue"
+MODEL_ID = "facebook/mms-tts-nhe"
 
-# ── Synthesis quality parameters ─────────────────────────────────────────────
+# Synthesis quality parameters
 # Use model defaults. Quality issues are addressed via text preprocessing below.
 SYNTH_PARAMS = {}
-# ─────────────────────────────────────────────────────────────────────────────
 
 
 def safe_text(text: str) -> str:
     """
     Normalise text for the EHN VITS tokenizer.
-    Keep: lowercase Latin letters, EHN macron vowels (ā ē ī ō ū), spaces.
+    Keep: lowercase Latin letters and spaces.
     Strip: punctuation (¿ ? ! . ,), digits, everything else.
+    Fold: macron/accent vowels to plain vowels because the MMS tokenizer is
+    trained on a plain Latin character inventory.
 
     Also applies Nahuatl-specific syllabification hints:
     - Inserts a space before tl/tz/ch when immediately preceded by a consonant,
-      so the affricate lands at syllable onset (e.g. intla → in tla).
+      so the affricate lands at syllable onset (e.g. intla -> in tla).
     - This prevents consonant-cluster compression that causes phoneme dropping.
     """
-    import re
+    import unicodedata
 
-    keep = set("abcdefghijklmnopqrstuvwxyz āēīōū ")
-    cleaned = "".join(c for c in text.lower() if c in keep)
+    folded = unicodedata.normalize("NFD", text.lower())
+    folded = "".join(c for c in folded if unicodedata.category(c) != "Mn")
+
+    keep = set("abcdefghijklmnopqrstuvwxyz ")
+    cleaned = "".join(c for c in folded if c in keep)
     cleaned = " ".join(cleaned.split()).strip()
 
     # Protect digraphs, insert syllable-boundary space before them after a consonant,
     # then restore. Consonants = anything that's not a vowel or space.
-    vowels = set("aeiouāēīōū")
+    vowels = set("aeiou")
     for digraph, placeholder in [("tl", "\x00"), ("tz", "\x01"), ("ch", "\x02")]:
         cleaned = cleaned.replace(digraph, placeholder)
 
@@ -78,7 +92,7 @@ def safe_text(text: str) -> str:
 
 
 def synth(text: str, tokenizer, model, seed: int = 555):
-    """Synthesise text → int16 numpy waveform, or None on failure."""
+    """Synthesise text -> int16 numpy waveform, or None on failure."""
     import torch
     import numpy as np
     from transformers import set_seed
@@ -146,17 +160,21 @@ def test_words(words: list[str], tokenizer, model, sample_rate: int, seeds: list
                 ) as f:
                     out_path = Path(f.name)
                 write_wav(out_path, wav, sample_rate)
-                print(f"    seed={seed:>6}  → {out_path}")
+                print(f"    seed={seed:>6}  -> {out_path}")
             else:
-                print(f"    seed={seed:>6}  → FAILED")
+                print(f"    seed={seed:>6}  -> FAILED")
 
 
 def load_model():
     from transformers import VitsTokenizer, VitsModel
-    print("Loading facebook/mms-tts-nhe ...")
-    print("(First run downloads ~600 MB model weights — subsequent runs use cache)\n")
-    tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-nhe")
-    model = VitsModel.from_pretrained("facebook/mms-tts-nhe")
+    print(f"Loading {MODEL_ID} ...")
+    print("(First run downloads model weights; subsequent runs use cache)\n")
+    try:
+        tokenizer = VitsTokenizer.from_pretrained(MODEL_ID, local_files_only=True)
+        model = VitsModel.from_pretrained(MODEL_ID, local_files_only=True)
+    except OSError:
+        tokenizer = VitsTokenizer.from_pretrained(MODEL_ID)
+        model = VitsModel.from_pretrained(MODEL_ID)
     model.eval()
     return tokenizer, model
 
@@ -195,14 +213,14 @@ def main():
 
     conn = sqlite3.connect(str(DB_PATH))
 
-    # ── Vocabulary ────────────────────────────────────────────────────────────
+    # Vocabulary
     vocab_rows = conn.execute(
         "SELECT id, display_form FROM lesson_vocab ORDER BY id"
     ).fetchall()
     print(f"=== Vocabulary: {len(vocab_rows)} words ===")
     process_batch(vocab_rows, VOCAB_DIR, "Vocab", tokenizer, model, sample_rate, regen=args.regen)
 
-    # ── Dialogues ─────────────────────────────────────────────────────────────
+    # Dialogues
     dialogue_rows = conn.execute(
         "SELECT lesson_dialogue_id, utterance_normalized "
         "FROM lesson_dialogues "
@@ -215,7 +233,7 @@ def main():
 
     conn.close()
 
-    # ── Summary ───────────────────────────────────────────────────────────────
+    # Summary
     vocab_files = list(VOCAB_DIR.glob("*.wav"))
     dialogue_files = list(DIALOGUE_DIR.glob("*.wav"))
     total_bytes = sum(f.stat().st_size for f in vocab_files + dialogue_files)

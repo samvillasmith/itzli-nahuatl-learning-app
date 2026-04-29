@@ -17,7 +17,7 @@ export default function GrammarPage() {
   return (
     <div>
       <div className="mb-10">
-        <p className="text-xs font-bold text-emerald-600 mb-3 uppercase tracking-widest">
+        <p className="text-xs font-bold text-emerald-600 mb-3 uppercase">
           Grammar · Tlahtoltēcpānalitzli
         </p>
         <h1 className="text-3xl font-bold text-stone-900 mb-3">
@@ -31,7 +31,7 @@ export default function GrammarPage() {
       {(['A1', 'A2', 'B1'] as const).map((band) =>
         byBand[band].length > 0 && (
           <div key={band} className="mb-10">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4">
+            <h2 className="text-xs font-bold uppercase text-stone-400 mb-4">
               {band === 'A1' ? 'A1 · Beginner' : band === 'A2' ? 'A2 · Elementary' : 'B1 · Intermediate'}
             </h2>
             <div className="grid sm:grid-cols-2 gap-3">

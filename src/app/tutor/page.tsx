@@ -220,7 +220,7 @@ export default function TutorPage() {
                 }`}
               >
                 {m.role === "assistant" && (
-                  <div className="text-[10px] font-bold text-emerald-600 mb-1 uppercase tracking-wider">
+                  <div className="text-[10px] font-bold text-emerald-600 mb-1 uppercase">
                     Tlamachtihquetl
                   </div>
                 )}

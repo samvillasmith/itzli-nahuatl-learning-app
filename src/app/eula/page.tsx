@@ -68,9 +68,9 @@ export default function EulaPage() {
         reference works from the Instituto de Docencia e Investigación
         Etnológica de Zacatecas (IDIEZ), the Karttunen Analytical Dictionary of
         Nahuatl, and attested EHN texts — credited in the repository
-        acknowledgments. Machine audio is produced using Meta AI&apos;s MMS-NHE
-        model and Kokoro-82M; photographs are licensed from Pexels with
-        attribution.
+        acknowledgments. Machine audio is produced through a language-specific
+        machine-audio pipeline; photographs are licensed from their respective
+        asset sources with attribution where required.
       </p>
       <p className="mb-4">
         Curriculum content is available for personal learning via the app only.

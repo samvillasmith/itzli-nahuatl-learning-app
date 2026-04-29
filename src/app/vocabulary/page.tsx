@@ -1,4 +1,4 @@
-import { getAllPrimerVocab, searchVocab } from "@/lib/db";
+import { getAllPrimerVocab, getAllUnits, searchVocab } from "@/lib/db";
 
 const POS_COLOR: Record<string, string> = {
   noun: "bg-amber-50 text-amber-700",
@@ -72,8 +72,10 @@ export default async function VocabularyPage({
     );
   }
 
-  // Default: all 1,008 primer vocab items
+  // Default: all primer vocabulary items in the curated unit order.
   const vocab = getAllPrimerVocab();
+  const units = getAllUnits();
+  const unitsByLesson = new Map(units.map((unit) => [unit.lesson_number, unit]));
 
   // Group by lesson
   const byLesson = new Map<number, typeof vocab>();
@@ -82,7 +84,9 @@ export default async function VocabularyPage({
     arr.push(v);
     byLesson.set(v.first_lesson_number, arr);
   }
-  const lessons = [...byLesson.keys()].sort((a, b) => a - b);
+  const lessons = units
+    .map((unit) => unit.lesson_number)
+    .filter((lesson) => byLesson.has(lesson));
 
   return (
     <div>
@@ -97,11 +101,17 @@ export default async function VocabularyPage({
       <div className="space-y-8">
         {lessons.map((lesson) => {
           const items = byLesson.get(lesson)!;
+          const unit = unitsByLesson.get(lesson);
           return (
             <section key={lesson}>
-              <h2 className="text-sm font-semibold text-stone-400 uppercase tracking-wide mb-3">
-                Unit {String(lesson).padStart(2, "0")}
-              </h2>
+              <div className="mb-3 flex items-center gap-3">
+                <span className="rounded-md bg-stone-950 px-2 py-1 text-xs font-bold text-white">
+                  {unit?.path_code ?? `Unit ${lesson}`}
+                </span>
+                <h2 className="text-sm font-semibold text-stone-700">
+                  {unit?.theme_en ?? `Unit ${lesson}`}
+                </h2>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {items.map((v) => (
                   <div

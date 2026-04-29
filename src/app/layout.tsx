@@ -58,14 +58,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider>
       <html lang="en">
         <body className="min-h-screen">
-          <div className="h-1 sticky top-0 z-20 bg-gradient-to-r from-[#1a7a62] via-[#1295a8] via-50% via-[#b88420] to-[#c4622d]" />
-          <nav className="border-b border-stone-200/80 bg-white/90 backdrop-blur-sm sticky top-0 z-10">
-            <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+          <div className="sticky top-0 z-20 h-1 bg-[linear-gradient(90deg,#116a55,#0f87a0_38%,#d09b2c_70%,#c85f38)]" />
+          <nav className="sticky top-1 z-10 border-b border-stone-200/80 bg-white/88 backdrop-blur-md">
+            <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
               <Link
                 href="/"
-                className="flex items-center gap-2 font-bold text-lg text-stone-900 tracking-tight"
+                className="flex items-center gap-2 text-lg font-black text-stone-950"
               >
-                <span className="w-7 h-7 rounded-sm bg-emerald-500 flex items-center justify-center text-white text-xs font-black">
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white shadow-sm">
                   ✦
                 </span>
                 Itzli
@@ -73,21 +73,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Signed-in nav */}
               <Show when="signed-in">
-                <div className="flex items-center gap-0.5 sm:gap-1 text-sm">
-                  <Link href="/units" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                <div className="flex items-center gap-0.5 text-sm sm:gap-1">
+                  <Link href="/units" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     Units
                   </Link>
-                  <Link href="/vocabulary" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/curriculum" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex sm:px-3">
+                    Path
+                  </Link>
+                  <Link href="/vocabulary" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     <span className="hidden sm:inline">Vocabulary</span>
                     <span className="sm:hidden">Vocab</span>
                   </Link>
-                  <Link href="/grammar" className="px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/grammar" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     Grammar
                   </Link>
-                  <Link href="/tutor" className="px-2 sm:px-3 py-1.5 rounded-lg text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 transition-colors font-medium">
+                  <Link href="/tutor" className="rounded-lg px-2 py-1.5 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:px-3">
                     Tutor
                   </Link>
-                  <Link href="/progress" className="inline-flex px-2 sm:px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/progress" className="inline-flex rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     <span className="hidden sm:inline">Progress</span>
                     <span className="sm:hidden">Stats</span>
                   </Link>
@@ -100,10 +103,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Signed-out nav */}
               <Show when="signed-out">
                 <div className="flex items-center gap-2 text-sm">
-                  <Link href="/sign-in" className="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors font-medium">
+                  <Link href="/curriculum" className="hidden rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex">
+                    Curriculum
+                  </Link>
+                  <Link href="/sign-in" className="rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950">
                     Sign in
                   </Link>
-                  <Link href="/sign-up" className="px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-semibold transition-colors">
+                  <Link href="/sign-up" className="rounded-lg bg-stone-950 px-4 py-1.5 font-semibold text-white transition-colors hover:bg-emerald-700">
                     Get started
                   </Link>
                 </div>
@@ -141,12 +147,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
           <DisclaimerBanner />
           <LegalModal />
-          <main className="max-w-5xl mx-auto px-4 py-10">{children}</main>
-          <footer className="border-t border-stone-200 mt-16 py-8 text-xs text-stone-400">
-            <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <main className="mx-auto max-w-6xl px-4 py-10">{children}</main>
+          <footer className="mt-16 border-t border-stone-200 py-8 text-xs text-stone-500">
+            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
               <div className="flex items-center gap-1">
-                <span className="w-5 h-5 rounded-sm bg-emerald-500 flex items-center justify-center text-white text-xs font-black">✦</span>
-                <span className="font-semibold text-stone-500">Itzli</span>
+                <span className="flex h-5 w-5 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white">✦</span>
+                <span className="font-semibold text-stone-700">Itzli</span>
                 <span className="mx-2 text-stone-300">·</span>
                 <span>Eastern Huasteca Nahuatl · A1–B1 curriculum</span>
               </div>

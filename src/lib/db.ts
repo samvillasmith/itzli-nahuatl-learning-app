@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 import os from "os";
 import { execFileSync } from "child_process";
+import { enhanceUnit, type CurriculumFields } from "./curriculum";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -43,7 +44,7 @@ export function getDb(): Database.Database {
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
-export type Unit = {
+export type Unit = CurriculumFields & {
   lesson_number: number;
   unit_code: string;
   target_band: string;
@@ -108,30 +109,47 @@ export type LexiconEntry = {
 
 // ── Queries ──────────────────────────────────────────────────────────────────
 
+const UNIT_SELECT = `
+  SELECT p.lesson_number, p.unit_code, p.target_band, p.theme_en,
+         p.communicative_goal, p.grammar_focus, p.lexical_focus,
+         COALESCE(v.actual_vocab_count, p.english_vocab_count) AS english_vocab_count,
+         COALESCE(d.actual_dialogue_count, p.english_dialogue_count) AS english_dialogue_count,
+         p.english_construction_count
+  FROM phase82_unit_plan p
+  LEFT JOIN (
+    SELECT lesson_number, COUNT(*) AS actual_vocab_count
+    FROM lesson_vocab
+    WHERE gloss_en NOT LIKE '%MISPLACED%'
+    GROUP BY lesson_number
+  ) v ON v.lesson_number = p.lesson_number
+  LEFT JOIN (
+    SELECT u.lesson_number, COUNT(*) AS actual_dialogue_count
+    FROM phase82_unit_plan u
+    JOIN lesson_dialogues ld ON ld.lesson_unit_id = u.english_lesson_unit_id
+    WHERE (ld.speaker_label GLOB '[A-Z]' OR ld.speaker_label IN ('Rufina', 'Martha', 'Angela'))
+      AND (ld.utterance_normalized LIKE '%ā%'
+           OR ld.utterance_normalized LIKE '%ē%'
+           OR ld.utterance_normalized LIKE '%ō%'
+           OR ld.utterance_normalized LIKE '%ī%'
+           OR ld.utterance_normalized LIKE '%ū%'
+           OR ld.utterance_normalized LIKE '%¿%')
+    GROUP BY u.lesson_number
+  ) d ON d.lesson_number = p.lesson_number
+`;
+
 export function getAllUnits(): Unit[] {
   return getDb()
-    .prepare(
-      `SELECT lesson_number, unit_code, target_band, theme_en,
-              communicative_goal, grammar_focus, lexical_focus,
-              english_vocab_count, english_dialogue_count, english_construction_count
-       FROM phase82_unit_plan
-       ORDER BY lesson_number`
-    )
-    .all() as Unit[];
+    .prepare(`${UNIT_SELECT} ORDER BY p.lesson_number`)
+    .all()
+    .map((row) => enhanceUnit(row as Omit<Unit, keyof CurriculumFields>))
+    .sort((a, b) => a.path_order - b.path_order) as Unit[];
 }
 
 export function getUnit(lessonNumber: number): Unit | null {
-  return (
-    (getDb()
-      .prepare(
-        `SELECT lesson_number, unit_code, target_band, theme_en,
-                communicative_goal, grammar_focus, lexical_focus,
-                english_vocab_count, english_dialogue_count, english_construction_count
-         FROM phase82_unit_plan
-         WHERE lesson_number = ?`
-      )
-      .get(lessonNumber) as Unit) || null
-  );
+  const row = getDb()
+    .prepare(`${UNIT_SELECT} WHERE p.lesson_number = ?`)
+    .get(lessonNumber) as Omit<Unit, keyof CurriculumFields> | undefined;
+  return row ? (enhanceUnit(row) as Unit) : null;
 }
 
 export function getUnitVocab(lessonNumber: number): VocabItem[] {
