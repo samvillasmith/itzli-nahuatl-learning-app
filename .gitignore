@@ -34,6 +34,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local cloud credentials
+/secrets/
+/secret/
+
 # vercel
 .vercel
 
@@ -51,6 +55,7 @@ next-env.d.ts
 
 # Audio files (served from S3 — see scripts/fetch-db.js and src/lib/audio.ts)
 /public/audio/
+/public/audio-google/
 image-gallery.html
 
 # Python build artifacts (ml/* has its own .gitignore too)

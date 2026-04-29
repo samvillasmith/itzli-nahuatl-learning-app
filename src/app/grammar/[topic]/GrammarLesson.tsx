@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { GrammarLesson as GLType, GrammarSection, GRAMMAR_LESSONS } from '@/data/grammar-lessons';
 import type { GrammarDialogue } from '@/lib/db';
-import { dialogueAudioUrl } from '@/lib/audio';
+import { dialogueAudioUrl, playAudio } from '@/lib/audio';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
@@ -14,11 +14,8 @@ function AudioButton({ src }: { src: string }) {
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
     if (playing) return;
-    const audio = new Audio(src);
     setPlaying(true);
-    audio.onended = () => setPlaying(false);
-    audio.onerror = () => setPlaying(false);
-    audio.play().catch(() => setPlaying(false));
+    playAudio(src, () => setPlaying(false));
   }
 
   return (

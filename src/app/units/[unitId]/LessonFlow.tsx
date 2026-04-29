@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { displayGloss } from "@/lib/gloss";
-import { vocabAudioUrl, dialogueAudioUrl } from "@/lib/audio";
+import { vocabAudioUrl, dialogueAudioUrl, playAudio } from "@/lib/audio";
 import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
@@ -463,11 +463,8 @@ function AudioButton({ src, size = "md" }: { src: string; size?: "sm" | "md" | "
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
     if (playing) return;
-    const audio = new Audio(src);
     setPlaying(true);
-    audio.onended = () => setPlaying(false);
-    audio.onerror = () => setPlaying(false);
-    audio.play().catch(() => setPlaying(false));
+    playAudio(src, () => setPlaying(false));
   }
 
   const sizeClasses = { sm: "p-1.5 rounded-lg", md: "p-2.5 rounded-xl", lg: "p-3 rounded-2xl" };

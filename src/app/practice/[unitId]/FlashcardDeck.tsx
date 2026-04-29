@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { displayGloss } from "@/lib/gloss";
-import { vocabAudioUrl } from "@/lib/audio";
+import { playAudio, vocabAudioUrl } from "@/lib/audio";
 import { getWordImage } from "@/data/word-images";
 
 type Card = {
@@ -51,11 +51,8 @@ function AudioButton({ src }: { src: string }) {
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
     if (playing) return;
-    const audio = new Audio(src);
     setPlaying(true);
-    audio.onended = () => setPlaying(false);
-    audio.onerror = () => setPlaying(false);
-    audio.play().catch(() => setPlaying(false));
+    playAudio(src, () => setPlaying(false));
   }
 
   return (

@@ -112,6 +112,30 @@ https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/dialogue/{id}.wav
 
 ## Experiments We Do Not Use For Production
 
+`scripts/generate-google-audio.js` is an experiment for testing Google Cloud
+TTS with a Spanish voice plus Nahuatl pronunciation rules. It emits SSML
+`<phoneme>` tags using X-SAMPA so rules such as `x -> sh`, `ch -> tS`, and
+`tz -> ts` are explicit instead of hoping the Spanish text normalizer guesses
+them.
+
+The Google experiment uses a local service-account JSON from `secrets/` or
+`GOOGLE_APPLICATION_CREDENTIALS`. The `secrets/` folder must stay uncommitted.
+
+```powershell
+npm run audio:google:test
+$env:CONFIRM_TTS_SPEND='YES'; npm run audio:google:test -- --execute --force
+```
+
+It writes to `public/audio-google` by default. For local testing, set:
+
+```env
+NEXT_PUBLIC_AUDIO_BASE_URL=/audio-google
+NEXT_PUBLIC_AUDIO_FALLBACK_BASE_URL=https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app
+```
+
+With that setup, the app tries local Google files first and falls back to the
+S3-backed production voice set when a Google file has not been generated yet.
+
 `scripts/generate-openai-audio.js` is kept only as an experiment for comparing
 prompt-controlled TTS. It is not the production source because it did not hold
 Nahuatl pronunciation reliably enough.

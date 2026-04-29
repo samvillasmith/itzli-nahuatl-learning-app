@@ -35,7 +35,7 @@ const SHORT_VOWEL_BEFORE_H_CUE = {
 const PUNCTUATION = /[?!.,;:()[\]{}"<>/]/g;
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 const VOWELS = new Set(["a", "e", "i", "o", "u", "\u0101", "\u0113", "\u012b", "\u014d", "\u016b"]);
-const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "ll", "w", "sh"]);
+const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "w", "sh"]);
 
 function normalizeNahuatlText(text) {
   return String(text || "")
