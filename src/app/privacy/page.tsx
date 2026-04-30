@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Privacy Policy for Itzli — Eastern Huasteca Nahuatl learning app.",
 };
 
-const EFFECTIVE_DATE = "April 23, 2026";
+const EFFECTIVE_DATE = "April 30, 2026";
 const CONTACT_EMAIL = "svillasmith3@gmail.com";
 
 export default function PrivacyPage() {
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         <p className="font-semibold text-emerald-900 mb-2">Short version</p>
         <ul className="list-disc pl-5 space-y-1 text-emerald-900">
           <li>We collect only what we need to run the app: your account (via Clerk), your learning progress, and safety-audit metadata.</li>
-          <li>We <strong>never store the raw text of your chat messages</strong> in our database — only a one-way cryptographic hash of flagged events.</li>
+          <li>We <strong>never store the raw text of your chat messages</strong> in our database. Chat audit records use one-way hashes and structured safety metadata.</li>
           <li>Your messages to the AI tutor are transmitted to OpenAI for processing.</li>
           <li>You can delete your cloud progress or your entire account at any time.</li>
         </ul>
@@ -63,13 +63,13 @@ export default function PrivacyPage() {
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">Chat audit log (Neon Postgres)</h3>
       <p className="mb-4">
-        When a chat message with the AI tutor triggers a safety guardrail (content
-        moderation, prompt-injection heuristic, rate limit, etc.), we record an
-        audit row containing: the Clerk user ID, the event kind, the category of
-        the trigger, a <strong>sha256 hash of the content</strong>, and a timestamp.
-        We do <strong>not</strong> store the raw text of the message. The hash lets us
-        detect recurring attack patterns and repeat offenders without retaining
-        content that could identify you.
+        For AI tutor requests and safety guardrail events, we record an audit row
+        containing: the Clerk user ID, the event kind, request metadata, safety
+        categories and scores where applicable, model names, timestamps, and
+        <strong> sha256 hashes of chat content</strong>. We do <strong>not</strong>{" "}
+        store the raw text of user messages or AI responses. Hashes let us verify
+        a user-supplied message or detect repeated attack patterns without
+        retaining readable chat content.
       </p>
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">Chat content (transient, via OpenAI)</h3>

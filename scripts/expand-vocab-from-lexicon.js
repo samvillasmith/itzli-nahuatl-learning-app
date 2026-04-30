@@ -16,7 +16,7 @@ const { resolveDbPath } = require("./_db-path");
 const Database = require("better-sqlite3");
 const db = new Database(resolveDbPath());
 
-const PER_UNIT_CAP = 140;
+const PER_UNIT_CAP = 40;
 
 // ── Thematic keyword → unit mapping ──────────────────────────────────────────
 const THEME_RULES = [
@@ -59,6 +59,8 @@ const SKIP_PATTERNS = [
   /applicative of/i, /causative of/i, /reflexive of/i,
   /\bcountry\b/i, /\bcity in\b/i, /\blanguage\b/i, /\ba people\b/i,
   /\bstate in\b/i, /\bprovince\b/i, /\bmunicipality\b/i,
+  /\bshit\b/i, /\bexcrement\b/i, /\bfeces\b/i, /\banus\b/i,
+  /\bbuttock\b/i, /\bflatulence\b/i,
 ];
 
 function shouldSkip(gloss) {
@@ -134,19 +136,8 @@ for (const variety of varietyPriority) {
     if (gloss.length < 2) gloss = c.gloss_en.trim();
     if (gloss.length > 60) gloss = gloss.slice(0, 57) + "...";
 
-    let unit = assignUnit(c.gloss_en);
-    if (!unit) {
-      // Fallback: assign by part of speech to general units
-      if (c.part_of_speech === "verb") unit = 42;
-      else if (c.part_of_speech === "adj") unit = 36;
-      else if (c.part_of_speech === "adv") unit = 43;
-      else if (c.part_of_speech === "noun") {
-        // Rotate nouns across thematic units 35-41
-        const nounUnits = [35, 36, 37, 38, 39, 40, 41];
-        unit = nounUnits[maxId % nounUnits.length];
-      }
-      else unit = 43;
-    }
+    const unit = assignUnit(c.gloss_en);
+    if (!unit) continue;
 
     unitNewCount[unit] = (unitNewCount[unit] || 0) + 1;
     if (unitNewCount[unit] > PER_UNIT_CAP) continue;

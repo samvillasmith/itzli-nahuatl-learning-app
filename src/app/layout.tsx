@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import DisclaimerBanner from "./DisclaimerBanner";
 import LegalModal from "./LegalModal";
+import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
@@ -87,9 +88,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/grammar" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     Grammar
                   </Link>
-                  <Link href="/tutor" className="rounded-lg px-2 py-1.5 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:px-3">
-                    Tutor
-                  </Link>
+                  {TUTOR_FEATURE_ENABLED && (
+                    <Link href="/tutor" className="rounded-lg px-2 py-1.5 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:px-3">
+                      Tutor
+                    </Link>
+                  )}
                   <Link href="/progress" className="inline-flex rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     <span className="hidden sm:inline">Progress</span>
                     <span className="sm:hidden">Stats</span>

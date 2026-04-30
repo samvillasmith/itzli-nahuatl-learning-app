@@ -99,6 +99,20 @@ SPEED = 1.0
 import re
 from IPython.display import Audio, display
 
+PARENTHETICAL_DIRECTIONS = re.compile(r"\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}")
+OPEN_PARENTHETICAL_DIRECTION = re.compile(r"[\(\[\{][^()\[\]{}]*$")
+
+def strip_parenthetical_directions(text: str) -> str:
+    cleaned = str(text or "")
+    previous = None
+    while previous != cleaned:
+        previous = cleaned
+        cleaned = PARENTHETICAL_DIRECTIONS.sub(" ", cleaned)
+    cleaned = OPEN_PARENTHETICAL_DIRECTION.sub(" ", cleaned)
+    cleaned = re.sub(r"\s+([,.;:?!])", r"\1", cleaned)
+    cleaned = re.sub(r"([¿¡])\s+", r"\1", cleaned)
+    return " ".join(cleaned.split()).strip()
+
 def ehn_to_spanish(text: str) -> str:
     """
     Converts EHN orthography into Spanish for Kokoro.
@@ -107,6 +121,7 @@ def ehn_to_spanish(text: str) -> str:
     āēīōū → aeiou   strip macrons (vowel length not phonemic in Spanish)
     tl, tz, ch → unchanged (eSpeak Spanish handles these)
     """
+    text = strip_parenthetical_directions(text)
     text = text.translate(str.maketrans("āēīōū", "aeiou")).lower()
     text = re.sub(r"x", "sh", text)
     text = re.sub(r"[¿?!.,;:()\[\]\"']", "", text)

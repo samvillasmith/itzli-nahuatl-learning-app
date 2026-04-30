@@ -29,6 +29,7 @@ Add public/audio/ to .gitignore if the files are too large to commit.
 import sys
 import sqlite3
 import argparse
+import re
 from pathlib import Path
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -51,12 +52,28 @@ MODEL_ID = "facebook/mms-tts-nhe"
 # Use model defaults. Quality issues are addressed via text preprocessing below.
 SYNTH_PARAMS = {}
 
+PARENTHETICAL_DIRECTIONS = re.compile(r"\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}")
+OPEN_PARENTHETICAL_DIRECTION = re.compile(r"[\(\[\{][^()\[\]{}]*$")
+
+
+def strip_parenthetical_directions(text: str) -> str:
+    cleaned = str(text or "")
+    previous = None
+    while previous != cleaned:
+        previous = cleaned
+        cleaned = PARENTHETICAL_DIRECTIONS.sub(" ", cleaned)
+    cleaned = OPEN_PARENTHETICAL_DIRECTION.sub(" ", cleaned)
+    cleaned = re.sub(r"\s+([,.;:?!])", r"\1", cleaned)
+    cleaned = re.sub(r"([¿¡])\s+", r"\1", cleaned)
+    return " ".join(cleaned.split()).strip()
+
 
 def safe_text(text: str) -> str:
     """
     Normalise text for the EHN VITS tokenizer.
     Keep: lowercase Latin letters and spaces.
-    Strip: punctuation (¿ ? ! . ,), digits, everything else.
+    Strip: parenthetical stage directions, punctuation (¿ ? ! . ,), digits,
+    everything else.
     Fold: macron/accent vowels to plain vowels because the MMS tokenizer is
     trained on a plain Latin character inventory.
 
@@ -67,6 +84,7 @@ def safe_text(text: str) -> str:
     """
     import unicodedata
 
+    text = strip_parenthetical_directions(text)
     folded = unicodedata.normalize("NFD", text.lower())
     folded = "".join(c for c in folded if unicodedata.category(c) != "Mn")
 

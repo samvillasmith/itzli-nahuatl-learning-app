@@ -1,12 +1,18 @@
 import OpenAI from "openai";
 
-const client = new OpenAI();
+let client: OpenAI | null = null;
+export const MODERATION_MODEL = "omni-moderation-latest";
 
 export type ModerationVerdict = {
   flagged: boolean;
   categories: string[];
   topScore: number;
 };
+
+function getOpenAIClient(): OpenAI {
+  client ??= new OpenAI();
+  return client;
+}
 
 // OpenAI's omni-moderation-latest is free and covers:
 //   sexual, sexual/minors, harassment, harassment/threatening,
@@ -18,8 +24,8 @@ export type ModerationVerdict = {
 // letting unmoderated content through.
 export async function moderate(text: string): Promise<ModerationVerdict> {
   try {
-    const res = await client.moderations.create({
-      model: "omni-moderation-latest",
+    const res = await getOpenAIClient().moderations.create({
+      model: MODERATION_MODEL,
       input: text,
     });
 

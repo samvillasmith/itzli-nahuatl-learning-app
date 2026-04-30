@@ -6,7 +6,7 @@ import Link from "next/link";
 
 // Bump this when the legal docs change materially — everyone will be
 // re-prompted on next visit.
-const STORAGE_KEY = "itzli_legal_accepted_v1";
+const STORAGE_KEY = "itzli_legal_accepted_v2";
 
 // Never show the modal on the legal docs themselves — users need to be
 // able to read them to decide whether to agree.
@@ -71,8 +71,8 @@ export default function LegalModal() {
               safety-critical.
             </li>
             <li>
-              We apply safety moderation and never store raw chat content —
-              only hashed audit metadata.
+              We apply safety moderation and never store raw chat content;
+              audit records use hashes and structured safety metadata.
             </li>
             <li>
               You can delete your progress or account at any time.

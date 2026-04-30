@@ -32,13 +32,36 @@ const SHORT_VOWEL_BEFORE_H_CUE = {
   u: "oo",
 };
 
+const PARENTHETICAL_DIRECTIONS = /\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}/g;
+const OPEN_PARENTHETICAL_DIRECTION = /[\(\[\{][^()\[\]{}]*$/g;
 const PUNCTUATION = /[?!.,;:()[\]{}"<>/]/g;
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 const VOWELS = new Set(["a", "e", "i", "o", "u", "\u0101", "\u0113", "\u012b", "\u014d", "\u016b"]);
 const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "w", "sh"]);
 
+function stripParentheticalDirections(text) {
+  let cleaned = String(text || "");
+  let previous = "";
+
+  while (previous !== cleaned) {
+    previous = cleaned;
+    cleaned = cleaned.replace(PARENTHETICAL_DIRECTIONS, " ");
+  }
+
+  return cleaned
+    .replace(OPEN_PARENTHETICAL_DIRECTION, " ")
+    .replace(/\s+([,.;:?!])/g, "$1")
+    .replace(/([¿¡])\s+/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function speakableNahuatlText(text) {
+  return stripParentheticalDirections(text);
+}
+
 function normalizeNahuatlText(text) {
-  return String(text || "")
+  return speakableNahuatlText(text)
     .toLowerCase()
     .replace(/\u2019|\u2018|\u02bc/g, "'")
     .replace(PUNCTUATION, " ")
@@ -254,6 +277,8 @@ module.exports = {
   cueForText,
   cueForWord,
   normalizeNahuatlText,
+  speakableNahuatlText,
   splitSyllables,
+  stripParentheticalDirections,
   tokenizeWord,
 };

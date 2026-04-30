@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Terms of Service for Itzli — Eastern Huasteca Nahuatl learning app.",
 };
 
-const EFFECTIVE_DATE = "April 23, 2026";
+const EFFECTIVE_DATE = "April 30, 2026";
 const CONTACT_EMAIL = "svillasmith3@gmail.com";
 
 export default function TermsPage() {
@@ -68,6 +68,12 @@ export default function TermsPage() {
         Your messages to the tutor are transmitted to OpenAI for processing
         under their own terms. You agree not to submit personal, confidential, or
         sensitive information to the tutor.
+      </p>
+      <p className="mb-4">
+        We do not store raw tutor chat text in our database. We may store
+        privacy-preserving audit metadata, including one-way hashes of chat
+        content and structured safety/control information, to operate guardrails,
+        investigate abuse, and verify that moderation controls ran.
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">5. Content accuracy and audio</h2>

@@ -2,9 +2,9 @@
  * Creates the chat_audit table in NeonDB.
  * Run once: node scripts/audit-setup.js
  *
- * Stores moderation/guardrail events — never raw user content.
- * content_hash is a sha256 digest so repeated offenders / patterns can be
- * grouped without retaining the text itself.
+ * Stores privacy-preserving chat audit events, never raw chat content.
+ * content_hash is a sha256 digest so requests can be verified or grouped
+ * without retaining readable text.
  */
 
 const fs = require("fs");

@@ -149,8 +149,6 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 260, variantIds: [272] },
     // "thank you": tlazohcamati (std) · variants: tlazcamati, tlazohkamati
     { canonicalId: 266, variantIds: [263, 267] },
-    // "great-grandfather": achtontli · variant: achcolli
-    { canonicalId: 264, variantIds: [273] },
   ],
 
   // ── Unit 12: Future tense and indefinite verbs ────────────────────────────

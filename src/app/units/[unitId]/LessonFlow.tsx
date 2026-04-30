@@ -192,6 +192,75 @@ function extractTranslation(text: string): { nahuatl: string; translation?: stri
   return { nahuatl: text, translation: undefined };
 }
 
+function stripDiacritics(s: string): string {
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function normalizeExerciseToken(s: string): string {
+  return stripDiacritics(s)
+    .toLowerCase()
+    .replace(/^[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+|[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+$/g, "");
+}
+
+function phraseTokens(text: string): string[] {
+  return text
+    .split(/\s+/)
+    .map(normalizeExerciseToken)
+    .filter(Boolean);
+}
+
+function tokenSpans(text: string): { raw: string; normalized: string; start: number; end: number }[] {
+  const spans: { raw: string; normalized: string; start: number; end: number }[] = [];
+  const re = /\S+/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = re.exec(text)) !== null) {
+    const raw = match[0];
+    const leading = raw.match(/^[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]*/)?.[0].length ?? 0;
+    const trailing = raw.match(/[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]*$/)?.[0].length ?? 0;
+    const start = match.index + leading;
+    const end = match.index + raw.length - trailing;
+    if (end <= start) continue;
+
+    const clean = text.slice(start, end);
+    const normalized = normalizeExerciseToken(clean);
+    if (normalized) spans.push({ raw: clean, normalized, start, end });
+  }
+
+  return spans;
+}
+
+function findExactPhraseSpan(text: string, phrase: string) {
+  const needle = phraseTokens(phrase);
+  if (needle.length === 0) return null;
+
+  const haystack = tokenSpans(text);
+  for (let i = 0; i <= haystack.length - needle.length; i++) {
+    const matches = needle.every((token, offset) => haystack[i + offset]?.normalized === token);
+    if (!matches) continue;
+
+    return {
+      matchedText: text.slice(haystack[i].start, haystack[i + needle.length - 1].end),
+      start: haystack[i].start,
+      end: haystack[i + needle.length - 1].end,
+    };
+  }
+
+  return null;
+}
+
+function buildWordOptions(correct: string, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
+  const normalizedCorrect = normalizeExerciseToken(correct);
+  const fromPrimary = primaryPool
+    .map((v) => v.headword)
+    .filter((word) => normalizeExerciseToken(word) !== normalizedCorrect && phraseTokens(word).length <= 2);
+  const fromFallback = fallbackPool
+    .map((v) => v.headword)
+    .filter((word) => normalizeExerciseToken(word) !== normalizedCorrect && phraseTokens(word).length <= 2);
+  const distractors = shuffle([...new Set([...fromPrimary, ...fromFallback])]).slice(0, 3);
+  return shuffle([correct, ...distractors]);
+}
+
 function buildFillBlanks(
   chunk: VocabCard[],
   constructions: ConstructionItem[],
@@ -205,40 +274,33 @@ function buildFillBlanks(
     if (!ex || ex.length < 8) continue;
 
     const { nahuatl, translation: parenTranslation } = extractTranslation(ex);
-    const translation = c.translation_en || parenTranslation;
+    const translation = c.translation_en?.trim() || parenTranslation?.trim();
+    if (!translation) continue;
 
     for (const card of chunk) {
-      if (card.headword.length < 3 || usedWords.has(card.headword)) continue;
+      const cardKey = normalizeExerciseToken(card.headword);
+      if (cardKey.length < 3 || usedWords.has(cardKey)) continue;
 
-      const pos = nahuatl.toLowerCase().indexOf(card.headword.toLowerCase());
-      if (pos === -1) continue;
+      const match = findExactPhraseSpan(nahuatl, card.headword);
+      if (!match) continue;
 
-      const blanked = nahuatl.slice(0, pos) + "___" + nahuatl.slice(pos + card.headword.length);
-      const distractors = shuffle(
-        pool.filter((v) => v.headword !== card.headword && v.headword.length >= 2)
-      )
-        .slice(0, 3)
-        .map((v) => v.headword);
+      const blanked = nahuatl.slice(0, match.start) + "___" + nahuatl.slice(match.end);
 
       results.push({
         prompt: blanked,
         translation,
         gloss: displayGloss(card.gloss_en),
         answer: card.headword,
-        options: shuffle([card.headword, ...distractors]),
+        options: buildWordOptions(card.headword, chunk, pool),
         patternLabel: c.construction_label,
       });
-      usedWords.add(card.headword);
+      usedWords.add(cardKey);
       break;
     }
 
     if (results.length >= 6) break;
   }
   return results;
-}
-
-function stripDiacritics(s: string): string {
-  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 function dialogueTokens(text: string): string[] {
@@ -304,30 +366,17 @@ function buildDialogueMatch(
   allTokens: string[],
   pool: VocabCard[]
 ): DialogueMatch {
-  const tokens = dialogueTokens(line.utterance_normalized);
-  for (const token of tokens) {
-    const matchedCard = chunk.find((v) => stemMatch(token, v.headword));
-    if (!matchedCard) continue;
-    const pos = line.utterance_normalized.indexOf(token);
-    if (pos === -1) continue;
-    const before = line.utterance_normalized.slice(0, pos);
-    const after = line.utterance_normalized.slice(pos + token.length);
-    const tokenCandidates = allTokens.filter(
-      (t) =>
-        stripDiacritics(t.toLowerCase()) !==
-          stripDiacritics(token.toLowerCase()) && t.length >= 2
-    );
-    const vocabCandidates = pool
-      .filter((v) => v.headword !== matchedCard.headword && v.headword.length >= 2)
-      .map((v) => v.headword);
-    const combined = [...new Set([...tokenCandidates, ...vocabCandidates])];
-    const distractors = shuffle(combined).slice(0, 3);
+  void allTokens;
+  for (const card of chunk) {
+    const match = findExactPhraseSpan(line.utterance_normalized, card.headword);
+    if (!match) continue;
+
     return {
-      vocabCard: matchedCard,
-      answer: token,
-      before,
-      after,
-      options: shuffle([token, ...distractors]),
+      vocabCard: card,
+      answer: card.headword,
+      before: line.utterance_normalized.slice(0, match.start),
+      after: line.utterance_normalized.slice(match.end),
+      options: buildWordOptions(card.headword, chunk, pool),
     };
   }
   return null;

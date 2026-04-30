@@ -2,6 +2,9 @@ import { createHash } from "node:crypto";
 import { getSql } from "@/lib/neon";
 
 export type AuditKind =
+  | "chat_completed"      // request completed after all guardrails ran
+  | "chat_empty_response" // model returned no usable text
+  | "chat_upstream_error" // model/provider request failed
   | "input_flagged"       // OpenAI moderation flagged user input
   | "output_flagged"      // OpenAI moderation flagged model output
   | "injection_heuristic" // local prompt-injection detector tripped
@@ -21,13 +24,18 @@ type LogArgs = {
   meta?: Record<string, unknown>;
 };
 
-// Fire-and-forget: we never block a user response on audit persistence.
-// Raw content is never stored — only a sha256 hash for grouping repeat
-// offenders or recurring attack patterns.
-export function logAudit({ userId, kind, content, categories = [], meta = {} }: LogArgs): void {
+// Raw content is never stored: only sha256 hashes and structured metadata.
+// This gives us traceability without retaining user or assistant text.
+export async function writeAudit({
+  userId,
+  kind,
+  content,
+  categories = [],
+  meta = {},
+}: LogArgs): Promise<void> {
   const contentHash = hashContent(content);
   const sql = getSql();
-  void sql`
+  await sql`
     INSERT INTO chat_audit (user_id, kind, categories, content_hash, meta)
     VALUES (
       ${userId},
@@ -36,7 +44,13 @@ export function logAudit({ userId, kind, content, categories = [], meta = {} }: 
       ${contentHash},
       ${JSON.stringify(meta)}
     )
-  `.catch((err: unknown) => {
+  `;
+}
+
+// Fire-and-forget helper for rejection paths where the response should not
+// wait on audit persistence.
+export function logAudit(args: LogArgs): void {
+  void writeAudit(args).catch((err: unknown) => {
     console.error("[audit] insert failed:", err);
   });
 }

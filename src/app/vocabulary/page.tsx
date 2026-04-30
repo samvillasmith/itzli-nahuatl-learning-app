@@ -72,7 +72,7 @@ export default async function VocabularyPage({
     );
   }
 
-  // Default: all primer vocabulary items in the curated unit order.
+  // Default: core primer vocabulary items in the curated unit order.
   const vocab = getAllPrimerVocab();
   const units = getAllUnits();
   const unitsByLesson = new Map(units.map((unit) => [unit.lesson_number, unit]));
@@ -93,7 +93,7 @@ export default async function VocabularyPage({
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">Vocabulary</h1>
         <p className="text-stone-500 mb-4">
-          {vocab.length} primer items · search to explore the full 37,000-entry lexicon.
+          {vocab.length} core primer items · search to explore the full 37,000-entry lexicon.
         </p>
         <SearchForm defaultValue="" />
       </div>

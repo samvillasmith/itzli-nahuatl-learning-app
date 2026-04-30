@@ -18,6 +18,7 @@ const {
   buildTtsInstructions,
   cueForText,
   normalizeNahuatlText,
+  speakableNahuatlText,
 } = require("./lib/nahuatl-pronunciation");
 
 const DEFAULTS = {
@@ -143,11 +144,16 @@ Options:
 
 function loadRows(args) {
   if (args.test.length) {
-    return args.test.map((text, index) => ({
-      kind: "test",
-      id: slugify(text) || `test-${index + 1}`,
-      text,
-    }));
+    return args.test
+      .map((rawText, index) => {
+        const text = speakableNahuatlText(rawText);
+        return {
+          kind: "test",
+          id: slugify(text) || `test-${index + 1}`,
+          text,
+        };
+      })
+      .filter((row) => row.text);
   }
 
   const db = new Database(resolveDbPath(), { readonly: true });
@@ -169,7 +175,10 @@ function loadRows(args) {
           "ORDER BY lesson_dialogue_id"
       )
       .all();
-    for (const row of dialogue) rows.push({ kind: "dialogue", id: String(row.id), text: row.text });
+    for (const row of dialogue) {
+      const text = speakableNahuatlText(row.text);
+      if (text) rows.push({ kind: "dialogue", id: String(row.id), text });
+    }
   }
 
   db.close();

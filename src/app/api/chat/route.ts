@@ -1,20 +1,23 @@
 import OpenAI from "openai";
+import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { moderate } from "@/lib/moderation";
+import { moderate, MODERATION_MODEL } from "@/lib/moderation";
 import { detectInjection } from "@/lib/prompt-injection";
-import { logAudit } from "@/lib/audit";
+import { hashContent, logAudit, writeAudit } from "@/lib/audit";
 import { getSystemPrompt, REFUSAL, type ChatMode } from "@/lib/chat-system-prompt";
-import { retrieve, formatRetrieved } from "@/lib/rag";
+import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
+import { retrieve, formatRetrieved, EMBED_MODEL } from "@/lib/rag";
 
 export const maxDuration = 30;
 export const runtime = "nodejs";
 
-const client = new OpenAI();
-
 const MAX_MESSAGE_CHARS = 2000;
 const MAX_HISTORY = 10;
+const CHAT_AUDIT_SCHEMA_VERSION = 1;
+const CHAT_POLICY_VERSION = "2026-04-30";
+let client: OpenAI | null = null;
 
 // Per-mode model settings. gpt-4.1-mini handles the multi-rule instruction
 // following that gpt-4o-mini struggled with, while staying fast + cheap.
@@ -62,7 +65,55 @@ function parseMode(raw: unknown): ChatMode {
   return raw === "practice" ? "practice" : "tutor";
 }
 
+function getOpenAIClient(): OpenAI {
+  client ??= new OpenAI();
+  return client;
+}
+
+function auditBase(requestId: string, startedAt: number, mode?: ChatMode) {
+  return {
+    requestId,
+    auditSchemaVersion: CHAT_AUDIT_SCHEMA_VERSION,
+    policyVersion: CHAT_POLICY_VERSION,
+    mode,
+    durationMs: Date.now() - startedAt,
+  };
+}
+
+async function writeFinalAudit(
+  args: Parameters<typeof writeAudit>[0],
+): Promise<Response | null> {
+  try {
+    await writeAudit(args);
+    return null;
+  } catch (err) {
+    console.error("[audit] final insert failed:", err);
+    if (process.env.REQUIRE_CHAT_AUDIT === "true") {
+      return NextResponse.json(
+        { error: "Audit logging is unavailable." },
+        { status: 503, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+    return null;
+  }
+}
+
 export async function POST(req: Request) {
+  const requestId = randomUUID();
+  const startedAt = Date.now();
+
+  if (!TUTOR_FEATURE_ENABLED) {
+    return NextResponse.json(
+      { error: "The AI tutor is temporarily unavailable." },
+      {
+        status: 503,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  }
+
   // 1. Auth (middleware also enforces; keep explicit for defense-in-depth)
   const { userId } = await auth();
   if (!userId) {
@@ -74,13 +125,23 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    logAudit({ userId, kind: "invalid_payload", content: "", meta: { reason: "json_parse" } });
+    logAudit({
+      userId,
+      kind: "invalid_payload",
+      content: "",
+      meta: { ...auditBase(requestId, startedAt), reason: "json_parse" },
+    });
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
   const rawMessages = (body as { messages?: unknown }).messages;
   if (!Array.isArray(rawMessages) || rawMessages.length === 0 || !rawMessages.every(isValidMessage)) {
-    logAudit({ userId, kind: "invalid_payload", content: "", meta: { reason: "shape" } });
+    logAudit({
+      userId,
+      kind: "invalid_payload",
+      content: "",
+      meta: { ...auditBase(requestId, startedAt), reason: "shape" },
+    });
     return NextResponse.json({ error: "Invalid messages" }, { status: 400 });
   }
 
@@ -88,6 +149,12 @@ export async function POST(req: Request) {
   const messages = rawMessages as IncomingMessage[];
   const latest = messages[messages.length - 1];
   if (latest.role !== "user") {
+    logAudit({
+      userId,
+      kind: "invalid_payload",
+      content: latest.content,
+      meta: { ...auditBase(requestId, startedAt, mode), reason: "last_message_role" },
+    });
     return NextResponse.json({ error: "Last message must be from user" }, { status: 400 });
   }
 
@@ -96,7 +163,7 @@ export async function POST(req: Request) {
       userId,
       kind: "input_too_long",
       content: latest.content,
-      meta: { length: latest.content.length, mode },
+      meta: { ...auditBase(requestId, startedAt, mode), length: latest.content.length },
     });
     return NextResponse.json(
       { error: `Message too long. Max ${MAX_MESSAGE_CHARS} characters.` },
@@ -111,7 +178,7 @@ export async function POST(req: Request) {
       userId,
       kind: "rate_limited",
       content: latest.content,
-      meta: { window: rl.window, retryAfterMs: rl.retryAfterMs, mode },
+      meta: { ...auditBase(requestId, startedAt, mode), window: rl.window, retryAfterMs: rl.retryAfterMs },
     });
     return NextResponse.json(
       { error: "Too many requests. Please slow down." },
@@ -130,7 +197,7 @@ export async function POST(req: Request) {
       kind: "injection_heuristic",
       content: latest.content,
       categories: injection.matches,
-      meta: { score: injection.score, mode },
+      meta: { ...auditBase(requestId, startedAt, mode), score: injection.score },
     });
     return refusalResponse();
   }
@@ -143,7 +210,7 @@ export async function POST(req: Request) {
       kind: "input_flagged",
       content: latest.content,
       categories: inputVerdict.categories,
-      meta: { topScore: inputVerdict.topScore, mode },
+      meta: { ...auditBase(requestId, startedAt, mode), topScore: inputVerdict.topScore, moderationModel: MODERATION_MODEL },
     });
     return refusalResponse();
   }
@@ -175,7 +242,7 @@ export async function POST(req: Request) {
 
   let assistantText: string;
   try {
-    const completion = await client.chat.completions.create({
+    const completion = await getOpenAIClient().chat.completions.create({
       model: MODEL,
       max_tokens: 800,
       temperature: TEMPERATURE[mode],
@@ -185,10 +252,30 @@ export async function POST(req: Request) {
     assistantText = completion.choices[0]?.message?.content ?? "";
   } catch (err) {
     console.error("[chat] OpenAI call failed:", err);
+    logAudit({
+      userId,
+      kind: "chat_upstream_error",
+      content: latest.content,
+      meta: {
+        ...auditBase(requestId, startedAt, mode),
+        model: MODEL,
+        errorName: err instanceof Error ? err.name : "unknown",
+      },
+    });
     return NextResponse.json({ error: "Upstream error" }, { status: 502 });
   }
 
   if (!assistantText.trim()) {
+    logAudit({
+      userId,
+      kind: "chat_empty_response",
+      content: latest.content,
+      meta: {
+        ...auditBase(requestId, startedAt, mode),
+        model: MODEL,
+        responseHash: hashContent(assistantText),
+      },
+    });
     return refusalResponse();
   }
 
@@ -200,12 +287,42 @@ export async function POST(req: Request) {
       kind: "output_flagged",
       content: assistantText,
       categories: outputVerdict.categories,
-      meta: { topScore: outputVerdict.topScore, mode },
+      meta: {
+        ...auditBase(requestId, startedAt, mode),
+        inputHash: hashContent(latest.content),
+        topScore: outputVerdict.topScore,
+        moderationModel: MODERATION_MODEL,
+        model: MODEL,
+      },
     });
     return refusalResponse();
   }
 
   // 9. Clean response → stream to client in one chunk so the existing
   // reader-based client code keeps working without changes.
+  const auditFailure = await writeFinalAudit({
+    userId,
+    kind: "chat_completed",
+    content: latest.content,
+    meta: {
+      ...auditBase(requestId, startedAt, mode),
+      inputChars: latest.content.length,
+      responseChars: assistantText.length,
+      responseHash: hashContent(assistantText),
+      refused: assistantText.trim() === REFUSAL,
+      model: MODEL,
+      moderationModel: MODERATION_MODEL,
+      embeddingModel: EMBED_MODEL,
+      inputModerationTopScore: inputVerdict.topScore,
+      outputModerationTopScore: outputVerdict.topScore,
+      injectionScore: injection.score,
+      injectionMatches: injection.matches,
+      retrievedCount: retrieved.length,
+      historyCount: messages.length,
+      truncatedHistoryCount: truncated.length,
+    },
+  });
+  if (auditFailure) return auditFailure;
+
   return textResponse(singleChunkStream(assistantText));
 }

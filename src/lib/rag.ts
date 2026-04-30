@@ -13,9 +13,9 @@ import { getSql } from "@/lib/neon";
 // On any failure we return an empty array so the chat route degrades
 // gracefully to the in-prompt grammar rules alone.
 
-const EMBED_MODEL = "text-embedding-3-small";
+export const EMBED_MODEL = "text-embedding-3-small";
 
-const client = new OpenAI();
+let client: OpenAI | null = null;
 
 export type RetrievedChunk = {
   kind: "vocab" | "phrase" | "grammar" | "morphology" | string;
@@ -24,9 +24,14 @@ export type RetrievedChunk = {
   distance: number;
 };
 
+function getOpenAIClient(): OpenAI {
+  client ??= new OpenAI();
+  return client;
+}
+
 export async function embedQuery(text: string): Promise<number[] | null> {
   try {
-    const res = await client.embeddings.create({
+    const res = await getOpenAIClient().embeddings.create({
       model: EMBED_MODEL,
       input: text,
     });

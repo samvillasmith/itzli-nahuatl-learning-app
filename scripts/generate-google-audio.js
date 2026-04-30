@@ -18,6 +18,7 @@ const { resolveDbPath } = require("./_db-path");
 const {
   cueForText,
   normalizeNahuatlText,
+  speakableNahuatlText,
   splitSyllables,
   tokenizeWord,
 } = require("./lib/nahuatl-pronunciation");
@@ -311,11 +312,16 @@ async function listVoices(token, args) {
 
 function loadRows(args) {
   if (args.test.length) {
-    return args.test.map((text, index) => ({
-      kind: "test",
-      id: slugify(text) || `test-${index + 1}`,
-      text,
-    }));
+    return args.test
+      .map((rawText, index) => {
+        const text = speakableNahuatlText(rawText);
+        return {
+          kind: "test",
+          id: slugify(text) || `test-${index + 1}`,
+          text,
+        };
+      })
+      .filter((row) => row.text);
   }
 
   const db = new Database(resolveDbPath(), { readonly: true });
@@ -337,7 +343,10 @@ function loadRows(args) {
           "ORDER BY lesson_dialogue_id"
       )
       .all();
-    for (const row of dialogue) rows.push({ kind: "dialogue", id: String(row.id), text: row.text });
+    for (const row of dialogue) {
+      const text = speakableNahuatlText(row.text);
+      if (text) rows.push({ kind: "dialogue", id: String(row.id), text });
+    }
   }
 
   db.close();
@@ -402,7 +411,7 @@ function escapeXmlSingleAttr(value) {
 }
 
 function buildSsml(text, args) {
-  const source = String(text || "").toLowerCase();
+  const source = speakableNahuatlText(text).toLowerCase();
   let out = "";
   let last = 0;
 
@@ -430,7 +439,7 @@ function buildSsml(text, args) {
 }
 
 function xsampaForText(text) {
-  return String(text || "")
+  return speakableNahuatlText(text)
     .toLowerCase()
     .replace(WORD_RE, (word) => wordToXsampa(word) || word);
 }

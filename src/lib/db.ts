@@ -4,6 +4,7 @@ import fs from "fs";
 import os from "os";
 import { execFileSync } from "child_process";
 import { enhanceUnit, type CurriculumFields } from "./curriculum";
+import { filterCoreVocab } from "@/data/excluded-vocab";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -59,6 +60,7 @@ export type Unit = CurriculumFields & {
 
 export type VocabItem = {
   id: number;
+  rank: number;
   headword: string;
   gloss_en: string;
   part_of_speech: string;
@@ -141,7 +143,13 @@ export function getAllUnits(): Unit[] {
   return getDb()
     .prepare(`${UNIT_SELECT} ORDER BY p.lesson_number`)
     .all()
-    .map((row) => enhanceUnit(row as Omit<Unit, keyof CurriculumFields>))
+    .map((row) => {
+      const unit = enhanceUnit(row as Omit<Unit, keyof CurriculumFields>);
+      return {
+        ...unit,
+        english_vocab_count: getUnitVocab(unit.lesson_number).length,
+      };
+    })
     .sort((a, b) => a.path_order - b.path_order) as Unit[];
 }
 
@@ -149,39 +157,52 @@ export function getUnit(lessonNumber: number): Unit | null {
   const row = getDb()
     .prepare(`${UNIT_SELECT} WHERE p.lesson_number = ?`)
     .get(lessonNumber) as Omit<Unit, keyof CurriculumFields> | undefined;
-  return row ? (enhanceUnit(row) as Unit) : null;
+  if (!row) return null;
+  const unit = enhanceUnit(row) as Unit;
+  return {
+    ...unit,
+    english_vocab_count: getUnitVocab(unit.lesson_number).length,
+  };
 }
 
 export function getUnitVocab(lessonNumber: number): VocabItem[] {
-  return getDb()
+  const rows = getDb()
     .prepare(
-      `SELECT id, display_form AS headword, gloss_en, part_of_speech,
+      `SELECT id, rank, display_form AS headword, gloss_en, part_of_speech,
               lesson_number AS first_lesson_number, semantic_domain
        FROM lesson_vocab
        WHERE lesson_number = ?
-       ORDER BY rank`
+       ORDER BY rank, id`
     )
     .all(lessonNumber) as VocabItem[];
+
+  return filterCoreVocab(rows, lessonNumber);
 }
 
 export function getVocabCount(): number {
-  return (
-    getDb()
-      .prepare("SELECT COUNT(*) as n FROM lesson_vocab WHERE gloss_en NOT LIKE '%MISPLACED%'")
-      .get() as { n: number }
-  ).n;
+  return getAllPrimerVocab().length;
 }
 
 export function getAllPrimerVocab(): VocabItem[] {
-  return getDb()
+  const rows = getDb()
     .prepare(
-      `SELECT id, display_form AS headword, gloss_en, part_of_speech,
+      `SELECT id, rank, display_form AS headword, gloss_en, part_of_speech,
               lesson_number AS first_lesson_number, semantic_domain
        FROM lesson_vocab
-       WHERE gloss_en NOT LIKE '%MISPLACED%'
-       ORDER BY lesson_number, rank`
+       ORDER BY lesson_number, rank, id`
     )
     .all() as VocabItem[];
+
+  const byLesson = new Map<number, VocabItem[]>();
+  for (const row of rows) {
+    const group = byLesson.get(row.first_lesson_number) ?? [];
+    group.push(row);
+    byLesson.set(row.first_lesson_number, group);
+  }
+
+  return [...byLesson.entries()]
+    .sort(([a], [b]) => a - b)
+    .flatMap(([lessonNumber, items]) => filterCoreVocab(items, lessonNumber));
 }
 
 export function getUnitDialogues(lessonNumber: number): DialogueLine[] {
@@ -263,7 +284,8 @@ export function getUnitConstructions(lessonNumber: number): Construction[] {
               proficiency_band, first_lesson_number, example_original,
               ${hasTranslation ? "translation_en," : ""} avg_confidence
        FROM primer_constructions
-       WHERE first_lesson_number <= ?
+       WHERE first_lesson_number = ?
+         ${hasTranslation ? "AND translation_en IS NOT NULL AND trim(translation_en) != ''" : ""}
        ORDER BY avg_confidence DESC`
     )
     .all(lessonNumber)
