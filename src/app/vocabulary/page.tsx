@@ -1,4 +1,4 @@
-import { getAllPrimerVocab, getAllUnits, searchVocab } from "@/lib/db";
+import { getAllPrimerVocab, getAllUnits, getPrimerVocabEntryCount, searchVocab } from "@/lib/db";
 
 const POS_COLOR: Record<string, string> = {
   noun: "bg-amber-50 text-amber-700",
@@ -74,6 +74,7 @@ export default async function VocabularyPage({
 
   // Default: core primer vocabulary items in the curated unit order.
   const vocab = getAllPrimerVocab();
+  const primerEntryCount = getPrimerVocabEntryCount();
   const units = getAllUnits();
   const unitsByLesson = new Map(units.map((unit) => [unit.lesson_number, unit]));
 
@@ -93,7 +94,7 @@ export default async function VocabularyPage({
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">Vocabulary</h1>
         <p className="text-stone-500 mb-4">
-          {vocab.length} core primer items · search to explore the full 37,000-entry lexicon.
+          {vocab.length} core primer items from {primerEntryCount.toLocaleString()} primer entries · search to explore the full 37,000-entry lexicon.
         </p>
         <SearchForm defaultValue="" />
       </div>

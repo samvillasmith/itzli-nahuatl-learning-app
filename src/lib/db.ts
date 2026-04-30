@@ -183,6 +183,11 @@ export function getVocabCount(): number {
   return getAllPrimerVocab().length;
 }
 
+export function getPrimerVocabEntryCount(): number {
+  const row = getDb().prepare("SELECT COUNT(*) AS count FROM lesson_vocab").get() as { count: number };
+  return row.count;
+}
+
 export function getAllPrimerVocab(): VocabItem[] {
   const rows = getDb()
     .prepare(

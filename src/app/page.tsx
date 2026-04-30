@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Show } from "@clerk/nextjs";
-import { getAllUnits, getVocabCount } from "@/lib/db";
+import { getAllUnits, getPrimerVocabEntryCount, getVocabCount } from "@/lib/db";
 import { getCurriculumAudit } from "@/lib/curriculum";
 import { getWordImage } from "@/data/word-images";
 
@@ -46,6 +46,7 @@ function ImageMosaic() {
 export default function LandingPage() {
   const units = getAllUnits();
   const vocabCount = getVocabCount();
+  const primerEntryCount = getPrimerVocabEntryCount();
   const audit = getCurriculumAudit();
   const dialogueCount = units.reduce((sum, unit) => sum + unit.english_dialogue_count, 0);
   const constructions = units.reduce((sum, unit) => sum + unit.english_construction_count, 0);
@@ -66,8 +67,9 @@ export default function LandingPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-stone-100 sm:text-lg">
             Itzli now presents a curated CEFR-style progression across {audit.totalUnits} units,
-            {vocabCount.toLocaleString()} primer words, language-specific machine audio, dialogues,
-            grammar, practice, and a searchable lexicon built around Eastern Huasteca Nahuatl.
+            {vocabCount.toLocaleString()} core lesson cards, {primerEntryCount.toLocaleString()} primer
+            vocabulary entries, language-specific machine audio, dialogues, grammar, practice, and a
+            searchable lexicon built around Eastern Huasteca Nahuatl.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -106,7 +108,7 @@ export default function LandingPage() {
       <section className="grid gap-3 sm:grid-cols-4">
         {[
           { value: audit.totalUnits, label: "curated units", sub: `${audit.stages} learning stages` },
-          { value: vocabCount.toLocaleString(), label: "primer words", sub: "sequenced by use" },
+          { value: vocabCount.toLocaleString(), label: "core lesson cards", sub: `${primerEntryCount.toLocaleString()} primer entries` },
           { value: dialogueCount.toLocaleString(), label: "dialogue lines", sub: "in lesson flow" },
           { value: constructions.toLocaleString(), label: "grammar patterns", sub: "A1 to B1 support" },
         ].map((stat) => (
