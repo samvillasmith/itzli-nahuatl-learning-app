@@ -22,6 +22,7 @@ type DialogueLine = {
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
+  audio_available?: boolean;
 };
 type ConstructionItem = { example_original: string; construction_label?: string; translation_en?: string | null };
 type LessonBlockItem = { text_normalized: string };
@@ -86,6 +87,7 @@ const UNIT_TIPS: Record<number, TipData[]> = {
   ],
   2: [
     { icon: "❓", title: "Asking Questions", body: "In EHN, questions often keep the same word order as statements. The question word (tlen, aqui, canin) goes at the beginning, and your voice rises at the end." },
+    { icon: "✓", title: "Yes and No", body: "This course teaches quena for yes and axtle for no first. You may see quema or quemah in source material; treat those as variants until they are explained." },
   ],
   3: [
     { icon: "👤", title: "Pronouns Are Optional", body: "In everyday speech, people usually drop the pronoun (na, ta, ya) because the verb prefix already shows who's acting. Pronouns are added for emphasis: \"NA nitequiti\" = \"I work\" (not someone else). Not sure what \"first person\" or \"second person\" means? Check the grammar lesson \"Who's Talking? Person & Number Explained\" under Grammar." },
@@ -169,14 +171,20 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function buildFwdOptions(correct: VocabCard, pool: VocabCard[]): string[] {
-  const distractors = shuffle(pool.filter((v) => v.headword !== correct.headword))
+  const correctGloss = normalizeGlossForExercise(correct.gloss_en);
+  const distractors = shuffle(pool.filter((v) =>
+    v.headword !== correct.headword && normalizeGlossForExercise(v.gloss_en) !== correctGloss
+  ))
     .slice(0, 3)
     .map((v) => displayGloss(v.gloss_en));
-  return shuffle([displayGloss(correct.gloss_en), ...distractors]);
+  return shuffle([displayGloss(correct.gloss_en), ...new Set(distractors)]);
 }
 
 function buildRevOptions(correct: VocabCard, pool: VocabCard[]): string[] {
-  const distractors = shuffle(pool.filter((v) => v.headword !== correct.headword))
+  const correctGloss = normalizeGlossForExercise(correct.gloss_en);
+  const distractors = shuffle(pool.filter((v) =>
+    v.headword !== correct.headword && normalizeGlossForExercise(v.gloss_en) !== correctGloss
+  ))
     .slice(0, 3)
     .map((v) => v.headword);
   return shuffle([correct.headword, ...distractors]);
@@ -207,6 +215,15 @@ function phraseTokens(text: string): string[] {
     .split(/\s+/)
     .map(normalizeExerciseToken)
     .filter(Boolean);
+}
+
+function normalizeGlossForExercise(s: string): string {
+  return displayGloss(s)
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/\b(a|an|the|to)\b/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
 function tokenSpans(text: string): { raw: string; normalized: string; start: number; end: number }[] {
@@ -251,13 +268,21 @@ function findExactPhraseSpan(text: string, phrase: string) {
 
 function buildWordOptions(correct: string, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
   const normalizedCorrect = normalizeExerciseToken(correct);
+  const correctGloss = normalizeGlossForExercise(
+    primaryPool.find((v) => normalizeExerciseToken(v.headword) === normalizedCorrect)?.gloss_en ?? ""
+  );
+  const isUsableDistractor = (word: string, gloss: string) =>
+    normalizeExerciseToken(word) !== normalizedCorrect &&
+    phraseTokens(word).length <= 2 &&
+    (!correctGloss || normalizeGlossForExercise(gloss) !== correctGloss);
   const fromPrimary = primaryPool
-    .map((v) => v.headword)
-    .filter((word) => normalizeExerciseToken(word) !== normalizedCorrect && phraseTokens(word).length <= 2);
+    .filter((v) => isUsableDistractor(v.headword, v.gloss_en))
+    .map((v) => v.headword);
   const fromFallback = fallbackPool
-    .map((v) => v.headword)
-    .filter((word) => normalizeExerciseToken(word) !== normalizedCorrect && phraseTokens(word).length <= 2);
-  const distractors = shuffle([...new Set([...fromPrimary, ...fromFallback])]).slice(0, 3);
+    .filter((v) => isUsableDistractor(v.headword, v.gloss_en))
+    .map((v) => v.headword);
+  const source = fromPrimary.length >= 3 ? fromPrimary : [...fromPrimary, ...fromFallback];
+  const distractors = shuffle([...new Set(source)]).slice(0, 3);
   return shuffle([correct, ...distractors]);
 }
 
@@ -399,6 +424,11 @@ function buildSequence(
   }
 
   const tips = UNIT_TIPS[unitNum] ?? [];
+  const glossCounts = chunk.reduce((counts, card) => {
+    const key = normalizeGlossForExercise(card.gloss_en);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>());
   let fillIdx = 0;
   let tipIdx = 0;
 
@@ -414,8 +444,10 @@ function buildSequence(
     }
 
     for (let i = 0; i < group.length; i++) {
+      const card = chunk[group[i]];
+      const canReverse = (glossCounts.get(normalizeGlossForExercise(card.gloss_en)) ?? 0) === 1;
       steps.push({
-        kind: (g + i) % 2 === 0 ? "quizFwd" : "quizRev",
+        kind: (g + i) % 2 === 0 || !canReverse ? "quizFwd" : "quizRev",
         wordIdx: group[i],
       });
     }
@@ -433,12 +465,17 @@ function buildSequence(
     const allTokens = [
       ...new Set(dialogues.flatMap((l) => dialogueTokens(l.utterance_normalized))),
     ];
+    let dialogueCount = 0;
     for (let i = 0; i < dialogues.length; i++) {
+      const match = buildDialogueMatch(dialogues[i], chunk, allTokens, pool);
+      if (!match) continue;
       steps.push({
         kind: "dialogue",
         lineIdx: i,
-        match: buildDialogueMatch(dialogues[i], chunk, allTokens, pool),
+        match,
       });
+      dialogueCount += 1;
+      if (dialogueCount >= 6) break;
     }
   }
 
@@ -727,6 +764,22 @@ export default function LessonFlow({
     [unitNum, chunkIndex]
   );
 
+  const lessonDialogues = useMemo(() => {
+    const allTokens = [
+      ...new Set(dialogues.flatMap((l) => dialogueTokens(l.utterance_normalized))),
+    ];
+    const matched: DialogueLine[] = [];
+
+    for (const line of dialogues) {
+      if (!buildDialogueMatch(line, currentChunk, allTokens, pool)) continue;
+      matched.push(line);
+      if (matched.length >= 6) break;
+    }
+
+    return matched;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unitNum, chunkIndex]);
+
   // ── Build per-word quiz options ─────────────────────────────────────────────
 
   const fwdOptions = useMemo(
@@ -744,7 +797,7 @@ export default function LessonFlow({
   // ── Build sequence ──────────────────────────────────────────────────────────
 
   const sequence = useMemo(
-    () => buildSequence(currentChunk, srsIndices, fillBlanks, dialogues, pool, unitNum),
+    () => buildSequence(currentChunk, srsIndices, fillBlanks, lessonDialogues, pool, unitNum),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
@@ -826,7 +879,7 @@ export default function LessonFlow({
             {filteredVocab.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{filteredVocab.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">words</div>
+                <div className="text-xs text-stone-400 mt-0.5">words total</div>
               </div>
             )}
             {totalChunks > 1 && (
@@ -836,6 +889,11 @@ export default function LessonFlow({
               </div>
             )}
           </div>
+          {filteredVocab.length > CHUNK_SIZE && (
+            <p className="text-xs font-medium text-stone-400 mb-6">
+              Each lesson is capped at {CHUNK_SIZE} words.
+            </p>
+          )}
 
           {filteredVocab.length > 0 ? (
             <button
@@ -1314,12 +1372,14 @@ export default function LessonFlow({
   // ── DIALOGUE ──────────────────────────────────────────────────────────────
 
   if (step.kind === "dialogue") {
-    const line = dialogues[step.lineIdx];
+    const line = lessonDialogues[step.lineIdx];
     const match = step.match;
     const isPassive = match === null;
     const options = match?.options ?? [];
 
-    const allSpeakers = [...new Set(dialogues.map((l) => l.speaker_label))];
+    if (!line) return null;
+
+    const allSpeakers = [...new Set(lessonDialogues.map((l) => l.speaker_label))];
     const isRight = (speaker: string) => allSpeakers.indexOf(speaker) === 1;
 
     function utteranceDisplay(): string {
@@ -1347,7 +1407,7 @@ export default function LessonFlow({
 
         {/* Chat history */}
         <div className="flex flex-col gap-2.5 mb-3">
-          {dialogues.slice(0, step.lineIdx).map((pastLine, i) => {
+          {lessonDialogues.slice(0, step.lineIdx).map((pastLine, i) => {
             const right = isRight(pastLine.speaker_label);
             return (
               <div key={i} className={`flex flex-col gap-0.5 ${right ? "items-end" : "items-start"}`}>
@@ -1375,7 +1435,9 @@ export default function LessonFlow({
         <div className={`flex flex-col gap-0.5 mb-4 ${isRight(line.speaker_label) ? "items-end" : "items-start"}`}>
           <div className={`flex items-center gap-1.5 px-1 ${isRight(line.speaker_label) ? "flex-row-reverse" : ""}`}>
             <p className="text-[10px] text-stone-400">{line.speaker_label}</p>
-            <AudioButton src={dialogueAudioUrl(line.lesson_dialogue_id)} size="sm" />
+            {line.audio_available !== false && (
+              <AudioButton src={dialogueAudioUrl(line.lesson_dialogue_id)} size="sm" />
+            )}
           </div>
           <div
             className={`max-w-[82%] px-4 py-3 rounded-2xl text-base font-semibold leading-snug shadow-sm ${
@@ -1423,7 +1485,7 @@ export default function LessonFlow({
         {(isPassive || checked) && (
           <ContinueButton
             onClick={advance}
-            label={step.lineIdx === dialogues.length - 1 ? "Finish →" : "Continue →"}
+            label={step.lineIdx === lessonDialogues.length - 1 ? "Finish →" : "Continue →"}
           />
         )}
       </div>

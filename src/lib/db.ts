@@ -5,6 +5,7 @@ import os from "os";
 import { execFileSync } from "child_process";
 import { enhanceUnit, type CurriculumFields } from "./curriculum";
 import { filterCoreVocab } from "@/data/excluded-vocab";
+import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -228,7 +229,28 @@ export type DialogueLineContent = {
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
+  audio_available?: boolean;
 };
+
+function stripStageDirections(value: string | null): { text: string; changed: boolean } {
+  if (!value) return { text: "", changed: false };
+
+  let cleaned = value;
+  let previous = "";
+  while (previous !== cleaned) {
+    previous = cleaned;
+    cleaned = cleaned.replace(/\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}/g, " ");
+  }
+
+  cleaned = cleaned
+    .replace(/[\(\[\{][^()\[\]{}]*$/g, " ")
+    .replace(/\s+([,.;:?!])/g, "$1")
+    .replace(/([¿¡])\s+/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return { text: cleaned, changed: cleaned !== value.trim() };
+}
 
 // Returns real A/B dialogue and named-character conversation lines from
 // lesson_dialogues, filtered to actual EHN text (lines with macron vowels
@@ -236,6 +258,9 @@ export type DialogueLineContent = {
 // by the diacritic/¿ requirement.  Named speakers Rufina, Martha, and Angela
 // appear in lesson 19 and produce a genuine three-way conversation there.
 export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
+  const curated = CURATED_DIALOGUES[lessonNumber];
+  if (curated) return curated;
+
   return getDb()
     .prepare(
       `SELECT ld.lesson_dialogue_id, ld.speaker_label, ld.utterance_normalized, ld.translation_en
@@ -252,7 +277,19 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
               OR ld.utterance_normalized LIKE '%¿%')
        ORDER BY ld.lesson_dialogue_id`
     )
-    .all(lessonNumber) as DialogueLineContent[];
+    .all(lessonNumber)
+    .map((row) => {
+      const line = row as DialogueLineContent;
+      const utterance = stripStageDirections(line.utterance_normalized);
+      const translation = stripStageDirections(line.translation_en);
+      return {
+        ...line,
+        utterance_normalized: utterance.text,
+        translation_en: translation.text || null,
+        audio_available: !utterance.changed,
+      };
+    })
+    .filter((line) => line.utterance_normalized.length > 0) as DialogueLineContent[];
 }
 
 export type LessonBlock = {

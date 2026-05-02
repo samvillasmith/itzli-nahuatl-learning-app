@@ -17,13 +17,22 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   194,  // cipactli - alligator, off-topic in a possession unit
 
   // Unit 11: Greetings and farewells
+  262,  // ax tleno - duplicate "you're welcome"; teach axtlen first
   264,  // achtontli - great-grandfather, belongs to advanced kinship/reference
+  265,  // tlahpalolli - meta word "greetings", not a usable first exchange
   270,  // yalhua - yesterday, belongs to time/calendar work
+  271,  // quemah - duplicate yes variant; quena/axtle are introduced in Unit 2
   274,  // mintontli - great-great-grandchild, too specialized for greetings
   275,  // piptontli - great-grandmother / great-grandfather's sister, too specialized
   276,  // teoxihuitl - fine turquoise, off-topic
   277,  // hueyicayotl - greatness, abstract noun off-topic
   278,  // tlalalacatl - specialized zoological term, off-topic
+
+  // Unit 12: Future tense and indefinite verbs
+  296,  // cui - adult/sexual verb, not needed in a general future-tense lesson
+  297,  // teca - adult/sexual verb, not needed in a general future-tense lesson
+  6845, // amaitla - duplicate/miswritten "you're welcome"
+  7643, // teochihua - "to bless", not a greeting/farewell card
 
   // ── Unit 23: What is Inside the House ──────────────────────────────────
   525,  // zacacalli — hay storehouse (outbuilding, not inside a house)
@@ -60,9 +69,7 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   7724,  // tilmahtli - clothing word in conditions/evaluations unit
 ]);
 
-const CORE_GLOSS_OVERRIDES: Record<number, string> = {
-  6845: "you're welcome",
-};
+const CORE_GLOSS_OVERRIDES: Record<number, string> = {};
 
 export const CORE_VOCAB_LIMITS: Record<number, number> = {
   9: 28,
@@ -132,11 +139,21 @@ function hasExcludedGloss(gloss: string): boolean {
   return (
     normalized.includes("misplaced") ||
     normalized.includes("off-theme") ||
+    normalized.includes("non-standard") ||
+    normalized.includes("not standard") ||
+    normalized.includes("possible data error") ||
     normalized.includes("not widely attested") ||
     normalized.includes("not a core") ||
     normalized.includes("not attested") ||
     normalized.includes("likely corruption")
   );
+}
+
+function sanitizeCoreGloss(gloss: string): string {
+  return gloss
+    .replace(/\s*\[[^\]]*(?:⚠|❌|NOTE|CORRECTED)[^\]]*\]\s*/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function isFocusedLexiconMatch(item: CurriculumVocabItem, lessonNumber: number): boolean {
@@ -200,6 +217,7 @@ export function filterCoreVocab<T extends CurriculumVocabItem>(
   const limited = typeof limit === "number" ? filtered.slice(0, limit) : filtered;
   return limited.map((item) => {
     const gloss = CORE_GLOSS_OVERRIDES[item.id];
-    return gloss ? ({ ...item, gloss_en: gloss } as T) : item;
+    const cleanGloss = gloss ?? sanitizeCoreGloss(item.gloss_en ?? "");
+    return cleanGloss !== (item.gloss_en ?? "") ? ({ ...item, gloss_en: cleanGloss } as T) : item;
   });
 }

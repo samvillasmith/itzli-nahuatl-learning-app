@@ -8,6 +8,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
+    "audit:course": "node scripts/audit-course-quality.js",
     "images:s3:manifest": "node scripts/import-s3-word-images.js",
     "audio:mms:test": "node scripts/run-audio-python.js --test na ta calli chilli tlahtoa xochitl quema --seeds 42 555 1337 2026",
     "audio:mms:generate": "node scripts/run-audio-python.js",

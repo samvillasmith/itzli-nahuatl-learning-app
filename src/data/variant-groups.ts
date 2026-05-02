@@ -146,7 +146,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
   // ── Unit 11: When you greet and say farewell ──────────────────────────────
   11: [
     // "hello": pialli · variant: niltze
-    { canonicalId: 260, variantIds: [272] },
+    { canonicalId: 260, variantIds: [272, 7582] },
     // "thank you": tlazohcamati (std) · variants: tlazcamati, tlazohkamati
     { canonicalId: 266, variantIds: [263, 267] },
   ],
@@ -239,6 +239,8 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 21: What We Have in the Field ───────────────────────────────────
   21: [
+    // "shoe": cactli · variant: kaktl
+    { canonicalId: 6933, variantIds: [7102] },
     // "cat": mistli (absolutive) · variant: mizto (colloquial)
     { canonicalId: 485, variantIds: [471] },
     // "dried corncob / corn": olotl · variant: cintli (ear of corn)
@@ -297,8 +299,8 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
   26: [
     // "money": tomin (absolutive) · variant: tomi (bare stem)
     { canonicalId: 591, variantIds: [589] },
-    // "orange / citrus fruit": alaxox · variants: chilcoz, xokotl
-    { canonicalId: 593, variantIds: [595, 600] },
+    // "orange / citrus fruit": alaxox · variants: lalax, chilcoz, xokotl
+    { canonicalId: 593, variantIds: [592, 595, 600] },
     // "bread": pantzi · variant: pantsij
     { canonicalId: 594, variantIds: [608] },
     // "tamale": tamali (absolutive) · variant: tamal (Spanish-influenced)
@@ -361,6 +363,11 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
   33: [
     { canonicalId: 6221, variantIds: [7125] },  // "morning": ihnaloc / kualkan
     { canonicalId: 6330, variantIds: [6742] },  // "night": tlayohuilotl / youali
+  ],
+
+  // Unit 34: Numbers
+  34: [
+    { canonicalId: 7418, variantIds: [6054] },  // "twenty": cempohualli / sempoali
   ],
 
   // ── Unit 35: Colors, Sizes and Shapes ──────────────────────────────────────

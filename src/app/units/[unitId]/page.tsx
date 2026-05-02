@@ -82,6 +82,7 @@ export default async function UnitPage({
           speaker_label: d.speaker_label,
           utterance_normalized: d.utterance_normalized,
           translation_en: d.translation_en,
+          audio_available: d.audio_available,
         }))}
         constructions={constructions.map((c) => ({
           example_original: c.example_original,
