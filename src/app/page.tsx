@@ -3,6 +3,7 @@ import { Show } from "@clerk/nextjs";
 import { getAllUnits, getPrimerVocabEntryCount, getVocabCount } from "@/lib/db";
 import { getCurriculumAudit } from "@/lib/curriculum";
 import { getWordImage } from "@/data/word-images";
+import ContinuePathLink from "./ContinuePathLink";
 
 const SHOWCASE_WORDS = [
   { word: "xochitl", gloss: "flower" },
@@ -50,7 +51,10 @@ export default function LandingPage() {
   const audit = getCurriculumAudit();
   const dialogueCount = units.reduce((sum, unit) => sum + unit.english_dialogue_count, 0);
   const constructions = units.reduce((sum, unit) => sum + unit.english_construction_count, 0);
-  const firstUnit = units[0];
+  const continueUnits = units.map((unit) => ({
+    lessonNumber: unit.lesson_number,
+    pathOrder: unit.path_order,
+  }));
   const nextMilestones = units.filter((unit) => unit.path_order <= 6);
 
   return (
@@ -88,12 +92,12 @@ export default function LandingPage() {
               </Link>
             </Show>
             <Show when="signed-in">
-              <Link
-                href={firstUnit ? `/units/${firstUnit.lesson_number}` : "/units"}
+              <ContinuePathLink
+                units={continueUnits}
                 className="inline-flex items-center rounded-lg bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-400"
               >
                 Continue the path
-              </Link>
+              </ContinuePathLink>
               <Link
                 href="/progress"
                 className="inline-flex items-center rounded-lg border border-white/35 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/20"

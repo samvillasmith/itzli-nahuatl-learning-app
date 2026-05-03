@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { displayGloss } from "@/lib/gloss";
 import { vocabAudioUrl, dialogueAudioUrl, playAudio } from "@/lib/audio";
-import { markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
+import { loadProgress, markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
@@ -714,6 +714,7 @@ export default function LessonFlow({
   const [chunkIndex, setChunkIndex] = useState(0);
   const [chunkCorrect, setChunkCorrect] = useState(0);
   const [chunkTotal, setChunkTotal] = useState(0);
+  const [resumeChecked, setResumeChecked] = useState(false);
 
   // Per-step state
   const [revealed, setRevealed] = useState(false);
@@ -856,6 +857,17 @@ export default function LessonFlow({
   // ── Chunk label helper ──────────────────────────────────────────────────────
 
   const chunkLabel = totalChunks > 1 ? `Lesson ${chunkIndex + 1} of ${totalChunks} · ` : "";
+  const introActionLabel = chunkIndex > 0 ? `Continue Lesson ${chunkIndex + 1} →` : "Start Lesson →";
+
+  useEffect(() => {
+    if (resumeChecked) return;
+
+    const saved = loadProgress().units[String(unitNum)];
+    if (saved?.status === "in_progress" && saved.completedChunks > 0) {
+      setChunkIndex(Math.min(saved.completedChunks, totalChunks - 1));
+    }
+    setResumeChecked(true);
+  }, [resumeChecked, totalChunks, unitNum]);
 
   // ── INTRO ───────────────────────────────────────────────────────────────────
 
@@ -900,7 +912,7 @@ export default function LessonFlow({
               onClick={startLesson}
               className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
             >
-              Start Lesson →
+              {introActionLabel}
             </button>
           ) : (
             <p className="text-stone-400 text-sm">No content available yet.</p>
@@ -1055,15 +1067,6 @@ export default function LessonFlow({
                     className="w-full h-full object-contain"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
-                  <a
-                    href={img.pexels_url ?? "https://www.pexels.com"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {img.author ? `${img.author.slice(0, 20)} · Pexels` : "Pexels"}
-                  </a>
                 </div>
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
@@ -1087,15 +1090,6 @@ export default function LessonFlow({
                     className="w-full h-full object-contain"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
-                  <a
-                    href={img.pexels_url ?? "https://www.pexels.com"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {img.author ? `${img.author.slice(0, 20)} · Pexels` : "Pexels"}
-                  </a>
                 </div>
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">

@@ -28,17 +28,6 @@ function WordImage({ headword, className = "" }: { headword: string; className?:
         className="w-full h-full object-contain"
         onError={() => setFailed(true)}
       />
-      <a
-        href={img.pexels_url ?? "https://www.pexels.com"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5 rounded-tl-lg"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {img.author_url
-          ? <span>Photo by <span className="underline">{img.author.slice(0, 20)}</span> · Pexels</span>
-          : "Pexels"}
-      </a>
     </div>
   );
 }
@@ -141,15 +130,6 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                   className="w-full h-full object-contain"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
-                <a
-                  href="https://openverse.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute bottom-0 right-0 bg-black/40 text-white text-[9px] px-1.5 py-0.5"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {img.license}
-                </a>
               </div>
             )}
             <div className="flex flex-col items-center justify-center gap-3 p-8 flex-1">

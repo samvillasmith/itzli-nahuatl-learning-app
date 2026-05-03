@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   )}
                   <Link href="/progress" className="inline-flex rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     <span className="hidden sm:inline">Progress</span>
-                    <span className="sm:hidden">Stats</span>
+                    <span className="sm:hidden">Review</span>
                   </Link>
                   <div className="ml-1 sm:ml-2">
                     <UserButton />
