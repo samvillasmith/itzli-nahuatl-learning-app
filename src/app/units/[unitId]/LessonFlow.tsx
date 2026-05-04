@@ -8,6 +8,8 @@ import { pushToCloud } from "@/lib/cloudSync";
 import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
+import type { GrammarLab } from "@/data/grammar-labs";
+import { answerMatches } from "@/lib/grammar-engine";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -26,6 +28,13 @@ type DialogueLine = {
 };
 type ConstructionItem = { example_original: string; construction_label?: string; translation_en?: string | null };
 type LessonBlockItem = { text_normalized: string };
+type AssessmentItem = {
+  assessment_id: number;
+  lesson_number: number;
+  proficiency_band: string;
+  item_type: string;
+  prompt: string;
+};
 
 type FillBlank = {
   prompt: string;
@@ -53,7 +62,12 @@ type LessonStep =
   | { kind: "quizRev"; wordIdx: number }
   | { kind: "fillBlank"; fillIdx: number }
   | { kind: "tipCard"; tip: TipData }
-  | { kind: "dialogue"; lineIdx: number; match: DialogueMatch };
+  | { kind: "dialogue"; lineIdx: number; match: DialogueMatch }
+  | { kind: "grammarIntro"; labIdx: number }
+  | { kind: "grammarExample"; labIdx: number; exampleIdx: number }
+  | { kind: "grammarTransform"; labIdx: number; drillIdx: number; itemIdx: number }
+  | { kind: "grammarProduce"; labIdx: number; drillIdx: number; itemIdx: number }
+  | { kind: "unitCheckpoint"; assessmentIdx: number };
 
 type FlowMode =
   | { screen: "intro" }
@@ -73,6 +87,8 @@ type Props = {
   dialogues: DialogueLine[];
   constructions: ConstructionItem[];
   lessonBlocks: LessonBlockItem[];
+  grammarLabs: GrammarLab[];
+  assessments: AssessmentItem[];
   allVocabPool: VocabCard[];
   prevUnit: { num: number; themeEn: string } | null;
   nextUnit: { num: number; themeEn: string } | null;
@@ -407,6 +423,27 @@ function buildDialogueMatch(
   return null;
 }
 
+function firstGrammarExampleStep(grammarLabs: GrammarLab[]): LessonStep | null {
+  const labIdx = grammarLabs.findIndex((lab) => lab.examples.length > 0);
+  return labIdx >= 0 ? { kind: "grammarExample", labIdx, exampleIdx: 0 } : null;
+}
+
+function firstGrammarProductionStep(grammarLabs: GrammarLab[]): LessonStep | null {
+  for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
+    const lab = grammarLabs[labIdx];
+    const transformIdx = lab.drills.findIndex((drill) => drill.kind === "transform" && drill.items.length > 0);
+    if (transformIdx >= 0) {
+      return { kind: "grammarTransform", labIdx, drillIdx: transformIdx, itemIdx: 0 };
+    }
+
+    const produceIdx = lab.drills.findIndex((drill) => drill.kind === "produce" && drill.items.length > 0);
+    if (produceIdx >= 0) {
+      return { kind: "grammarProduce", labIdx, drillIdx: produceIdx, itemIdx: 0 };
+    }
+  }
+  return null;
+}
+
 function buildSequence(
   chunk: VocabCard[],
   srsIndices: number[],
@@ -414,6 +451,10 @@ function buildSequence(
   dialogues: DialogueLine[],
   pool: VocabCard[],
   unitNum: number,
+  grammarLabs: GrammarLab[],
+  assessments: AssessmentItem[],
+  chunkIndex: number,
+  isLastChunk: boolean,
 ): LessonStep[] {
   const steps: LessonStep[] = [];
   if (chunk.length === 0) return steps;
@@ -431,9 +472,18 @@ function buildSequence(
   }, new Map<string, number>());
   let fillIdx = 0;
   let tipIdx = 0;
+  const showGrammarLab = chunkIndex === 0 && grammarLabs.length > 0;
+  const grammarExample = showGrammarLab ? firstGrammarExampleStep(grammarLabs) : null;
+  const grammarProduction = showGrammarLab ? firstGrammarProductionStep(grammarLabs) : null;
+  let grammarExampleInserted = false;
+  let grammarProductionInserted = false;
 
   for (let g = 0; g < miniGroups.length; g++) {
     const group = miniGroups[g];
+
+    if (g === 0 && showGrammarLab) {
+      steps.push({ kind: "grammarIntro", labIdx: 0 });
+    }
 
     for (const wi of group) {
       steps.push({ kind: "learn", wordIdx: wi });
@@ -452,8 +502,18 @@ function buildSequence(
       });
     }
 
+    if (g === 0 && grammarExample && !grammarExampleInserted) {
+      steps.push(grammarExample);
+      grammarExampleInserted = true;
+    }
+
     if (fillIdx < fillBlanks.length) {
       steps.push({ kind: "fillBlank", fillIdx: fillIdx++ });
+    }
+
+    if (g === 0 && grammarProduction && !grammarProductionInserted) {
+      steps.push(grammarProduction);
+      grammarProductionInserted = true;
     }
 
     if (tipIdx < tips.length && g < miniGroups.length - 1) {
@@ -477,6 +537,12 @@ function buildSequence(
       dialogueCount += 1;
       if (dialogueCount >= 6) break;
     }
+  }
+
+  if (isLastChunk) {
+    assessments.slice(0, 3).forEach((_, assessmentIdx) => {
+      steps.push({ kind: "unitCheckpoint", assessmentIdx });
+    });
   }
 
   return steps;
@@ -608,6 +674,307 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
 
 // ── Match Pairs Exercise ──────────────────────────────────────────────────────
 
+function GrammarIntroStep({
+  lab,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  lab: GrammarLab;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Grammar lab`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div>
+            <p className="text-xs font-bold text-emerald-700 uppercase mb-1">{lab.band} production</p>
+            <h2 className="text-2xl font-bold text-stone-900 leading-tight">{lab.title}</h2>
+          </div>
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Unit {lab.unit}
+          </span>
+        </div>
+        <p className="text-sm text-stone-500 leading-relaxed mb-4">{lab.shortDesc}</p>
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <p className="text-xs font-bold text-amber-800 uppercase mb-1">Pattern</p>
+          <p className="font-mono text-sm font-semibold text-stone-900 mb-2">{lab.pattern}</p>
+          <p className="text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
+        </div>
+      </div>
+
+      <ContinueButton onClick={onContinue} />
+    </div>
+  );
+}
+
+function GrammarExampleStep({
+  lab,
+  exampleIdx,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  lab: GrammarLab;
+  exampleIdx: number;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const example = lab.examples[exampleIdx];
+  if (!example) return null;
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Worked example`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
+        <p className="text-xs font-bold uppercase text-emerald-700 mb-2">{lab.title}</p>
+        <p className="text-3xl font-bold text-stone-900 leading-tight mb-3">{example.nahuatl}</p>
+        <p className="font-mono text-sm text-emerald-700 mb-2">{example.breakdown}</p>
+        <p className="text-base italic text-stone-500 mb-3">&ldquo;{example.translation}&rdquo;</p>
+        {example.note && (
+          <p className="rounded-2xl bg-stone-50 border border-stone-100 p-3 text-sm leading-relaxed text-stone-600">
+            {example.note}
+          </p>
+        )}
+      </div>
+
+      <ContinueButton onClick={onContinue} />
+    </div>
+  );
+}
+
+function GrammarTransformStep({
+  lab,
+  drill,
+  itemIdx,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  lab: GrammarLab;
+  drill: Extract<GrammarLab["drills"][number], { kind: "transform" }>;
+  itemIdx: number;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const item = drill.items[itemIdx];
+  const [input, setInput] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  if (!item) return null;
+
+  const correct = answerMatches(input, item.answer, item.accepted);
+  const showAnswer = checked || revealed;
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Transform the form`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
+        <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
+        <h2 className="text-lg font-bold text-stone-900 mb-1">{drill.heading}</h2>
+        <p className="text-sm text-stone-500 mb-5">{drill.prompt}</p>
+
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
+          <p className="text-xs font-bold uppercase text-stone-400 mb-1">{item.target}</p>
+          <p className="text-lg font-semibold text-stone-900">{item.input}</p>
+        </div>
+
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setChecked(false);
+          }}
+          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+          placeholder="Type your answer"
+        />
+
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <button
+            onClick={() => setChecked(true)}
+            className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            Check
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            Reveal
+          </button>
+        </div>
+      </div>
+
+      {checked && (
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+      )}
+
+      {showAnswer && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
+        </div>
+      )}
+
+      {(correct && checked) || revealed ? <ContinueButton onClick={onContinue} /> : null}
+    </div>
+  );
+}
+
+function GrammarProduceStep({
+  lab,
+  drill,
+  itemIdx,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  lab: GrammarLab;
+  drill: Extract<GrammarLab["drills"][number], { kind: "produce" }>;
+  itemIdx: number;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const item = drill.items[itemIdx];
+  const [input, setInput] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  if (!item) return null;
+
+  const correct = answerMatches(input, item.answer, item.accepted);
+  const showAnswer = checked || revealed;
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Produce the form`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
+        <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
+        <h2 className="text-lg font-bold text-stone-900 mb-1">{drill.heading}</h2>
+        <p className="text-sm text-stone-500 mb-5">{drill.prompt}</p>
+
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
+          <p className="text-xs font-bold uppercase text-stone-400 mb-1">Say this in Nahuatl</p>
+          <p className="text-lg font-semibold text-stone-900">{item.english}</p>
+        </div>
+
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setChecked(false);
+          }}
+          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+          placeholder="Type your answer"
+        />
+
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <button
+            onClick={() => setChecked(true)}
+            className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            Check
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            Reveal
+          </button>
+        </div>
+      </div>
+
+      {checked && (
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+      )}
+
+      {showAnswer && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
+        </div>
+      )}
+
+      {(correct && checked) || revealed ? <ContinueButton onClick={onContinue} /> : null}
+    </div>
+  );
+}
+
+function UnitCheckpointStep({
+  assessment,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  assessment: AssessmentItem;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const [response, setResponse] = useState("");
+  const [showGuidance, setShowGuidance] = useState(false);
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Unit checkpoint`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+            {assessment.proficiency_band}
+          </span>
+          <span className="text-xs font-semibold text-stone-400">{assessment.item_type}</span>
+        </div>
+        <p className="text-lg font-bold text-stone-900 leading-snug mb-4">{assessment.prompt}</p>
+        <textarea
+          value={response}
+          onChange={(e) => setResponse(e.target.value)}
+          className="min-h-32 w-full resize-y rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+          placeholder="Write your self-check response"
+        />
+        <button
+          onClick={() => setShowGuidance(true)}
+          className="mt-3 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+        >
+          Show self-check guidance
+        </button>
+      </div>
+
+      {showGuidance && (
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 mb-4">
+          <p className="text-xs font-bold uppercase text-amber-800 mb-2">Self-check</p>
+          <ul className="space-y-1.5 text-sm leading-relaxed text-stone-700">
+            <li>Did you use the unit vocabulary?</li>
+            <li>Did you use the correct prefix or suffix?</li>
+            <li>Did you avoid inventing a “to be” verb?</li>
+            <li>Can you explain the form?</li>
+          </ul>
+        </div>
+      )}
+
+      <ContinueButton onClick={onContinue} label={response.trim() || showGuidance ? "Continue →" : "Skip for now →"} />
+    </div>
+  );
+}
+
 function MatchPairsExercise({
   pairs,
   onComplete,
@@ -706,6 +1073,8 @@ export default function LessonFlow({
   vocab,
   dialogues,
   constructions,
+  grammarLabs,
+  assessments,
   allVocabPool,
   prevUnit,
   nextUnit,
@@ -798,7 +1167,18 @@ export default function LessonFlow({
   // ── Build sequence ──────────────────────────────────────────────────────────
 
   const sequence = useMemo(
-    () => buildSequence(currentChunk, srsIndices, fillBlanks, lessonDialogues, pool, unitNum),
+    () => buildSequence(
+      currentChunk,
+      srsIndices,
+      fillBlanks,
+      lessonDialogues,
+      pool,
+      unitNum,
+      grammarLabs,
+      assessments,
+      chunkIndex,
+      isLastChunk
+    ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
@@ -1035,6 +1415,78 @@ export default function LessonFlow({
   }
 
   // ── LEARN ─────────────────────────────────────────────────────────────────
+
+  if (step.kind === "grammarIntro") {
+    const lab = grammarLabs[step.labIdx];
+    if (!lab) return null;
+    return (
+      <GrammarIntroStep
+        lab={lab}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
+
+  if (step.kind === "grammarExample") {
+    const lab = grammarLabs[step.labIdx];
+    if (!lab) return null;
+    return (
+      <GrammarExampleStep
+        lab={lab}
+        exampleIdx={step.exampleIdx}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
+
+  if (step.kind === "grammarTransform") {
+    const lab = grammarLabs[step.labIdx];
+    const drill = lab?.drills[step.drillIdx];
+    if (!lab || drill?.kind !== "transform") return null;
+    return (
+      <GrammarTransformStep
+        lab={lab}
+        drill={drill}
+        itemIdx={step.itemIdx}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
+
+  if (step.kind === "grammarProduce") {
+    const lab = grammarLabs[step.labIdx];
+    const drill = lab?.drills[step.drillIdx];
+    if (!lab || drill?.kind !== "produce") return null;
+    return (
+      <GrammarProduceStep
+        lab={lab}
+        drill={drill}
+        itemIdx={step.itemIdx}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
+
+  if (step.kind === "unitCheckpoint") {
+    const assessment = assessments[step.assessmentIdx];
+    if (!assessment) return null;
+    return (
+      <UnitCheckpointStep
+        assessment={assessment}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
 
   if (step.kind === "learn") {
     const word = currentChunk[step.wordIdx];

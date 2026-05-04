@@ -8,7 +8,9 @@ import {
   getUnitLessonBlocks,
   getAllUnits,
   getAllPrimerVocab,
+  getUnitAssessments,
 } from "@/lib/db";
+import { getGrammarLabsForUnit } from "@/data/grammar-labs";
 import LessonFlow from "./LessonFlow";
 
 export async function generateStaticParams() {
@@ -32,6 +34,8 @@ export default async function UnitPage({
   const dialogues = getUnitDialogueContent(num);
   const constructions = getUnitConstructions(num);
   const lessonBlocks = getUnitLessonBlocks(num);
+  const grammarLabs = getGrammarLabsForUnit(num);
+  const assessments = getUnitAssessments(num);
   const allVocabPool = getAllPrimerVocab();
   const allUnits = getAllUnits();
   const idx = allUnits.findIndex((u) => u.lesson_number === num);
@@ -91,6 +95,14 @@ export default async function UnitPage({
         }))}
         lessonBlocks={lessonBlocks.map((b) => ({
           text_normalized: b.text_normalized,
+        }))}
+        grammarLabs={grammarLabs}
+        assessments={assessments.map((a) => ({
+          assessment_id: a.assessment_id,
+          lesson_number: a.lesson_number,
+          proficiency_band: a.proficiency_band,
+          item_type: a.item_type,
+          prompt: a.prompt,
         }))}
         allVocabPool={allVocabPool.map((v) => ({
           id: v.id,
