@@ -27,6 +27,7 @@ export type GrammarLesson = {
   shortDesc: string;
   sections: GrammarSection[];
   relatedUnits: number[];
+  relatedGrammarLabIds?: string[];
 };
 
 export const GRAMMAR_LESSONS: GrammarLesson[] = [
@@ -167,15 +168,16 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'How EHN nouns are formed and made plural.',
     relatedUnits: [3, 9, 22],
+    relatedGrammarLabIds: ['noun-stems-absolutives', 'noun-predicates-no-copula'],
     sections: [
       {
         kind: 'prose',
-        text: `In EHN, every noun in its basic unpossessed form carries an "absolutive suffix." This suffix appears when the noun stands alone (not possessed by anyone). When a possessive prefix is added, the absolutive suffix drops off.`,
+        text: `In EHN, many nouns in their basic unpossessed form carry an "absolutive suffix." This suffix appears when the noun stands alone (not possessed by anyone). When a possessive prefix is added, the absolutive ending often drops or changes in a learned possessed form.`,
       },
       {
         kind: 'rule',
         title: 'The four absolutive suffixes',
-        text: `• **-tl** — added after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — added after most consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — added after a stem-final /l/: *cōmalli* (comal/griddle), *petlatli* (sleeping mat)... actually *petlatl*\n• **-n** — a small class of nouns: *āltepētl* (town/city, though this ends -tl)\n• **ø** — some nouns take no suffix: *nāhuatl*, *āxcan*\n\nIn practice, you learn the suffix as part of the word. The key rule: when you add a possessive prefix, the suffix disappears.`,
+        text: `• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *nāhuatl*, *āxcan*\n\nIn practice, learn the suffix as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun.`,
       },
       {
         kind: 'paradigm',
@@ -188,7 +190,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'cōmalli', form: 'comal / cooking griddle', gloss: '-li (stem: cōmal-)' },
           { person: 'cīntli', form: 'ear of corn', gloss: '-tli (after consonant)' },
           { person: 'āmoxtli', form: 'book', gloss: '-tli (after consonant)' },
-          { person: 'tequitl', form: 'work / task', gloss: '-tl (stem: tequi-)... actually ends in -l' },
+          { person: 'tequitl', form: 'work / task', gloss: 'learn the possessed form explicitly' },
           { person: 'xōchitl', form: 'flower', gloss: '-tl' },
           { person: 'cihuātl', form: 'woman', gloss: '-tl (after vowel)' },
           { person: 'piltsintli', form: 'child / little one', gloss: '-tli' },
@@ -197,7 +199,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Forming the plural',
-        text: `To make a noun plural, drop the absolutive suffix and add **-meh**. This applies to both animate and inanimate nouns.\n\nExamples:\n• cihuātl → cihuāmeh (woman → women)\n• mācēhualli → mācēhualmeh (indigenous person → indigenous people)\n• tepōztli → tepōzmeh (metal/machine → metals/machines)\n• cōmalli → comalmeh (comal → comales)\n\nFor animate nouns, an honorific plural **-tzitzin** can also be used (see the Diminutives & Honorifics lesson).`,
+        text: `For beginner production, first learn the animate plural pattern: many animate nouns drop the absolutive ending and add **-meh**.\n\nExamples:\n• cihuātl → cihuāmeh (woman → women)\n• mācēhualli → mācēhualmeh (Indigenous person → Indigenous people)\n\nInanimate nouns often do not require plural marking in ordinary use, though usage varies. For animate nouns, an honorific plural **-tzitzin** can also be used (see the Diminutives & Honorifics lesson).`,
       },
       {
         kind: 'examples',
@@ -239,6 +241,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'Personal pronouns and the subject prefixes attached to verbs.',
     relatedUnits: [3, 6, 11],
+    relatedGrammarLabIds: ['subject-prefixes', 'noun-predicates-no-copula'],
     sections: [
       {
         kind: 'prose',
@@ -363,6 +366,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'Intransitive verbs in the present tense with full conjugation.',
     relatedUnits: [6, 3, 11],
+    relatedGrammarLabIds: ['subject-prefixes', 'present-tense-verbs'],
     sections: [
       {
         kind: 'prose',
@@ -449,6 +453,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'How to express "my," "your," "his/her," etc. on nouns.',
     relatedUnits: [8, 9, 22],
+    relatedGrammarLabIds: ['possession-prefixes'],
     sections: [
       {
         kind: 'prose',
@@ -619,6 +624,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'Expressing future and indefinite actions with -z / -zqueh.',
     relatedUnits: [12, 7],
+    relatedGrammarLabIds: ['future-tense'],
     sections: [
       {
         kind: 'prose',
@@ -709,6 +715,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'How to mark direct objects on transitive verbs.',
     relatedUnits: [13, 18, 3],
+    relatedGrammarLabIds: ['object-prefixes'],
     sections: [
       {
         kind: 'prose',
@@ -735,7 +742,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Combining subject + object prefixes',
-        text: `When subject and object prefixes combine, contractions can occur:\n• ni- + c- → **nic-** (I + it): niccua (I eat it), nicāmati (I like it)\n• ti- + c- → **tic-**: ticcua (you eat it), tictlahtoa (you speak it)\n• ti- + c- + ... + -h (1pl) → **ticc-**: ticcuahcuepaāh (we cultivate it)\n\nWhen the subject is 3rd person and the object is 3rd person:\n• ø + qui- → **qui-**: quicua (he/she eats it), quichīhua (he/she makes it)\n• ø + qui- + -h → **quin-**: quincua (they eat them)... actually quincuah or quicuah`,
+        text: `When subject and object prefixes combine, contractions can occur:\n• ni- + c- → **nic-** (I + it): niccua (I eat it), nicāmati (I like it)\n• ti- + c- → **tic-**: ticcua (you eat it), tictlahtoa (you speak it)\n• ti- + c- + ... + -h (1pl) → **ticc-**: ticcuahcuepaāh (we cultivate it)\n\nWhen the subject is 3rd person and the object is 3rd person, the beginner form with a singular object is **qui-**: quicua (he/she eats it), quichīhua (he/she makes it). Learn plural-object forms as explicit vocabulary examples before producing them freely.`,
       },
       {
         kind: 'paradigm',
@@ -801,6 +808,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A2',
     shortDesc: 'Expressing completed past actions with the perfective prefix ō-.',
     relatedUnits: [14, 15, 16],
+    relatedGrammarLabIds: ['past-tense'],
     sections: [
       {
         kind: 'prose',
@@ -951,6 +959,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'The suffixes -pil (small/dear) and -tzin (respectful/affectionate).',
     relatedUnits: [20, 9],
+    relatedGrammarLabIds: ['respect-affection'],
     sections: [
       {
         kind: 'prose',
@@ -2023,6 +2032,50 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             breakdown: 'Mā cuālli xi-mo-pano.',
             translation: 'May things go well for you.',
             note: 'Optative mā expressing a wish/blessing',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'conditionals',
+    title: 'Conditionals with intla',
+    nahuatlTitle: 'Intla',
+    band: 'A1',
+    shortDesc: 'How to build simple if/then sentences with familiar present forms.',
+    relatedUnits: [30],
+    relatedGrammarLabIds: ['conditionals'],
+    sections: [
+      {
+        kind: 'prose',
+        text: `The word **intla** means "if." For beginner production, keep the pattern simple: put **intla** before the condition, then give the result as a second clause. Each clause keeps its own subject prefix.`,
+      },
+      {
+        kind: 'rule',
+        title: 'Basic pattern',
+        text: `**intla + condition, result**\n\nUse forms you already know in each clause:\n• Intla nitequiti, nitlacua. = If I work, I eat.\n• Intla tiyāuh, niyāuh. = If you go, I go.\n• Intla tequitih, titequitih. = If they work, we work.`,
+      },
+      {
+        kind: 'examples',
+        heading: 'Simple conditionals',
+        items: [
+          {
+            nahuatl: 'Intla nitequiti, nitlacua.',
+            breakdown: 'intla ni-tequiti, ni-tlacua',
+            translation: 'If I work, I eat.',
+            note: 'intla introduces the condition.',
+          },
+          {
+            nahuatl: 'Intla tiyāuh, niyāuh.',
+            breakdown: 'intla ti-yāuh, ni-yāuh',
+            translation: 'If you go, I go.',
+            note: 'Each clause keeps its own subject prefix.',
+          },
+          {
+            nahuatl: 'Intla tequitih, titequitih.',
+            breakdown: 'intla tequiti-h, ti-tequiti-h',
+            translation: 'If they work, we work.',
+            note: 'Both clauses use present plural forms.',
           },
         ],
       },

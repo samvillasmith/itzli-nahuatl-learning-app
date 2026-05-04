@@ -74,7 +74,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
     shortDesc: "Practice seeing a noun as stem plus ending.",
     pattern: "noun stem + absolutive ending",
     explanation:
-      "Beginner guidance: many unpossessed nouns appear with an absolutive ending such as -tl, -tli, -li, or -n. Learn the full noun as the dictionary form, but also practice noticing the stem underneath. The ending is not a universal rule for every noun, and some words are better learned as fixed forms.",
+      "Beginner guidance: many unpossessed nouns appear with an absolutive ending such as -tl, -tli, -li, or -n. Learn the full noun as the dictionary form, but also practice noticing the stem underneath. The ending is not a universal rule for all nouns, and some words are better learned as fixed forms.",
     examples: [
       {
         nahuatl: "cihuātl",
@@ -98,7 +98,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
         nahuatl: "xōchitl",
         breakdown: "xōchi-tl",
         translation: "flower",
-        note: "This lab asks you to identify pieces, not to infer every possible noun form.",
+        note: "This lab asks you to identify pieces, not to infer all possible noun forms.",
       },
     ],
     drills: [
@@ -408,6 +408,613 @@ export const GRAMMAR_LABS: GrammarLab[] = [
             answer: "antequitih",
             breakdown: "an-tequiti-h",
             explanation: "Use an- plus final -h for second person plural.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "possession-prefixes",
+    unit: 8,
+    band: "A1",
+    title: "Possession Prefixes",
+    shortDesc: "Build possessed nouns from a possessor prefix and a known stem.",
+    pattern: "no-/mo-/i-/to-/amo-/in- + noun stem",
+    explanation:
+      "Beginner guidance: possessed nouns use a prefix such as no- “my” or mo- “your.” For many nouns, the unpossessed absolutive ending is not used in the possessed form. This lab uses explicit stems that are already safe for beginner practice.",
+    examples: [
+      {
+        nahuatl: "notōcah",
+        breakdown: "no-tōcah",
+        translation: "my name",
+        note: "no- marks first person singular possession.",
+      },
+      {
+        nahuatl: "motōcah",
+        breakdown: "mo-tōcah",
+        translation: "your name",
+        note: "mo- marks second person singular possession.",
+      },
+      {
+        nahuatl: "nocal",
+        breakdown: "no-cal",
+        translation: "my house",
+        note: "calli is practiced with the possessed stem cal-.",
+      },
+      {
+        nahuatl: "tomīllah",
+        breakdown: "to-mīllah",
+        translation: "our milpa",
+        note: "to- marks first person plural possession.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Add a possessor",
+        prompt: "Change the noun into a possessed form.",
+        items: [
+          {
+            input: "calli",
+            target: "my house",
+            answer: "nocal",
+            breakdown: "no-cal",
+            explanation: "Use no- plus the possessed stem cal-. The -li ending from calli is not used here.",
+          },
+          {
+            input: "tōcah",
+            target: "your name",
+            answer: "motōcah",
+            breakdown: "mo-tōcah",
+            explanation: "Use mo- for second person singular possession.",
+          },
+          {
+            input: "mīllah",
+            target: "our milpa",
+            answer: "tomīllah",
+            breakdown: "to-mīllah",
+            explanation: "Use to- for first person plural possession.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce a possessed noun",
+        prompt: "Type the Nahuatl possessed form.",
+        items: [
+          {
+            english: "my house",
+            answer: "nocal",
+            breakdown: "no-cal",
+            explanation: "no- means “my,” and cal- is the possessed stem used for house.",
+          },
+          {
+            english: "your name",
+            answer: "motōcah",
+            breakdown: "mo-tōcah",
+            explanation: "mo- means “your” for one person.",
+          },
+          {
+            english: "their name",
+            answer: "intōcah",
+            breakdown: "in-tōcah",
+            explanation: "in- marks third person plural possession in this beginner paradigm.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "present-tense-verbs",
+    unit: 6,
+    band: "A1",
+    title: "Present-Tense Verb Production",
+    shortDesc: "Generate present forms from familiar intransitive stems.",
+    pattern: "subject prefix + verb stem (+ -h for plural)",
+    explanation:
+      "Beginner guidance: once you know the stem, present intransitive forms are built with the subject prefix pattern. Plural forms in this lab add final -h.",
+    examples: [
+      {
+        nahuatl: "Nitlamachtia.",
+        breakdown: "ni-tlamachtia",
+        translation: "I teach.",
+        note: "ni- marks first person singular.",
+      },
+      {
+        nahuatl: "Timomachtiah.",
+        breakdown: "ti-momachtia-h",
+        translation: "We study.",
+        note: "ti- plus final -h marks first person plural.",
+      },
+      {
+        nahuatl: "Cōchih.",
+        breakdown: "cōchi-h",
+        translation: "They sleep.",
+        note: "Third person plural has no prefix and adds final -h.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Build the present form",
+        prompt: "Use the target person to produce the verb.",
+        items: [
+          {
+            input: "cōchi",
+            target: "I",
+            answer: "nicōchi",
+            breakdown: "ni-cōchi",
+            explanation: "Add ni- to the stem cōchi.",
+          },
+          {
+            input: "momachtia",
+            target: "we",
+            answer: "timomachtiah",
+            breakdown: "ti-momachtia-h",
+            explanation: "Use ti- plus final -h for first person plural.",
+          },
+          {
+            input: "tlamachtia",
+            target: "you all",
+            answer: "antlamachtiah",
+            breakdown: "an-tlamachtia-h",
+            explanation: "Use an- plus final -h for second person plural.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce the present verb",
+        prompt: "Type the Nahuatl sentence form.",
+        items: [
+          {
+            english: "I teach.",
+            answer: "nitlamachtia",
+            breakdown: "ni-tlamachtia",
+            explanation: "Use ni- with tlamachtia.",
+          },
+          {
+            english: "We study.",
+            answer: "timomachtiah",
+            breakdown: "ti-momachtia-h",
+            explanation: "First person plural uses ti- and final -h.",
+          },
+          {
+            english: "They sleep.",
+            answer: "cōchih",
+            breakdown: "cōchi-h",
+            explanation: "Third person plural has no prefix and adds -h.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "future-tense",
+    unit: 12,
+    band: "A1",
+    title: "Future Tense",
+    shortDesc: "Add the app’s beginner future suffixes to familiar verb forms.",
+    pattern: "subject prefix + future stem + -z / -zqueh",
+    explanation:
+      "Beginner guidance: this app represents the future with -z for singular forms and -zqueh for plural forms. Some verbs have stem changes, so this lab keeps to explicit forms already shown to learners.",
+    examples: [
+      {
+        nahuatl: "Nitequitiz.",
+        breakdown: "ni-tequiti-z",
+        translation: "I will work.",
+        note: "-z marks a singular future form.",
+      },
+      {
+        nahuatl: "Titequitizqueh.",
+        breakdown: "ti-tequiti-zqueh",
+        translation: "We will work.",
+        note: "-zqueh marks a plural future form.",
+      },
+      {
+        nahuatl: "Nitlahtōz.",
+        breakdown: "ni-tlahtō-z",
+        translation: "I will speak.",
+        note: "This is an explicit practice form from the app grammar.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Make it future",
+        prompt: "Change the present cue into the future form.",
+        items: [
+          {
+            input: "nitequiti",
+            target: "future",
+            answer: "nitequitiz",
+            breakdown: "ni-tequiti-z",
+            explanation: "Add -z to the singular future form.",
+          },
+          {
+            input: "titequitih",
+            target: "future",
+            answer: "titequitizqueh",
+            breakdown: "ti-tequiti-zqueh",
+            explanation: "Use -zqueh for the plural future form shown in the app grammar.",
+          },
+          {
+            input: "nitlahtoa",
+            target: "future",
+            answer: "nitlahtōz",
+            breakdown: "ni-tlahtō-z",
+            explanation: "Use the explicit future form nitlahtōz rather than guessing from spelling alone.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce the future",
+        prompt: "Type the Nahuatl future form.",
+        items: [
+          {
+            english: "I will work.",
+            answer: "nitequitiz",
+            breakdown: "ni-tequiti-z",
+            explanation: "The subject is ni-, and the future suffix is -z.",
+          },
+          {
+            english: "They will work.",
+            answer: "tequitizqueh",
+            breakdown: "tequiti-zqueh",
+            explanation: "Third person plural has no prefix and uses -zqueh.",
+          },
+          {
+            english: "I will speak.",
+            answer: "nitlahtōz",
+            breakdown: "ni-tlahtō-z",
+            explanation: "This lab uses the explicit app form nitlahtōz.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "object-prefixes",
+    unit: 13,
+    band: "A1",
+    title: "Object Prefixes",
+    shortDesc: "Distinguish the subject prefix from the direct-object prefix.",
+    pattern: "subject prefix + object prefix + verb stem",
+    explanation:
+      "Beginner guidance: transitive verbs can mark a specific direct object inside the verb. This lab focuses on conservative 3rd-person object forms c-/qui- with familiar verbs.",
+    examples: [
+      {
+        nahuatl: "Niccua.",
+        breakdown: "ni-c-cua",
+        translation: "I eat it.",
+        note: "ni- is the subject; c- is the object.",
+      },
+      {
+        nahuatl: "Ticcua.",
+        breakdown: "ti-c-cua",
+        translation: "You eat it.",
+        note: "ti- marks the subject and c- marks the object.",
+      },
+      {
+        nahuatl: "Quicua.",
+        breakdown: "qui-cua",
+        translation: "She/he eats it.",
+        note: "In third person subject forms, qui- marks the object here.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Combine the pieces",
+        prompt: "Build the verb from subject, object, and stem.",
+        items: [
+          {
+            input: "ni- + c- + cua",
+            target: "combine",
+            answer: "niccua",
+            breakdown: "ni-c-cua",
+            explanation: "ni- marks “I,” and c- marks the object “it.”",
+          },
+          {
+            input: "ti- + c- + chīhua",
+            target: "combine",
+            answer: "ticchīhua",
+            breakdown: "ti-c-chīhua",
+            explanation: "The subject prefix ti- comes before the object prefix c-.",
+          },
+          {
+            input: "qui- + cua",
+            target: "third person subject",
+            answer: "quicua",
+            breakdown: "qui-cua",
+            explanation: "For this beginner pattern, qui- marks a 3rd-person object with a 3rd-person subject.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce a transitive form",
+        prompt: "Type the Nahuatl form.",
+        items: [
+          {
+            english: "I eat it.",
+            answer: "niccua",
+            breakdown: "ni-c-cua",
+            explanation: "Use ni- for the subject and c- for the direct object.",
+          },
+          {
+            english: "You make it.",
+            answer: "ticchīhua",
+            breakdown: "ti-c-chīhua",
+            explanation: "Use ti- for “you” and c- for “it.”",
+          },
+          {
+            english: "She/he eats it.",
+            answer: "quicua",
+            breakdown: "qui-cua",
+            explanation: "Use the explicit 3rd-person object form qui- with cua.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "past-tense",
+    unit: 14,
+    band: "A2",
+    title: "Completed Actions",
+    shortDesc: "Practice the app’s beginner completed-action pattern.",
+    pattern: "ō- + subject/object prefixes + explicit past stem",
+    explanation:
+      "Beginner guidance: completed actions use ō- before the verb. Many verbs also change their stem in the past, so this lab practices explicit high-confidence forms instead of asking you to infer new stems.",
+    examples: [
+      {
+        nahuatl: "Ōnihuetz.",
+        breakdown: "ō-ni-huetz",
+        translation: "I fell.",
+        note: "ō- marks completed action.",
+      },
+      {
+        nahuatl: "Ōtihuetz.",
+        breakdown: "ō-ti-huetz",
+        translation: "You fell.",
+        note: "The subject prefix comes after ō-.",
+      },
+      {
+        nahuatl: "Ōquicuac.",
+        breakdown: "ō-qui-cua-c",
+        translation: "She/he ate it.",
+        note: "This is an explicit past form for cua with an object prefix.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Mark completed action",
+        prompt: "Change the cue into the completed-action form.",
+        items: [
+          {
+            input: "nihuetz",
+            target: "completed action",
+            answer: "ōnihuetz",
+            breakdown: "ō-ni-huetz",
+            explanation: "Add ō- before the subject prefix.",
+          },
+          {
+            input: "tihuetz",
+            target: "completed action",
+            answer: "ōtihuetz",
+            breakdown: "ō-ti-huetz",
+            explanation: "The completed-action marker ō- comes first.",
+          },
+          {
+            input: "quicua",
+            target: "completed action",
+            answer: "ōquicuac",
+            breakdown: "ō-qui-cua-c",
+            explanation: "Use the explicit past form cuac with ō- at the front.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce the past form",
+        prompt: "Type the Nahuatl completed-action form.",
+        items: [
+          {
+            english: "I fell.",
+            answer: "ōnihuetz",
+            breakdown: "ō-ni-huetz",
+            explanation: "Use ō- before nihuetz.",
+          },
+          {
+            english: "I came back.",
+            answer: "ōnicuēp",
+            breakdown: "ō-ni-cuēp",
+            explanation: "This lab uses the explicit past form ōnicuēp.",
+          },
+          {
+            english: "She/he ate it.",
+            answer: "ōquicuac",
+            breakdown: "ō-qui-cua-c",
+            explanation: "Use ō- plus the explicit past transitive form quicuac.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "respect-affection",
+    unit: 20,
+    band: "A1",
+    title: "Respect and Affection: -tzin and -pil",
+    shortDesc: "Recognize and conservatively produce respectful or affectionate forms.",
+    pattern: "known base/stem + -tzin or -pil",
+    explanation:
+      "Beginner guidance: -tzin can add respect or affection, and -pil can add smallness or tenderness. These suffixes are socially meaningful, so this lab keeps production to simple forms already suited to beginner practice.",
+    examples: [
+      {
+        nahuatl: "cihuātzin",
+        breakdown: "cihuā-tzin",
+        translation: "respected woman; ma’am",
+        note: "-tzin adds respect or affection.",
+      },
+      {
+        nahuatl: "nopiltzin",
+        breakdown: "no-pil-tzin",
+        translation: "my dear child",
+        note: "no- marks “my,” and -tzin adds tenderness.",
+      },
+      {
+        nahuatl: "calpil",
+        breakdown: "cal-pil",
+        translation: "little house",
+        note: "-pil adds smallness or affection in this practice form.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Add respect or affection",
+        prompt: "Change the base into the requested form.",
+        items: [
+          {
+            input: "cihuātl",
+            target: "respectful address",
+            answer: "cihuātzin",
+            breakdown: "cihuā-tzin",
+            explanation: "Use the stem cihuā- with -tzin.",
+          },
+          {
+            input: "nopil",
+            target: "affectionate",
+            answer: "nopiltzin",
+            breakdown: "no-pil-tzin",
+            explanation: "Add -tzin to the possessed base nopil.",
+          },
+          {
+            input: "calli",
+            target: "little/dear house",
+            answer: "calpil",
+            breakdown: "cal-pil",
+            explanation: "Use the stem cal- with -pil for this beginner practice form.",
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce a respectful form",
+        prompt: "Type the Nahuatl form.",
+        items: [
+          {
+            english: "respected woman; ma’am",
+            answer: "cihuātzin",
+            breakdown: "cihuā-tzin",
+            explanation: "Add -tzin to the stem cihuā-.",
+          },
+          {
+            english: "my dear child",
+            answer: "nopiltzin",
+            breakdown: "no-pil-tzin",
+            explanation: "no- marks possession, and -tzin adds affection.",
+          },
+          {
+            english: "little house",
+            answer: "calpil",
+            breakdown: "cal-pil",
+            explanation: "Use cal- plus -pil.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "conditionals",
+    unit: 30,
+    band: "A1",
+    title: "Conditionals with intla",
+    shortDesc: "Build simple if/then sentences with familiar present forms.",
+    pattern: "intla + condition, result",
+    explanation:
+      "Beginner guidance: intla means “if.” This lab practices short sentences where both clauses use forms you already know. The goal is to combine clauses clearly, not to create complex hypothetical grammar.",
+    examples: [
+      {
+        nahuatl: "Intla nitequiti, nitlacua.",
+        breakdown: "intla ni-tequiti, ni-tlacua",
+        translation: "If I work, I eat.",
+        note: "intla introduces the condition.",
+      },
+      {
+        nahuatl: "Intla tiyāuh, niyāuh.",
+        breakdown: "intla ti-yāuh, ni-yāuh",
+        translation: "If you go, I go.",
+        note: "Each clause keeps its own subject prefix.",
+      },
+      {
+        nahuatl: "Intla tequitih, titequitih.",
+        breakdown: "intla tequiti-h, ti-tequiti-h",
+        translation: "If they work, we work.",
+        note: "Both verbs are plural present forms.",
+      },
+    ],
+    drills: [
+      {
+        kind: "transform",
+        heading: "Add intla",
+        prompt: "Combine the condition and result into one sentence.",
+        items: [
+          {
+            input: "nitequiti + nitlacua",
+            target: "if I work, I eat",
+            answer: "Intla nitequiti, nitlacua.",
+            breakdown: "intla ni-tequiti, ni-tlacua",
+            explanation: "Place intla before the condition, then give the result after the comma.",
+            accepted: ["Intla nitequiti nitlacua", "intla nitequiti, nitlacua"],
+          },
+          {
+            input: "tiyāuh + niyāuh",
+            target: "if you go, I go",
+            answer: "Intla tiyāuh, niyāuh.",
+            breakdown: "intla ti-yāuh, ni-yāuh",
+            explanation: "Each clause keeps its own subject prefix.",
+            accepted: ["Intla tiyāuh niyāuh", "intla tiyāuh, niyāuh"],
+          },
+          {
+            input: "tequitih + titequitih",
+            target: "if they work, we work",
+            answer: "Intla tequitih, titequitih.",
+            breakdown: "intla tequiti-h, ti-tequiti-h",
+            explanation: "The condition uses tequitih, and the result uses titequitih.",
+            accepted: ["Intla tequitih titequitih", "intla tequitih, titequitih"],
+          },
+        ],
+      },
+      {
+        kind: "produce",
+        heading: "Produce an if/then sentence",
+        prompt: "Type the Nahuatl sentence.",
+        items: [
+          {
+            english: "If I work, I eat.",
+            answer: "Intla nitequiti, nitlacua.",
+            breakdown: "intla ni-tequiti, ni-tlacua",
+            explanation: "Use intla before the condition nitequiti.",
+            accepted: ["Intla nitequiti nitlacua", "intla nitequiti, nitlacua"],
+          },
+          {
+            english: "If you go, I go.",
+            answer: "Intla tiyāuh, niyāuh.",
+            breakdown: "intla ti-yāuh, ni-yāuh",
+            explanation: "Use ti- in the condition and ni- in the result.",
+            accepted: ["Intla tiyāuh niyāuh", "intla tiyāuh, niyāuh"],
+          },
+          {
+            english: "If they work, we work.",
+            answer: "Intla tequitih, titequitih.",
+            breakdown: "intla tequiti-h, ti-tequiti-h",
+            explanation: "Both clauses use plural present forms.",
+            accepted: ["Intla tequitih titequitih", "intla tequitih, titequitih"],
           },
         ],
       },

@@ -134,19 +134,34 @@ type CurriculumVocabItem = {
   semantic_domain?: string | null;
 };
 
+export const QUESTIONABLE_GLOSS_MARKERS = [
+  "misplaced",
+  "off-theme",
+  "non-standard",
+  "not standard",
+  "possible data error",
+  "not widely attested",
+  "not a core",
+  "not attested",
+  "likely corruption",
+  "classical only",
+  "central nahuatl",
+  "comparative",
+  "dubious",
+  "uncertain",
+  "fabricated",
+  "wrong definition",
+  "not ehn",
+  "not learner-facing",
+  "mythological only",
+  "specialized",
+  "obscure",
+  "data error",
+];
+
 function hasExcludedGloss(gloss: string): boolean {
   const normalized = gloss.toLowerCase();
-  return (
-    normalized.includes("misplaced") ||
-    normalized.includes("off-theme") ||
-    normalized.includes("non-standard") ||
-    normalized.includes("not standard") ||
-    normalized.includes("possible data error") ||
-    normalized.includes("not widely attested") ||
-    normalized.includes("not a core") ||
-    normalized.includes("not attested") ||
-    normalized.includes("likely corruption")
-  );
+  return QUESTIONABLE_GLOSS_MARKERS.some((blocker) => normalized.includes(blocker));
 }
 
 function sanitizeCoreGloss(gloss: string): string {

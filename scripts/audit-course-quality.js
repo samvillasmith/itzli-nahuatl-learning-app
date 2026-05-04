@@ -9,6 +9,10 @@ const Database = require("better-sqlite3");
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const CHUNK_SIZE = 10;
 
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function loadTsModule(relativePath) {
   const filename = path.join(process.cwd(), relativePath);
   const source = fs.readFileSync(filename, "utf8");
@@ -115,9 +119,57 @@ function main() {
     return;
   }
 
-  const { filterCoreVocab } = loadTsModule("src/data/excluded-vocab.ts");
+  const grammarWarnings = [];
+  const grammarFailures = [];
+  const grammarLessonsSource = fs.readFileSync(path.join(process.cwd(), "src/data/grammar-lessons.ts"), "utf8");
+  if (/\bactually\b/i.test(grammarLessonsSource)) {
+    grammarFailures.push('src/data/grammar-lessons.ts contains "actually".');
+  }
+
+  const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadTsModule("src/data/excluded-vocab.ts");
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
+  const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
+  const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
+  const questionableGlossPattern = new RegExp(
+    QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
+    "i"
+  );
+
+  for (const lesson of GRAMMAR_LESSONS) {
+    if (lesson.band === "A1" && !(lesson.relatedGrammarLabIds || []).length) {
+      grammarWarnings.push(`A1 grammar lesson has no related lab: ${lesson.id}`);
+    }
+  }
+
+  for (const lab of GRAMMAR_LABS) {
+    if (lab.examples.length < 3) {
+      grammarWarnings.push(`GrammarLab ${lab.id} has fewer than 3 examples.`);
+    }
+
+    const transformDrills = lab.drills.filter((drill) => drill.kind === "transform");
+    const produceDrills = lab.drills.filter((drill) => drill.kind === "produce");
+    if (transformDrills.length === 0) {
+      grammarWarnings.push(`GrammarLab ${lab.id} has no transform drill.`);
+    }
+    if (produceDrills.length === 0) {
+      grammarWarnings.push(`GrammarLab ${lab.id} has no produce drill.`);
+    }
+
+    for (const drill of [...transformDrills, ...produceDrills]) {
+      drill.items.forEach((item, idx) => {
+        if (!item.explanation?.trim()) {
+          grammarWarnings.push(`GrammarLab ${lab.id} ${drill.kind} item ${idx + 1} lacks an explanation.`);
+        }
+      });
+    }
+
+    const labText = JSON.stringify(lab);
+    if (/\b(always|every)\b/i.test(labText) && /\b(noun|nouns|plural|pluralization|possess|possession|absolutive)\b/i.test(labText)) {
+      grammarWarnings.push(`GrammarLab ${lab.id} uses "always" or "every" near a variable noun/plural/possession topic.`);
+    }
+  }
+
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });
 
   const units = db.prepare(
@@ -187,9 +239,7 @@ function main() {
       duplicateGlossUnits.push(`${unit.lesson_number}: ${dupes.slice(0, 3).join("; ")}`);
     }
 
-    const annotated = cards.filter((card) =>
-      /not attested|non-standard|misplaced|off-theme|likely corruption|⚠|❌/i.test(card.gloss_en || "")
-    );
+    const annotated = cards.filter((card) => questionableGlossPattern.test(card.gloss_en || ""));
     if (annotated.length > 0) {
       annotatedGlossUnits.push(`${unit.lesson_number}: ${annotated.map((card) => `${card.headword}=${card.gloss_en}`).join("; ")}`);
     }
@@ -231,6 +281,13 @@ function main() {
 
   console.log("\nAnnotated/questionable glosses still visible:");
   console.log(annotatedGlossUnits.length ? annotatedGlossUnits.map((row) => `- ${row}`).join("\n") : "- none");
+
+  console.log("\nGrammar production warnings:");
+  console.log(grammarWarnings.length ? grammarWarnings.map((row) => `- ${row}`).join("\n") : "- none");
+
+  console.log("\nGrammar production failures:");
+  console.log(grammarFailures.length ? grammarFailures.map((row) => `- ${row}`).join("\n") : "- none");
+  if (grammarFailures.length > 0) process.exitCode = 1;
 
   console.log("\nUnits with source dialogue but no current-word interactive match:");
   console.log(noInteractiveDialogueUnits.length ? noInteractiveDialogueUnits.map((row) => `- ${row}`).join("\n") : "- none");
