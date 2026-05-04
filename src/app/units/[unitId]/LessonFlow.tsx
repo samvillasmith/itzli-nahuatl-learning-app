@@ -61,6 +61,7 @@ type LessonStep =
   | { kind: "grammarExample"; labIdx: number; exampleIdx: number }
   | { kind: "grammarTransform"; labIdx: number; drillIdx: number; itemIdx: number }
   | { kind: "grammarProduce"; labIdx: number; drillIdx: number; itemIdx: number }
+  | { kind: "sentenceProduce"; lineIdx: number }
   | {
       kind: "grammarCheckpoint";
       labIdx: number;
@@ -423,25 +424,40 @@ function buildDialogueMatch(
   return null;
 }
 
-function firstGrammarExampleStep(grammarLabs: GrammarLab[]): LessonStep | null {
-  const labIdx = grammarLabs.findIndex((lab) => lab.examples.length > 0);
-  return labIdx >= 0 ? { kind: "grammarExample", labIdx, exampleIdx: 0 } : null;
+function buildGrammarIntroSteps(grammarLabs: GrammarLab[]): LessonStep[] {
+  return grammarLabs.slice(0, 3).map((_, labIdx) => ({ kind: "grammarIntro", labIdx }));
 }
 
-function firstGrammarProductionStep(grammarLabs: GrammarLab[]): LessonStep | null {
+function buildGrammarExampleSteps(grammarLabs: GrammarLab[]): LessonStep[] {
+  const steps: LessonStep[] = [];
   for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
-    const lab = grammarLabs[labIdx];
-    const transformIdx = lab.drills.findIndex((drill) => drill.kind === "transform" && drill.items.length > 0);
-    if (transformIdx >= 0) {
-      return { kind: "grammarTransform", labIdx, drillIdx: transformIdx, itemIdx: 0 };
-    }
-
-    const produceIdx = lab.drills.findIndex((drill) => drill.kind === "produce" && drill.items.length > 0);
-    if (produceIdx >= 0) {
-      return { kind: "grammarProduce", labIdx, drillIdx: produceIdx, itemIdx: 0 };
+    const exampleCount = Math.min(grammarLabs[labIdx].examples.length, 2);
+    for (let exampleIdx = 0; exampleIdx < exampleCount; exampleIdx++) {
+      steps.push({ kind: "grammarExample", labIdx, exampleIdx });
     }
   }
-  return null;
+  return steps.slice(0, 6);
+}
+
+function buildGrammarPracticeSteps(grammarLabs: GrammarLab[]): LessonStep[] {
+  const steps: LessonStep[] = [];
+  for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
+    const lab = grammarLabs[labIdx];
+    for (let drillIdx = 0; drillIdx < lab.drills.length; drillIdx++) {
+      const drill = lab.drills[drillIdx];
+      if (drill.kind !== "transform" && drill.kind !== "produce") continue;
+      const itemCount = Math.min(drill.items.length, 2);
+      for (let itemIdx = 0; itemIdx < itemCount; itemIdx++) {
+        steps.push({
+          kind: drill.kind === "transform" ? "grammarTransform" : "grammarProduce",
+          labIdx,
+          drillIdx,
+          itemIdx,
+        });
+      }
+    }
+  }
+  return steps.slice(0, 10);
 }
 
 function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
@@ -450,32 +466,52 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
   for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
     const lab = grammarLabs[labIdx];
 
-    const transformIdx = lab.drills.findIndex((drill) => drill.kind === "transform" && drill.items.length > 0);
-    if (transformIdx >= 0) {
-      steps.push({
-        kind: "grammarCheckpoint",
-        labIdx,
-        drillKind: "transform",
-        drillIdx: transformIdx,
-        itemIdx: 0,
-        checkpointIdx: steps.length,
-      });
-    }
-
-    const produceIdx = lab.drills.findIndex((drill) => drill.kind === "produce" && drill.items.length > 0);
-    if (produceIdx >= 0) {
-      steps.push({
-        kind: "grammarCheckpoint",
-        labIdx,
-        drillKind: "produce",
-        drillIdx: produceIdx,
-        itemIdx: 0,
-        checkpointIdx: steps.length,
-      });
+    for (let drillIdx = 0; drillIdx < lab.drills.length; drillIdx++) {
+      const drill = lab.drills[drillIdx];
+      if (drill.kind !== "transform" && drill.kind !== "produce") continue;
+      const preferredStart = drill.items.length > 2 ? 2 : 0;
+      for (let itemIdx = preferredStart; itemIdx < drill.items.length; itemIdx++) {
+        steps.push({
+          kind: "grammarCheckpoint",
+          labIdx,
+          drillKind: drill.kind,
+          drillIdx,
+          itemIdx,
+          checkpointIdx: steps.length,
+        });
+        if (steps.length >= 6) return steps;
+      }
     }
   }
 
-  return steps.slice(0, 3);
+  return steps;
+}
+
+function isDialogueProductionCandidate(line: DialogueLine): boolean {
+  const answer = line.utterance_normalized.trim();
+  const translation = line.translation_en?.trim();
+  if (!answer || !translation) return false;
+  if (answer.length < 4 || answer.length > 120) return false;
+  if (translation.length < 4 || translation.length > 140) return false;
+  if (/examples?|copyright|creative commons|cc by/i.test(`${answer} ${translation}`)) return false;
+  if (/[{}[\]]/.test(answer)) return false;
+  return true;
+}
+
+function buildSentenceProductionSteps(dialogues: DialogueLine[], chunkIndex: number, limit = 2): LessonStep[] {
+  const seen = new Set<string>();
+  const candidates: number[] = [];
+  dialogues.forEach((line, lineIdx) => {
+    const key = line.utterance_normalized.trim().toLowerCase();
+    if (!isDialogueProductionCandidate(line) || seen.has(key)) return;
+    seen.add(key);
+    candidates.push(lineIdx);
+  });
+
+  return candidates.slice(chunkIndex * limit, chunkIndex * limit + limit).map((lineIdx) => ({
+    kind: "sentenceProduce",
+    lineIdx,
+  }));
 }
 
 function buildSequence(
@@ -506,16 +542,19 @@ function buildSequence(
   let fillIdx = 0;
   let tipIdx = 0;
   const showGrammarLab = chunkIndex === 0 && grammarLabs.length > 0;
-  const grammarExample = showGrammarLab ? firstGrammarExampleStep(grammarLabs) : null;
-  const grammarProduction = showGrammarLab ? firstGrammarProductionStep(grammarLabs) : null;
-  let grammarExampleInserted = false;
-  let grammarProductionInserted = false;
+  const grammarIntros = showGrammarLab ? buildGrammarIntroSteps(grammarLabs) : [];
+  const grammarExamples = showGrammarLab ? buildGrammarExampleSteps(grammarLabs) : [];
+  const grammarPractice = showGrammarLab ? buildGrammarPracticeSteps(grammarLabs) : [];
+  const sentenceProduction = buildSentenceProductionSteps(dialogues, chunkIndex);
+  let grammarIntroIdx = 0;
+  let grammarExampleIdx = 0;
+  let grammarPracticeIdx = 0;
 
   for (let g = 0; g < miniGroups.length; g++) {
     const group = miniGroups[g];
 
-    if (g === 0 && showGrammarLab) {
-      steps.push({ kind: "grammarIntro", labIdx: 0 });
+    if (grammarIntroIdx < grammarIntros.length) {
+      steps.push(grammarIntros[grammarIntroIdx++]);
     }
 
     for (const wi of group) {
@@ -535,18 +574,16 @@ function buildSequence(
       });
     }
 
-    if (g === 0 && grammarExample && !grammarExampleInserted) {
-      steps.push(grammarExample);
-      grammarExampleInserted = true;
+    if (grammarExampleIdx < grammarExamples.length) {
+      steps.push(grammarExamples[grammarExampleIdx++]);
     }
 
     if (fillIdx < fillBlanks.length) {
       steps.push({ kind: "fillBlank", fillIdx: fillIdx++ });
     }
 
-    if (g === 0 && grammarProduction && !grammarProductionInserted) {
-      steps.push(grammarProduction);
-      grammarProductionInserted = true;
+    if (grammarPracticeIdx < grammarPractice.length) {
+      steps.push(grammarPractice[grammarPracticeIdx++]);
     }
 
     if (tipIdx < tips.length && g < miniGroups.length - 1) {
@@ -571,6 +608,8 @@ function buildSequence(
       if (dialogueCount >= 6) break;
     }
   }
+
+  steps.push(...sentenceProduction);
 
   if (isLastChunk) {
     steps.push(...buildGrammarCheckpointSteps(grammarLabs));
@@ -1041,6 +1080,98 @@ function GrammarCheckpointStep({
           <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
           <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
+        </div>
+      )}
+
+      {(correct && checked) || revealed ? <ContinueButton onClick={onContinue} /> : null}
+    </div>
+  );
+}
+
+function sentenceAcceptedForms(answer: string): string[] {
+  const withoutPunctuation = answer
+    .replace(/[¿¡.,;:?!"'()[\]{}]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return withoutPunctuation && withoutPunctuation !== answer.trim() ? [withoutPunctuation] : [];
+}
+
+function SentenceProduceStep({
+  line,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  line: DialogueLine;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const [input, setInput] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const answer = line.utterance_normalized.trim();
+  const accepted = sentenceAcceptedForms(answer);
+  const correct = answerMatches(input, answer, accepted);
+  const showAnswer = checked || revealed;
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Sentence practice`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <div>
+            <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Say this from the unit</p>
+            <h2 className="text-xl font-bold text-stone-900 leading-tight">{line.translation_en}</h2>
+          </div>
+          {line.audio_available !== false && (
+            <AudioButton src={dialogueAudioUrl(line.lesson_dialogue_id)} size="sm" />
+          )}
+        </div>
+
+        <p className="mb-3 text-sm leading-relaxed text-stone-500">
+          Type the Nahuatl sentence. Punctuation and macrons are helpful, but the checker will be forgiving.
+        </p>
+
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setChecked(false);
+          }}
+          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+          placeholder="Type the Nahuatl sentence"
+        />
+
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <button
+            onClick={() => setChecked(true)}
+            className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            Check
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            Reveal
+          </button>
+        </div>
+      </div>
+
+      {checked && (
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${answer}"`} />
+      )}
+
+      {showAnswer && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{answer}</p>
+          <p className="text-sm leading-relaxed text-stone-600 mt-2">
+            This sentence comes from the unit dialogue. Read it aloud, then continue.
+          </p>
         </div>
       )}
 
@@ -1540,6 +1671,19 @@ export default function LessonFlow({
         lab={lab}
         drill={drill}
         itemIdx={step.itemIdx}
+        progressValue={progressValue}
+        chunkLabel={chunkLabel}
+        onContinue={advance}
+      />
+    );
+  }
+
+  if (step.kind === "sentenceProduce") {
+    const line = dialogues[step.lineIdx];
+    if (!line || !line.translation_en) return null;
+    return (
+      <SentenceProduceStep
+        line={line}
         progressValue={progressValue}
         chunkLabel={chunkLabel}
         onContinue={advance}

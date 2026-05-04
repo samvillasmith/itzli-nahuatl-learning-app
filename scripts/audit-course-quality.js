@@ -169,6 +169,10 @@ function main() {
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
   const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
+  const lessonFlowSource = fs.readFileSync(path.join(process.cwd(), "src/app/units/[unitId]/LessonFlow.tsx"), "utf8");
+  if (!lessonFlowSource.includes("sentenceProduce")) {
+    grammarFailures.push("Unit lesson flow is missing dialogue-based sentence production steps.");
+  }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
     "i"
@@ -187,11 +191,17 @@ function main() {
 
     const transformDrills = lab.drills.filter((drill) => drill.kind === "transform");
     const produceDrills = lab.drills.filter((drill) => drill.kind === "produce");
+    const productionItemCount =
+      transformDrills.reduce((total, drill) => total + drill.items.length, 0) +
+      produceDrills.reduce((total, drill) => total + drill.items.length, 0);
     if (transformDrills.length === 0) {
       grammarWarnings.push(`GrammarLab ${lab.id} has no transform drill.`);
     }
     if (produceDrills.length === 0) {
       grammarWarnings.push(`GrammarLab ${lab.id} has no produce drill.`);
+    }
+    if (productionItemCount < 5) {
+      grammarWarnings.push(`GrammarLab ${lab.id} has fewer than 5 learner-production items.`);
     }
 
     for (const drill of [...transformDrills, ...produceDrills]) {
@@ -212,6 +222,10 @@ function main() {
     if (/\b(always|every)\b/i.test(labText) && /\b(noun|nouns|plural|pluralization|possess|possession|absolutive)\b/i.test(labText)) {
       grammarWarnings.push(`GrammarLab ${lab.id} uses "always" or "every" near a variable noun/plural/possession topic.`);
     }
+  }
+
+  if (!GRAMMAR_LABS.some((lab) => lab.unit === 3 && lab.id === "name-exchange")) {
+    grammarFailures.push("Unit 3 is missing the required name-exchange grammar lab.");
   }
 
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });

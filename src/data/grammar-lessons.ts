@@ -443,7 +443,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'How to express "my," "your," "his/her," etc. on nouns.',
     relatedUnits: [8, 9, 22],
-    relatedGrammarLabIds: ['possession-prefixes'],
+    relatedGrammarLabIds: ['possession-prefixes', 'name-exchange', 'family-possession'],
     sections: [
       {
         kind: 'prose',
