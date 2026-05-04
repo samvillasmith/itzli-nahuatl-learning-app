@@ -173,6 +173,12 @@ function main() {
   if (!lessonFlowSource.includes("sentenceProduce")) {
     grammarFailures.push("Unit lesson flow is missing dialogue-based sentence production steps.");
   }
+  if (!lessonFlowSource.includes("buildUnitPhraseCards") || !lessonFlowSource.includes('source: "unitPhrase"')) {
+    grammarFailures.push("Unit lesson flow is missing generated unit phrase cards.");
+  }
+  if (!lessonFlowSource.includes("...unitPhraseCards, ...filteredVocab")) {
+    grammarFailures.push("Unit phrase cards must be inserted into the main vocab-card stream before regular vocabulary.");
+  }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
     "i"

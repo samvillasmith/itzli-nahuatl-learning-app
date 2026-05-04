@@ -18,7 +18,14 @@ const MINI_GROUP = 3;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type VocabCard = { id: number; headword: string; gloss_en: string; part_of_speech: string };
+type VocabCard = {
+  id: number;
+  headword: string;
+  gloss_en: string;
+  part_of_speech: string;
+  audioSrc?: string | null;
+  source?: "vocab" | "unitPhrase";
+};
 type DialogueLine = {
   lesson_dialogue_id: string;
   speaker_label: string;
@@ -187,8 +194,22 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildFwdOptions(correct: VocabCard, pool: VocabCard[]): string[] {
+function isUnitPhraseCard(card: VocabCard): boolean {
+  return card.source === "unitPhrase" || card.part_of_speech === "phrase";
+}
+
+function cardAudioSrc(card: VocabCard): string | null {
+  if (card.audioSrc) return card.audioSrc;
+  if (isUnitPhraseCard(card) || card.part_of_speech === "letter") return null;
+  return vocabAudioUrl(card.id);
+}
+
+function buildFwdOptions(correct: VocabCard, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
   const correctGloss = normalizeGlossForExercise(correct.gloss_en);
+  const preferredPool = isUnitPhraseCard(correct)
+    ? primaryPool.filter(isUnitPhraseCard)
+    : primaryPool.filter((v) => !isUnitPhraseCard(v));
+  const pool = preferredPool.length >= 4 ? preferredPool : [...preferredPool, ...fallbackPool];
   const distractors = shuffle(pool.filter((v) =>
     v.headword !== correct.headword && normalizeGlossForExercise(v.gloss_en) !== correctGloss
   ))
@@ -197,8 +218,12 @@ function buildFwdOptions(correct: VocabCard, pool: VocabCard[]): string[] {
   return shuffle([displayGloss(correct.gloss_en), ...new Set(distractors)]);
 }
 
-function buildRevOptions(correct: VocabCard, pool: VocabCard[]): string[] {
+function buildRevOptions(correct: VocabCard, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
   const correctGloss = normalizeGlossForExercise(correct.gloss_en);
+  const preferredPool = isUnitPhraseCard(correct)
+    ? primaryPool.filter(isUnitPhraseCard)
+    : primaryPool.filter((v) => !isUnitPhraseCard(v));
+  const pool = preferredPool.length >= 4 ? preferredPool : [...preferredPool, ...fallbackPool];
   const distractors = shuffle(pool.filter((v) =>
     v.headword !== correct.headword && normalizeGlossForExercise(v.gloss_en) !== correctGloss
   ))
@@ -215,6 +240,85 @@ function extractTranslation(text: string): { nahuatl: string; translation?: stri
   if (colonMatch) return { nahuatl: text, translation: undefined };
 
   return { nahuatl: text, translation: undefined };
+}
+
+function stripSpeakerLabel(text: string): string {
+  return text.replace(/^[A-Z]:\s*/, "").trim();
+}
+
+function cleanUnitPhraseText(text: string): string {
+  return stripSpeakerLabel(text)
+    .replace(/[“”]/g, "\"")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function hasNahuatlSignal(text: string): boolean {
+  const plain = stripDiacritics(text).toLowerCase();
+  return /[āēīōūĀĒĪŌŪ¿¡]/.test(text) ||
+    /\b(na|ta|ya|huan|piyali|piyalli|queniuhqui|motocah|notocah|itocah|tlen|intla|quena|amo|moztla|nic|nit|ti|in|pan|cualtitoc|cualli|oni|oti)\b/.test(plain);
+}
+
+function isLikelyEnglishSource(text: string): boolean {
+  return /\b(hello|what|work|teach|student|teacher|write|translate|following|example|activity|sentences|creative|commons|eating)\b/i.test(text);
+}
+
+function isUnitPhraseCandidate(nahuatl: string, translation: string): boolean {
+  const joined = `${nahuatl} ${translation}`;
+  if (nahuatl.length < 4 || nahuatl.length > 130) return false;
+  if (translation.length < 4 || translation.length > 150) return false;
+  if (/[=/→/{}[\]]/.test(nahuatl)) return false;
+  if (/\b(CC BY|copyright|creative commons|example game)\b/i.test(joined)) return false;
+  if (isLikelyEnglishSource(nahuatl)) return false;
+  return hasNahuatlSignal(nahuatl);
+}
+
+function buildUnitPhraseCards(
+  unitNum: number,
+  dialogues: DialogueLine[],
+  constructions: ConstructionItem[]
+): VocabCard[] {
+  const cards: VocabCard[] = [];
+  const seen = new Set<string>();
+
+  function addCard(nahuatlRaw: string, translationRaw: string, audioSrc?: string | null) {
+    const nahuatl = cleanUnitPhraseText(nahuatlRaw);
+    const translation = cleanUnitPhraseText(translationRaw);
+    const key = normalizeExerciseToken(nahuatl);
+    if (!key || seen.has(key)) return;
+    if (!isUnitPhraseCandidate(nahuatl, translation)) return;
+
+    seen.add(key);
+    cards.push({
+      id: -(unitNum * 1000 + cards.length + 1),
+      headword: nahuatl,
+      gloss_en: translation,
+      part_of_speech: "phrase",
+      source: "unitPhrase",
+      audioSrc,
+    });
+  }
+
+  for (const line of dialogues) {
+    if (!line.translation_en) continue;
+    addCard(
+      line.utterance_normalized,
+      line.translation_en,
+      line.audio_available !== false ? dialogueAudioUrl(line.lesson_dialogue_id) : null
+    );
+    if (cards.length >= 6) return cards;
+  }
+
+  for (const c of constructions) {
+    const ex = c.example_original?.trim();
+    const translation = c.translation_en?.trim();
+    if (!ex || !translation) continue;
+    const { nahuatl } = extractTranslation(ex);
+    addCard(nahuatl, translation, null);
+    if (cards.length >= 6) return cards;
+  }
+
+  return cards;
 }
 
 function stripDiacritics(s: string): string {
@@ -320,6 +424,7 @@ function buildFillBlanks(
     if (!translation) continue;
 
     for (const card of chunk) {
+      if (isUnitPhraseCard(card) || phraseTokens(card.headword).length > 3) continue;
       const cardKey = normalizeExerciseToken(card.headword);
       if (cardKey.length < 3 || usedWords.has(cardKey)) continue;
 
@@ -410,6 +515,7 @@ function buildDialogueMatch(
 ): DialogueMatch {
   void allTokens;
   for (const card of chunk) {
+    if (isUnitPhraseCard(card)) continue;
     const match = findExactPhraseSpan(line.utterance_normalized, card.headword);
     if (!match) continue;
 
@@ -1303,12 +1409,23 @@ export default function LessonFlow({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitNum]);
 
+  const unitPhraseCards = useMemo(
+    () => buildUnitPhraseCards(unitNum, dialogues, constructions),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [unitNum]
+  );
+
+  const learningCards = useMemo(
+    () => [...unitPhraseCards, ...filteredVocab],
+    [unitPhraseCards, filteredVocab]
+  );
+
   // ── Chunk split ─────────────────────────────────────────────────────────────
 
   const chunks = useMemo(() => {
     const result: VocabCard[][] = [];
-    for (let i = 0; i < filteredVocab.length; i += CHUNK_SIZE) {
-      result.push(filteredVocab.slice(i, i + CHUNK_SIZE));
+    for (let i = 0; i < learningCards.length; i += CHUNK_SIZE) {
+      result.push(learningCards.slice(i, i + CHUNK_SIZE));
     }
     return result.length > 0 ? result : [[]];
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1357,13 +1474,13 @@ export default function LessonFlow({
   // ── Build per-word quiz options ─────────────────────────────────────────────
 
   const fwdOptions = useMemo(
-    () => currentChunk.map((w) => buildFwdOptions(w, pool)),
+    () => currentChunk.map((w) => buildFwdOptions(w, currentChunk, pool)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
 
   const revOptions = useMemo(
-    () => currentChunk.map((w) => buildRevOptions(w, pool)),
+    () => currentChunk.map((w) => buildRevOptions(w, currentChunk, pool)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [unitNum, chunkIndex]
   );
@@ -1471,10 +1588,16 @@ export default function LessonFlow({
           <p className="text-stone-400 text-xs mb-8 max-w-sm mx-auto">{cefrDescriptor}</p>
 
           <div className="flex justify-center gap-8 mb-8">
-            {filteredVocab.length > 0 && (
+            {learningCards.length > 0 && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-stone-900">{filteredVocab.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">words total</div>
+                <div className="text-2xl font-bold text-stone-900">{learningCards.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">cards total</div>
+              </div>
+            )}
+            {unitPhraseCards.length > 0 && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-stone-900">{unitPhraseCards.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">unit phrases</div>
               </div>
             )}
             {totalChunks > 1 && (
@@ -1484,13 +1607,13 @@ export default function LessonFlow({
               </div>
             )}
           </div>
-          {filteredVocab.length > CHUNK_SIZE && (
+          {learningCards.length > CHUNK_SIZE && (
             <p className="text-xs font-medium text-stone-400 mb-6">
-              Each lesson is capped at {CHUNK_SIZE} words.
+              Each lesson is capped at {CHUNK_SIZE} cards.
             </p>
           )}
 
-          {filteredVocab.length > 0 ? (
+          {learningCards.length > 0 ? (
             <button
               onClick={startLesson}
               className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
@@ -1711,11 +1834,12 @@ export default function LessonFlow({
   if (step.kind === "learn") {
     const word = currentChunk[step.wordIdx];
     const img = getWordImage(word.headword);
+    const audioSrc = cardAudioSrc(word);
 
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}New word`} />
+        <StepLabel text={`${chunkLabel}${isUnitPhraseCard(word) ? "Unit phrase" : "New word"}`} />
 
         <button
           onClick={() => {
@@ -1742,7 +1866,9 @@ export default function LessonFlow({
                 </div>
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
-                <p className="text-4xl font-bold text-stone-900 leading-tight">{word.headword}</p>
+                <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-4xl"} font-bold text-stone-900 leading-tight`}>
+                  {word.headword}
+                </p>
                 {word.part_of_speech && (
                   <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
                     {word.part_of_speech}
@@ -1765,8 +1891,8 @@ export default function LessonFlow({
                 </div>
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
-                <p className="text-stone-400 text-sm font-medium">{word.headword}</p>
-                <p className="text-3xl font-bold text-emerald-600 leading-tight">
+                <p className="text-stone-400 text-sm font-medium leading-snug">{word.headword}</p>
+                <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} font-bold text-emerald-600 leading-tight`}>
                   {displayGloss(word.gloss_en)}
                 </p>
                 {word.part_of_speech && (
@@ -1786,9 +1912,9 @@ export default function LessonFlow({
           )}
         </button>
 
-        {word.part_of_speech !== "letter" && (
+        {audioSrc && (
           <div className="flex justify-center mt-4">
-            <AudioButton src={vocabAudioUrl(word.id)} size="lg" />
+            <AudioButton src={audioSrc} size="lg" />
           </div>
         )}
       </div>
@@ -1801,7 +1927,7 @@ export default function LessonFlow({
     const pairs = step.wordIndices.map((wi) => ({
       nahuatl: currentChunk[wi].headword,
       english: displayGloss(currentChunk[wi].gloss_en),
-      audioSrc: vocabAudioUrl(currentChunk[wi].id),
+      audioSrc: cardAudioSrc(currentChunk[wi]) ?? "",
     }));
 
     return (
@@ -1831,6 +1957,7 @@ export default function LessonFlow({
     const options = fwdOptions[wordIdx] ?? [displayGloss(word.gloss_en)];
     const correctGloss = displayGloss(word.gloss_en);
     const isCorrect = chosen === correctGloss;
+    const audioSrc = cardAudioSrc(word);
 
     function check(choice: string) {
       if (checked) return;
@@ -1849,8 +1976,10 @@ export default function LessonFlow({
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
           <div className="flex items-center justify-center gap-3">
-            <p className="text-3xl font-bold text-stone-900">{word.headword}</p>
-            {word.part_of_speech !== "letter" && <AudioButton src={vocabAudioUrl(word.id)} size="sm" />}
+            <p className={`${isUnitPhraseCard(word) ? "text-xl" : "text-3xl"} font-bold text-stone-900 leading-tight`}>
+              {word.headword}
+            </p>
+            {audioSrc && <AudioButton src={audioSrc} size="sm" />}
           </div>
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
@@ -1897,6 +2026,7 @@ export default function LessonFlow({
     const word = currentChunk[wordIdx];
     const options = revOptions[wordIdx] ?? [word.headword];
     const isCorrect = chosen === word.headword;
+    const audioSrc = cardAudioSrc(word);
 
     function check(choice: string) {
       if (checked) return;
@@ -1921,13 +2051,15 @@ export default function LessonFlow({
         <StepLabel text={`${chunkLabel}How do you say this?`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
-          <p className="text-3xl font-bold text-stone-900">{displayGloss(word.gloss_en)}</p>
+          <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} font-bold text-stone-900 leading-tight`}>
+            {displayGloss(word.gloss_en)}
+          </p>
           {word.part_of_speech && (
             <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
           )}
-          {checked && word.part_of_speech !== "letter" && (
+          {checked && audioSrc && (
             <div className="flex justify-center mt-3">
-              <AudioButton src={vocabAudioUrl(word.id)} size="sm" />
+              <AudioButton src={audioSrc} size="sm" />
             </div>
           )}
         </div>
