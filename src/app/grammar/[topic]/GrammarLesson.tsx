@@ -432,7 +432,7 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
       </div>
 
       <div className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
-        <p className="text-xs font-bold uppercase text-amber-800">Pattern</p>
+        <p className="text-xs font-bold uppercase text-amber-800">Build it like this</p>
         <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{lab.pattern}</p>
         <p className="mt-2 text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
       </div>
@@ -496,7 +496,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
           <div>
             <h2 className="font-semibold text-stone-700">Grammar production labs</h2>
             <p className="mt-1 text-sm text-stone-500">
-              Practice the rule, examples, transformations, and your own generated forms.
+              Type short Nahuatl answers, check them, and read the explanation for each form.
             </p>
           </div>
           {relatedLabs.map((lab) => (

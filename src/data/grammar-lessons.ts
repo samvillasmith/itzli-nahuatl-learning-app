@@ -163,26 +163,26 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'nouns',
-    title: 'Nouns & Absolutive Suffixes',
+    title: 'Noun Endings and Plurals',
     nahuatlTitle: 'Tlatōcaxtiliztli tlen ax quipiya ītecoh',
     band: 'A1',
-    shortDesc: 'How EHN nouns are formed and made plural.',
-    relatedUnits: [3, 9, 22],
-    relatedGrammarLabIds: ['noun-stems-absolutives', 'noun-predicates-no-copula'],
+    shortDesc: 'How many EHN nouns are shaped and made plural.',
+    relatedUnits: [8, 9, 22],
+    relatedGrammarLabIds: ['noun-endings'],
     sections: [
       {
         kind: 'prose',
-        text: `In EHN, many nouns in their basic unpossessed form carry an "absolutive suffix." This suffix appears when the noun stands alone (not possessed by anyone). When a possessive prefix is added, the absolutive ending often drops or changes in a learned possessed form.`,
+        text: `In EHN, many nouns in their basic standalone form carry a visible ending. This ending appears when the noun stands alone, not possessed by anyone. When a possessive prefix is added, the ending often drops or changes in a learned possessed form.`,
       },
       {
         kind: 'rule',
-        title: 'The four absolutive suffixes',
-        text: `• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *nāhuatl*, *āxcan*\n\nIn practice, learn the suffix as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun.`,
+        title: 'Common standalone noun endings',
+        text: `• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *nāhuatl*, *āxcan*\n\nIn practice, learn the ending as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun.`,
       },
       {
         kind: 'paradigm',
-        heading: 'Common absolutive noun forms',
-        headers: ['Noun (absolutive)', 'Meaning', 'Suffix type'],
+        heading: 'Common standalone noun forms',
+        headers: ['Noun', 'Meaning', 'Ending type'],
         rows: [
           { person: 'ātl', form: 'water', gloss: '-tl (after vowel)' },
           { person: 'cōātl', form: 'snake', gloss: '-tl (after vowel)' },
@@ -192,30 +192,23 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'āmoxtli', form: 'book', gloss: '-tli (after consonant)' },
           { person: 'tequitl', form: 'work / task', gloss: 'learn the possessed form explicitly' },
           { person: 'xōchitl', form: 'flower', gloss: '-tl' },
-          { person: 'cihuātl', form: 'woman', gloss: '-tl (after vowel)' },
           { person: 'piltsintli', form: 'child / little one', gloss: '-tli' },
         ],
       },
       {
         kind: 'rule',
         title: 'Forming the plural',
-        text: `For beginner production, first learn the animate plural pattern: many animate nouns drop the absolutive ending and add **-meh**.\n\nExamples:\n• cihuātl → cihuāmeh (woman → women)\n• mācēhualli → mācēhualmeh (Indigenous person → Indigenous people)\n\nInanimate nouns often do not require plural marking in ordinary use, though usage varies. For animate nouns, an honorific plural **-tzitzin** can also be used (see the Diminutives & Honorifics lesson).`,
+        text: `For beginner production, first learn this animate plural pattern: many animate nouns drop the standalone ending and add **-meh**.\n\nExamples:\n• cihuātl → cihuāmeh (woman → women)\n• mācēhualli → mācēhualmeh (Indigenous person → Indigenous people)\n\nInanimate nouns often do not require plural marking in ordinary use, though usage varies. For animate nouns, an honorific plural **-tzitzin** can also be used (see the Diminutives & Honorifics lesson).`,
       },
       {
         kind: 'examples',
         heading: 'Examples in context',
         items: [
           {
-            nahuatl: 'Cihuātl',
-            breakdown: 'cihuā-tl',
-            translation: 'She/he is a woman',
-            note: 'ø subject prefix (3rd person) + noun as predicate',
-          },
-          {
             nahuatl: 'Cihuāmeh',
             breakdown: 'cihuā-meh',
             translation: 'They are women',
-            note: 'Plural form; absolutive suffix replaced by -meh',
+            note: 'Plural form; the standalone ending is replaced by -meh',
           },
           {
             nahuatl: 'Mācēhualmeh',
@@ -227,7 +220,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             nahuatl: 'Pan tomīllah ticcuahcuepaāh etl huan chilli huan cīntli.',
             breakdown: 'Pan to·mīllah ti·c·cuahcuepāh etl huan chilli huan cīntli.',
             translation: 'In our milpa we cultivate bean, chili, and corn.',
-            note: 'etl, chilli, cīntli are all absolutive nouns as direct objects',
+            note: 'etl, chilli, and cīntli appear here as standalone nouns used as direct objects',
           },
         ],
       },
@@ -241,7 +234,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'Personal pronouns and the subject prefixes attached to verbs.',
     relatedUnits: [3, 6, 11],
-    relatedGrammarLabIds: ['subject-prefixes', 'noun-predicates-no-copula'],
+    relatedGrammarLabIds: ['subject-prefixes', 'identity-words-introductions'],
     sections: [
       {
         kind: 'prose',
@@ -296,16 +289,13 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       },
       {
         kind: 'paradigm',
-        heading: 'Noun predicates (equative sentences: "X is Y")',
-        caption: 'Using cihuātl (woman) and mācēhualli (indigenous person).',
+        heading: 'Saying “I am...” with an identity word',
+        caption: 'Using mexikatl from the introductions unit.',
         headers: ['Person', 'Form', 'Meaning'],
         rows: [
-          { person: 'I', form: 'ni·cihuātl', gloss: 'I am a woman' },
-          { person: 'you', form: 'ti·cihuātl', gloss: 'you are a woman' },
-          { person: 'he / she', form: 'cihuātl', gloss: 'he/she is a woman' },
-          { person: 'we', form: 'ti·cihuāmeh', gloss: 'we are women' },
-          { person: 'you all', form: 'in·cihuāmeh', gloss: 'you all are women' },
-          { person: 'they', form: 'cihuāmeh', gloss: 'they are women' },
+          { person: 'I', form: 'ni·mexikatl', gloss: 'I am Mexican' },
+          { person: 'you', form: 'ti·mexikatl', gloss: 'you are Mexican' },
+          { person: 'he / she', form: 'mexikatl', gloss: 'he/she is Mexican' },
         ],
       },
       {
@@ -346,7 +336,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             nahuatl: 'Nimācēhualli.',
             breakdown: 'Ni·mācēhualli.',
             translation: 'I am indigenous.',
-            note: 'Equative: ni- + noun predicate (no "to be" verb needed)',
+            note: 'ni- + identity word; no separate "am" word is added',
           },
           {
             nahuatl: 'Āmo, āxcan ninēhnemi pan āltepētl.',
@@ -457,7 +447,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `To say "my house," "your name," or "their milpa," EHN adds a possessive prefix to the noun. At the same time, the absolutive suffix (-tl, -tli, -li) is dropped. This is one of the most important patterns in EHN — once you know the six possessive prefixes, you can form hundreds of possessed noun phrases.`,
+        text: `To say "my house," "your name," or "their milpa," EHN adds a possessive prefix to the noun. At the same time, the standalone noun ending (-tl, -tli, -li) often drops or changes in the learned possessed form. Start with the possessed forms shown in the course before guessing new ones.`,
       },
       {
         kind: 'paradigm',
@@ -474,8 +464,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       },
       {
         kind: 'rule',
-        title: 'Dropping the absolutive suffix',
-        text: `When you add a possessive prefix, the noun loses its absolutive suffix:\n\n• tōcah (name) → no·tōcah (my name), mo·tōcah (your name), ī·tōcah (his/her name)\n• mīllah (milpa/field) → no·mīllah (my milpa), to·mīllah (our milpa)\n• chichi (dog) → no·chichi (my dog), ī·chichi (his/her dog)\n\nFor nouns ending in -tl, the suffix often changes to **-uh** (possessive linker) when possessed:\n• tequitl → no·tequiuh (my work)\n• yōllo → no·yōllo (my heart) — stem yōll- + possessive form`,
+        title: 'Changing the standalone ending',
+        text: `When you add a possessive prefix, the standalone noun ending often drops or changes:\n\n• tōcah (name) → no·tōcah (my name), mo·tōcah (your name), ī·tōcah (his/her name)\n• mīllah (milpa/field) → no·mīllah (my milpa), to·mīllah (our milpa)\n• chichi (dog) → no·chichi (my dog), ī·chichi (his/her dog)\n\nFor some nouns ending in -tl, the possessed form uses **-uh**:\n• tequitl → no·tequiuh (my work)\n• yōllo → no·yōllo (my heart) — stem yōll- + possessive form`,
       },
       {
         kind: 'paradigm',
@@ -510,7 +500,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             nahuatl: 'Felipe yohui mīllah huanya īchichi.',
             breakdown: 'Felipe yohui mīllah huanya ī·chichi.',
             translation: 'Felipe goes to the milpa with his dog.',
-            note: 'ī- = his (3sg); chichi = dog (no absolutive suffix when possessed)',
+            note: 'ī- = his (3sg); chichi = dog in a learned possessed form',
           },
           {
             nahuatl: 'Pan tomīllah ticcuahcuepaāh etl huan chilli.',
@@ -968,7 +958,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: '-pil: smallness, affection, and belittling',
-        text: `The suffix **-pil** (also seen as **-pil-** before other suffixes) expresses:\n1. **Smallness**: *calpil* (little house)\n2. **Affection**: *nopiltsin* (my dear child)\n3. **Diminution** of an abstract concept: *tlahtōlpil* (a little speech / a few words)\n\nWhen -pil is added, any absolutive suffix on the noun is usually dropped first.`,
+        text: `The suffix **-pil** (also seen as **-pil-** before other suffixes) expresses:\n1. **Smallness**: *calpil* (little house)\n2. **Affection**: *nopiltsin* (my dear child)\n3. **Diminution** of an abstract concept: *tlahtōlpil* (a little speech / a few words)\n\nWhen -pil is added, the standalone ending on the noun usually drops first.`,
       },
       {
         kind: 'rule',
@@ -980,7 +970,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Examples of -pil and -tzin in use',
         headers: ['Form', 'Base word', 'Meaning'],
         rows: [
-          { person: 'piltsintli', form: 'piltsin + tli (absolutive)', gloss: 'child / little one (noun)' },
+          { person: 'piltsintli', form: 'piltsin + tli (standalone noun)', gloss: 'child / little one (noun)' },
           { person: 'nopiltsin', form: 'no- + pil + tzin', gloss: 'my dear child' },
           { person: 'notlamachtihtsin', form: 'no- + tlamachtih + tzin', gloss: 'my dear/respected teacher' },
           { person: 'tōnatiuhtsin', form: 'tōnatiuh + tzin', gloss: 'the revered sun' },
@@ -1320,6 +1310,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'A plain-English guide to what "first person," "second person," and "plural" mean.',
     relatedUnits: [3],
+    relatedGrammarLabIds: ['subject-prefixes', 'identity-words-introductions'],
     sections: [
       {
         kind: 'prose',
@@ -1400,6 +1391,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     band: 'A1',
     shortDesc: 'The "sandwich" structure: prefix + root + suffix — and why one word can be a whole sentence.',
     relatedUnits: [3, 5, 6],
+    relatedGrammarLabIds: ['subject-prefixes', 'present-tense-verbs'],
     sections: [
       {
         kind: 'prose',
@@ -1481,16 +1473,17 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     nahuatlTitle: 'Miac tlahtōlcuauhmeh',
     band: 'A1',
     shortDesc: 'Three strategies for making nouns plural and when to use each one.',
-    relatedUnits: [3, 4],
+    relatedUnits: [20, 41],
+    relatedGrammarLabIds: ['noun-endings'],
     sections: [
       {
         kind: 'prose',
-        text: `English adds "-s" to make things plural: one book, two books. Nahuatl has three main plural strategies, and which one you use depends on the noun. The good news: the most common strategy (-meh) covers the majority of nouns.`,
+        text: `English adds "-s" to make things plural: one book, two books. Nahuatl has several plural strategies, and which one you use depends on the noun. For beginner production, start with the explicit forms shown in the course.`,
       },
       {
         kind: 'rule',
-        title: 'Strategy 1: -meh (the default)',
-        text: `Drop the absolutive suffix (-tl, -tli, -li) and add **-meh**. This works for most inanimate nouns and many animate ones.\n\n• cihuātl → cihuā**meh** (women)\n• āmoxtli → āmox**meh** (books)\n• cōmalli → comal**meh** (cooking griddles)\n• tepōztli → tepōz**meh** (machines/metals)\n• mācēhualli → mācēhual**meh** (indigenous people)`,
+        title: 'Strategy 1: -meh (starter pattern)',
+        text: `For beginner production, first learn the animate pattern: drop the standalone ending and add **-meh**.\n\n• cihuātl → cihuā**meh** (women)\n• mācēhualli → mācēhual**meh** (indigenous people)\n\nSome inanimate nouns can also appear with -meh, but inanimate plural marking varies. Learn the course examples as fixed forms before extending the pattern.`,
       },
       {
         kind: 'rule',
@@ -1522,7 +1515,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Quick rule of thumb',
-        text: `When in doubt, use **-meh**. It covers about 80% of nouns. You'll pick up the -tin and reduplicated forms naturally as you learn specific vocabulary.`,
+        text: `For new production, use **-meh** only with nouns where the course has shown that pattern or where the noun is a close match to a practiced animate example. Treat -tin and reduplicated forms as vocabulary-specific until you have seen them in context.`,
       },
       {
         kind: 'examples',
@@ -1579,7 +1572,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'How locatives are built',
-        text: `Take a noun stem (drop the absolutive suffix) and add the locative:\n\n• cāl- (from cālli, house) + -tlamachtiloyan → **caltlamachtiloyan** (school — lit. "house where teaching is done")\n• cuauh- (from cuahuitl, tree/wood) + -tlan → **cuauhtlan** (forest — lit. "among the trees")\n• ā- (from ātl, water) + -tēnco → **ātēnco** (riverbank — "at the edge of water")\n• mīl- (from mīlli, cultivated field) + -lah → **mīllah** (in the milpa)\n\nThe suffix -lah (variant of -tlan) appears in many EHN place words.`,
+        text: `Take a noun stem, usually without the standalone ending, and add the locative:\n\n• cāl- (from cālli, house) + -tlamachtiloyan → **caltlamachtiloyan** (school — lit. "house where teaching is done")\n• cuauh- (from cuahuitl, tree/wood) + -tlan → **cuauhtlan** (forest — lit. "among the trees")\n• ā- (from ātl, water) + -tēnco → **ātēnco** (riverbank — "at the edge of water")\n• mīl- (from mīlli, cultivated field) + -lah → **mīllah** (in the milpa)\n\nThe suffix -lah (variant of -tlan) appears in many EHN place words.`,
       },
       {
         kind: 'paradigm',
@@ -1899,7 +1892,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'How noun incorporation works',
-        text: `Instead of saying "I eat tortillas" as two words (*niccua tlaxcalli*), you can fold the noun into the verb:\n\n**ni- + tlaxcal- + cua** → **nitlaxcalcua** ("I tortilla-eat")\n\nThe noun stem (without its absolutive suffix) goes directly before the verb root. This creates a new intransitive verb — the object is now baked in.\n\nFormula: **[subject prefix] + [noun stem] + [verb root]**`,
+        text: `Instead of saying "I eat tortillas" as two words (*niccua tlaxcalli*), you can fold the noun into the verb:\n\n**ni- + tlaxcal- + cua** → **nitlaxcalcua** ("I tortilla-eat")\n\nThe noun stem, without the standalone ending, goes directly before the verb root. This creates a new intransitive verb — the object is now baked in.\n\nFormula: **[subject prefix] + [noun stem] + [verb root]**`,
       },
       {
         kind: 'paradigm',

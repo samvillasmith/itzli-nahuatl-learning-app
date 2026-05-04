@@ -130,7 +130,7 @@ export default function LandingPage() {
             Course Architecture
           </p>
           <h2 className="text-3xl font-black text-stone-950">
-            Reordered around what learners can actually do.
+            Reordered around what learners can do.
           </h2>
           <p className="mt-4 leading-7 text-stone-600">
             The original source lessons are preserved, but the learner-facing path now starts with

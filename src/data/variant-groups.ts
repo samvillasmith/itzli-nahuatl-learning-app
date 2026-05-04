@@ -8,7 +8,7 @@
  *
  * Rules used to pick the canonical form:
  *   1. Prefer forms without ⚠️/❌ annotations (non-standard flag).
- *   2. Among un-annotated forms, prefer the IDIEZ-attested / absolutive form.
+ *   2. Among un-annotated forms, prefer the IDIEZ-attested standalone noun form.
  *   3. For Spanish loanwords vs. native EHN equivalents, prefer native EHN.
  *   4. Tie-break: lowest rank (first introduced in the source curriculum).
  */
@@ -38,7 +38,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     // delete-variant-duplicates.js so there's nothing left to collapse)
     // "they": yahuanti · variant: ininhuanti
     { canonicalId: 55, variantIds: [60] },
-    // "name": tocaitl (absolutive) · variant: toca (bare stem)
+    // "name": tocaitl (standalone noun) · variant: toca (bare stem)
     { canonicalId: 61, variantIds: [48] },
   ],
 
@@ -121,13 +121,13 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 203, variantIds: [219] },
     // "sister": huelti · variant: uelti
     { canonicalId: 210, variantIds: [222] },
-    // "child": conetl (absolutive) · variant: pilconetzi (diminutive)
+    // "child": conetl (standalone noun) · variant: pilconetzi (diminutive)
     { canonicalId: 226, variantIds: [214] },
-    // "aunt": ahuitl (absolutive) · variant: aui (bare stem)
+    // "aunt": ahuitl (standalone noun) · variant: aui (bare stem)
     { canonicalId: 227, variantIds: [216] },
-    // "father": tahtli (absolutive) · variant: tata (familiar short form)
+    // "father": tahtli (standalone noun) · variant: tata (familiar short form)
     { canonicalId: 224, variantIds: [217] },
-    // "mother": nantli (absolutive) · variant: nana (familiar short form)
+    // "mother": nantli (standalone noun) · variant: nana (familiar short form)
     { canonicalId: 223, variantIds: [218] },
   ],
 
@@ -241,7 +241,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
   21: [
     // "shoe": cactli · variant: kaktl
     { canonicalId: 6933, variantIds: [7102] },
-    // "cat": mistli (absolutive) · variant: mizto (colloquial)
+    // "cat": mistli (standalone noun) · variant: mizto (colloquial)
     { canonicalId: 485, variantIds: [471] },
     // "dried corncob / corn": olotl · variant: cintli (ear of corn)
     { canonicalId: 472, variantIds: [482] },
@@ -249,7 +249,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 483, variantIds: [484] },
     // "river": hueyatl (lit. "big water", std) · variant: atemitl (annotated)
     { canonicalId: 491, variantIds: [489] },
-    // "grasshopper": chapolin (absolutive) · variant: chapoli (bare stem)
+    // "grasshopper": chapolin (standalone noun) · variant: chapoli (bare stem)
     { canonicalId: 496, variantIds: [492] },
   ],
 
@@ -265,7 +265,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
   23: [
     // "house": calli · variants: kal, kali, kalli, cal·li
     { canonicalId: 518, variantIds: [527, 528, 530, 534] },
-    // "book": amoxtli (absolutive, std) · variants: libro (Spanish), amox (bare stem), amochtli
+    // "book": amoxtli (standalone noun, std) · variants: libro (Spanish), amox (bare stem), amochtli
     { canonicalId: 538, variantIds: [520, 529, 543] },
     // "medicine": pahtli · variant: pajtli
     { canonicalId: 521, variantIds: [535] },
@@ -297,13 +297,13 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 26: I Came to Buy a Tortilla Napkin ─────────────────────────────
   26: [
-    // "money": tomin (absolutive) · variant: tomi (bare stem)
+    // "money": tomin (standalone noun) · variant: tomi (bare stem)
     { canonicalId: 591, variantIds: [589] },
     // "orange / citrus fruit": alaxox · variants: lalax, chilcoz, xokotl
     { canonicalId: 593, variantIds: [592, 595, 600] },
     // "bread": pantzi · variant: pantsij
     { canonicalId: 594, variantIds: [608] },
-    // "tamale": tamali (absolutive) · variant: tamal (Spanish-influenced)
+    // "tamale": tamali (standalone noun) · variant: tamal (Spanish-influenced)
     { canonicalId: 604, variantIds: [598] },
     // "traditional garment / underwear": maxtli · variants: kalson, calzon (Spanish loanwords)
     { canonicalId: 599, variantIds: [601, 603] },

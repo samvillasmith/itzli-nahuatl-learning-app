@@ -129,7 +129,7 @@ const UNIT_TIPS: Record<number, TipData[]> = {
     { icon: "👨‍👩‍👧‍👦", title: "Family Words", body: "Nahuatl family terms are more specific than English. There are different words for older vs. younger siblings, and for relatives on your mother's vs. father's side." },
   ],
   10: [
-    { icon: "👁️", title: "Adjectives Are Verbs", body: "Many Nahuatl adjectives are actually stative verbs — \"to be tall,\" \"to be red.\" They take the same subject prefixes as regular verbs." },
+    { icon: "👁️", title: "Adjectives Are Verbs", body: "Many Nahuatl adjective-like words behave as stative verbs: \"be tall,\" \"be red.\" They take the same subject prefixes as regular verbs." },
   ],
   11: [
     { icon: "🤝", title: "Greetings Matter", body: "Proper greeting is deeply important in Nahua communities. The word pialli (hello) sets the tone for respectful interaction." },
@@ -733,7 +733,7 @@ function GrammarIntroStep({
         </div>
         <p className="text-sm text-stone-500 leading-relaxed mb-4">{lab.shortDesc}</p>
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-          <p className="text-xs font-bold text-amber-800 uppercase mb-1">Pattern</p>
+          <p className="text-xs font-bold text-amber-800 uppercase mb-1">Build it like this</p>
           <p className="font-mono text-sm font-semibold text-stone-900 mb-2">{lab.pattern}</p>
           <p className="text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
         </div>
@@ -809,7 +809,7 @@ function GrammarTransformStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Transform the form`} />
+      <StepLabel text={`${chunkLabel}Build this form`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
@@ -828,7 +828,7 @@ function GrammarTransformStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type your answer"
+          placeholder="Type only the Nahuatl answer"
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -892,7 +892,7 @@ function GrammarProduceStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Produce the form`} />
+      <StepLabel text={`${chunkLabel}Type it in Nahuatl`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
@@ -911,7 +911,7 @@ function GrammarProduceStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type your answer"
+          placeholder="Type only the Nahuatl answer"
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -981,13 +981,13 @@ function GrammarCheckpointStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Grammar checkpoint`} />
+      <StepLabel text={`${chunkLabel}One more grammar task`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
         <div className="flex items-center justify-between gap-3 mb-5">
           <div>
             <p className="text-xs font-bold text-emerald-700 uppercase mb-1">
-              Checkpoint {checkpointIdx + 1}
+              Practice {checkpointIdx + 1}
             </p>
             <h2 className="text-xl font-bold text-stone-900 leading-tight">{lab.title}</h2>
           </div>
@@ -1000,6 +1000,10 @@ function GrammarCheckpointStep({
           <p className="text-xs font-bold uppercase text-stone-400 mb-1">{taskLabel}</p>
           <p className="text-lg font-semibold text-stone-900">{cue}</p>
         </div>
+
+        <p className="mb-3 text-sm leading-relaxed text-stone-500">
+          Use the pattern from this lab. Type only the Nahuatl answer, then check it or reveal the explanation.
+        </p>
 
         <input
           value={input}

@@ -150,22 +150,22 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Locative suffixes",
     content:
-      "Locative suffixes attach to noun stems (after the absolutive drops) to form location phrases: -co (in, at — general), -pan (on, on top of, on the surface of), -tlan (near, among, with), -can (place where, place of), -nahuac (next to, alongside). Examples: calli 'house' → calco 'in the house'; atl 'water' → apan 'on the water'; tepetl 'mountain' → tepetlan 'among the mountains'; tequiti 'work' → tequican 'workplace'; tlacatl 'person' → tlacananahuac 'next to the person'.",
+      "Locative suffixes attach to noun stems, usually after the standalone noun ending drops, to form location phrases: -co (in, at — general), -pan (on, on top of, on the surface of), -tlan (near, among, with), -can (place where, place of), -nahuac (next to, alongside). Examples: calli 'house' → calco 'in the house'; atl 'water' → apan 'on the water'; tepetl 'mountain' → tepetlan 'among the mountains'; tequiti 'work' → tequican 'workplace'; tlacatl 'person' → tlacananahuac 'next to the person'.",
   },
   {
     title: "Possessive prefixes",
     content:
-      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The absolutive suffix (-tl/-tli/-li/-in) drops under possession. Examples: tocaitl → notoca (my name), calli → nocal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
+      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tocaitl → notoca (my name), calli → nocal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
   },
   {
-    title: "Noun absolutive and plural",
+    title: "Noun endings and plural",
     content:
-      "Absolutive suffixes (unpossessed singular): -tl (after vowel), -tli (after consonant), -li (after l), -in (for a smaller set of nouns). Plural: -meh, -tin, sometimes -h. Reverential/diminutive: -tzin or -tzintli. The absolutive drops when the noun is possessed or pluralized: calli → nocal (my house), calmeh (houses).",
+      "Many standalone nouns end in -tl (after vowel), -tli (after consonant), -li (after l), or -in (for a smaller set of nouns). Plural patterns include -meh, -tin, and sometimes -h. Reverential/diminutive forms use -tzin or -tzintli. The standalone ending often drops or changes when the noun is possessed or pluralized: calli → nocal (my house), calmeh (houses).",
   },
   {
     title: "Diminutive / reverential -tzin",
     content:
-      "Suffix -tzin (or -tzintli with absolutive) expresses affection, smallness, respect, or reverence — extremely common in EHN speech. Examples: cihuatl 'woman' → cihuatzin 'dear/little woman'; nantli 'mother' → nantzin 'dear mother'; tahtli 'father' → tahtzin 'dear father'. Used in religious contexts (Jesustzin), with elders, and in affectionate address. Not literally diminutive in size — more about social/emotional register.",
+      "Suffix -tzin (or -tzintli in a standalone noun form) expresses affection, smallness, respect, or reverence. Examples: cihuatl 'woman' → cihuatzin 'respected woman'; nantli 'mother' → nantzin 'dear mother'; tahtli 'father' → tahtzin 'dear father'. Used in religious contexts (Jesustzin), with elders, and in affectionate address. Not literally diminutive in size — more about social/emotional register.",
   },
   {
     title: "Pronouns (independent)",
@@ -178,9 +178,9 @@ const GRAMMAR_SNIPPETS = [
       "Reflexive: a prefix matching the subject's person goes in the object slot of the verb. 1sg: no-, 2sg/3sg/2pl/3pl: mo-, 1pl: to-. Note 3rd person uses mo- for both singular and plural. Examples: ninopahpaca = 'I wash myself' (ni- I + no- myself + pahpaca wash); timopahpaca = 'you wash yourself'; mopahpaca = 'he/she washes (him/her)self'. The reflexive prefix is identical in form to the possessive prefix but only attaches to verbs.",
   },
   {
-    title: "No copula 'to be'",
+    title: "Identity sentences without an extra 'to be' word",
     content:
-      "Nahuatl has no simple copula verb. Predicate nouns take subject prefixes directly. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Do NOT invent a verb like 'eli' for 'to be'.",
+      "For beginner identity sentences, attach the person prefix directly to the identity word. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Do NOT invent a verb like 'eli' for 'to be'.",
   },
   {
     title: "Existence — 'there is / there are'",
@@ -240,7 +240,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Noun incorporation",
     content:
-      "A noun object can fuse into the verb as its first element, especially for generic objects. The incorporated noun drops its absolutive (-tl/-tli/-li). Example: tlaxcalli 'tortilla' + namaca 'sell' → tlaxcalnamaca 'to sell tortillas'; nitlaxcalnamaca = 'I sell tortillas (I am a tortilla-seller)'. Incorporation tends to mean a generic / habitual action; use a separate noun phrase for a specific referent.",
+      "A noun object can fuse into the verb as its first element, especially for generic objects. The incorporated noun usually drops its standalone ending (-tl/-tli/-li). Example: tlaxcalli 'tortilla' + namaca 'sell' → tlaxcalnamaca 'to sell tortillas'; nitlaxcalnamaca = 'I sell tortillas (I am a tortilla-seller)'. Incorporation tends to mean a generic / habitual action; use a separate noun phrase for a specific referent.",
   },
   {
     title: "Reduplication",

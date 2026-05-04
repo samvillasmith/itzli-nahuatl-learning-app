@@ -111,6 +111,44 @@ function unique(values) {
   return [...new Set(values)];
 }
 
+function collectGrammarLabLearnerText(lab) {
+  const parts = [
+    lab.title,
+    lab.shortDesc,
+    lab.pattern,
+    lab.explanation,
+    ...lab.examples.flatMap((example) => [
+      example.nahuatl,
+      example.breakdown,
+      example.translation,
+      example.note,
+    ]),
+  ];
+
+  for (const drill of lab.drills) {
+    parts.push(drill.heading, drill.prompt);
+    if (drill.kind === "identify") {
+      for (const item of drill.items) {
+        parts.push(item.prompt, item.answer, item.explanation);
+      }
+    } else if (drill.kind === "transform") {
+      for (const item of drill.items) {
+        parts.push(item.input, item.target, item.answer, item.breakdown, item.explanation, ...(item.accepted || []));
+      }
+    } else if (drill.kind === "produce") {
+      for (const item of drill.items) {
+        parts.push(item.english, item.answer, item.breakdown, item.explanation, ...(item.accepted || []));
+      }
+    } else if (drill.kind === "paradigm") {
+      for (const row of drill.rows) {
+        parts.push(row.cue, row.answer, row.breakdown, row.translation);
+      }
+    }
+  }
+
+  return parts.filter(Boolean).join("\n");
+}
+
 function main() {
   const dbPath = path.join(process.cwd(), DB_FILENAME);
   if (!fs.existsSync(dbPath)) {
@@ -164,7 +202,13 @@ function main() {
       });
     }
 
-    const labText = JSON.stringify(lab);
+    const labText = collectGrammarLabLearnerText(lab);
+    if (/\b(copula|predicate|absolutive)\b/i.test(labText)) {
+      grammarFailures.push(`GrammarLab ${lab.id} has learner-facing technical jargon that should be plain-English.`);
+    }
+    if (lab.unit === 3 && /\bcihu[aā]tl\b/i.test(stripDiacritics(labText))) {
+      grammarWarnings.push(`GrammarLab ${lab.id} is assigned to Unit 3 but still uses cihuātl; Unit 3 is the names/intro unit.`);
+    }
     if (/\b(always|every)\b/i.test(labText) && /\b(noun|nouns|plural|pluralization|possess|possession|absolutive)\b/i.test(labText)) {
       grammarWarnings.push(`GrammarLab ${lab.id} uses "always" or "every" near a variable noun/plural/possession topic.`);
     }
