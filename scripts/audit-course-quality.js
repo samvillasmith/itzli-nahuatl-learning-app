@@ -169,6 +169,7 @@ function main() {
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
   const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
+  const { LESSON_FOCUS_CARDS, getLessonFocusCardsForLab } = loadTsModule("src/data/lesson-focus-cards.ts");
   const lessonFlowSource = fs.readFileSync(path.join(process.cwd(), "src/app/units/[unitId]/LessonFlow.tsx"), "utf8");
   if (!lessonFlowSource.includes("sentenceProduce")) {
     grammarFailures.push("Unit lesson flow is missing dialogue-based sentence production steps.");
@@ -176,8 +177,11 @@ function main() {
   if (!lessonFlowSource.includes("buildUnitPhraseCards") || !lessonFlowSource.includes('source: "unitPhrase"')) {
     grammarFailures.push("Unit lesson flow is missing generated unit phrase cards.");
   }
-  if (!lessonFlowSource.includes("...unitPhraseCards, ...filteredVocab")) {
-    grammarFailures.push("Unit phrase cards must be inserted into the main vocab-card stream before regular vocabulary.");
+  if (!lessonFlowSource.includes("buildLessonFocusCards") || !lessonFlowSource.includes('source: "lessonFocus"')) {
+    grammarFailures.push("Unit lesson flow is missing grammar-derived lesson focus cards.");
+  }
+  if (!lessonFlowSource.includes("mergeLearningCards(lessonFocusCards, unitPhraseCards, filteredVocab)")) {
+    grammarFailures.push("Lesson focus cards must be inserted before unit phrases and regular vocabulary.");
   }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
@@ -191,6 +195,11 @@ function main() {
   }
 
   for (const lab of GRAMMAR_LABS) {
+    const focusCards = getLessonFocusCardsForLab(lab.id);
+    if (focusCards.length < 3) {
+      grammarWarnings.push(`GrammarLab ${lab.id} has fewer than 3 lesson focus cards.`);
+    }
+
     if (lab.examples.length < 3) {
       grammarWarnings.push(`GrammarLab ${lab.id} has fewer than 3 examples.`);
     }
@@ -233,6 +242,9 @@ function main() {
   if (!GRAMMAR_LABS.some((lab) => lab.unit === 3 && lab.id === "name-exchange")) {
     grammarFailures.push("Unit 3 is missing the required name-exchange grammar lab.");
   }
+  if (!LESSON_FOCUS_CARDS.some((card) => card.unit === 3 && card.headword === "notōcah")) {
+    grammarFailures.push("Unit 3 lesson focus cards must include notōcah as a first-class card.");
+  }
 
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });
 
@@ -267,6 +279,7 @@ function main() {
   );
 
   let visibleCards = 0;
+  let focusCardCount = 0;
   let lessonChunks = 0;
   let sourceDialogueLines = 0;
   let stageDirectionLines = 0;
@@ -279,6 +292,11 @@ function main() {
   for (const unit of units) {
     const filtered = filterCoreVocab(vocabRows.all(unit.lesson_number), unit.lesson_number);
     const { cards } = collapseVariants(filtered, unit.lesson_number);
+    const unitLabIds = GRAMMAR_LABS.filter((lab) => lab.unit === unit.lesson_number).map((lab) => lab.id);
+    const focusCards = LESSON_FOCUS_CARDS.filter((card) =>
+      card.unit === unit.lesson_number && unitLabIds.includes(card.labId)
+    );
+    focusCardCount += focusCards.length;
     visibleCards += cards.length;
     const chunks = [];
     for (let i = 0; i < cards.length; i += CHUNK_SIZE) {
@@ -319,11 +337,14 @@ function main() {
       return { ...line, utterance_normalized: utterance.text };
     }).filter((line) => line.utterance_normalized);
 
-    const interactiveCount = chunks.reduce((count, chunk) => {
-      return count + cleanedDialogues.filter((line) =>
-        chunk.some((card) => hasExactPhrase(line.utterance_normalized, card.headword))
-      ).length;
-    }, 0);
+    const lessonCardPool = [
+      ...focusCards,
+      ...cleanedDialogues.map((line) => ({ headword: line.utterance_normalized })),
+      ...cards,
+    ];
+    const interactiveCount = cleanedDialogues.filter((line) =>
+      lessonCardPool.some((card) => hasExactPhrase(line.utterance_normalized, card.headword))
+    ).length;
     if (cleanedDialogues.length > 0 && interactiveCount === 0) {
       noInteractiveDialogueUnits.push(`${unit.lesson_number}: ${unit.theme_en}`);
     }
@@ -332,6 +353,7 @@ function main() {
   console.log("Course quality audit");
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
+  console.log(`- Grammar-derived lesson cards: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
   console.log(`- Dialogue lines with stage directions stripped/hidden from audio: ${stageDirectionLines}`);

@@ -255,22 +255,24 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       },
       {
         kind: "transform",
-        heading: "Change the possessor",
-        prompt: "Change the name phrase for the new meaning.",
+        heading: "Build the name form",
+        prompt: "Use tōcah “name” with the right possessor. For the first two, the target answer is one word.",
         items: [
           {
             input: "tōcah",
-            target: "my name",
+            target: "word for “my name”",
             answer: "notōcah",
             breakdown: "no-tōcah",
-            explanation: "Add no- to make “my name.”",
+            explanation: "Add no- to make notōcah “my name.” In a full introduction, use Na notōcah plus the name.",
+            accepted: ["Na notōcah", "na notōcah"],
           },
           {
             input: "tōcah",
-            target: "your name",
+            target: "word for “your name”",
             answer: "motōcah",
             breakdown: "mo-tōcah",
-            explanation: "Add mo- to make “your name.”",
+            explanation: "Add mo- to make motōcah “your name.” Use it in the question ¿Quēniuhqui motōcah?",
+            accepted: ["Ta motōcah", "ta motōcah"],
           },
           {
             input: "Na notōcah Juana.",

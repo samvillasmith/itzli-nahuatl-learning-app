@@ -9,6 +9,7 @@ import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
+import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -24,7 +25,7 @@ type VocabCard = {
   gloss_en: string;
   part_of_speech: string;
   audioSrc?: string | null;
-  source?: "vocab" | "unitPhrase";
+  source?: "vocab" | "unitPhrase" | "lessonFocus";
 };
 type DialogueLine = {
   lesson_dialogue_id: string;
@@ -195,13 +196,22 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function isUnitPhraseCard(card: VocabCard): boolean {
-  return card.source === "unitPhrase" || card.part_of_speech === "phrase";
+  return card.source === "unitPhrase" || card.source === "lessonFocus" || card.part_of_speech === "phrase";
 }
 
 function cardAudioSrc(card: VocabCard): string | null {
   if (card.audioSrc) return card.audioSrc;
   if (isUnitPhraseCard(card) || card.part_of_speech === "letter") return null;
   return vocabAudioUrl(card.id);
+}
+
+function learnStepLabel(card: VocabCard): string {
+  if (card.source === "lessonFocus") {
+    if (card.part_of_speech === "sentence") return "Lesson sentence";
+    if (card.part_of_speech === "phrase") return "Lesson phrase";
+    return "Lesson form";
+  }
+  return isUnitPhraseCard(card) ? "Unit phrase" : "New word";
 }
 
 function buildFwdOptions(correct: VocabCard, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
@@ -273,6 +283,17 @@ function isUnitPhraseCandidate(nahuatl: string, translation: string): boolean {
   return hasNahuatlSignal(nahuatl);
 }
 
+function buildLessonFocusCards(unitNum: number, grammarLabs: GrammarLab[]): VocabCard[] {
+  return getLessonFocusCardsForUnit(unitNum, grammarLabs.map((lab) => lab.id)).map((card, idx) => ({
+    id: -(unitNum * 100000 + idx + 1),
+    headword: card.headword,
+    gloss_en: card.gloss_en,
+    part_of_speech: card.part_of_speech,
+    source: "lessonFocus",
+    audioSrc: null,
+  }));
+}
+
 function buildUnitPhraseCards(
   unitNum: number,
   dialogues: DialogueLine[],
@@ -319,6 +340,22 @@ function buildUnitPhraseCards(
   }
 
   return cards;
+}
+
+function mergeLearningCards(...groups: VocabCard[][]): VocabCard[] {
+  const merged: VocabCard[] = [];
+  const seen = new Set<string>();
+
+  for (const group of groups) {
+    for (const card of group) {
+      const key = normalizeExerciseToken(card.headword);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      merged.push(card);
+    }
+  }
+
+  return merged;
 }
 
 function stripDiacritics(s: string): string {
@@ -549,21 +586,24 @@ function buildGrammarPracticeSteps(grammarLabs: GrammarLab[]): LessonStep[] {
   const steps: LessonStep[] = [];
   for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
     const lab = grammarLabs[labIdx];
-    for (let drillIdx = 0; drillIdx < lab.drills.length; drillIdx++) {
-      const drill = lab.drills[drillIdx];
-      if (drill.kind !== "transform" && drill.kind !== "produce") continue;
-      const itemCount = Math.min(drill.items.length, 2);
-      for (let itemIdx = 0; itemIdx < itemCount; itemIdx++) {
-        steps.push({
-          kind: drill.kind === "transform" ? "grammarTransform" : "grammarProduce",
-          labIdx,
-          drillIdx,
-          itemIdx,
-        });
+    const drillOrder = ["produce", "transform"] as const;
+    for (const kind of drillOrder) {
+      for (let drillIdx = 0; drillIdx < lab.drills.length; drillIdx++) {
+        const drill = lab.drills[drillIdx];
+        if (drill.kind !== kind) continue;
+        const itemCount = Math.min(drill.items.length, 3);
+        for (let itemIdx = 0; itemIdx < itemCount; itemIdx++) {
+          steps.push({
+            kind: drill.kind === "transform" ? "grammarTransform" : "grammarProduce",
+            labIdx,
+            drillIdx,
+            itemIdx,
+          });
+        }
       }
     }
   }
-  return steps.slice(0, 10);
+  return steps.slice(0, 16);
 }
 
 function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
@@ -575,7 +615,7 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
     for (let drillIdx = 0; drillIdx < lab.drills.length; drillIdx++) {
       const drill = lab.drills[drillIdx];
       if (drill.kind !== "transform" && drill.kind !== "produce") continue;
-      const preferredStart = drill.items.length > 2 ? 2 : 0;
+      const preferredStart = drill.items.length > 3 ? 3 : 0;
       for (let itemIdx = preferredStart; itemIdx < drill.items.length; itemIdx++) {
         steps.push({
           kind: "grammarCheckpoint",
@@ -585,7 +625,7 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
           itemIdx,
           checkpointIdx: steps.length,
         });
-        if (steps.length >= 6) return steps;
+        if (steps.length >= 8) return steps;
       }
     }
   }
@@ -954,16 +994,22 @@ function GrammarTransformStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Build this form`} />
+      <StepLabel text={`${chunkLabel}Practice the pattern`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
         <h2 className="text-lg font-bold text-stone-900 mb-1">{drill.heading}</h2>
         <p className="text-sm text-stone-500 mb-5">{drill.prompt}</p>
 
-        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
-          <p className="text-xs font-bold uppercase text-stone-400 mb-1">{item.target}</p>
-          <p className="text-lg font-semibold text-stone-900">{item.input}</p>
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4 space-y-3">
+          <div>
+            <p className="text-xs font-bold uppercase text-stone-400 mb-1">Make this meaning</p>
+            <p className="text-lg font-semibold text-stone-900">{item.target}</p>
+          </div>
+          <div className="border-t border-stone-200 pt-3">
+            <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
+            <p className="font-mono text-sm font-semibold text-emerald-700">{item.input}</p>
+          </div>
         </div>
 
         <input
@@ -973,7 +1019,7 @@ function GrammarTransformStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type only the Nahuatl answer"
+          placeholder="Type the Nahuatl form"
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1119,7 +1165,7 @@ function GrammarCheckpointStep({
   if (!item) return null;
 
   const cue = transformItem ? transformItem.input : produceItem?.english ?? "";
-  const taskLabel = transformItem ? transformItem.target : "Say this in Nahuatl";
+  const taskLabel = transformItem ? "Make this meaning" : "Say this in Nahuatl";
   const correct = answerMatches(input, item.answer, item.accepted);
   const showAnswer = checked || revealed;
 
@@ -1141,9 +1187,15 @@ function GrammarCheckpointStep({
           </span>
         </div>
 
-        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4 space-y-3">
           <p className="text-xs font-bold uppercase text-stone-400 mb-1">{taskLabel}</p>
-          <p className="text-lg font-semibold text-stone-900">{cue}</p>
+          <p className="text-lg font-semibold text-stone-900">{transformItem ? transformItem.target : cue}</p>
+          {transformItem && (
+            <div className="border-t border-stone-200 pt-3">
+              <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
+              <p className="font-mono text-sm font-semibold text-emerald-700">{cue}</p>
+            </div>
+          )}
         </div>
 
         <p className="mb-3 text-sm leading-relaxed text-stone-500">
@@ -1415,9 +1467,14 @@ export default function LessonFlow({
     [unitNum]
   );
 
+  const lessonFocusCards = useMemo(
+    () => buildLessonFocusCards(unitNum, grammarLabs),
+    [unitNum, grammarLabs]
+  );
+
   const learningCards = useMemo(
-    () => [...unitPhraseCards, ...filteredVocab],
-    [unitPhraseCards, filteredVocab]
+    () => mergeLearningCards(lessonFocusCards, unitPhraseCards, filteredVocab),
+    [lessonFocusCards, unitPhraseCards, filteredVocab]
   );
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
@@ -1592,6 +1649,12 @@ export default function LessonFlow({
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{learningCards.length}</div>
                 <div className="text-xs text-stone-400 mt-0.5">cards total</div>
+              </div>
+            )}
+            {lessonFocusCards.length > 0 && (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-stone-900">{lessonFocusCards.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">lesson cards</div>
               </div>
             )}
             {unitPhraseCards.length > 0 && (
@@ -1839,7 +1902,7 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}${isUnitPhraseCard(word) ? "Unit phrase" : "New word"}`} />
+        <StepLabel text={`${chunkLabel}${learnStepLabel(word)}`} />
 
         <button
           onClick={() => {
