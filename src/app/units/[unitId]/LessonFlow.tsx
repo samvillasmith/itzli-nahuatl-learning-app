@@ -29,11 +29,6 @@ type DialogueLine = {
 type ConstructionItem = { example_original: string; construction_label?: string; translation_en?: string | null };
 type LessonBlockItem = { text_normalized: string };
 type GrammarCheckpointKind = "transform" | "produce";
-type AssessmentItem = {
-  proficiency_band: string;
-  item_type: string;
-  prompt: string;
-};
 
 type FillBlank = {
   prompt: string;
@@ -67,7 +62,7 @@ type LessonStep =
   | { kind: "grammarTransform"; labIdx: number; drillIdx: number; itemIdx: number }
   | { kind: "grammarProduce"; labIdx: number; drillIdx: number; itemIdx: number }
   | {
-      kind: "unitCheckpoint";
+      kind: "grammarCheckpoint";
       labIdx: number;
       drillKind: GrammarCheckpointKind;
       drillIdx: number;
@@ -458,7 +453,7 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
     const transformIdx = lab.drills.findIndex((drill) => drill.kind === "transform" && drill.items.length > 0);
     if (transformIdx >= 0) {
       steps.push({
-        kind: "unitCheckpoint",
+        kind: "grammarCheckpoint",
         labIdx,
         drillKind: "transform",
         drillIdx: transformIdx,
@@ -470,7 +465,7 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
     const produceIdx = lab.drills.findIndex((drill) => drill.kind === "produce" && drill.items.length > 0);
     if (produceIdx >= 0) {
       steps.push({
-        kind: "unitCheckpoint",
+        kind: "grammarCheckpoint",
         labIdx,
         drillKind: "produce",
         drillIdx: produceIdx,
@@ -953,64 +948,6 @@ function GrammarProduceStep({
   );
 }
 
-function UnitCheckpointStep({
-  assessment,
-  progressValue,
-  chunkLabel,
-  onContinue,
-}: {
-  assessment: AssessmentItem;
-  progressValue: number;
-  chunkLabel: string;
-  onContinue: () => void;
-}) {
-  const [response, setResponse] = useState("");
-  const [showGuidance, setShowGuidance] = useState(false);
-
-  return (
-    <div className="max-w-lg mx-auto">
-      <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Unit checkpoint`} />
-
-      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
-            {assessment.proficiency_band}
-          </span>
-          <span className="text-xs font-semibold text-stone-400">{assessment.item_type}</span>
-        </div>
-        <p className="text-lg font-bold text-stone-900 leading-snug mb-4">{assessment.prompt}</p>
-        <textarea
-          value={response}
-          onChange={(e) => setResponse(e.target.value)}
-          className="min-h-32 w-full resize-y rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Write your self-check response"
-        />
-        <button
-          onClick={() => setShowGuidance(true)}
-          className="mt-3 w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
-        >
-          Show self-check guidance
-        </button>
-      </div>
-
-      {showGuidance && (
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-amber-800 mb-2">Self-check</p>
-          <ul className="space-y-1.5 text-sm leading-relaxed text-stone-700">
-            <li>Did you use the unit vocabulary?</li>
-            <li>Did you use the correct prefix or suffix?</li>
-            <li>Did you avoid inventing a “to be” verb?</li>
-            <li>Can you explain the form?</li>
-          </ul>
-        </div>
-      )}
-
-      <ContinueButton onClick={onContinue} label={response.trim() || showGuidance ? "Continue →" : "Skip for now →"} />
-    </div>
-  );
-}
-
 function GrammarCheckpointStep({
   lab,
   drill,
@@ -1044,7 +981,7 @@ function GrammarCheckpointStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Unit checkpoint`} />
+      <StepLabel text={`${chunkLabel}Grammar checkpoint`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
         <div className="flex items-center justify-between gap-3 mb-5">
@@ -1606,7 +1543,7 @@ export default function LessonFlow({
     );
   }
 
-  if (step.kind === "unitCheckpoint") {
+  if (step.kind === "grammarCheckpoint") {
     const lab = grammarLabs[step.labIdx];
     const drill = lab?.drills[step.drillIdx];
     if (!lab || !drill || drill.kind !== step.drillKind) return null;
