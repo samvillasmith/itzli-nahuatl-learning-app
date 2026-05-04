@@ -28,9 +28,8 @@ type DialogueLine = {
 };
 type ConstructionItem = { example_original: string; construction_label?: string; translation_en?: string | null };
 type LessonBlockItem = { text_normalized: string };
+type GrammarCheckpointKind = "transform" | "produce";
 type AssessmentItem = {
-  assessment_id: number;
-  lesson_number: number;
   proficiency_band: string;
   item_type: string;
   prompt: string;
@@ -67,7 +66,14 @@ type LessonStep =
   | { kind: "grammarExample"; labIdx: number; exampleIdx: number }
   | { kind: "grammarTransform"; labIdx: number; drillIdx: number; itemIdx: number }
   | { kind: "grammarProduce"; labIdx: number; drillIdx: number; itemIdx: number }
-  | { kind: "unitCheckpoint"; assessmentIdx: number };
+  | {
+      kind: "unitCheckpoint";
+      labIdx: number;
+      drillKind: GrammarCheckpointKind;
+      drillIdx: number;
+      itemIdx: number;
+      checkpointIdx: number;
+    };
 
 type FlowMode =
   | { screen: "intro" }
@@ -88,7 +94,6 @@ type Props = {
   constructions: ConstructionItem[];
   lessonBlocks: LessonBlockItem[];
   grammarLabs: GrammarLab[];
-  assessments: AssessmentItem[];
   allVocabPool: VocabCard[];
   prevUnit: { num: number; themeEn: string } | null;
   nextUnit: { num: number; themeEn: string } | null;
@@ -444,6 +449,40 @@ function firstGrammarProductionStep(grammarLabs: GrammarLab[]): LessonStep | nul
   return null;
 }
 
+function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
+  const steps: LessonStep[] = [];
+
+  for (let labIdx = 0; labIdx < grammarLabs.length; labIdx++) {
+    const lab = grammarLabs[labIdx];
+
+    const transformIdx = lab.drills.findIndex((drill) => drill.kind === "transform" && drill.items.length > 0);
+    if (transformIdx >= 0) {
+      steps.push({
+        kind: "unitCheckpoint",
+        labIdx,
+        drillKind: "transform",
+        drillIdx: transformIdx,
+        itemIdx: 0,
+        checkpointIdx: steps.length,
+      });
+    }
+
+    const produceIdx = lab.drills.findIndex((drill) => drill.kind === "produce" && drill.items.length > 0);
+    if (produceIdx >= 0) {
+      steps.push({
+        kind: "unitCheckpoint",
+        labIdx,
+        drillKind: "produce",
+        drillIdx: produceIdx,
+        itemIdx: 0,
+        checkpointIdx: steps.length,
+      });
+    }
+  }
+
+  return steps.slice(0, 3);
+}
+
 function buildSequence(
   chunk: VocabCard[],
   srsIndices: number[],
@@ -452,7 +491,6 @@ function buildSequence(
   pool: VocabCard[],
   unitNum: number,
   grammarLabs: GrammarLab[],
-  assessments: AssessmentItem[],
   chunkIndex: number,
   isLastChunk: boolean,
 ): LessonStep[] {
@@ -540,9 +578,7 @@ function buildSequence(
   }
 
   if (isLastChunk) {
-    assessments.slice(0, 3).forEach((_, assessmentIdx) => {
-      steps.push({ kind: "unitCheckpoint", assessmentIdx });
-    });
+    steps.push(...buildGrammarCheckpointSteps(grammarLabs));
   }
 
   return steps;
@@ -975,6 +1011,103 @@ function UnitCheckpointStep({
   );
 }
 
+function GrammarCheckpointStep({
+  lab,
+  drill,
+  itemIdx,
+  checkpointIdx,
+  progressValue,
+  chunkLabel,
+  onContinue,
+}: {
+  lab: GrammarLab;
+  drill: Extract<GrammarLab["drills"][number], { kind: "transform" | "produce" }>;
+  itemIdx: number;
+  checkpointIdx: number;
+  progressValue: number;
+  chunkLabel: string;
+  onContinue: () => void;
+}) {
+  const transformItem = drill.kind === "transform" ? drill.items[itemIdx] : null;
+  const produceItem = drill.kind === "produce" ? drill.items[itemIdx] : null;
+  const item = transformItem ?? produceItem;
+  const [input, setInput] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  if (!item) return null;
+
+  const cue = transformItem ? transformItem.input : produceItem?.english ?? "";
+  const taskLabel = transformItem ? transformItem.target : "Say this in Nahuatl";
+  const correct = answerMatches(input, item.answer, item.accepted);
+  const showAnswer = checked || revealed;
+
+  return (
+    <div className="max-w-lg mx-auto">
+      <ProgressBar value={progressValue} />
+      <StepLabel text={`${chunkLabel}Unit checkpoint`} />
+
+      <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div>
+            <p className="text-xs font-bold text-emerald-700 uppercase mb-1">
+              Checkpoint {checkpointIdx + 1}
+            </p>
+            <h2 className="text-xl font-bold text-stone-900 leading-tight">{lab.title}</h2>
+          </div>
+          <span className="shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+            {lab.band}
+          </span>
+        </div>
+
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
+          <p className="text-xs font-bold uppercase text-stone-400 mb-1">{taskLabel}</p>
+          <p className="text-lg font-semibold text-stone-900">{cue}</p>
+        </div>
+
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setChecked(false);
+          }}
+          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+          placeholder="Type the Nahuatl answer"
+        />
+
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <button
+            onClick={() => setChecked(true)}
+            className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            Check
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            Reveal
+          </button>
+        </div>
+      </div>
+
+      {checked && (
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+      )}
+
+      {showAnswer && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer and explanation</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
+        </div>
+      )}
+
+      {(correct && checked) || revealed ? <ContinueButton onClick={onContinue} /> : null}
+    </div>
+  );
+}
+
 function MatchPairsExercise({
   pairs,
   onComplete,
@@ -1074,7 +1207,6 @@ export default function LessonFlow({
   dialogues,
   constructions,
   grammarLabs,
-  assessments,
   allVocabPool,
   prevUnit,
   nextUnit,
@@ -1175,7 +1307,6 @@ export default function LessonFlow({
       pool,
       unitNum,
       grammarLabs,
-      assessments,
       chunkIndex,
       isLastChunk
     ),
@@ -1476,11 +1607,15 @@ export default function LessonFlow({
   }
 
   if (step.kind === "unitCheckpoint") {
-    const assessment = assessments[step.assessmentIdx];
-    if (!assessment) return null;
+    const lab = grammarLabs[step.labIdx];
+    const drill = lab?.drills[step.drillIdx];
+    if (!lab || !drill || drill.kind !== step.drillKind) return null;
     return (
-      <UnitCheckpointStep
-        assessment={assessment}
+      <GrammarCheckpointStep
+        lab={lab}
+        drill={drill}
+        itemIdx={step.itemIdx}
+        checkpointIdx={step.checkpointIdx}
         progressValue={progressValue}
         chunkLabel={chunkLabel}
         onContinue={advance}
