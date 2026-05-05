@@ -180,8 +180,8 @@ function main() {
   if (!lessonFlowSource.includes("buildLessonFocusCards") || !lessonFlowSource.includes('source: "lessonFocus"')) {
     grammarFailures.push("Unit lesson flow is missing grammar-derived lesson focus cards.");
   }
-  if (!lessonFlowSource.includes("mergeLearningCards(lessonFocusCards, unitPhraseCards, filteredVocab)")) {
-    grammarFailures.push("Lesson focus cards must be inserted before unit phrases and regular vocabulary.");
+  if (!lessonFlowSource.includes("mergeLearningCards(lessonFocusCards, filteredVocab, unitPhraseCards)")) {
+    grammarFailures.push("When lesson focus cards exist, they must be followed by regular unit vocabulary before fallback phrase cards.");
   }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),

@@ -1473,7 +1473,9 @@ export default function LessonFlow({
   );
 
   const learningCards = useMemo(
-    () => mergeLearningCards(lessonFocusCards, unitPhraseCards, filteredVocab),
+    () => lessonFocusCards.length > 0
+      ? mergeLearningCards(lessonFocusCards, filteredVocab, unitPhraseCards)
+      : mergeLearningCards(unitPhraseCards, filteredVocab),
     [lessonFocusCards, unitPhraseCards, filteredVocab]
   );
 
