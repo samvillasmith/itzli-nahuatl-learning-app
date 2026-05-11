@@ -264,7 +264,7 @@ export const CURRICULUM_PATH: CurriculumMeta[] = [
     grammar: "Job identity phrases and tequiti expressions.",
     lexical: "Teacher, student, worker, priest, grinder, and roles.",
     descriptor: "Can ask what someone does and answer with a simple job phrase.",
-    capstoneTask: "Interview someone about their work or study.",
+    capstoneTask: "Ask someone about their work or study.",
   },
   {
     lesson: 7,

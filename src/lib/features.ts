@@ -1,2 +1,1 @@
-export const TUTOR_FEATURE_ENABLED = process.env.TUTOR_ENABLED === "true";
-
+export const TUTOR_FEATURE_ENABLED = process.env.TUTOR_ENABLED !== "false";
