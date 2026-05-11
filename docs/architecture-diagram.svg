@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2200" viewBox="0 0 1800 2200" role="img" aria-labelledby="title desc">
+  <title id="title">Itzli Data Flow Architecture</title>
+  <desc id="desc">Readable architecture diagram showing curriculum, tutor, progress, and audio data flows for the Itzli app.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#d97706"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .page { fill: #fbfaf8; }
+      .title { fill: #0f172a; font: 800 48px Arial, sans-serif; }
+      .subtitle { fill: #475569; font: 24px Arial, sans-serif; }
+      .section { fill: #ffffff; stroke: #d6d3d1; stroke-width: 3; rx: 30; }
+      .section-title { fill: #111827; font: 800 34px Arial, sans-serif; }
+      .section-note { fill: #57534e; font: 22px Arial, sans-serif; }
+      .card { stroke-width: 3; rx: 22; }
+      .blue-card { fill: #eff6ff; stroke: #3b82f6; }
+      .orange-card { fill: #fffbeb; stroke: #f59e0b; }
+      .green-card { fill: #ecfdf5; stroke: #10b981; }
+      .purple-card { fill: #f5f3ff; stroke: #8b5cf6; }
+      .gray-card { fill: #f8fafc; stroke: #94a3b8; }
+      .card-title { fill: #0f172a; font: 800 27px Arial, sans-serif; }
+      .card-text { fill: #334155; font: 21px Arial, sans-serif; }
+      .muted { fill: #64748b; font: 19px Arial, sans-serif; }
+      .step { fill: #111827; font: 800 22px Arial, sans-serif; }
+      .step-circle { fill: #ffffff; stroke-width: 3; }
+      .blue-stroke { stroke: #2563eb; }
+      .orange-stroke { stroke: #d97706; }
+      .green-stroke { stroke: #0f766e; }
+      .flow-blue { fill: none; stroke: #2563eb; stroke-width: 6; marker-end: url(#arrow-blue); }
+      .flow-orange { fill: none; stroke: #d97706; stroke-width: 6; marker-end: url(#arrow-orange); }
+      .flow-green { fill: none; stroke: #0f766e; stroke-width: 6; marker-end: url(#arrow-green); }
+      .label { fill: #334155; font: 700 22px Arial, sans-serif; }
+      .pill { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 2; rx: 18; }
+      .pill-text { fill: #374151; font: 700 20px Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="page" width="1800" height="2200"/>
+
+  <text class="title" x="80" y="78">Itzli Data Flow Architecture</text>
+  <text class="subtitle" x="80" y="118">The app has four practical flows: curriculum load, learner progress, guarded tutor chat, and generated audio.</text>
+
+  <!-- Flow 1 -->
+  <rect class="section" x="70" y="165" width="1660" height="485"/>
+  <text class="section-title" x="110" y="218">1. Curriculum Load Flow</text>
+  <text class="section-note" x="110" y="253">Read-heavy curriculum data is prepared before build/dev, then queried by server pages and hydrated into the lesson UI.</text>
+
+  <rect class="card purple-card" x="120" y="310" width="430" height="135"/>
+  <circle class="step-circle blue-stroke" cx="162" cy="350" r="24"/>
+  <text class="step" x="155" y="358">1</text>
+  <text class="card-title" x="200" y="350">S3 SQLite Artifact</text>
+  <text class="card-text" x="200" y="383">Large curriculum database</text>
+  <text class="muted" x="200" y="414">not committed to Git</text>
+
+  <rect class="card green-card" x="685" y="310" width="430" height="135"/>
+  <circle class="step-circle blue-stroke" cx="727" cy="350" r="24"/>
+  <text class="step" x="720" y="358">2</text>
+  <text class="card-title" x="765" y="350">fetch-db.js</text>
+  <text class="card-text" x="765" y="383">Downloads DB if missing</text>
+  <text class="muted" x="765" y="414">runs before dev/build</text>
+
+  <rect class="card purple-card" x="1250" y="310" width="430" height="135"/>
+  <circle class="step-circle blue-stroke" cx="1292" cy="350" r="24"/>
+  <text class="step" x="1285" y="358">3</text>
+  <text class="card-title" x="1330" y="350">Local SQLite DB</text>
+  <text class="card-text" x="1330" y="383">Units, vocab, grammar,</text>
+  <text class="muted" x="1330" y="414">dialogues, full lexicon</text>
+
+  <rect class="card blue-card" x="120" y="500" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="162" cy="538" r="24"/>
+  <text class="step" x="155" y="546">4</text>
+  <text class="card-title" x="200" y="540">src/lib/db.ts</text>
+  <text class="card-text" x="200" y="573">Typed query layer</text>
+
+  <rect class="card blue-card" x="685" y="500" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="727" cy="538" r="24"/>
+  <text class="step" x="720" y="546">5</text>
+  <text class="card-title" x="765" y="540">Server Pages</text>
+  <text class="card-text" x="765" y="573">Units, vocab, grammar</text>
+
+  <rect class="card blue-card" x="1250" y="500" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="1292" cy="538" r="24"/>
+  <text class="step" x="1285" y="546">6</text>
+  <text class="card-title" x="1330" y="540">LessonFlow.tsx</text>
+  <text class="card-text" x="1330" y="573">Client learning state machine</text>
+
+  <path class="flow-blue" d="M550 378 H685"/>
+  <path class="flow-blue" d="M1115 378 H1250"/>
+  <path class="flow-blue" d="M1465 445 V475 H335 V500"/>
+  <path class="flow-blue" d="M550 555 H685"/>
+  <path class="flow-blue" d="M1115 555 H1250"/>
+
+  <!-- Flow 2 -->
+  <rect class="section" x="70" y="705" width="1660" height="300"/>
+  <text class="section-title" x="110" y="758">2. Learner Progress Flow</text>
+  <text class="section-note" x="110" y="793">Progress is local-first, then merged and synced to Neon for signed-in users.</text>
+
+  <rect class="card blue-card" x="120" y="850" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="162" cy="888" r="24"/>
+  <text class="step" x="155" y="896">1</text>
+  <text class="card-title" x="200" y="890">LessonFlow.tsx</text>
+  <text class="card-text" x="200" y="923">records chunk + word results</text>
+
+  <rect class="card gray-card" x="685" y="850" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="727" cy="888" r="24"/>
+  <text class="step" x="720" y="896">2</text>
+  <text class="card-title" x="765" y="890">localStorage</text>
+  <text class="card-text" x="765" y="923">progress + SRS cache</text>
+
+  <rect class="card gray-card" x="1250" y="850" width="430" height="110"/>
+  <circle class="step-circle blue-stroke" cx="1292" cy="888" r="24"/>
+  <text class="step" x="1285" y="896">3</text>
+  <text class="card-title" x="1330" y="890">/api/progress → Neon</text>
+  <text class="card-text" x="1330" y="923">authenticated cloud sync</text>
+
+  <path class="flow-blue" d="M550 905 H685"/>
+  <path class="flow-blue" d="M1115 905 H1250"/>
+
+  <!-- Flow 3 -->
+  <rect class="section" x="70" y="1060" width="1660" height="555"/>
+  <text class="section-title" x="110" y="1113">3. Guarded AI Tutor Flow</text>
+  <text class="section-note" x="110" y="1148">Chat messages pass through safety controls, retrieval, completion, output checks, and hashed audit logging.</text>
+
+  <rect class="card orange-card" x="120" y="1210" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="162" cy="1248" r="24"/>
+  <text class="step" x="155" y="1256">1</text>
+  <text class="card-title" x="200" y="1250">TutorClient.tsx</text>
+  <text class="card-text" x="200" y="1283">Browser chat UI</text>
+  <text class="muted" x="200" y="1312">tutor + practice modes</text>
+
+  <rect class="card orange-card" x="685" y="1210" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="727" cy="1248" r="24"/>
+  <text class="step" x="720" y="1256">2</text>
+  <text class="card-title" x="765" y="1250">/api/chat</text>
+  <text class="card-text" x="765" y="1283">One route orchestrates</text>
+  <text class="muted" x="765" y="1312">the full tutor pipeline</text>
+
+  <rect class="card orange-card" x="1250" y="1210" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="1292" cy="1248" r="24"/>
+  <text class="step" x="1285" y="1256">3</text>
+  <text class="card-title" x="1330" y="1250">Guardrails</text>
+  <text class="card-text" x="1330" y="1283">auth, validation, rate limit</text>
+  <text class="muted" x="1330" y="1312">injection + input moderation</text>
+
+  <rect class="card purple-card" x="120" y="1410" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="162" cy="1448" r="24"/>
+  <text class="step" x="155" y="1456">4</text>
+  <text class="card-title" x="200" y="1450">RAG Retrieval</text>
+  <text class="card-text" x="200" y="1483">query embedding + pgvector</text>
+  <text class="muted" x="200" y="1512">keyword hits first</text>
+
+  <rect class="card orange-card" x="685" y="1410" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="727" cy="1448" r="24"/>
+  <text class="step" x="720" y="1456">5</text>
+  <text class="card-title" x="765" y="1450">OpenAI Completion</text>
+  <text class="card-text" x="765" y="1483">gpt-4.1-mini</text>
+  <text class="muted" x="765" y="1512">system prompt + retrieved facts</text>
+
+  <rect class="card gray-card" x="1250" y="1410" width="430" height="125"/>
+  <circle class="step-circle orange-stroke" cx="1292" cy="1448" r="24"/>
+  <text class="step" x="1285" y="1456">6</text>
+  <text class="card-title" x="1330" y="1450">Moderate + Audit</text>
+  <text class="card-text" x="1330" y="1483">output moderation</text>
+  <text class="muted" x="1330" y="1512">Neon chat_audit, hashes only</text>
+
+  <path class="flow-orange" d="M550 1272 H685"/>
+  <path class="flow-orange" d="M1115 1272 H1250"/>
+  <path class="flow-orange" d="M1465 1335 V1370 H335 V1410"/>
+  <path class="flow-orange" d="M550 1472 H685"/>
+  <path class="flow-orange" d="M1115 1472 H1250"/>
+
+  <rect class="pill" x="620" y="1560" width="560" height="44"/>
+  <text class="pill-text" x="660" y="1589">Clean response returns to TutorClient after checks</text>
+
+  <!-- Flow 4 -->
+  <rect class="section" x="70" y="1670" width="1660" height="360"/>
+  <text class="section-title" x="110" y="1723">4. Audio and Media Flow</text>
+  <text class="section-note" x="110" y="1758">Audio is generated ahead of time, served as static files, then falls back to S3 when a local clip is missing.</text>
+
+  <rect class="card green-card" x="120" y="1830" width="430" height="115"/>
+  <circle class="step-circle green-stroke" cx="162" cy="1868" r="24"/>
+  <text class="step" x="155" y="1876">1</text>
+  <text class="card-title" x="200" y="1870">Audio Scripts</text>
+  <text class="card-text" x="200" y="1903">Google TTS primary run</text>
+
+  <rect class="card green-card" x="685" y="1830" width="430" height="115"/>
+  <circle class="step-circle green-stroke" cx="727" cy="1868" r="24"/>
+  <text class="step" x="720" y="1876">2</text>
+  <text class="card-title" x="765" y="1870">/audio-google</text>
+  <text class="card-text" x="765" y="1903">Generated static WAVs</text>
+
+  <rect class="card green-card" x="1250" y="1830" width="430" height="115"/>
+  <circle class="step-circle green-stroke" cx="1292" cy="1868" r="24"/>
+  <text class="step" x="1285" y="1876">3</text>
+  <text class="card-title" x="1330" y="1870">audio.ts → Browser</text>
+  <text class="card-text" x="1330" y="1903">URL builder + playback fallback</text>
+
+  <path class="flow-green" d="M550 1888 H685"/>
+  <path class="flow-green" d="M1115 1888 H1250"/>
+
+  <rect class="pill" x="650" y="1970" width="500" height="44"/>
+  <text class="pill-text" x="690" y="1999">If local audio fails, play S3 fallback URL</text>
+
+  <!-- Legend -->
+  <rect class="pill" x="120" y="2080" width="450" height="54"/>
+  <text class="pill-text" x="158" y="2114">Blue = curriculum/progress flow</text>
+  <rect class="pill" x="675" y="2080" width="450" height="54"/>
+  <text class="pill-text" x="713" y="2114">Orange = AI tutor request flow</text>
+  <rect class="pill" x="1230" y="2080" width="450" height="54"/>
+  <text class="pill-text" x="1268" y="2114">Green = generated audio flow</text>
+</svg>
