@@ -33,6 +33,26 @@ const data = raw as Record<string, WordImage | null>;
 const s3Data = s3Raw as Record<string, S3WordImage | null>;
 const openaiData = openaiRaw as Record<string, WordImage | null>;
 
+function normalizeHeadword(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function entryFor<T>(records: Record<string, T | null>, headword: string): T | null {
+  const direct = records[headword];
+  if (direct) return direct;
+
+  const normalized = normalizeHeadword(headword);
+  const matchedKey = Object.keys(records).find(
+    (key) => normalizeHeadword(key) === normalized && records[key],
+  );
+  return matchedKey ? records[matchedKey] : null;
+}
+
 function s3UrlFromEntry(entry: S3WordImage): string {
   if (typeof entry === "string") {
     return entry.startsWith("http") ? entry : S3_WORD_IMAGE_BASE + entry.replace(/^\/+/, "");
@@ -42,7 +62,7 @@ function s3UrlFromEntry(entry: S3WordImage): string {
 }
 
 function s3Image(headword: string): WordImage | null {
-  const entry = s3Data[headword];
+  const entry = entryFor(s3Data, headword);
   if (!entry) return null;
   if (typeof entry === "string") {
     return {
@@ -63,7 +83,7 @@ function s3Image(headword: string): WordImage | null {
 }
 
 function openaiImage(headword: string): WordImage | null {
-  const entry = openaiData[headword];
+  const entry = entryFor(openaiData, headword);
   if (!entry) return null;
   return {
     ...entry,
@@ -85,7 +105,7 @@ export function getWordImage(
   if (openai) return openai;
   const s3 = s3Image(headword);
   if (s3) return s3;
-  return options.allowLegacyFallback ? data[headword] ?? null : null;
+  return options.allowLegacyFallback ? entryFor(data, headword) : null;
 }
 
 export function getWordImageAudit() {

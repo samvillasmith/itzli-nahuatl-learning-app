@@ -40,7 +40,7 @@ export default function EulaPage() {
       </p>
       <p className="mb-4">
         The source code of the Itzli application is separately licensed under
-        the open-source license contained in the public repository. Your rights
+        the project license kept with the application source. Your rights
         to the source code are governed by that license; this EULA governs your
         use of the <em>hosted service</em>. Nothing in this EULA limits rights
         granted to you by Creative Commons licenses on imported source material.
