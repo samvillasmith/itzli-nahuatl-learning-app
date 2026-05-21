@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Terms of Service for Itzli — Eastern Huasteca Nahuatl learning app.",
 };
 
-const EFFECTIVE_DATE = "April 30, 2026";
+const EFFECTIVE_DATE = "May 20, 2026";
 const CONTACT_EMAIL = "svillasmith3@gmail.com";
 
 export default function TermsPage() {
@@ -45,7 +45,7 @@ export default function TermsPage() {
         <li>use Itzli for any unlawful purpose or in violation of any applicable law;</li>
         <li>attempt to probe, scan, or test the vulnerability of the app, circumvent rate limits, or bypass safety guardrails;</li>
         <li>submit content that is sexual (especially involving minors), threatening, harassing, hateful, violent, or that facilitates illegal harm;</li>
-        <li>attempt to extract, copy, or redistribute Itzli&apos;s curriculum content in bulk except as permitted by the open-source license for the code;</li>
+        <li>attempt to extract, copy, or redistribute Itzli content in bulk except where permitted by an applicable open license, including the CC BY-SA license for imported Nāhuatlahtolli materials;</li>
         <li>use the AI tutor to generate content that violates OpenAI&apos;s usage policies;</li>
         <li>impersonate others, or use automated scripts or crawlers against the app without our written consent.</li>
       </ul>
@@ -89,13 +89,23 @@ export default function TermsPage() {
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">6. Intellectual property</h2>
       <p className="mb-4">
         The Itzli source code is released under the project&apos;s open-source license
-        available in the repository. Curriculum content (lessons, dialogues,
-        worked examples) is copyrighted by its author and licensed for personal,
-        non-commercial educational use via the app. Third-party assets are
-        licensed from their respective owners: photographs via Pexels and/or the
-        app&apos;s S3 asset catalog where applicable, reference materials from IDIEZ
-        and other scholarly sources (attributed in the README), and machine audio
-        generated through the app&apos;s language-specific machine-audio pipeline.
+        available in the repository. Imported Nāhuatlahtolli lesson content is
+        adapted from the COERLL course by Sabina de la Cruz, Catalina de la Cruz,
+        Josefrayn Sánchez-Perry, Kelly McDonough, and Sergio Romero and remains
+        available under{" "}
+        <a
+          className="text-emerald-600 underline"
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CC BY-SA 4.0
+        </a>
+        . Itzli additions, machine-generated audio, photographs, and other
+        third-party assets are licensed from their respective owners or under the
+        notices shown in the app and repository. Account sign-in for the hosted
+        app does not remove the Creative Commons rights attached to the imported
+        Nāhuatlahtolli material.
       </p>
       <p className="mb-4">
         You retain rights to content you submit, but by submitting content to the
@@ -113,6 +123,7 @@ export default function TermsPage() {
         <li><strong>Vercel</strong> — hosting</li>
         <li><strong>Amazon S3</strong> — static asset delivery (audio, database)</li>
         <li><strong>Pexels</strong> — vocabulary photographs</li>
+        <li><strong>COERLL / UT Austin</strong> — public CC BY-SA Nāhuatlahtolli source course material and source media links</li>
       </ul>
       <p className="mb-4">
         Your use of Itzli is also subject to the terms and privacy practices of

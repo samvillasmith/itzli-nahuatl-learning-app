@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "EULA for Itzli — Eastern Huasteca Nahuatl learning app.",
 };
 
-const EFFECTIVE_DATE = "April 23, 2026";
+const EFFECTIVE_DATE = "May 20, 2026";
 const CONTACT_EMAIL = "svillasmith3@gmail.com";
 
 export default function EulaPage() {
@@ -42,17 +42,19 @@ export default function EulaPage() {
         The source code of the Itzli application is separately licensed under
         the open-source license contained in the public repository. Your rights
         to the source code are governed by that license; this EULA governs your
-        use of the <em>hosted service</em> and the <em>curriculum content</em>.
+        use of the <em>hosted service</em>. Nothing in this EULA limits rights
+        granted to you by Creative Commons licenses on imported source material.
+        Nāhuatlahtolli-derived lesson content remains available under CC BY-SA
+        4.0, even when accessed through an authenticated Itzli account.
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">2. Restrictions</h2>
-      <p className="mb-4">Except as expressly permitted by the Software&apos;s open-source code license, you will not:</p>
+      <p className="mb-4">Except as expressly permitted by an applicable open license, you will not:</p>
       <ul className="list-disc pl-6 space-y-1 mb-4">
         <li>sell, sublicense, rent, lease, or otherwise commercialize access to the hosted Software;</li>
-        <li>scrape, bulk-download, or systematically extract the curriculum content, vocabulary database, dialogues, or audio files;</li>
+        <li>scrape, bulk-download, or systematically extract non-open app content, private user data, the vocabulary database, generated audio files, or protected service endpoints;</li>
         <li>attempt to reverse-engineer, disable, or bypass safety, moderation, or rate-limit features;</li>
-        <li>use the Software to build a competing product through text-similarity, embedding, or bulk-AI processing of our content;</li>
-        <li>remove, alter, or obscure any copyright, trademark, or attribution notices (including attribution required for Pexels photographs and IDIEZ references);</li>
+        <li>remove, alter, or obscure copyright, trademark, or attribution notices, including notices required for COERLL, Nāhuatlahtolli, Pexels photographs, and IDIEZ references;</li>
         <li>use the Software in violation of applicable law.</li>
       </ul>
 
@@ -64,18 +66,30 @@ export default function EulaPage() {
       </p>
       <p className="mb-4">
         The Eastern Huasteca Nahuatl language itself is the cultural heritage
-        of the Nahua peoples of the Huasteca region. Our curriculum draws on
-        reference works from the Instituto de Docencia e Investigación
-        Etnológica de Zacatecas (IDIEZ), the Karttunen Analytical Dictionary of
-        Nahuatl, and attested EHN texts — credited in the repository
-        acknowledgments. Machine audio is produced through a language-specific
-        machine-audio pipeline; photographs are licensed from their respective
-        asset sources with attribution where required.
+        of the Nahua peoples of the Huasteca region. The imported source-course
+        section adapts Nāhuatlahtolli, published by COERLL and The University of
+        Texas at Austin, under{" "}
+        <a
+          className="text-emerald-600 underline"
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CC BY-SA 4.0
+        </a>
+        . Our additional curriculum draws on reference works from the Instituto
+        de Docencia e Investigación Etnológica de Zacatecas (IDIEZ), the
+        Karttunen Analytical Dictionary of Nahuatl, and attested EHN texts —
+        credited in the repository acknowledgments. Machine audio is produced
+        through a language-specific machine-audio pipeline; photographs are
+        licensed from their respective asset sources with attribution where
+        required.
       </p>
       <p className="mb-4">
-        Curriculum content is available for personal learning via the app only.
-        Commercial reuse, publication, or redistribution of the curriculum
-        content requires our prior written permission.
+        Reuse of imported Nāhuatlahtolli material is governed by CC BY-SA 4.0,
+        including attribution and ShareAlike requirements. Reuse of Itzli-only
+        content, private service data, generated audio, trademarks, or
+        third-party assets may be subject to separate terms.
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">4. AI tutor content — &quot;as-is&quot; disclaimer</h2>

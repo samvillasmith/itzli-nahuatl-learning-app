@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "mero-mero-app.s3.us-east-1.amazonaws.com",
-        pathname: "/word-images/**",
+        hostname: "nahuatl-language.s3.us-east-1.amazonaws.com",
+        pathname: "/itzli-app/images/**",
       },
       {
         protocol: "https",

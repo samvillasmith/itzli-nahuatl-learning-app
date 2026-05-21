@@ -1,5 +1,7 @@
 import raw from "./word-images.json";
 import s3Raw from "./s3-word-images.json";
+import openaiRaw from "./openai-word-images.json";
+import { isImageCardExcluded } from "@/lib/image-card-safety";
 
 export type WordImage = {
   url: string;
@@ -25,10 +27,11 @@ type S3WordImage =
     };
 
 const S3_WORD_IMAGE_BASE =
-  "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/";
+  "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/";
 
 const data = raw as Record<string, WordImage | null>;
 const s3Data = s3Raw as Record<string, S3WordImage | null>;
+const openaiData = openaiRaw as Record<string, WordImage | null>;
 
 function s3UrlFromEntry(entry: S3WordImage): string {
   if (typeof entry === "string") {
@@ -59,27 +62,40 @@ function s3Image(headword: string): WordImage | null {
   };
 }
 
+function openaiImage(headword: string): WordImage | null {
+  const entry = openaiData[headword];
+  if (!entry) return null;
+  return {
+    ...entry,
+    source: entry.source ?? "openai",
+  };
+}
+
 /**
  * Returns an image for a vocab headword if one was found.
- * S3 word images are preferred; the legacy catalog is retained as a fallback
- * until the S3 prefix can be listed or a manifest is exported into
- * src/data/s3-word-images.json.
+ * OpenAI-generated word images are preferred for consistent app styling.
+ * S3 word images and the legacy catalog remain as fallbacks.
  */
 export function getWordImage(
   headword: string,
   options: { allowLegacyFallback?: boolean } = {},
 ): WordImage | null {
+  if (isImageCardExcluded(headword)) return null;
+  const openai = openaiImage(headword);
+  if (openai) return openai;
   const s3 = s3Image(headword);
   if (s3) return s3;
   return options.allowLegacyFallback ? data[headword] ?? null : null;
 }
 
 export function getWordImageAudit() {
+  const openaiCount = Object.values(openaiData).filter(Boolean).length;
   const s3Count = Object.values(s3Data).filter(Boolean).length;
   const legacyCount = Object.values(data).filter(Boolean).length;
   const missingCount = Object.values(data).filter((value) => value === null).length;
 
   return {
+    openaiCount,
     s3Count,
     legacyCount,
     missingCount,

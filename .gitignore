@@ -67,3 +67,6 @@ __pycache__/
 
 # Generated morphology cache — regenerate via: python -m ehn_morph build-cache --out data/morphology_cache.json
 /data/
+
+# clerk configuration (can include secrets)
+/.clerk/

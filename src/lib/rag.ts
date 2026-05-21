@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { getSql } from "@/lib/neon";
+import { isAppContentExcluded } from "@/lib/app-content-safety";
 
 // Retrieval layer for the chat tutor. At request time we embed the latest
 // user message and pull the top-k most semantically similar chunks from
@@ -152,6 +153,7 @@ export async function retrieve(
   const seen = new Set<string>();
   const merged: RetrievedChunk[] = [];
   for (const c of [...keywordHits, ...vectorHits]) {
+    if (isAppContentExcluded(c.content, JSON.stringify(c.metadata))) continue;
     if (seen.has(c.content)) continue;
     seen.add(c.content);
     merged.push(c);

@@ -10,6 +10,7 @@ import {
   getAllPrimerVocab,
 } from "@/lib/db";
 import { getGrammarLabsForUnit } from "@/data/grammar-labs";
+import { getNahuatlahtolliLesson } from "@/lib/nahuatlahtolli";
 import LessonFlow from "./LessonFlow";
 
 export async function generateStaticParams() {
@@ -34,6 +35,7 @@ export default async function UnitPage({
   const constructions = getUnitConstructions(num);
   const lessonBlocks = getUnitLessonBlocks(num);
   const grammarLabs = getGrammarLabsForUnit(num);
+  const sourceLesson = getNahuatlahtolliLesson(num);
   const allVocabPool = getAllPrimerVocab();
   const allUnits = getAllUnits();
   const idx = allUnits.findIndex((u) => u.lesson_number === num);
@@ -63,6 +65,35 @@ export default async function UnitPage({
             Read: Orthographic Systems →
           </Link>
         </div>
+      )}
+
+      {sourceLesson && (
+        <section className="mb-8 rounded-lg border border-emerald-200 bg-emerald-50 p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="mb-1 text-xs font-bold uppercase text-emerald-700">
+                Nāhuatlahtolli source lesson
+              </p>
+              <h2 className="text-lg font-black text-stone-950">
+                {sourceLesson.nahuatlTitle}
+              </h2>
+              {sourceLesson.englishTitle && (
+                <p className="mt-1 text-sm text-stone-600">{sourceLesson.englishTitle}</p>
+              )}
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
+                This unit now includes the original COERLL lesson material:
+                {" "}{sourceLesson.sections.length} sections, {sourceLesson.vocabulary.length} audio-backed
+                source vocabulary entries, and provenance links under CC BY-SA.
+              </p>
+            </div>
+            <Link
+              href={`/source-course/${sourceLesson.number}`}
+              className="inline-flex w-fit rounded-lg bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700"
+            >
+              Open source lesson
+            </Link>
+          </div>
+        </section>
       )}
 
       <LessonFlow

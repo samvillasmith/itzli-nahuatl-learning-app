@@ -38,11 +38,43 @@ if (!process.env.OPENAI_API_KEY) {
 const EMBED_MODEL = "text-embedding-3-small"; // 1536 dims, cheap, fast
 const BATCH_SIZE = 100;
 const APPEND = process.argv.includes("--append");
+const APP_EXCLUSIONS = require("../src/data/app-content-exclusions.json");
+const EXCLUDED_HEADWORDS = new Set(APP_EXCLUSIONS.headwords.map(normalizeForSafety));
+const EXCLUSION_PATTERNS = APP_EXCLUSIONS.patterns.map((pattern) => new RegExp(pattern, "iu"));
 
 const sql = neon(process.env.DATABASE_URL);
 const openai = new OpenAI();
 
 // -------- content builders --------
+
+function normalizeForSafety(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isExcludedAppContent(...values) {
+  for (const value of values.filter(Boolean)) {
+    const normalized = normalizeForSafety(value);
+    if (EXCLUDED_HEADWORDS.has(normalized)) return true;
+    if (
+      /(?:https?:\/\/|\/|\\|\.[a-z0-9]{2,5}\b)/i.test(String(value)) &&
+      normalized
+        .split(/[^a-z0-9]+/)
+        .filter(Boolean)
+        .some((token) => EXCLUDED_HEADWORDS.has(token))
+    ) {
+      return true;
+    }
+  }
+
+  const haystack = values.filter(Boolean).join(" ");
+  const normalizedHaystack = normalizeForSafety(haystack);
+  return EXCLUSION_PATTERNS.some((pattern) => pattern.test(haystack) || pattern.test(normalizedHaystack));
+}
 
 function displayGloss(raw) {
   return String(raw || "")
@@ -65,6 +97,7 @@ function loadVocab() {
     .map((r) => {
       const gloss = displayGloss(r.gloss_en);
       if (!gloss) return null;
+      if (isExcludedAppContent(r.headword, gloss, r.part_of_speech)) return null;
       return {
         kind: "vocab",
         content: `${r.headword} — ${gloss}${r.part_of_speech ? ` (${r.part_of_speech})` : ""}`,
@@ -342,7 +375,7 @@ async function run() {
     ...loadPhrases(),
     ...loadGrammar(),
     ...loadMorphology(),
-  ];
+  ].filter((item) => !isExcludedAppContent(item.content, JSON.stringify(item.metadata)));
 
   console.log(
     `Prepared ${all.length} chunks: ` +

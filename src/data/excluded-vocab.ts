@@ -9,6 +9,9 @@
  *    (Note: vulgar glosses on remaining words have been corrected in the DB.)
  */
 
+import { isAppContentExcluded } from "@/lib/app-content-safety";
+import { isStudyCardExcluded } from "@/lib/study-card-safety";
+
 export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 7: How to divide up the day
   168,  // chocolatl - food word in time/daypart unit
@@ -126,6 +129,8 @@ const FOCUSED_BLOCK_PATTERNS: Record<number, RegExp> = {
 
 type CurriculumVocabItem = {
   id: number;
+  headword?: string | null;
+  display_form?: string | null;
   rank?: number;
   first_lesson_number?: number;
   lesson_number?: number;
@@ -212,6 +217,24 @@ export function isCoreVocabItem(
   lessonNumber = item.lesson_number ?? item.first_lesson_number ?? 0,
 ): boolean {
   if (EXCLUDED_VOCAB_IDS.has(item.id)) return false;
+  if (
+    isAppContentExcluded(
+      item.headword,
+      item.display_form,
+      item.gloss_en,
+      item.semantic_domain,
+      item.part_of_speech,
+    ) ||
+    isStudyCardExcluded(
+      item.headword,
+      item.display_form,
+      item.gloss_en,
+      item.semantic_domain,
+      item.part_of_speech,
+    )
+  ) {
+    return false;
+  }
   if (hasExcludedGloss(item.gloss_en ?? "")) return false;
 
   const focusedDomains = FOCUSED_SEMANTIC_DOMAINS[lessonNumber];

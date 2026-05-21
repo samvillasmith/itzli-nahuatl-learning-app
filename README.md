@@ -33,6 +33,9 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 | B1 | 31–43 | Abstract concepts, narratives, cultural topics |
 
 - **703 vocabulary words** — audited against IDIEZ, Karttunen, and attested EHN texts
+- **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
+  with source URLs, attribution, text sections, media links, and audio-backed
+  vocabulary preserved in `src/data/nahuatlahtolli-course.json`
 - **113 AI-assisted dialogues** — generated for units without attested dialogue data, marked `AI_generated`
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
 - **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
@@ -243,6 +246,9 @@ scripts/
 - **OpenAI** — for the AI tutor and an experimental TTS comparison path
 - **hexgrad / Kokoro** — retained as a reference experiment, no longer recommended for production Nahuatl audio
 - **Pexels** — for the image API used to illustrate vocabulary (photos served from Pexels CDN with required attribution)
+- **COERLL / The University of Texas at Austin** — for publishing the open
+  Nāhuatlahtolli course by Sabina de la Cruz, Catalina de la Cruz, Josefrayn
+  Sánchez-Perry, Kelly McDonough, and Sergio Romero under CC BY-SA
 - The speakers and communities of the Huasteca region whose language this is, and who have kept it alive
 
 ---

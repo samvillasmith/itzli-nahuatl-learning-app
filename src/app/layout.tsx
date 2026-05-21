@@ -88,6 +88,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/grammar" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
                     Grammar
                   </Link>
+                  <Link href="/source-course" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 md:inline-flex sm:px-3">
+                    Source
+                  </Link>
                   {TUTOR_FEATURE_ENABLED && (
                     <Link href="/tutor" className="rounded-lg px-2 py-1.5 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:px-3">
                       Tutor
@@ -144,7 +147,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 educationalLevel: "Beginner to Intermediate (A1–B1)",
                 inLanguage: "nhe",
                 isAccessibleForFree: true,
-                license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                license: "https://creativecommons.org/licenses/by-sa/4.0/",
               }),
             }}
           />

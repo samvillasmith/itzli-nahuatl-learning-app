@@ -1,0 +1,446 @@
+{
+  "defaultNoChildrenInstruction": "Reviewed allowlist hard rule: do not show children, babies, infants, teens, students, minors, or childlike proportions. The only exception is the explicit baby card conētzin.",
+  "babyExceptionInstruction": "Baby exception: show only one fully clothed or swaddled baby. No other children, no adults, no bed, no bath, no changing, no medical context, no exposed body, no bare legs, and no bare feet.",
+  "entries": [
+    {
+      "headword": "tototl",
+      "mode": "bird-only",
+      "instruction": "Show exactly one ordinary living bird. No people, no eggs, no nest, no dead bird, no mythological or sacred imagery, no deity reference."
+    },
+    {
+      "headword": "soyatl",
+      "mode": "object-only",
+      "instruction": "Show only a palm tree or palm leaves. No people, no hands, no body parts."
+    },
+    {
+      "headword": "ahcoqui",
+      "mode": "object-only",
+      "instruction": "Illustrate light weight using simple objects such as a small feather, empty basket, or balance scale. No people or body-size comparison."
+    },
+    {
+      "headword": "canahuac",
+      "mode": "object-only",
+      "instruction": "Illustrate thin or slim using a thin plant stem, reed, line, or narrow object. No people or body-size comparison."
+    },
+    {
+      "headword": "cototzin",
+      "mode": "object-only",
+      "instruction": "Illustrate short using a short plant, short stick, or low object. No people or body-size comparison."
+    },
+    {
+      "headword": "cuauhtic",
+      "mode": "object-only",
+      "instruction": "Illustrate tall using a tall tree, tall plant, or tall object. No people or body-size comparison."
+    },
+    {
+      "headword": "elotl",
+      "mode": "object-only",
+      "instruction": "Show only a fresh ear of corn/maize. Do not show human ears or body parts."
+    },
+    {
+      "headword": "hueyic",
+      "mode": "object-only",
+      "instruction": "Illustrate tall using a tall tree, tall plant, or tall object. No people or body-size comparison."
+    },
+    {
+      "headword": "huihuiciquitic",
+      "mode": "object-only",
+      "instruction": "Illustrate thin or slender using a thin plant stem, reed, line, or narrow object. No people or body-size comparison."
+    },
+    {
+      "headword": "lalakatik",
+      "mode": "object-only",
+      "instruction": "Illustrate tall using a tall tree, tall plant, or tall object. No people or body-size comparison."
+    },
+    {
+      "headword": "conētzin",
+      "mode": "swaddled-child",
+      "instruction": "Show a fully clothed or swaddled baby only. No other people. No bed, bath, changing, medical care, exposed body, bare legs, bare feet, or vulnerable context."
+    },
+    {
+      "headword": "cuahuehhueloa",
+      "mode": "object-only",
+      "instruction": "Show only stacked split firewood or neat wood pieces. No axe, blade, weapon, person, animal, or violent action."
+    },
+    {
+      "headword": "mapohpohua",
+      "mode": "object-only",
+      "instruction": "Show only a towel, cloth, basin, or cleaning objects. No visible hands or body parts."
+    },
+    {
+      "headword": "notlacal",
+      "mode": "object-only",
+      "instruction": "Illustrate property with neutral household objects, a small house, or labeled-looking ownership through placement only. No text, no people."
+    },
+    {
+      "headword": "omitl",
+      "mode": "object-only",
+      "instruction": "Show one simple clean stylized bone object. No skeleton, skull, body, animal remains, injury, gore, or death scene."
+    },
+    {
+      "headword": "tehtequi",
+      "mode": "object-only",
+      "instruction": "Show already separated pieces of paper, wood, or food. No knife, blade, axe, weapon, person, animal, or cutting action."
+    },
+    {
+      "headword": "tequi",
+      "mode": "object-only",
+      "instruction": "Show already separated pieces of paper, wood, or food. No knife, blade, axe, weapon, person, animal, or cutting action."
+    },
+    {
+      "headword": "tiona",
+      "mode": "adult-only",
+      "instruction": "Show fully clothed adults only in a neutral family-role scene. No religious symbols, ceremony, sacred objects, children, kissing, or romance."
+    },
+    {
+      "headword": "tiota",
+      "mode": "adult-only",
+      "instruction": "Show fully clothed adults only in a neutral family-role scene. No religious symbols, ceremony, sacred objects, children, kissing, or romance."
+    },
+    {
+      "headword": "tlatequi",
+      "mode": "object-only",
+      "instruction": "Show already separated pieces of paper, wood, or food. No knife, blade, axe, weapon, person, animal, or cutting action."
+    },
+    {
+      "headword": "amini",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult outdoors observing tracks or a landscape. No weapon, trap, dead animal, injured animal, blood, or violence."
+    },
+    {
+      "headword": "cocōa",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult with a mild worried expression only. No injury, wound, blood, exposed body, bed, medical procedure, distress, or children."
+    },
+    {
+      "headword": "chichiualayotl",
+      "mode": "object-only",
+      "instruction": "Show only butter or a butter-like food item in a small dish. No body imagery, dairy body reference, people, or text."
+    },
+    {
+      "headword": "cocoliztli",
+      "mode": "object-only",
+      "instruction": "Show neutral care objects such as herbs, a cup, and a small medicine container. No patient, injury, exposed body, bed, medical procedure, or distress."
+    },
+    {
+      "headword": "cocotl",
+      "mode": "object-only",
+      "instruction": "Show only neutral first-aid or care objects such as a clean folded bandage and herbs. No wound, body, blood, injury, patient, or procedure."
+    },
+    {
+      "headword": "cocoya",
+      "mode": "object-only",
+      "instruction": "Show neutral care objects such as herbs, a cup, and a small medicine container. No patient, injury, exposed body, bed, medical procedure, or distress."
+    },
+    {
+      "headword": "cocoxqui",
+      "mode": "object-only",
+      "instruction": "Show neutral care objects such as herbs, a cup, and a small medicine container. No patient, injury, exposed body, bed, medical procedure, or distress."
+    },
+    {
+      "headword": "ehuatl",
+      "mode": "object-only",
+      "instruction": "Show only fruit peel or plant bark/skin. Do not show human skin, animal skin, bodies, or exposed body parts."
+    },
+    {
+      "headword": "elchiqui",
+      "mode": "object-only",
+      "instruction": "Show a ribbed basket, ribbed leaf, or ribbed clay vessel pattern. No anatomy, bones, skeleton, body, or animal remains."
+    },
+    {
+      "headword": "huino",
+      "mode": "object-only",
+      "instruction": "Show only a plain clay cup or clay jar on a table. No modern bottle, drinking, intoxication, people, tobacco, drugs, or bar scene."
+    },
+    {
+      "headword": "iahcol",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with opaque clothing. No exposed torso, chest, abdomen, back, bathing, medical context, or children."
+    },
+    {
+      "headword": "icxi",
+      "mode": "adult-body",
+      "instruction": "Show only an adult wearing closed shoes or sandals from a modest distance. No bare feet, toes, legs exposed above the ankle, children, or close-up body focus."
+    },
+    {
+      "headword": "iucxoa",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult holding a cloth near the face in a neutral hygiene scene. No mucus, illness distress, exposed body, bed, medical context, or children."
+    },
+    {
+      "headword": "kokoxketl",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult seated with neutral care objects such as herbs or a cup. No bed, medical procedure, injury, exposed body, distress, or children."
+    },
+    {
+      "headword": "māquilia",
+      "mode": "object-only",
+      "instruction": "Show a harmless object being tapped, such as a drum or bell, using motion lines only. No person being hit, no weapon, no violence, no injury."
+    },
+    {
+      "headword": "miqui",
+      "mode": "object-only",
+      "instruction": "Show a neutral life-cycle symbol such as a dry leaf beside a green sprout. No corpse, grave, skeleton, skull, dying person, violence, blood, or religious scene."
+    },
+    {
+      "headword": "mīxxamia",
+      "mode": "object-only",
+      "instruction": "Show only a clean cloth, small basin, and water drops. No face, hands, body, bathing, showering, or children."
+    },
+    {
+      "headword": "Na achi nitomāhuac",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na ax nel nihuahcapantic",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na ax nel nitomāhuac",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na ax niechcapantzin",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na ax tlahuel niazacatic",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na ax tlahuel nitomāhuac",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na nel nihuahcapantic",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Na tlahuel niazacatic",
+      "mode": "adult-description",
+      "instruction": "Show one fully clothed adult in modest opaque clothing, neutral posture, and body-positive style. No exposed body, tight clothing, measuring tape, shame, children, or comparison."
+    },
+    {
+      "headword": "Nicmāmāhqui",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult carrying a basket or bundle with straps. No exposed back, skin focus, burdened child, injury, or distress."
+    },
+    {
+      "headword": "Nimoxilhuia",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult combing hair in a neutral grooming scene. No exposed body, bathing, bed, children, or suggestive pose."
+    },
+    {
+      "headword": "noahcol",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with opaque clothing. No exposed torso, chest, abdomen, back, bathing, medical context, or children."
+    },
+    {
+      "headword": "nocamac",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face in a neutral expression. No open-mouth close-up, tongue focus, eating, kissing, licking, children, or suggestive pose."
+    },
+    {
+      "headword": "nocampan",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face in a neutral expression. No close-up skin texture, touching, kissing, children, or suggestive pose."
+    },
+    {
+      "headword": "noicxi",
+      "mode": "adult-body",
+      "instruction": "Show only an adult wearing closed shoes or sandals from a modest distance. No bare feet, toes, legs exposed above the ankle, children, or close-up body focus."
+    },
+    {
+      "headword": "noicxiizti",
+      "mode": "adult-body",
+      "instruction": "Show only an adult wearing closed shoes or sandals from a modest distance, with the shoe tip visible. No bare feet, toenails, toes, children, or close-up body focus."
+    },
+    {
+      "headword": "noicxopil",
+      "mode": "adult-body",
+      "instruction": "Show only an adult wearing closed shoes or sandals from a modest distance, with the shoe tip visible. No bare toes, bare feet, children, or close-up body focus."
+    },
+    {
+      "headword": "noixihhuiyo",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face from shoulders up with neutral expression. No close-up eye detail, makeup application, children, or suggestive pose."
+    },
+    {
+      "headword": "noīxtēnihhuiyo",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face from shoulders up with neutral expression. No close-up eye detail, makeup application, children, or suggestive pose."
+    },
+    {
+      "headword": "noīxtiyōl",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face from shoulders up with neutral expression. No close-up eye detail, makeup application, children, or suggestive pose."
+    },
+    {
+      "headword": "noīxxayāc",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face from shoulders up with neutral expression. No exposed body, makeup application, children, or suggestive pose."
+    },
+    {
+      "headword": "noizti",
+      "mode": "adult-body",
+      "instruction": "Show an adult hand doing a neutral task such as holding a cup or leaf. No nail close-up, injury, grooming procedure, children, or suggestive pose."
+    },
+    {
+      "headword": "nomāh",
+      "mode": "adult-body",
+      "instruction": "Show an adult hand or arm doing a neutral task such as holding a cup or leaf. No exposed torso, injury, medical context, children, or suggestive pose."
+    },
+    {
+      "headword": "nomāhpil",
+      "mode": "adult-body",
+      "instruction": "Show an adult hand doing a neutral task such as pointing at a plant or holding a leaf. No close-up nail focus, injury, children, or suggestive pose."
+    },
+    {
+      "headword": "nomamolic",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult arm bent at the elbow while holding a basket or cup. No exposed torso, injury, medical context, children, or close-up body focus."
+    },
+    {
+      "headword": "nomāpatlac",
+      "mode": "adult-body",
+      "instruction": "Show an adult open hand in a neutral greeting or holding a leaf. No injury, medical context, children, or suggestive pose."
+    },
+    {
+      "headword": "nometz",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult standing with covered legs and shoes. No bare legs, bare feet, exposed thighs, children, or close-up body focus."
+    },
+    {
+      "headword": "nonacaz",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face in profile from shoulders up with neutral expression. No close-up ear detail, jewelry focus, children, or suggestive pose."
+    },
+    {
+      "headword": "nonenepil",
+      "mode": "adult-body",
+      "instruction": "Show a neutral stylized mouth symbol or fully clothed adult face. No tongue sticking out, licking, kissing, open-mouth close-up, children, or suggestive pose."
+    },
+    {
+      "headword": "nopilicxi",
+      "mode": "adult-body",
+      "instruction": "Show only an adult wearing closed shoes or sandals from a modest distance. No bare feet, toes, children, or close-up body focus."
+    },
+    {
+      "headword": "noquechcuayo",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with a covered neckline. No exposed chest, torso, medical context, children, or close-up body focus."
+    },
+    {
+      "headword": "notlancoch",
+      "mode": "adult-body",
+      "instruction": "Show a neutral stylized smile or tooth-care object. No open-mouth close-up, medical/dental procedure, children, or suggestive pose."
+    },
+    {
+      "headword": "notlancuah",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult seated or standing with covered knees and legs. No exposed knees, bare legs, children, or close-up body focus."
+    },
+    {
+      "headword": "notzoncal",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with hair visible. No bathing, bed, exposed body, children, or suggestive pose."
+    },
+    {
+      "headword": "notzontecon",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with neutral expression. No skull, injury, medical context, children, or close-up body focus."
+    },
+    {
+      "headword": "noyācatzol",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult face in profile from shoulders up with neutral expression. No close-up nose detail, illness, children, or suggestive pose."
+    },
+    {
+      "headword": "Quinmāquilia",
+      "mode": "object-only",
+      "instruction": "Show a harmless object being tapped, such as a drum or bell, using motion lines only. No people being hit, no weapon, no violence, no injury."
+    },
+    {
+      "headword": "teotl",
+      "mode": "object-only",
+      "instruction": "Show only abstract natural light, sky, clouds, or sun rays. No deity figure, sacred object, ceremony, temple, altar, religious symbol, or people."
+    },
+    {
+      "headword": "tēxinquetl",
+      "mode": "adult-only",
+      "instruction": "Show fully clothed adults in a neutral haircut/barber scene. No exposed body, shaving blade emphasis, children, injury, or suggestive pose."
+    },
+    {
+      "headword": "tlalteuhnemitia",
+      "mode": "object-only",
+      "instruction": "Show neutral care objects such as herbs, a cup, and a small medicine container. No patient, injury, exposed body, bed, medical procedure, or distress."
+    },
+    {
+      "headword": "tlancochpahpāca",
+      "mode": "object-only",
+      "instruction": "Show only a toothbrush-like brush, cup, and clean water. No mouth, teeth close-up, person, child, or medical/dental procedure."
+    },
+    {
+      "headword": "tlapehquetl",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult outdoors observing tracks or a landscape. No weapon, trap, dead animal, injured animal, blood, or violence."
+    },
+    {
+      "headword": "tlaquetztli",
+      "mode": "object-only",
+      "instruction": "Show only an empty woven trap or simple object trap. No animal, person, weapon, injury, capture, or violence."
+    },
+    {
+      "headword": "tlazohtla",
+      "mode": "adult-only",
+      "instruction": "Show fully clothed adults in a warm but non-romantic family/friend scene. No kissing, romance, suggestive pose, children, bed, or exposed body."
+    },
+    {
+      "headword": "tlazohtlaliztli",
+      "mode": "object-only",
+      "instruction": "Show a simple non-anatomical heart-shaped craft or warm household objects. No anatomical heart, romance, kissing, people, or exposed body."
+    },
+    {
+      "headword": "tozquitl",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with covered neckline. No exposed chest, medical context, children, or close-up body focus."
+    },
+    {
+      "headword": "tsonteko",
+      "mode": "adult-body",
+      "instruction": "Show a fully clothed adult from shoulders up with neutral expression. No skull, skeleton, injury, medical context, children, or close-up body focus."
+    },
+    {
+      "headword": "xawa",
+      "mode": "object-only",
+      "instruction": "Prefer the excavate meaning: show a small shovel, soil, and plant. No face painting, makeup application, face, body, children, or tool-as-weapon."
+    },
+    {
+      "headword": "Ximoquētza",
+      "mode": "adult-only",
+      "instruction": "Show a fully clothed adult standing up from a chair or mat. Shoes on, covered legs, no bare feet, no children, no exposed body."
+    },
+    {
+      "headword": "Ximoquētzacān",
+      "mode": "adult-only",
+      "instruction": "Show fully clothed adults standing up from chairs or mats. Shoes on, covered legs, no bare feet, no children, no exposed body."
+    },
+    {
+      "headword": "xolentok",
+      "mode": "object-only",
+      "instruction": "Show wet leaves, a wet clay pot, or rain on an object. No wet clothing, people, body, bathing, showering, or exposed skin."
+    },
+    {
+      "headword": "yollōtl",
+      "mode": "object-only",
+      "instruction": "Show a simple non-anatomical heart-shaped craft or symbol-like object. No anatomical organ, body, blood, romance, kissing, people, or exposed body."
+    }
+  ]
+}

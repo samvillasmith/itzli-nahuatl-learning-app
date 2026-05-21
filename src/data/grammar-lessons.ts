@@ -66,7 +66,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Key consonants and sound clusters',
-        text: `Most consonants are pronounced as in Spanish. Several sound combinations are unique to Nahuatl:\n\n• **tl** — a lateral affricate unique to Nahuatl. Formed by pressing the tongue to the roof of the mouth and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **tz** — like English "ts" in "cats". Example: tzan (head hair).\n\n• **x** — like English "sh" in "shoe". Example: xōchitl (flower).\n\n• **hu** / **uh** — represents the /w/ sound. At the start of a syllable: huey (big). At the end: āhuatl (oak).\n\n• **cu** / **uc** — represents /kw/ sound. Example: cuāhtli (eagle).\n\n• **qu** (before e/i) — represents the /k/ sound. Example: quēniuhqui (how).\n\n• **h** between vowels or at the end of a word — marks a glottal stop (a brief catch in the throat). Example: āxcan (now/today).`,
+        text: `Most consonants are pronounced as in Spanish. Several sound combinations are unique to Nahuatl:\n\n• **tl** — a lateral affricate unique to Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **tz** — like English "ts" in "cats". Example: tzan.\n\n• **x** — like English "sh" in "shoe". Example: xōchitl (flower).\n\n• **hu** / **uh** — represents the /w/ sound. At the start of a syllable: huey (big). At the end: āhuatl (oak).\n\n• **cu** / **uc** — represents /kw/ sound. Example: cuāhtli (eagle).\n\n• **qu** (before e/i) — represents the /k/ sound. Example: quēniuhqui (how).\n\n• **h** between vowels or at the end of a word — marks a brief glottal catch. Example: āxcan (now/today).`,
       },
       {
         kind: 'paradigm',
@@ -391,7 +391,6 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'niēhua', form: 'ēhua', gloss: 'I am from / I depart' },
           { person: 'ninēhnemi', form: 'nēhnemi', gloss: 'I walk around' },
           { person: 'nicōchi', form: 'cōchi', gloss: 'I sleep' },
-          { person: 'nimāltia', form: 'māltia', gloss: 'I bathe' },
           { person: 'niyāuh', form: 'yāuh', gloss: 'I go' },
           { person: 'nihuāllāuh', form: 'huāllāuh', gloss: 'I come' },
           { person: 'niātli', form: 'ātli', gloss: 'I drink water' },
@@ -645,7 +644,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         rows: [
           { person: 'nimēhuaz', form: 'niēhua', gloss: 'I will get up / leave' },
           { person: 'nitlacuāz', form: 'nitlacua', gloss: 'I will eat' },
-          { person: 'nimopatlaz', form: 'nimopātla', gloss: 'I will change' },
+          { person: 'nimocuepaz', form: 'nimocuepa', gloss: 'I will return' },
           { person: 'tiyāzceh', form: 'tiyāuh → 1pl', gloss: 'we will go' },
           { person: 'nihuāllāz', form: 'nihuāllāuh', gloss: 'I will come back' },
           { person: 'nitlahtōz', form: 'nitlahtoa', gloss: 'I will speak' },
@@ -688,9 +687,9 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'nitlahcuilōz = 1sg future; caltlamachticān = school',
           },
           {
-            nahuatl: 'Mōztla īcā yāhuatzinco nimēhuaz nitlacuāz huan nimopatlaz.',
-            breakdown: 'Mōztla īcā yāhuatzinco ni·mēhuaz ni·tlacuāz huan ni·mopatlaz.',
-            translation: 'Tomorrow at dawn I will get up, eat, and get dressed.',
+            nahuatl: 'Mōztla īcā yāhuatzinco nimēhuaz nitlacuāz huan nimocuepaz.',
+            breakdown: 'Mōztla īcā yāhuatzinco ni·mēhuaz ni·tlacuāz huan ni·mo·cuepaz.',
+            translation: 'Tomorrow at dawn I will get up, eat, and return.',
             note: 'Multiple future verbs in one sentence; yāhuatzinco = at dawn',
           },
         ],
@@ -848,8 +847,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           {
             nahuatl: '¿Āmo ōtimomāuh?',
             breakdown: '¿Āmo ō·ti·momāuh?',
-            translation: "Weren't you hurt?",
-            note: 'ō- = past; ti- = 2sg; momāuh = passive form of māua (to hurt/frighten)',
+            translation: "Weren't you startled?",
+            note: 'ō- = past; ti- = 2sg; momāuh = passive verb form; startled',
           },
           {
             nahuatl: 'Āmo, ōnicuēp nicān.',
@@ -1017,12 +1016,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     title: 'Reflexive Verbs: mo- and ninno-',
     nahuatlTitle: 'Tlachīhualiztli tlen moquīxtia īpan nō yeh',
     band: 'A2',
-    shortDesc: 'Verbs whose subject and object are the same person: "I wash myself," "she gets dressed."',
+    shortDesc: 'Verbs whose subject and object are the same person: "I teach myself," "she gets up."',
     relatedUnits: [10, 14, 26, 42],
     sections: [
       {
         kind: 'prose',
-        text: `Reflexive verbs describe actions the subject performs on themselves: bathing, dressing, getting up, sitting down, learning (i.e. "teaching oneself"). In EHN, reflexives are formed by adding a **reflexive prefix** between the subject prefix and the verb stem. You already know many reflexives without realising it — *nimomachtia* "I study / I learn" is literally "I teach myself."`,
+        text: `Reflexive verbs describe actions the subject performs on themselves: getting up, sitting down, returning, learning (i.e. "teaching oneself"). In EHN, reflexives are formed by adding a **reflexive prefix** between the subject prefix and the verb stem. You already know many reflexives without realising it — *nimomachtia* "I study / I learn" is literally "I teach myself."`,
       },
       {
         kind: 'rule',
@@ -1059,7 +1058,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Common reflexive verbs',
-        text: `Many everyday actions in EHN are naturally reflexive:\n\n• **mōaltia** (mo- + āltia) — to bathe oneself\n• **mopatla** — to change (clothes); to exchange\n• **mēhua** (mo- + ēhua) — to get up / wake up\n• **mocēhuia** — to rest, to sit down\n• **motoca** — to bury oneself / to call oneself (as in "my name is…")\n• **momachtia** — to teach oneself → to study / learn\n• **momāuhtia** — to scare oneself → to be afraid\n• **motlaloa** — to run\n• **mocuepa** — to return / come back\n\nNotice that several of these have been introduced earlier as ordinary vocabulary. The mo- was always the reflexive prefix.`,
+        text: `Many everyday actions in EHN are naturally reflexive:\n\n• **mēhua** (mo- + ēhua) — to get up / wake up\n• **mocēhuia** — to rest, to sit down\n• **motoca** — to bury oneself / to call oneself (as in "my name is…")\n• **momachtia** — to teach oneself → to study / learn\n• **momāuhtia** — to scare oneself → to be afraid\n• **motlaloa** — to run\n• **mocuepa** — to return / come back\n\nNotice that several of these have been introduced earlier as ordinary vocabulary. The mo- was always the reflexive prefix.`,
       },
       {
         kind: 'examples',
@@ -1072,9 +1071,9 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'ni- (1sg) + m(o)- (refl.) + ēhua (to rise) + -z (future)',
           },
           {
-            nahuatl: 'Nimōaltia huan nimopatla.',
-            breakdown: 'Ni·m·ōaltia huan ni·mo·patla.',
-            translation: 'I bathe and I get dressed / change clothes.',
+            nahuatl: 'Nimomachtia huan nimocuepa.',
+            breakdown: 'Ni·mo·machtia huan ni·mo·cuepa.',
+            translation: 'I study and I return.',
             note: 'Two reflexive verbs in one sentence',
           },
           {
@@ -1249,7 +1248,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Negative imperatives: āmo xi- or mahcamo xi-',
-        text: `To tell someone NOT to do something, place **āmo** before the imperative:\n\n• *Āmo xicchīhua!* — Don't do it!\n• *Āmo ximoāltih!* — Don't bathe! (refl. imperative)\n\nFor a stronger or more formal prohibition, *mahcamo* or *macamō* is used, often in ritual or proverbial speech:\n\n• *Mahcamo xiyāuh pan cuauhtlah īca tlayohua.* — Do not go into the forest at night.`,
+        text: `To tell someone NOT to do something, place **āmo** before the imperative:\n\n• *Āmo xicchīhua!* — Don't do it!\n• *Āmo xihuāllā!* — Don't come!\n\nFor a stronger or more formal prohibition, *mahcamo* or *macamō* is used, often in ritual or proverbial speech:\n\n• *Mahcamo xiyāuh pan cuauhtlah īca tlayohua.* — Do not go into the forest at night.`,
       },
       {
         kind: 'examples',
@@ -1579,7 +1578,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Place names decoded',
         headers: ['Place name', 'Pieces', 'Literal meaning'],
         rows: [
-          { person: 'Mexco', form: 'Mex- (moon/navel?) + -co', gloss: 'At the navel of the moon' },
+          { person: 'Mexco', form: 'Mex- (moon?) + -co', gloss: 'At the place of the moon' },
           { person: 'Chicōntepēc', form: 'chicōn- (seven) + tepē- (hill) + -c', gloss: 'At the seven hills' },
           { person: 'Cuauhnāhuac', form: 'cuauh- (tree) + -nāhuac (near)', gloss: 'Near the trees (= Cuernavaca)' },
           { person: 'Mazatlān', form: 'maza- (deer) + -tlan', gloss: 'Place of deer' },
@@ -1706,7 +1705,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `English uses prepositions: in, on, with, for, about. Nahuatl does something different — it uses **relational nouns**. These are ordinary nouns (body parts, spatial concepts) that take a possessive prefix to express relationships. "On top of the table" becomes literally "its-top the table." Once you see the pattern, it's intuitive.`,
+        text: `English uses prepositions: in, on, with, for, about. Nahuatl does something different — it uses **relational nouns**. These are ordinary nouns for spatial concepts that take a possessive prefix to express relationships. "On top of the table" becomes literally "its-top the table." Once you see the pattern, it's intuitive.`,
       },
       {
         kind: 'paradigm',
@@ -1887,7 +1886,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `One of Nahuatl's most distinctive features is **noun incorporation** — taking a noun and fusing it directly into the verb. English does this rarely ("babysit," "breastfeed"), but Nahuatl does it constantly. The incorporated noun replaces the generic object prefix (tla-) with something specific, creating a single compact word.`,
+        text: `One of Nahuatl's most distinctive features is **noun incorporation** — taking a noun and fusing it directly into the verb. English does this rarely ("babysit," "snowplow"), but Nahuatl does it constantly. The incorporated noun replaces the generic object prefix (tla-) with something specific, creating a single compact word.`,
       },
       {
         kind: 'rule',

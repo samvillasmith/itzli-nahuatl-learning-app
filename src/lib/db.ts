@@ -6,6 +6,7 @@ import { execFileSync } from "child_process";
 import { enhanceUnit, type CurriculumFields } from "./curriculum";
 import { filterCoreVocab } from "@/data/excluded-vocab";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
+import { isAppContentExcluded } from "@/lib/app-content-safety";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -259,7 +260,11 @@ function stripStageDirections(value: string | null): { text: string; changed: bo
 // appear in lesson 19 and produce a genuine three-way conversation there.
 export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
   const curated = CURATED_DIALOGUES[lessonNumber];
-  if (curated) return curated;
+  if (curated) {
+    return curated.filter(
+      (line) => !isAppContentExcluded(line.utterance_normalized, line.translation_en)
+    );
+  }
 
   return getDb()
     .prepare(
@@ -289,7 +294,11 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
         audio_available: !utterance.changed,
       };
     })
-    .filter((line) => line.utterance_normalized.length > 0) as DialogueLineContent[];
+    .filter(
+      (line) =>
+        line.utterance_normalized.length > 0 &&
+        !isAppContentExcluded(line.utterance_normalized, line.translation_en)
+    ) as DialogueLineContent[];
 }
 
 export type LessonBlock = {
@@ -311,7 +320,8 @@ export function getUnitLessonBlocks(lessonNumber: number): LessonBlock[] {
          AND length(lb.text_normalized) < 120
        ORDER BY lb.block_order`
     )
-    .all(lessonNumber) as LessonBlock[];
+    .all(lessonNumber)
+    .filter((block) => !isAppContentExcluded((block as LessonBlock).text_normalized)) as LessonBlock[];
 }
 
 export function getUnitConstructions(lessonNumber: number): Construction[] {
@@ -334,7 +344,16 @@ export function getUnitConstructions(lessonNumber: number): Construction[] {
     .map((row) => ({
       ...(row as Construction),
       translation_en: (row as Record<string, unknown>).translation_en as string | null ?? null,
-    }));
+    }))
+    .filter(
+      (construction) =>
+        !isAppContentExcluded(
+          construction.construction_label,
+          construction.pattern_text,
+          construction.example_original,
+          construction.translation_en,
+        )
+    );
 }
 
 export function getUnitAssessments(lessonNumber: number): Assessment[] {
@@ -349,6 +368,8 @@ export function getUnitAssessments(lessonNumber: number): Assessment[] {
 }
 
 export function searchVocab(query: string, limit = 40): LexiconEntry[] {
+  if (isAppContentExcluded(query)) return [];
+
   const q = `%${query}%`;
   return getDb()
     .prepare(
@@ -361,7 +382,18 @@ export function searchVocab(query: string, limit = 40): LexiconEntry[] {
        ORDER BY ehn_spoken_form
        LIMIT ?`
     )
-    .all(q, q, q, limit) as LexiconEntry[];
+    .all(q, q, q, limit * 4)
+    .filter(
+      (entry) =>
+        !isAppContentExcluded(
+          (entry as LexiconEntry).ehn_spoken_form,
+          (entry as LexiconEntry).msn_headword,
+          (entry as LexiconEntry).gloss_en,
+          (entry as LexiconEntry).gloss_es,
+          (entry as LexiconEntry).notes_public,
+        )
+    )
+    .slice(0, limit) as LexiconEntry[];
 }
 
 export type GrammarDialogue = {
@@ -391,5 +423,12 @@ export function getGrammarDialogues(lessonNumbers: number[]): GrammarDialogue[] 
        ORDER BY ld.lesson_dialogue_id
        LIMIT 12`
     )
-    .all(...lessonNumbers) as GrammarDialogue[];
+    .all(...lessonNumbers)
+    .filter(
+      (line) =>
+        !isAppContentExcluded(
+          (line as GrammarDialogue).utterance_normalized,
+          (line as GrammarDialogue).translation_en,
+        )
+    ) as GrammarDialogue[];
 }

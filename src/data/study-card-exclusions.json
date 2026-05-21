@@ -1,0 +1,27 @@
+{
+  "headwords": [
+    "acelana",
+    "ahcohuetzi",
+    "apitzalli",
+    "calzon",
+    "cuitla",
+    "cuitlatl",
+    "huacaxcuitlatl",
+    "ihyelli",
+    "iyelli",
+    "kalson",
+    "kuitlatl",
+    "maua",
+    "maxixa",
+    "maxlatl",
+    "maxtlatl",
+    "maxtli",
+    "sosomoka",
+    "temalli"
+  ],
+  "patterns": [
+    "\\b(diarrhea|diarrhoea|urine|urinat\\w*|pee|pees|peeing|peed|piss|pissing|pissed|defecat\\w*|feces|faeces|excrement|vomit|flatulence|fart|shit|shitting|poop|dung)\\b",
+    "\\b(delouse|delouses|delousing|louse|lice|tranquilize|tranquilise|infect|infects|infected|infection|pus|swelling)\\b",
+    "\\b(underwear|underclothes|undergarment|undergarments|briefs|panties|bra|loincloth|loin cloth|loin-cloth)\\b"
+  ]
+}

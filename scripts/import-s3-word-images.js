@@ -13,8 +13,8 @@ const https = require("https");
 const path = require("path");
 const Database = require("better-sqlite3");
 
-const BUCKET_URL = "https://mero-mero-app.s3.us-east-1.amazonaws.com/";
-const PREFIX = "word-images/";
+const BUCKET_URL = "https://nahuatl-language.s3.us-east-1.amazonaws.com/";
+const PREFIX = "itzli-app/images/";
 const DB_PATH =
   process.env.DATABASE_PATH ||
   path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite");
@@ -562,7 +562,7 @@ function matchVocab(vocab, conceptToKey) {
     if (key) {
       manifest[row.display_form] = {
         key,
-        author: "Itzli / Mero Mero S3",
+        author: "Itzli / Nahuatl Language S3",
         license: "Project word-image asset",
         alt: cleanGloss(row.gloss_en) || row.display_form,
       };
@@ -616,7 +616,7 @@ async function main() {
 main().catch((error) => {
   console.error(error.message);
   console.error(
-    "Could not list the public S3 prefix. Enable ListBucket for word-images/ or provide a manifest.",
+    `Could not list the public S3 prefix. Enable ListBucket for ${PREFIX} or provide a manifest.`,
   );
   process.exit(1);
 });
