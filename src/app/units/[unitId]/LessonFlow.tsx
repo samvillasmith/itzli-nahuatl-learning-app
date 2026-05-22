@@ -9,7 +9,6 @@ import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
-import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -201,8 +200,15 @@ function isUnitPhraseCard(card: VocabCard): boolean {
 
 function cardAudioSrc(card: VocabCard): string | null {
   if (card.audioSrc) return card.audioSrc;
-  if (isUnitPhraseCard(card) || card.part_of_speech === "letter") return null;
+  if (card.source === "unitPhrase" || card.source === "lessonFocus" || card.id < 0) return null;
   return vocabAudioUrl(card.id);
+}
+
+function cardImage(card: VocabCard) {
+  return getWordImage(card.headword, {
+    allowLegacyFallback: true,
+    safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
+  });
 }
 
 function learnStepLabel(card: VocabCard): string {
@@ -250,96 +256,6 @@ function extractTranslation(text: string): { nahuatl: string; translation?: stri
   if (colonMatch) return { nahuatl: text, translation: undefined };
 
   return { nahuatl: text, translation: undefined };
-}
-
-function stripSpeakerLabel(text: string): string {
-  return text.replace(/^[A-Z]:\s*/, "").trim();
-}
-
-function cleanUnitPhraseText(text: string): string {
-  return stripSpeakerLabel(text)
-    .replace(/[“”]/g, "\"")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function hasNahuatlSignal(text: string): boolean {
-  const plain = stripDiacritics(text).toLowerCase();
-  return /[āēīōūĀĒĪŌŪ¿¡]/.test(text) ||
-    /\b(na|ta|ya|huan|piyali|piyalli|queniuhqui|motocah|notocah|itocah|tlen|intla|quena|amo|moztla|nic|nit|ti|in|pan|cualtitoc|cualli|oni|oti)\b/.test(plain);
-}
-
-function isLikelyEnglishSource(text: string): boolean {
-  return /\b(hello|what|work|teach|student|teacher|write|translate|following|example|activity|sentences|creative|commons|eating)\b/i.test(text);
-}
-
-function isUnitPhraseCandidate(nahuatl: string, translation: string): boolean {
-  const joined = `${nahuatl} ${translation}`;
-  if (nahuatl.length < 4 || nahuatl.length > 130) return false;
-  if (translation.length < 4 || translation.length > 150) return false;
-  if (/[=/→/{}[\]]/.test(nahuatl)) return false;
-  if (/\b(CC BY|copyright|creative commons|example game)\b/i.test(joined)) return false;
-  if (isLikelyEnglishSource(nahuatl)) return false;
-  return hasNahuatlSignal(nahuatl);
-}
-
-function buildLessonFocusCards(unitNum: number, grammarLabs: GrammarLab[]): VocabCard[] {
-  return getLessonFocusCardsForUnit(unitNum, grammarLabs.map((lab) => lab.id)).map((card, idx) => ({
-    id: -(unitNum * 100000 + idx + 1),
-    headword: card.headword,
-    gloss_en: card.gloss_en,
-    part_of_speech: card.part_of_speech,
-    source: "lessonFocus",
-    audioSrc: null,
-  }));
-}
-
-function buildUnitPhraseCards(
-  unitNum: number,
-  dialogues: DialogueLine[],
-  constructions: ConstructionItem[]
-): VocabCard[] {
-  const cards: VocabCard[] = [];
-  const seen = new Set<string>();
-
-  function addCard(nahuatlRaw: string, translationRaw: string, audioSrc?: string | null) {
-    const nahuatl = cleanUnitPhraseText(nahuatlRaw);
-    const translation = cleanUnitPhraseText(translationRaw);
-    const key = normalizeExerciseToken(nahuatl);
-    if (!key || seen.has(key)) return;
-    if (!isUnitPhraseCandidate(nahuatl, translation)) return;
-
-    seen.add(key);
-    cards.push({
-      id: -(unitNum * 1000 + cards.length + 1),
-      headword: nahuatl,
-      gloss_en: translation,
-      part_of_speech: "phrase",
-      source: "unitPhrase",
-      audioSrc,
-    });
-  }
-
-  for (const line of dialogues) {
-    if (!line.translation_en) continue;
-    addCard(
-      line.utterance_normalized,
-      line.translation_en,
-      line.audio_available !== false ? dialogueAudioUrl(line.lesson_dialogue_id) : null
-    );
-    if (cards.length >= 6) return cards;
-  }
-
-  for (const c of constructions) {
-    const ex = c.example_original?.trim();
-    const translation = c.translation_en?.trim();
-    if (!ex || !translation) continue;
-    const { nahuatl } = extractTranslation(ex);
-    addCard(nahuatl, translation, null);
-    if (cards.length >= 6) return cards;
-  }
-
-  return cards;
 }
 
 function mergeLearningCards(...groups: VocabCard[][]): VocabCard[] {
@@ -699,12 +615,12 @@ function buildSequence(
   for (let g = 0; g < miniGroups.length; g++) {
     const group = miniGroups[g];
 
-    if (grammarIntroIdx < grammarIntros.length) {
-      steps.push(grammarIntros[grammarIntroIdx++]);
-    }
-
     for (const wi of group) {
       steps.push({ kind: "learn", wordIdx: wi });
+    }
+
+    if (grammarIntroIdx < grammarIntros.length) {
+      steps.push(grammarIntros[grammarIntroIdx++]);
     }
 
     if (group.length >= 2) {
@@ -1458,26 +1374,13 @@ export default function LessonFlow({
     const afterExclusions = vocab.filter((v) => !EXCLUDED_VOCAB_IDS.has(v.id));
     const { cards, notes } = collapseVariants(afterExclusions, unitNum);
     return { filteredVocab: cards, variantNotes: notes };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unitNum]);
+  }, [vocab, unitNum]);
 
-  const unitPhraseCards = useMemo(
-    () => buildUnitPhraseCards(unitNum, dialogues, constructions),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum]
-  );
-
-  const lessonFocusCards = useMemo(
-    () => buildLessonFocusCards(unitNum, grammarLabs),
-    [unitNum, grammarLabs]
-  );
-
-  const learningCards = useMemo(
-    () => lessonFocusCards.length > 0
-      ? mergeLearningCards(lessonFocusCards, filteredVocab, unitPhraseCards)
-      : mergeLearningCards(unitPhraseCards, filteredVocab),
-    [lessonFocusCards, unitPhraseCards, filteredVocab]
-  );
+  const learningCards = useMemo(() => {
+    const words = filteredVocab.filter((card) => !isUnitPhraseCard(card));
+    const phrases = filteredVocab.filter(isUnitPhraseCard);
+    return mergeLearningCards(words, phrases);
+  }, [filteredVocab]);
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
 
@@ -1487,8 +1390,7 @@ export default function LessonFlow({
       result.push(learningCards.slice(i, i + CHUNK_SIZE));
     }
     return result.length > 0 ? result : [[]];
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unitNum]);
+  }, [learningCards]);
 
   const currentChunk = chunks[chunkIndex] ?? [];
   const totalChunks = chunks.length;
@@ -1497,21 +1399,21 @@ export default function LessonFlow({
 
   const srsIndices = useMemo(
     () => srsOrder(unitNum, chunkStartIdx, currentChunk.length),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum, chunkIndex]
+    [unitNum, chunkIndex, chunkStartIdx, currentChunk.length]
   );
 
-  const cleanPool = allVocabPool.filter(
-    (v) => !ALL_VARIANT_IDS.has(v.id) && !EXCLUDED_VOCAB_IDS.has(v.id)
-  );
-  const pool = cleanPool.length >= 4 ? cleanPool : currentChunk.concat(cleanPool);
+  const pool = useMemo(() => {
+    const cleanPool = allVocabPool.filter(
+      (v) => !ALL_VARIANT_IDS.has(v.id) && !EXCLUDED_VOCAB_IDS.has(v.id)
+    );
+    return cleanPool.length >= 4 ? cleanPool : currentChunk.concat(cleanPool);
+  }, [allVocabPool, currentChunk]);
 
   // ── Pre-build fill blanks ───────────────────────────────────────────────────
 
   const fillBlanks = useMemo(
     () => buildFillBlanks(currentChunk, constructions, pool),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum, chunkIndex]
+    [currentChunk, constructions, pool]
   );
 
   const lessonDialogues = useMemo(() => {
@@ -1527,21 +1429,18 @@ export default function LessonFlow({
     }
 
     return matched;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unitNum, chunkIndex]);
+  }, [dialogues, currentChunk, pool]);
 
   // ── Build per-word quiz options ─────────────────────────────────────────────
 
   const fwdOptions = useMemo(
     () => currentChunk.map((w) => buildFwdOptions(w, currentChunk, pool)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum, chunkIndex]
+    [currentChunk, pool]
   );
 
   const revOptions = useMemo(
     () => currentChunk.map((w) => buildRevOptions(w, currentChunk, pool)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum, chunkIndex]
+    [currentChunk, pool]
   );
 
   // ── Build sequence ──────────────────────────────────────────────────────────
@@ -1558,8 +1457,7 @@ export default function LessonFlow({
       chunkIndex,
       isLastChunk
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [unitNum, chunkIndex]
+    [currentChunk, srsIndices, fillBlanks, lessonDialogues, pool, unitNum, grammarLabs, chunkIndex, isLastChunk]
   );
 
   // ── Progress ────────────────────────────────────────────────────────────────
@@ -1650,19 +1548,19 @@ export default function LessonFlow({
             {learningCards.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{learningCards.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">cards total</div>
+                <div className="text-xs text-stone-400 mt-0.5">word cards</div>
               </div>
             )}
-            {lessonFocusCards.length > 0 && (
+            {dialogues.length > 0 && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-stone-900">{lessonFocusCards.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">lesson cards</div>
+                <div className="text-2xl font-bold text-stone-900">{dialogues.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">dialogue lines</div>
               </div>
             )}
-            {unitPhraseCards.length > 0 && (
+            {grammarLabs.length > 0 && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-stone-900">{unitPhraseCards.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">unit phrases</div>
+                <div className="text-2xl font-bold text-stone-900">{grammarLabs.length}</div>
+                <div className="text-xs text-stone-400 mt-0.5">grammar labs</div>
               </div>
             )}
             {totalChunks > 1 && (
@@ -1898,7 +1796,7 @@ export default function LessonFlow({
 
   if (step.kind === "learn") {
     const word = currentChunk[step.wordIdx];
-    const img = getWordImage(word.headword);
+    const img = cardImage(word);
     const audioSrc = cardAudioSrc(word);
 
     return (

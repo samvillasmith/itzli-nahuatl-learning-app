@@ -13,25 +13,6 @@ type Card = {
   alsoWritten?: string[];
 };
 
-function WordImage({ headword, className = "" }: { headword: string; className?: string }) {
-  const img = getWordImage(headword);
-  const [failed, setFailed] = useState(false);
-
-  if (!img || failed) return null;
-
-  return (
-    <div className={`relative overflow-hidden rounded-2xl ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={img.url}
-        alt={headword}
-        className="w-full h-full object-contain"
-        onError={() => setFailed(true)}
-      />
-    </div>
-  );
-}
-
 // ── Audio play button ──────────────────────────────────────────────────────────
 
 function AudioButton({ src }: { src: string }) {
@@ -99,7 +80,10 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
     );
   }
 
-  const img = getWordImage(card.headword);
+  const img = getWordImage(card.headword, {
+    allowLegacyFallback: true,
+    safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
+  });
 
   return (
     <div className="max-w-lg mx-auto">

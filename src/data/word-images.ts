@@ -47,6 +47,8 @@ function entryFor<T>(records: Record<string, T | null>, headword: string): T | n
   if (direct) return direct;
 
   const normalized = normalizeHeadword(headword);
+  if (normalized.length <= 1) return null;
+
   const matchedKey = Object.keys(records).find(
     (key) => normalizeHeadword(key) === normalized && records[key],
   );
@@ -98,9 +100,12 @@ function openaiImage(headword: string): WordImage | null {
  */
 export function getWordImage(
   headword: string,
-  options: { allowLegacyFallback?: boolean } = {},
+  options: {
+    allowLegacyFallback?: boolean;
+    safetyText?: Array<string | null | undefined>;
+  } = {},
 ): WordImage | null {
-  if (isImageCardExcluded(headword)) return null;
+  if (isImageCardExcluded(headword, ...(options.safetyText ?? []))) return null;
   const openai = openaiImage(headword);
   if (openai) return openai;
   const s3 = s3Image(headword);
