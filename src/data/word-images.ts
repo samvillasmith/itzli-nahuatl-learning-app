@@ -63,9 +63,15 @@ function s3UrlFromEntry(entry: S3WordImage): string {
   return value.startsWith("http") ? value : S3_WORD_IMAGE_BASE + value.replace(/^\/+/, "");
 }
 
+function isUnavailableLegacyS3Entry(entry: S3WordImage): boolean {
+  const value = typeof entry === "string" ? entry : entry.url ?? entry.key ?? "";
+  return /\.webp(?:$|\?)/i.test(value);
+}
+
 function s3Image(headword: string): WordImage | null {
   const entry = entryFor(s3Data, headword);
   if (!entry) return null;
+  if (isUnavailableLegacyS3Entry(entry)) return null;
   if (typeof entry === "string") {
     return {
       url: s3UrlFromEntry(entry),
