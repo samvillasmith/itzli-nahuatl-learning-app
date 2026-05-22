@@ -1823,7 +1823,7 @@ export default function LessonFlow({
                   <img
                     src={img.url}
                     alt={word.headword}
-                    className="w-full h-full object-contain"
+                    className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
                 </div>
@@ -1848,7 +1848,7 @@ export default function LessonFlow({
                   <img
                     src={img.url}
                     alt={word.headword}
-                    className="w-full h-full object-contain"
+                    className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
                 </div>

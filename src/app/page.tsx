@@ -30,14 +30,9 @@ function ImageMosaic() {
           <img
             src={item.image!.url}
             alt=""
-            className="h-full w-full object-cover"
+            className="h-full w-full origin-top scale-[1.25] object-cover object-top"
             loading="lazy"
           />
-          <div className="absolute inset-x-0 bottom-0 bg-stone-950/65 px-2 py-1">
-            <p className="truncate text-[10px] font-semibold text-white">
-              {item.word} · {item.gloss}
-            </p>
-          </div>
         </div>
       ))}
     </div>

@@ -111,7 +111,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                 <img
                   src={img.url}
                   alt={card.headword}
-                  className="w-full h-full object-contain"
+                  className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
               </div>
