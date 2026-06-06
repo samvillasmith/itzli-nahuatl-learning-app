@@ -13,6 +13,7 @@ import { answerMatches } from '@/lib/grammar-engine';
 import type { GrammarDialogue } from '@/lib/db';
 import { dialogueAudioUrl, playAudio } from '@/lib/audio';
 import { displayNahuatl } from '@/lib/orthography';
+import { pronunciationHintFor } from '@/lib/pronunciation';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
@@ -78,6 +79,18 @@ function displayGrammarForm(text: string): string {
   return text;
 }
 
+function PronunciationHint({ value }: { value: string }) {
+  const hint = pronunciationHintFor(value);
+  if (!hint) return null;
+
+  return (
+    <div className="mt-2 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2">
+      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
+      <p className="mt-0.5 text-xs leading-snug text-stone-500">{hint.note}</p>
+    </div>
+  );
+}
+
 function ProseSection({ section }: { section: Extract<GrammarSection, { kind: 'prose' }> }) {
   return (
     <div className="mb-7">
@@ -138,6 +151,7 @@ function ExamplesSection({ section }: { section: Extract<GrammarSection, { kind:
             {item.breakdown !== item.nahuatl && (
               <p className="text-xs font-mono text-emerald-700 mb-1">{displayNahuatl(item.breakdown)}</p>
             )}
+            <PronunciationHint value={item.nahuatl} />
             <p className="text-sm text-stone-500 mb-1 italic">&ldquo;{item.translation}&rdquo;</p>
             {item.note && <p className="text-xs text-stone-400 leading-snug">{item.note}</p>}
           </div>
@@ -182,6 +196,7 @@ function GrammarLabExampleList({ lab }: { lab: GrammarLab }) {
         <div key={i} className="rounded-xl border border-stone-200 bg-white p-4">
           <p className="text-base font-semibold text-stone-900">{displayNahuatl(item.nahuatl)}</p>
           <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(item.breakdown)}</p>
+          <PronunciationHint value={item.nahuatl} />
           <p className="mt-1 text-sm italic text-stone-500">&ldquo;{item.translation}&rdquo;</p>
           {item.note && <p className="mt-2 text-xs leading-snug text-stone-400">{item.note}</p>}
         </div>
@@ -204,6 +219,7 @@ function DrillAnswerPanel({
       <p className="text-xs font-bold uppercase text-emerald-700">Answer</p>
       <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
       {breakdown && <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(breakdown)}</p>}
+      <PronunciationHint value={answer} />
       <p className="mt-2 text-xs leading-relaxed text-stone-600">{explanation}</p>
     </div>
   );

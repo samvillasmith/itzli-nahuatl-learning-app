@@ -57,14 +57,22 @@ export default async function UnitPage({
             New to Nahuatl spelling?
           </p>
           <p className="text-sm text-stone-600 leading-relaxed mb-3">
-            This course now uses an <strong>INALI-style practical spelling</strong>: k, w, kw, ts, and plain vowels. You may still encounter IDIEZ, SEP, or older spellings in dictionaries and source materials.
+            This course uses an <strong>INALI-style practical spelling</strong>: k, w, kw, ts, and plain vowels. Start with the pronunciation guide, including why the name question is practiced as <strong>kenihki motokah</strong>.
           </p>
-          <Link
-            href="/grammar/orthographic-systems"
-            className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
-          >
-            Read: Orthographic Systems →
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/grammar/alphabet"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
+            >
+              Read: Pronunciation Guide →
+            </Link>
+            <Link
+              href="/grammar/orthographic-systems"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
+            >
+              Orthographic Systems →
+            </Link>
+          </div>
         </div>
       )}
 

@@ -7,13 +7,13 @@ export type LessonFocusCard = {
 };
 
 export const LESSON_FOCUS_CARDS: LessonFocusCard[] = [
-  { labId: "name-exchange", unit: 3, headword: "notoka", gloss_en: "my name", part_of_speech: "form" },
-  { labId: "name-exchange", unit: 3, headword: "motoka", gloss_en: "your name", part_of_speech: "form" },
-  { labId: "name-exchange", unit: 3, headword: "itoka", gloss_en: "her/his name", part_of_speech: "form" },
-  { labId: "name-exchange", unit: 3, headword: "¿Kenihki motoka?", gloss_en: "What is your name?", part_of_speech: "sentence" },
-  { labId: "name-exchange", unit: 3, headword: "Na notoka Paty.", gloss_en: "My name is Paty.", part_of_speech: "sentence" },
-  { labId: "name-exchange", unit: 3, headword: "Na notoka Juana.", gloss_en: "My name is Juana.", part_of_speech: "sentence" },
-  { labId: "name-exchange", unit: 3, headword: "Huan ta, ¿kenihki motoka?", gloss_en: "And you, what is your name?", part_of_speech: "sentence" },
+  { labId: "name-exchange", unit: 3, headword: "notokah", gloss_en: "my name", part_of_speech: "form" },
+  { labId: "name-exchange", unit: 3, headword: "motokah", gloss_en: "your name", part_of_speech: "form" },
+  { labId: "name-exchange", unit: 3, headword: "itokah", gloss_en: "her/his name", part_of_speech: "form" },
+  { labId: "name-exchange", unit: 3, headword: "¿Kenihki motokah?", gloss_en: "What is your name?", part_of_speech: "sentence" },
+  { labId: "name-exchange", unit: 3, headword: "Na notokah Paty.", gloss_en: "My name is Paty.", part_of_speech: "sentence" },
+  { labId: "name-exchange", unit: 3, headword: "Na notokah Juana.", gloss_en: "My name is Juana.", part_of_speech: "sentence" },
+  { labId: "name-exchange", unit: 3, headword: "Huan ta, ¿kenihki motokah?", gloss_en: "And you, what is your name?", part_of_speech: "sentence" },
 
   { labId: "identity-words-introductions", unit: 5, headword: "nimomachtiani", gloss_en: "I am a student", part_of_speech: "form" },
   { labId: "identity-words-introductions", unit: 5, headword: "titlamachtihquetl", gloss_en: "you are a teacher", part_of_speech: "form" },
@@ -41,11 +41,11 @@ export const LESSON_FOCUS_CARDS: LessonFocusCard[] = [
   { labId: "noun-endings", unit: 8, headword: "āmoxtli", gloss_en: "book", part_of_speech: "word" },
   { labId: "noun-endings", unit: 8, headword: "cal-", gloss_en: "house stem", part_of_speech: "form" },
 
-  { labId: "possession-prefixes", unit: 8, headword: "notoka", gloss_en: "my name", part_of_speech: "form" },
-  { labId: "possession-prefixes", unit: 8, headword: "motoka", gloss_en: "your name", part_of_speech: "form" },
+  { labId: "possession-prefixes", unit: 8, headword: "notokah", gloss_en: "my name", part_of_speech: "form" },
+  { labId: "possession-prefixes", unit: 8, headword: "motokah", gloss_en: "your name", part_of_speech: "form" },
   { labId: "possession-prefixes", unit: 8, headword: "nocal", gloss_en: "my house", part_of_speech: "form" },
   { labId: "possession-prefixes", unit: 8, headword: "tomīllah", gloss_en: "our milpa", part_of_speech: "form" },
-  { labId: "possession-prefixes", unit: 8, headword: "intoka", gloss_en: "their name", part_of_speech: "form" },
+  { labId: "possession-prefixes", unit: 8, headword: "intokah", gloss_en: "their name", part_of_speech: "form" },
 
   { labId: "family-possession", unit: 9, headword: "nonana", gloss_en: "my mother", part_of_speech: "form" },
   { labId: "family-possession", unit: 9, headword: "motata", gloss_en: "your father", part_of_speech: "form" },

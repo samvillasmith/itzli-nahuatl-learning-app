@@ -273,8 +273,8 @@ function main() {
   if (!GRAMMAR_LABS.some((lab) => lab.unit === 3 && lab.id === "name-exchange")) {
     grammarFailures.push("Unit 3 is missing the required name-exchange grammar lab.");
   }
-  if (!LESSON_FOCUS_CARDS.some((card) => card.unit === 3 && card.headword === "notoka")) {
-    grammarFailures.push("Unit 3 lesson focus cards must include notoka as a first-class card.");
+  if (!LESSON_FOCUS_CARDS.some((card) => card.unit === 3 && card.headword === "notokah")) {
+    grammarFailures.push("Unit 3 lesson focus cards must include notokah as a first-class card.");
   }
 
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });

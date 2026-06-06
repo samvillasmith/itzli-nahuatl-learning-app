@@ -117,8 +117,8 @@ const VERIFIED_PHRASES = [
   { phrase: "Tlaskamati.", gloss: "Thank you." },
   { phrase: "Kena.", gloss: "Yes." },
   { phrase: "Axkana.", gloss: "No." },
-  { phrase: "Notoka ___.", gloss: "My name is ___." },
-  { phrase: "¿Kenihki motoka?", gloss: "What is your name?" },
+  { phrase: "Notokah ___.", gloss: "My name is ___." },
+  { phrase: "¿Kenihki motokah?", gloss: "What is your name?" },
   { phrase: "¿Kenihki tiistok?", gloss: "How are you?" },
   { phrase: "Kwali niistok.", gloss: "I am well." },
   { phrase: "¿Kampa ticha? / ¿Kanke ticha?", gloss: "Where do you live?" },
@@ -188,7 +188,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Possessive prefixes",
     content:
-      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notoka (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
+      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notokah (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
   },
   {
     title: "Noun endings and plural",
@@ -228,7 +228,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Question words",
     content:
-      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Akin? 'who?'; ¿Kampa? / ¿Kanke? 'where?'; ¿Kenihki? 'how?'; ¿Keman? / ¿Kemanian? 'when?'; ¿Keski? 'how many?'; ¿Katli? / ¿Katlih? 'which?'; ¿Tleka? 'why?'. Examples: ¿Kenihki motoka? 'What's your name?'; ¿Kampa ticha? 'Where do you live?'; ¿Keski tomimeh tikpia? 'How many cats do you have?'",
+      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Akin? 'who?'; ¿Kampa? / ¿Kanke? 'where?'; ¿Kenihki? 'how?'; ¿Keman? / ¿Kemanian? 'when?'; ¿Keski? 'how many?'; ¿Katli? / ¿Katlih? 'which?'; ¿Tleka? 'why?'. Examples: ¿Kenihki motokah? 'What's your name?'; ¿Kampa ticha? 'Where do you live?'; ¿Keski tomimeh tikpia? 'How many cats do you have?'",
   },
   {
     title: "Word order",

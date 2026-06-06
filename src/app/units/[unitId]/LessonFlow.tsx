@@ -12,6 +12,7 @@ import type { GrammarLab } from "@/data/grammar-labs";
 import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
+import { pronunciationHintFor } from "@/lib/pronunciation";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -57,6 +58,18 @@ type DialogueMatch = {
 } | null;
 
 type TipData = { icon: string; title: string; body: string };
+
+function PronunciationHint({ value }: { value: string }) {
+  const hint = pronunciationHintFor(value);
+  if (!hint) return null;
+
+  return (
+    <div className="max-w-xs rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-center">
+      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
+      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{hint.note}</p>
+    </div>
+  );
+}
 
 type LessonStep =
   | { kind: "learn"; wordIdx: number }
@@ -1859,6 +1872,7 @@ export default function LessonFlow({
                 <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-4xl"} font-bold text-stone-900 leading-tight`}>
                   {displayNahuatl(word.headword)}
                 </p>
+                <PronunciationHint value={word.headword} />
                 {word.part_of_speech && (
                   <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
                     {word.part_of_speech}
@@ -1882,6 +1896,7 @@ export default function LessonFlow({
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
                 <p className="text-stone-400 text-sm font-medium leading-snug">{displayNahuatl(word.headword)}</p>
+                <PronunciationHint value={word.headword} />
                 <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} font-bold text-emerald-600 leading-tight`}>
                   {displayGloss(word.gloss_en)}
                 </p>

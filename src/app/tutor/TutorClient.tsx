@@ -16,9 +16,9 @@ const TUTOR_SUGGESTIONS = [
 
 const PRACTICE_SUGGESTIONS = [
   "Piyali! (Hello!)",
-  "Notoka Sam. (My name is Sam.)",
+  "Notokah Sam. (My name is Sam.)",
   "¿Kenihki tiistok? (How are you?)",
-  "¿Kenihki motoka? (What's your name?)",
+  "¿Kenihki motokah? (What's your name?)",
 ];
 
 const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: string; emptyHeadline: string; emptyBody: string }> = {

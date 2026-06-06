@@ -5,6 +5,7 @@ import { displayGloss } from "@/lib/gloss";
 import { playAudio, vocabAudioUrl } from "@/lib/audio";
 import { getWordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
+import { pronunciationHintFor } from "@/lib/pronunciation";
 
 type Card = {
   id: number;
@@ -46,6 +47,18 @@ function AudioButton({ src }: { src: string }) {
         <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.061z" />
       </svg>
     </button>
+  );
+}
+
+function PronunciationHint({ value }: { value: string }) {
+  const hint = pronunciationHintFor(value);
+  if (!hint) return null;
+
+  return (
+    <div className="max-w-xs rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-center">
+      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
+      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{hint.note}</p>
+    </div>
   );
 }
 
@@ -120,6 +133,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
             <div className="flex flex-col items-center justify-center gap-3 p-8 flex-1">
               <p className="text-xs text-stone-300 uppercase font-semibold">Nahuatl</p>
               <p className="text-3xl font-bold text-stone-900 leading-tight">{displayNahuatl(card.headword)}</p>
+              <PronunciationHint value={card.headword} />
               {card.part_of_speech && (
                 <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{card.part_of_speech}</span>
               )}

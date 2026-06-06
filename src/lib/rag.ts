@@ -8,7 +8,7 @@ import { displayNahuatl } from "@/lib/orthography";
 // pgvector. The chunks were pre-embedded by scripts/rag-populate.js and
 // span four kinds:
 //   - vocab        ~2000 lesson-audited headwords (most rows)
-//   - phrase       verified common phrases (piyali, notoka, ¿Kenihki motoka?, ...)
+//   - phrase       verified common phrases (piyali, notokah, ¿Kenihki motokah?, ...)
 //   - grammar      paradigm summaries (tic- vs titech-, tense markers, ...)
 //   - morphology   pre-analyzed tokens (ni·tequiti → I + to work, ...)
 //

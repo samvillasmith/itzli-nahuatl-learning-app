@@ -33,15 +33,15 @@ export type GrammarLesson = {
 export const GRAMMAR_LESSONS: GrammarLesson[] = [
   {
     id: 'alphabet',
-    title: 'The EHN Alphabet',
+    title: 'Pronunciation Guide: Sounds and Spelling',
     nahuatlTitle: 'Piltlahcuiloltzitzin',
     band: 'A1',
-    shortDesc: 'Sounds and reading the practical INALI spelling used in the app.',
+    shortDesc: 'How to read the practical spelling, including common pronunciation traps like kenihki.',
     relatedUnits: [1],
     sections: [
       {
         kind: 'prose',
-        text: `Eastern Huasteca Nahuatl (EHN) is written in several different systems. This app now uses an INALI-style practical spelling for learners: k for /k/, w for /w/, kw for /kw/, ts for /ts/, s for /s/, and plain vowels without macrons.\n\nOlder IDIEZ and SEP spellings still appear in dictionaries, academic materials, and source course pages. For a short explainer of the differences, see the "Orthographic Systems" lesson.`,
+        text: `Eastern Huasteca Nahuatl (EHN) is written in several different systems. This app uses an INALI-style practical spelling for learners: k for /k/, w for /w/, kw for /kw/, ts for /ts/, s for /s/, and plain vowels without macrons.\n\nPronunciation still comes first. Some common source-course spellings need a spoken cue, especially the source spelling queniuhqui, which this app teaches as **kenihki**. When you see the name question, practice it as **kenihki motokah**.\n\nOlder IDIEZ and SEP spellings still appear in dictionaries, academic materials, and source course pages. For a short explainer of the differences, see the "Orthographic Systems" lesson.`,
       },
       {
         kind: 'rule',
@@ -66,7 +66,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Key consonants and sound clusters',
-        text: `Most consonants are pronounced close to Spanish values. Several sound combinations are important in Nahuatl:\n\n• **tl** — a lateral affricate unique to Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **ts** — like English "ts" in "cats". Example: tsan.\n\n• **x** — like English "sh" in "shoe". Example: xochitl (flower).\n\n• **w** — represents the /w/ sound. Example: weyi (big).\n\n• **kw** — represents the /kw/ sound. Example: kwahtli (eagle).\n\n• **k** — represents the /k/ sound everywhere. Example: keniwki (how).\n\n• **h** between vowels or at the end of a word can mark a brief glottal catch. Example: axkan (now/today).`,
+        text: `Most consonants are pronounced close to Spanish values. Several sound combinations are important in Nahuatl:\n\n• **tl** — a lateral affricate unique to Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **ts** — like English "ts" in "cats". Example: tsan.\n\n• **x** — like English "sh" in "shoe". Example: xochitl (flower).\n\n• **w** — represents the /w/ sound in words like weyi (big), but do not use it to pronounce the question word kenihki.\n\n• **kw** — represents the /kw/ sound. Example: kwahtli (eagle).\n\n• **k** — represents the /k/ sound everywhere. Example: kenihki (how).\n\n• **h** can mark a brief glottal catch or h-like release. Example: axkan (now/today), motokah (your name).`,
+      },
+      {
+        kind: 'rule',
+        title: 'The name question',
+        text: `A very common source-course spelling is ¿Quēniuhqui motōcah?. In this app, read and practice it as **¿Kenihki motokah?**.\n\nPronunciation cue: **kenihki motokah**. The first word is not "keniwki"; the final h in motokah is a light catch or h-like release.`,
       },
       {
         kind: 'paradigm',
@@ -91,11 +96,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         kind: 'examples',
         heading: 'Practice reading these words',
         items: [
-          { nahuatl: 'Piyalli', breakdown: 'Pi·ya·lli', translation: 'Hello / Greetings', note: 'Common EHN greeting' },
+          { nahuatl: 'Piyali', breakdown: 'Pi·ya·li', translation: 'Hello / Greetings', note: 'Common EHN greeting' },
           { nahuatl: 'axkan', breakdown: 'ax·kan', translation: 'today / now', note: 'Listen for the brief catch in careful speech' },
           { nahuatl: 'tlahtoa', breakdown: 'tlah·to·a', translation: 'to speak', note: 'Note the tl- onset' },
           { nahuatl: 'xochitl', breakdown: 'xo·chitl', translation: 'flower', note: 'x = /sh/' },
-          { nahuatl: 'keniwki', breakdown: 'ke·niw·ki', translation: 'how / what is ... like?', note: 'k is used for the /k/ sound' },
+          { nahuatl: 'kenihki', breakdown: 'ke·nih·ki', translation: 'how / what is ... like?', note: 'Say kenihki, not keniwki' },
+          { nahuatl: '¿Quēniuhqui motōcah?', breakdown: 'kenihki mo·tokah', translation: 'What is your name?', note: 'Source spelling: Quēniuhqui motōcah. Practice aloud as kenihki motokah.' },
           { nahuatl: 'kalli', breakdown: 'ka·lli', translation: 'house', note: 'k is written the same before every vowel' },
         ],
       },
@@ -301,14 +307,14 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Examples from dialogues',
         items: [
           {
-            nahuatl: 'Na notoka Paty.',
-            breakdown: 'Na no·toka Paty.',
+            nahuatl: 'Na notokah Paty.',
+            breakdown: 'Na no·tokah Paty.',
             translation: 'My name is Paty.',
-            note: 'na = I (pronoun for emphasis); notoka = my name',
+            note: 'na = I (pronoun for emphasis); notokah = my name',
           },
           {
-            nahuatl: '¿Huan ta, kenihki motoka?',
-            breakdown: '¿Huan ta, kenihki mo·toka?',
+            nahuatl: '¿Huan ta, kenihki motokah?',
+            breakdown: '¿Huan ta, kenihki mo·tokah?',
             translation: 'And you, what is your name?',
             note: 'ta = you (emphatic); huan = and; mo- = your (2sg possessive)',
           },
@@ -469,12 +475,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'tōcah (name) — full possessive paradigm',
         headers: ['Person', 'Form', 'Meaning'],
         rows: [
-          { person: 'I', form: 'notoka', gloss: 'my name' },
-          { person: 'you', form: 'motoka', gloss: 'your name' },
-          { person: 'he / she', form: 'itoka', gloss: 'his / her name' },
-          { person: 'we', form: 'totoka', gloss: 'our name' },
-          { person: 'you all', form: 'amotoka', gloss: 'your (pl) name' },
-          { person: 'they', form: 'intoka', gloss: 'their name' },
+          { person: 'I', form: 'notokah', gloss: 'my name' },
+          { person: 'you', form: 'motokah', gloss: 'your name' },
+          { person: 'he / she', form: 'itokah', gloss: 'his / her name' },
+          { person: 'we', form: 'totokah', gloss: 'our name' },
+          { person: 'you all', form: 'amotokah', gloss: 'your (pl) name' },
+          { person: 'they', form: 'intokah', gloss: 'their name' },
         ],
       },
       {
@@ -482,14 +488,14 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Examples from dialogues',
         items: [
           {
-            nahuatl: '¿Kenihki motoka?',
-            breakdown: '¿Kenihki mo·toka?',
+            nahuatl: '¿Kenihki motokah?',
+            breakdown: '¿Kenihki mo·tokah?',
             translation: 'What is your name? (lit. "How is your name?")',
             note: 'mo- = your (2sg possessive)',
           },
           {
-            nahuatl: 'Na notoka Paty.',
-            breakdown: 'Na no·toka Paty.',
+            nahuatl: 'Na notokah Paty.',
+            breakdown: 'Na no·tokah Paty.',
             translation: 'My name is Paty.',
             note: 'no- = my (1sg possessive)',
           },
@@ -558,8 +564,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Question patterns in context',
         items: [
           {
-            nahuatl: '¿Kenihki motoka?',
-            breakdown: '¿Kenihki mo·toka?',
+            nahuatl: '¿Kenihki motokah?',
+            breakdown: '¿Kenihki mo·tokah?',
             translation: 'What is your name?',
             note: 'Literally: "How is your name?" — the standard greeting question',
           },
@@ -1075,10 +1081,10 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'Two reflexive verbs in one sentence',
           },
           {
-            nahuatl: '¿Kenihki motoka?',
-            breakdown: '¿Kenihki mo·toka?',
+            nahuatl: '¿Kenihki motokah?',
+            breakdown: '¿Kenihki mo·tokah?',
             translation: 'What is your name? (lit. "How do you call yourself?")',
-            note: 'mo- refl. on the verb toka "to call / name"',
+            note: 'mo- refl. on the verb tokah "to call / name"',
           },
           {
             nahuatl: 'Na nimomachtia Nāhuatl.',

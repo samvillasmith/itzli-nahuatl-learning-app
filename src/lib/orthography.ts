@@ -17,6 +17,12 @@ function replaceWithCase(value: string, pattern: RegExp, replacement: string): s
 export function toInaliOrthography(value: string): string {
   let out = stripDiacritics(value);
 
+  // Lexical exception: the source-course spelling queniuhqui is pronounced and
+  // taught here as kenihki; the generic uh -> w rule would otherwise produce
+  // the misleading learner form keniwki.
+  out = replaceWithCase(out, /\bqueniuhqui\b/gi, "kenihki");
+  out = replaceWithCase(out, /\bkeniuhki\b/gi, "kenihki");
+
   out = replaceWithCase(out, /tz/gi, "ts");
   out = replaceWithCase(out, /z/gi, "s");
   out = replaceWithCase(out, /cu(?=[aeio])/gi, "kw");
@@ -27,6 +33,7 @@ export function toInaliOrthography(value: string): string {
   out = replaceWithCase(out, /uh(?=\b|[^aeiou])/gi, "w");
   out = replaceWithCase(out, /c(?=[ei])/gi, "s");
   out = replaceWithCase(out, /c(?!h)/gi, "k");
+  out = replaceWithCase(out, /\bkeniwki\b/gi, "kenihki");
 
   return out;
 }
@@ -65,7 +72,18 @@ export function orthographySearchVariants(value: string): string[] {
   if (["kenijki", "keniki", "kenin", "kenikatsa", "queniuhqui", "quehatza"].includes(inali)) {
     variants.add("kenihki");
   }
+  if (inali === "kenihki motokah") {
+    variants.add("kenihki motoka");
+    variants.add("kenijki motokah");
+    variants.add("keniki motokah");
+    variants.add("kenin motokah");
+    variants.add("tlen motokah");
+    variants.add("queniuhqui motocah");
+    variants.add("queniuhqui motokah");
+    variants.add("queniuhqui motoca");
+  }
   if (inali === "kenihki motoka") {
+    variants.add("kenihki motokah");
     variants.add("kenijki motoka");
     variants.add("keniki motoka");
     variants.add("kenin motoka");
@@ -74,7 +92,8 @@ export function orthographySearchVariants(value: string): string[] {
     variants.add("queniuhqui motokah");
     variants.add("queniuhqui motoca");
   }
-  if (["kenijki motoka", "keniki motoka", "kenin motoka", "tlen motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"].includes(inali)) {
+  if (["kenijki motoka", "keniki motoka", "kenin motoka", "tlen motoka", "kenijki motokah", "keniki motokah", "kenin motokah", "tlen motokah", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"].includes(inali)) {
+    variants.add("kenihki motokah");
     variants.add("kenihki motoka");
   }
   if (inali === "kenihki tiistok") {
@@ -96,17 +115,22 @@ export function orthographySearchVariants(value: string): string[] {
   if (["kenijki tiya", "keniki tiya", "kenihkatsa tiya", "quehatza tiya"].includes(inali)) {
     variants.add("kenihki tiya");
   }
-  if (inali === "notoka") {
-    variants.add("notocah");
-    variants.add("notokah");
-    variants.add("notocaj");
-    variants.add("notōcah");
-  }
-  if (inali === "motoka") {
-    variants.add("motocah");
-    variants.add("motokah");
-    variants.add("motocaj");
-    variants.add("motōcah");
+  const possessedNameVariants: Record<string, string[]> = {
+    notokah: ["notoka", "notocah", "notocaj", "notōcah"],
+    notoka: ["notokah", "notocah", "notocaj", "notōcah"],
+    motokah: ["motoka", "motocah", "motocaj", "motōcah"],
+    motoka: ["motokah", "motocah", "motocaj", "motōcah"],
+    itokah: ["itoka", "itocah", "itocaj", "ītōcah"],
+    itoka: ["itokah", "itocah", "itocaj", "ītōcah"],
+    totokah: ["totoka", "totocah", "totocaj", "totōcah"],
+    totoka: ["totokah", "totocah", "totocaj", "totōcah"],
+    amotokah: ["amotoka", "amotocah", "amotocaj", "amotōcah"],
+    amotoka: ["amotokah", "amotocah", "amotocaj", "amotōcah"],
+    intokah: ["intoka", "intocah", "intocaj", "intōcah"],
+    intoka: ["intokah", "intocah", "intocaj", "intōcah"],
+  };
+  for (const variant of possessedNameVariants[inali] ?? []) {
+    variants.add(variant);
   }
   const legacyBase = plain
     .replace(/ts/g, "tz")

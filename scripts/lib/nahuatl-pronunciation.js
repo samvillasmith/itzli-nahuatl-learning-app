@@ -34,7 +34,7 @@ const SHORT_VOWEL_BEFORE_H_CUE = {
 
 const PARENTHETICAL_DIRECTIONS = /\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}/g;
 const OPEN_PARENTHETICAL_DIRECTION = /[\(\[\{][^()\[\]{}]*$/g;
-const PUNCTUATION = /[?!.,;:()[\]{}"<>/]/g;
+const PUNCTUATION = /[¿¡?!.,;:()[\]{}"<>/]/g;
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 const VOWELS = new Set(["a", "e", "i", "o", "u", "\u0101", "\u0113", "\u012b", "\u014d", "\u016b"]);
 const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "w", "sh"]);
@@ -64,6 +64,9 @@ function normalizeNahuatlText(text) {
   return speakableNahuatlText(text)
     .toLowerCase()
     .replace(/\u2019|\u2018|\u02bc/g, "'")
+    .replace(/\bqu[eē]niuhqui\b/g, "kenihki")
+    .replace(/\bkeniuhki\b/g, "kenihki")
+    .replace(/\bkeniwki\b/g, "kenihki")
     .replace(PUNCTUATION, " ")
     .replace(/\s+/g, " ")
     .trim();
