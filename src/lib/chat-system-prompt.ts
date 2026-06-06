@@ -54,8 +54,9 @@ VERIFIED PHRASES (use these exact forms):
 - "what is your name?" = ¿Tlen motoka?
 - "hello" = pialli
 - "thank you" = tlasohkamati
-- "yes" = kena (or kemah for emphasis)
-- "no" = ahmo
+- "yes" = kena
+- "no" = axtle
+- "not" = ax
 `;
 
 const PRACTICE_BODY = `## MODE: PRACTICE (converse in Nahuatl)

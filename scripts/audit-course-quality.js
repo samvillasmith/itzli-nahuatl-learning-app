@@ -8,6 +8,37 @@ const Database = require("better-sqlite3");
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const CHUNK_SIZE = 10;
+const originalResolveFilename = Module._resolveFilename;
+
+Module._resolveFilename = function resolveProjectAlias(request, parent, isMain, options) {
+  if (typeof request === "string" && request.startsWith("@/")) {
+    const resolved = path.join(process.cwd(), "src", request.slice(2));
+    const withTs = fs.existsSync(`${resolved}.ts`) ? `${resolved}.ts` : resolved;
+    return originalResolveFilename.call(
+      this,
+      withTs,
+      parent,
+      isMain,
+      options
+    );
+  }
+  return originalResolveFilename.call(this, request, parent, isMain, options);
+};
+
+require.extensions[".ts"] = function compileTypeScriptModule(mod, filename) {
+  const source = fs.readFileSync(filename, "utf8");
+  const output = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+      esModuleInterop: true,
+      resolveJsonModule: true,
+    },
+    fileName: filename,
+  }).outputText;
+
+  mod._compile(output, filename);
+};
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

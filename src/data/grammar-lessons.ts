@@ -126,7 +126,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         headers: ['IDIEZ / academic', 'INALI (this course)', 'SEP / traditional'],
         rows: [
           { person: 'cualli', form: 'kwalli', gloss: 'cualli' },
-          { person: 'quēmman', form: 'kemah', gloss: 'queman' },
+          { person: 'quena', form: 'kena', gloss: 'quena' },
           { person: 'cihuātl', form: 'siwatl', gloss: 'cihuatl' },
           { person: 'xōchitl', form: 'xochitl', gloss: 'xochitl' },
           { person: 'tlahtoa', form: 'tlajtoa', gloss: 'tlahtoa' },

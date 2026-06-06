@@ -168,12 +168,12 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Imperative (commands)",
     content:
-      "Imperative (commands to 'you'): prefix xi- + verb stem. Object prefixes go between xi- and the stem. Examples: xitequiti = 'work!'; xinēchhuica = 'bring me (it)!' (xi- imperative + nēch- me + huica bring); xicchihua = 'do it!' (xi- + c- it + chihua). 2pl command adds -can: xitequitican = 'you all work!'. Negative command: ahmo + xi- + stem — ahmo xihuica = 'don't bring it'.",
+      "Imperative (commands to 'you'): prefix xi- + verb stem. Object prefixes go between xi- and the stem. Examples: xitequiti = 'work!'; xinechwika = 'bring me (it)!' (xi- imperative + nech- me + wika bring); xicchihua = 'do it!' (xi- + c- it + chihua). 2pl command adds -kan: xitequitikan = 'you all work!'. Negative command: ax + xi- + stem — ax xiwika = 'don't bring it'.",
   },
   {
     title: "Negation",
     content:
-      "Negation uses ahmo (or variant ax / ahmoh) placed BEFORE the verb. Examples: ahmo nitequiti = 'I don't work', ax nicmati = 'I don't know', ahmo cualli = 'not good'. Combine with imperative for negative commands: ahmo xihuica = 'don't bring it'. For 'nothing / no one' use ahmo tlen / ahmo aquin ('not anything / not anyone').",
+      "Negation in this EHN learner path uses ax before the verb, and axtle for a standalone negative response. Examples: ax nitequiti = 'I don't work', ax nicmati = 'I don't know', ax kwali = 'not good'. Combine with imperative for negative commands: ax xiwika = 'don't bring it'. For 'nothing / no one' use axtle/tleno or ax akin depending on context.",
   },
   {
     title: "Directional prefixes (on-, hual-)",
@@ -218,12 +218,12 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Existence — 'there is / there are'",
     content:
-      "'There is' / 'there are' = oncah (also onca). Used to assert existence or availability. Examples: Oncah atl. 'There is water.' Oncah miyac tlacatl. 'There are many people.' Negative: ahmo oncah = 'there isn't / there aren't'. Past: oncatca; future: oncaz.",
+      "'There is' / 'there are' = onka/onkah (older spelling onca/oncah). Used to assert existence or availability. Examples: Onkah atl. 'There is water.' Onkah miyak tlakatl. 'There are many people.' Negative: ax onkah = 'there isn't / there aren't'. Past: onkatka; future: onkas.",
   },
   {
     title: "Possession — 'to have'",
     content:
-      "Nahuatl has no verb 'to have'. Possession is expressed by existence + a possessed noun. Pattern: oncah + POSS-noun. Examples: Oncah nomis. 'I have a cat' (lit. 'my-cat exists'). Oncah iconetl. 'She has a child' (lit. 'her-child exists'). The verb -pia 'to guard / keep' is used with Spanish-influenced framings in some modern speech but is not the native 'have'.",
+      "Nahuatl has no verb 'to have'. Possession is expressed by existence + a possessed noun. Pattern: onkah + POSS-noun. Examples: Onkah nomis. 'I have a cat' (lit. 'my-cat exists'). Onkah ikonetsin. 'She has a child' (lit. 'her-child exists'). The verb -pia 'to guard / keep' is used with Spanish-influenced framings in some modern speech but is not the native 'have'.",
   },
   {
     title: "Question words",

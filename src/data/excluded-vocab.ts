@@ -13,6 +13,9 @@ import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { isStudyCardExcluded } from "@/lib/study-card-safety";
 
 export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
+  // Unit 1: Sounds and spelling
+  5,    // macron vowel card; learner-facing INALI spelling uses plain vowels
+
   // Unit 7: How to divide up the day
   168,  // chocolatl - food word in time/daypart unit
 
@@ -34,8 +37,14 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 12: Future tense and indefinite verbs
   296,  // cui - adult/sexual verb, not needed in a general future-tense lesson
   297,  // teca - adult/sexual verb, not needed in a general future-tense lesson
+  292,  // amapohua - Central/comparative "write"; teach EHN tlahcuilohua first
+  295,  // amoxmachi - Central/comparative "write"; teach EHN tlahcuilohua first
   6845, // amaitla - duplicate/miswritten "you're welcome"
   7643, // teochihua - "to bless", not a greeting/farewell card
+
+  // Unit 20: Respect and affection
+  456,  // cahualtoahui - widow; too specialized for core social-address practice
+  459,  // cahualtotlayi - widower; too specialized for core social-address practice
 
   // ── Unit 23: What is Inside the House ──────────────────────────────────
   525,  // zacacalli — hay storehouse (outbuilding, not inside a house)
@@ -48,6 +57,9 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   583,  // mazatl — 7th Aztec day sign (calendar concept, off-topic)
   584,  // iyelli — flatulence (variant of 588; also off-topic)
   588,  // ihyelli — flatulence (off-topic in city travel unit)
+
+  // Unit 27: Market
+  622,  // michtlacualli - fish as food; teach core michi first
 
   // ── Unit 30: The conditional, Part 1 ───────────────────────────────────
   669,  // tsimpa — buttock (off-topic in grammar unit; canonical of variant group)
@@ -65,14 +77,36 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   6110,  // tecciztli - conch shell, not an egg/food item
   6139,  // elhuicac ehquetl - angel, off-path in community unit
   6142,  // ojtatl - bamboo, off-path in community unit
+  6420,  // chilkostik - Central Huasteca orange; teach EHN chilcoz first
+  6482,  // koatlajtli - Central Huasteca fruit; teach EHN xocotl first
   6237,  // kuitlatl - vulgar/off-topic noun in action-word unit
   6273,  // quema - mis-glossed as when; already taught as yes elsewhere
+  6648,  // tlakemitl - Central Huasteca blanket; teach better-attested pepechtli first
+  7123,  // koyotik - Central Nahuatl brown; teach chokolatik first
+  7349,  // acahualli - Classical weed; not core EHN lesson vocabulary
+  7510,  // huihuitla - Classical weed verb; not core EHN lesson vocabulary
   7240,  // teotlacatl - specialized religious/cosmological term
   7248,  // teziuhtekatl - overly specialized role
   7724,  // tilmahtli - clothing word in conditions/evaluations unit
 ]);
 
-const CORE_GLOSS_OVERRIDES: Record<number, string> = {};
+const CORE_GLOSS_OVERRIDES: Record<number, string> = {
+  4: "vowel [o] — like 'o' in go. Example: onka (there is)",
+  8: "[tɬ] — no English sound; tip of tongue on upper teeth, air released sideways. Example: tlakwa (to eat)",
+  9: "[ts] — like 'ts' in cats. Example: tsopelatl (soda)",
+  11: "[w] — written w in INALI-style spelling. Example: wika (to sing)",
+  12: "[k/kw] — k and kw in INALI-style spelling. Example: kena (yes)",
+  13: "[s] — like 's' in sun. Example: sayoltsi (bee)",
+  239: "old/worn thing",
+  248: "old person; elder",
+};
+
+const CORE_HEADWORD_OVERRIDES: Record<number, string> = {
+  9: "ts",
+  11: "w",
+  12: "k / kw",
+  13: "s",
+};
 
 export const CORE_VOCAB_LIMITS: Record<number, number> = {
   9: 28,
@@ -255,7 +289,15 @@ export function filterCoreVocab<T extends CurriculumVocabItem>(
   const limited = typeof limit === "number" ? filtered.slice(0, limit) : filtered;
   return limited.map((item) => {
     const gloss = CORE_GLOSS_OVERRIDES[item.id];
+    const headword = CORE_HEADWORD_OVERRIDES[item.id];
     const cleanGloss = gloss ?? sanitizeCoreGloss(item.gloss_en ?? "");
-    return cleanGloss !== (item.gloss_en ?? "") ? ({ ...item, gloss_en: cleanGloss } as T) : item;
+    if (cleanGloss !== (item.gloss_en ?? "") || headword) {
+      return {
+        ...item,
+        ...(headword ? { headword, display_form: headword } : {}),
+        gloss_en: cleanGloss,
+      } as T;
+    }
+    return item;
   });
 }

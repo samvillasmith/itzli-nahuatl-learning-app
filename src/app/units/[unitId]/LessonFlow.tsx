@@ -9,6 +9,7 @@ import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
+import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
 
@@ -273,6 +274,31 @@ function mergeLearningCards(...groups: VocabCard[][]): VocabCard[] {
   }
 
   return merged;
+}
+
+function buildLessonFocusCards(unitNum: number, grammarLabs: GrammarLab[]): VocabCard[] {
+  const labIds = grammarLabs.map((lab) => lab.id);
+  return getLessonFocusCardsForUnit(unitNum, labIds).map((card, idx) => ({
+    id: -100_000 - unitNum * 1_000 - idx,
+    headword: card.headword,
+    gloss_en: card.gloss_en,
+    part_of_speech: card.part_of_speech,
+    source: "lessonFocus" as const,
+  }));
+}
+
+function buildUnitPhraseCards(unitNum: number, dialogues: DialogueLine[]): VocabCard[] {
+  return dialogues
+    .filter((line) => line.translation_en && phraseTokens(line.utterance_normalized).length >= 2)
+    .slice(0, 8)
+    .map((line, idx) => ({
+      id: -200_000 - unitNum * 1_000 - idx,
+      headword: line.utterance_normalized,
+      gloss_en: line.translation_en ?? "",
+      part_of_speech: "phrase",
+      audioSrc: line.audio_available ? dialogueAudioUrl(line.lesson_dialogue_id) : null,
+      source: "unitPhrase" as const,
+    }));
 }
 
 function normalizeExerciseToken(s: string): string {
@@ -1375,10 +1401,10 @@ export default function LessonFlow({
   }, [vocab, unitNum]);
 
   const learningCards = useMemo(() => {
-    const words = filteredVocab.filter((card) => !isUnitPhraseCard(card));
-    const phrases = filteredVocab.filter(isUnitPhraseCard);
-    return mergeLearningCards(words, phrases);
-  }, [filteredVocab]);
+    const lessonFocusCards = buildLessonFocusCards(unitNum, grammarLabs);
+    const unitPhraseCards = buildUnitPhraseCards(unitNum, dialogues);
+    return mergeLearningCards(lessonFocusCards, filteredVocab, unitPhraseCards);
+  }, [filteredVocab, unitNum, grammarLabs, dialogues]);
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
 
