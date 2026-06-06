@@ -10,6 +10,7 @@ import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
 import { answerMatches } from "@/lib/grammar-engine";
+import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -107,31 +108,31 @@ type Props = {
 const UNIT_TIPS: Record<number, TipData[]> = {
   1: [
     { icon: "🗣️", title: "A Living Language", body: "Eastern Huasteca Nahuatl is spoken by about 200,000 people in the Huasteca region of Veracruz, Hidalgo, and San Luis Potosí. It's not an ancient relic — it's spoken in homes, markets, and schools every day." },
-    { icon: "✏️", title: "The IDIEZ Spelling", body: "This course uses IDIEZ orthography — the academic standard. Long vowels get macrons (ā, ē, ī, ō), and the glottal stop (saltillo) is written \"h\". You'll see Nahuatl spelled differently elsewhere — that's normal." },
+    { icon: "✏️", title: "INALI Spelling", body: "This course now uses an INALI-style practical spelling for learners: k, w, kw, ts, and plain vowels without macrons. You may still see older spellings in dictionaries and source materials." },
   ],
   2: [
     { icon: "❓", title: "Asking Questions", body: "In EHN, questions often keep the same word order as statements. The question word (tlen, aqui, canin) goes at the beginning, and your voice rises at the end." },
-    { icon: "✓", title: "Yes and No", body: "This course teaches quena for yes and axtle for no first. You may see quema or quemah in source material; treat those as variants until they are explained." },
+    { icon: "✓", title: "Yes and No", body: "This course teaches kena for yes and axtle for no first. You may see kema or kemah in source material; treat those as variants until they are explained." },
   ],
   3: [
     { icon: "👤", title: "Pronouns Are Optional", body: "In everyday speech, people usually drop the pronoun (na, ta, ya) because the verb prefix already shows who's acting. Pronouns are added for emphasis: \"NA nitequiti\" = \"I work\" (not someone else). Not sure what \"first person\" or \"second person\" means? Check the grammar lesson \"Who's Talking? Person & Number Explained\" under Grammar." },
-    { icon: "🌸", title: "Nahua Names", body: "Traditional names come from nature and qualities: Xochitl (flower), Cuauhtli (eagle), Citlali (star). Today many speakers use Spanish first names with Nahuatl family names." },
+    { icon: "🌸", title: "Nahua Names", body: "Traditional names come from nature and qualities: Xochitl (flower), Kwawtli (eagle), Sitlali (star). Today many speakers use Spanish first names with Nahuatl family names." },
   ],
   4: [
-    { icon: "🔢", title: "Base-20 Numbers", body: "The Aztec counting system was vigesimal (base 20), not decimal. The word for 20 is cempohualli — literally \"one count.\" Numbers 1–10 are the building blocks." },
-    { icon: "🎨", title: "Colors in Culture", body: "Colors carried deep meaning: turquoise (xihuitl) symbolized fire and time; red (tlapalli) meant writing and knowledge — \"red and black ink\" was a metaphor for wisdom." },
+    { icon: "🔢", title: "Base-20 Numbers", body: "The Aztec counting system was vigesimal (base 20), not decimal. The word for 20 is sempowalli — literally \"one count.\" Numbers 1–10 are the building blocks." },
+    { icon: "🎨", title: "Colors in Culture", body: "Colors carried deep meaning: turquoise (xiwitl) symbolized fire and time; red (tlapalli) meant writing and knowledge — \"red and black ink\" was a metaphor for wisdom." },
   ],
   5: [
-    { icon: "🌿", title: "The Healer (Ticitl)", body: "The ticitl combined herbal medicine, massage, and spiritual practice. This was a sophisticated medical tradition with detailed knowledge of hundreds of plants." },
+    { icon: "🌿", title: "The Healer (Tisitl)", body: "The tisitl combined herbal medicine, massage, and spiritual practice. This was a sophisticated medical tradition with detailed knowledge of hundreds of plants." },
   ],
   6: [
     { icon: "📝", title: "Verb Prefixes", body: "Every Nahuatl verb starts with a subject prefix: ni- (I), ti- (you), nothing (he/she). Plurals add -h at the end. Master these prefixes and you can conjugate any verb." },
   ],
   7: [
-    { icon: "📅", title: "Two Calendars", body: "The Aztecs used two interlocking calendars: the 365-day xiuhpohualli for agriculture and the 260-day tonalpohualli for divination. Together they created a 52-year cycle." },
+    { icon: "📅", title: "Two Calendars", body: "The Aztecs used two interlocking calendars: the 365-day xiwpowalli for agriculture and the 260-day tonalpowalli for divination. Together they created a 52-year cycle." },
   ],
   8: [
-    { icon: "📝", title: "Possession = Prefixes", body: "\"My house\" isn't two words — it's one: nocal (no- + calli). The possessive prefix replaces the -tl/-tli ending. Simple and elegant." },
+    { icon: "📝", title: "Possession = Prefixes", body: "\"My house\" isn't two words — it's one: nokal (no- + kalli). The possessive prefix replaces the -tl/-tli ending. Simple and elegant." },
   ],
   9: [
     { icon: "👨‍👩‍👧‍👦", title: "Family Words", body: "Nahuatl family terms are more specific than English. There are different words for older vs. younger siblings, and for relatives on your mother's vs. father's side." },
@@ -143,28 +144,28 @@ const UNIT_TIPS: Record<number, TipData[]> = {
     { icon: "🤝", title: "Greetings Matter", body: "Proper greeting is deeply important in Nahua communities. The word pialli (hello) sets the tone for respectful interaction." },
   ],
   12: [
-    { icon: "📝", title: "Future Tense", body: "To say what will happen, add -z (singular) or -zqueh (plural) to the verb stem: nitequitiz = I will work. Simple and regular!" },
+    { icon: "📝", title: "Future Tense", body: "To say what will happen, add -s (singular) or -skeh (plural) to the verb stem: nitekitis = I will work. Simple and regular!" },
   ],
   13: [
-    { icon: "📝", title: "Object Prefixes", body: "When a verb has a specific object, it gets an object prefix: nic- (I…it), tic- (you…it), qui- (he/she…it). Think of it as \"I-it-eat\" → niccua." },
+    { icon: "📝", title: "Object Prefixes", body: "When a verb has a specific object, it gets an object prefix: nik- (I…it), tik- (you…it), ki- (he/she…it). Think of it as \"I-it-eat\" → nikkwa." },
   ],
   14: [
-    { icon: "📝", title: "Past Tense", body: "The ō- prefix marks completed actions: ōnitequitih (I worked). One of the most recognizable features of Nahuatl speech." },
+    { icon: "📝", title: "Past Tense", body: "The o- prefix marks completed actions: onitekitih (I worked). One of the most recognizable features of Nahuatl speech." },
   ],
   15: [
-    { icon: "🎵", title: "Song & Poetry", body: "Nahuatl has a long tradition of poetry (cuicatl). \"Flower and Song\" (in xochitl in cuicatl) was a metaphor for art, beauty, and truth." },
+    { icon: "🎵", title: "Song & Poetry", body: "Nahuatl has a long tradition of poetry (kwikatl). \"Flower and Song\" (in xochitl in kwikatl) was a metaphor for art, beauty, and truth." },
   ],
   16: [
-    { icon: "🏠", title: "The Nahua Home", body: "Traditional Nahua houses were built around a central patio. The kitchen (tlecuilli — \"fire place\") was the heart of the home." },
+    { icon: "🏠", title: "The Nahua Home", body: "Traditional Nahua houses were built around a central patio. The kitchen (tlekwilli — \"fire place\") was the heart of the home." },
   ],
   17: [
-    { icon: "🪑", title: "Everyday Objects", body: "Many everyday objects in Nahuatl are compound words: tlecuilli (fire-place = hearth), ichpamitl (broom-arrow = dustpan). The language builds meaning from parts." },
+    { icon: "🪑", title: "Everyday Objects", body: "Many everyday objects in Nahuatl are compound words: tlekwilli (fire-place = hearth), ichpamitl (broom-arrow = dustpan). The language builds meaning from parts." },
   ],
   18: [
-    { icon: "🌶️", title: "Nahua Cuisine", body: "Nahua cuisine gave the world chocolate (xocolātl), chili (chīlli), tomato (tomatl), and avocado (āhuacatl). These words entered Spanish, then every European language." },
+    { icon: "🌶️", title: "Nahua Cuisine", body: "Nahua cuisine gave the world chocolate (xokolatl), chili (chilli), tomato (tomatl), and avocado (awakatl). These words entered Spanish, then every European language." },
   ],
   20: [
-    { icon: "📝", title: "Diminutives & Respect", body: "The suffixes -tzin (respect/affection) and -pil (smallness) change a word's tone: cihuatl (woman) → cihuatzin (respected woman, ma'am)." },
+    { icon: "📝", title: "Diminutives & Respect", body: "The suffixes -tsin (respect/affection) and -pil (smallness) change a word's tone: siwatl (woman) → siwatsin (respected woman, ma'am)." },
   ],
   21: [
     { icon: "🌽", title: "Milpa Farming", body: "The milpa — growing corn, beans, and squash together — is one of the oldest agricultural systems in the Americas. Each plant helps the others grow." },
@@ -274,13 +275,10 @@ function mergeLearningCards(...groups: VocabCard[][]): VocabCard[] {
   return merged;
 }
 
-function stripDiacritics(s: string): string {
-  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
 function normalizeExerciseToken(s: string): string {
-  return stripDiacritics(s)
+  return toInaliOrthography(s)
     .toLowerCase()
+    .replace(/l{2,}/g, "l")
     .replace(/^[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+|[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+$/g, "");
 }
 
@@ -411,20 +409,20 @@ function dialogueTokens(text: string): string[] {
 }
 
 const EHN_PREFIXES = [
-  "ōtiquitt", "ōtimom", "ōniqu", "ōnim", "nimom", "timom",
+  "otikitt", "otimom", "onik", "onim", "nimom", "timom",
   "nimo", "timo", "ni", "ti", "mo", "no", "to", "on",
-  "qui", "ki", "mi", "in ",
+  "ki", "mi", "in ",
 ];
 
 const EHN_SUFFIXES = [
   "tzin", "tzintli", "tztli", "tli", "tic", "toc", "teh",
-  "huah", "queh", "meh", "neh", "iah", "tiah",
+  "tsin", "tsintli", "tstli", "wah", "keh", "meh", "neh", "iah", "tiah",
   "lia", "ltia", "ia", "ah", "h",
 ];
 
 function stemMatch(token: string, headword: string): boolean {
-  const plain = stripDiacritics(token.toLowerCase());
-  const stem = stripDiacritics(headword.toLowerCase());
+  const plain = toInaliOrthography(token).toLowerCase();
+  const stem = toInaliOrthography(headword).toLowerCase();
 
   if (stem.length >= 3 && plain.includes(stem)) return true;
   if (stem.length >= 3 && stem.includes(plain)) return true;
@@ -721,7 +719,7 @@ function AnswerTile({
       className={`px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-150 text-center cursor-pointer w-full ${styles[state]}`}
       onClick={onClick}
     >
-      {word}
+      {displayNahuatl(word)}
     </button>
   );
 }
@@ -835,7 +833,7 @@ function GrammarIntroStep({
         <p className="text-sm text-stone-500 leading-relaxed mb-4">{lab.shortDesc}</p>
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
           <p className="text-xs font-bold text-amber-800 uppercase mb-1">Build it like this</p>
-          <p className="font-mono text-sm font-semibold text-stone-900 mb-2">{lab.pattern}</p>
+          <p className="font-mono text-sm font-semibold text-stone-900 mb-2">{displayNahuatl(lab.pattern)}</p>
           <p className="text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
         </div>
       </div>
@@ -868,8 +866,8 @@ function GrammarExampleStep({
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-2">{lab.title}</p>
-        <p className="text-3xl font-bold text-stone-900 leading-tight mb-3">{example.nahuatl}</p>
-        <p className="font-mono text-sm text-emerald-700 mb-2">{example.breakdown}</p>
+        <p className="text-3xl font-bold text-stone-900 leading-tight mb-3">{displayNahuatl(example.nahuatl)}</p>
+        <p className="font-mono text-sm text-emerald-700 mb-2">{displayNahuatl(example.breakdown)}</p>
         <p className="text-base italic text-stone-500 mb-3">&ldquo;{example.translation}&rdquo;</p>
         {example.note && (
           <p className="rounded-2xl bg-stone-50 border border-stone-100 p-3 text-sm leading-relaxed text-stone-600">
@@ -924,7 +922,7 @@ function GrammarTransformStep({
           </div>
           <div className="border-t border-stone-200 pt-3">
             <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
-            <p className="font-mono text-sm font-semibold text-emerald-700">{item.input}</p>
+            <p className="font-mono text-sm font-semibold text-emerald-700">{displayNahuatl(item.input)}</p>
           </div>
         </div>
 
@@ -955,14 +953,14 @@ function GrammarTransformStep({
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
           <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
-          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
-          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
         </div>
       )}
@@ -1038,14 +1036,14 @@ function GrammarProduceStep({
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
           <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
-          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
-          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
         </div>
       )}
@@ -1105,11 +1103,11 @@ function GrammarCheckpointStep({
 
         <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4 space-y-3">
           <p className="text-xs font-bold uppercase text-stone-400 mb-1">{taskLabel}</p>
-          <p className="text-lg font-semibold text-stone-900">{transformItem ? transformItem.target : cue}</p>
+          <p className="text-lg font-semibold text-stone-900">{transformItem ? transformItem.target : displayNahuatl(cue)}</p>
           {transformItem && (
             <div className="border-t border-stone-200 pt-3">
               <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
-              <p className="font-mono text-sm font-semibold text-emerald-700">{cue}</p>
+              <p className="font-mono text-sm font-semibold text-emerald-700">{displayNahuatl(cue)}</p>
             </div>
           )}
         </div>
@@ -1145,14 +1143,14 @@ function GrammarCheckpointStep({
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${item.answer}"`} />
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
           <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer and explanation</p>
-          <p className="font-mono text-sm font-semibold text-stone-900">{item.answer}</p>
-          <p className="font-mono text-xs text-emerald-700 mt-1">{item.breakdown}</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
+          <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
         </div>
       )}
@@ -1206,7 +1204,7 @@ function SentenceProduceStep({
         </div>
 
         <p className="mb-3 text-sm leading-relaxed text-stone-500">
-          Type the Nahuatl sentence. Punctuation and macrons are helpful, but the checker will be forgiving.
+          Type the Nahuatl sentence. Punctuation is helpful, and the checker accepts the practical INALI spelling.
         </p>
 
         <input
@@ -1236,13 +1234,13 @@ function SentenceProduceStep({
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${answer}"`} />
+        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
           <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer</p>
-          <p className="font-mono text-sm font-semibold text-stone-900">{answer}</p>
+          <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">
             This sentence comes from the unit dialogue. Read it aloud, then continue.
           </p>
@@ -1314,7 +1312,7 @@ function MatchPairsExercise({
               onClick={() => handleLeft(i)}
               className={`w-full px-4 py-3.5 rounded-2xl border-2 text-sm font-bold transition-all duration-150 ${leftStyle(i)}`}
             >
-              {p.nahuatl}
+              {displayNahuatl(p.nahuatl)}
             </button>
           ))}
         </div>
@@ -1822,7 +1820,7 @@ export default function LessonFlow({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={img.url}
-                    alt={word.headword}
+                    alt={displayNahuatl(word.headword)}
                     className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
@@ -1830,7 +1828,7 @@ export default function LessonFlow({
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
                 <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-4xl"} font-bold text-stone-900 leading-tight`}>
-                  {word.headword}
+                  {displayNahuatl(word.headword)}
                 </p>
                 {word.part_of_speech && (
                   <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-500">
@@ -1847,14 +1845,14 @@ export default function LessonFlow({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={img.url}
-                    alt={word.headword}
+                    alt={displayNahuatl(word.headword)}
                     className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
                 </div>
               )}
               <div className="flex flex-col items-center justify-center gap-4 p-8 flex-1">
-                <p className="text-stone-400 text-sm font-medium leading-snug">{word.headword}</p>
+                <p className="text-stone-400 text-sm font-medium leading-snug">{displayNahuatl(word.headword)}</p>
                 <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} font-bold text-emerald-600 leading-tight`}>
                   {displayGloss(word.gloss_en)}
                 </p>
@@ -1866,7 +1864,9 @@ export default function LessonFlow({
                 {variantNotes[word.id] && variantNotes[word.id].length > 0 && (
                   <p className="text-xs text-stone-400 text-center">
                     Also written:{" "}
-                    <span className="font-medium text-stone-500">{variantNotes[word.id].join(", ")}</span>
+                    <span className="font-medium text-stone-500">
+                      {variantNotes[word.id].map(displayNahuatl).join(", ")}
+                    </span>
                   </p>
                 )}
                 <p className="text-stone-300 text-xs mt-2 uppercase">tap to continue</p>
@@ -1940,7 +1940,7 @@ export default function LessonFlow({
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
           <div className="flex items-center justify-center gap-3">
             <p className={`${isUnitPhraseCard(word) ? "text-xl" : "text-3xl"} font-bold text-stone-900 leading-tight`}>
-              {word.headword}
+              {displayNahuatl(word.headword)}
             </p>
             {audioSrc && <AudioButton src={audioSrc} size="sm" />}
           </div>
@@ -1973,7 +1973,7 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! "${word.headword}" means "${correctGloss}"` : `"${word.headword}" means "${correctGloss}"`}
+              message={isCorrect ? `Correct! "${displayNahuatl(word.headword)}" means "${correctGloss}"` : `"${displayNahuatl(word.headword)}" means "${correctGloss}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2037,7 +2037,7 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! "${displayGloss(word.gloss_en)}" = "${word.headword}"` : `The answer is "${word.headword}"`}
+              message={isCorrect ? `Correct! "${displayGloss(word.gloss_en)}" = "${displayNahuatl(word.headword)}"` : `The answer is "${displayNahuatl(word.headword)}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2078,7 +2078,7 @@ export default function LessonFlow({
               {ex.patternLabel}
             </p>
           )}
-          <p className="text-lg font-bold text-stone-900 leading-snug mb-2">{ex.prompt}</p>
+          <p className="text-lg font-bold text-stone-900 leading-snug mb-2">{displayNahuatl(ex.prompt)}</p>
           {ex.translation && (
             <p className="text-sm text-stone-400 italic mb-2">{ex.translation}</p>
           )}
@@ -2097,7 +2097,7 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! The word is "${ex.answer}"` : `The answer is "${ex.answer}"`}
+              message={isCorrect ? `Correct! The word is "${displayNahuatl(ex.answer)}"` : `The answer is "${displayNahuatl(ex.answer)}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2180,7 +2180,7 @@ export default function LessonFlow({
                       : "bg-stone-100 text-stone-800 rounded-bl-sm"
                   }`}
                 >
-                  {pastLine.utterance_normalized}
+                  {displayNahuatl(pastLine.utterance_normalized)}
                   {pastLine.translation_en && (
                     <p className={`text-xs mt-1 italic ${right ? "text-white/60" : "text-stone-400"}`}>
                       {pastLine.translation_en}
@@ -2207,7 +2207,7 @@ export default function LessonFlow({
                 : "bg-stone-100 text-stone-900 rounded-bl-sm"
             }`}
           >
-            {utteranceDisplay()}
+            {displayNahuatl(utteranceDisplay())}
             {line.translation_en && (
               <p className={`text-xs mt-1.5 italic font-normal ${
                 isRight(line.speaker_label) ? "text-white/60" : "text-stone-400"
@@ -2237,8 +2237,8 @@ export default function LessonFlow({
             correct={chosen === match?.answer}
             message={
               chosen === match?.answer
-                ? `Correct! "${match.answer}" — ${displayGloss(match.vocabCard.gloss_en)}`
-                : `The answer is "${match?.answer}" — ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`
+                ? `Correct! "${displayNahuatl(match.answer)}" - ${displayGloss(match.vocabCard.gloss_en)}`
+                : `The answer is "${displayNahuatl(match?.answer)}" - ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`
             }
           />
         )}

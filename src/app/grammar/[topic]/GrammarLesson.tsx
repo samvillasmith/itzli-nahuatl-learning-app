@@ -12,6 +12,7 @@ import {
 import { answerMatches } from '@/lib/grammar-engine';
 import type { GrammarDialogue } from '@/lib/db';
 import { dialogueAudioUrl, playAudio } from '@/lib/audio';
+import { displayNahuatl } from '@/lib/orthography';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
@@ -55,21 +56,33 @@ const BAND_STYLES: Record<string, { badge: string; ring: string }> = {
 };
 
 function renderInline(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*|\n)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\n)/g);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} className="text-stone-800">{part.slice(2, -2)}</strong>;
+      const content = part.slice(2, -2);
+      return <strong key={i} className="text-stone-800">{displayGrammarForm(content)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      const content = part.slice(1, -1);
+      return <em key={i}>{displayGrammarForm(content)}</em>;
     }
     if (part === '\n') return <br key={i} />;
     return part;
   });
 }
 
+function displayGrammarForm(text: string): string {
+  if (/[āēīōūĀĒĪŌŪ]|[·-]|^¿|^(?:ni|ti|xi|mo|no|to|in|on|na|ta|ya|ah|ax|hu|cu|qu|tl|x|cal|calli|cih|cua|cue|cui|cuh|tequi|tla|mace|yau|cochi|amo|pan)\b/iu.test(text)) {
+    return displayNahuatl(text);
+  }
+  return text;
+}
+
 function ProseSection({ section }: { section: Extract<GrammarSection, { kind: 'prose' }> }) {
   return (
     <div className="mb-7">
       {section.heading && <h3 className="font-semibold text-stone-700 mb-2">{section.heading}</h3>}
-      <p className="text-stone-600 leading-relaxed">{section.text}</p>
+      <p className="text-stone-600 leading-relaxed">{renderInline(section.text)}</p>
     </div>
   );
 }
@@ -103,7 +116,7 @@ function ParadigmSection({ section }: { section: Extract<GrammarSection, { kind:
             {section.rows.map((row, i) => (
               <tr key={i} className="border-b border-stone-100 hover:bg-stone-50/50">
                 <td className="px-3 py-2.5 text-stone-500 text-xs font-medium">{row.person}</td>
-                <td className="px-3 py-2.5 font-mono text-stone-900 font-medium">{row.form}</td>
+                <td className="px-3 py-2.5 font-mono text-stone-900 font-medium">{displayGrammarForm(row.form)}</td>
                 <td className="px-3 py-2.5 text-stone-500">{row.gloss}</td>
               </tr>
             ))}
@@ -121,9 +134,9 @@ function ExamplesSection({ section }: { section: Extract<GrammarSection, { kind:
       <div className="space-y-3">
         {section.items.map((item, i) => (
           <div key={i} className="bg-white border border-stone-200 rounded-xl p-4">
-            <p className="text-base font-semibold text-stone-900 mb-0.5">{item.nahuatl}</p>
+            <p className="text-base font-semibold text-stone-900 mb-0.5">{displayNahuatl(item.nahuatl)}</p>
             {item.breakdown !== item.nahuatl && (
-              <p className="text-xs font-mono text-emerald-700 mb-1">{item.breakdown}</p>
+              <p className="text-xs font-mono text-emerald-700 mb-1">{displayNahuatl(item.breakdown)}</p>
             )}
             <p className="text-sm text-stone-500 mb-1 italic">&ldquo;{item.translation}&rdquo;</p>
             {item.note && <p className="text-xs text-stone-400 leading-snug">{item.note}</p>}
@@ -167,8 +180,8 @@ function GrammarLabExampleList({ lab }: { lab: GrammarLab }) {
     <div className="space-y-3">
       {lab.examples.map((item, i) => (
         <div key={i} className="rounded-xl border border-stone-200 bg-white p-4">
-          <p className="text-base font-semibold text-stone-900">{item.nahuatl}</p>
-          <p className="mt-1 text-xs font-mono text-emerald-700">{item.breakdown}</p>
+          <p className="text-base font-semibold text-stone-900">{displayNahuatl(item.nahuatl)}</p>
+          <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(item.breakdown)}</p>
           <p className="mt-1 text-sm italic text-stone-500">&ldquo;{item.translation}&rdquo;</p>
           {item.note && <p className="mt-2 text-xs leading-snug text-stone-400">{item.note}</p>}
         </div>
@@ -189,8 +202,8 @@ function DrillAnswerPanel({
   return (
     <div className="mt-3 rounded-xl border border-emerald-100 bg-emerald-50 p-3">
       <p className="text-xs font-bold uppercase text-emerald-700">Answer</p>
-      <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{answer}</p>
-      {breakdown && <p className="mt-1 text-xs font-mono text-emerald-700">{breakdown}</p>}
+      <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
+      {breakdown && <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(breakdown)}</p>}
       <p className="mt-2 text-xs leading-relaxed text-stone-600">{explanation}</p>
     </div>
   );
@@ -259,7 +272,7 @@ function TransformItem({
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-4">
       <p className="text-xs font-bold uppercase text-stone-400">{item.target}</p>
-      <p className="mt-1 text-sm font-semibold text-stone-800">{item.input}</p>
+      <p className="mt-1 text-sm font-semibold text-stone-800">{displayNahuatl(item.input)}</p>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
           value={input}
@@ -392,9 +405,9 @@ function ParadigmDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'par
         <tbody>
           {drill.rows.map((row, i) => (
             <tr key={i} className="border-b border-stone-100 last:border-b-0">
-              <td className="px-3 py-2.5 text-xs font-medium text-stone-500">{row.cue}</td>
-              <td className="px-3 py-2.5 font-mono font-semibold text-stone-900">{row.answer}</td>
-              <td className="px-3 py-2.5 font-mono text-xs text-emerald-700">{row.breakdown}</td>
+              <td className="px-3 py-2.5 text-xs font-medium text-stone-500">{displayNahuatl(row.cue)}</td>
+              <td className="px-3 py-2.5 font-mono font-semibold text-stone-900">{displayNahuatl(row.answer)}</td>
+              <td className="px-3 py-2.5 font-mono text-xs text-emerald-700">{displayNahuatl(row.breakdown)}</td>
               <td className="px-3 py-2.5 text-stone-500">{row.translation}</td>
             </tr>
           ))}
@@ -433,7 +446,7 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
 
       <div className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
         <p className="text-xs font-bold uppercase text-amber-800">Build it like this</p>
-        <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{lab.pattern}</p>
+        <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(lab.pattern)}</p>
         <p className="mt-2 text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
       </div>
 
@@ -480,7 +493,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
             {lesson.band}
           </span>
         </div>
-        <p className="text-sm text-stone-400 italic mb-2">{lesson.nahuatlTitle}</p>
+        <p className="text-sm text-stone-400 italic mb-2">{displayNahuatl(lesson.nahuatlTitle)}</p>
         <p className="text-stone-500 text-sm leading-relaxed">{lesson.shortDesc}</p>
       </div>
 
@@ -517,7 +530,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
                 <div className="flex items-start gap-3">
                   <span className="text-xs font-bold text-stone-400 mt-0.5 w-4 shrink-0">{d.speaker_label}</span>
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-stone-800">{d.utterance_normalized}</p>
+                    <p className="text-sm font-medium text-stone-800">{displayNahuatl(d.utterance_normalized)}</p>
                     {d.translation_en && (
                       <p className="text-xs text-stone-400 italic mt-0.5">{d.translation_en}</p>
                     )}

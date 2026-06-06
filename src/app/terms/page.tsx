@@ -78,9 +78,9 @@ export default function TermsPage() {
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">5. Content accuracy and audio</h2>
       <p className="mb-4">
-        Vocabulary and grammar content has been audited against IDIEZ and other
-        scholarly references, but some entries contain known limitations noted in
-        the curriculum. Audio pronunciations are <strong>machine-synthesized</strong>
+        Vocabulary and grammar content uses an INALI-style learner display and
+        has been checked against scholarly references, but some entries contain
+        known limitations noted in the curriculum. Audio pronunciations are <strong>machine-synthesized</strong>
         using language-specific machine synthesis where available.
         Treat generated audio as educational support rather than a substitute for
         a trained instructor or community speaker.

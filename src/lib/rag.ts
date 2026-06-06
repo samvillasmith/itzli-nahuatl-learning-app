@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { getSql } from "@/lib/neon";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
+import { displayNahuatl } from "@/lib/orthography";
 
 // Retrieval layer for the chat tutor. At request time we embed the latest
 // user message and pull the top-k most semantically similar chunks from
@@ -169,7 +170,7 @@ export function formatRetrieved(chunks: RetrievedChunk[]): string {
 
   const grouped: Record<string, string[]> = {};
   for (const c of chunks) {
-    (grouped[c.kind] ??= []).push(`- ${c.content}`);
+    (grouped[c.kind] ??= []).push(`- ${formatChunkContent(c)}`);
   }
 
   const sections: string[] = [
@@ -192,4 +193,14 @@ export function formatRetrieved(chunks: RetrievedChunk[]): string {
   }
 
   return sections.join("\n");
+}
+
+function formatChunkContent(chunk: RetrievedChunk): string {
+  if (chunk.kind !== "vocab" && chunk.kind !== "phrase") return chunk.content;
+
+  const separator = chunk.content.includes(" — ") ? " — " : null;
+  if (!separator) return displayNahuatl(chunk.content);
+
+  const [headword, ...rest] = chunk.content.split(separator);
+  return [displayNahuatl(headword), ...rest].join(separator);
 }

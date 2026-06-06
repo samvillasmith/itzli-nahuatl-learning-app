@@ -11,6 +11,7 @@ import {
 } from "@/lib/db";
 import { getGrammarLabsForUnit } from "@/data/grammar-labs";
 import { getNahuatlahtolliLesson } from "@/lib/nahuatlahtolli";
+import { displayNahuatl } from "@/lib/orthography";
 import LessonFlow from "./LessonFlow";
 
 export async function generateStaticParams() {
@@ -56,7 +57,7 @@ export default async function UnitPage({
             New to Nahuatl spelling?
           </p>
           <p className="text-sm text-stone-600 leading-relaxed mb-3">
-            This course uses the <strong>IDIEZ</strong> orthographic standard. You may encounter Nahuatl spelled differently elsewhere (INALI, SEP, or older conventions). A 2-minute explainer covers the differences and what to expect.
+            This course now uses an <strong>INALI-style practical spelling</strong>: k, w, kw, ts, and plain vowels. You may still encounter IDIEZ, SEP, or older spellings in dictionaries and source materials.
           </p>
           <Link
             href="/grammar/orthographic-systems"
@@ -72,10 +73,10 @@ export default async function UnitPage({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="mb-1 text-xs font-bold uppercase text-emerald-700">
-                Nāhuatlahtolli source lesson
+                Nawatlahtolli source lesson
               </p>
               <h2 className="text-lg font-black text-stone-950">
-                {sourceLesson.nahuatlTitle}
+                {displayNahuatl(sourceLesson.nahuatlTitle)}
               </h2>
               {sourceLesson.englishTitle && (
                 <p className="mt-1 text-sm text-stone-600">{sourceLesson.englishTitle}</p>

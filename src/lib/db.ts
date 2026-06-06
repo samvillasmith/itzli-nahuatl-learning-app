@@ -7,6 +7,7 @@ import { enhanceUnit, type CurriculumFields } from "./curriculum";
 import { filterCoreVocab } from "@/data/excluded-vocab";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
+import { orthographySearchVariants } from "@/lib/orthography";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -370,29 +371,39 @@ export function getUnitAssessments(lessonNumber: number): Assessment[] {
 export function searchVocab(query: string, limit = 40): LexiconEntry[] {
   if (isAppContentExcluded(query)) return [];
 
-  const q = `%${query}%`;
-  return getDb()
-    .prepare(
-      `SELECT entry_id, ehn_spoken_form, msn_headword, gloss_en, gloss_es,
-              part_of_speech, register, variety, notes_public
-       FROM lexicon_entries
-       WHERE (ehn_spoken_form LIKE ? OR msn_headword LIKE ? OR gloss_en LIKE ?)
-         AND is_active = 1
-         AND gloss_en != ''
-       ORDER BY ehn_spoken_form
-       LIMIT ?`
-    )
-    .all(q, q, q, limit * 4)
-    .filter(
-      (entry) =>
-        !isAppContentExcluded(
+  const stmt = getDb().prepare(
+    `SELECT entry_id, ehn_spoken_form, msn_headword, gloss_en, gloss_es,
+            part_of_speech, register, variety, notes_public
+     FROM lexicon_entries
+     WHERE (ehn_spoken_form LIKE ? OR msn_headword LIKE ? OR gloss_en LIKE ?)
+       AND is_active = 1
+       AND gloss_en != ''
+     ORDER BY ehn_spoken_form
+     LIMIT ?`
+  );
+  const seen = new Set<number>();
+
+  return orthographySearchVariants(query)
+    .flatMap((variant) => {
+      const q = `%${variant}%`;
+      return stmt.all(q, q, q, limit * 4) as LexiconEntry[];
+    })
+    .filter((entry) => {
+      if (seen.has(entry.entry_id)) return false;
+      if (
+        isAppContentExcluded(
           (entry as LexiconEntry).ehn_spoken_form,
           (entry as LexiconEntry).msn_headword,
           (entry as LexiconEntry).gloss_en,
           (entry as LexiconEntry).gloss_es,
           (entry as LexiconEntry).notes_public,
         )
-    )
+      ) {
+        return false;
+      }
+      seen.add(entry.entry_id);
+      return true;
+    })
     .slice(0, limit) as LexiconEntry[];
 }
 

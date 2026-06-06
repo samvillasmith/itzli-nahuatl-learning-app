@@ -1,4 +1,5 @@
 import { getAllPrimerVocab, getAllUnits, getPrimerVocabEntryCount, searchVocab } from "@/lib/db";
+import { displayNahuatl } from "@/lib/orthography";
 
 const POS_COLOR: Record<string, string> = {
   noun: "bg-amber-50 text-amber-700",
@@ -46,7 +47,7 @@ export default async function VocabularyPage({
               >
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <span className="font-semibold text-stone-900">
-                    {e.ehn_spoken_form || e.msn_headword}
+                    {displayNahuatl(e.ehn_spoken_form || e.msn_headword)}
                   </span>
                   {e.part_of_speech && (
                     <span
@@ -61,7 +62,7 @@ export default async function VocabularyPage({
                 <p className="text-stone-600 text-sm">{e.gloss_en}</p>
                 {e.msn_headword && e.msn_headword !== e.ehn_spoken_form && (
                   <p className="text-stone-400 text-xs mt-1 font-mono">
-                    MSN: {e.msn_headword}
+                    MSN: {displayNahuatl(e.msn_headword)}
                   </p>
                 )}
               </div>
@@ -121,7 +122,7 @@ export default async function VocabularyPage({
                   >
                     <div className="flex items-start justify-between gap-1">
                       <span className="font-semibold text-stone-900 text-sm">
-                        {v.headword}
+                        {displayNahuatl(v.headword)}
                       </span>
                       {v.part_of_speech && (
                         <span

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { GRAMMAR_LESSONS } from '@/data/grammar-lessons';
+import { displayNahuatl } from '@/lib/orthography';
 
 const BAND_STYLES: Record<string, string> = {
   A1: 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -18,7 +19,7 @@ export default function GrammarPage() {
     <div>
       <div className="mb-10">
         <p className="text-xs font-bold text-emerald-600 mb-3 uppercase">
-          Grammar · Tlahtoltēcpānalitzli
+          Grammar · Tlahtoltekpanalitsli
         </p>
         <h1 className="text-3xl font-bold text-stone-900 mb-3">
           EHN Grammar Lessons
@@ -49,7 +50,7 @@ export default function GrammarPage() {
                       {lesson.band}
                     </span>
                   </div>
-                  <p className="text-xs text-stone-400 mb-1 italic">{lesson.nahuatlTitle}</p>
+                  <p className="text-xs text-stone-400 mb-1 italic">{displayNahuatl(lesson.nahuatlTitle)}</p>
                   <p className="text-sm text-stone-500 leading-snug">{lesson.shortDesc}</p>
                 </Link>
               ))}

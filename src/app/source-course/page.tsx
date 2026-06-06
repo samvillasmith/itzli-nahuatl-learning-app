@@ -5,11 +5,12 @@ import {
   getNahuatlahtolliStats,
   type SourceSupportPage,
 } from "@/lib/nahuatlahtolli";
+import { displayNahuatl } from "@/lib/orthography";
 
 export const metadata: Metadata = {
-  title: "Nāhuatlahtolli Source Course",
+  title: "Nawatlahtolli Source Course",
   description:
-    "Imported CC BY-SA Nāhuatlahtolli source lessons, support pages, vocabulary, and provenance metadata.",
+    "Imported CC BY-SA Nawatlahtolli source lessons, support pages, vocabulary, and provenance metadata.",
 };
 
 function SourceNotice() {
@@ -21,7 +22,7 @@ function SourceNotice() {
       <p className="mt-2">
         This section adapts content from{" "}
         <a className="font-semibold underline" href={source.originalUrl} target="_blank" rel="noopener noreferrer">
-          {source.name}
+          {displayNahuatl(source.name)}
         </a>
         , published by {source.publisher}, by {source.authors.join(", ")}. Imported
         lesson content is available under{" "}
@@ -74,7 +75,7 @@ export default function SourceCoursePage() {
           <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
             CC BY-SA Source Course
           </p>
-          <h1 className="text-3xl font-black text-stone-950">{source.name}</h1>
+          <h1 className="text-3xl font-black text-stone-950">{displayNahuatl(source.name)}</h1>
           <p className="mt-2 max-w-3xl text-stone-600">
             {source.subtitle}. This browser keeps the imported source lessons
             visible alongside Itzli&apos;s curated practice path.
@@ -124,7 +125,7 @@ export default function SourceCoursePage() {
                 {lesson.number}
               </span>
               <div>
-                <p className="font-semibold leading-tight text-stone-950">{lesson.nahuatlTitle}</p>
+                <p className="font-semibold leading-tight text-stone-950">{displayNahuatl(lesson.nahuatlTitle)}</p>
                 {lesson.englishTitle && (
                   <p className="mt-1 text-sm text-stone-600">{lesson.englishTitle}</p>
                 )}

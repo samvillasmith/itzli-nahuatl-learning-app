@@ -6,6 +6,7 @@ import {
   getNahuatlahtolliLesson,
   type SourceMediaLink,
 } from "@/lib/nahuatlahtolli";
+import { displayNahuatl } from "@/lib/orthography";
 
 type Params = {
   params: Promise<{ lessonNumber: string }>;
@@ -23,8 +24,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!lesson) return {};
 
   return {
-    title: `${lesson.nahuatlTitle} Source Lesson`,
-    description: `Imported CC BY-SA source material for Nāhuatlahtolli lesson ${lesson.number}.`,
+    title: `${displayNahuatl(lesson.nahuatlTitle)} Source Lesson`,
+    description: `Imported CC BY-SA source material for Nawatlahtolli lesson ${lesson.number}.`,
   };
 }
 
@@ -51,9 +52,10 @@ function renderLine(line: string, key: string) {
   }
 
   if (/^[A-Z][A-Za-z]+:/.test(line) || /^[ABCD]:/.test(line)) {
+    const [speaker, ...rest] = line.split(":");
     return (
       <p key={key} className="font-mono text-sm text-stone-800">
-        {line}
+        {speaker}: {displayNahuatl(rest.join(":").trim())}
       </p>
     );
   }
@@ -85,10 +87,10 @@ export default async function SourceLessonPage({ params }: Params) {
 
       <header className="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
         <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
-          Nāhuatlahtolli Lesson {lesson.number}
+          Nawatlahtolli Lesson {lesson.number}
         </p>
         <h1 className="text-3xl font-black leading-tight text-stone-950">
-          {lesson.nahuatlTitle}
+          {displayNahuatl(lesson.nahuatlTitle)}
         </h1>
         {lesson.englishTitle && (
           <p className="mt-2 text-lg text-stone-600">{lesson.englishTitle}</p>
@@ -118,7 +120,7 @@ export default async function SourceLessonPage({ params }: Params) {
             {lesson.vocabulary.map((item) => (
               <div key={`${item.headword}-${item.gloss}`} className="rounded-lg border border-stone-200 bg-white p-3">
                 <div className="flex items-start justify-between gap-3">
-                  <p className="font-semibold text-stone-950">{item.headword}</p>
+                  <p className="font-semibold text-stone-950">{displayNahuatl(item.headword)}</p>
                   {item.audioUrl && (
                     <a
                       href={item.audioUrl}
@@ -186,12 +188,12 @@ export default async function SourceLessonPage({ params }: Params) {
       <nav className="flex flex-col gap-3 border-t border-stone-200 pt-6 sm:flex-row sm:justify-between">
         {prev ? (
           <Link href={`/source-course/${prev.number}`} className="text-sm font-semibold text-stone-600 hover:text-emerald-800">
-            ← {prev.nahuatlTitle}
+            ← {displayNahuatl(prev.nahuatlTitle)}
           </Link>
         ) : <span />}
         {next && (
           <Link href={`/source-course/${next.number}`} className="text-sm font-semibold text-stone-600 hover:text-emerald-800 sm:text-right">
-            {next.nahuatlTitle} →
+            {displayNahuatl(next.nahuatlTitle)} →
           </Link>
         )}
       </nav>

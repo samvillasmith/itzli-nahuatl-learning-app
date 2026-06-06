@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { displayGloss } from "@/lib/gloss";
 import { playAudio, vocabAudioUrl } from "@/lib/audio";
 import { getWordImage } from "@/data/word-images";
+import { displayNahuatl } from "@/lib/orthography";
 
 type Card = {
   id: number;
@@ -110,7 +111,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={img.url}
-                  alt={card.headword}
+                  alt={displayNahuatl(card.headword)}
                   className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
@@ -118,7 +119,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
             )}
             <div className="flex flex-col items-center justify-center gap-3 p-8 flex-1">
               <p className="text-xs text-stone-300 uppercase font-semibold">Nahuatl</p>
-              <p className="text-3xl font-bold text-stone-900 leading-tight">{card.headword}</p>
+              <p className="text-3xl font-bold text-stone-900 leading-tight">{displayNahuatl(card.headword)}</p>
               {card.part_of_speech && (
                 <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{card.part_of_speech}</span>
               )}
@@ -126,7 +127,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                 <p className="text-xs text-stone-400 text-center">
                   Also written:{" "}
                   <span className="font-medium text-stone-500">
-                    {card.alsoWritten.join(", ")}
+                    {card.alsoWritten.map(displayNahuatl).join(", ")}
                   </span>
                 </p>
               )}

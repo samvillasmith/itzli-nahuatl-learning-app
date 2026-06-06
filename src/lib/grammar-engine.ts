@@ -1,11 +1,10 @@
-export function stripDiacritics(s: string): string {
-  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
+import { toInaliOrthography } from "@/lib/orthography";
 
 export function normalizeAnswer(input: string): string {
-  return stripDiacritics(input)
+  return toInaliOrthography(input)
     .toLowerCase()
     .trim()
+    .replace(/l{2,}/g, "l")
     .replace(/^[¿¡.,;:?!"'“”‘’()[\]{}]+|[¿¡.,;:?!"'“”‘’()[\]{}]+$/g, "")
     .replace(/\s+/g, " ");
 }
