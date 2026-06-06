@@ -15,10 +15,10 @@ const TUTOR_SUGGESTIONS = [
 ];
 
 const PRACTICE_SUGGESTIONS = [
-  "Pialli! (Hello!)",
-  "Notoca Sam. (My name is Sam.)",
-  "¿Quenin tiitztoc? (How are you?)",
-  "¿Tlen motoca? (What's your name?)",
+  "Piyali! (Hello!)",
+  "Notoka Sam. (My name is Sam.)",
+  "¿Kenihki tiistok? (How are you?)",
+  "¿Kenihki motoka? (What's your name?)",
 ];
 
 const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: string; emptyHeadline: string; emptyBody: string }> = {
@@ -26,7 +26,7 @@ const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: st
     title: "Nahuatl Tutor",
     subtitle: "Ask about grammar, vocabulary, pronunciation, or culture.",
     placeholder: "Ask about Nahuatl grammar, vocabulary, culture...",
-    emptyHeadline: "Pialli! Hello!",
+    emptyHeadline: "Piyali! Hello!",
     emptyBody:
       "I'm your Nahuatl language tutor. Ask me anything about Eastern Huasteca Nahuatl — grammar, vocabulary, how to say something, or how the language works.",
   },
@@ -34,7 +34,7 @@ const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: st
     title: "Conversation Practice",
     subtitle: "Practice speaking Nahuatl in a real conversation.",
     placeholder: "Write in Nahuatl (or English to get help)...",
-    emptyHeadline: "Pialli! Let's talk.",
+    emptyHeadline: "Piyali! Let's talk.",
     emptyBody:
       "I'll respond in Nahuatl with an English translation. Try greeting me in Nahuatl — or click a starter below. Don't worry about perfect spelling; I'll understand common variants.",
   },

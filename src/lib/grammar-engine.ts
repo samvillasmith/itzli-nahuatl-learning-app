@@ -1,5 +1,30 @@
 import { toInaliOrthography } from "@/lib/orthography";
 
+const ANSWER_EQUIVALENTS: Record<string, string[]> = {
+  axkana: ["axtle"],
+  axtle: ["axkana"],
+  piyali: ["pialli"],
+  pialli: ["piyali"],
+  tlaskamati: ["tlazcamati", "tlazohcamati", "tlasohkamati", "tlaxkamati"],
+  tlazcamati: ["tlaskamati", "tlazohcamati", "tlasohkamati", "tlaxkamati"],
+  tlazohcamati: ["tlaskamati", "tlazcamati", "tlasohkamati", "tlaxkamati"],
+  tlasohkamati: ["tlaskamati", "tlazcamati", "tlazohcamati", "tlaxkamati"],
+  tlaxkamati: ["tlaskamati", "tlazcamati", "tlazohcamati", "tlasohkamati"],
+  kenihki: ["kenijki", "keniki", "kenin", "kenikatsa", "queniuhqui", "quehatza"],
+  kenijki: ["kenihki", "keniki", "kenin", "kenikatsa", "queniuhqui", "quehatza"],
+  keniki: ["kenihki", "kenijki", "kenin", "kenikatsa", "queniuhqui", "quehatza"],
+  kenin: ["kenihki", "kenijki", "keniki", "kenikatsa", "queniuhqui", "quehatza"],
+  "kenihki motoka": ["kenijki motoka", "keniki motoka", "kenin motoka", "tlen motoka", "kenikatsa motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"],
+  "kenijki motoka": ["kenihki motoka", "keniki motoka", "kenin motoka", "tlen motoka", "kenikatsa motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"],
+  "keniki motoka": ["kenihki motoka", "kenijki motoka", "kenin motoka", "tlen motoka", "kenikatsa motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"],
+  "kenin motoka": ["kenihki motoka", "kenijki motoka", "keniki motoka", "tlen motoka", "kenikatsa motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"],
+  "tlen motoka": ["kenihki motoka", "kenijki motoka", "keniki motoka", "kenin motoka", "kenikatsa motoka", "queniuhqui motocah", "queniuhqui motokah", "queniuhqui motoca"],
+  notoka: ["notocah", "notokah", "notocaj", "notōcah"],
+  motoka: ["motocah", "motokah", "motocaj", "motōcah"],
+  itoka: ["itocah", "itokah", "itocaj", "ītōcah"],
+  intoka: ["intocah", "intokah", "intocaj", "intōcah"],
+};
+
 export function normalizeAnswer(input: string): string {
   return toInaliOrthography(input)
     .toLowerCase()
@@ -11,7 +36,15 @@ export function normalizeAnswer(input: string): string {
 
 export function answerMatches(input: string, expected: string, accepted: string[] = []): boolean {
   const normalizedInput = normalizeAnswer(input);
-  return [expected, ...accepted].some((answer) => normalizeAnswer(answer) === normalizedInput);
+  return [expected, ...accepted].some((answer) => {
+    const normalizedAnswer = normalizeAnswer(answer);
+    return (
+      normalizedAnswer === normalizedInput ||
+      (ANSWER_EQUIVALENTS[normalizedAnswer] ?? []).some(
+        (equivalent) => normalizeAnswer(equivalent) === normalizedInput
+      )
+    );
+  });
 }
 
 export type Person = "1sg" | "2sg" | "3sg" | "1pl" | "2pl" | "3pl";

@@ -113,7 +113,7 @@ const UNIT_TIPS: Record<number, TipData[]> = {
   ],
   2: [
     { icon: "❓", title: "Asking Questions", body: "In EHN, questions often keep the same word order as statements. The question word (tlen, aqui, canin) goes at the beginning, and your voice rises at the end." },
-    { icon: "✓", title: "Yes and No", body: "This course teaches kena for yes and axtle for no first. You may see kema or kemah in source material; treat those as variants until they are explained." },
+    { icon: "✓", title: "Yes and No", body: "This course teaches kena for yes and axkana for no first. You may see kema, kemah, or axtle in source material; treat those as variants until they are explained." },
   ],
   3: [
     { icon: "👤", title: "Pronouns Are Optional", body: "In everyday speech, people usually drop the pronoun (na, ta, ya) because the verb prefix already shows who's acting. Pronouns are added for emphasis: \"NA nitequiti\" = \"I work\" (not someone else). Not sure what \"first person\" or \"second person\" means? Check the grammar lesson \"Who's Talking? Person & Number Explained\" under Grammar." },
@@ -142,7 +142,7 @@ const UNIT_TIPS: Record<number, TipData[]> = {
     { icon: "👁️", title: "Adjectives Are Verbs", body: "Many Nahuatl adjective-like words behave as stative verbs: \"be tall,\" \"be red.\" They take the same subject prefixes as regular verbs." },
   ],
   11: [
-    { icon: "🤝", title: "Greetings Matter", body: "Proper greeting is deeply important in Nahua communities. The word pialli (hello) sets the tone for respectful interaction." },
+    { icon: "🤝", title: "Greetings Matter", body: "Proper greeting is deeply important in Nahua communities. The word piyali (hello) sets the tone for respectful interaction." },
   ],
   12: [
     { icon: "📝", title: "Future Tense", body: "To say what will happen, add -s (singular) or -skeh (plural) to the verb stem: nitekitis = I will work. Simple and regular!" },
@@ -200,7 +200,10 @@ function isUnitPhraseCard(card: VocabCard): boolean {
   return card.source === "unitPhrase" || card.source === "lessonFocus" || card.part_of_speech === "phrase";
 }
 
+const CONVERSATIONAL_AUDIO_OVERRIDE_IDS = new Set([24, 25, 34, 35, 260, 266]);
+
 function cardAudioSrc(card: VocabCard): string | null {
+  if (CONVERSATIONAL_AUDIO_OVERRIDE_IDS.has(card.id)) return null;
   if (card.audioSrc) return card.audioSrc;
   if (card.source === "unitPhrase" || card.source === "lessonFocus" || card.id < 0) return null;
   return vocabAudioUrl(card.id);

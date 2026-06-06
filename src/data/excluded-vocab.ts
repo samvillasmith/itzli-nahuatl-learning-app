@@ -27,12 +27,13 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   264,  // achtontli - great-grandfather, belongs to advanced kinship/reference
   265,  // tlahpalolli - meta word "greetings", not a usable first exchange
   270,  // yalhua - yesterday, belongs to time/calendar work
-  271,  // quemah - duplicate yes variant; quena/axtle are introduced in Unit 2
+  271,  // quemah - duplicate yes variant; kena/axkana are introduced in Unit 2
   274,  // mintontli - great-great-grandchild, too specialized for greetings
   275,  // piptontli - great-grandmother / great-grandfather's sister, too specialized
   276,  // teoxihuitl - fine turquoise, off-topic
   277,  // hueyicayotl - greatness, abstract noun off-topic
   278,  // tlalalacatl - specialized zoological term, off-topic
+  7695, // nimitztlazohcamati - formal/full "I thank you"; teach conversational tlaskamati first
 
   // Unit 12: Future tense and indefinite verbs
   296,  // cui - adult/sexual verb, not needed in a general future-tense lesson
@@ -97,6 +98,12 @@ const CORE_GLOSS_OVERRIDES: Record<number, string> = {
   11: "[w] — written w in INALI-style spelling. Example: wika (to sing)",
   12: "[k/kw] — k and kw in INALI-style spelling. Example: kena (yes)",
   13: "[s] — like 's' in sun. Example: sayoltsi (bee)",
+  24: "no; negative response",
+  25: "how",
+  34: "how's it going?",
+  35: "how are you?",
+  260: "hello; greeting",
+  266: "thank you",
   239: "old/worn thing",
   248: "old person; elder",
 };
@@ -106,6 +113,12 @@ const CORE_HEADWORD_OVERRIDES: Record<number, string> = {
   11: "w",
   12: "k / kw",
   13: "s",
+  24: "axkana",
+  25: "kenihki",
+  34: "Kenihki tiya?",
+  35: "Kenihki tiistok?",
+  260: "piyali",
+  266: "tlaskamati",
 };
 
 export const CORE_VOCAB_LIMITS: Record<number, number> = {

@@ -25,9 +25,9 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 40, variantIds: [16, 36, 37, 42] },
     // "where": campa · variants: canque, canin
     { canonicalId: 19, variantIds: [27, 38] },
-    // "yes": quena · variants: quema (was mis-glossed), kemah, kehme
+    // "yes": kena · variants: quena, quema (was mis-glossed), kemah, kehme
     { canonicalId: 22, variantIds: [21, 41, 43] },
-    // "how": queha · variants: quehatza, kezki
+    // "how": kenihki · variants: queha, quehatza, kenijki, kenin, kezki
     { canonicalId: 25, variantIds: [31, 44] },
   ],
 
@@ -133,7 +133,7 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 10: My Appearance ────────────────────────────────────────────────
   10: [
-    // "good": cualli · variant: kuali
+    // "good": kwali · variants: cualli, kuali
     { canonicalId: 231, variantIds: [254] },
     // "long": huehueyac · variant: hueyac
     { canonicalId: 242, variantIds: [255] },
@@ -145,9 +145,9 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
 
   // ── Unit 11: When you greet and say farewell ──────────────────────────────
   11: [
-    // "hello": pialli · variant: niltze
+    // "hello": piyali · variants: pialli, niltze
     { canonicalId: 260, variantIds: [272, 7582] },
-    // "thank you": tlazohcamati (std) · variants: tlazcamati, tlazohkamati
+    // "thank you": tlaskamati · variants: tlazcamati, tlazohcamati, tlazohkamati
     { canonicalId: 266, variantIds: [263, 267] },
   ],
 

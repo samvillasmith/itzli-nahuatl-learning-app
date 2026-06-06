@@ -113,20 +113,20 @@ function loadVocab() {
 }
 
 const VERIFIED_PHRASES = [
-  { phrase: "Pialli!", gloss: "Hello!" },
-  { phrase: "Tlazohcamati.", gloss: "Thank you." },
-  { phrase: "Quena. / Quemah.", gloss: "Yes. / Yes (emphatic)." },
-  { phrase: "Ahmo.", gloss: "No." },
-  { phrase: "Notoca ___.", gloss: "My name is ___." },
-  { phrase: "¿Tlen motoca?", gloss: "What is your name?" },
-  { phrase: "¿Quenin tiitztoc?", gloss: "How are you?" },
-  { phrase: "Cualli niitztoc.", gloss: "I am well." },
-  { phrase: "¿Campa ticha? / ¿Kanke ticha?", gloss: "Where do you live?" },
+  { phrase: "Piyali!", gloss: "Hello!" },
+  { phrase: "Tlaskamati.", gloss: "Thank you." },
+  { phrase: "Kena.", gloss: "Yes." },
+  { phrase: "Axkana.", gloss: "No." },
+  { phrase: "Notoka ___.", gloss: "My name is ___." },
+  { phrase: "¿Kenihki motoka?", gloss: "What is your name?" },
+  { phrase: "¿Kenihki tiistok?", gloss: "How are you?" },
+  { phrase: "Kwali niistok.", gloss: "I am well." },
+  { phrase: "¿Kampa ticha? / ¿Kanke ticha?", gloss: "Where do you live?" },
   { phrase: "Nicha ipan Huasteca.", gloss: "I live in the Huasteca." },
-  { phrase: "¿Tlen ticchihua?", gloss: "What are you doing? / What do you do?" },
+  { phrase: "¿Tlen tikchihua?", gloss: "What are you doing? / What do you do?" },
   { phrase: "Nitequiti.", gloss: "I work." },
   { phrase: "Nitlamachtia.", gloss: "I teach." },
-  { phrase: "Nitlahcuiloa.", gloss: "I write." },
+  { phrase: "Nitlahkwiloa.", gloss: "I write." },
 ];
 
 const GRAMMAR_SNIPPETS = [
@@ -138,7 +138,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Object prefixes",
     content:
-      "Object prefixes on verbs: nēch- (me), mitz- (you sg), c-/qui- (him/her/it), tēch- (us), amēch- (you all), quin- (them); tē- (someone, non-specific), tla- (something, non-specific). Use ONLY on transitive verbs.",
+      "Object prefixes on verbs: nech- (me), mits- (you sg), k-/ki- (him/her/it), tech- (us), amech- (you all), kin- (them); te- (someone, non-specific), tla- (something, non-specific). Use ONLY on transitive verbs.",
   },
   {
     title: "tic- vs titech-",
@@ -173,7 +173,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Negation",
     content:
-      "Negation in this EHN learner path uses ax before the verb, and axtle for a standalone negative response. Examples: ax nitequiti = 'I don't work', ax nicmati = 'I don't know', ax kwali = 'not good'. Combine with imperative for negative commands: ax xiwika = 'don't bring it'. For 'nothing / no one' use axtle/tleno or ax akin depending on context.",
+      "Negation in this EHN learner path uses ax before the verb, and axkana for a standalone negative response. Examples: ax nitequiti = 'I don't work', ax nicmati = 'I don't know', ax kwali = 'not good'. Combine with imperative for negative commands: ax xiwika = 'don't bring it'. For 'nothing / no one' use tleno or ax akin depending on context.",
   },
   {
     title: "Directional prefixes (on-, hual-)",
@@ -188,7 +188,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Possessive prefixes",
     content:
-      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tocaitl → notoca (my name), calli → nocal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
+      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notoka (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
   },
   {
     title: "Noun endings and plural",
@@ -228,7 +228,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Question words",
     content:
-      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Aquin? 'who?'; ¿Campa? / ¿Kanke? 'where?'; ¿Quenin? 'how?'; ¿Queman? / ¿Quemanian? 'when?'; ¿Quezquih? 'how many?'; ¿Catli? / ¿Catlih? 'which?'; ¿Tleca? 'why?'. Examples: ¿Tlen motoca? 'What's your name?'; ¿Campa ticha? 'Where do you live?'; ¿Quezquih tomimeh ticpia? 'How many cats do you have?'",
+      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Akin? 'who?'; ¿Kampa? / ¿Kanke? 'where?'; ¿Kenihki? 'how?'; ¿Keman? / ¿Kemanian? 'when?'; ¿Keski? 'how many?'; ¿Katli? / ¿Katlih? 'which?'; ¿Tleka? 'why?'. Examples: ¿Kenihki motoka? 'What's your name?'; ¿Kampa ticha? 'Where do you live?'; ¿Keski tomimeh tikpia? 'How many cats do you have?'",
   },
   {
     title: "Word order",
@@ -253,7 +253,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Greetings and responses",
     content:
-      "Opening: Pialli = 'Hello'. Asking how someone is: ¿Quenin tiitztoc? = 'How are you?'. Reply: Cualli niitztoc = 'I am well'. Gratitude: Tlazohcamati = 'Thank you'. Affirm: Quena / Quemah = 'Yes'. Negate: Ahmo = 'No'. In conversational EHN, brief acknowledgments like 'Quena' or 'Cualli' often suffice instead of full sentences.",
+      "Opening: Piyali = 'Hello'. Asking how someone is: ¿Kenihki tiistok? = 'How are you?'. Reply: Kwali niistok = 'I am well'. Gratitude: Tlaskamati = 'Thank you'. Affirm: Kena = 'Yes'. Negate: Axkana = 'No'. In conversational EHN, brief acknowledgments like 'Kena' or 'Kwali' often suffice instead of full sentences.",
   },
   {
     title: "Relative clauses",
@@ -263,12 +263,12 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Applicative -lia (do for / to someone)",
     content:
-      "Applicative suffix -lia (some variants -hia, -huia) adds a beneficiary — the person for whom the action is done — to a transitive verb. The beneficiary becomes the verb's new direct object and takes the usual object prefix. Examples: tequiti 'to work' + -lia → tequitilia 'to work for (someone)' → nēchtequitilia 'he works for me'. huica 'to bring' + -lia → huiquilia 'to bring to (someone)' → nēchhuiquilia 'he brings (it) to me'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
+      "Applicative suffix -lia (some variants -hia, -huia) adds a beneficiary — the person for whom the action is done — to a transitive verb. The beneficiary becomes the verb's new direct object and takes the usual object prefix. Examples: tekiti 'to work' + -lia → tekitilia 'to work for (someone)'. wika 'to bring' + -lia → wikilia 'to bring to (someone)'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
   },
   {
     title: "Causative -tia (cause someone to do)",
     content:
-      "Causative suffix -tia (some stems take -ltia) means 'cause X to do Y' or 'make X do Y'. The caused-person becomes the verb's direct object. Examples: cochi 'to sleep' + -tia → cochitia 'to put (someone) to sleep' → niccochitia = 'I put him to sleep'. tequiti 'to work' + -tia → tequititia 'to make (someone) work'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
+      "Causative suffix -tia (some stems take -ltia) means 'cause X to do Y' or 'make X do Y'. The caused-person becomes the verb's direct object. Examples: kochi 'to sleep' + -tia → kochitia 'to put (someone) to sleep' → nikkochitia = 'I put him to sleep'. tekiti 'to work' + -tia → tekititia 'to make (someone) work'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
   },
   {
     title: "Noun incorporation",
@@ -278,7 +278,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Reduplication",
     content:
-      "Reduplication — repeating a stem-initial CV — signals iteration, distribution, intensity, or plurality. Examples: cualli 'good' → cuacualli 'very good / each one good'; pehpena 'to pick up repeatedly' (from pena); tlahtoa 'to speak' → tlahtlahtoa 'to speak repeatedly / to gossip'. NOTE: productive in Nahuatl generally; EHN-specific patterns and which stems reduplicate productively should be verified against attested EHN corpus.",
+      "Reduplication — repeating a stem-initial CV — signals iteration, distribution, intensity, or plurality. Examples: kwali 'good' → kwakwali 'very good / each one good'; pehpena 'to pick up repeatedly' (from pena); tlahtoa 'to speak' → tlahtlahtoa 'to speak repeatedly / to gossip'. NOTE: productive in Nahuatl generally; EHN-specific patterns and which stems reduplicate productively should be verified against attested EHN corpus.",
   },
 ];
 

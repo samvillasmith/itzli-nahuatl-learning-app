@@ -2,6 +2,7 @@ import raw from "./word-images.json";
 import s3Raw from "./s3-word-images.json";
 import openaiRaw from "./openai-word-images.json";
 import { isImageCardExcluded } from "@/lib/image-card-safety";
+import { orthographySearchVariants } from "@/lib/orthography";
 
 export type WordImage = {
   url: string;
@@ -38,20 +39,31 @@ function normalizeHeadword(value: string): string {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
+    .replace(/[¿¡?!.,"'“”‘’()[\]{}]+/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function entryFor<T>(records: Record<string, T | null>, headword: string): T | null {
-  const direct = records[headword];
-  if (direct) return direct;
+  for (const variant of orthographySearchVariants(headword)) {
+    const direct = records[variant];
+    if (direct) return direct;
+  }
 
   const normalized = normalizeHeadword(headword);
   if (normalized.length <= 1) return null;
 
-  const matchedKey = Object.keys(records).find(
-    (key) => normalizeHeadword(key) === normalized && records[key],
+  const normalizedVariants = new Set(
+    orthographySearchVariants(headword)
+      .map(normalizeHeadword)
+      .filter((variant) => variant.length > 1),
   );
+  normalizedVariants.add(normalized);
+
+  const matchedKey = Object.keys(records).find((key) => {
+    const normalizedKey = normalizeHeadword(key);
+    return normalizedVariants.has(normalizedKey) && records[key];
+  });
   return matchedKey ? records[matchedKey] : null;
 }
 
