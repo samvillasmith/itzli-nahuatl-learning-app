@@ -7,6 +7,7 @@ import {
   type SourceMediaLink,
 } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
+import { requireAuth } from "@/lib/require-auth";
 
 type Params = {
   params: Promise<{ lessonNumber: string }>;
@@ -64,6 +65,7 @@ function renderLine(line: string, key: string) {
 }
 
 export default async function SourceLessonPage({ params }: Params) {
+  await requireAuth();
   const { lessonNumber } = await params;
   const number = Number(lessonNumber);
   const lesson = getNahuatlahtolliLesson(number);

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
+import Link from "next/link";
 import { displayGloss } from "@/lib/gloss";
-import { vocabAudioUrl, dialogueAudioUrl, playAudio } from "@/lib/audio";
+import { vocabCardAudioUrl, dialogueAudioUrl, playAudio } from "@/lib/audio";
 import { loadProgress, markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
-import { getWordImage } from "@/data/word-images";
+import { getWordImage, type WordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
@@ -213,13 +214,10 @@ function isUnitPhraseCard(card: VocabCard): boolean {
   return card.source === "unitPhrase" || card.source === "lessonFocus" || card.part_of_speech === "phrase";
 }
 
-const CONVERSATIONAL_AUDIO_OVERRIDE_IDS = new Set([24, 25, 34, 35, 260, 266]);
-
 function cardAudioSrc(card: VocabCard): string | null {
-  if (CONVERSATIONAL_AUDIO_OVERRIDE_IDS.has(card.id)) return null;
   if (card.audioSrc) return card.audioSrc;
   if (card.source === "unitPhrase" || card.source === "lessonFocus" || card.id < 0) return null;
-  return vocabAudioUrl(card.id);
+  return vocabCardAudioUrl(card.id);
 }
 
 function cardImage(card: VocabCard) {
@@ -227,6 +225,19 @@ function cardImage(card: VocabCard) {
     allowLegacyFallback: true,
     safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
   });
+}
+
+function ImageCredit({ image }: { image: WordImage | null }) {
+  if (!image || image.source === "openai" || image.source === "s3") return null;
+  const href = image.pexels_url ?? image.author_url ?? image.source;
+  const label = `${image.author} · ${image.license}`;
+  return href?.startsWith("http") ? (
+    <p className="mt-2 text-center text-[11px] text-stone-400">
+      Image: <a href={href} target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600">{label}</a>
+    </p>
+  ) : (
+    <p className="mt-2 text-center text-[11px] text-stone-400">Image: {label}</p>
+  );
 }
 
 function learnStepLabel(card: VocabCard): string {
@@ -303,10 +314,25 @@ function buildLessonFocusCards(unitNum: number, grammarLabs: GrammarLab[]): Voca
   }));
 }
 
+function sentenceWordLimit(unitNum: number): number {
+  if (unitNum <= 5) return 4;
+  if (unitNum <= 15) return 5;
+  if (unitNum <= 30) return 7;
+  return 9;
+}
+
 function buildUnitPhraseCards(unitNum: number, dialogues: DialogueLine[]): VocabCard[] {
+  const maxWords = sentenceWordLimit(unitNum);
   return dialogues
-    .filter((line) => line.translation_en && phraseTokens(line.utterance_normalized).length >= 2)
-    .slice(0, 8)
+    .filter((line) => {
+      const wordCount = phraseTokens(line.utterance_normalized).length;
+      return line.translation_en && wordCount >= 2 && wordCount <= maxWords;
+    })
+    .sort(
+      (a, b) =>
+        phraseTokens(a.utterance_normalized).length - phraseTokens(b.utterance_normalized).length
+    )
+    .slice(0, 6)
     .map((line, idx) => ({
       id: -200_000 - unitNum * 1_000 - idx,
       headword: line.utterance_normalized,
@@ -321,7 +347,7 @@ function normalizeExerciseToken(s: string): string {
   return toInaliOrthography(s)
     .toLowerCase()
     .replace(/l{2,}/g, "l")
-    .replace(/^[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+|[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]+$/g, "");
+    .replace(/^[¿¡.,;:?!"'“”‘’()[\]]+|[¿¡.,;:?!"'“”‘’()[\]]+$/g, "");
 }
 
 function phraseTokens(text: string): string[] {
@@ -329,6 +355,12 @@ function phraseTokens(text: string): string[] {
     .split(/\s+/)
     .map(normalizeExerciseToken)
     .filter(Boolean);
+}
+
+function cardProgressKey(card: VocabCard): string {
+  if (card.source === "vocab" || (!card.source && card.id > 0)) return `v:${card.id}`;
+  const kind = card.source === "unitPhrase" ? "phrase" : "focus";
+  return `${kind}:${normalizeExerciseToken(card.headword)}`;
 }
 
 function normalizeGlossForExercise(s: string): string {
@@ -347,8 +379,8 @@ function tokenSpans(text: string): { raw: string; normalized: string; start: num
 
   while ((match = re.exec(text)) !== null) {
     const raw = match[0];
-    const leading = raw.match(/^[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]*/)?.[0].length ?? 0;
-    const trailing = raw.match(/[Â¿Â¡¿¡.,;:?!"'“”‘’()[\]]*$/)?.[0].length ?? 0;
+    const leading = raw.match(/^[¿¡.,;:?!"'“”‘’()[\]]*/)?.[0].length ?? 0;
+    const trailing = raw.match(/[¿¡.,;:?!"'“”‘’()[\]]*$/)?.[0].length ?? 0;
     const start = match.index + leading;
     const end = match.index + raw.length - trailing;
     if (end <= start) continue;
@@ -403,7 +435,8 @@ function buildWordOptions(correct: string, primaryPool: VocabCard[], fallbackPoo
 function buildFillBlanks(
   chunk: VocabCard[],
   constructions: ConstructionItem[],
-  pool: VocabCard[]
+  pool: VocabCard[],
+  maxWords: number,
 ): FillBlank[] {
   const results: FillBlank[] = [];
   const usedWords = new Set<string>();
@@ -415,6 +448,18 @@ function buildFillBlanks(
     const { nahuatl, translation: parenTranslation } = extractTranslation(ex);
     const translation = c.translation_en?.trim() || parenTranslation?.trim();
     if (!translation) continue;
+    if (phraseTokens(nahuatl).length > maxWords) continue;
+    if (
+      dialogueCoverage(
+        {
+          lesson_dialogue_id: "construction",
+          speaker_label: "",
+          utterance_normalized: nahuatl,
+          translation_en: translation,
+        },
+        chunk,
+      ) < 0.6
+    ) continue;
 
     for (const card of chunk) {
       if (isUnitPhraseCard(card) || phraseTokens(card.headword).length > 3) continue;
@@ -496,6 +541,29 @@ function stemMatch(token: string, headword: string): boolean {
   if (stemFromHead.length >= 3 && stemFromToken.includes(stemFromHead)) return true;
   if (stemFromToken.length >= 3 && stemFromHead.includes(stemFromToken)) return true;
   return false;
+}
+
+function dialogueCoverage(line: DialogueLine, introducedCards: VocabCard[]): number {
+  const tokens = phraseTokens(line.utterance_normalized);
+  if (tokens.length === 0) return 0;
+
+  const wholeLine = normalizeExerciseToken(line.utterance_normalized);
+  if (
+    introducedCards.some(
+      (card) =>
+        phraseTokens(card.headword).length > 1 &&
+        normalizeExerciseToken(card.headword) === wholeLine
+    )
+  ) {
+    return 1;
+  }
+
+  const knownWords = introducedCards.filter((card) => phraseTokens(card.headword).length === 1);
+  const covered = tokens.filter((token) =>
+    knownWords.some((card) => stemMatch(token, card.headword))
+  ).length;
+
+  return covered / tokens.length;
 }
 
 // ── Sequence builder ──────────────────────────────────────────────────────────
@@ -589,28 +657,29 @@ function buildGrammarCheckpointSteps(grammarLabs: GrammarLab[]): LessonStep[] {
   return steps;
 }
 
-function isDialogueProductionCandidate(line: DialogueLine): boolean {
+function isDialogueProductionCandidate(line: DialogueLine, maxWords: number): boolean {
   const answer = line.utterance_normalized.trim();
   const translation = line.translation_en?.trim();
   if (!answer || !translation) return false;
   if (answer.length < 4 || answer.length > 120) return false;
+  if (phraseTokens(answer).length > maxWords) return false;
   if (translation.length < 4 || translation.length > 140) return false;
   if (/examples?|copyright|creative commons|cc by/i.test(`${answer} ${translation}`)) return false;
   if (/[{}[\]]/.test(answer)) return false;
   return true;
 }
 
-function buildSentenceProductionSteps(dialogues: DialogueLine[], chunkIndex: number, limit = 2): LessonStep[] {
+function buildSentenceProductionSteps(dialogues: DialogueLine[], maxWords: number, limit = 2): LessonStep[] {
   const seen = new Set<string>();
   const candidates: number[] = [];
   dialogues.forEach((line, lineIdx) => {
     const key = line.utterance_normalized.trim().toLowerCase();
-    if (!isDialogueProductionCandidate(line) || seen.has(key)) return;
+    if (!isDialogueProductionCandidate(line, maxWords) || seen.has(key)) return;
     seen.add(key);
     candidates.push(lineIdx);
   });
 
-  return candidates.slice(chunkIndex * limit, chunkIndex * limit + limit).map((lineIdx) => ({
+  return candidates.slice(0, limit).map((lineIdx) => ({
     kind: "sentenceProduce",
     lineIdx,
   }));
@@ -624,8 +693,8 @@ function buildSequence(
   pool: VocabCard[],
   unitNum: number,
   grammarLabs: GrammarLab[],
-  chunkIndex: number,
   isLastChunk: boolean,
+  dialogueCards: VocabCard[],
 ): LessonStep[] {
   const steps: LessonStep[] = [];
   if (chunk.length === 0) return steps;
@@ -643,11 +712,13 @@ function buildSequence(
   }, new Map<string, number>());
   let fillIdx = 0;
   let tipIdx = 0;
-  const showGrammarLab = chunkIndex === 0 && grammarLabs.length > 0;
+  const showGrammarLab = isLastChunk && grammarLabs.length > 0;
   const grammarIntros = showGrammarLab ? buildGrammarIntroSteps(grammarLabs) : [];
   const grammarExamples = showGrammarLab ? buildGrammarExampleSteps(grammarLabs) : [];
   const grammarPractice = showGrammarLab ? buildGrammarPracticeSteps(grammarLabs) : [];
-  const sentenceProduction = buildSentenceProductionSteps(dialogues, chunkIndex);
+  const sentenceProduction = isLastChunk
+    ? buildSentenceProductionSteps(dialogues, sentenceWordLimit(unitNum))
+    : [];
   let grammarIntroIdx = 0;
   let grammarExampleIdx = 0;
   let grammarPracticeIdx = 0;
@@ -693,13 +764,13 @@ function buildSequence(
     }
   }
 
-  if (dialogues.length > 0) {
+  if (isLastChunk && dialogues.length > 0) {
     const allTokens = [
       ...new Set(dialogues.flatMap((l) => dialogueTokens(l.utterance_normalized))),
     ];
     let dialogueCount = 0;
     for (let i = 0; i < dialogues.length; i++) {
-      const match = buildDialogueMatch(dialogues[i], chunk, allTokens, pool);
+      const match = buildDialogueMatch(dialogues[i], dialogueCards, allTokens, pool);
       if (!match) continue;
       steps.push({
         kind: "dialogue",
@@ -1419,7 +1490,13 @@ export default function LessonFlow({
   const learningCards = useMemo(() => {
     const lessonFocusCards = buildLessonFocusCards(unitNum, grammarLabs);
     const unitPhraseCards = buildUnitPhraseCards(unitNum, dialogues);
-    return mergeLearningCards(lessonFocusCards, filteredVocab, unitPhraseCards);
+    const coreWords = filteredVocab.filter((card) => phraseTokens(card.headword).length === 1);
+    const focusWords = lessonFocusCards.filter((card) => phraseTokens(card.headword).length === 1);
+    const corePhrases = filteredVocab.filter((card) => phraseTokens(card.headword).length > 1);
+    const focusPhrases = lessonFocusCards
+      .filter((card) => phraseTokens(card.headword).length > 1)
+      .sort((a, b) => phraseTokens(a.headword).length - phraseTokens(b.headword).length);
+    return mergeLearningCards(coreWords, focusWords, corePhrases, focusPhrases, unitPhraseCards);
   }, [filteredVocab, unitNum, grammarLabs, dialogues]);
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
@@ -1432,14 +1509,17 @@ export default function LessonFlow({
     return result.length > 0 ? result : [[]];
   }, [learningCards]);
 
-  const currentChunk = chunks[chunkIndex] ?? [];
+  const currentChunk = useMemo(() => chunks[chunkIndex] ?? [], [chunks, chunkIndex]);
   const totalChunks = chunks.length;
   const isLastChunk = chunkIndex === totalChunks - 1;
-  const chunkStartIdx = chunkIndex * CHUNK_SIZE;
+  const introducedCards = useMemo(
+    () => learningCards.slice(0, Math.min(learningCards.length, (chunkIndex + 1) * CHUNK_SIZE)),
+    [learningCards, chunkIndex]
+  );
 
   const srsIndices = useMemo(
-    () => srsOrder(unitNum, chunkStartIdx, currentChunk.length),
-    [unitNum, chunkIndex, chunkStartIdx, currentChunk.length]
+    () => srsOrder(unitNum, currentChunk.map(cardProgressKey)),
+    [unitNum, currentChunk]
   );
 
   const pool = useMemo(() => {
@@ -1452,8 +1532,10 @@ export default function LessonFlow({
   // ── Pre-build fill blanks ───────────────────────────────────────────────────
 
   const fillBlanks = useMemo(
-    () => buildFillBlanks(currentChunk, constructions, pool),
-    [currentChunk, constructions, pool]
+    () => isLastChunk
+      ? buildFillBlanks(introducedCards, constructions, pool, sentenceWordLimit(unitNum))
+      : [],
+    [introducedCards, constructions, pool, isLastChunk, unitNum]
   );
 
   const lessonDialogues = useMemo(() => {
@@ -1462,14 +1544,17 @@ export default function LessonFlow({
     ];
     const matched: DialogueLine[] = [];
 
+    const maxWords = sentenceWordLimit(unitNum);
     for (const line of dialogues) {
-      if (!buildDialogueMatch(line, currentChunk, allTokens, pool)) continue;
+      if (!isDialogueProductionCandidate(line, maxWords)) continue;
+      if (dialogueCoverage(line, introducedCards) < 0.6) continue;
+      if (!buildDialogueMatch(line, introducedCards, allTokens, pool)) continue;
       matched.push(line);
       if (matched.length >= 6) break;
     }
 
     return matched;
-  }, [dialogues, currentChunk, pool]);
+  }, [dialogues, introducedCards, pool, unitNum]);
 
   // ── Build per-word quiz options ─────────────────────────────────────────────
 
@@ -1494,10 +1579,10 @@ export default function LessonFlow({
       pool,
       unitNum,
       grammarLabs,
-      chunkIndex,
-      isLastChunk
+      isLastChunk,
+      introducedCards
     ),
-    [currentChunk, srsIndices, fillBlanks, lessonDialogues, pool, unitNum, grammarLabs, chunkIndex, isLastChunk]
+    [currentChunk, srsIndices, fillBlanks, lessonDialogues, pool, unitNum, grammarLabs, isLastChunk, introducedCards]
   );
 
   // ── Progress ────────────────────────────────────────────────────────────────
@@ -1524,7 +1609,7 @@ export default function LessonFlow({
       const total = chunkTotal;
       const correct = chunkCorrect;
       markChunkDone(unitNum, chunkIndex, totalChunks, correct, total);
-      pushToCloud();
+      void pushToCloud();
       if (isLastChunk) {
         setFlow({ screen: "done" });
       } else {
@@ -1533,7 +1618,6 @@ export default function LessonFlow({
     } else {
       setFlow({ screen: "step", stepIdx: next });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flow, sequence.length, chunkCorrect, chunkTotal, unitNum, chunkIndex, totalChunks, isLastChunk]);
 
   function startLesson() {
@@ -1679,9 +1763,9 @@ export default function LessonFlow({
           >
             Next lesson →
           </button>
-          <a href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-2 mt-3">
+          <Link href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-2 mt-3">
             ← Back to all units
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -1701,19 +1785,19 @@ export default function LessonFlow({
 
           <div className="flex flex-col gap-3">
             {nextUnit && (
-              <a
+              <Link
                 href={`/units/${nextUnit.num}`}
                 className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold text-center transition-colors shadow-sm"
               >
                 Next: {nextUnit.themeEn} →
-              </a>
+              </Link>
             )}
-            <a
+            <Link
               href={`/practice/${unitNum}`}
               className="w-full border-2 border-stone-200 hover:border-emerald-300 text-stone-600 hover:text-emerald-700 py-3 rounded-2xl text-sm font-semibold text-center transition-colors"
             >
               Review flashcards
-            </a>
+            </Link>
             <button
               onClick={() => {
                 setChunkIndex(0);
@@ -1726,9 +1810,9 @@ export default function LessonFlow({
             >
               Repeat unit
             </button>
-            <a href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-1">
+            <Link href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-1">
               ← Back to all units
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -1739,7 +1823,6 @@ export default function LessonFlow({
 
   const step = sequence[flow.stepIdx];
   if (!step) {
-    advance();
     return null;
   }
 
@@ -1805,7 +1888,7 @@ export default function LessonFlow({
   }
 
   if (step.kind === "sentenceProduce") {
-    const line = dialogues[step.lineIdx];
+    const line = lessonDialogues[step.lineIdx];
     if (!line || !line.translation_en) return null;
     return (
       <SentenceProduceStep
@@ -1858,12 +1941,12 @@ export default function LessonFlow({
           {!revealed ? (
             <div className="flex flex-col h-full">
               {img && (
-                <div className="relative h-44 w-full overflow-hidden rounded-t-3xl bg-stone-50">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-3xl bg-stone-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={img.url}
                     alt={displayNahuatl(word.headword)}
-                    className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
+                    className={img.source === "openai" ? "h-auto w-full object-top" : "h-full w-full object-cover"}
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
                 </div>
@@ -1884,12 +1967,12 @@ export default function LessonFlow({
           ) : (
             <div className="flex flex-col h-full">
               {img && (
-                <div className="relative h-44 w-full overflow-hidden rounded-t-3xl bg-stone-50">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-3xl bg-stone-50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={img.url}
                     alt={displayNahuatl(word.headword)}
-                    className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
+                    className={img.source === "openai" ? "h-auto w-full object-top" : "h-full w-full object-cover"}
                     onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                   />
                 </div>
@@ -1918,6 +2001,7 @@ export default function LessonFlow({
             </div>
           )}
         </button>
+        <ImageCredit image={img} />
 
         {audioSrc && (
           <div className="flex justify-center mt-4">
@@ -1969,7 +2053,7 @@ export default function LessonFlow({
     function check(choice: string) {
       if (checked) return;
       const correct = choice === correctGloss;
-      recordWordResult(unitNum, chunkStartIdx + wordIdx, correct);
+      recordWordResult(unitNum, cardProgressKey(word), correct);
       setChunkTotal((t) => t + 1);
       if (correct) setChunkCorrect((c) => c + 1);
       setChosen(choice);
@@ -2038,7 +2122,7 @@ export default function LessonFlow({
     function check(choice: string) {
       if (checked) return;
       const correct = choice === word.headword;
-      recordWordResult(unitNum, chunkStartIdx + wordIdx, correct);
+      recordWordResult(unitNum, cardProgressKey(word), correct);
       setChunkTotal((t) => t + 1);
       if (correct) setChunkCorrect((c) => c + 1);
       setChosen(choice);

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadProgress } from "@/lib/progress";
+import { pullAndMerge } from "@/lib/cloudSync";
+import { useUser } from "@clerk/nextjs";
 import type { Unit } from "@/lib/db";
 
 const BAND_COLOR: Record<string, string> = {
@@ -19,15 +21,21 @@ const BAND_HOVER: Record<string, string> = {
 
 export default function HomeUnitsGrid({ units }: { units: Unit[] }) {
   const [statuses, setStatuses] = useState<Record<string, "completed" | "in_progress">>({});
+  const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
-    const p = loadProgress();
-    const result: Record<string, "completed" | "in_progress"> = {};
-    for (const [k, v] of Object.entries(p.units)) {
-      if (v?.status) result[k] = v.status;
-    }
-    setStatuses(result);
-  }, []);
+    if (!isLoaded) return;
+    const load = isSignedIn
+      ? pullAndMerge().then(({ progress }) => progress)
+      : Promise.resolve(loadProgress());
+    void load.then((progress) => {
+      const result: Record<string, "completed" | "in_progress"> = {};
+      for (const [key, value] of Object.entries(progress.units)) {
+        if (value?.status) result[key] = value.status;
+      }
+      setStatuses(result);
+    });
+  }, [isLoaded, isSignedIn]);
 
   const bands = ["A1", "A2", "B1"] as const;
 

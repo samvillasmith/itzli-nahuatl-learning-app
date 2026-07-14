@@ -1,7 +1,11 @@
 import raw from "./word-images.json";
 import s3Raw from "./s3-word-images.json";
 import openaiRaw from "./openai-word-images.json";
-import { isImageCardExcluded } from "@/lib/image-card-safety";
+import { isAppContentExcluded } from "@/lib/app-content-safety";
+import {
+  isApprovedPublishedImageCardExcluded,
+  isImageCardExcluded,
+} from "@/lib/image-card-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
 
 export type WordImage = {
@@ -15,6 +19,12 @@ export type WordImage = {
   // legacy fields
   source?: string;
   title?: string;
+  review_status?: string;
+  review_scope?: string;
+  reviewed_url?: string;
+  review_source?: string;
+  reviewed_at?: string;
+  reviewed_safe_matches?: string[];
 };
 
 type S3WordImage =
@@ -107,8 +117,20 @@ function openaiImage(headword: string): WordImage | null {
   if (!entry) return null;
   return {
     ...entry,
+    license: "OpenAI-generated illustration",
     source: entry.source ?? "openai",
   };
+}
+
+function isExactPublishedReview(entry: WordImage): boolean {
+  return (
+    entry.review_status === "approved" &&
+    entry.review_scope === "exact-published-image" &&
+    entry.reviewed_url === entry.url &&
+    /^openai-(?:word|reviewed)-image-audit\/contact-sheet-\d{2}$/.test(
+      entry.review_source ?? "",
+    )
+  );
 }
 
 /**
@@ -123,12 +145,42 @@ export function getWordImage(
     safetyText?: Array<string | null | undefined>;
   } = {},
 ): WordImage | null {
-  if (isImageCardExcluded(headword, ...(options.safetyText ?? []))) return null;
+  if (isAppContentExcluded(headword, ...(options.safetyText ?? []))) return null;
   const openai = openaiImage(headword);
-  if (openai) return openai;
+  const exactReview = openai && isExactPublishedReview(openai);
+  const openaiExcluded = exactReview
+    ? isApprovedPublishedImageCardExcluded(
+        openai.reviewed_safe_matches ?? [],
+        headword,
+        ...(options.safetyText ?? []),
+        openai.alt,
+        openai.title,
+      )
+    : isImageCardExcluded(
+        headword,
+        ...(options.safetyText ?? []),
+        openai?.alt,
+        openai?.title,
+      );
+  if (
+    openai &&
+    !openaiExcluded
+  ) return openai;
+  if (isImageCardExcluded(headword, ...(options.safetyText ?? []))) return null;
   const s3 = s3Image(headword);
-  if (s3) return s3;
-  return options.allowLegacyFallback ? entryFor(data, headword) : null;
+  if (
+    s3 &&
+    !isImageCardExcluded(headword, ...(options.safetyText ?? []), s3.alt, s3.title)
+  ) return s3;
+  if (!options.allowLegacyFallback) return null;
+  const legacy = entryFor(data, headword);
+  if (!legacy) return null;
+  return isImageCardExcluded(
+    headword,
+    ...(options.safetyText ?? []),
+    legacy.alt,
+    legacy.title,
+  ) ? null : legacy;
 }
 
 export function getWordImageAudit() {

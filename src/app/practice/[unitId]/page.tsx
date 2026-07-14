@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getUnit, getUnitVocab, getAllUnits } from "@/lib/db";
 import { collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
+import { requireAuth } from "@/lib/require-auth";
 import FlashcardDeck from "./FlashcardDeck";
 
 export async function generateStaticParams() {
@@ -15,6 +16,7 @@ export default async function PracticePage({
 }: {
   params: Promise<{ unitId: string }>;
 }) {
+  await requireAuth();
   const { unitId } = await params;
   const num = parseInt(unitId, 10);
   if (isNaN(num)) notFound();

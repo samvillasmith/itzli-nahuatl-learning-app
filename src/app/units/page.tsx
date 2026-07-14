@@ -1,8 +1,10 @@
 import { getAllUnits } from "@/lib/db";
+import { requireAuth } from "@/lib/require-auth";
 import Link from "next/link";
 import UnitsListWithProgress from "./UnitsListWithProgress";
 
-export default function UnitsPage() {
+export default async function UnitsPage() {
+  await requireAuth();
   const units = getAllUnits();
 
   return (

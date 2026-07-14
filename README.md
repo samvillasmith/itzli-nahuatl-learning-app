@@ -4,7 +4,7 @@ A structured, linguistically rigorous language learning app for **Eastern Huaste
 
 This is not a Classical Nahuatl app. EHN is a distinct, modern, spoken language with its own orthography, grammar, and vocabulary — and until now, almost no digital learning infrastructure.
 
-> **Work in progress** — Audio pronunciations are machine-generated with a Nahuatl-specific model where available (see [Audio generation](#audio-generation) below). Not all vocabulary words have images yet. More features are coming.
+> **Work in progress** — Audio pronunciations are machine-generated or linked to credited source-course recordings where available. Image cards are filtered through a strict text policy, generated images are moderated, and new generated assets remain quarantined until one-at-a-time human approval.
 
 ---
 
@@ -32,14 +32,14 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 | A2 | 16–30 | Home, community, nature, time, health |
 | B1 | 31–43 | Abstract concepts, narratives, cultural topics |
 
-- **703 vocabulary words** — audited against IDIEZ, Karttunen, and attested EHN texts
+- **826 core lesson cards after safety filtering and variant collapse**, plus 65 grammar-derived focus cards
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`
 - **113 AI-assisted dialogues** — generated for units without attested dialogue data, marked `AI_generated`
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
 - **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
-- **Progress tracking** via localStorage — completions, accuracy, streaks
+- **Progress tracking** via a local browser mirror and signed-in Neon cloud sync
 - **Vocabulary search** across a 37,000-entry EHN lexicon
 
 ---
@@ -49,12 +49,12 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 Each unit is a state machine that walks learners through spaced, contextualized practice:
 
 ```
-Intro → Learn words → Quiz (EHN → EN) → Quiz (EN → EHN)
-      → Fill-in-the-blank → Dialogue → Chunk complete
-      → (repeat for next chunk of 10 words)
+Intro → Learn single words → Quiz (EHN → EN) → Quiz (EN → EHN)
+      → Learn short forms and phrases → Grammar practice
+      → short, vocabulary-gated dialogue → Chunk complete
 ```
 
-Dialogue lines use morphological matching to highlight vocabulary in context. Every gloss in the UI is passed through `displayGloss()` to strip audit annotations before display.
+Dialogue lines are capped by level and require at least 60% coverage from words already introduced in the unit. Every gloss in the UI is passed through `displayGloss()` to strip audit annotations before display.
 
 ---
 
@@ -110,13 +110,13 @@ Spanish phonemization.
 
 ## Tech Stack
 
-- **Next.js 16** with App Router and full static generation (`generateStaticParams`)
+- **Next.js 16** with App Router and pre-generated unit parameters
 - **React 19** — server components by default
 - **Tailwind CSS v4** — CSS variable-based theming, no config file
 - **better-sqlite3** — synchronous SQLite, all data fetched at build time
 - **TypeScript 5** — strict throughout
-- **OpenAI `gpt-4o-mini`** — drives the Nahuatl tutor (`/tutor`)
-- **Clerk** — authentication (middleware-gated)
+- **OpenAI `gpt-4.1-mini`** — drives the Nahuatl tutor (`/tutor`)
+- **Clerk** — authentication at both the Next.js proxy and protected resource boundaries
 - **Neon Postgres** — cloud progress sync and chat audit log
 - No external state management — `useState`/`useEffect` + `localStorage`
 
@@ -138,39 +138,39 @@ Clerk auth → payload validation → per-user rate limit
          → clean response released to client
 ```
 
-Flagged events at any layer write a row to `chat_audit` in Neon — **sha256 of the content, never the content itself** — so recurring attack patterns and repeat offenders surface without retaining user text.
+Guardrail events write a row to `chat_audit` in Neon using a **secret-keyed HMAC-SHA-256 digest of the content, never the content itself**, so recurring attack patterns can surface without retaining user text or exposing short messages to dictionary lookup.
 
 ### What each layer does
 
 | Layer | Defends against | Failure mode |
 |---|---|---|
-| Clerk auth (middleware) | Anonymous abuse, cost scraping | 401 before the route even runs |
+| Clerk auth (proxy + resource checks) | Anonymous abuse, cost scraping | Signed-out requests are blocked before protected work runs |
 | Payload validation | Malformed requests, oversize inputs | 400 / 413 |
-| Rate limit (sliding window, per-user) | Brute-force probing, bill explosions | 429 with `Retry-After` |
+| Rate limit (shared fixed windows, per-user) | Brute-force probing, bill explosions | 429 with `Retry-After` |
 | Prompt-injection heuristics | Known jailbreak templates, instruction overrides, fake system tokens, "reveal your prompt", DAN/STAN/DevMode personas | Canned refusal |
 | Input moderation | Sexual/minors, harassment/threatening, hate/threatening, self-harm, violence, illicit | Canned refusal, **fails closed** if the moderation API is unreachable |
 | Hardened system prompt | Off-topic drift, role hijack, prompt leakage | Model-level refusal |
 | `<user_input>` spotlighting | Instruction-in-data attacks | Structural separation: user content framed as data inside a tag |
 | Output moderation | Jailbreaks that slipped past earlier layers | Response replaced with refusal before any bytes reach the client |
-| Audit log | Invisible abuse, pattern recurrence | Hashed events in Neon, fire-and-forget |
+| Audit log | Invisible abuse, pattern recurrence | Awaited, keyed-hash events in Neon |
 
 ### Design decisions and tradeoffs
 
 - **Buffer-then-stream, not token-by-token streaming.** The chat route deliberately disables OpenAI streaming and moderates the full response before releasing it to the client. This costs ~3–8s of perceived latency on a 800-token reply, but it's the only way to guarantee nothing harmful reaches the browser. The existing loading UX (bouncing dots) covers the wait.
 - **Fail closed on moderation errors.** If the moderation API is unreachable, the wrapper treats the request as flagged rather than letting unmoderated text through. Availability of the tutor is less important than safety.
-- **Rate limits are in-process memory.** A sliding-window limiter per Clerk `userId` (20/10min burst + 100/hour ceiling). Good enough for a single-instance deploy; swap to Upstash/Redis when horizontal scaling matters.
+- **Rate limits are shared in Neon.** Atomic fixed-window counters enforce 20 requests per 10 minutes and 100 per hour across serverless instances.
 - **Canned refusal, never a reason.** Blocked responses return a single fixed sentence regardless of which layer tripped, so attackers can't binary-search their way to a bypass by observing differential error text.
 - **Env-var tuning for the parts that benefit from obscurity.** The exact refusal wording (`GUARDRAIL_REFUSAL_TEXT`) and any deploy-specific extra hard-block patterns (`GUARDRAIL_EXTRA_PATTERNS`, a JSON array) are loaded from environment at startup, so the public source shows the architecture without handing attackers a literal cheat sheet. See `.env.example`.
-- **No PII in audit rows.** Rows store `(user_id, kind, categories, sha256, meta, timestamp)` — enough to detect patterns and repeat offenders, nothing reconstructable back to the user's actual message.
+- **No raw chat text in audit rows.** Rows store `(user_id, kind, categories, keyed_sha256, meta, timestamp)`. The pseudonymous Clerk user ID is still personal data and is removed by the verified account-deletion webhook.
 
 ### Files
 
 ```
 src/app/api/chat/route.ts    orchestrator; implements the pipeline above
-src/lib/rate-limit.ts        per-user sliding window
+src/lib/rate-limit.ts        shared per-user Neon counters
 src/lib/moderation.ts        OpenAI moderation wrapper, fails closed
 src/lib/prompt-injection.ts  public heuristics + env-loaded private patterns
-src/lib/audit.ts             sha256-hashed event logger (write-only)
+src/lib/audit.ts             secret-keyed HMAC-SHA-256 event logger
 scripts/audit-setup.js       one-shot migration for the chat_audit Neon table
 ```
 
@@ -189,7 +189,7 @@ Honest limits are part of the design:
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - The SQLite database is auto-downloaded from S3 at `npm run dev` / `npm run build` via `scripts/fetch-db.js`
 
 ### Run
@@ -199,11 +199,12 @@ npm install
 npm run dev       # development at localhost:3000 (downloads DB automatically)
 npm run build     # static build
 npm start         # serve built output
+npm run verify    # typecheck, lint, tests, and content/course audits
 ```
 
 ### Audio
 
-Audio files are served from S3 and do not need to be generated locally. If you want to regenerate them with the Nahuatl-specific MMS pipeline:
+Audio prefers the configured local/static base and falls back to the S3 audio prefix. If you want to regenerate candidates with the Nahuatl-specific MMS pipeline:
 
 ```bash
 npm run audio:mms:test
@@ -228,7 +229,8 @@ src/
 │   ├── db.ts                All SQLite queries and types
 │   ├── audio.ts             Audio URL helpers (S3-backed)
 │   ├── gloss.ts             displayGloss() — strips audit annotations
-│   └── progress.ts          localStorage progress tracking
+│   ├── progress.ts          local browser progress tracking
+│   └── progress-schema.ts   validated cloud/local progress contract
 scripts/
 ├── generate-audio.py        MMS-NHE audio generation (production source)
 ├── generate-openai-audio.js Experimental prompt-controlled OpenAI TTS
@@ -245,7 +247,7 @@ scripts/
 - **Meta AI / MMS Project** — for `facebook/mms-tts-nhe`, the open TTS model trained on EHN speech
 - **OpenAI** — for the AI tutor and an experimental TTS comparison path
 - **hexgrad / Kokoro** — retained as a reference experiment, no longer recommended for production Nahuatl audio
-- **Pexels** — for the image API used to illustrate vocabulary (photos served from Pexels CDN with required attribution)
+- **Pexels, Wikimedia Commons, Flickr, Rawpixel, and StockSnap** — for legacy vocabulary images; required credit is shown with the card
 - **COERLL / The University of Texas at Austin** — for publishing the open
   Nāhuatlahtolli course by Sabina de la Cruz, Catalina de la Cruz, Josefrayn
   Sánchez-Perry, Kelly McDonough, and Sergio Romero under CC BY-SA
@@ -253,14 +255,11 @@ scripts/
 
 ---
 
-## What's Next
+## Ongoing Work
 
-- User authentication and cloud progress sync
-- Spaced repetition (Leitner-style quiz scheduling)
-- Automated audio QA and candidate selection for MMS-generated clips
-- Images for remaining vocabulary words
-- Dialogue audio and content for units 33–43
-- Progress indicators on the home page
+- Community review and replacement of machine-generated pronunciation
+- Human review of remaining safe image candidates
+- Continued conversational EHN curriculum review with transparent source notes
 
 ---
 

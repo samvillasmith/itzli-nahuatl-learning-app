@@ -6,6 +6,7 @@ import {
   type SourceSupportPage,
 } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
+import { requireAuth } from "@/lib/require-auth";
 
 export const metadata: Metadata = {
   title: "Nawatlahtolli Source Course",
@@ -64,7 +65,8 @@ function SupportPagePreview({ page }: { page: SourceSupportPage }) {
   );
 }
 
-export default function SourceCoursePage() {
+export default async function SourceCoursePage() {
+  await requireAuth();
   const stats = getNahuatlahtolliStats();
   const source = NAHUATLAHTOLLI_COURSE.source;
 

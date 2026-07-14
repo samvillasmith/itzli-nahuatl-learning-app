@@ -34,8 +34,8 @@ async function run() {
   await sql`
     CREATE TABLE IF NOT EXISTS user_progress (
       user_id    VARCHAR(64) PRIMARY KEY,
-      progress   JSONB NOT NULL DEFAULT '{"version":1,"units":{}}',
-      srs        JSONB NOT NULL DEFAULT '{"version":1,"words":{}}',
+      progress   JSONB NOT NULL DEFAULT '{"version":2,"units":{}}',
+      srs        JSONB NOT NULL DEFAULT '{"version":2,"words":{}}',
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;

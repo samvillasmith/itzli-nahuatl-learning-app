@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { createHmac } from "node:crypto";
 import { getSql } from "@/lib/neon";
 
 export type AuditKind =
@@ -13,7 +13,18 @@ export type AuditKind =
   | "invalid_payload";    // malformed request
 
 export function hashContent(text: string): string {
-  return createHash("sha256").update(text, "utf8").digest("hex");
+  // A dedicated key is preferred. Falling back to Clerk's already-secret
+  // server key keeps deployed audit logging keyed during rollout.
+  const secret = process.env.AUDIT_HASH_SECRET ?? process.env.CLERK_SECRET_KEY;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("AUDIT_HASH_SECRET is not set");
+    }
+    return createHmac("sha256", "itzli-development-only")
+      .update(text, "utf8")
+      .digest("hex");
+  }
+  return createHmac("sha256", secret).update(text, "utf8").digest("hex");
 }
 
 type LogArgs = {
@@ -24,7 +35,7 @@ type LogArgs = {
   meta?: Record<string, unknown>;
 };
 
-// Raw content is never stored: only sha256 hashes and structured metadata.
+// Raw content is never stored: only keyed sha256 hashes and structured metadata.
 // This gives us traceability without retaining user or assistant text.
 export async function writeAudit({
   userId,
@@ -47,10 +58,11 @@ export async function writeAudit({
   `;
 }
 
-// Fire-and-forget helper for rejection paths where the response should not
-// wait on audit persistence.
-export function logAudit(args: LogArgs): void {
-  void writeAudit(args).catch((err: unknown) => {
-    console.error("[audit] insert failed:", err);
-  });
+export async function logAudit(args: LogArgs): Promise<void> {
+  try {
+    await writeAudit(args);
+  } catch (error) {
+    console.error("[audit] insert failed:", error);
+    if (process.env.REQUIRE_CHAT_AUDIT === "true") throw error;
+  }
 }

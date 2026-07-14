@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getGrammarLesson, GRAMMAR_LESSONS } from '@/data/grammar-lessons';
 import { getGrammarDialogues } from '@/lib/db';
+import { requireAuth } from '@/lib/require-auth';
 import GrammarLesson from './GrammarLesson';
 
 export function generateStaticParams() {
@@ -8,6 +9,7 @@ export function generateStaticParams() {
 }
 
 export default async function GrammarLessonPage({ params }: { params: Promise<{ topic: string }> }) {
+  await requireAuth();
   const { topic } = await params;
   const lesson = getGrammarLesson(topic);
   if (!lesson) notFound();

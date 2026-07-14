@@ -153,8 +153,16 @@
   ],
   "rules": [
     {
+      "category": "minors-or-child",
+      "pattern": "\\b(child|children|baby|babies|infant|infants|newborn|newborns|toddler|toddlers|kid|kids|boy|boys|girl|girls|minor|minors|schoolchild|schoolchildren|teen|teens|teenager|teenagers)\\b"
+    },
+    {
+      "category": "ambiguous-exposure-risk",
+      "pattern": "\\bwet\\b"
+    },
+    {
       "category": "adult-sexual",
-      "pattern": "\\b(sex|sexual|intercourse|copulat|fornicate|prostitut|erotic|porn|fuck|fucking|masturbat|orgasm|orgasms|orgies|orgy|group sex|threesome|threesomes|cum|sperm|semen|ejaculat|suck|stroke|jack off|erect|erection|cock|dick|penis|vagina|pussy|vulva|clit|clitoris|testicle|testicles|genital|genitals|private parts|pubic|pubic bone|pubic hair|nipple|nipples|pec|pecs|boob|boobs|tit|tits|titties|nude|nudity|naked|anus|anal|asshole|rectum|wet)\\b"
+      "pattern": "\\b(sex|sexual|intercourse|copulat|fornicate|prostitut|erotic|porn|fuck|fucking|masturbat|orgasm|orgasms|orgies|orgy|group sex|threesome|threesomes|cum|sperm|semen|ejaculat|suck|stroke|jack off|erect|erection|cock|dick|penis|vagina|pussy|vulva|clit|clitoris|testicle|testicles|genital|genitals|private parts|pubic|pubic bone|pubic hair|nipple|nipples|pec|pecs|boob|boobs|tit|tits|titties|nude|nudity|naked|anus|anal|asshole|rectum)\\b"
     },
     {
       "category": "covered-body-or-exposure-risk",

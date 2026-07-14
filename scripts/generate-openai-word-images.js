@@ -25,6 +25,7 @@ const BLOCKLIST_PATH = path.join(ROOT, "scripts", "config", "openai-word-image-b
 const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "scripts", "config", "openai-reviewed-image-allowlist.json");
 const APP_CONTENT_EXCLUSIONS_PATH = path.join(ROOT, "src", "data", "app-content-exclusions.json");
 const SKIPPED_AUDIT_PATH = path.join(ROOT, "data", "openai-word-images-skipped.json");
+const PENDING_MANIFEST_PATH = path.join(ROOT, "data", "openai-word-images-pending.json");
 const S3_IMAGE_BASE_URL =
   process.env.OPENAI_IMAGE_PUBLIC_BASE_URL ||
   "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/";
@@ -682,11 +683,9 @@ function buildPrompt(item, blocklist, reviewedAllowlist) {
         .filter(Boolean)
         .join(" ")
     : "";
-  const childSafetyLine = reviewed
-    ? reviewed.mode === "swaddled-child"
-      ? "For this reviewed baby card only, follow the baby exception exactly. Do not show any other child, teen, student, minor, or adult."
-      : "For this reviewed card, do not show children, babies, infants, teens, students, minors, or childlike proportions."
-    : "If a child appears, use a simple fully clothed school, family, or play scene with shoes and covered legs. Do not show bedtime, bathing, changing clothes, medical care, or any vulnerable/exposed-body context.";
+  const childSafetyLine = reviewed?.mode === "swaddled-child"
+    ? "For this reviewed baby card only, show one fully clothed or fully swaddled baby exactly as approved. Do not show any other child, teen, student, minor, or adult."
+    : "Do not show children, babies, infants, teens, students, minors, childlike figures, or childlike proportions.";
 
   return [
     "Create one family-safe vocabulary-card illustration for a Nahuatl language-learning app.",
@@ -776,13 +775,21 @@ function preparePlan(args) {
     const reviewed = reviewedAllowlistEntry(item, reviewedAllowlist);
     const appExclusion = classifyAppExcluded(item, appExclusions);
     if (appExclusion && !reviewed) {
-      appExcluded.push({ ...item, appExclusion });
+      const blockedItem = {
+        ...item,
+        appExclusion,
+        block: { category: appExclusion.category || "app-content-excluded", match: appExclusion.match || item.headword },
+      };
+      appExcluded.push(blockedItem);
+      blocked.push(blockedItem);
       continue;
     }
 
     const block = classifyBlocked(item, blocklist);
     if (block && !reviewed) {
-      imageExcluded.push({ ...item, block });
+      const blockedItem = { ...item, block };
+      imageExcluded.push(blockedItem);
+      blocked.push(blockedItem);
       continue;
     }
 
@@ -1005,17 +1012,37 @@ async function generateOne(client, args, item) {
     throw new Error("OpenAI image response did not include b64_json data.");
   }
 
+  const moderation = await client.moderations.create({
+    model: "omni-moderation-latest",
+    input: [
+      {
+        type: "image_url",
+        image_url: {
+          url: `data:image/${args.outputFormat};base64,${image.b64_json}`,
+        },
+      },
+    ],
+  });
+  const verdict = moderation.results?.[0];
+  if (!verdict || verdict.flagged) {
+    const categories = verdict
+      ? Object.entries(verdict.categories || {}).filter(([, value]) => value).map(([key]) => key)
+      : ["moderation-empty"];
+    throw new Error(`Generated image failed visual moderation: ${categories.join(", ")}`);
+  }
+
   const buffer = Buffer.from(image.b64_json, "base64");
   fs.writeFileSync(item.outPath, buffer);
   return { bytes: buffer.length, usage: response.usage };
 }
 
-function updateManifest(args, generated) {
+function updatePendingManifest(args, generated) {
   if (!generated.length) return;
-  const manifest = readJson(OPENAI_MANIFEST_PATH, {});
+  const manifest = readJson(PENDING_MANIFEST_PATH, {});
   for (const item of generated) {
     manifest[item.headword] = {
-      url: publicUrlFor(args, item.outPath),
+      proposed_url: publicUrlFor(args, item.outPath),
+      local_path: path.relative(ROOT, item.outPath),
       license: "OpenAI-generated image; review before publication",
       author: args.model,
       alt: item.gloss
@@ -1027,13 +1054,15 @@ function updateManifest(args, generated) {
       size: args.size,
       output_format: args.outputFormat,
       generated_at: new Date().toISOString(),
+      review_status: "pending",
     };
   }
 
   const sorted = Object.fromEntries(
     Object.entries(manifest).sort(([a], [b]) => normalizeKey(a).localeCompare(normalizeKey(b)))
   );
-  fs.writeFileSync(OPENAI_MANIFEST_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
+  fs.mkdirSync(path.dirname(PENDING_MANIFEST_PATH), { recursive: true });
+  fs.writeFileSync(PENDING_MANIFEST_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
 }
 
 function writeSkippedAudit(plan) {
@@ -1100,8 +1129,8 @@ async function main() {
     process.exit(1);
   }
   if (plan.localFiles.length) {
-    updateManifest(args, plan.localFiles);
-    console.log(`Indexed local files: ${plan.localFiles.length}`);
+    updatePendingManifest(args, plan.localFiles);
+    console.log(`Queued local files for review: ${plan.localFiles.length}`);
   }
   if (!plan.rows.length) {
     writeSkippedAudit(plan);
@@ -1117,7 +1146,7 @@ async function main() {
     try {
       const result = await generateOne(client, args, item);
       generated.push(item);
-      updateManifest(args, [item]);
+      updatePendingManifest(args, [item]);
       completed += 1;
       console.log(
         `OK   ${completed}/${plan.rows.length} ${item.headword} -> ` +
@@ -1135,7 +1164,7 @@ async function main() {
   console.log("");
   console.log(`Generated: ${generated.length}`);
   console.log(`Failed:    ${failed}`);
-  console.log(`Manifest:  ${path.relative(ROOT, OPENAI_MANIFEST_PATH)}`);
+  console.log(`Pending review: ${path.relative(ROOT, PENDING_MANIFEST_PATH)}`);
 }
 
 main().catch((error) => {

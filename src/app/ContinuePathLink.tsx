@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { loadProgress, type ProgressData } from "@/lib/progress";
 import { pullAndMerge } from "@/lib/cloudSync";
+import { emptyProgress } from "@/lib/progress-schema";
 
 type ContinueUnit = {
   lessonNumber: number;
@@ -17,7 +18,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const EMPTY_PROGRESS: ProgressData = { version: 1, units: {} };
+const EMPTY_PROGRESS: ProgressData = emptyProgress();
 
 function sortedUnits(units: ContinueUnit[]): ContinueUnit[] {
   return [...units].sort((a, b) => a.pathOrder - b.pathOrder);

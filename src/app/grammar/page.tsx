@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { GRAMMAR_LESSONS } from '@/data/grammar-lessons';
 import { displayNahuatl } from '@/lib/orthography';
+import { requireAuth } from '@/lib/require-auth';
 
 const BAND_STYLES: Record<string, string> = {
   A1: 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -8,7 +9,9 @@ const BAND_STYLES: Record<string, string> = {
   B1: 'bg-violet-50 text-violet-700 border-violet-200',
 };
 
-export default function GrammarPage() {
+export default async function GrammarPage() {
+  await requireAuth();
+
   const byBand = {
     A1: GRAMMAR_LESSONS.filter((l) => l.band === 'A1'),
     A2: GRAMMAR_LESSONS.filter((l) => l.band === 'A2'),

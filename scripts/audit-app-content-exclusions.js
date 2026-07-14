@@ -12,7 +12,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONFIG_PATH = path.join(ROOT, "src", "data", "app-content-exclusions.json");
-const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "scripts", "config", "openai-reviewed-image-allowlist.json");
+const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "src", "data", "app-content-reviewed-allowlist.json");
 const COURSE_PATH = path.join(ROOT, "src", "data", "nahuatlahtolli-course.json");
 const MANIFEST_PATHS = [
   path.join(ROOT, "src", "data", "openai-word-images.json"),
@@ -46,31 +46,41 @@ const config = readJson(CONFIG_PATH, { headwords: [], patterns: [] });
 const reviewedAllowlist = readJson(REVIEWED_ALLOWLIST_PATH, { entries: [] });
 const excludedHeadwords = new Set(config.headwords.map(normalize));
 const exclusionPatterns = config.patterns.map((pattern) => new RegExp(pattern, "iu"));
-const reviewedHeadwords = new Set((reviewedAllowlist.entries || []).map((entry) => normalize(entry.headword)));
+const reviewedSafeMatches = new Map(
+  (reviewedAllowlist.entries || []).map((entry) => [normalize(entry.headword), entry.safeMatches || []])
+);
 
 function isUrlLike(value) {
   return /(?:https?:\/\/|\/|\.[a-z0-9]{2,5}\b)/i.test(value);
 }
 
-function hasExcludedHeadwordToken(value) {
+function hasExcludedHeadwordToken(value, safeMatches = []) {
   if (!isUrlLike(value)) return false;
+  const safe = new Set(safeMatches.map(normalize));
   return normalize(value)
     .split(/[^a-z0-9]+/)
     .filter(Boolean)
-    .some((token) => excludedHeadwords.has(token));
+    .some((token) => excludedHeadwords.has(token) && !safe.has(token));
 }
 
 function reasonFor(...values) {
   const present = values.filter(Boolean).map(String);
+  const safeMatches = present
+    .map((value) => reviewedSafeMatches.get(normalize(value)))
+    .find(Boolean);
   for (const value of present) {
     const normalized = normalize(value);
-    if (reviewedHeadwords.has(normalized)) return null;
-    if (excludedHeadwords.has(normalized) || hasExcludedHeadwordToken(value)) {
+    if (safeMatches && reviewedSafeMatches.has(normalized)) continue;
+    if (excludedHeadwords.has(normalized) || hasExcludedHeadwordToken(value, safeMatches)) {
       return `headword:${value}`;
     }
   }
 
-  const haystack = present.join(" ");
+  let haystack = present.join(" ");
+  for (const safeMatch of safeMatches || []) {
+    const escaped = String(safeMatch).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    haystack = haystack.replace(new RegExp(`\\b${escaped}\\b`, "gi"), " ");
+  }
   const normalizedHaystack = normalize(haystack);
   for (const pattern of exclusionPatterns) {
     const match = haystack.match(pattern) ?? normalizedHaystack.match(pattern);

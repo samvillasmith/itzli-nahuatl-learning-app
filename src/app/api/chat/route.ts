@@ -10,17 +10,18 @@ import { getSystemPrompt, REFUSAL, type ChatMode } from "@/lib/chat-system-promp
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 import { retrieve, formatRetrieved, EMBED_MODEL } from "@/lib/rag";
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 export const runtime = "nodejs";
 
 const MAX_MESSAGE_CHARS = 2000;
 const MAX_HISTORY = 10;
+const MAX_BODY_BYTES = 32 * 1024;
+const MAX_TOTAL_MESSAGE_CHARS = 12_000;
 const CHAT_AUDIT_SCHEMA_VERSION = 1;
 const CHAT_POLICY_VERSION = "2026-04-30";
 let client: OpenAI | null = null;
 
-// Per-mode model settings. gpt-4.1-mini handles the multi-rule instruction
-// following that gpt-4o-mini struggled with, while staying fast + cheap.
+// Per-mode model settings for precise multi-rule instruction following.
 const MODEL = "gpt-4.1-mini";
 const TEMPERATURE: Record<ChatMode, number> = {
   tutor: 0.3,    // precise, low hallucination
@@ -66,8 +67,36 @@ function parseMode(raw: unknown): ChatMode {
 }
 
 function getOpenAIClient(): OpenAI {
-  client ??= new OpenAI();
+  client ??= new OpenAI({ timeout: 20_000, maxRetries: 1 });
   return client;
+}
+
+async function readLimitedJson(req: Request): Promise<unknown> {
+  const declared = Number(req.headers.get("content-length") ?? 0);
+  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+    throw new RangeError("Payload too large");
+  }
+  const reader = req.body?.getReader();
+  if (!reader) throw new SyntaxError("Missing body");
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > MAX_BODY_BYTES) {
+      await reader.cancel();
+      throw new RangeError("Payload too large");
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return JSON.parse(new TextDecoder().decode(bytes));
 }
 
 function auditBase(requestId: string, startedAt: number, mode?: ChatMode) {
@@ -114,7 +143,7 @@ export async function POST(req: Request) {
     );
   }
 
-  // 1. Auth (middleware also enforces; keep explicit for defense-in-depth)
+  // Route handlers enforce auth directly; Proxy adds an optimistic front-door check.
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -123,20 +152,41 @@ export async function POST(req: Request) {
   // 2. Parse + validate payload
   let body: unknown;
   try {
-    body = await req.json();
-  } catch {
-    logAudit({
+    body = await readLimitedJson(req);
+  } catch (error) {
+    await logAudit({
       userId,
       kind: "invalid_payload",
       content: "",
-      meta: { ...auditBase(requestId, startedAt), reason: "json_parse" },
+      meta: {
+        ...auditBase(requestId, startedAt),
+        reason: error instanceof RangeError ? "body_too_large" : "json_parse",
+      },
     });
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+    return NextResponse.json(
+      { error: error instanceof RangeError ? "Payload too large" : "Invalid JSON" },
+      { status: error instanceof RangeError ? 413 : 400 },
+    );
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    await logAudit({
+      userId,
+      kind: "invalid_payload",
+      content: "",
+      meta: { ...auditBase(requestId, startedAt), reason: "body_shape" },
+    });
+    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
   const rawMessages = (body as { messages?: unknown }).messages;
-  if (!Array.isArray(rawMessages) || rawMessages.length === 0 || !rawMessages.every(isValidMessage)) {
-    logAudit({
+  if (
+    !Array.isArray(rawMessages) ||
+    rawMessages.length === 0 ||
+    rawMessages.length > MAX_HISTORY ||
+    !rawMessages.every(isValidMessage)
+  ) {
+    await logAudit({
       userId,
       kind: "invalid_payload",
       content: "",
@@ -147,9 +197,10 @@ export async function POST(req: Request) {
 
   const mode = parseMode((body as { mode?: unknown }).mode);
   const messages = rawMessages as IncomingMessage[];
+  const totalMessageChars = messages.reduce((sum, message) => sum + message.content.length, 0);
   const latest = messages[messages.length - 1];
   if (latest.role !== "user") {
-    logAudit({
+    await logAudit({
       userId,
       kind: "invalid_payload",
       content: latest.content,
@@ -158,12 +209,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Last message must be from user" }, { status: 400 });
   }
 
-  if (latest.content.length > MAX_MESSAGE_CHARS) {
-    logAudit({
+  if (
+    messages.some((message) => message.content.length > MAX_MESSAGE_CHARS) ||
+    totalMessageChars > MAX_TOTAL_MESSAGE_CHARS
+  ) {
+    await logAudit({
       userId,
       kind: "input_too_long",
       content: latest.content,
-      meta: { ...auditBase(requestId, startedAt, mode), length: latest.content.length },
+      meta: {
+        ...auditBase(requestId, startedAt, mode),
+        latestLength: latest.content.length,
+        totalMessageChars,
+      },
     });
     return NextResponse.json(
       { error: `Message too long. Max ${MAX_MESSAGE_CHARS} characters.` },
@@ -172,9 +230,18 @@ export async function POST(req: Request) {
   }
 
   // 3. Rate limit
-  const rl = checkRateLimit(userId);
+  let rl;
+  try {
+    rl = await checkRateLimit(userId);
+  } catch (error) {
+    console.error("[chat] rate limiter unavailable", error);
+    return NextResponse.json(
+      { error: "The tutor is temporarily unavailable." },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
+  }
   if (!rl.ok) {
-    logAudit({
+    await logAudit({
       userId,
       kind: "rate_limited",
       content: latest.content,
@@ -192,7 +259,7 @@ export async function POST(req: Request) {
   // 4. Prompt-injection heuristics (fast local check)
   const injection = detectInjection(latest.content);
   if (injection.blocked) {
-    logAudit({
+    await logAudit({
       userId,
       kind: "injection_heuristic",
       content: latest.content,
@@ -205,7 +272,7 @@ export async function POST(req: Request) {
   // 5. Input moderation
   const inputVerdict = await moderate(latest.content);
   if (inputVerdict.flagged) {
-    logAudit({
+    await logAudit({
       userId,
       kind: "input_flagged",
       content: latest.content,
@@ -252,7 +319,7 @@ export async function POST(req: Request) {
     assistantText = completion.choices[0]?.message?.content ?? "";
   } catch (err) {
     console.error("[chat] OpenAI call failed:", err);
-    logAudit({
+    await logAudit({
       userId,
       kind: "chat_upstream_error",
       content: latest.content,
@@ -266,7 +333,7 @@ export async function POST(req: Request) {
   }
 
   if (!assistantText.trim()) {
-    logAudit({
+    await logAudit({
       userId,
       kind: "chat_empty_response",
       content: latest.content,
@@ -282,7 +349,7 @@ export async function POST(req: Request) {
   // 8. Output moderation — run BEFORE the bytes leave the server.
   const outputVerdict = await moderate(assistantText);
   if (outputVerdict.flagged) {
-    logAudit({
+    await logAudit({
       userId,
       kind: "output_flagged",
       content: assistantText,

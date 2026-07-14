@@ -2,17 +2,27 @@
   "name": "amoxcalli-app",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.10"
+    }
+  },
   "scripts": {
     "predev": "node scripts/fetch-db.js",
     "prebuild": "node scripts/fetch-db.js",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:app-content && npm run audit:course && npm run images:openai:audit",
     "audit:course": "node scripts/audit-course-quality.js",
     "audit:app-content": "node scripts/audit-app-content-exclusions.js",
     "images:s3:manifest": "node scripts/import-s3-word-images.js",
     "images:openai:audit": "node scripts/audit-openai-word-images.js",
     "images:openai:contact-sheets": "node scripts/make-openai-word-image-contact-sheets.js",
+    "images:openai:approve": "node scripts/approve-openai-word-image.js",
     "images:openai:dry-run": "node scripts/generate-openai-word-images.js --dry-run --include-phrases",
     "images:openai:generate": "node scripts/generate-openai-word-images.js --execute --include-phrases",
     "audio:mms:test": "node scripts/run-audio-python.js --test na ta calli chilli tlahtoa xochitl quema --seeds 42 555 1337 2026",
@@ -25,10 +35,10 @@
     "audio:openai:generate": "node scripts/generate-openai-audio.js --execute"
   },
   "dependencies": {
-    "@clerk/nextjs": "^7.0.7",
+    "@clerk/nextjs": "^7.5.17",
     "@neondatabase/serverless": "^1.0.2",
     "better-sqlite3": "^12.8.0",
-    "next": "16.2.1",
+    "next": "^16.2.10",
     "openai": "^6.34.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -39,7 +49,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.7"
   }
 }

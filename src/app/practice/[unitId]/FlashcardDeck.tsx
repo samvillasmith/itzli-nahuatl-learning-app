@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from "react";
 import { displayGloss } from "@/lib/gloss";
-import { playAudio, vocabAudioUrl } from "@/lib/audio";
-import { getWordImage } from "@/data/word-images";
+import { playAudio, vocabCardAudioUrl } from "@/lib/audio";
+import { getWordImage, type WordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 
@@ -62,6 +62,19 @@ function PronunciationHint({ value }: { value: string }) {
   );
 }
 
+function ImageCredit({ image }: { image: WordImage | null }) {
+  if (!image || image.source === "openai" || image.source === "s3") return null;
+  const href = image.pexels_url ?? image.author_url ?? image.source;
+  const label = `${image.author} · ${image.license}`;
+  return href?.startsWith("http") ? (
+    <p className="mt-2 text-center text-[11px] text-stone-400">
+      Image: <a href={href} target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600">{label}</a>
+    </p>
+  ) : (
+    <p className="mt-2 text-center text-[11px] text-stone-400">Image: {label}</p>
+  );
+}
+
 export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -98,6 +111,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
     allowLegacyFallback: true,
     safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
   });
+  const audioSrc = vocabCardAudioUrl(card.id);
 
   return (
     <div className="max-w-lg mx-auto">
@@ -120,13 +134,13 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
           <div className="flex flex-col h-full">
             {/* Image on front if available */}
             {img && (
-              <div className="relative h-44 w-full overflow-hidden rounded-t-3xl bg-stone-50">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-3xl bg-stone-50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={img.url}
                   alt={displayNahuatl(card.headword)}
-                  className="mx-auto h-full w-44 origin-top scale-[1.3] object-cover object-top"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                  className={img.source === "openai" ? "h-auto w-full object-top" : "h-full w-full object-cover"}
+                  onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                 />
               </div>
             )}
@@ -145,9 +159,6 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                   </span>
                 </p>
               )}
-              <div className="flex justify-center mt-2" onClick={(e) => e.stopPropagation()}>
-                <AudioButton src={vocabAudioUrl(card.id)} />
-              </div>
               <p className="text-stone-300 text-xs mt-1 uppercase">tap to reveal</p>
             </div>
           </div>
@@ -161,6 +172,12 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
           </div>
         )}
       </button>
+      <ImageCredit image={img} />
+      {audioSrc && (
+        <div className="mt-3 flex justify-center">
+          <AudioButton src={audioSrc} />
+        </div>
+      )}
 
       {/* Controls */}
       <div className="flex items-center gap-2.5 mt-5">

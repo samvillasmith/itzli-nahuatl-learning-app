@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Privacy Policy for Itzli — Eastern Huasteca Nahuatl learning app.",
 };
 
-const EFFECTIVE_DATE = "April 30, 2026";
+const EFFECTIVE_DATE = "July 13, 2026";
 const CONTACT_EMAIL = "svillasmith3@gmail.com";
 
 export default function PrivacyPage() {
@@ -66,10 +66,10 @@ export default function PrivacyPage() {
         For AI tutor requests and safety guardrail events, we record an audit row
         containing: the Clerk user ID, the event kind, request metadata, safety
         categories and scores where applicable, model names, timestamps, and
-        <strong> sha256 hashes of chat content</strong>. We do <strong>not</strong>{" "}
-        store the raw text of user messages or AI responses. Hashes let us verify
-        a user-supplied message or detect repeated attack patterns without
-        retaining readable chat content.
+        <strong> keyed sha256 hashes of chat content</strong>. We do <strong>not</strong>{" "}
+        store the raw text of user messages or AI responses. The secret-keyed
+        hashes support repeated-abuse detection without retaining readable chat
+        content or exposing ordinary low-entropy messages to dictionary lookup.
       </p>
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">Chat content (transient, via OpenAI)</h3>
@@ -91,8 +91,10 @@ export default function PrivacyPage() {
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">Local storage</h3>
       <p className="mb-4">
         Your browser stores a mirror of your learning progress in{" "}
-        <code>localStorage</code> so the app works offline. We also set a
-        localStorage entry recording that you agreed to these policies, so we
+        <code>localStorage</code> so progress remains visible between visits and
+        can be synchronized after sign-in. The app still requires a network
+        connection to load pages and media. We also set a localStorage entry
+        recording that you agreed to these policies, so we
         don&apos;t re-prompt you every visit. Clearing your browser data will clear
         these.
       </p>
@@ -130,8 +132,8 @@ export default function PrivacyPage() {
         <li><strong>Neon (Postgres)</strong> — stores progress and hashed audit rows</li>
         <li><strong>OpenAI</strong> — processes chat content (completion + moderation)</li>
         <li><strong>Vercel</strong> — hosts the app and serves requests</li>
-        <li><strong>Amazon S3</strong> — serves static assets (audio, database bundle)</li>
-        <li><strong>Pexels</strong> — serves vocabulary photographs</li>
+        <li><strong>Amazon S3</strong> — serves static assets (images, audio, database bundle)</li>
+        <li><strong>Pexels, Wikimedia Commons, Flickr, Rawpixel, and StockSnap</strong> — serve some vocabulary images</li>
       </ul>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">5. Your rights</h2>
@@ -158,18 +160,18 @@ export default function PrivacyPage() {
       </p>
       <ul className="list-disc pl-6 space-y-1 mb-4">
         <li>Go to <Link href="/progress" className="text-emerald-600 underline">Progress</Link> and use &quot;Reset progress&quot; to clear local progress and delete the cloud copy.</li>
-        <li>Delete your account via Clerk to remove authentication data.</li>
+        <li>Delete your account via Clerk to remove authentication data, cloud progress, tutor rate-limit records, and safety-audit hashes tied to your Clerk user ID.</li>
       </ul>
       <p className="mb-4">
-        For complete deletion of the safety-audit hash log tied to your user ID,
-        email {CONTACT_EMAIL}.
+        You can also email {CONTACT_EMAIL} for an access or deletion request.
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">7. Retention</h2>
       <p className="mb-4">
         We retain progress data for as long as your account is active. If you
-        delete your account or reset progress, the corresponding rows are
-        removed. Hashed audit rows are retained for up to 24 months for
+        delete your account, its progress and audit rows are removed. Resetting
+        progress removes only local and cloud learning progress. Hashed audit
+        rows are retained for up to 24 months for
         abuse-pattern detection, then purged. Server logs follow our hosting
         provider&apos;s retention policy.
       </p>
@@ -193,7 +195,7 @@ export default function PrivacyPage() {
       <p className="mb-4">
         We take reasonable technical measures to protect your data: TLS in
         transit, authentication via Clerk, password hashing on Clerk&apos;s side,
-        and sha256 hashing of audit content. No system is perfectly secure;
+        and secret-keyed sha256 hashing of audit content. No system is perfectly secure;
         we cannot guarantee absolute security.
       </p>
 

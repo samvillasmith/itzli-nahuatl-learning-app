@@ -509,7 +509,7 @@ export const CURRICULUM_PATH: CurriculumMeta[] = [
     title: "Commands and Requests",
     goal: "Give and respond to commands in practical situations.",
     grammar: "Imperatives, polite requests, and action prompts.",
-    lexical: "Stand, write, read, turn, drive, undress, and command verbs.",
+    lexical: "Stand, write, read, turn, drive, and command verbs.",
     descriptor: "Can give short instructions and understand direct requests.",
     capstoneTask: "Give a sequence of five classroom or household instructions.",
   },

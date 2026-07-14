@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "headword": "tototl",
+      "safeMatches": ["tototl"]
+    },
+    {
+      "headword": "chichiualayotl",
+      "safeMatches": ["chichiualayotl"]
+    },
+    {
+      "headword": "cocoxqui",
+      "safeMatches": ["cocoxqui"]
+    },
+    {
+      "headword": "ehuatl",
+      "safeMatches": ["ehuatl", "skin"]
+    },
+    {
+      "headword": "notlacal",
+      "safeMatches": ["notlacal"]
+    },
+    {
+      "headword": "xolentok",
+      "safeMatches": ["xolentok", "wet"]
+    }
+  ]
+}

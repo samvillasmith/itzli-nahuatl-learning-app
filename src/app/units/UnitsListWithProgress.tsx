@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { loadProgress, type ProgressData } from "@/lib/progress";
+import { emptyProgress } from "@/lib/progress-schema";
+import { pullAndMerge } from "@/lib/cloudSync";
+import { useUser } from "@clerk/nextjs";
 import type { Unit } from "@/lib/db";
 
 const BAND_COLOR: Record<string, string> = {
@@ -26,11 +29,17 @@ const BAND_SECTION: Record<string, string> = {
 };
 
 export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
-  const [progress, setProgress] = useState<ProgressData>({ version: 1, units: {} });
+  const [progress, setProgress] = useState<ProgressData>(emptyProgress());
+  const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
-    setProgress(loadProgress());
-  }, []);
+    if (!isLoaded) return;
+    if (isSignedIn) {
+      void pullAndMerge().then(({ progress: merged }) => setProgress(merged));
+    } else {
+      setProgress(loadProgress());
+    }
+  }, [isLoaded, isSignedIn]);
 
   const grouped = BAND_ORDER.map((band) => ({
     band,

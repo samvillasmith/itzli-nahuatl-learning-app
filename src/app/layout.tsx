@@ -8,7 +8,7 @@ import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
-  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 2,000+ vocabulary words, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
+  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 800+ lesson words and phrases, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -147,7 +147,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 educationalLevel: "Beginner to Intermediate (A1–B1)",
                 inLanguage: "nhe",
                 isAccessibleForFree: true,
-                license: "https://creativecommons.org/licenses/by-sa/4.0/",
               }),
             }}
           />
@@ -176,15 +175,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
                 <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
-                  href="https://github.com/samvillasmith/itzli-nahuatl-learning-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-stone-600 transition-colors"
-                >
-                  GitHub
-                </a>
-                <span className="text-stone-300 hidden sm:inline">·</span>
-                <a
                   href="https://amoxcalli.org/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -209,14 +199,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   svillasmith3@gmail.com
                 </a>
                 <span className="text-stone-300 hidden sm:inline">·</span>
-                <a
-                  href="https://www.pexels.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-stone-600 transition-colors"
-                >
-                  Photos: Pexels
-                </a>
+                <span>Image credits appear with each card</span>
               </div>
             </div>
           </footer>

@@ -88,8 +88,8 @@ export default function TermsPage() {
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">6. Intellectual property</h2>
       <p className="mb-4">
-        The Itzli source code is released under the project&apos;s open-source license
-        available in the repository. Imported Nāhuatlahtolli lesson content is
+        Any distributed copy of the Itzli source code is governed by the project
+        license included with that copy. Imported Nāhuatlahtolli lesson content is
         adapted from the COERLL course by Sabina de la Cruz, Catalina de la Cruz,
         Josefrayn Sánchez-Perry, Kelly McDonough, and Sergio Romero and remains
         available under{" "}
@@ -121,8 +121,8 @@ export default function TermsPage() {
         <li><strong>Neon Postgres</strong> — progress sync and safety audit log</li>
         <li><strong>OpenAI</strong> — AI tutor (gpt-4.1-mini) and content moderation (omni-moderation-latest)</li>
         <li><strong>Vercel</strong> — hosting</li>
-        <li><strong>Amazon S3</strong> — static asset delivery (audio, database)</li>
-        <li><strong>Pexels</strong> — vocabulary photographs</li>
+        <li><strong>Amazon S3</strong> — static asset delivery (images, audio, database)</li>
+        <li><strong>Pexels, Wikimedia Commons, Flickr, Rawpixel, and StockSnap</strong> — vocabulary images, credited on the card when used</li>
         <li><strong>COERLL / UT Austin</strong> — public CC BY-SA Nāhuatlahtolli source course material and source media links</li>
       </ul>
       <p className="mb-4">

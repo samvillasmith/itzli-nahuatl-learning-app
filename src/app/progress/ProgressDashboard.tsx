@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { loadProgress, resetProgress, type ProgressData } from "@/lib/progress";
+import { emptyProgress } from "@/lib/progress-schema";
 import { pullAndMerge, deleteCloudProgress } from "@/lib/cloudSync";
 import type { Unit } from "@/lib/db";
 
@@ -20,8 +21,9 @@ const BAND_LABEL: Record<string, string> = {
 };
 
 export default function ProgressDashboard({ units }: { units: Unit[] }) {
-  const [progress, setProgress] = useState<ProgressData>({ version: 1, units: {} });
+  const [progress, setProgress] = useState<ProgressData>(emptyProgress());
   const [confirmReset, setConfirmReset] = useState(false);
+  const [resetError, setResetError] = useState("");
   const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
@@ -33,10 +35,14 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
     }
   }, [isLoaded, isSignedIn]);
 
-  function handleReset() {
+  async function handleReset() {
+    setResetError("");
+    if (isSignedIn && !(await deleteCloudProgress())) {
+      setResetError("Cloud progress could not be deleted. Please try again.");
+      return;
+    }
     resetProgress();
-    if (isSignedIn) deleteCloudProgress();
-    setProgress({ version: 1, units: {} });
+    setProgress(emptyProgress());
     setConfirmReset(false);
   }
 
@@ -233,6 +239,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
 
       {/* Reset */}
       <div className="mt-6 pt-6 border-t border-stone-100">
+        {resetError && <p className="mb-3 text-sm font-medium text-red-600">{resetError}</p>}
         {!confirmReset ? (
           <button
             onClick={() => setConfirmReset(true)}

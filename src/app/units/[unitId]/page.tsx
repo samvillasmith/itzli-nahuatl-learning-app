@@ -12,6 +12,7 @@ import {
 import { getGrammarLabsForUnit } from "@/data/grammar-labs";
 import { getNahuatlahtolliLesson } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
+import { requireAuth } from "@/lib/require-auth";
 import LessonFlow from "./LessonFlow";
 
 export async function generateStaticParams() {
@@ -24,6 +25,7 @@ export default async function UnitPage({
 }: {
   params: Promise<{ unitId: string }>;
 }) {
+  await requireAuth();
   const { unitId } = await params;
   const num = parseInt(unitId, 10);
   if (isNaN(num)) notFound();

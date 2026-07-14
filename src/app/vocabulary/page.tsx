@@ -1,5 +1,6 @@
 import { getAllPrimerVocab, getAllUnits, getPrimerVocabEntryCount, searchVocab } from "@/lib/db";
 import { displayNahuatl } from "@/lib/orthography";
+import { requireAuth } from "@/lib/require-auth";
 
 const POS_COLOR: Record<string, string> = {
   noun: "bg-amber-50 text-amber-700",
@@ -20,6 +21,7 @@ export default async function VocabularyPage({
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
+  await requireAuth();
   const { q } = await searchParams;
   const query = q?.trim() ?? "";
 

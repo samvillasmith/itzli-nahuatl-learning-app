@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
+import { requireAuth } from "@/lib/require-auth";
 import TutorClient from "./TutorClient";
 
 export const metadata: Metadata = {
   title: "Tutor",
 };
 
-export default function TutorPage() {
+export default async function TutorPage() {
+  await requireAuth();
   if (TUTOR_FEATURE_ENABLED) return <TutorClient />;
 
   return (

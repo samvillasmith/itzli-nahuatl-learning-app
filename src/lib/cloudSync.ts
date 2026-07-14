@@ -1,4 +1,4 @@
-// Client-side only — import from client components only.
+// Client-side only - import from client components only.
 
 import {
   loadProgress,
@@ -8,20 +8,18 @@ import {
   type ProgressData,
   type SrsData,
 } from "@/lib/progress";
+import { emptySrs, parseProgressData, parseSrsData } from "@/lib/progress-schema";
 
-// Merge two ProgressData objects — take furthest-along state per unit.
 function mergeProgress(local: ProgressData, cloud: ProgressData): ProgressData {
-  const merged: ProgressData = { version: 1, units: { ...cloud.units } };
+  const merged: ProgressData = { version: 2, units: { ...cloud.units } };
   for (const [key, localUnit] of Object.entries(local.units)) {
     if (!localUnit) continue;
     const cloudUnit = cloud.units[key];
-    if (!cloudUnit) {
-      merged.units[key] = localUnit;
-    } else if (
+    if (
+      !cloudUnit ||
       localUnit.completedChunks > cloudUnit.completedChunks ||
       (localUnit.completedChunks === cloudUnit.completedChunks &&
-        localUnit.status === "completed" &&
-        cloudUnit.status !== "completed")
+        localUnit.status === "completed" && cloudUnit.status !== "completed")
     ) {
       merged.units[key] = localUnit;
     }
@@ -29,39 +27,38 @@ function mergeProgress(local: ProgressData, cloud: ProgressData): ProgressData {
   return merged;
 }
 
-// Merge SRS data — take the higher of the two counts per word.
 function mergeSrs(local: SrsData, cloud: SrsData): SrsData {
-  const merged: SrsData = { version: 1, words: { ...cloud.words } };
+  const merged: SrsData = { version: 2, words: { ...cloud.words } };
   for (const [key, localPerf] of Object.entries(local.words)) {
     const cloudPerf = cloud.words[key];
-    if (!cloudPerf) {
-      merged.words[key] = localPerf;
-    } else {
-      merged.words[key] = {
-        correct: Math.max(localPerf.correct, cloudPerf.correct),
-        total: Math.max(localPerf.total, cloudPerf.total),
-      };
-    }
+    merged.words[key] = cloudPerf
+      ? {
+          correct: Math.max(localPerf.correct, cloudPerf.correct),
+          total: Math.max(localPerf.total, cloudPerf.total),
+        }
+      : localPerf;
   }
   return merged;
 }
 
-/**
- * Fetches cloud progress, merges with localStorage, and writes the result back
- * to localStorage. Returns the merged data (or local-only if cloud is unavailable).
- */
 export async function pullAndMerge(): Promise<{ progress: ProgressData; srs: SrsData }> {
   const local = loadProgress();
   const localSrs = loadSrs();
 
   try {
-    const res = await fetch("/api/progress");
+    const res = await fetch("/api/progress", { cache: "no-store" });
     if (!res.ok) return { progress: local, srs: localSrs };
-    const { progress: cloud, srs: cloudSrs } = await res.json();
-    if (!cloud) return { progress: local, srs: localSrs };
+    const body: unknown = await res.json();
+    if (typeof body !== "object" || body === null) return { progress: local, srs: localSrs };
+    const record = body as Record<string, unknown>;
+    if (record.progress === null) return { progress: local, srs: localSrs };
+
+    const cloud = parseProgressData(record.progress);
+    const cloudSrs = record.srs === null ? emptySrs() : parseSrsData(record.srs);
+    if (!cloud || !cloudSrs) return { progress: local, srs: localSrs };
 
     const merged = mergeProgress(local, cloud);
-    const mergedSrs = mergeSrs(localSrs, cloudSrs ?? { version: 1, words: {} });
+    const mergedSrs = mergeSrs(localSrs, cloudSrs);
     saveProgress(merged);
     saveSrs(mergedSrs);
     return { progress: merged, srs: mergedSrs };
@@ -70,23 +67,25 @@ export async function pullAndMerge(): Promise<{ progress: ProgressData; srs: Srs
   }
 }
 
-/**
- * Pushes current localStorage state to the cloud.
- * Fire-and-forget — errors are silently swallowed.
- */
-export function pushToCloud(): void {
-  const progress = loadProgress();
-  const srs = loadSrs();
-  fetch("/api/progress", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ progress, srs }),
-  }).catch(() => {});
+export async function pushToCloud(): Promise<boolean> {
+  try {
+    const res = await fetch("/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ progress: loadProgress(), srs: loadSrs() }),
+      keepalive: true,
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
-/**
- * Deletes cloud progress (GDPR right to erasure).
- */
-export async function deleteCloudProgress(): Promise<void> {
-  await fetch("/api/progress", { method: "DELETE" }).catch(() => {});
+export async function deleteCloudProgress(): Promise<boolean> {
+  try {
+    const res = await fetch("/api/progress", { method: "DELETE" });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }

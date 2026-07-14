@@ -3,7 +3,7 @@
  * Run once: node scripts/audit-setup.js
  *
  * Stores privacy-preserving chat audit events, never raw chat content.
- * content_hash is a sha256 digest so requests can be verified or grouped
+ * content_hash is a keyed sha256 digest so requests can be verified or grouped
  * without retaining readable text.
  */
 
@@ -50,6 +50,16 @@ async function run() {
   await sql`
     CREATE INDEX IF NOT EXISTS chat_audit_kind_created_at_idx
     ON chat_audit (kind, created_at DESC)
+  `;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS chat_rate_limits (
+      user_id       VARCHAR(64) NOT NULL,
+      window_name   VARCHAR(16) NOT NULL,
+      bucket_start  TIMESTAMPTZ NOT NULL,
+      request_count INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (user_id, window_name, bucket_start)
+    )
   `;
 
   console.log("chat_audit table ready.");
