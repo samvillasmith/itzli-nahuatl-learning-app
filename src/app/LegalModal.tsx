@@ -10,7 +10,7 @@ const STORAGE_KEY = "itzli_legal_accepted_v3";
 
 // Never show the modal on the legal docs themselves — users need to be
 // able to read them to decide whether to agree.
-const BYPASS_PATHS = ["/terms", "/privacy", "/eula"];
+const BYPASS_PATHS = ["/terms", "/privacy", "/eula", "/design-preview"];
 
 export default function LegalModal() {
   const pathname = usePathname();

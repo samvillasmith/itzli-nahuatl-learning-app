@@ -20,6 +20,21 @@ describe("strict content safety", () => {
     expect(isAppContentExcluded("ehuatl", "skin (of humans, animals, fruit)")).toBe(false);
   });
 
+  it("blocks orientation and sexual-role dictionary definitions", () => {
+    expect(isAppContentExcluded("ordinary", "a gay man")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "a lesbian")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "male homosexuality")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "a passive partner in sex; a bottom")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "same-sex relationship")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "sodomite")).toBe(true);
+  });
+
+  it("does not confuse unrelated words with orientation or sexual roles", () => {
+    expect(isAppContentExcluded("pilocelotl", "margay")).toBe(false);
+    expect(isAppContentExcluded("ordinary", "bottom line")).toBe(false);
+    expect(isAppContentExcluded("ordinary", "top of the hill")).toBe(false);
+  });
+
   it("keeps ordinary object cards eligible", () => {
     expect(isImageCardExcluded("metztli", "moon", "noun")).toBe(false);
   });

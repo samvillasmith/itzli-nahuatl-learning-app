@@ -4,17 +4,6 @@ const FALLBACK_BASE = trimBase(
   process.env.NEXT_PUBLIC_AUDIO_FALLBACK_BASE_URL || (BASE === S3_BASE ? "" : S3_BASE)
 );
 
-const VOCAB_AUDIO_OVERRIDES: Record<number, string | null> = {
-  24: "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/axcanah_1-1.mp3",
-  25: "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Queniuhqui.mp3",
-  // These cards now teach materially different conversational forms from the
-  // legacy recordings. Do not play an authoritative-sounding wrong form.
-  34: null,
-  35: null,
-  260: "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Piyali.mp3",
-  266: null,
-};
-
 function trimBase(value: string): string {
   return value.replace(/\/+$/, "");
 }
@@ -57,8 +46,5 @@ export const dialogueAudioUrl = (id: string | number) => audioUrl("dialogue", id
 
 export function vocabCardAudioUrl(id: number, explicit?: string | null): string | null {
   if (explicit) return explicit;
-  if (Object.prototype.hasOwnProperty.call(VOCAB_AUDIO_OVERRIDES, id)) {
-    return VOCAB_AUDIO_OVERRIDES[id];
-  }
   return id > 0 ? vocabAudioUrl(id) : null;
 }

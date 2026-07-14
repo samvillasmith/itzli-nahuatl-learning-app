@@ -204,11 +204,18 @@ function main() {
 
   const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadTsModule("src/data/excluded-vocab.ts");
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
+  const { getWordImage } = loadTsModule("src/data/word-images.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
   const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
   const { LESSON_FOCUS_CARDS, getLessonFocusCardsForLab } = loadTsModule("src/data/lesson-focus-cards.ts");
   const lessonFlowSource = fs.readFileSync(path.join(process.cwd(), "src/app/units/[unitId]/LessonFlow.tsx"), "utf8");
+  const reviewedAudio = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "src/data/reviewed-audio.json"), "utf8")
+  );
+  const reviewedDialogueAudioIds = new Set(
+    (reviewedAudio.dialogue || []).map((entry) => String(entry.id))
+  );
   if (/[\u00c2\u00c3]/.test(lessonFlowSource)) {
     grammarFailures.push("Unit lesson flow contains mojibake characters.");
   }
@@ -235,6 +242,9 @@ function main() {
   }
   if (!lessonFlowSource.includes("const line = lessonDialogues[step.lineIdx]")) {
     grammarFailures.push("Sentence production must render from the same filtered dialogue list used to build steps.");
+  }
+  if (!lessonFlowSource.includes("key={line.lesson_dialogue_id}")) {
+    grammarFailures.push("Sentence production must remount for each dialogue line so answers cannot carry forward.");
   }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
@@ -345,6 +355,10 @@ function main() {
   const duplicateGlossUnits = [];
   const noInteractiveDialogueUnits = [];
   const annotatedGlossUnits = [];
+  const imageUsage = new Map();
+  const missingVocabAudio = [];
+  const missingDialogueAudio = [];
+  const disabledDialogueAudio = [];
 
   for (const unit of units) {
     const filtered = filterCoreVocab(vocabRows.all(unit.lesson_number), unit.lesson_number);
@@ -355,6 +369,28 @@ function main() {
     );
     focusCardCount += focusCards.length;
     visibleCards += cards.length;
+    for (const card of cards) {
+      const image = getWordImage(card.headword, {
+        allowLegacyFallback: true,
+        safetyText: [card.gloss_en, card.part_of_speech],
+      });
+      if (image?.url && image.source === "openai") {
+        const uses = imageUsage.get(image.url) || [];
+        uses.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+        imageUsage.set(image.url, uses);
+      }
+
+      const audioPath = path.join(
+        process.cwd(),
+        "public",
+        "audio-google",
+        "vocab",
+        `${card.id}.wav`
+      );
+      if (!fs.existsSync(audioPath)) {
+        missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+      }
+    }
     const chunks = [];
     for (let i = 0; i < cards.length; i += CHUNK_SIZE) {
       chunks.push(cards.slice(i, i + CHUNK_SIZE));
@@ -391,6 +427,21 @@ function main() {
       const utterance = stripStageDirections(line.utterance_normalized);
       const translation = stripStageDirections(line.translation_en);
       if (utterance.changed || translation.changed) stageDirectionLines += 1;
+      const reviewedAudioAvailable = reviewedDialogueAudioIds.has(String(line.lesson_dialogue_id));
+      const audioAvailable = line.audio_available !== false && (reviewedAudioAvailable || !utterance.changed);
+      const audioPath = path.join(
+        process.cwd(),
+        "public",
+        "audio-google",
+        "dialogue",
+        `${line.lesson_dialogue_id}.wav`
+      );
+      if (!fs.existsSync(audioPath)) {
+        missingDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      }
+      if (!audioAvailable) {
+        disabledDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      }
       return { ...line, utterance_normalized: utterance.text };
     }).filter((line) => line.utterance_normalized);
 
@@ -406,6 +457,32 @@ function main() {
     }
   }
 
+  const duplicateVisibleImages = [...imageUsage.entries()].flatMap(([url, uses]) => {
+    const byUnit = new Map();
+    for (const use of uses) {
+      const unit = use.split(":", 1)[0];
+      byUnit.set(unit, [...(byUnit.get(unit) || []), use]);
+    }
+    return [...byUnit.values()]
+      .filter((unitUses) => new Set(unitUses.map((use) => use.split(":").slice(2).join(":"))).size > 1)
+      .map((unitUses) => `${unitUses.join(", ")} => ${url}`);
+  });
+
+  if (duplicateVisibleImages.length > 0) {
+    grammarFailures.push(
+      `Distinct visible vocabulary cards reuse image URLs: ${duplicateVisibleImages.join("; ")}`
+    );
+  }
+  if (missingVocabAudio.length > 0) {
+    grammarFailures.push(`Visible vocabulary cards missing audio: ${missingVocabAudio.join(", ")}`);
+  }
+  if (missingDialogueAudio.length > 0) {
+    grammarFailures.push(`Visible dialogue lines missing audio: ${missingDialogueAudio.join(", ")}`);
+  }
+  if (disabledDialogueAudio.length > 0) {
+    grammarFailures.push(`Visible dialogue lines have audio disabled: ${disabledDialogueAudio.join(", ")}`);
+  }
+
   console.log("Course quality audit");
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
@@ -414,6 +491,9 @@ function main() {
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
   console.log(`- Dialogue lines with stage directions stripped/hidden from audio: ${stageDirectionLines}`);
   console.log(`- Units with curated replacement dialogues: ${curatedUnits}`);
+  console.log(`- Same-unit generated image collisions: ${duplicateVisibleImages.length}`);
+  console.log(`- Visible vocabulary cards missing audio: ${missingVocabAudio.length}`);
+  console.log(`- Visible dialogue lines missing/disabled audio: ${missingDialogueAudio.length + disabledDialogueAudio.length}`);
 
   console.log("\nUnits split into multiple max-10 lessons:");
   console.log(multiLessonUnits.length ? `- ${multiLessonUnits.join(", ")}` : "- none");

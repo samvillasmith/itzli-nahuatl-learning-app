@@ -23,8 +23,8 @@ export default function DisclaimerBanner() {
       <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
           <p className="leading-relaxed">
-            <span className="font-semibold">Work in progress</span> - audio is machine-generated
-            with a Nahuatl-specific model, images are being added from the S3 catalog, and
+            <span className="font-semibold">Work in progress</span> - audio uses a neutral Spanish
+            machine voice with explicit Nahuatl pronunciation rules, images are being added from the S3 catalog, and
             more features are coming.{" "}
             <button
               onClick={() => setModalOpen(true)}
@@ -67,8 +67,8 @@ export default function DisclaimerBanner() {
               <section>
                 <h3 className="mb-1 font-semibold text-stone-800">Audio pronunciations</h3>
                 <p>
-                  The voice you hear is machine-generated. Itzli prioritizes the public
-                  Eastern Huasteca Nahuatl MMS model over general Spanish or English TTS.
+                  The voice you hear is machine-generated from a neutral Spanish voice with
+                  explicit X-SAMPA instructions for Eastern Huasteca Nahuatl pronunciation.
                 </p>
                 <ul className="mt-2 space-y-1.5 pl-0">
                   <li className="flex gap-2">

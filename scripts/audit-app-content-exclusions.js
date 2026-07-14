@@ -9,11 +9,13 @@
 
 const fs = require("fs");
 const path = require("path");
+const Database = require("better-sqlite3");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONFIG_PATH = path.join(ROOT, "src", "data", "app-content-exclusions.json");
 const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "src", "data", "app-content-reviewed-allowlist.json");
 const COURSE_PATH = path.join(ROOT, "src", "data", "nahuatlahtolli-course.json");
+const DB_PATH = path.join(ROOT, "fcn_master_lexicon_phase8_6_primer.sqlite");
 const MANIFEST_PATHS = [
   path.join(ROOT, "src", "data", "openai-word-images.json"),
   path.join(ROOT, "src", "data", "s3-word-images.json"),
@@ -48,6 +50,10 @@ const excludedHeadwords = new Set(config.headwords.map(normalize));
 const exclusionPatterns = config.patterns.map((pattern) => new RegExp(pattern, "iu"));
 const reviewedSafeMatches = new Map(
   (reviewedAllowlist.entries || []).map((entry) => [normalize(entry.headword), entry.safeMatches || []])
+);
+const DICTIONARY_ORIENTATION_OR_ROLE_PATTERN = new RegExp(
+  String.raw`\b(?:gay|lesbian(?:ism)?|homosexual(?:ity)?|bisexual(?:ity)?|queer|same[- ]sex|sodom(?:y|ite|itic)?|pederast(?:y)?|catamite|lesbiana|sodomita|sodomia)\b|(?:\b(?:top|bottom|active|passive|insertive|receptive)\b.{0,60}\b(?:gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\b|\b(?:gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\b.{0,60}\b(?:top|bottom|active|passive|insertive|receptive)\b)`,
+  "iu"
 );
 
 function isUrlLike(value) {
@@ -197,15 +203,50 @@ function scanStaticText() {
   return hits;
 }
 
+function auditDictionaryOrientationContent() {
+  if (!fs.existsSync(DB_PATH)) return { blocked: [], leaks: [] };
+
+  const db = new Database(DB_PATH, { readonly: true, fileMustExist: true });
+  const rows = db.prepare(
+    `SELECT entry_id, ehn_spoken_form, msn_headword, gloss_en, gloss_es, notes_public
+     FROM lexicon_entries
+     WHERE is_active = 1`
+  ).all();
+  db.close();
+
+  const blocked = [];
+  const leaks = [];
+  for (const row of rows) {
+    const values = [
+      row.ehn_spoken_form,
+      row.msn_headword,
+      row.gloss_en,
+      row.gloss_es,
+      row.notes_public,
+    ];
+    const text = normalize(values.filter(Boolean).join(" "));
+    if (!DICTIONARY_ORIENTATION_OR_ROLE_PATTERN.test(text)) continue;
+
+    const description = `${row.entry_id}\t${row.msn_headword || row.ehn_spoken_form}\t${row.gloss_en}`;
+    if (reasonFor(...values)) blocked.push(description);
+    else leaks.push(description);
+  }
+
+  return { blocked, leaks };
+}
+
 function main() {
   const write = process.argv.includes("--clean");
   const courseHits = cleanCourse(write);
   const manifestHits = MANIFEST_PATHS.flatMap((filePath) => cleanManifest(filePath, write));
   const staticHits = scanStaticText();
+  const dictionaryAudit = auditDictionaryOrientationContent();
 
   console.log(`Source-course excluded items: ${courseHits.length}`);
   console.log(`Image-manifest excluded items: ${manifestHits.length}`);
   console.log(`Static app text hits:         ${staticHits.length}`);
+  console.log(`Dictionary sensitive blocked: ${dictionaryAudit.blocked.length}`);
+  console.log(`Dictionary sensitive leaks:   ${dictionaryAudit.leaks.length}`);
 
   for (const [label, hits] of [
     ["Source course", courseHits],
@@ -217,8 +258,13 @@ function main() {
     for (const hit of hits) console.log(hit);
   }
 
+  if (dictionaryAudit.leaks.length) {
+    console.log("\nDictionary leaks");
+    for (const leak of dictionaryAudit.leaks) console.log(leak);
+  }
+
   if (write) console.log("\nCleaned JSON app content where possible.");
-  if (staticHits.length) process.exitCode = 1;
+  if (staticHits.length || dictionaryAudit.leaks.length) process.exitCode = 1;
 }
 
 main();

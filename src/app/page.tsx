@@ -67,7 +67,7 @@ export default function LandingPage() {
           <p className="mt-5 max-w-2xl text-base leading-7 text-stone-100 sm:text-lg">
             Itzli now presents a curated CEFR-style progression across {audit.totalUnits} units,
             {vocabCount.toLocaleString()} core lesson cards, {primerEntryCount.toLocaleString()} primer
-            vocabulary entries, language-specific machine audio, dialogues, grammar, practice, and a
+            vocabulary entries, pronunciation-guided machine audio, dialogues, grammar, practice, and a
             searchable lexicon built around Eastern Huasteca Nahuatl.
           </p>
 
@@ -187,7 +187,7 @@ export default function LandingPage() {
           },
           {
             title: "Images and pronunciation",
-            body: "Lesson and practice cards prefer the S3 word-image manifest, while audio is generated from a Nahuatl-specific machine model.",
+            body: "Lesson and practice cards prefer the S3 word-image manifest, while audio uses a neutral Spanish voice guided by explicit Nahuatl phoneme rules.",
           },
         ].map((feature) => (
           <div key={feature.title} className="rounded-lg border border-stone-200 bg-white p-6">

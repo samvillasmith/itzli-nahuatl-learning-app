@@ -8,6 +8,7 @@ import { filterCoreVocab } from "@/data/excluded-vocab";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
+import reviewedAudio from "@/data/reviewed-audio.json";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -38,6 +39,9 @@ function resolveDbPath(): string {
 }
 
 let _db: Database.Database | null = null;
+const REVIEWED_DIALOGUE_AUDIO_IDS = new Set(
+  reviewedAudio.dialogue.map((entry) => entry.id)
+);
 
 export function getDb(): Database.Database {
   if (!_db) {
@@ -292,7 +296,8 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
         ...line,
         utterance_normalized: utterance.text,
         translation_en: translation.text || null,
-        audio_available: !utterance.changed,
+        audio_available:
+          REVIEWED_DIALOGUE_AUDIO_IDS.has(line.lesson_dialogue_id) || !utterance.changed,
       };
     })
     .filter(

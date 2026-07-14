@@ -64,6 +64,8 @@
     "yecoa"
   ],
   "patterns": [
+    "\\b(gay|lesbian(?:ism)?|homosexual(?:ity)?|bisexual(?:ity)?|queer|same[- ]sex|sodom(?:y|ite|itic)?|pederast(?:y)?|catamite|lesbiana|sodomita|sodomia)\\b",
+    "(?:\\b(top|bottom|active|passive|insertive|receptive)\\b.{0,60}\\b(gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\\b|\\b(gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\\b.{0,60}\\b(top|bottom|active|passive|insertive|receptive)\\b)",
     "\\b(sex|sexual|intercourse|copulat|fornicate|prostitut|erotic|porn|fuck|fucking|masturbat|orgasm|orgasms|orgy|orgies|group sex|threesome|threesomes|cum|sperm|semen|ejaculat|suck|stroke|jack off|erect|erection|cock|dick|penis|vagina|pussy|vulva|clit|clitoris|testicle|testicles|genital|genitals|private parts|pubic|pubic bone|pubic hair|foreskin|glans|impotent|homosexual|homosexuality|lesbian|intersex|anal sex)\\b",
     "\\b(nipple|nipples|pecs|pectoral|pectorals|boob|boobs|tit|tits|titties|breast|breasts|chest|belly|stomach|navel|belly button|abdomen|armpit|armpits|groin|butt|butts|buttock|buttocks|rump|ass|rear|anus|anal|asshole|rectum)\\b",
     "\\b(body part|body parts|flesh|skin|torso|waist|hip|hips|thigh|thighs|underwear|underclothes|undergarment|undergarments|briefs|panties|bra|loincloth|loin cloth|loin-cloth|swimsuit|bikini|shirtless|topless|exposed|wet|nude|nudity|naked)\\b",

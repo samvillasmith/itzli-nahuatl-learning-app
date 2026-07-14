@@ -16,89 +16,67 @@ https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app
 Vocabulary clips are expected at `vocab/{lesson_vocab.id}.wav`, and dialogue
 clips are expected at `dialogue/{lesson_dialogue_id}.wav`.
 
-## Source Model
+## Production Voice
 
-The Nahuatl-specific generation path is `facebook/mms-tts-nhe`, Meta's public
-MMS TTS checkpoint for Eastern Huasteca Nahuatl (`nhe`). It is the preferred
-source in this repo because it is language-specific. General Spanish or English
-TTS can sound smoother, but in testing it produced worse Nahuatl phonology:
-`ll` drifted toward Spanish `y`, short `a` picked up off-glides, and words like
-`chilli` were read as if they were Spanish or English-looking text.
+The active voice set uses Google's neutral `es-US` Spanish voice with explicit
+Eastern Huasteca Nahuatl phoneme instructions. The generator emits X-SAMPA in
+SSML instead of sending untreated Nahuatl-looking text to a Spanish normalizer.
+This protects initial consonants, pure vowels, `x = sh`, crisp `tl/tz/ch`,
+`kw/w`, and glottal `h`.
 
-The current generator is:
+The production generator is:
 
 ```text
-scripts/generate-audio.py
+scripts/generate-google-audio.js
 ```
 
-The npm wrapper is:
+Exact learner-form corrections and curated dialogue lines live in:
 
 ```text
-scripts/run-audio-python.js
+src/data/reviewed-audio.json
 ```
 
 ## How We Generate Clips
 
-Install the audio dependencies into a local Python environment:
+Preview the transformed pronunciation before making an API request:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --no-cache-dir -r scripts\requirements-audio.txt
+npm run audio:google:test
 ```
 
-Generate a small listening set first:
+Generate only the reviewed correction set:
 
 ```powershell
-npm run audio:mms:test
+CONFIRM_TTS_SPEND=YES node scripts/generate-google-audio.js --reviewed --execute --force
 ```
 
-The default hard-case test words are `na`, `ta`, `calli`, `chilli`, `tlahtoa`,
-`xochitl`, and `quema`. These catch the most obvious regressions before a full
-run.
-
-Generate all missing vocabulary and dialogue files:
-
-```powershell
-npm run audio:mms:generate
-```
-
-The generator reads `lesson_vocab` and `lesson_dialogues` from the curriculum
-SQLite database and writes:
+The generator writes:
 
 ```text
-public/audio/vocab/{id}.wav
-public/audio/dialogue/{lesson_dialogue_id}.wav
+public/audio-google/vocab/{id}.wav
+public/audio-google/dialogue/{lesson_dialogue_id}.wav
 ```
 
-The script is resumable. Existing WAV files are skipped unless `--regen` is
-used.
+Existing WAV files are skipped unless `--force` is used.
 
 ## Local Playback
 
-The app defaults to S3. To test freshly generated local files, create
-`.env.local` with:
+The app defaults to `/audio-google` and falls back to the S3 voice prefix when
+a local static file is unavailable.
 
-```env
-NEXT_PUBLIC_AUDIO_BASE_URL=/audio
-```
+## Coverage
 
-Then restart the dev server. Remove that override to return playback to the S3
-voice set.
-
-## Recent MMS Test Run
-
-A full local MMS run generated:
+The checked-in Spanish-voice set contains:
 
 ```text
 2,043 vocabulary WAVs
 372 dialogue WAVs
 2,415 total files
-about 87 MB
+about 169 MB
 ```
 
-That local run was useful for testing `facebook/mms-tts-nhe`, but it is not the
-active voice set unless `NEXT_PUBLIC_AUDIO_BASE_URL=/audio` is present and the
-files exist under `public/audio`.
+The course audit verifies every visible vocabulary card and dialogue line has a
+matching WAV, including curated dialogue IDs.
 
 ## Production Publish Path
 
@@ -116,15 +94,9 @@ https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab/{id}.wav
 https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/dialogue/{id}.wav
 ```
 
-## Experiments We Do Not Use For Production
+## Authentication
 
-`scripts/generate-google-audio.js` is an experiment for testing Google Cloud
-TTS with a Spanish voice plus Nahuatl pronunciation rules. It emits SSML
-`<phoneme>` tags using X-SAMPA so rules such as `x -> sh`, `ch -> tS`, and
-`tz -> ts` are explicit instead of hoping the Spanish text normalizer guesses
-them.
-
-The Google experiment uses a local service-account JSON from `secrets/` or
+The Google generator uses a local service-account JSON from `secrets/` or
 `GOOGLE_APPLICATION_CREDENTIALS`. The `secrets/` folder must stay uncommitted.
 
 ```powershell
@@ -142,6 +114,11 @@ NEXT_PUBLIC_AUDIO_FALLBACK_BASE_URL=https://nahuatl-language.s3.us-east-1.amazon
 
 With that setup, the app tries local Google files first and falls back to the
 S3-backed production voice set when a Google file has not been generated yet.
+
+## Comparison Pipelines
+
+`scripts/generate-audio.py` can generate `facebook/mms-tts-nhe` comparison
+clips. It is not the active voice selected for the app.
 
 `scripts/generate-openai-audio.js` is kept only as an experiment for comparing
 prompt-controlled TTS. It is not the production source because it did not hold

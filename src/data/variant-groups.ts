@@ -121,8 +121,8 @@ export const VARIANT_GROUPS: Record<number, VariantGroup[]> = {
     { canonicalId: 203, variantIds: [219] },
     // "sister": huelti · variant: uelti
     { canonicalId: 210, variantIds: [222] },
-    // "child": conetl (standalone noun) · variant: pilconetzi (diminutive)
-    { canonicalId: 226, variantIds: [214] },
+    // "child": conetl (standalone noun) · variants: pilconetzi (diminutive), konetl (INALI spelling)
+    { canonicalId: 226, variantIds: [214, 6234] },
     // "aunt": ahuitl (standalone noun) · variant: aui (bare stem)
     { canonicalId: 227, variantIds: [216] },
     // "father": tahtli (standalone noun) · variant: tata (familiar short form)

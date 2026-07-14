@@ -4374,7 +4374,7 @@
     "generated_at": "2026-05-21T00:23:29.027Z"
   },
   "nicca": {
-    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximopanolti-7696.png",
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nimitztlahpaloz-source-2-7.png",
     "license": "OpenAI-generated image; review before publication",
     "author": "gpt-image-1",
     "alt": "Illustration for nicca: hello, what's up (greeting)",
@@ -4383,8 +4383,8 @@
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T01:07:25.823Z",
-    "alias_of": "ximopanolti"
+    "generated_at": "2026-05-21T00:19:00.764Z",
+    "alias_of": "Nimītztlahpaloz"
   },
   "Nichīlmola": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nichilmola-source-18-22.png",
@@ -5671,7 +5671,7 @@
     "generated_at": "2026-05-21T00:19:01.142Z"
   },
   "pannotoc": {
-    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlakahtli-575.png",
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlahcotonaya-source-7-28.png",
     "license": "OpenAI-generated image; review before publication",
     "author": "gpt-image-1",
     "alt": "Illustration for pannotoc: good afternoon (lit. midday passes)",
@@ -5680,8 +5680,8 @@
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T03:01:35.021Z",
-    "alias_of": "tlakahtli"
+    "generated_at": "2026-05-21T00:30:14.747Z",
+    "alias_of": "tlahcotōnaya"
   },
   "pāpalōtl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/papalotl-source-1-11.png",
@@ -5804,7 +5804,7 @@
     "generated_at": "2026-05-21T02:50:23.395Z"
   },
   "pialli": {
-    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximopanolti-7696.png",
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nimitztlahpaloa-source-11-3.png",
     "license": "OpenAI-generated image; review before publication",
     "author": "gpt-image-1",
     "alt": "Illustration for pialli: hello (greeting)",
@@ -5813,8 +5813,8 @@
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T01:07:25.823Z",
-    "alias_of": "ximopanolti"
+    "generated_at": "2026-05-21T01:06:55.980Z",
+    "alias_of": "Nimītztlahpaloa"
   },
   "pilātzin": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pilatzin-source-20-36.png",
@@ -7858,7 +7858,7 @@
     "generated_at": "2026-05-21T02:21:36.124Z"
   },
   "ximopanolti": {
-    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximopanolti-7696.png",
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xipano-source-2-9.png",
     "license": "OpenAI-generated image; review before publication",
     "author": "gpt-image-1",
     "alt": "Illustration for ximopanolti: welcome, come in",
@@ -7867,7 +7867,8 @@
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T01:07:25.823Z"
+    "generated_at": "2026-05-21T00:23:43.441Z",
+    "alias_of": "Xipano"
   },
   "ximoquetza": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximoquetza-7700.png",

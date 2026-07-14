@@ -32,7 +32,7 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 | A2 | 16–30 | Home, community, nature, time, health |
 | B1 | 31–43 | Abstract concepts, narratives, cultural topics |
 
-- **826 core lesson cards after safety filtering and variant collapse**, plus 65 grammar-derived focus cards
+- **825 core lesson cards after safety filtering and variant collapse**, plus 65 grammar-derived focus cards
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`
@@ -73,38 +73,30 @@ Notable corrections: `quema` ("yes", not "when?"), `yankuik` ("new", not "bad"),
 
 ## Audio Generation
 
-Audio pronunciations are machine-generated. For the public learning app, do not
-use Spanish or English general-purpose TTS as the production source of truth. Those
-models can sound smoother, but they make unacceptable Nahuatl errors: short `a`
-can drift toward an off-glide, `ll` can become Spanish `y`, and words such as
-`chilli` can be read as English/Spanish-looking text.
-
-The production source should be **`facebook/mms-tts-nhe`**, the public MMS TTS
-checkpoint trained for Eastern Huasteca Nahuatl. It is less glossy than modern
-general-purpose voices, but it is the only public model in this repo's stack that is
-actually language-specific for `nhe`.
+Audio pronunciations are machine-generated with a neutral `es-US` Spanish voice
+and explicit Eastern Huasteca Nahuatl pronunciation instructions. The Google
+pipeline emits X-SAMPA phoneme tags so initial consonants are retained, vowels
+stay pure, `x` is pronounced `sh`, and `tl`, `tz`, `ch`, `kw`, and glottal `h`
+are not left to a Spanish text normalizer to guess.
 
 The full voice pipeline is documented in [`docs/voices.md`](docs/voices.md).
 
 Recommended workflow:
 
-1. Generate test clips with several seeds.
-2. Listen for the known hard cases: `na`, `ta`, `calli`, `chilli`, `xochitl`,
-   `tlahtoa`, `quema`.
-3. Regenerate weak clips with alternate seeds or slower synthesis settings.
-4. Prioritize full dialogue lines and context audio, because MMS was trained on
-   connected speech and is rougher on isolated one-word prompts.
-5. Upload selected WAV files to the S3 audio prefix used by the app.
+1. Preview the exact text, pronunciation cue, X-SAMPA, and SSML before synthesis.
+2. Listen for initial consonants, short vowels, `ll`, `x`, `tl`, `tz`, and glottal `h`.
+3. Put corrected learner forms and curated dialogue lines in
+   `src/data/reviewed-audio.json`.
+4. Regenerate only that reviewed set and verify every visible card resolves to a WAV.
 
 ```bash
-npm run audio:mms:test
-npm run audio:mms:generate
+npm run audio:google:test
+CONFIRM_TTS_SPEND=YES node scripts/generate-google-audio.js --reviewed --execute --force
 ```
 
-`scripts/generate-openai-audio.js` is retained only as an experiment. Prompted
-general TTS did not hold Nahuatl phonology reliably enough for production.
-`scripts/colab_xtts.py` is also deprecated for production because it uses
-Spanish phonemization.
+`scripts/generate-audio.py` remains available for MMS comparison clips.
+`scripts/generate-openai-audio.js` and `scripts/colab_xtts.py` remain comparison
+tools, not the active production voice path.
 
 ---
 
@@ -204,11 +196,10 @@ npm run verify    # typecheck, lint, tests, and content/course audits
 
 ### Audio
 
-Audio prefers the configured local/static base and falls back to the S3 audio prefix. If you want to regenerate candidates with the Nahuatl-specific MMS pipeline:
+Audio prefers the checked-in Spanish-voice set with Nahuatl X-SAMPA instructions and falls back to the S3 audio prefix. To preview the pronunciation transformation:
 
 ```bash
-npm run audio:mms:test
-npm run audio:mms:generate
+npm run audio:google:test
 ```
 
 Avoid using `scripts/colab_xtts.py` for production because its Spanish phonemizer causes Nahuatl-specific pronunciation errors. Avoid using the OpenAI prompt-controlled generator for production unless a fresh sample proves it is better on the hard cases.
@@ -232,7 +223,8 @@ src/
 │   ├── progress.ts          local browser progress tracking
 │   └── progress-schema.ts   validated cloud/local progress contract
 scripts/
-├── generate-audio.py        MMS-NHE audio generation (production source)
+├── generate-google-audio.js Spanish voice + Nahuatl X-SAMPA production audio
+├── generate-audio.py        MMS-NHE comparison generation
 ├── generate-openai-audio.js Experimental prompt-controlled OpenAI TTS
 ├── colab_xtts.py            Deprecated Kokoro Spanish-phonemizer script
 ├── fetch-db.js              Auto-downloads SQLite DB from S3

@@ -1,0 +1,20 @@
+{
+  "vocab": [
+    { "id": "24", "text": "axkana" },
+    { "id": "25", "text": "kenihki" },
+    { "id": "34", "text": "Kenihki tiya?" },
+    { "id": "35", "text": "Kenihki tiistok?" },
+    { "id": "260", "text": "piyali" },
+    { "id": "266", "text": "tlaskamati" }
+  ],
+  "dialogue": [
+    { "id": "CUR-11-001", "text": "Piyali." },
+    { "id": "CUR-11-002", "text": "Piyali, ximopanolti." },
+    { "id": "CUR-11-003", "text": "Tlaskamati." },
+    { "id": "CUR-11-004", "text": "Axtlen." },
+    { "id": "CUR-11-005", "text": "Asta mostlaj." },
+    { "id": "CUR-11-006", "text": "Asta mostlaj." },
+    { "id": "FCN-LDG-000028", "text": "Aah, tipaxaloti?" },
+    { "id": "FCN-LDG-000046", "text": "Niyowua." }
+  ]
+}

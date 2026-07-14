@@ -27,6 +27,7 @@ loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
 loadEnvFile(path.resolve(__dirname, "..", ".env"));
 
 const PROJECT_ROOT = path.resolve(__dirname, "..");
+const REVIEWED_AUDIO_PATH = path.join(PROJECT_ROOT, "src", "data", "reviewed-audio.json");
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 
 const DEFAULTS = {
@@ -41,6 +42,8 @@ const DEFAULTS = {
   outDir: process.env.AUDIO_OUT_DIR || path.resolve(PROJECT_ROOT, "public", "audio-google"),
   inputMode: process.env.NAHUATL_GOOGLE_INPUT_MODE || "phoneme",
   concurrency: Number(process.env.TTS_CONCURRENCY || "2"),
+  accessToken: process.env.GOOGLE_TTS_ACCESS_TOKEN || "",
+  quotaProject: process.env.GOOGLE_CLOUD_QUOTA_PROJECT || "",
 };
 
 const ENCODING_TO_EXTENSION = {
@@ -76,6 +79,7 @@ function parseArgs(argv) {
     execute: false,
     force: false,
     listVoices: false,
+    reviewed: false,
     kind: "all",
     limit: 0,
     ids: new Set(),
@@ -91,6 +95,7 @@ function parseArgs(argv) {
     else if (arg === "--force") args.force = true;
     else if (arg === "--dry-run") args.execute = false;
     else if (arg === "--list-voices") args.listVoices = true;
+    else if (arg === "--reviewed") args.reviewed = true;
     else if (arg === "--credentials") {
       args.credentials = value;
       i += 1;
@@ -135,6 +140,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === "--concurrency") {
       args.concurrency = Number(value);
+      i += 1;
+    } else if (arg === "--quota-project") {
+      args.quotaProject = value;
       i += 1;
     } else if (arg === "--test") {
       while (argv[i + 1] && !argv[i + 1].startsWith("--")) {
@@ -193,6 +201,7 @@ Options:
   --kind vocab|dialogue|all       Which rows to generate. Default: all
   --limit N                       Cap rows for testing. Default: no cap
   --ids a,b,c                     Only generate selected row ids
+  --reviewed                      Generate exact rows from src/data/reviewed-audio.json
   --force                         Overwrite existing files
   --out DIR                       Output root. Default: public/audio-google
   --language-code CODE            Default: ${DEFAULTS.languageCode}
@@ -206,6 +215,7 @@ Options:
   --input-mode phoneme|cue|orthography
                                   Default: ${DEFAULTS.inputMode}
   --concurrency N                 Default: ${DEFAULTS.concurrency}
+  --quota-project PROJECT         Quota project for GOOGLE_TTS_ACCESS_TOKEN
   --execute                       Actually call the TTS API
 `);
 }
@@ -292,11 +302,19 @@ async function getAccessToken(serviceAccount) {
   return data.access_token;
 }
 
+function googleHeaders(token, args, contentType) {
+  return {
+    Authorization: `Bearer ${token}`,
+    ...(contentType ? { "Content-Type": contentType } : {}),
+    ...(args.quotaProject ? { "x-goog-user-project": args.quotaProject } : {}),
+  };
+}
+
 async function listVoices(token, args) {
   const url = new URL("https://texttospeech.googleapis.com/v1/voices");
   if (args.languageCode) url.searchParams.set("languageCode", args.languageCode);
   const data = await fetchJson(url, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: googleHeaders(token, args),
   });
   for (const voice of data.voices || []) {
     console.log(
@@ -311,6 +329,19 @@ async function listVoices(token, args) {
 }
 
 function loadRows(args) {
+  if (args.reviewed) {
+    const reviewed = JSON.parse(fs.readFileSync(REVIEWED_AUDIO_PATH, "utf8"));
+    const rows = [
+      ...(reviewed.vocab || []).map((row) => ({ ...row, kind: "vocab" })),
+      ...(reviewed.dialogue || []).map((row) => ({ ...row, kind: "dialogue" })),
+    ];
+    let filtered = rows;
+    if (args.kind !== "all") filtered = filtered.filter((row) => row.kind === args.kind);
+    if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(String(row.id)));
+    if (args.limit > 0) filtered = filtered.slice(0, args.limit);
+    return filtered;
+  }
+
   if (args.test.length) {
     return args.test
       .map((rawText, index) => {
@@ -444,10 +475,9 @@ function xsampaForText(text) {
     .replace(WORD_RE, (word) => wordToXsampa(word) || word);
 }
 
-function previewRows(args, rows, credentialsPath) {
-  const relCreds = path.relative(PROJECT_ROOT, credentialsPath) || credentialsPath;
+function previewRows(args, rows, authLabel) {
   console.log(`Rows: ${rows.length}`);
-  console.log(`Credentials: ${relCreds}`);
+  console.log(`Credentials: ${authLabel}`);
   console.log(`Language: ${args.languageCode}`);
   console.log(`Voice: ${args.voiceName || "(Google default for language)"}`);
   console.log(`Encoding: ${args.audioEncoding}`);
@@ -492,10 +522,7 @@ async function synthesizeOne(token, args, row) {
 
   const data = await fetchJson("https://texttospeech.googleapis.com/v1/text:synthesize", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
+    headers: googleHeaders(token, args, "application/json"),
     body: JSON.stringify(request),
   });
 
@@ -520,11 +547,14 @@ async function runPool(items, concurrency, worker) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const credentialsPath = resolveCredentialsPath(args);
-  const serviceAccount = loadServiceAccount(credentialsPath);
+  const credentialsPath = args.accessToken ? "" : resolveCredentialsPath(args);
+  const serviceAccount = credentialsPath ? loadServiceAccount(credentialsPath) : null;
+  const authLabel = args.accessToken
+    ? "temporary Google access token"
+    : path.relative(PROJECT_ROOT, credentialsPath) || credentialsPath;
+  const token = args.accessToken || await getAccessToken(serviceAccount);
 
   if (args.listVoices) {
-    const token = await getAccessToken(serviceAccount);
     await listVoices(token, args);
     return;
   }
@@ -535,7 +565,7 @@ async function main() {
     return;
   }
 
-  previewRows(args, rows, credentialsPath);
+  previewRows(args, rows, authLabel);
 
   if (!args.execute) {
     console.log("");
@@ -548,7 +578,6 @@ async function main() {
     process.exit(1);
   }
 
-  const token = await getAccessToken(serviceAccount);
   let generated = 0;
   let skipped = 0;
   let failed = 0;

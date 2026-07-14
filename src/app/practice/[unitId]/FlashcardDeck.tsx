@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { LoaderCircle, Volume2 } from "lucide-react";
 import { displayGloss } from "@/lib/gloss";
 import { playAudio, vocabCardAudioUrl } from "@/lib/audio";
 import { getWordImage, type WordImage } from "@/data/word-images";
@@ -31,21 +32,18 @@ function AudioButton({ src }: { src: string }) {
     <button
       onClick={handlePlay}
       title="Play pronunciation"
-      className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
+      aria-label="Play pronunciation"
+      className={`flex h-10 w-10 items-center justify-center rounded-full transition-all ${
         playing
           ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
-          : "bg-stone-100 text-stone-400 hover:bg-stone-200 hover:text-stone-600 border border-stone-200"
+          : "border border-stone-200 bg-white text-stone-500 shadow-sm hover:border-emerald-300 hover:text-emerald-700"
       }`}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="w-4 h-4"
-      >
-        <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
-        <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.061z" />
-      </svg>
+      {playing ? (
+        <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
+      ) : (
+        <Volume2 className="h-4 w-4" aria-hidden="true" />
+      )}
     </button>
   );
 }
@@ -127,19 +125,19 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
       {/* Card */}
       <button
         onClick={flip}
-        className="w-full bg-white border-2 border-stone-100 rounded-3xl shadow-sm text-center hover:border-stone-200 hover:shadow-md transition-all cursor-pointer select-none overflow-hidden"
+        className="w-full cursor-pointer select-none overflow-hidden rounded-lg border border-stone-200 bg-white text-center shadow-[0_22px_60px_rgba(39,36,31,0.10)] transition-all hover:border-emerald-300"
         style={{ minHeight: "280px" }}
       >
         {!flipped ? (
           <div className="flex flex-col h-full">
             {/* Image on front if available */}
             {img && (
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-3xl bg-stone-50">
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={img.url}
                   alt={displayNahuatl(card.headword)}
-                  className={img.source === "openai" ? "h-auto w-full object-top" : "h-full w-full object-cover"}
+                  className="h-full w-full object-cover object-top"
                   onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
                 />
               </div>
@@ -159,7 +157,6 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
                   </span>
                 </p>
               )}
-              <p className="text-stone-300 text-xs mt-1 uppercase">tap to reveal</p>
             </div>
           </div>
         ) : (
@@ -181,11 +178,11 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
 
       {/* Controls */}
       <div className="flex items-center gap-2.5 mt-5">
-        <button onClick={prev} className="flex-1 py-3 rounded-2xl border-2 border-stone-200 text-sm font-semibold text-stone-500 hover:bg-white hover:border-stone-300 transition-colors">← Back</button>
+        <button onClick={prev} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">← Back</button>
         {flipped && (
-          <button onClick={markDone} className="flex-[2] py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold transition-colors shadow-sm">Got it ✓</button>
+          <button onClick={markDone} className="flex-[2] rounded-lg bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700">Got it ✓</button>
         )}
-        <button onClick={next} className="flex-1 py-3 rounded-2xl border-2 border-stone-200 text-sm font-semibold text-stone-500 hover:bg-white hover:border-stone-300 transition-colors">Skip →</button>
+        <button onClick={next} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">Skip →</button>
       </div>
     </div>
   );

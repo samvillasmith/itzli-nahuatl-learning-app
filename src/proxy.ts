@@ -12,6 +12,7 @@ const PUBLIC_ROUTES = new Set([
 
 function isPublicRoute(pathname: string) {
   return (
+    (process.env.NODE_ENV === "development" && pathname === "/design-preview") ||
     PUBLIC_ROUTES.has(pathname) ||
     pathname === "/sign-in" ||
     pathname.startsWith("/sign-in/") ||
