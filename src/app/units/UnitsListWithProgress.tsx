@@ -20,7 +20,7 @@ const BAND_ORDER = ["A1", "A2", "B1"];
 const BAND_LABEL: Record<string, string> = {
   A1: "Beginner — A1",
   A2: "Elementary — A2",
-  B1: "Intermediate — B1",
+  B1: "B1-oriented extensions",
 };
 
 const BAND_SECTION: Record<string, string> = {
@@ -53,7 +53,7 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
         <div key={band}>
           <div className={`mb-4 flex items-center gap-3 rounded-xl border px-4 py-3 ${BAND_SECTION[band]}`}>
             <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_COLOR[band]}`}>
-              {band}
+              {band === "B1" ? "B1-oriented" : band}
             </span>
             <span className="text-sm font-semibold">{BAND_LABEL[band]}</span>
             <span className="text-xs ml-auto opacity-60">{bandUnits.length} units</span>

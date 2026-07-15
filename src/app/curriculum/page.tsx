@@ -8,6 +8,12 @@ const BAND_STYLE: Record<string, string> = {
   B1: "border-violet-200 bg-violet-50 text-violet-800",
 };
 
+const BAND_LABEL: Record<string, string> = {
+  A1: "A1",
+  A2: "A2",
+  B1: "B1-oriented",
+};
+
 export default function CurriculumPage() {
   const units = getAllUnits();
   const audit = getCurriculumAudit();
@@ -24,12 +30,13 @@ export default function CurriculumPage() {
             Curriculum Map
           </p>
           <h1 className="text-4xl font-black text-stone-950">
-            A1 to B1, organized as a learner path.
+            A1 foundations through A2, with B1-oriented extensions.
           </h1>
           <p className="mt-4 max-w-2xl leading-7 text-stone-600">
             This map is the audited presentation order for the source lessons. It prioritizes
             communicative readiness first, then expands grammar, vocabulary, dialogue, narration,
-            and B1 control.
+            and B1-oriented control. Level labels describe the material, not a certification or
+            guaranteed exit level.
           </p>
         </div>
         <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
@@ -37,7 +44,7 @@ export default function CurriculumPage() {
           <div className="mt-4 grid grid-cols-3 gap-2">
             {(["A1", "A2", "B1"] as const).map((band) => (
               <div key={band} className={`rounded-lg border p-3 text-center ${BAND_STYLE[band]}`}>
-                <div className="text-xs font-bold">{band}</div>
+                <div className="text-[10px] font-bold">{BAND_LABEL[band]}</div>
                 <div className="text-2xl font-black">{audit.byBand[band]}</div>
               </div>
             ))}
@@ -72,7 +79,7 @@ export default function CurriculumPage() {
                       {unit.path_code}
                     </span>
                     <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_STYLE[unit.target_band]}`}>
-                      {unit.target_band}
+                      {BAND_LABEL[unit.target_band] ?? unit.target_band}
                     </span>
                   </div>
                   <h3 className="font-bold leading-snug text-stone-950">{unit.theme_en}</h3>

@@ -44,13 +44,13 @@ export default function HomeUnitsGrid({ units }: { units: Unit[] }) {
       {bands.map((band) => {
         const bandUnits = units.filter((u) => u.target_band === band);
         if (!bandUnits.length) return null;
-        const bandLabel = band === "A1" ? "Beginner" : band === "A2" ? "Elementary" : "Intermediate";
+        const bandLabel = band === "A1" ? "Beginner" : band === "A2" ? "Elementary" : "B1-oriented extensions";
 
         return (
           <section key={band} className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}>
-                {band}
+                {band === "B1" ? "B1-oriented" : band}
               </span>
               <h2 className="text-base font-semibold text-stone-600">{bandLabel}</h2>
             </div>

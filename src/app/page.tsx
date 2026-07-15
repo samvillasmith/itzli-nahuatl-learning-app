@@ -68,7 +68,7 @@ export default function LandingPage() {
             </Show>
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-500">
-            <span>Eastern Huasteca variety</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1 → B1</span>
+            <span>Eastern Huasteca variety</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1–A2 + B1-oriented extensions</span>
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">

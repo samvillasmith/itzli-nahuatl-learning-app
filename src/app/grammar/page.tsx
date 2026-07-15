@@ -36,7 +36,7 @@ export default async function GrammarPage() {
         byBand[band].length > 0 && (
           <div key={band} className="mb-10">
             <h2 className="text-xs font-bold uppercase text-stone-400 mb-4">
-              {band === 'A1' ? 'A1 · Beginner' : band === 'A2' ? 'A2 · Elementary' : 'B1 · Intermediate'}
+              {band === 'A1' ? 'A1 · Beginner' : band === 'A2' ? 'A2 · Elementary' : 'B1-oriented · Extensions'}
             </h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {byBand[band].map((lesson) => (

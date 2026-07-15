@@ -102,6 +102,10 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .mobile-learning-nav a { display:flex; min-height:3.15rem; flex-direction:column; align-items:center; justify-content:center; gap:.2rem; border-radius:.85rem; color:#6f6a60; font-size:.63rem; font-weight:750; }
 .mobile-learning-nav a.is-active { color:#0b594d; background:#edf8f4; }
 
+@media (min-width: 48rem) {
+  .mobile-learning-nav { display:none; }
+}
+
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
 
 a,
