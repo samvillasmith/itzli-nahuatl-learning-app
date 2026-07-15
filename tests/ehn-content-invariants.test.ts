@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
 import { GRAMMAR_LABS } from "../src/data/grammar-labs";
 import { LESSON_FOCUS_CARDS } from "../src/data/lesson-focus-cards";
+import { isCoreVocabItem } from "../src/data/excluded-vocab";
 
 function learnerText(value: unknown): string {
   return JSON.stringify(value);
@@ -59,9 +60,15 @@ describe("Eastern Huasteca content invariants", () => {
     expect(lessons).not.toMatch(/makilia.{0,80}give/iu);
   });
 
-  it("teaches tlanextia as a dawn-time greeting, not a literal translation", () => {
-    expect(curatedVocab).toContain("dawn-time greeting");
-    expect(curatedVocab).toContain("not a word-for-word equivalent");
+  it("does not teach broader morning expressions as core Chicontepec greetings", () => {
+    expect(isCoreVocabItem({ id: 164, gloss_en: "good morning" }, 7)).toBe(false);
+    expect(isCoreVocabItem({ id: 7697, gloss_en: "good morning" }, 11)).toBe(false);
+    expect(curatedVocab).not.toContain("dawn-time greeting");
+  });
+
+  it("quarantines secondary imports unless matched to the native course", () => {
+    expect(isCoreVocabItem({ id: 7000, entry_id: "kaikki:test", gloss_en: "test" }, 40)).toBe(false);
+    expect(isCoreVocabItem({ id: 6110, entry_id: "native:tecciztli", gloss_en: "egg" }, 38)).toBe(true);
   });
 
   it("keeps corrected vocabulary metadata and native EHN senses", () => {

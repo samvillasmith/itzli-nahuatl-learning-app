@@ -16,7 +16,6 @@ const WORDS = [
   // ── Greetings & social (Unit 11) ─────────────────────────────
   { form: "tlaskamati", gloss: "thank you", pos: "intj", unit: 11 },
   { form: "ximopanolti", gloss: "welcome, come in", pos: "verb", unit: 11 },
-  { form: "tlanextia", gloss: "dawn-time greeting; literally ‘it dawns’ (not a word-for-word equivalent of ‘good morning’)", pos: "verb", unit: 11 },
   { form: "pannotoc", gloss: "good afternoon (lit. midday passes)", pos: "verb", unit: 11 },
 
   // ── Daily life verbs (Unit 7 — dividing up the day) ──────────

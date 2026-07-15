@@ -181,10 +181,6 @@ const GLOBAL_FIXES = [
   { form: "molōni", newGloss: "to boil; to bubble up (intransitive)" },
   { form: "achiyok", newGloss: "a little more" },
   { form: "anihueliti", newGloss: "cannot; to be unable" },
-  {
-    form: "tlanextia",
-    newGloss: "dawn-time greeting; literally ‘it dawns’ (not a word-for-word equivalent of ‘good morning’)",
-  },
   // These regional EHN meanings are directly attested in the native-speaker
   // course and must not be replaced with Classical dictionary meanings.
   { form: "tecciztli", newGloss: "egg" },

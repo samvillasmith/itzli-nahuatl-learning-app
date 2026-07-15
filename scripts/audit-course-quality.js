@@ -317,7 +317,7 @@ function main() {
   ).all();
 
   const vocabRows = db.prepare(
-    `SELECT id, rank, display_form AS headword, gloss_en, part_of_speech,
+    `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
             lesson_number AS first_lesson_number, lesson_number, semantic_domain
      FROM lesson_vocab
      WHERE lesson_number = ?
