@@ -547,7 +547,7 @@ export const CURRICULUM_PATH: CurriculumMeta[] = [
     stageTitle: STAGE.b1Control,
     title: "Conditionals I",
     goal: "Make if/then statements about choices, money, and plans.",
-    grammar: "Intla clauses, negation, and hypothetical outcomes.",
+    grammar: "Tlan clauses, negation, and hypothetical outcomes.",
     lexical: "If, but, truly, never, money, animals, and conditional connectors.",
     descriptor: "Can express simple conditions and consequences.",
     capstoneTask: "Say what you will do if you have money and if you do not.",

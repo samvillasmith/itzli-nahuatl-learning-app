@@ -133,12 +133,12 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Subject prefixes on verbs",
     content:
-      "Subject prefixes: ni- (I), ti- (you sg / we), ∅ (he/she or they), an- (you all). Plural also adds -h/-j suffix. Examples: nitequiti (I work), titequiti (you work), tequiti (he/she works), titequitih (we work), antequitih (you all work), tequitih (they work).",
+      "Eastern Huasteca subject prefixes: ni- (I), ti- (you sg / we), ∅ (he/she or they), in- (you all). Plural also adds -h. Examples: nitequiti (I work), titequiti (you work), tequiti (he/she works), titequitih (we work), intequitih (you all work), tequitih (they work).",
   },
   {
     title: "Object prefixes",
     content:
-      "Object prefixes on verbs: nech- (me), mits- (you sg), k-/ki- (him/her/it), tech- (us), amech- (you all), kin- (them); te- (someone, non-specific), tla- (something, non-specific). Use ONLY on transitive verbs.",
+      "Object prefixes on verbs: nech- (me), mits- (you sg), k-/ki- (him/her/it), tech- (us), mech- (you all), kin- (them); te- (someone, non-specific), tla- (something, non-specific). Use ONLY on transitive verbs.",
   },
   {
     title: "tic- vs titech-",
@@ -188,7 +188,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Possessive prefixes",
     content:
-      "Possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), amo- (your pl.), in- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notokah (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
+      "Eastern Huasteca possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), inmo- (your pl.), inin- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notokah (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
   },
   {
     title: "Noun endings and plural",
@@ -213,7 +213,7 @@ const GRAMMAR_SNIPPETS = [
   {
     title: "Identity sentences without an extra 'to be' word",
     content:
-      "For beginner identity sentences, attach the person prefix directly to the identity word. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Do NOT invent a verb like 'eli' for 'to be'.",
+      "For beginner identity sentences, attach the person prefix directly to the identity word. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Eli is a real EHN verb ('to be/become/grow') but is not a generic identity copula.",
   },
   {
     title: "Existence — 'there is / there are'",

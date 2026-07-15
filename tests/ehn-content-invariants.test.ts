@@ -1,0 +1,49 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
+import { GRAMMAR_LABS } from "../src/data/grammar-labs";
+
+function learnerText(value: unknown): string {
+  return JSON.stringify(value);
+}
+
+describe("Eastern Huasteca content invariants", () => {
+  const lessons = learnerText(GRAMMAR_LESSONS);
+  const labs = learnerText(GRAMMAR_LABS);
+  const dialogueGenerator = readFileSync(
+    join(process.cwd(), "scripts/generate-dialogues.js"),
+    "utf8",
+  );
+  const tutorPrompt = readFileSync(
+    join(process.cwd(), "src/lib/chat-system-prompt.ts"),
+    "utf8",
+  );
+
+  it("does not teach Classical ō-augmented past paradigms", () => {
+    for (const text of [lessons, labs]) {
+      expect(text).not.toMatch(/ōnihuetz|ōnitequitic|ōniquicōhuac|ōniihhuia/iu);
+    }
+  });
+
+  it("uses EHN second-person plural and object markers", () => {
+    for (const text of [lessons, labs, tutorPrompt]) {
+      expect(text).not.toMatch(/antequit|amechmaka|amo- \(your pl/iu);
+    }
+    expect(lessons).toContain("intequitih");
+    expect(tutorPrompt).toContain("mech- (you all)");
+  });
+
+  it("uses tlan, akkia/acquiya, and axcanah in authored examples", () => {
+    expect(lessons).not.toMatch(/\bIntla\b/u);
+    expect(labs).not.toMatch(/\bIntla\b/u);
+    expect(dialogueGenerator).not.toMatch(/\bIntlā\b/u);
+    expect(dialogueGenerator).not.toMatch(/¿Āquin/iu);
+    expect(lessons).toContain("Tlan nitequiti");
+  });
+
+  it("keeps known meaning-changing errors out of grammar", () => {
+    expect(lessons).not.toMatch(/kikkwa|Ximonechilhui|ticcuahcuepaāh/iu);
+    expect(lessons).not.toMatch(/makilia.{0,80}give/iu);
+  });
+});

@@ -3,9 +3,9 @@
 // Run once: node scripts/generate-dialogues.js
 
 const Database = require("better-sqlite3");
-const path = require("path");
+const { resolveDbPath } = require("./_db-path");
 
-const DB_PATH = path.join(__dirname, "../../molina/curriculum/fcn_master_lexicon_phase8_6_primer.sqlite");
+const DB_PATH = resolveDbPath();
 const db = new Database(DB_PATH);
 
 // ── Dialogue data ─────────────────────────────────────────────────────────────
@@ -18,8 +18,8 @@ const dialogues = [
     unitId: "FCN-LSN-0010", // Unit 1 — The Alphabet
     lines: [
       { s: "A", ehn: "Piyālli! ¿Titlahtōa nāhuatl?", en: "Hello! Do you speak Nahuatl?" },
-      { s: "B", ehn: "Āmo mātzin, āchtopa nimomachtia.", en: "Not yet — I'm just beginning to learn." },
-      { s: "A", ehn: "Cuālli. ¿Āquin mitztlamachtia in tōntōnahuah?", en: "Good. Who is teaching you the sounds?" },
+      { s: "B", ehn: "Axcanah mātzin, āchtopa nimomachtia.", en: "Not yet — I'm just beginning to learn." },
+      { s: "A", ehn: "Cuālli. ¿Ācquiya mitztlamachtia tlahtōlli?", en: "Good. Who is teaching you the sounds?" },
       { s: "B", ehn: "Notlamachtiah nicān pan caltlamachticān. Cuālli quitōa nāhuatl.", en: "My teacher here at school. He speaks Nahuatl well." },
     ],
   },
@@ -46,7 +46,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Cāmpa tiyāuh?", en: "Where are you going?" },
       { s: "B", ehn: "Niyāuh tiānquiz. ¿Huan ta, tiyāuh?", en: "I'm going to the market. And you, are you going?" },
-      { s: "A", ehn: "Āmo, āxcan ninēhnemi pan āltepētl. ¿Quēmman tihuāllāz?", en: "No, today I'm walking around town. When will you come back?" },
+      { s: "A", ehn: "Axcanah, āxcan ninēhnemi pan āltepētl. ¿Quēmman tihuāllāz?", en: "No, today I'm walking around town. When will you come back?" },
       { s: "B", ehn: "Tiotlac nihuāllāz. Cuālli ximopāquilti!", en: "I'll come back in the evening. Have a good time!" },
     ],
   },
@@ -64,8 +64,8 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlein nopa nicān?", en: "What is that here?" },
       { s: "B", ehn: "Nopa noaxca, nicān niccāhua.", en: "That is mine; I leave it here." },
-      { s: "A", ehn: "¿Huan neca, iaxca āquin?", en: "And that over there, whose is it?" },
-      { s: "B", ehn: "Neca iaxca nocniuh. Āmo toaxca.", en: "That belongs to my friend. It is not ours." },
+      { s: "A", ehn: "¿Huan neca, iaxca ācquiya?", en: "And that over there, whose is it?" },
+      { s: "B", ehn: "Neca iaxca nocniuh. Ax toaxca.", en: "That belongs to my friend. It is not ours." },
     ],
   },
   {
@@ -81,7 +81,7 @@ const dialogues = [
     unitId: "FCN-LSN-0020", // Unit 10 — My Appearance
     lines: [
       { s: "A", ehn: "¿Quēniuhqui timoyōlia āxcan?", en: "How are you feeling today?" },
-      { s: "B", ehn: "Cuālli nicah, tlazcāmati. Āmo nicpiya cocoliztli.", en: "I'm well, thank you. I don't have any illness." },
+      { s: "B", ehn: "Cuālli niitztoc, tlazcāmati. Ax nicpiya cocoliztli.", en: "I'm well, thank you. I don't have any illness." },
       { s: "A", ehn: "Quēna, timoyōlia chicāhuac.", en: "Yes, you look strong." },
       { s: "B", ehn: "Tlazcāmati. Na nocca ninēmi cuālli.", en: "Thank you. I also live well." },
     ],
@@ -100,9 +100,9 @@ const dialogues = [
     unitId: "FCN-LSN-0023", // Unit 13 — Verbs with specific object
     lines: [
       { s: "A", ehn: "¿Tlen ticchihua nicān?", en: "What are you making here?" },
-      { s: "B", ehn: "Nictlaxcaloa. ¿Huan ta, tlen ticcua?", en: "I'm making tortillas. And you, what are you eating?" },
+      { s: "B", ehn: "Nitlaxcaloa. ¿Huan ta, tlen ticcua?", en: "I'm making tortillas. And you, what are you eating?" },
       { s: "A", ehn: "Niccua tōmātl huan etl. ¿Huan ta?", en: "I'm eating tomato and bean. And you?" },
-      { s: "B", ehn: "Niātli āmo niccua. Nicnequi niccua tamalli āxcan.", en: "I'm drinking water, not eating. I want to eat tamales today." },
+      { s: "B", ehn: "Niātli, ax nitlacua. Nicnequi niccua tamalli āxcan.", en: "I'm drinking water, not eating. I want to eat tamales today." },
     ],
   },
   {
@@ -127,7 +127,7 @@ const dialogues = [
     unitId: "FCN-LSN-0026", // Unit 16 — Past Tense Verbs Part 3
     lines: [
       { s: "A", ehn: "¿Tlen ōticchiuh pan tiānquiz?", en: "What did you do at the market?" },
-      { s: "B", ehn: "Āmo cuālli. Āquin ōnēchichtec in tomi.", en: "Not good. Someone stole my money." },
+      { s: "B", ehn: "Ax cuālli. Cē tlacatl nēchichtec in tomi.", en: "Not good. Someone stole my money." },
       { s: "A", ehn: "¡Āmo cuālli! ¿Ōtiquīzac tiānquiz?", en: "That's terrible! Did you leave the market?" },
       { s: "B", ehn: "Quēna, ōniquīzac. Āmo nōmpa nihuāllāz.", en: "Yes, I left. I won't go back there." },
     ],
@@ -137,7 +137,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlen onca pan mesa?", en: "What is on the table?" },
       { s: "B", ehn: "Onca cē taza huan ōme comitl.", en: "There is one cup and two pots." },
-      { s: "A", ehn: "¿Āquin ximotlālis pan siya?", en: "Who will sit in the chair?" },
+      { s: "A", ehn: "¿Ācquiya motlālis pan siya?", en: "Who will sit in the chair?" },
       { s: "B", ehn: "Ninotlālis nicān. Ximocalaqui pan puerta.", en: "I will sit here. Come in through the door." },
     ],
   },
@@ -153,9 +153,9 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0030", // Unit 20 — Grammar of -pil and -tzin
     lines: [
-      { s: "A", ehn: "¿Āquin in tlacātzin nicān?", en: "Who is the gentleman here?" },
+      { s: "A", ehn: "¿Ācquiya in tlacātzin nicān?", en: "Who is the gentleman here?" },
       { s: "B", ehn: "In tlacātzin notātatzin. Ximotlāli, ximoāxilti.", en: "The gentleman is my father. Sit, welcome." },
-      { s: "A", ehn: "¿Huan in cihuātzin, āquin ca?", en: "And the lady, who is she?" },
+      { s: "A", ehn: "¿Huan in cihuātzin, ācquiya?", en: "And the lady, who is she?" },
       { s: "B", ehn: "In cihuātzin nonantzin. Tlazcāmati otimōhuallah.", en: "The lady is my mother. Thank you for coming." },
     ],
   },
@@ -190,7 +190,7 @@ const dialogues = [
     unitId: "FCN-LSN-0034", // Unit 24 — I Had Gone to the City Part 1
     lines: [
       { s: "A", ehn: "¿Cāmpa ōtiyāh yalhua?", en: "Where did you go yesterday?" },
-      { s: "B", ehn: "Ōniyāh Mexco. Ōniquitta in āltepētl huan tiānquiz.", en: "I went to Mexico. I saw the city and the market." },
+      { s: "B", ehn: "Niyāhqui Mexihco. Niquittac in āltepētl huan tiānquiz.", en: "I went to Mexico. I saw the city and the market." },
       { s: "A", ehn: "¿Huan ōticalac escuela?", en: "And did you enter the school?" },
       { s: "B", ehn: "Quēna, huan ōniquitta in tiopa. Cuālli āltepētl.", en: "Yes, and I saw the church. A fine city." },
     ],
@@ -243,17 +243,17 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0040", // Unit 30 — The Conditional, Part 1
     lines: [
-      { s: "A", ehn: "Intlā tiyāuh tiānquiz, ¿ticcuīz nākatl?", en: "If you go to the market, will you buy meat?" },
-      { s: "B", ehn: "Intlā onca tomi, quēna. Āmo mātzin nicpiya.", en: "If there is money, yes. I don't have any yet." },
-      { s: "A", ehn: "Intlā āmo tomi, ¿tlen ticchīhuaz?", en: "If there's no money, what will you do?" },
+      { s: "A", ehn: "Tlan tiyāuh tiānquiz, ¿ticcuīz nākatl?", en: "If you go to the market, will you buy meat?" },
+      { s: "B", ehn: "Tlan onca tomi, quēna. Axcanah mātzin nicpiya.", en: "If there is money, yes. I don't have any yet." },
+      { s: "A", ehn: "Tlan ax onca tomi, ¿tlen ticchīhuaz?", en: "If there's no money, what will you do?" },
       { s: "B", ehn: "Nēlia āmo niccuīz nākatl. Aic niccuīz.", en: "Truly I won't buy meat. I'll never buy it." },
     ],
   },
   {
     unitId: "FCN-LSN-0041", // Unit 31 — Cleansing ceremonies / Conditional Part 2
     lines: [
-      { s: "A", ehn: "¿Tlen titlahtōz intlā tiquittaz in sitlālli?", en: "What will you say if you see the stars?" },
-      { s: "B", ehn: "Intlā niquittaz sitlālli, nitlahtōz īhuaya in tēōtl.", en: "If I see the stars, I will speak with God." },
+      { s: "A", ehn: "¿Tlen titlahtōz tlan tiquittaz in sitlālli?", en: "What will you say if you see the stars?" },
+      { s: "B", ehn: "Tlan niquittaz sitlālli, nitlahtōz īhuaya in tēōtl.", en: "If I see the stars, I will speak with God." },
       { s: "A", ehn: "¿Huan in āhacatl huan mixtli, quēniuhqui?", en: "And the wind and clouds, what about them?" },
       { s: "B", ehn: "In āhacatl huan mixtli, nochi quitōa in cuīcatl. Tlazcāmati.", en: "The wind and clouds — they all carry the song. Thank you." },
     ],
@@ -261,7 +261,7 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0042", // Unit 32 — Tē- and tla- object markers
     lines: [
-      { s: "A", ehn: "¿Āquin tēmachtia nicān pan caltlamachticān?", en: "Who teaches people here at school?" },
+      { s: "A", ehn: "¿Ācquiya tēmachtia nicān pan caltlamachticān?", en: "Who teaches people here at school?" },
       { s: "B", ehn: "Cē cihuātl tēmachtia. Tlāhuēl cuālli quitlahtōa nāhuatl.", en: "A woman teaches. She speaks Nahuatl very well." },
       { s: "A", ehn: "¿Huan ta, ticnequi tēmachtia?", en: "And you, do you want to teach people?" },
       { s: "B", ehn: "Quēna, nicnequi tlātlamachtia huan tēmachtia. Cuālli notequi.", en: "Yes, I want to teach things and people. It's good work." },
@@ -276,6 +276,14 @@ const insert = db.prepare(`
     (lesson_dialogue_id, lesson_unit_id, dialogue_order, speaker_label,
      utterance_original, utterance_normalized, translation_en, attestation_tier)
   VALUES (?, ?, ?, ?, ?, ?, ?, 'AI_generated')
+  ON CONFLICT(lesson_dialogue_id) DO UPDATE SET
+    lesson_unit_id = excluded.lesson_unit_id,
+    dialogue_order = excluded.dialogue_order,
+    speaker_label = excluded.speaker_label,
+    utterance_original = excluded.utterance_original,
+    utterance_normalized = excluded.utterance_normalized,
+    translation_en = excluded.translation_en,
+    attestation_tier = excluded.attestation_tier
 `);
 
 let idCounter = 216; // next after FCN-LDG-000215
@@ -294,5 +302,5 @@ const run = db.transaction(() => {
 });
 
 run();
-console.log(`Inserted ${totalInserted} dialogue lines across ${dialogues.length} units.`);
+console.log(`Upserted ${totalInserted} dialogue lines across ${dialogues.length} units.`);
 console.log(`IDs: FCN-LDG-000216 → FCN-LDG-${String(idCounter - 1).padStart(6, "0")}`);

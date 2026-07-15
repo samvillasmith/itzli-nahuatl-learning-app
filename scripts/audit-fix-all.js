@@ -182,7 +182,7 @@ const dialogueFixes = [
   // Unit 17, line 3: "ximotlālis" mixes future -z with imperative xi-; fix to present imperative
   {
     id: "FCN-LDG-000271",
-    utterance: "¿Āquin motlālis pan siya?",
+    utterance: "¿Ācquiya motlālis pan siya?",
     en: "Who will sit in the chair?",
   },
 
