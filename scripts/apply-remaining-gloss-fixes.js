@@ -172,13 +172,25 @@ const GLOBAL_FIXES = [
   { form: "Ma moquētzacān", newGloss: "let them stand up" },
   { form: "Ma timoquētzacān", newGloss: "let us stand up" },
   { form: "mictlan", newGloss: "land of the dead; underworld" },
-  { form: "pāquiliztli", newGloss: "joy; happiness" },
+  // Native Chicontepec course vocabulary explicitly glosses pāquiliztli as
+  // “party”; do not overwrite it with the Classical dictionary sense “joy.”
   { form: "tlahtzoma", newGloss: "to sew" },
-  { form: "tzahtzi", newGloss: "to shout" },
+  // Native Chicontepec course vocabulary explicitly glosses tzahtzi as
+  // “to cry”; tsahtsi “to shout” is kept separate in practical spelling.
   { form: "tlakemitl", newGloss: "garment; clothing" },
   { form: "molōni", newGloss: "to boil; to bubble up (intransitive)" },
   { form: "achiyok", newGloss: "a little more" },
   { form: "anihueliti", newGloss: "cannot; to be unable" },
+  {
+    form: "tlanextia",
+    newGloss: "dawn-time greeting; literally ‘it dawns’ (not a word-for-word equivalent of ‘good morning’)",
+  },
+  // These regional EHN meanings are directly attested in the native-speaker
+  // course and must not be replaced with Classical dictionary meanings.
+  { form: "tecciztli", newGloss: "egg" },
+  { form: "tēcciztli", newGloss: "egg" },
+  { form: "kuatochin", newGloss: "rabbit" },
+  { form: "koajtli", newGloss: "eagle" },
 ];
 
 const selectByUnitForm = db.prepare(

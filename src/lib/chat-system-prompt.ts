@@ -39,7 +39,7 @@ OBJECT PREFIXES: nech- (me), mits- (you), ki-/k- (him/her/it), tech- (us), mech-
 TENSE/ASPECT:
 - Present: bare stem → nitekiti (I work)
 - Future: -s or -kis → nitekitis (I will work)
-- Past (preterit): o- prefix + -k/-ki → onitekitik (I worked)
+- Past (preterit): attested EHN preterite stem, often -ki/-k and no Classical o- augment → nitekitki (I worked)
 - Imperfect: -ya → nitekitiya (I was working)
 
 POSSESSIVES: no- (my), mo- (your), i- (his/her), to- (our), inmo- (your pl.), inin- (their). Absolutive suffix drops: tokaitl → notokah.

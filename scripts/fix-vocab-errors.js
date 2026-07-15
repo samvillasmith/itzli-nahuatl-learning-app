@@ -4,9 +4,9 @@
 // Run once: node scripts/fix-vocab-errors.js
 
 const Database = require("better-sqlite3");
-const path = require("path");
+const { resolveDbPath } = require("./_db-path");
 
-const DB_PATH = path.join(__dirname, "../../molina/curriculum/fcn_master_lexicon_phase8_6_primer.sqlite");
+const DB_PATH = resolveDbPath();
 const db = new Database(DB_PATH);
 
 const update = db.prepare("UPDATE lesson_vocab SET gloss_en = ? WHERE id = ?");
@@ -92,22 +92,23 @@ const fixes = [
     gloss: "[❌ CORRECTED: was 'holy' — not attested; 'holy' = tlateochihualli or teoyo]",
   },
 
-  // Unit 37: koajtli — eagle is likely a corruption
+  // Unit 37: regional EHN animal names are retained. Do not “correct” them
+  // toward Classical Nahuatl; the imported lexicon identifies these senses.
   {
     id: 6081,
-    gloss: "[❌ CORRECTED: was 'Eagle' — likely corruption of cuauhtli (eagle); see cuauhtli/kuajtli]",
+    gloss: "eagle",
   },
 
-  // Unit 37: kuatochin is NOT standard for "rabbit"
   {
     id: 6083,
-    gloss: "wood-rabbit compound [❌ CORRECTED: was 'rabbit'; 'rabbit' = tochtli; kuatochin = tree/wood + rabbit, non-standard]",
+    gloss: "rabbit",
   },
 
-  // Unit 38: tecciztli means "conch shell" in Classical Nahuatl, NOT "egg"
+  // Unit 38: tēcciztli = egg is repeatedly attested in the native Chicontepec
+  // course. Its Classical homonym must not override the regional EHN sense.
   {
     id: 6110,
-    gloss: "conch shell [❌ CORRECTED: was 'egg'; tecciztli = conch shell in Classical; 'egg' = totoltetl]",
+    gloss: "egg",
   },
 
   // ── ⚠️ SIGNIFICANT WRONG GLOSSES ──────────────────────────────────────────

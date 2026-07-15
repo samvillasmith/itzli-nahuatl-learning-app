@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
 import { GRAMMAR_LABS } from "../src/data/grammar-labs";
+import { LESSON_FOCUS_CARDS } from "../src/data/lesson-focus-cards";
 
 function learnerText(value: unknown): string {
   return JSON.stringify(value);
@@ -11,6 +12,7 @@ function learnerText(value: unknown): string {
 describe("Eastern Huasteca content invariants", () => {
   const lessons = learnerText(GRAMMAR_LESSONS);
   const labs = learnerText(GRAMMAR_LABS);
+  const focusCards = learnerText(LESSON_FOCUS_CARDS);
   const dialogueGenerator = readFileSync(
     join(process.cwd(), "scripts/generate-dialogues.js"),
     "utf8",
@@ -19,11 +21,20 @@ describe("Eastern Huasteca content invariants", () => {
     join(process.cwd(), "src/lib/chat-system-prompt.ts"),
     "utf8",
   );
+  const curatedVocab = readFileSync(
+    join(process.cwd(), "scripts/add-curated-vocab.js"),
+    "utf8",
+  );
+  const imageMetadata = readFileSync(
+    join(process.cwd(), "src/data/openai-word-images.json"),
+    "utf8",
+  );
 
   it("does not teach Classical ō-augmented past paradigms", () => {
-    for (const text of [lessons, labs]) {
+    for (const text of [lessons, labs, focusCards, tutorPrompt]) {
       expect(text).not.toMatch(/ōnihuetz|ōnitequitic|ōniquicōhuac|ōniihhuia/iu);
     }
+    expect(tutorPrompt).not.toMatch(/o- prefix \+ -k\/|-ki → oni/iu);
   });
 
   it("uses EHN second-person plural and object markers", () => {
@@ -40,10 +51,23 @@ describe("Eastern Huasteca content invariants", () => {
     expect(dialogueGenerator).not.toMatch(/\bIntlā\b/u);
     expect(dialogueGenerator).not.toMatch(/¿Āquin/iu);
     expect(lessons).toContain("Tlan nitequiti");
+    expect(focusCards).not.toMatch(/\bintla\b/iu);
   });
 
   it("keeps known meaning-changing errors out of grammar", () => {
     expect(lessons).not.toMatch(/kikkwa|Ximonechilhui|ticcuahcuepaāh/iu);
     expect(lessons).not.toMatch(/makilia.{0,80}give/iu);
+  });
+
+  it("teaches tlanextia as a dawn-time greeting, not a literal translation", () => {
+    expect(curatedVocab).toContain("dawn-time greeting");
+    expect(curatedVocab).toContain("not a word-for-word equivalent");
+  });
+
+  it("keeps corrected vocabulary metadata and native EHN senses", () => {
+    expect(imageMetadata).toContain("pāquiliztli: party");
+    expect(imageMetadata).toContain("tzahtzi: to cry");
+    expect(imageMetadata).toContain("Nichīlmola: I grind chili peppers");
+    expect(imageMetadata).not.toMatch(/fourten|kneed chilli|salty salt|mi pequeña tía/iu);
   });
 });
