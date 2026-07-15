@@ -73,10 +73,6 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">
-          <div className="absolute -right-4 -top-5 hidden rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-xl backdrop-blur sm:block">
-            <p className="text-[10px] font-black uppercase tracking-[.14em] text-stone-400">Today’s word</p>
-            <p className="mt-1 text-lg font-black text-stone-900">xochitl <span className="font-normal text-stone-400">· flower</span></p>
-          </div>
           <WordGallery />
         </div>
       </section>
