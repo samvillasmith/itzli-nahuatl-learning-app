@@ -10,7 +10,7 @@ import MobileLearningNav from "./MobileLearningNav";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
-  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 800+ lesson words and phrases, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
+  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering hundreds of reviewed lesson words and phrases, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

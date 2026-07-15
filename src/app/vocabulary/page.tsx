@@ -1,4 +1,4 @@
-import { getAllPrimerVocab, getAllUnits, getPrimerVocabEntryCount, searchVocab } from "@/lib/db";
+import { getAllPrimerVocab, getAllUnits, searchVocab } from "@/lib/db";
 import { displayNahuatl } from "@/lib/orthography";
 import { requireAuth } from "@/lib/require-auth";
 
@@ -35,7 +35,7 @@ export default async function VocabularyPage({
         </div>
 
         <p className="text-sm text-stone-400 mb-4">
-          {results.length} result{results.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;
+          {results.length} verified course result{results.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;
         </p>
 
         {results.length === 0 ? (
@@ -77,7 +77,6 @@ export default async function VocabularyPage({
 
   // Default: core primer vocabulary items in the curated unit order.
   const vocab = getAllPrimerVocab();
-  const primerEntryCount = getPrimerVocabEntryCount();
   const units = getAllUnits();
   const unitsByLesson = new Map(units.map((unit) => [unit.lesson_number, unit]));
 
@@ -97,7 +96,7 @@ export default async function VocabularyPage({
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">Vocabulary</h1>
         <p className="text-stone-500 mb-4">
-          {vocab.length} core primer items from {primerEntryCount.toLocaleString()} primer entries · search to explore the full 37,000-entry lexicon.
+          {vocab.length} reviewed course items · search within the current Eastern Huasteca curriculum.
         </p>
         <SearchForm defaultValue="" />
       </div>

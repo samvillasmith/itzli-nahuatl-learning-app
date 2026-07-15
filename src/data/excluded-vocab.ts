@@ -19,6 +19,7 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 7: How to divide up the day
   168,  // chocolatl - food word in time/daypart unit
   164,  // tonalti - broader/secondary morning greeting; not in the Chicontepec course
+  169,  // citlal cetl - imported "snow" sense and later literal "star-ice" gloss are both unverified
 
   // Unit 8: Possessive markers
   194,  // cipactli - alligator, off-topic in a possession unit
@@ -48,6 +49,15 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 20: Respect and affection
   456,  // cahualtoahui - widow; too specialized for core social-address practice
   459,  // cahualtotlayi - widower; too specialized for core social-address practice
+
+  // Final primary-source vocabulary audit
+  103,  // yaotl - Central/comparative "soldier" sense; not verified for Chicontepec EHN
+  220,  // tiona - comparative kinship loan not verified in the primary Chicontepec sources
+  221,  // tiota - comparative kinship loan not verified in the primary Chicontepec sources
+  542,  // pepechtl - malformed form and mis-glossed as blanket; pepechtli is bedding/mattress
+  575,  // tlakahtli - unsupported "afternoon" sense; teach teotlac
+  632,  // tenamaztetl - Central metaphorical "home" sense; EHN tenamaztli is hearthstone
+  689,  // poktl - malformed duplicate of the existing poctli "smoke" card
 
   // ── Unit 23: What is Inside the House ──────────────────────────────────
   525,  // zacacalli — hay storehouse (outbuilding, not inside a house)
@@ -101,6 +111,30 @@ const SOURCE_VERIFIED_LINKED_VOCAB_IDS = new Set([
   7418, 7451, 7496, 7527, 7611, 7638,
 ]);
 
+// These rows were originally tagged as comparative or Classical, but their
+// headwords and senses are directly attested in the native Chicontepec course.
+// Uejpol (228) is additionally attested in the native-authored Chicontepec
+// dictionary. All other unlinked comparative/Classical rows stay quarantined.
+export const SOURCE_VERIFIED_UNLINKED_VOCAB_IDS = new Set([
+  144,  // cahua - to leave
+  226,  // conetl - child
+  228,  // uejpol - sister-in-law
+  298,  // itta - to see
+  321,  // cua - to eat
+  326,  // tequi - to cut
+  332,  // moloni - to boil
+  363,  // choca - to cry
+  367,  // cocoa - to hurt
+  372,  // huetzca - to laugh
+  373,  // tequiti - to work
+  377,  // palehuia - to help
+  381,  // quiza - to go out
+  537,  // chantli - house/home
+  538,  // amoxtli - book
+  580,  // mahtlactli huan ce - eleven
+  605,  // comalli - comal/pan
+]);
+
 const CORE_GLOSS_OVERRIDES: Record<number, string> = {
   4: "vowel [o] — like 'o' in go. Example: onka (there is)",
   8: "[tɬ] — no English sound; tip of tongue on upper teeth, air released sideways. Example: tlakwa (to eat)",
@@ -112,10 +146,18 @@ const CORE_GLOSS_OVERRIDES: Record<number, string> = {
   25: "how",
   34: "how's it going?",
   35: "how are you?",
+  97: "tortilla maker; woman who makes tortillas",
+  100: "counting; account; number",
+  220: "godmother",
+  221: "godfather",
+  228: "sister-in-law; female in-law",
   260: "hello; greeting",
   266: "thank you",
   239: "old/worn thing",
   248: "old person; elder",
+  413: "poncho",
+  449: "dead person; deceased person",
+  457: "mandarin orange; tangerine",
 };
 
 const CORE_HEADWORD_OVERRIDES: Record<number, string> = {
@@ -276,6 +318,12 @@ export function isCoreVocabItem(
 ): boolean {
   if (EXCLUDED_VOCAB_IDS.has(item.id)) return false;
   if (item.entry_id && !SOURCE_VERIFIED_LINKED_VOCAB_IDS.has(item.id)) return false;
+  if (
+    (item.semantic_domain === "Comparative_only" || item.semantic_domain === "Classical_citation") &&
+    !SOURCE_VERIFIED_UNLINKED_VOCAB_IDS.has(item.id)
+  ) {
+    return false;
+  }
   if (
     isAppContentExcluded(
       item.headword,

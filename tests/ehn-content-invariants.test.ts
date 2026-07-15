@@ -4,7 +4,11 @@ import { describe, expect, it } from "vitest";
 import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
 import { GRAMMAR_LABS } from "../src/data/grammar-labs";
 import { LESSON_FOCUS_CARDS } from "../src/data/lesson-focus-cards";
-import { isCoreVocabItem } from "../src/data/excluded-vocab";
+import {
+  isCoreVocabItem,
+  SOURCE_VERIFIED_UNLINKED_VOCAB_IDS,
+} from "../src/data/excluded-vocab";
+import { getAllPrimerVocab } from "../src/lib/db";
 
 function learnerText(value: unknown): string {
   return JSON.stringify(value);
@@ -76,5 +80,33 @@ describe("Eastern Huasteca content invariants", () => {
     expect(imageMetadata).toContain("tzahtzi: to cry");
     expect(imageMetadata).toContain("Nichīlmola: I grind chili peppers");
     expect(imageMetadata).not.toMatch(/fourten|kneed chilli|salty salt|mi pequeña tía/iu);
+  });
+
+  it("quarantines every unsupported form found in the final vocabulary audit", () => {
+    const excluded = [103, 169, 220, 221, 542, 575, 632, 689];
+    for (const id of excluded) {
+      expect(isCoreVocabItem({ id, gloss_en: "test" })).toBe(false);
+    }
+  });
+
+  it("allows comparative or Classical labels only when primary-source verified", () => {
+    const vocab = getAllPrimerVocab();
+    const widerDialectRows = vocab.filter((entry) =>
+      ["Comparative_only", "Classical_citation"].includes(entry.semantic_domain),
+    );
+    expect(widerDialectRows.length).toBeGreaterThan(0);
+    for (const entry of widerDialectRows) {
+      expect(SOURCE_VERIFIED_UNLINKED_VOCAB_IDS.has(entry.id)).toBe(true);
+    }
+  });
+
+  it("publishes the final primary-source gloss corrections", () => {
+    const byId = new Map(getAllPrimerVocab().map((entry) => [entry.id, entry.gloss_en]));
+    expect(byId.get(97)).toBe("tortilla maker; woman who makes tortillas");
+    expect(byId.get(100)).toBe("counting; account; number");
+    expect(byId.get(228)).toBe("sister-in-law; female in-law");
+    expect(byId.get(413)).toBe("poncho");
+    expect(byId.get(449)).toBe("dead person; deceased person");
+    expect(byId.get(457)).toBe("mandarin orange; tangerine");
   });
 });
