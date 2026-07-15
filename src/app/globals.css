@@ -52,8 +52,11 @@
 }
 
 :root {
-  --background: #f7f8f3;
+  --background: #f6f3eb;
   --foreground: #181613;
+  --jade: #0b6b57;
+  --obsidian: #14221e;
+  --marigold: #d99a2b;
 }
 
 * {
@@ -62,14 +65,15 @@
 
 html {
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(247, 248, 243, 0.96) 34rem),
-    linear-gradient(90deg, rgba(19, 134, 109, 0.05) 0, transparent 14rem),
-    linear-gradient(270deg, rgba(15, 130, 155, 0.045) 0, transparent 16rem),
+    radial-gradient(circle at 8% 2%, rgba(19, 134, 109, 0.09), transparent 25rem),
+    radial-gradient(circle at 92% 14%, rgba(217, 154, 43, 0.08), transparent 24rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(246, 243, 235, 0.96) 38rem),
     var(--background);
   color: var(--foreground);
   font-family: "Aptos", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -77,6 +81,28 @@ body {
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid rgba(19, 134, 109, .3); outline-offset: 3px; }
+
+.brand-ribbon { position: sticky; top: 0; z-index: 40; height: 3px; background: linear-gradient(90deg,#0b6b57 0 35%,#1696a7 35% 57%,#d99a2b 57% 79%,#c4603e 79%); }
+.site-nav { position: sticky; top: 3px; z-index: 30; border-bottom: 1px solid rgba(222,219,209,.72); background: rgba(255,255,252,.82); backdrop-filter: blur(18px) saturate(160%); }
+.brand-mark { display: inline-flex; height: 2rem; width: 2rem; align-items: center; justify-content: center; border-radius: .7rem; color: white; background: linear-gradient(145deg,#173a31,#0b6b57); box-shadow: 0 5px 14px rgba(11,89,77,.22); transition: transform .2s ease; }
+.group:hover .brand-mark { transform: rotate(-5deg) scale(1.04); }
+.nav-link { display: inline-flex; align-items: center; gap: .4rem; border-radius: .75rem; padding: .6rem .75rem; font-weight: 650; color: #565145; transition: color .18s ease, background .18s ease; }
+.nav-link:hover { color: #0b594d; background: rgba(237,248,244,.88); }
+.button-primary { display:inline-flex; align-items:center; justify-content:center; gap:.45rem; border-radius:.85rem; background:#14221e; padding:.8rem 1.1rem; color:white; font-size:.875rem; font-weight:750; box-shadow:0 8px 24px rgba(20,34,30,.14); transition:transform .18s ease, background .18s ease, box-shadow .18s ease; }
+.button-primary:hover { transform:translateY(-1px); background:#0b6b57; box-shadow:0 11px 28px rgba(11,107,87,.2); }
+.button-secondary { display:inline-flex; align-items:center; justify-content:center; gap:.45rem; border:1px solid #dedbd1; border-radius:.85rem; background:rgba(255,255,255,.76); padding:.78rem 1.05rem; color:#3f3a31; font-size:.875rem; font-weight:700; box-shadow:0 3px 12px rgba(39,36,31,.05); transition:all .18s ease; }
+.button-secondary:hover { border-color:#99ddc9; color:#0b594d; background:white; transform:translateY(-1px); }
+.eyebrow { font-size:.68rem; line-height:1; font-weight:850; letter-spacing:.16em; text-transform:uppercase; color:#0b6b57; }
+.display-title { font-family: Georgia, "Times New Roman", serif; font-weight:700; letter-spacing:-.045em; line-height:.98; text-wrap:balance; }
+.surface { border:1px solid rgba(222,219,209,.86); border-radius:1.25rem; background:rgba(255,255,253,.86); box-shadow:0 15px 45px rgba(45,52,45,.065); }
+.mobile-learning-nav { position:fixed; left:50%; bottom:.7rem; z-index:50; display:grid; width:calc(100% - 1rem); max-width:29rem; grid-template-columns:repeat(4,1fr); transform:translateX(-50%); border:1px solid rgba(222,219,209,.75); border-radius:1.2rem; padding:.38rem; background:rgba(255,255,252,.94); box-shadow:0 16px 45px rgba(20,34,30,.18); backdrop-filter:blur(18px); }
+.mobile-learning-nav a { display:flex; min-height:3.15rem; flex-direction:column; align-items:center; justify-content:center; gap:.2rem; border-radius:.85rem; color:#6f6a60; font-size:.63rem; font-weight:750; }
+.mobile-learning-nav a.is-active { color:#0b594d; background:#edf8f4; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
 
 a,
 button,

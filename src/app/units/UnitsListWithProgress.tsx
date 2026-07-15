@@ -7,6 +7,7 @@ import { emptyProgress } from "@/lib/progress-schema";
 import { pullAndMerge } from "@/lib/cloudSync";
 import { useUser } from "@clerk/nextjs";
 import type { Unit } from "@/lib/db";
+import { ArrowRight, Check, Play } from "lucide-react";
 
 const BAND_COLOR: Record<string, string> = {
   A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
@@ -47,10 +48,10 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
   })).filter((g) => g.units.length > 0);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {grouped.map(({ band, units: bandUnits }) => (
         <div key={band}>
-          <div className={`mb-3 flex items-center gap-3 rounded-lg border px-4 py-2.5 ${BAND_SECTION[band]}`}>
+          <div className={`mb-4 flex items-center gap-3 rounded-xl border px-4 py-3 ${BAND_SECTION[band]}`}>
             <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_COLOR[band]}`}>
               {band}
             </span>
@@ -58,7 +59,7 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
             <span className="text-xs ml-auto opacity-60">{bandUnits.length} units</span>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
+          <div className="grid gap-3 lg:grid-cols-2">
             {bandUnits.map((unit) => {
               const p = progress.units[unit.lesson_number];
               const status = p?.status ?? "not_started";
@@ -66,44 +67,45 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
                 <Link
                   key={unit.lesson_number}
                   href={`/units/${unit.lesson_number}`}
-                  className="group grid grid-cols-[4rem_1fr_auto] items-center gap-4 border-b border-stone-100 px-5 py-4 transition-colors last:border-b-0 hover:bg-stone-50/70"
+                  className="group grid min-h-44 grid-cols-[auto_1fr] gap-4 rounded-2xl border border-stone-200/90 bg-white/85 p-5 shadow-[0_8px_25px_rgba(39,36,31,.04)] transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-lg"
                 >
                   <div>
-                    <span className="rounded-md bg-stone-950 px-2 py-1 text-xs font-bold text-white">
+                    <span className="flex h-11 min-w-11 items-center justify-center rounded-xl bg-stone-950 px-2 text-xs font-black text-white">
                       {unit.path_code}
                     </span>
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="mb-1 flex items-center gap-2">
-                      <p className="truncate font-semibold text-stone-900 group-hover:text-emerald-800">
+                    <div className="mb-1 flex items-start justify-between gap-2">
+                      <p className="font-black leading-snug text-stone-900 group-hover:text-emerald-800">
                         {unit.theme_en}
                       </p>
                       <span className="hidden text-xs text-stone-400 sm:inline">
                         {unit.stage_title}
                       </span>
                     </div>
-                    <p className="line-clamp-2 text-sm leading-snug text-stone-600">
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-stone-600">
                       {unit.cefr_descriptor}
                     </p>
-                    <p className="mt-1 text-xs text-stone-400">
+                    <p className="mt-3 text-xs font-semibold text-stone-400">
                       {unit.english_vocab_count} words · {unit.english_dialogue_count} dialogue lines
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
+                  <div className="col-span-2 mt-auto flex items-center justify-between border-t border-stone-100 pt-4">
+                    <span className="text-xs font-bold text-stone-500">{status === "completed" ? "Completed" : status === "in_progress" ? "Continue unit" : "Start unit"}</span>
                     {status === "completed" && (
-                      <span className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 text-xs font-bold">
-                        ✓
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                        <Check size={15} strokeWidth={3} />
                       </span>
                     )}
                     {status === "in_progress" && (
-                      <span className="w-6 h-6 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-500 text-xs font-bold">
-                        ◑
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                        <Play size={14} fill="currentColor" />
                       </span>
                     )}
                     {status === "not_started" && (
-                      <span className="text-stone-200 text-sm">→</span>
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition group-hover:border-emerald-200 group-hover:bg-emerald-50 group-hover:text-emerald-700"><ArrowRight size={15} /></span>
                     )}
                   </div>
                 </Link>

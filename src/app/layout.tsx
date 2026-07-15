@@ -5,6 +5,8 @@ import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import DisclaimerBanner from "./DisclaimerBanner";
 import LegalModal from "./LegalModal";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
+import { ArrowUpRight, BookOpen, LibraryBig, Route, Sparkles } from "lucide-react";
+import MobileLearningNav from "./MobileLearningNav";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
@@ -58,34 +60,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className="min-h-screen">
-          <div className="sticky top-0 z-20 h-1 bg-[linear-gradient(90deg,#116a55,#0f87a0_38%,#d09b2c_70%,#c85f38)]" />
-          <nav className="sticky top-1 z-10 border-b border-stone-200/80 bg-white/88 backdrop-blur-md">
-            <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+        <body className="min-h-screen pb-20 md:pb-0">
+          <div className="brand-ribbon" />
+          <nav className="site-nav">
+            <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between px-4 sm:px-6">
               <Link
                 href="/"
-                className="flex items-center gap-2 text-lg font-black text-stone-950"
+                className="group flex items-center gap-2.5 text-lg font-black tracking-[-0.02em] text-stone-950"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white shadow-sm">
-                  ✦
+                <span className="brand-mark">
+                  <Sparkles size={15} strokeWidth={2.4} />
                 </span>
-                Itzli
+                <span className="flex flex-col leading-none">
+                  <span>Itzli</span>
+                  <span className="mt-1 hidden text-[8px] font-extrabold uppercase tracking-[.13em] text-emerald-700 sm:block">Eastern Huasteca Nahuatl</span>
+                </span>
+                <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 sm:inline">2.0</span>
               </Link>
 
               {/* Signed-in nav */}
               <Show when="signed-in">
-                <div className="flex items-center gap-0.5 text-sm sm:gap-1">
-                  <Link href="/units" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
-                    Units
+                <div className="hidden items-center gap-1 text-sm md:flex">
+                  <Link href="/units" className="nav-link">
+                    <BookOpen size={15} /> Learn
                   </Link>
-                  <Link href="/curriculum" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex sm:px-3">
-                    Path
+                  <Link href="/curriculum" className="nav-link">
+                    <Route size={15} /> Path
                   </Link>
-                  <Link href="/vocabulary" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
-                    <span className="hidden sm:inline">Vocabulary</span>
-                    <span className="sm:hidden">Vocab</span>
+                  <Link href="/vocabulary" className="nav-link">
+                    <LibraryBig size={15} /> Vocabulary
                   </Link>
-                  <Link href="/grammar" className="rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
+                  <Link href="/grammar" className="nav-link">
                     Grammar
                   </Link>
                   <Link href="/source-course" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 md:inline-flex sm:px-3">
@@ -96,9 +101,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       Tutor
                     </Link>
                   )}
-                  <Link href="/progress" className="inline-flex rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:px-3">
-                    <span className="hidden sm:inline">Progress</span>
-                    <span className="sm:hidden">Review</span>
+                  <Link href="/progress" className="nav-link">
+                    Progress
                   </Link>
                   <div className="ml-1 sm:ml-2">
                     <UserButton />
@@ -108,15 +112,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Signed-out nav */}
               <Show when="signed-out">
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-center gap-1.5 text-sm sm:gap-2">
                   <Link href="/curriculum" className="hidden rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex">
                     Curriculum
                   </Link>
-                  <Link href="/sign-in" className="rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950">
+                  <Link href="/sign-in" className="nav-link">
                     Sign in
                   </Link>
-                  <Link href="/sign-up" className="rounded-lg bg-stone-950 px-4 py-1.5 font-semibold text-white transition-colors hover:bg-emerald-700">
-                    Get started
+                  <Link href="/sign-up" className="button-primary !px-4 !py-2.5">
+                    Start learning <ArrowUpRight size={15} />
                   </Link>
                 </div>
               </Show>
@@ -152,9 +156,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
           <DisclaimerBanner />
           <LegalModal />
-          <main className="mx-auto max-w-6xl px-4 py-10">{children}</main>
-          <footer className="mt-16 border-t border-stone-200 py-8 text-xs text-stone-500">
-            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
+          <main className="mx-auto min-h-[70vh] max-w-7xl px-4 py-8 sm:px-6 sm:py-12">{children}</main>
+          <Show when="signed-in"><MobileLearningNav /></Show>
+          <footer className="mt-20 border-t border-stone-200/80 bg-white/45 py-10 text-xs text-stone-500">
+            <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-4 sm:px-6 lg:flex-row">
               <div className="flex items-center gap-1">
                 <span className="flex h-5 w-5 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white">✦</span>
                 <span className="font-semibold text-stone-700">Itzli</span>
