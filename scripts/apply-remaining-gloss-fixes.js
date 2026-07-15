@@ -161,8 +161,39 @@ const FIXES = [
   },
 ];
 
+// High-priority corrections found by the 2026 EHN corpus audit. These match
+// every occurrence because several forms were duplicated across units.
+const GLOBAL_FIXES = [
+  { form: "camahtli", newGloss: "mouth" },
+  { form: "axcahua", newGloss: "owner; property-holder" },
+  { form: "chichiualayotl", newGloss: "milk" },
+  { form: "eltoya", newGloss: "it was there; it was located there" },
+  { form: "Ma moquētza", newGloss: "let him/her stand up" },
+  { form: "Ma moquētzacān", newGloss: "let them stand up" },
+  { form: "Ma timoquētzacān", newGloss: "let us stand up" },
+  { form: "mictlan", newGloss: "land of the dead; underworld" },
+  // Native Chicontepec course vocabulary explicitly glosses pāquiliztli as
+  // “party”; do not overwrite it with the Classical dictionary sense “joy.”
+  { form: "tlahtzoma", newGloss: "to sew" },
+  // Native Chicontepec course vocabulary explicitly glosses tzahtzi as
+  // “to cry”; tsahtsi “to shout” is kept separate in practical spelling.
+  { form: "tlakemitl", newGloss: "garment; clothing" },
+  { form: "molōni", newGloss: "to boil; to bubble up (intransitive)" },
+  { form: "achiyok", newGloss: "a little more" },
+  { form: "anihueliti", newGloss: "cannot; to be unable" },
+  // These regional EHN meanings are directly attested in the native-speaker
+  // course and must not be replaced with Classical dictionary meanings.
+  { form: "tecciztli", newGloss: "egg" },
+  { form: "tēcciztli", newGloss: "egg" },
+  { form: "kuatochin", newGloss: "rabbit" },
+  { form: "koajtli", newGloss: "eagle" },
+];
+
 const selectByUnitForm = db.prepare(
   "SELECT id, display_form, gloss_en FROM lesson_vocab WHERE lesson_number = ? AND display_form = ?"
+);
+const selectByForm = db.prepare(
+  "SELECT id, lesson_number, display_form, gloss_en FROM lesson_vocab WHERE display_form = ?"
 );
 const update = db.prepare("UPDATE lesson_vocab SET gloss_en = ? WHERE id = ?");
 
@@ -181,6 +212,21 @@ for (const fix of FIXES) {
       alreadyAnnotated.push({ ...fix, id: row.id, existing: row.gloss_en });
     } else {
       pendingUpdates.push({ ...fix, id: row.id, existing: row.gloss_en });
+    }
+  }
+}
+
+for (const fix of GLOBAL_FIXES) {
+  const rows = selectByForm.all(fix.form);
+  if (rows.length === 0) {
+    notFound.push({ ...fix, unit: "any" });
+    continue;
+  }
+  for (const row of rows) {
+    if (row.gloss_en === fix.newGloss) {
+      alreadyAnnotated.push({ ...fix, unit: row.lesson_number, id: row.id, existing: row.gloss_en });
+    } else {
+      pendingUpdates.push({ ...fix, unit: row.lesson_number, id: row.id, existing: row.gloss_en });
     }
   }
 }

@@ -67,6 +67,7 @@ export type Unit = CurriculumFields & {
 
 export type VocabItem = {
   id: number;
+  entry_id?: string | null;
   rank: number;
   headword: string;
   gloss_en: string;
@@ -175,7 +176,7 @@ export function getUnit(lessonNumber: number): Unit | null {
 export function getUnitVocab(lessonNumber: number): VocabItem[] {
   const rows = getDb()
     .prepare(
-      `SELECT id, rank, display_form AS headword, gloss_en, part_of_speech,
+      `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
               lesson_number AS first_lesson_number, semantic_domain
        FROM lesson_vocab
        WHERE lesson_number = ?
@@ -198,7 +199,7 @@ export function getPrimerVocabEntryCount(): number {
 export function getAllPrimerVocab(): VocabItem[] {
   const rows = getDb()
     .prepare(
-      `SELECT id, rank, display_form AS headword, gloss_en, part_of_speech,
+      `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
               lesson_number AS first_lesson_number, semantic_domain
        FROM lesson_vocab
        ORDER BY lesson_number, rank, id`

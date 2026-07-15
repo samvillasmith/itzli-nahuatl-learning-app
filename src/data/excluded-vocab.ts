@@ -18,6 +18,7 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
 
   // Unit 7: How to divide up the day
   168,  // chocolatl - food word in time/daypart unit
+  164,  // tonalti - broader/secondary morning greeting; not in the Chicontepec course
 
   // Unit 8: Possessive markers
   194,  // cipactli - alligator, off-topic in a possession unit
@@ -34,6 +35,7 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   277,  // hueyicayotl - greatness, abstract noun off-topic
   278,  // tlalalacatl - specialized zoological term, off-topic
   7695, // nimitztlazohcamati - formal/full "I thank you"; teach conversational tlaskamati first
+  7697, // tlanextia - broader dawn/light form; not a core Chicontepec greeting
 
   // Unit 12: Future tense and indefinite verbs
   296,  // cui - adult/sexual verb, not needed in a general future-tense lesson
@@ -73,9 +75,8 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   702,   // iyaquemetl - not attested as insect
   6068,  // tlatzehtzeloltic - not attested as holy
   6059,  // huehcatla - distance word, misplaced in shape/size unit
-  6081,  // koajtli - likely corruption for eagle
-  6083,  // kuatochin - non-standard wood-rabbit compound
-  6110,  // tecciztli - conch shell, not an egg/food item
+  6081,  // koajtli - retained in the reference lexicon; pending primary-source card review
+  6083,  // kuatochin - retained in the reference lexicon; pending primary-source card review
   6139,  // elhuicac ehquetl - angel, off-path in community unit
   6142,  // ojtatl - bamboo, off-path in community unit
   6420,  // chilkostik - Central Huasteca orange; teach EHN chilcoz first
@@ -89,6 +90,15 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   7240,  // teotlacatl - specialized religious/cosmological term
   7248,  // teziuhtekatl - overly specialized role
   7724,  // tilmahtli - clothing word in conditions/evaluations unit
+]);
+
+// Secondary dictionary imports are not automatically learner-facing. These
+// linked rows have an exact headword match in the native Chicontepec course;
+// their learner glosses are normalized by the source-first correction script.
+const SOURCE_VERIFIED_LINKED_VOCAB_IDS = new Set([
+  6110, 6160, 6164, 6165, 6199, 6219, 6227, 6292, 6295, 6304,
+  6833, 6936, 6938, 6958, 6963, 6967, 6989, 7034, 7037, 7133,
+  7418, 7451, 7496, 7527, 7611, 7638,
 ]);
 
 const CORE_GLOSS_OVERRIDES: Record<number, string> = {
@@ -176,6 +186,7 @@ const FOCUSED_BLOCK_PATTERNS: Record<number, RegExp> = {
 
 type CurriculumVocabItem = {
   id: number;
+  entry_id?: string | null;
   headword?: string | null;
   display_form?: string | null;
   rank?: number;
@@ -264,6 +275,7 @@ export function isCoreVocabItem(
   lessonNumber = item.lesson_number ?? item.first_lesson_number ?? 0,
 ): boolean {
   if (EXCLUDED_VOCAB_IDS.has(item.id)) return false;
+  if (item.entry_id && !SOURCE_VERIFIED_LINKED_VOCAB_IDS.has(item.id)) return false;
   if (
     isAppContentExcluded(
       item.headword,

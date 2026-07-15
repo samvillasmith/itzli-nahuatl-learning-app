@@ -65,11 +65,9 @@ export const LESSON_FOCUS_CARDS: LessonFocusCard[] = [
   { labId: "object-prefixes", unit: 13, headword: "nictlaxcaloa", gloss_en: "I am making tortillas", part_of_speech: "form" },
   { labId: "object-prefixes", unit: 13, headword: "Niccua tōmātl huan etl.", gloss_en: "I eat tomato and beans.", part_of_speech: "sentence" },
 
-  { labId: "past-tense", unit: 14, headword: "ōnihuetz", gloss_en: "I fell", part_of_speech: "form" },
-  { labId: "past-tense", unit: 14, headword: "ōtihuetz", gloss_en: "you fell", part_of_speech: "form" },
-  { labId: "past-tense", unit: 14, headword: "ōnicuēp", gloss_en: "I came back", part_of_speech: "form" },
-  { labId: "past-tense", unit: 14, headword: "ōquicuac", gloss_en: "she/he ate it", part_of_speech: "form" },
-  { labId: "past-tense", unit: 14, headword: "¿Tlen ōmochiuh?", gloss_en: "What happened?", part_of_speech: "sentence" },
+  { labId: "past-tense", unit: 14, headword: "nitequitqui", gloss_en: "I worked", part_of_speech: "form" },
+  { labId: "past-tense", unit: 14, headword: "niyāhqui", gloss_en: "I went", part_of_speech: "form" },
+  { labId: "past-tense", unit: 14, headword: "niccōuhqui", gloss_en: "I bought it", part_of_speech: "form" },
 
   { labId: "respect-affection", unit: 20, headword: "cihuātzin", gloss_en: "respected woman; ma'am", part_of_speech: "form" },
   { labId: "respect-affection", unit: 20, headword: "tlacātzin", gloss_en: "gentleman; respected man", part_of_speech: "form" },
@@ -78,11 +76,11 @@ export const LESSON_FOCUS_CARDS: LessonFocusCard[] = [
   { labId: "respect-affection", unit: 20, headword: "notātatzin", gloss_en: "my respected/dear father", part_of_speech: "form" },
   { labId: "respect-affection", unit: 20, headword: "nonantzin", gloss_en: "my respected/dear mother", part_of_speech: "form" },
 
-  { labId: "conditionals", unit: 30, headword: "intla", gloss_en: "if", part_of_speech: "word" },
-  { labId: "conditionals", unit: 30, headword: "Intla nitequiti, nitlacua.", gloss_en: "If I work, I eat.", part_of_speech: "sentence" },
-  { labId: "conditionals", unit: 30, headword: "Intla tiyāuh, niyāuh.", gloss_en: "If you go, I go.", part_of_speech: "sentence" },
-  { labId: "conditionals", unit: 30, headword: "Intla tequitih, titequitih.", gloss_en: "If they work, we work.", part_of_speech: "sentence" },
-  { labId: "conditionals", unit: 30, headword: "Intla āmo tomi, ¿tlen ticchīhuaz?", gloss_en: "If there is no money, what will you do?", part_of_speech: "sentence" },
+  { labId: "conditionals", unit: 30, headword: "tlan", gloss_en: "if", part_of_speech: "word" },
+  { labId: "conditionals", unit: 30, headword: "Tlan nitequiti, nitlacua.", gloss_en: "If I work, I eat.", part_of_speech: "sentence" },
+  { labId: "conditionals", unit: 30, headword: "Tlan tiyāuh, niyāuh.", gloss_en: "If you go, I go.", part_of_speech: "sentence" },
+  { labId: "conditionals", unit: 30, headword: "Tlan tequitih, titequitih.", gloss_en: "If they work, we work.", part_of_speech: "sentence" },
+  { labId: "conditionals", unit: 30, headword: "Tlan ax onca tomi, ¿tlen ticchīhuaz?", gloss_en: "If there is no money, what will you do?", part_of_speech: "sentence" },
 ];
 
 export function getLessonFocusCardsForUnit(unit: number, labIds: string[]): LessonFocusCard[] {
