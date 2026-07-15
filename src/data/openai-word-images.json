@@ -926,15 +926,20 @@
   },
   "camahtli": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/camahtli-6953.png",
-    "license": "OpenAI-generated image; review before publication",
-    "author": "gpt-image-1",
+    "license": "OpenAI-generated educational illustration; reviewed before publication",
+    "author": "OpenAI image generation",
     "alt": "Illustration for camahtli: mouth",
     "source": "openai",
-    "model": "gpt-image-1",
+    "model": "gpt-image-2",
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T03:49:28.901Z"
+    "generated_at": "2026-07-15T04:02:00.000Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/camahtli-6953.png",
+    "review_source": "openai-reviewed-image-audit/contact-sheet-00",
+    "reviewed_safe_matches": ["mouth"]
   },
   "camohtic": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/camohtic-source-4-9.png",

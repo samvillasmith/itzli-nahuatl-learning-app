@@ -3,6 +3,11 @@
   "babyExceptionInstruction": "Baby exception: show only one fully clothed or swaddled baby. No other children, no adults, no bed, no bath, no changing, no medical context, no exposed body, no bare legs, and no bare feet.",
   "entries": [
     {
+      "headword": "camahtli",
+      "mode": "adult-only",
+      "instruction": "Show one fully clothed adult pointing to their own closed mouth in a neutral educational illustration. No children, exposed body, medical context, food, injury, or disembodied anatomy."
+    },
+    {
       "headword": "tototl",
       "mode": "bird-only",
       "instruction": "Show exactly one ordinary living bird. No people, no eggs, no nest, no dead bird, no mythological or sacred imagery, no deity reference."
