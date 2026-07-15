@@ -5,8 +5,8 @@ const path = require("path");
 const Module = require("module");
 const ts = require("typescript");
 const Database = require("better-sqlite3");
+const { resolveDbPath } = require("./_db-path");
 
-const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const CHUNK_SIZE = 10;
 const originalResolveFilename = Module._resolveFilename;
 
@@ -181,12 +181,7 @@ function collectGrammarLabLearnerText(lab) {
 }
 
 function main() {
-  const dbPath = path.join(process.cwd(), DB_FILENAME);
-  if (!fs.existsSync(dbPath)) {
-    console.error(`Missing ${DB_FILENAME}. Run npm run build or node scripts/fetch-db.js first.`);
-    process.exitCode = 1;
-    return;
-  }
+  const dbPath = resolveDbPath();
 
   const grammarWarnings = [];
   const grammarFailures = [];

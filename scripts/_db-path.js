@@ -8,12 +8,14 @@
 // Exits with a helpful message if none resolve.
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 
 function resolveDbPath() {
   const candidates = [
     process.env.DATABASE_PATH,
     path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite"),
+    path.join(os.tmpdir(), "fcn_master_lexicon_phase8_6_primer.sqlite"),
     path.resolve(__dirname, "..", "..", "molina", "curriculum", "fcn_master_lexicon_phase8_6_primer.sqlite"),
   ].filter(Boolean);
 
