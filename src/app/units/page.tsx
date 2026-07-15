@@ -12,10 +12,10 @@ export default async function UnitsPage() {
     <div className="space-y-10">
       <div className="flex flex-col gap-6 border-b border-stone-200 pb-9 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="eyebrow">Your learning path · A1 to B1</p>
+          <p className="eyebrow">Eastern Huasteca Nahuatl · A1 to B1</p>
           <h1 className="display-title mt-4 text-5xl text-stone-950 sm:text-6xl">Choose your next step.</h1>
           <p className="mt-4 max-w-2xl leading-7 text-stone-600">
-            {units.length} carefully sequenced units. Build vocabulary, hear every word, practice recall, and finish with language in context.
+            {units.length} carefully sequenced Eastern Huasteca Nahuatl units. Build vocabulary, hear every word, practice recall, and finish with language in context.
           </p>
         </div>
         <Link

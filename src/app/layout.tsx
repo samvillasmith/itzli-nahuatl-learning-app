@@ -71,7 +71,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="brand-mark">
                   <Sparkles size={15} strokeWidth={2.4} />
                 </span>
-                <span>Itzli</span>
+                <span className="flex flex-col leading-none">
+                  <span>Itzli</span>
+                  <span className="mt-1 hidden text-[8px] font-extrabold uppercase tracking-[.13em] text-emerald-700 sm:block">Eastern Huasteca Nahuatl</span>
+                </span>
                 <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 sm:inline">2.0</span>
               </Link>
 

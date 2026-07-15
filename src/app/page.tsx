@@ -50,13 +50,13 @@ export default function LandingPage() {
         <div className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 rounded-full bg-emerald-100/55 blur-3xl" />
         <div className="relative z-10">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50/80 px-3 py-2 text-[11px] font-extrabold uppercase tracking-[.14em] text-emerald-800">
-            <Sparkles size={13} /> Eastern Huasteca Nahuatl
+            <Sparkles size={13} /> A course in Eastern Huasteca Nahuatl
           </div>
           <h1 className="display-title max-w-3xl text-[3.4rem] text-stone-950 sm:text-7xl lg:text-[5.15rem]">
-            Learn a living language. <span className="text-emerald-700">Carry it forward.</span>
+            Learn <span className="text-emerald-700">Eastern Huasteca Nahuatl.</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
-            A thoughtful path from your first greeting to confident conversation—built around Eastern Huasteca Nahuatl, real dialogues, and small daily wins.
+            A thoughtful path from your first greeting to confident conversation in the living Nahuatl variety spoken in and around Chicontepec, Veracruz.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Show when="signed-out">
@@ -69,7 +69,7 @@ export default function LandingPage() {
             </Show>
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-500">
-            <span>Free to learn</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1 → B1</span>
+            <span>Eastern Huasteca variety</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1 → B1</span>
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">
@@ -127,7 +127,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden rounded-[1.75rem] bg-[#14221e] px-6 py-12 text-white sm:px-12 sm:py-14">
         <div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_70%_20%,rgba(41,169,138,.23),transparent_45%)]" />
         <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <div><p className="text-xs font-black uppercase tracking-[.16em] text-emerald-300">A living language belongs in the future</p><h2 className="display-title mt-4 max-w-2xl text-4xl text-white sm:text-5xl">Make Nahuatl part of your everyday life.</h2></div>
+          <div><p className="text-xs font-black uppercase tracking-[.16em] text-emerald-300">A living language belongs in the future</p><h2 className="display-title mt-4 max-w-2xl text-4xl text-white sm:text-5xl">Make Eastern Huasteca Nahuatl part of your everyday life.</h2></div>
           <Show when="signed-out"><Link href="/sign-up" className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-black text-stone-950 transition hover:-translate-y-0.5 hover:bg-emerald-50">Start learning free <ArrowRight size={17} /></Link></Show>
           <Show when="signed-in"><ContinuePathLink units={continueUnits} className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-black text-stone-950 transition hover:-translate-y-0.5 hover:bg-emerald-50">Continue your path <ArrowRight size={17} /></ContinuePathLink></Show>
         </div>
