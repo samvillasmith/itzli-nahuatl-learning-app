@@ -7,12 +7,12 @@ export default function DisclaimerBanner() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem("itzli_disclaimer_dismissed");
+    const dismissed = localStorage.getItem("itzli_v2_announcement_dismissed");
     if (!dismissed) setVisible(true);
   }, []);
 
   function dismiss() {
-    localStorage.setItem("itzli_disclaimer_dismissed", "1");
+    localStorage.setItem("itzli_v2_announcement_dismissed", "1");
     setVisible(false);
   }
 
@@ -20,25 +20,28 @@ export default function DisclaimerBanner() {
 
   return (
     <>
-      <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
-          <p className="leading-relaxed">
-            <span className="font-semibold">Work in progress</span> - audio uses a neutral Spanish
-            machine voice with explicit Nahuatl pronunciation rules, images are being added from the S3 catalog, and
-            more features are coming.{" "}
+      <div className="border-b border-emerald-200/80 bg-[linear-gradient(100deg,#ecfdf5_0%,#f0fdfa_55%,#fffbeb_100%)] px-4 py-2.5 text-xs text-emerald-950">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <p className="leading-relaxed sm:text-[13px]">
+            <span className="mr-2 inline-flex rounded-full bg-emerald-700 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-white">
+              Itzli 2.0
+            </span>
+            <span className="font-semibold">A sweeping course-wide upgrade is here:</span>{" "}
+            a sharper Eastern Huasteca focus, clearer lessons, reviewed vocabulary, richer practice,
+            and a beautifully redesigned experience.{" "}
             <button
               onClick={() => setModalOpen(true)}
-              className="font-medium underline underline-offset-2 transition-colors hover:text-amber-700"
+              className="font-bold text-emerald-800 underline decoration-emerald-400 underline-offset-2 transition-colors hover:text-emerald-950"
             >
-              Learn more
+              See what changed
             </button>
           </p>
           <button
             onClick={dismiss}
-            aria-label="Dismiss"
-            className="shrink-0 text-base leading-none text-amber-500 transition-colors hover:text-amber-800"
+            aria-label="Dismiss Version 2.0 announcement"
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-base leading-none text-emerald-600 transition-colors hover:bg-emerald-100 hover:text-emerald-950"
           >
-            x
+            ×
           </button>
         </div>
       </div>
@@ -49,88 +52,70 @@ export default function DisclaimerBanner() {
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="relative max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-8 shadow-xl"
+            className="relative max-h-[85vh] w-full max-w-xl overflow-y-auto rounded-3xl border border-white/70 bg-[#fffdf8] p-7 shadow-2xl sm:p-9"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               onClick={() => setModalOpen(false)}
-              className="absolute right-4 top-4 text-lg leading-none text-stone-400 transition-colors hover:text-stone-700"
+              className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-lg leading-none text-stone-500 transition-colors hover:bg-stone-200 hover:text-stone-800"
               aria-label="Close"
             >
-              x
+              ×
             </button>
 
-            <h2 className="mb-1 text-lg font-bold text-stone-900">About Itzli</h2>
-            <p className="mb-5 text-xs font-semibold uppercase text-stone-500">Work in progress</p>
+            <div className="mb-6 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-800">
+              Now available
+            </div>
+            <h2 className="pr-10 text-3xl font-black tracking-[-0.035em] text-stone-950">Welcome to Itzli 2.0</h2>
+            <p className="mt-2 text-sm font-semibold text-emerald-800">A major course-wide upgrade</p>
+            <p className="mt-4 text-sm leading-6 text-stone-600">
+              We rebuilt Itzli to make learning Eastern Huasteca Nahuatl clearer, more focused,
+              and more enjoyable from the first sound to the final unit.
+            </p>
 
-            <div className="space-y-5 text-sm leading-relaxed text-stone-600">
-              <section>
-                <h3 className="mb-1 font-semibold text-stone-800">Audio pronunciations</h3>
+            <div className="mt-7 grid gap-3 text-sm text-stone-600 sm:grid-cols-2">
+              <section className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
+                <div className="mb-3 text-lg">✦</div>
+                <h3 className="font-black text-stone-900">Eastern Huasteca, clearly</h3>
                 <p>
-                  The voice you hear is machine-generated from a neutral Spanish voice with
-                  explicit X-SAMPA instructions for Eastern Huasteca Nahuatl pronunciation.
-                </p>
-                <ul className="mt-2 space-y-1.5 pl-0">
-                  <li className="flex gap-2">
-                    <span className="shrink-0 text-amber-500">-</span>
-                    <span>
-                      <strong>Pure vowels:</strong> a, e, i, o, u are prompted as steady
-                      Nahuatl vowels, so short words like <em>na</em> and <em>ta</em> are
-                      not treated as English-style glides.
-                    </span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="shrink-0 text-amber-500">-</span>
-                    <span>
-                      <strong>Nahuatl digraphs:</strong> ll, x, tl, tz, ch, hu, cu, and qu
-                      are handled with language-specific cues.
-                    </span>
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="shrink-0 text-amber-500">-</span>
-                    <span>
-                      <strong>Quality review:</strong> generated clips should be sampled
-                      and regenerated when the model drops sounds or misreads a form.
-                    </span>
-                  </li>
-                </ul>
-                <p className="mt-2 text-xs text-stone-500">
-                  Generated audio is educational support, not a substitute for community
-                  instruction or formal linguistic review.
+                  The course now consistently centers the living variety spoken in and around
+                  Chicontepec, Veracruz.
                 </p>
               </section>
 
-              <section>
-                <h3 className="mb-1 font-semibold text-stone-800">Images</h3>
+              <section className="rounded-2xl border border-amber-100 bg-amber-50/70 p-4">
+                <div className="mb-3 text-lg">◎</div>
+                <h3 className="font-black text-stone-900">A stronger course</h3>
                 <p>
-                  Vocabulary images are being connected from the app&apos;s S3 word-image
-                  catalog. Abstract words, function words, and some verbs may not have
-                  useful images yet.
+                  A broad accuracy review corrected many mistranslations, damaged forms,
+                  and confusing lesson entries.
                 </p>
               </section>
 
-              <section>
-                <h3 className="mb-1 font-semibold text-stone-800">Coming soon</h3>
+              <section className="rounded-2xl border border-sky-100 bg-sky-50/70 p-4">
+                <div className="mb-3 text-lg">→</div>
+                <h3 className="font-black text-stone-900">A smoother path</h3>
                 <p>
-                  User accounts, cloud progress sync, spaced repetition, and richer
-                  pronunciation tools are planned for future releases.
+                  Lessons, navigation, progress, and practice now work together as one
+                  guided learning experience.
                 </p>
               </section>
 
-              <section className="border-t border-stone-100 pt-5">
-                <h3 className="mb-1 font-semibold text-stone-800">Why this app exists</h3>
+              <section className="rounded-2xl border border-violet-100 bg-violet-50/70 p-4">
+                <div className="mb-3 text-lg">◈</div>
+                <h3 className="font-black text-stone-900">Made to be memorable</h3>
                 <p>
-                  The Nahua people have endured centuries of colonization and cultural
-                  erasure. Nahuatl was systematically suppressed, and generations of
-                  Indigenous Mexicans were made to feel ashamed of their mother tongue.
-                </p>
-                <p className="mt-2">
-                  Itzli was created by <strong>Sam Villa-Smith, PhD</strong>, a person of
-                  Indigenous Mexican ancestry, as an act of cultural recovery. Its goal is
-                  Indigenous visibility, language revitalization, and making Nahuatl
-                  learnable for more people.
+                  A redesigned interface and richer visual vocabulary make every session
+                  calmer, clearer, and more inviting.
                 </p>
               </section>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-stone-200 bg-white/80 p-4 text-xs leading-5 text-stone-600">
+              <strong className="text-stone-900">Keeping Itzli sustainable:</strong> the paid AI tutor is
+              paused. All lessons, grammar, vocabulary, audio, and practice activities remain available.
+              Pronunciation audio is machine-generated educational support and may not reproduce every
+              community pronunciation perfectly.
             </div>
 
             <button
@@ -138,9 +123,9 @@ export default function DisclaimerBanner() {
                 setModalOpen(false);
                 dismiss();
               }}
-              className="mt-6 w-full rounded-lg bg-emerald-500 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-600"
+              className="mt-6 w-full rounded-xl bg-stone-950 py-3 text-sm font-bold text-white transition-colors hover:bg-emerald-800"
             >
-              Got it
+              Start exploring Version 2.0
             </button>
           </div>
         </div>
