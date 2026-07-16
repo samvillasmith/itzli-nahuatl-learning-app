@@ -28,9 +28,9 @@
 | tz — [ts] | ✅ | Correct |
 | x — [ʃ] | ✅ | Correct |
 | hu / uh — [w] | ✅ | Correct for IDIEZ orthography. INALI uses ⟨w⟩ instead |
-| qu / cu — [k] | ⚠️ | Correct for IDIEZ. More precisely: qu before e/i, c before a/o (not "cu before a/o" — cu represents /kʷ/ i.e., labialized k). The entry conflates /k/ (written c/qu) with /kʷ/ (written cu/uc). INALI uses ⟨k⟩ for both |
+| qu / cu — [k]wq | ⚠️ | Correct for IDIEZ. More precisely: qu before e/i, c before a/o (not "cu before a/o" — cu represents /kʷ/ i.e., labialized k). The entry conflates /k/ (written c/qu) with /kʷ/ (written cu/uc). INALI uses ⟨k⟩ for both |
 | z — [s] | ⚠️ | Correct for IDIEZ (z before a/o, c before e/i = [s]). INALI/SEP use ⟨s⟩ throughout |
-| l m n p t y | ✅ | Correct — similar to English counterparts |
+| l m n p t y```````````````````````````````````````````````````````````````````````1 | ✅ | Correct — similar to English counterparts |
 
 **Unit 01 general note:** The phonology section is reasonably accurate but glosses over the EHN-specific realization of /h/ and conflates c/qu with cu/uc. A note about which orthographic system is being taught should be added.
 
@@ -1147,3 +1147,15 @@ Generally accurate. All entries deal with botanical/natural terms. Most are ✅ 
 4. **Label Spanish loanwords** with a marker (e.g., "Sp." or "loanword")
 5. **Add pronunciation guides** for community-specific variants (Chicontepec vs. Huejutla, etc.)
 6. **Cross-reference against IDIEZ dictionary** (University of Oregon Nahuatl Dictionary, IDIEZ module) for final verification of all entries
+
+---
+
+## Addendum — 2026-07-16: withdrawn deletion recommendations
+
+Three earlier cautions must not be used as grounds for deleting living Eastern Huasteca forms:
+
+- **`cuatochin` / `kuatochin` = “rabbit”** is attested EHN. It appears in an IDIEZ entry and is used for “Rabbit” in IDIEZ-translated children’s literature. The ❌ assessment above is withdrawn; retain the form.
+- **`huehue` = “husband”** (possessed stem **`-huehueh`**) is plausible EHN usage. It still needs speaker recheck, but it must not be deleted merely because `huehue` has an “old man/elder” sense elsewhere.
+- **`firmaroa`** follows a normal living-EHN pattern for adapting Spanish verbs with **`-oa` / `-aroa`**. Calling a form “hispanicized” is not evidence that it is invalid or should be removed.
+
+These reversals take precedence over the corresponding deletion or rejection language in the historical audit above.

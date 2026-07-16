@@ -102,6 +102,17 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   7724,  // tilmahtli - clothing word in conditions/evaluations unit
 ]);
 
+const QUARANTINED_VOCAB_HEADWORDS = new Set([
+  "tlalteuhnemitia",
+  "lalakatik",
+  "quechpechin",
+  "ceboiz",
+  "altepet",
+  "conē – tl",
+  "momachti – hquetl",
+  "ni – momachtia",
+].map((headword) => headword.normalize("NFC").toLowerCase()));
+
 // Secondary dictionary imports are not automatically learner-facing. These
 // linked rows have an exact headword match in the native Chicontepec course;
 // their learner glosses are normalized by the source-first correction script.
@@ -317,6 +328,15 @@ export function isCoreVocabItem(
   lessonNumber = item.lesson_number ?? item.first_lesson_number ?? 0,
 ): boolean {
   if (EXCLUDED_VOCAB_IDS.has(item.id)) return false;
+  if (
+    [item.headword, item.display_form].some((headword) =>
+      headword
+        ? QUARANTINED_VOCAB_HEADWORDS.has(headword.normalize("NFC").toLowerCase().trim())
+        : false,
+    )
+  ) {
+    return false;
+  }
   if (item.entry_id && !SOURCE_VERIFIED_LINKED_VOCAB_IDS.has(item.id)) return false;
   if (
     (item.semantic_domain === "Comparative_only" || item.semantic_domain === "Classical_citation") &&

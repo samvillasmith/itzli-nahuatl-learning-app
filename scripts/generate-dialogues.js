@@ -5,8 +5,26 @@
 const Database = require("better-sqlite3");
 const { resolveDbPath } = require("./_db-path");
 
-const DB_PATH = resolveDbPath();
-const db = new Database(DB_PATH);
+const EHN_LINE_REJECTIONS = [
+  { reason: "Classical ō-augmented past", pattern: /\bō(?:ni|ti|qui|mo|tla|an|in)[a-zāēīō]/u },
+  { reason: "declarative āmo", pattern: /(^|[\s"“¡¿(])[Āā]mo\b(?!\s+xi)/u },
+  { reason: "Classical aquin", pattern: /\b[Aa]quin\b/u },
+  { reason: "Classical intla", pattern: /\bintla\b/iu },
+  { reason: "Classical nicah/ticah", pattern: /\bnicah\b|\bticah\b/u },
+  { reason: "non-EHN second-person plural marker", pattern: /anmo|amech/iu },
+  { reason: "malformed prohibitive", pattern: /\bximolinquih\b/iu },
+];
+
+function getEhnLineRejection(text) {
+  if (typeof text !== "string" || text.trim().length === 0) return "empty line";
+  return EHN_LINE_REJECTIONS.find(({ pattern }) => pattern.test(text))?.reason ?? null;
+}
+
+function validateEhnLine(text) {
+  return getEhnLineRejection(text) === null;
+}
+
+module.exports = { validateEhnLine };
 
 // ── Dialogue data ─────────────────────────────────────────────────────────────
 // Each entry: { unitId, lines: [{ speaker, ehn, en }] }
@@ -18,7 +36,7 @@ const dialogues = [
     unitId: "FCN-LSN-0010", // Unit 1 — The Alphabet
     lines: [
       { s: "A", ehn: "Piyālli! ¿Titlahtōa nāhuatl?", en: "Hello! Do you speak Nahuatl?" },
-      { s: "B", ehn: "Axcanah mātzin, āchtopa nimomachtia.", en: "Not yet — I'm just beginning to learn." },
+      { s: "B", ehn: "Axcanah mātzin, āchtopa nimomachtia.", en: "Not yet — I'm just beginning to learn." }, // TODO(EHN-verify): mātzin
       { s: "A", ehn: "Cuālli. ¿Ācquiya mitztlamachtia tlahtōlli?", en: "Good. Who is teaching you the sounds?" },
       { s: "B", ehn: "Notlamachtiah nicān pan caltlamachticān. Cuālli quitōa nāhuatl.", en: "My teacher here at school. He speaks Nahuatl well." },
     ],
@@ -73,7 +91,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Piyā tā nopiltotontin?", en: "Do you have little children?" },
       { s: "B", ehn: "Quēna, nicpiya cē nopiltzin huan ōme noichpōcauh. ¿Huan ta?", en: "Yes, I have one son and two daughters. And you?" },
-      { s: "A", ehn: "Āmo mātzin. Zan noconepiyah nohueltiuh huan noicniuh.", en: "Not yet. I only have my sister's and brother's children." },
+      { s: "A", ehn: "Ayamo. Zan noconepiyah nohueltiuh huan noicniuh.", en: "Not yet. I only have my sister's and brother's children." }, // TODO(EHN-verify): mātzin
       { s: "B", ehn: "Cuālli. In nohueyitāta huan nohueyinān nicān cateh.", en: "Good. My grandfather and grandmother are here." },
     ],
   },
@@ -108,28 +126,28 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0024", // Unit 14 — Past Tense Verbs Part 1
     lines: [
-      { s: "A", ehn: "¿Tlen ōmochiuh?", en: "What happened?" },
-      { s: "B", ehn: "Āmo cuālli. Ōnihuetz pan ohtli.", en: "Not good. I fell on the road." },
-      { s: "A", ehn: "¿Āmo ōtimomāuh?", en: "Weren't you hurt?" },
-      { s: "B", ehn: "Āmo, ōnicuēp nicān. Cuālli nicah āxcan.", en: "No, I turned back here. I'm fine now." },
+      { s: "A", ehn: "¿Tlen mochīuhqui?", en: "What happened?" },
+      { s: "B", ehn: "Axcanah cuālli. Nihuetzqui pan ohtli.", en: "Not good. I fell on the road." }, // TODO(EHN-verify): huetzqui
+      { s: "A", ehn: "¿Axcanah timomauhtihqui?", en: "Weren't you hurt?" }, // TODO(EHN-verify): momauhtihqui
+      { s: "B", ehn: "Axcanah, nimocuapqui nicān. Cuālli niitztoc āxcan.", en: "No, I turned back here. I'm fine now." }, // TODO(EHN-verify): nimocuapqui
     ],
   },
   {
     unitId: "FCN-LSN-0025", // Unit 15 — Past Tense Verbs Part 2
     lines: [
-      { s: "A", ehn: "¿Tlen ōticchiuh yalhua?", en: "What did you do yesterday?" },
-      { s: "B", ehn: "Yalhua ōnihuīca pan teopan. ¿Huan ta?", en: "Yesterday I sang at church. And you?" },
-      { s: "A", ehn: "Na ōnichoca pampa āmo ōnihuāllah.", en: "I cried because I couldn't come." },
-      { s: "B", ehn: "Āmo ximolinquih. Tiyāzqueh ōcsepa.", en: "Don't worry. We'll go again." },
+      { s: "A", ehn: "¿Tlen ticchīuhqui yalhua?", en: "What did you do yesterday?" },
+      { s: "B", ehn: "Yalhua nicuīcac pan teopan. ¿Huan ta?", en: "Yesterday I sang at church. And you?" }, // TODO(EHN-verify): nicuīcac
+      { s: "A", ehn: "Na nichōcac pampa axcanah nihuāllahqui.", en: "I cried because I couldn't come." },
+      { s: "B", ehn: "Āmo ximotequipacho. Tiyāzqueh ōcsepa.", en: "Don't worry. We'll go again." }, // TODO(EHN-verify): ximotequipacho
     ],
   },
   {
     unitId: "FCN-LSN-0026", // Unit 16 — Past Tense Verbs Part 3
     lines: [
-      { s: "A", ehn: "¿Tlen ōticchiuh pan tiānquiz?", en: "What did you do at the market?" },
+      { s: "A", ehn: "¿Tlen ticchīuhqui pan tiānquiz?", en: "What did you do at the market?" },
       { s: "B", ehn: "Ax cuālli. Cē tlacatl nēchichtec in tomi.", en: "Not good. Someone stole my money." },
-      { s: "A", ehn: "¡Āmo cuālli! ¿Ōtiquīzac tiānquiz?", en: "That's terrible! Did you leave the market?" },
-      { s: "B", ehn: "Quēna, ōniquīzac. Āmo nōmpa nihuāllāz.", en: "Yes, I left. I won't go back there." },
+      { s: "A", ehn: "¡Axcanah cuālli! ¿Tiquīzqui tiānquiz?", en: "That's terrible! Did you leave the market?" },
+      { s: "B", ehn: "Quēna, niquīzqui. Axcanah nōmpa nihuāllāz.", en: "Yes, I left. I won't go back there." },
     ],
   },
   {
@@ -147,7 +165,7 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticnequi ticcua?", en: "What do you want to eat?" },
       { s: "B", ehn: "Nicnequi niccua yēlotl huan camohtli. ¡Huelic!", en: "I want to eat corn and sweet potato. Delicious!" },
       { s: "A", ehn: "¿Ticnequi cōcoc o xococ?", en: "Do you want spicy or sour?" },
-      { s: "B", ehn: "Āmo xococ, nicnequi cōcoc. Tlāhuēl nicnequi cōcoc.", en: "Not sour — I want spicy. I really like spicy." },
+      { s: "B", ehn: "Axcanah xococ, nicnequi cōcoc. Tlāhuēl nicnequi cōcoc.", en: "Not sour — I want spicy. I really like spicy." },
     ],
   },
   {
@@ -156,7 +174,7 @@ const dialogues = [
       { s: "A", ehn: "¿Ācquiya in tlacātzin nicān?", en: "Who is the gentleman here?" },
       { s: "B", ehn: "In tlacātzin notātatzin. Ximotlāli, ximoāxilti.", en: "The gentleman is my father. Sit, welcome." },
       { s: "A", ehn: "¿Huan in cihuātzin, ācquiya?", en: "And the lady, who is she?" },
-      { s: "B", ehn: "In cihuātzin nonantzin. Tlazcāmati otimōhuallah.", en: "The lady is my mother. Thank you for coming." },
+      { s: "B", ehn: "In cihuātzin nonantzin. Tlazcāmati tihuāllahqui.", en: "The lady is my mother. Thank you for coming." },
     ],
   },
   {
@@ -189,19 +207,19 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0034", // Unit 24 — I Had Gone to the City Part 1
     lines: [
-      { s: "A", ehn: "¿Cāmpa ōtiyāh yalhua?", en: "Where did you go yesterday?" },
+      { s: "A", ehn: "¿Cāmpa tiyāhqui yalhua?", en: "Where did you go yesterday?" },
       { s: "B", ehn: "Niyāhqui Mexihco. Niquittac in āltepētl huan tiānquiz.", en: "I went to Mexico. I saw the city and the market." },
-      { s: "A", ehn: "¿Huan ōticalac escuela?", en: "And did you enter the school?" },
-      { s: "B", ehn: "Quēna, huan ōniquitta in tiopa. Cuālli āltepētl.", en: "Yes, and I saw the church. A fine city." },
+      { s: "A", ehn: "¿Huan ticalac escuela?", en: "And did you enter the school?" }, // TODO(EHN-verify): ticalac
+      { s: "B", ehn: "Quēna, huan niquittac in tiopa. Cuālli āltepētl.", en: "Yes, and I saw the church. A fine city." }, // TODO(EHN-verify): niquittac
     ],
   },
   {
     unitId: "FCN-LSN-0035", // Unit 25 — I Had Gone to the City Part 2
     lines: [
-      { s: "A", ehn: "¿Cuālli ōtimomachti pan āltepētl?", en: "Did you learn well in the city?" },
-      { s: "B", ehn: "Quēna, zan āmo ōnicpiyah notiempōs. Huēhca ōniyāuh.", en: "Yes, but I didn't have enough time. I went far away." },
-      { s: "A", ehn: "¿Nōhquiya ōtiquitta escuela?", en: "Did you also see the school?" },
-      { s: "B", ehn: "Quēna, hasta huēhca ōniquitta. Cuālli āltepētl.", en: "Yes, I saw it all the way over there. A fine city." },
+      { s: "A", ehn: "¿Cuālli timomachtihqui pan āltepētl?", en: "Did you learn well in the city?" }, // TODO(EHN-verify): timomachtihqui
+      { s: "B", ehn: "Quēna, zan axcanah nicpixqui notiempōs. Huēhca niyāhqui.", en: "Yes, but I didn't have enough time. I went far away." },
+      { s: "A", ehn: "¿Nōhquiya tiquittac escuela?", en: "Did you also see the school?" }, // TODO(EHN-verify): tiquittac
+      { s: "B", ehn: "Quēna, hasta huēhca niquittac. Cuālli āltepētl.", en: "Yes, I saw it all the way over there. A fine city." }, // TODO(EHN-verify): niquittac
     ],
   },
   {
@@ -210,7 +228,7 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticōhuaz nicān tiānquiz?", en: "What will you buy here at the market?" },
       { s: "B", ehn: "Nicōhuaz cē pantzi huan ōme lalax. ¿Quēzqui tomi?", en: "I'll buy one bread and two oranges. How much money?" },
       { s: "A", ehn: "In pantzi, ōme pesos. In lalax, cē peso ciyoc.", en: "The bread, two pesos. The oranges, one more peso." },
-      { s: "B", ehn: "Nicah, niccui. Tlazcāmati.", en: "OK, I'll take them. Thank you." },
+      { s: "B", ehn: "Cuālli, niccui. Tlazcāmati.", en: "OK, I'll take them. Thank you." },
     ],
   },
   {
@@ -228,14 +246,14 @@ const dialogues = [
       { s: "A", ehn: "Piyālli! ¿Nipaxalōtoh moichan?", en: "Hello! Am I passing by your house?" },
       { s: "B", ehn: "Quēna, ximocalaqui! Ximoāxilti!", en: "Yes! Come in! Welcome!" },
       { s: "A", ehn: "Tlazcāmati. ¿Cuālli timoyōlia āxcan?", en: "Thank you. Are you well today?" },
-      { s: "B", ehn: "Quēna, cuālli nicah. Ximotlāli, ximoāxilti.", en: "Yes, I'm well. Sit down, be welcome." },
+      { s: "B", ehn: "Quēna, cuālli niitztoc. Ximotlāli, ximoāxilti.", en: "Yes, I'm well. Sit down, be welcome." },
     ],
   },
   {
     unitId: "FCN-LSN-0039", // Unit 29 — What Illnesses Do You Know?
     lines: [
       { s: "A", ehn: "¿Quēniuhqui timoyōlia?", en: "How are you feeling?" },
-      { s: "B", ehn: "Āmo cuālli nicah. Nicpiya cecuīliztli.", en: "I'm not well. I have a cold." },
+      { s: "B", ehn: "Axcanah cuālli niitztoc. Nicpiya cecuīliztli.", en: "I'm not well. I have a cold." },
       { s: "A", ehn: "¿Ticcāhuac in cocoliztli?", en: "Did you catch the sickness?" },
       { s: "B", ehn: "Quēna. Nicnequi niccua pāhtli āxcan.", en: "Yes. I want to take medicine today." },
     ],
@@ -246,7 +264,7 @@ const dialogues = [
       { s: "A", ehn: "Tlan tiyāuh tiānquiz, ¿ticcuīz nākatl?", en: "If you go to the market, will you buy meat?" },
       { s: "B", ehn: "Tlan onca tomi, quēna. Axcanah mātzin nicpiya.", en: "If there is money, yes. I don't have any yet." },
       { s: "A", ehn: "Tlan ax onca tomi, ¿tlen ticchīhuaz?", en: "If there's no money, what will you do?" },
-      { s: "B", ehn: "Nēlia āmo niccuīz nākatl. Aic niccuīz.", en: "Truly I won't buy meat. I'll never buy it." },
+      { s: "B", ehn: "Nēlia axcanah niccuīz nākatl. Aic niccuīz.", en: "Truly I won't buy meat. I'll never buy it." },
     ],
   },
   {
@@ -271,36 +289,51 @@ const dialogues = [
 
 // ── Insert ────────────────────────────────────────────────────────────────────
 
-const insert = db.prepare(`
-  INSERT INTO lesson_dialogues
-    (lesson_dialogue_id, lesson_unit_id, dialogue_order, speaker_label,
-     utterance_original, utterance_normalized, translation_en, attestation_tier)
-  VALUES (?, ?, ?, ?, ?, ?, ?, 'AI_generated')
-  ON CONFLICT(lesson_dialogue_id) DO UPDATE SET
-    lesson_unit_id = excluded.lesson_unit_id,
-    dialogue_order = excluded.dialogue_order,
-    speaker_label = excluded.speaker_label,
-    utterance_original = excluded.utterance_original,
-    utterance_normalized = excluded.utterance_normalized,
-    translation_en = excluded.translation_en,
-    attestation_tier = excluded.attestation_tier
-`);
+function main() {
+  const DB_PATH = resolveDbPath();
+  const db = new Database(DB_PATH);
 
-let idCounter = 216; // next after FCN-LDG-000215
-let totalInserted = 0;
+  const insert = db.prepare(`
+    INSERT INTO lesson_dialogues
+      (lesson_dialogue_id, lesson_unit_id, dialogue_order, speaker_label,
+       utterance_original, utterance_normalized, translation_en, attestation_tier)
+    VALUES (?, ?, ?, ?, ?, ?, ?, 'AI_generated')
+    ON CONFLICT(lesson_dialogue_id) DO UPDATE SET
+      lesson_unit_id = excluded.lesson_unit_id,
+      dialogue_order = excluded.dialogue_order,
+      speaker_label = excluded.speaker_label,
+      utterance_original = excluded.utterance_original,
+      utterance_normalized = excluded.utterance_normalized,
+      translation_en = excluded.translation_en,
+      attestation_tier = excluded.attestation_tier
+  `);
 
-const run = db.transaction(() => {
-  for (const unit of dialogues) {
-    for (let i = 0; i < unit.lines.length; i++) {
-      const line = unit.lines[i];
-      const id = `FCN-LDG-${String(idCounter).padStart(6, "0")}`;
-      insert.run(id, unit.unitId, i + 1, line.s, line.ehn, line.ehn, line.en);
-      idCounter++;
-      totalInserted++;
+  let idCounter = 216; // next after FCN-LDG-000215
+  let totalInserted = 0;
+
+  const run = db.transaction(() => {
+    for (const unit of dialogues) {
+      for (let i = 0; i < unit.lines.length; i++) {
+        const line = unit.lines[i];
+        const rejection = getEhnLineRejection(line.ehn);
+        if (rejection) {
+          console.warn(`Skipped ${unit.unitId} line ${i + 1}: ${rejection}: ${line.ehn}`);
+          continue;
+        }
+        const id = `FCN-LDG-${String(idCounter).padStart(6, "0")}`;
+        insert.run(id, unit.unitId, i + 1, line.s, line.ehn, line.ehn, line.en);
+        idCounter++;
+        totalInserted++;
+      }
     }
-  }
-});
+  });
 
-run();
-console.log(`Upserted ${totalInserted} dialogue lines across ${dialogues.length} units.`);
-console.log(`IDs: FCN-LDG-000216 → FCN-LDG-${String(idCounter - 1).padStart(6, "0")}`);
+  run();
+  console.log(`Upserted ${totalInserted} dialogue lines across ${dialogues.length} units.`);
+  console.log(`IDs: FCN-LDG-000216 → FCN-LDG-${String(idCounter - 1).padStart(6, "0")}`);
+  db.close();
+}
+
+if (require.main === module) {
+  main();
+}

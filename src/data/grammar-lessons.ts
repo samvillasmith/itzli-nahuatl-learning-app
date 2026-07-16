@@ -113,7 +113,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     title: 'Orthographic Systems: IDIEZ, INALI & SEP',
     nahuatlTitle: 'Tlahcuiloliztli',
     band: 'A1',
-    shortDesc: 'Why Nahuatl is written different ways, and why this course now displays INALI-style spelling.',
+    shortDesc: 'Why Nahuatl is written different ways, and why this course uses a modern k/w/s spelling with h retained.',
     relatedUnits: [1],
     sections: [
       {
@@ -128,16 +128,16 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'paradigm',
         heading: 'Same word, three spellings',
-        caption: 'Rows show how a single EHN word is written in each system.',
-        headers: ['IDIEZ / academic', 'INALI (this course)', 'SEP / traditional'],
+        caption: 'The middle column is the app display; the final column includes SEP and INALI-j alternatives.',
+        headers: ['IDIEZ / academic', 'Course display (k/w/s, h retained)', 'SEP / INALI-j variant'],
         rows: [
-          { person: 'cualli', form: 'kwali', gloss: 'cualli' },
+          { person: 'cualli', form: 'kwalli', gloss: 'cualli' },
           { person: 'quena', form: 'kena', gloss: 'quena' },
           { person: 'cihuātl', form: 'siwatl', gloss: 'cihuatl' },
           { person: 'xōchitl', form: 'xochitl', gloss: 'xochitl' },
-          { person: 'tlahtoa', form: 'tlajtoa', gloss: 'tlahtoa' },
+          { person: 'tlahtoa', form: 'tlahtoa', gloss: 'tlajtoa (SEP / INALI-j)' },
           { person: 'cuahuitl', form: 'kwawitl', gloss: 'cuahuitl' },
-          { person: 'ahsi', form: 'ahsi / asi', gloss: 'aci' },
+          { person: 'ahsi', form: 'ahsi', gloss: 'asi / aci' },
         ],
       },
       {
@@ -343,10 +343,10 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'ni- + identity word; no separate "am" word is added',
           },
           {
-            nahuatl: 'Āmo, āxcan ninēhnemi pan āltepētl.',
-            breakdown: 'Āmo, āxcan ni·nēhnemi pan āltepētl.',
+            nahuatl: 'Axcanah, āxcan ninēhnemi pan āltepētl.',
+            breakdown: 'Axcanah, āxcan ni·nēhnemi pan āltepētl.',
             translation: 'No, today I am walking around town.',
-            note: 'Āmo = no; āxcan = today/now; ninēhnemi = I walk around (ni- prefix)',
+            note: 'Axcanah = no; āxcan = today/now; ninēhnemi = I walk around (ni- prefix)',
           },
         ],
       },
@@ -926,7 +926,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             nahuatl: 'Niātli, ax nitlacua.',
             breakdown: 'Ni·ātli, ax ni·tlacua.',
             translation: "I'm drinking water, not eating.",
-            note: 'āmo negates the second verb in the sequence',
+            note: 'ax negates the second verb in the sequence',
           },
           {
             nahuatl: 'Neca iaxca nocniuh. Ax toaxca.',
@@ -1042,7 +1042,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'you',      form: 'timo-',         gloss: 'yourself' },
           { person: 'he / she', form: 'mo-',           gloss: 'himself / herself / itself' },
           { person: 'we',       form: 'timo- …-h',     gloss: 'ourselves (final -h marks plural)' },
-          { person: 'you all',  form: 'anmo-',         gloss: 'yourselves' },
+          { person: 'you all',  form: 'inmo-',         gloss: 'yourselves' },
           { person: 'they',     form: 'mo- …-h',       gloss: 'themselves' },
         ],
       },
@@ -1055,7 +1055,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'you',      form: 'timomachtia',     gloss: 'you study' },
           { person: 'he / she', form: 'momachtia',       gloss: 'he / she studies' },
           { person: 'we',       form: 'timomachtiah',    gloss: 'we study' },
-          { person: 'you all',  form: 'anmomachtiah',    gloss: 'you all study' },
+          { person: 'you all',  form: 'inmomachtiah',    gloss: 'you all study' },
           { person: 'they',     form: 'momachtiah',      gloss: 'they study' },
         ],
       },
@@ -1748,8 +1748,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'huānya = with (from -huān relational noun + ya)',
           },
           {
-            nahuatl: 'Ipampa in ātl, āmo tiyāzqueh.',
-            breakdown: 'I·pampa in ātl, āmo ti·yāz·queh.',
+            nahuatl: 'Ipampa in ātl, axcanah tiyāzqueh.',
+            breakdown: 'I·pampa in ātl, axcanah ti·yāz·queh.',
             translation: "Because of the water (rain), we won't go.",
             note: 'ī-pampa = because of it; referring to ātl (water/rain)',
           },
@@ -1945,8 +1945,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'tēch- (us, object) + māca (give) — not incorporation but shows tē-type object',
           },
           {
-            nahuatl: 'Āmo niccochiznequi āxcan.',
-            breakdown: 'Āmo ni-c-cochi-z-nequi āxcan.',
+            nahuatl: 'Axcanah niccochiznequi āxcan.',
+            breakdown: 'Axcanah ni-c-cochi-z-nequi āxcan.',
             translation: "I don't want to sleep now.",
             note: 'Negation + verb compound: cochi (sleep) + znequi (want)',
           },
@@ -1965,7 +1965,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `You've learned past (ō-), present, and future (-z). But not everything fits neatly into those three boxes. What about "I used to work there" or "I was eating when…"? Nahuatl handles these through **aspect** (how an action unfolds in time) and **mood** (the speaker's attitude toward the action — is it a fact, a wish, a possibility?).`,
+        text: `You've learned the EHN preterite (-qui/-c), present, and future (-z). But not everything fits neatly into those three boxes. What about "I used to work there" or "I was eating when…"? Nahuatl handles these through **aspect** (how an action unfolds in time) and **mood** (the speaker's attitude toward the action — is it a fact, a wish, a possibility?).`,
       },
       {
         kind: 'rule',
@@ -1975,7 +1975,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Progressive: "I am doing it right now"',
-        text: `To emphasize that something is happening right now (not habitual), EHN often uses the existential verb **cah** (to be located) or **itztoc** (to be sitting/existing) alongside the main verb:\n\n• Nicān ni**cah** ni**tequiti** = "I am (here) working" (right now)\n• Ti**itztoc** ti**tlacua** = "you are (sitting) eating"\n\nThe auxiliary verb carries the "in progress" meaning. The main verb stays in its present form.`,
+        text: `To emphasize that something is happening right now (not habitual), EHN can use **itztoc** (to be located / be in a state) alongside the main verb:\n\n• Nicān ni**itztoc** ni**tequiti** = "I am (here) working" (right now)\n• Ti**itztoc** ti**tlacua** = "you are (sitting) eating"\n\nThe auxiliary verb carries the "in progress" meaning. The main verb stays in its present form.`,
       },
       {
         kind: 'paradigm',
@@ -1988,18 +1988,18 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: '-z / -zqueh', form: 'Future / intention', gloss: 'nitequitiz — I will work' },
           { person: 'mā', form: 'Optative / wish', gloss: 'mā nitequiti — may I work / let me work' },
           { person: 'quemmantica', form: 'Occasional habitual', gloss: 'quemmantica nitequiti — sometimes I work' },
-          { person: '-toya / -ticah', form: 'Imperfect (was doing)', gloss: 'nitequititoya — I was working / I used to work' },
+          { person: '-toya', form: 'Imperfect (was doing)', gloss: 'nitequititoya — I was working / I used to work' },
         ],
       },
       {
         kind: 'rule',
         title: 'Imperfect: "I was doing / I used to"',
-        text: `For past actions that were ongoing (not completed), EHN uses the suffix **-toya** (from "to be lying/existing"):\n\n• ni-tequiti-**toya** = "I was working / I used to work"\n• ti-cochi-**toya** = "you were sleeping"\n• tlacua-**toya** = "he/she was eating"\n\nThis is similar to the Spanish imperfect (trabajaba vs. trabajé). Use -toya when the action was in progress or repeated in the past, and ō- + perfective when it was a one-time completed event.`,
+        text: `For past actions that were ongoing (not completed), EHN uses the suffix **-toya** (from "to be lying/existing"):\n\n• ni-tequiti-**toya** = "I was working / I used to work"\n• ti-cochi-**toya** = "you were sleeping"\n• tlacua-**toya** = "he/she was eating"\n\nThis is similar to the Spanish imperfect (trabajaba vs. trabajé). Use -toya when the action was in progress or repeated in the past, and an attested -qui/-c preterite when it was a one-time completed event.`,
       },
       {
         kind: 'rule',
         title: 'Optative / wish: mā',
-        text: `The particle **mā** before a verb expresses a wish, permission, or gentle command:\n\n• **mā cuālli pano** = "may it go well" (farewell blessing)\n• **mā tiyāzqueh** = "let's go" (hortative — 1pl)\n• **mā nicān cah** = "let him/her be here"\n• **mā Dios mitzpalēhui** = "may God help you"\n\nWith 2nd person, mā softens an imperative into a polite request (see the Commands lesson).`,
+        text: `The particle **mā** before a verb expresses a wish, permission, or gentle command:\n\n• **mā cuālli pano** = "may it go well" (farewell blessing)\n• **mā tiyāzqueh** = "let's go" (hortative — 1pl)\n• **mā nicān itztoc** = "let him/her be here"\n• **mā Dios mitzpalēhui** = "may God help you"\n\nWith 2nd person, mā softens an imperative into a polite request (see the Commands lesson).`,
       },
       {
         kind: 'examples',
@@ -2018,10 +2018,10 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'Progressive: -toc marks an action in progress',
           },
           {
-            nahuatl: 'Nitequititoya quēmman ōhuāllāc.',
-            breakdown: 'Ni-tequiti-toya quēmman ō-huāllā-c.',
+            nahuatl: 'Nitequititoya quēmman huāllahqui.',
+            breakdown: 'Ni-tequiti-toya quēmman huāllah-qui.',
             translation: 'I was working when he arrived.',
-            note: 'Imperfect -toya for ongoing past; ō- perfective for the interrupting event',
+            note: 'Imperfect -toya for ongoing past; EHN -qui preterite for the interrupting event',
           },
           {
             nahuatl: 'Mā cuālli ximopano.',
