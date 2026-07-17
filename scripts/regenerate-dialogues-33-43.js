@@ -23,6 +23,7 @@
 
 const Database = require("better-sqlite3");
 const { resolveDbPath } = require("./_db-path");
+const { validateEhnLine } = require("./generate-dialogues");
 
 const APPLY = process.argv.includes("--apply");
 
@@ -233,6 +234,10 @@ const run = db.transaction(() => {
     insertLessonUnit.run(unit.synId, slug, title);
 
     unit.lines.forEach((line, i) => {
+      if (!validateEhnLine(line.utterance)) {
+        console.warn(`Skipped Unit ${unit.lessonNumber} line ${i + 1}: failed EHN content lint: ${line.utterance}`);
+        return;
+      }
       const id = `FCN-LDG-${String(nextNum).padStart(6, "0")}`;
       nextNum++;
       insertDialogue.run(

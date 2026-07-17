@@ -10,7 +10,7 @@ import MobileLearningNav from "./MobileLearningNav";
 
 const SITE_URL = "https://itzli.app";
 const DESCRIPTION =
-  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured A1–B1 curriculum covering 800+ lesson words and phrases, 43 units, and real dialogues. Built for heritage speakers, language learners, and anyone who wants to connect with one of Mexico's living indigenous languages.";
+  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured course from A1 foundations through A2, with B1-oriented grammar and narrative modules, hundreds of reviewed lesson words and phrases, 43 units, and real dialogues.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -148,7 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   name: "Eastern Huasteca Nahuatl",
                   alternateName: ["Nahuatl", "Náhuatl", "NHE"],
                 },
-                educationalLevel: "Beginner to Intermediate (A1–B1)",
+                educationalLevel: "A1 foundations through A2, with B1-oriented extension modules",
                 inLanguage: "nhe",
                 isAccessibleForFree: true,
               }),
@@ -164,7 +164,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="flex h-5 w-5 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white">✦</span>
                 <span className="font-semibold text-stone-700">Itzli</span>
                 <span className="mx-2 text-stone-300">·</span>
-                <span>Eastern Huasteca Nahuatl · A1–B1 curriculum</span>
+                <span>Eastern Huasteca Nahuatl · A1–A2 course · B1-oriented extensions</span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
                 <Link href="/terms" className="hover:text-stone-600 transition-colors">

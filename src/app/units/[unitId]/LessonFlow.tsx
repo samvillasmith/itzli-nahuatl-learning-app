@@ -902,7 +902,7 @@ function BandBadge({ band }: { band: string }) {
   };
   return (
     <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full ${colors[band] ?? "bg-stone-100 text-stone-500"}`}>
-      {band}
+      {band === "B1" ? "B1-oriented" : band}
     </span>
   );
 }

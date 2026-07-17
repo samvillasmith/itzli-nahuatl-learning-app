@@ -4,7 +4,7 @@ A structured, linguistically rigorous language learning app for **Eastern Huaste
 
 This is not a Classical Nahuatl app. EHN is a distinct, modern, spoken language with its own orthography, grammar, and vocabulary — and until now, almost no digital learning infrastructure.
 
-> **Work in progress** — Audio pronunciations are machine-generated or linked to credited source-course recordings where available. Image cards are filtered through a strict text policy, generated images are moderated, and new generated assets remain quarantined until one-at-a-time human approval.
+> **Version 2.0** — Vocabulary is restricted to reviewed course material, audio pronunciations are machine-generated or linked to credited source-course recordings where available, and generated visual assets remain quarantined until human approval.
 
 ---
 
@@ -24,15 +24,15 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 
 ## What's Inside
 
-**43 units covering A1–B1**, organized around communicative goals:
+**43 units from A1 foundations through A2, with B1-oriented extension modules**, organized around communicative goals:
 
-| Band | Units | Focus |
-|------|-------|-------|
-| A1 | 1–15 | Greetings, family, numbers, food, daily life |
-| A2 | 16–30 | Home, community, nature, time, health |
-| B1 | 31–43 | Abstract concepts, narratives, cultural topics |
+| Stage | Units | New reviewed cards | Focus |
+|-------|------:|-------------------:|-------|
+| A1 | 16 | 181 | Greetings, identity, family, numbers, food, daily life |
+| A2 | 18 | 146 | Description, narration, home, market, community, nature, health |
+| B1-oriented | 9 | 54 | Advanced narration, conditionals, object marking, modifiers |
 
-- **825 core lesson cards after safety filtering and variant collapse**, plus 65 grammar-derived focus cards
+- **381 reviewed lesson cards after source filtering and variant collapse**, plus 63 grammar-derived focus cards
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`
@@ -40,7 +40,9 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
 - **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
 - **Progress tracking** via a local browser mirror and signed-in Neon cloud sync
-- **Vocabulary search** across a 37,000-entry EHN lexicon
+- **Vocabulary search** restricted to the reviewed Eastern Huasteca course inventory
+
+CEFR labels describe the orientation of the material, not a certification or guaranteed exit level. Completion of the app alone should be understood as an upper-A1 to emerging-A2 foundation; the final nine modules introduce B1-oriented grammar and narrative work without claiming that learners attain B1 proficiency.
 
 ---
 
@@ -107,16 +109,16 @@ tools, not the active production voice path.
 - **Tailwind CSS v4** — CSS variable-based theming, no config file
 - **better-sqlite3** — synchronous SQLite, all data fetched at build time
 - **TypeScript 5** — strict throughout
-- **OpenAI `gpt-4.1-mini`** — drives the Nahuatl tutor (`/tutor`)
+- **OpenAI SDK** — retained for an experimental TTS comparison path; the paid tutor is hard-disabled
 - **Clerk** — authentication at both the Next.js proxy and protected resource boundaries
 - **Neon Postgres** — cloud progress sync and chat audit log
 - No external state management — `useState`/`useEffect` + `localStorage`
 
 ---
 
-## AI Tutor Guardrails
+## Dormant AI Tutor Guardrails
 
-The `/tutor` route exposes an LLM to signed-in users. Because that's a real abuse and cost surface, every request to `/api/chat` goes through a layered defense. Each layer is independently useful — no single layer is load-bearing, and transparency about the architecture (this section) is treated as compatible with security, per Kerckhoffs's principle.
+The paid tutor is currently hard-disabled in code. Its navigation is hidden and `/api/chat` returns before authentication, moderation, retrieval, or any paid model call. The guardrail implementation remains in the repository for review and for any future, deliberate reactivation.
 
 ### Request pipeline
 
@@ -215,7 +217,7 @@ src/
 │   ├── practice/[unitId]/   Flashcard vocabulary review
 │   ├── grammar/[topic]/     Grammar reference with examples
 │   ├── progress/            Full progress dashboard
-│   └── vocabulary/          Full lexicon search
+│   └── vocabulary/          Reviewed course-vocabulary search
 ├── lib/
 │   ├── db.ts                All SQLite queries and types
 │   ├── audio.ts             Audio URL helpers (S3-backed)
@@ -237,7 +239,7 @@ scripts/
 
 - **IDIEZ** — Instituto de Docencia e Investigación Etnológica de Zacatecas, for their foundational EHN reference materials
 - **Meta AI / MMS Project** — for `facebook/mms-tts-nhe`, the open TTS model trained on EHN speech
-- **OpenAI** — for the AI tutor and an experimental TTS comparison path
+- **OpenAI** — for an experimental TTS comparison path; the paid tutor is currently disabled
 - **hexgrad / Kokoro** — retained as a reference experiment, no longer recommended for production Nahuatl audio
 - **Pexels, Wikimedia Commons, Flickr, Rawpixel, and StockSnap** — for legacy vocabulary images; required credit is shown with the card
 - **COERLL / The University of Texas at Austin** — for publishing the open
@@ -252,6 +254,7 @@ scripts/
 - Community review and replacement of machine-generated pronunciation
 - Human review of remaining safe image candidates
 - Continued conversational EHN curriculum review with transparent source notes
+- Expansion toward a genuinely assessed B1 outcome with broader vocabulary, native-speaker listening, connected production, and calibrated exit tasks
 
 ---
 

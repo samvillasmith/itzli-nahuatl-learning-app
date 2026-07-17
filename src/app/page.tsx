@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Show } from "@clerk/nextjs";
 import { ArrowRight, BookOpenCheck, CirclePlay, Headphones, MessageCircleMore, Sparkles } from "lucide-react";
-import { getAllUnits, getPrimerVocabEntryCount, getVocabCount } from "@/lib/db";
+import { getAllUnits, getVocabCount } from "@/lib/db";
 import { getCurriculumAudit } from "@/lib/curriculum";
 import { getWordImage } from "@/data/word-images";
 import ContinuePathLink from "./ContinuePathLink";
@@ -38,7 +38,6 @@ function WordGallery() {
 export default function LandingPage() {
   const units = getAllUnits();
   const vocabCount = getVocabCount();
-  const primerEntryCount = getPrimerVocabEntryCount();
   const audit = getCurriculumAudit();
   const dialogueCount = units.reduce((sum, unit) => sum + unit.english_dialogue_count, 0);
   const continueUnits = units.map((unit) => ({ lessonNumber: unit.lesson_number, pathOrder: unit.path_order }));
@@ -69,7 +68,7 @@ export default function LandingPage() {
             </Show>
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-500">
-            <span>Eastern Huasteca variety</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1 → B1</span>
+            <span>Eastern Huasteca variety</span><span className="text-stone-300">•</span><span>{audit.totalUnits} guided units</span><span className="text-stone-300">•</span><span>A1–A2 + B1-oriented extensions</span>
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">
@@ -105,7 +104,7 @@ export default function LandingPage() {
           <p className="mt-5 max-w-md leading-7 text-stone-600">Start small. Every milestone adds language you can recognize, remember, and use.</p>
           <div className="mt-7 flex gap-6 border-t border-stone-200 pt-6">
             <div><p className="text-2xl font-black text-stone-950">{vocabCount.toLocaleString()}</p><p className="text-xs text-stone-500">learning cards</p></div>
-            <div><p className="text-2xl font-black text-stone-950">{primerEntryCount.toLocaleString()}</p><p className="text-xs text-stone-500">reference entries</p></div>
+            <div><p className="text-2xl font-black text-stone-950">{dialogueCount.toLocaleString()}</p><p className="text-xs text-stone-500">dialogue lines</p></div>
           </div>
         </div>
         <div className="space-y-3">

@@ -17,7 +17,7 @@ const BAND_COLOR: Record<string, string> = {
 const BAND_LABEL: Record<string, string> = {
   A1: "Beginner",
   A2: "Elementary",
-  B1: "Intermediate",
+  B1: "B1-oriented extensions",
 };
 
 export default function ProgressDashboard({ units }: { units: Unit[] }) {
@@ -131,7 +131,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                 <span
                   className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}
                 >
-                  {band}
+                  {band === "B1" ? "B1-oriented" : band}
                 </span>
                 <h2 className="text-base font-semibold text-stone-600">{BAND_LABEL[band]}</h2>
               </div>

@@ -41,7 +41,7 @@ const STAGE = {
   descriptions: "Descriptions, Work, and Time",
   narration: "Past Narration and Movement",
   publicLife: "Public Life and Daily Needs",
-  b1Control: "B1 Narratives and Control",
+  b1Control: "B1-Oriented Narratives and Control",
 } as const;
 
 export const CURRICULUM_PATH: CurriculumMeta[] = [
@@ -602,7 +602,7 @@ export const CURRICULUM_PATH: CurriculumMeta[] = [
     grammar: "Adverb placement, intensification, repetition, and discourse modifiers.",
     lexical: "Again, a lot, close, moreover, little by little, five times, and manner words.",
     descriptor: "Can make speech more nuanced with frequency and manner modifiers.",
-    capstoneTask: "Give a B1 self-introduction using time, manner, and frequency modifiers.",
+    capstoneTask: "Give an extended self-introduction using time, manner, and frequency modifiers.",
   },
 ];
 

@@ -21,8 +21,16 @@ describe("dictionary content exclusions", () => {
     }
   });
 
-  it("keeps unrelated animal names searchable", () => {
-    const results = searchVocab("margay", 100);
-    expect(results.some((entry) => entry.gloss_en.toLowerCase().includes("margay"))).toBe(true);
+  it("searches verified course vocabulary instead of the raw mixed-dialect lexicon", () => {
+    const results = searchVocab("flower", 100);
+    expect(results.some((entry) => entry.gloss_en.toLowerCase().includes("flower"))).toBe(true);
+    expect(results.every((entry) => entry.variety === "Eastern Huasteca Nahuatl")).toBe(true);
+    expect(searchVocab("margay", 100)).toEqual([]);
+  });
+
+  it("does not expose superseded raw-import glosses", () => {
+    expect(searchVocab("sister-in-low", 100)).toEqual([]);
+    expect(searchVocab("mandarine", 100)).toEqual([]);
+    expect(searchVocab("pancho", 100)).toEqual([]);
   });
 });

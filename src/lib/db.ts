@@ -377,40 +377,31 @@ export function getUnitAssessments(lessonNumber: number): Assessment[] {
 export function searchVocab(query: string, limit = 40): LexiconEntry[] {
   if (isAppContentExcluded(query)) return [];
 
-  const stmt = getDb().prepare(
-    `SELECT entry_id, ehn_spoken_form, msn_headword, gloss_en, gloss_es,
-            part_of_speech, register, variety, notes_public
-     FROM lexicon_entries
-     WHERE (ehn_spoken_form LIKE ? OR msn_headword LIKE ? OR gloss_en LIKE ?)
-       AND is_active = 1
-       AND gloss_en != ''
-     ORDER BY ehn_spoken_form
-     LIMIT ?`
-  );
-  const seen = new Set<number>();
+  // The larger imported lexicon mixes dialects and has no speaker-validated
+  // English layer. Search only the same source-verified, filtered vocabulary
+  // that learners can encounter in the Eastern Huasteca course.
+  const needles = orthographySearchVariants(query).map((value) => value.toLowerCase());
 
-  return orthographySearchVariants(query)
-    .flatMap((variant) => {
-      const q = `%${variant}%`;
-      return stmt.all(q, q, q, limit * 4) as LexiconEntry[];
-    })
+  return getAllPrimerVocab()
     .filter((entry) => {
-      if (seen.has(entry.entry_id)) return false;
-      if (
-        isAppContentExcluded(
-          (entry as LexiconEntry).ehn_spoken_form,
-          (entry as LexiconEntry).msn_headword,
-          (entry as LexiconEntry).gloss_en,
-          (entry as LexiconEntry).gloss_es,
-          (entry as LexiconEntry).notes_public,
-        )
-      ) {
-        return false;
-      }
-      seen.add(entry.entry_id);
-      return true;
+      const searchable = [
+        ...orthographySearchVariants(entry.headword),
+        entry.gloss_en,
+      ].map((value) => value.toLowerCase());
+      return needles.some((needle) => searchable.some((value) => value.includes(needle)));
     })
-    .slice(0, limit) as LexiconEntry[];
+    .slice(0, limit)
+    .map((entry) => ({
+      entry_id: entry.id,
+      ehn_spoken_form: entry.headword,
+      msn_headword: entry.headword,
+      gloss_en: entry.gloss_en,
+      gloss_es: "",
+      part_of_speech: entry.part_of_speech,
+      register: "course",
+      variety: "Eastern Huasteca Nahuatl",
+      notes_public: "Source-verified course vocabulary",
+    }));
 }
 
 export type GrammarDialogue = {
