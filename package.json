@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
+    "preverify": "node scripts/fetch-db.js",
     "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:app-content && npm run audit:course && npm run images:openai:audit",
     "audit:course": "node scripts/audit-course-quality.js",
     "audit:app-content": "node scripts/audit-app-content-exclusions.js",
