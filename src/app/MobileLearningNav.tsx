@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, ChartNoAxesColumnIncreasing, House, LibraryBig } from "lucide-react";
+import { BookOpen, ChartNoAxesColumnIncreasing, House, Landmark, LibraryBig } from "lucide-react";
 
 const items = [
   { href: "/", label: "Home", icon: House },
   { href: "/units", label: "Learn", icon: BookOpen },
   { href: "/vocabulary", label: "Words", icon: LibraryBig },
+  { href: "/culture", label: "Culture", icon: Landmark },
   { href: "/progress", label: "Progress", icon: ChartNoAxesColumnIncreasing },
 ];
 

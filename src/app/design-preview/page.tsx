@@ -1,8 +1,25 @@
 import { notFound } from "next/navigation";
 import LessonFlow from "@/app/units/[unitId]/LessonFlow";
+import CultureModuleContent from "@/app/culture/CultureModuleContent";
+import CultureTrack from "@/app/culture/CultureTrack";
+import { getCultureModule } from "@/data/culture-lessons";
 
-export default function DesignPreviewPage() {
+export default async function DesignPreviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string; slug?: string }>;
+}) {
   if (process.env.NODE_ENV === "production") notFound();
+
+  const preview = await searchParams;
+  if (preview.view === "culture") {
+    const cultureModule = preview.slug ? getCultureModule(preview.slug) : undefined;
+    return cultureModule ? (
+      <CultureModuleContent cultureModule={cultureModule} />
+    ) : (
+      <CultureTrack />
+    );
+  }
 
   const vocab = [
     { id: 260, headword: "piyali", gloss_en: "hello; greeting", part_of_speech: "interjection" },

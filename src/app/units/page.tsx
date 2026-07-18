@@ -2,7 +2,7 @@ import { getAllUnits } from "@/lib/db";
 import { requireAuth } from "@/lib/require-auth";
 import Link from "next/link";
 import UnitsListWithProgress from "./UnitsListWithProgress";
-import { ArrowRight, Map } from "lucide-react";
+import { ArrowRight, Landmark, Map } from "lucide-react";
 
 export default async function UnitsPage() {
   await requireAuth();
@@ -40,6 +40,21 @@ export default async function UnitsPage() {
       <p className="-mt-7 text-xs leading-5 text-stone-500">
         * B1 identifies extension material and advanced structures; it is not a CEFR certification or guaranteed exit level.
       </p>
+      <section className="grid gap-4 border-y border-stone-200 py-5 sm:grid-cols-[auto_1fr_auto] sm:items-center">
+        <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-stone-950 text-white">
+          <Landmark size={20} />
+        </span>
+        <div>
+          <p className="text-xs font-black uppercase text-emerald-700">Companion track</p>
+          <h2 className="mt-1 font-black text-stone-950">Nahua Culture &amp; History</h2>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-stone-600">
+            Study Mexica history, the wider Nahua world, and living Huasteca Nahua communities without collapsing them into one story.
+          </p>
+        </div>
+        <Link href="/culture" className="button-secondary w-fit">
+          Explore history <ArrowRight size={15} />
+        </Link>
+      </section>
       <UnitsListWithProgress units={units} />
     </div>
   );

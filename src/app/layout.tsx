@@ -5,7 +5,7 @@ import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import DisclaimerBanner from "./DisclaimerBanner";
 import LegalModal from "./LegalModal";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
-import { ArrowUpRight, BookOpen, LibraryBig, Route, Sparkles } from "lucide-react";
+import { ArrowUpRight, BookOpen, Landmark, LibraryBig, Route, Sparkles } from "lucide-react";
 import MobileLearningNav from "./MobileLearningNav";
 
 const SITE_URL = "https://itzli.app";
@@ -93,7 +93,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Link href="/grammar" className="nav-link">
                     Grammar
                   </Link>
-                  <Link href="/source-course" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 md:inline-flex sm:px-3">
+                  <Link href="/culture" className="nav-link">
+                    <Landmark size={15} /> Culture
+                  </Link>
+                  <Link href="/source-course" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 xl:inline-flex sm:px-3">
                     Source
                   </Link>
                   {TUTOR_FEATURE_ENABLED && (
