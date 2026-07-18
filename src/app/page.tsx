@@ -49,13 +49,13 @@ export default function LandingPage() {
         <div className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 rounded-full bg-emerald-100/55 blur-3xl" />
         <div className="relative z-10">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50/80 px-3 py-2 text-[11px] font-extrabold uppercase tracking-[.14em] text-emerald-800">
-            <Sparkles size={13} /> A course in Eastern Huasteca Nahuatl
+            <Sparkles size={13} /> Eastern Huasteca Nahuatl
           </div>
           <h1 className="display-title max-w-3xl text-[3.4rem] text-stone-950 sm:text-7xl lg:text-[5.15rem]">
-            Learn <span className="text-emerald-700">Eastern Huasteca Nahuatl.</span>
+            Speak the living <span className="text-emerald-700">language of the Aztecs.</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
-            A thoughtful path from your first greeting to confident conversation in the living Nahuatl variety spoken in and around Chicontepec, Veracruz.
+            Learn Nahuatl as a language people still speak. Itzli teaches the Eastern Huasteca form used in and around Chicontepec, Veracruz.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Show when="signed-out">
@@ -73,6 +73,21 @@ export default function LandingPage() {
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">
           <WordGallery />
+        </div>
+      </section>
+
+      <section className="grid gap-8 border-y border-stone-200 py-10 sm:py-14 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
+        <div>
+          <p className="eyebrow">Why Eastern Huasteca Nahuatl?</p>
+          <h2 className="display-title mt-4 text-3xl text-stone-950 sm:text-4xl">One living form, taught with depth.</h2>
+        </div>
+        <div className="space-y-4 text-base leading-7 text-stone-600">
+          <p>
+            Nahuatl, the language of the Mexica or Aztecs, continues in living regional forms. Every spoken course must be grounded in a particular community; there is no single neutral modern form called Central Nahuatl.
+          </p>
+          <p>
+            Itzli centers Chicontepec because it has a substantial Nahuatl-speaking community and an established curriculum created with Nahua teachers and speakers. You learn one coherent language people use today, while the culture track connects it to Mexica history and Classical Nahuatl texts.
+          </p>
         </div>
       </section>
 

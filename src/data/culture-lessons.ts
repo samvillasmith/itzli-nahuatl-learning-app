@@ -316,6 +316,7 @@ export const CULTURE_MODULES: CultureModule[] = [
       "Huasteca Nahua and Teenek or Huastec are not synonyms. The Huasteca is a multiethnic region where several Indigenous peoples and languages meet.",
     takeaways: [
       "Chicontepec is one important center of Nahuatl in northern Veracruz.",
+      "Eastern Huasteca Nahuatl gives this course a coherent living language rather than a mixture of regional forms.",
       "The Huasteca includes Nahua, Teenek, Tepehua, Otomi, and other communities.",
       "Living culture changes; no single custom represents every family or locality.",
     ],
@@ -325,6 +326,14 @@ export const CULTURE_MODULES: CultureModule[] = [
         paragraphs: [
           "Itzli teaches a Nahuatl variety associated with Chicontepec in the Huasteca of Veracruz. INALI lists Nahuatl of the Huasteca of Veracruz as a recognized variant, and INPI identifies Chicontepec as one of the Veracruz municipalities with a large Nahuatl-speaking population.",
           "That regional grounding matters. Pronunciation, ordinary vocabulary, verb forms, and conversational preferences can differ from those found in central Mexican colonial texts or in modern courses based on other communities.",
+        ],
+      },
+      {
+        title: "Why this course teaches Eastern Huasteca Nahuatl",
+        paragraphs: [
+          "Central Nahuatl is indispensable for studying Tenochtitlan and much of the colonial written archive, but there is no single neutral modern language called Central Nahuatl. A course in spoken Nahuatl must ultimately choose the speech of particular communities. Itzli chooses the Chicontepec form because it belongs to a substantial living speaker community and is supported by a complete beginner-to-advanced curriculum developed with Nahua teachers, speakers, and researchers.",
+          "That choice gives learners one coherent system of pronunciation, vocabulary, and grammar instead of a mixture assembled from Classical dictionaries and unrelated modern variants. Eastern Huasteca Nahuatl is not a substitute for the language of the Aztecs. It is Nahuatl itself in a living regional form, sharing the inherited Nahuan structures and vocabulary that connect modern speech with Mexica and colonial Nahuatl.",
+          "Learners primarily interested in reading sixteenth-century Central Mexican texts will still benefit from dedicated Classical Nahuatl study. Itzli begins with spoken competence in a living community language, then makes the historical relationships and regional differences explicit.",
         ],
       },
       {
@@ -361,6 +370,12 @@ export const CULTURE_MODULES: CultureModule[] = [
         institution: "INALI",
         url: "https://www.inali.gob.mx/sitios/clin-inali/html/v_nahuatl.html",
         note: "Official geo-statistical references and community names for the regional variant.",
+      },
+      {
+        title: "Nahuatlahtolli: A Beginner to Advanced Level Nahuatl Online Course",
+        institution: "COERLL, University of Texas at Austin",
+        url: "https://tlahtolli.coerll.utexas.edu/",
+        note: "Chicontepec-based curriculum developed for learners, teachers, and speakers with native-speaker and IDIEZ participation.",
       },
       {
         title: "Nahua / Nahuatl",
