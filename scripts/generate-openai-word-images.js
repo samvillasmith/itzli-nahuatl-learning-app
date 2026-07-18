@@ -300,11 +300,12 @@ function loadProductionCoreTools() {
   const { filterCoreVocab } = require(path.join(ROOT, "src", "data", "excluded-vocab.ts"));
   const { collapseVariants } = require(path.join(ROOT, "src", "data", "variant-groups.ts"));
   const { orthographySearchVariants } = require(path.join(ROOT, "src", "lib", "orthography.ts"));
-  return { filterCoreVocab, collapseVariants, orthographySearchVariants };
+  const { getCuratedUnitVocab } = require(path.join(ROOT, "src", "data", "curated-unit-vocab.ts"));
+  return { filterCoreVocab, collapseVariants, orthographySearchVariants, getCuratedUnitVocab };
 }
 
 function loadCoreRows(args) {
-  const { filterCoreVocab, collapseVariants } = loadProductionCoreTools();
+  const { filterCoreVocab, collapseVariants, getCuratedUnitVocab } = loadProductionCoreTools();
   const db = new Database(resolveDbPath(), { readonly: true });
   const rows = db
     .prepare(
@@ -327,7 +328,7 @@ function loadCoreRows(args) {
     byLesson.set(row.lesson_number, lessonRows);
   }
 
-  return [...byLesson.entries()]
+  const coreRows = [...byLesson.entries()]
     .sort(([a], [b]) => a - b)
     .flatMap(([lessonNumber, lessonRows]) =>
       collapseVariants(filterCoreVocab(lessonRows, lessonNumber), lessonNumber).cards
@@ -344,6 +345,21 @@ function loadCoreRows(args) {
       semanticDomain: row.semantic_domain,
     }))
     .filter((row) => includeRow(args, row));
+
+  const curatedRows = getCuratedUnitVocab().map((row) => ({
+    source: "curated-unit",
+    sourceId: row.entry_id,
+    id: row.id,
+    lessonNumber: row.first_lesson_number,
+    rank: row.rank,
+    headword: row.imageHeadword || row.headword,
+    gloss: row.gloss_en,
+    partOfSpeech: row.part_of_speech,
+    semanticDomain: row.semantic_domain,
+    sourceUrl: row.sourceUrl,
+  })).filter((row) => includeRow(args, row));
+
+  return [...coreRows, ...curatedRows];
 }
 
 function loadSourceCourseRows(args) {

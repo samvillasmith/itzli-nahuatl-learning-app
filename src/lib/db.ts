@@ -11,6 +11,7 @@ import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
 import reviewedAudio from "@/data/reviewed-audio.json";
 import { getSourceVocabPromotions } from "@/data/source-vocab-promotions";
+import { getCuratedUnitVocab } from "@/data/curated-unit-vocab";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -197,7 +198,10 @@ export function getUnitVocab(lessonNumber: number): VocabItem[] {
     )
     .all(lessonNumber) as VocabItem[];
 
-  return mergeSourcePromotions(filterCoreVocab(rows, lessonNumber), lessonNumber);
+  return mergeCuratedUnitVocab(
+    mergeSourcePromotions(filterCoreVocab(rows, lessonNumber), lessonNumber),
+    lessonNumber,
+  );
 }
 
 export function getVocabCount(): number {
@@ -229,19 +233,31 @@ export function getAllPrimerVocab(): VocabItem[] {
   const lessonNumbers = new Set([
     ...byLesson.keys(),
     ...getSourceVocabPromotions().map((item) => item.first_lesson_number),
+    ...getCuratedUnitVocab().map((item) => item.first_lesson_number),
   ]);
 
-  return [...lessonNumbers]
+  const cards = [...lessonNumbers]
     .sort((a, b) => a - b)
     .flatMap((lessonNumber) =>
       collapseVariants(
-        mergeSourcePromotions(
-          filterCoreVocab(byLesson.get(lessonNumber) ?? [], lessonNumber),
+        mergeCuratedUnitVocab(
+          mergeSourcePromotions(
+            filterCoreVocab(byLesson.get(lessonNumber) ?? [], lessonNumber),
+            lessonNumber,
+          ),
           lessonNumber,
         ),
         lessonNumber,
       ).cards
     );
+
+  const seen = new Set<string>();
+  return cards.filter((card) => {
+    const key = card.headword.trim().toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function mergeSourcePromotions(items: VocabItem[], lessonNumber: number): VocabItem[] {
@@ -253,6 +269,20 @@ function mergeSourcePromotions(items: VocabItem[], lessonNumber: number): VocabI
     if (seen.has(key)) continue;
     seen.add(key);
     merged.push(promotion);
+  }
+
+  return merged;
+}
+
+function mergeCuratedUnitVocab(items: VocabItem[], lessonNumber: number): VocabItem[] {
+  const merged = [...items];
+  const seen = new Set(items.map((item) => item.headword.trim().toLowerCase()));
+
+  for (const card of getCuratedUnitVocab(lessonNumber)) {
+    const key = card.headword.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(card);
   }
 
   return merged;

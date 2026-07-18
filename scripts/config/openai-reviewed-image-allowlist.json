@@ -3,6 +3,101 @@
   "babyExceptionInstruction": "Baby exception: show only one fully clothed or swaddled baby. No other children, no adults, no bed, no bath, no changing, no medical context, no exposed body, no bare legs, and no bare feet.",
   "entries": [
     {
+      "headword": "Nikah",
+      "mode": "object-only",
+      "instruction": "Show only a small welcoming house with a bright location marker planted beside it and a calm clear sky, symbolizing being here and being well. No people, bodies, faces, children, animals, writing, letters, numerals, labels, logos, maps with text, or text."
+    },
+    {
+      "headword": "Nipaxalotoh",
+      "mode": "object-only",
+      "instruction": "Show only a footpath passing by and turning toward a welcoming house with an open garden gate, symbolizing a visit. No people, bodies, faces, children, animals, beds, bathing, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "Ximokalaki",
+      "mode": "object-only",
+      "instruction": "Show only one open front door viewed straight on from outside, with an empty threshold and warm welcoming light inside. Keep the full doorway inside the frame. No additional objects, people, bodies, faces, children, animals, beds, bathing, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "Ximoaxilti",
+      "mode": "object-only",
+      "instruction": "Show only a welcoming empty chair beside a small table holding one covered cup and a flower vase, symbolizing hospitality. No people, bodies, faces, children, animals, beds, bathing, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "Timoyolia",
+      "mode": "object-only",
+      "instruction": "Show only a simple circular mood dial made of four abstract weather symbols: clear sun, cloud, rain, and rainbow, with one pointer. No people, bodies, anatomical hearts, faces, children, animals, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "Ximotlali",
+      "mode": "object-only",
+      "instruction": "Show only one sturdy empty wooden chair centered clearly in the scene. No people, bodies, faces, children, animals, beds, bathing, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "enero",
+      "mode": "object-only",
+      "instruction": "Show only a blank tear-off calendar page decorated with exactly one small sunrise motif to represent the first month. No people, bodies, faces, children, animals, writing, letters, numerals, dates, labels, logos, or text."
+    },
+    {
+      "headword": "febrero",
+      "mode": "object-only",
+      "instruction": "Show only exactly two orange flowers growing side by side, each with one green stem and simple green leaves, symbolizing the second month. No other flowers, calendar, additional objects, people, bodies, faces, children, animals, writing, letters, numerals, dates, labels, logos, or text."
+    },
+    {
+      "headword": "mayo",
+      "mode": "object-only",
+      "instruction": "Show only one simple tear-off calendar page with ordinary binding rings at the top and exactly five small green leaf motifs centered on the otherwise empty page. The binding rings are allowed. No other decoration, people, bodies, faces, children, animals, writing, letters, numerals, dates, labels, logos, or text."
+    },
+    {
+      "headword": "septiembre",
+      "mode": "object-only",
+      "instruction": "Show only a blank tear-off calendar page decorated with exactly nine small golden maize-kernel motifs to represent the ninth month. No people, bodies, faces, children, animals, writing, letters, numerals, dates, labels, logos, or text."
+    },
+    {
+      "headword": "tlapalli",
+      "mode": "object-only",
+      "instruction": "Show only one broad fan of overlapping painted color swatches, clearly displaying several distinct colors including red, yellow, green, blue, brown, and gray. No paintbrush, palette, additional objects, people, hands, bodies, faces, children, animals, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "malakachtik",
+      "mode": "object-only",
+      "instruction": "Show only three clearly round objects: one clay ball, one orange, and one circular woven coaster. No people, hands, bodies, faces, children, animals, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "patiyoh",
+      "mode": "object-only",
+      "instruction": "Show only one finely made decorated clay vessel displayed carefully on a pedestal beside a small stack of plain gold-colored coins, symbolizing something expensive. No people, hands, bodies, faces, children, animals, writing, letters, numerals, price tags, labels, logos, or text."
+    },
+    {
+      "headword": "ikwsik",
+      "mode": "object-only",
+      "instruction": "Show only one fully cooked ear of corn on a ceramic plate with gentle steam rising from it. No people, hands, bodies, faces, children, animals, kitchens, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "ahwiak",
+      "mode": "object-only",
+      "instruction": "Show only one fragrant bowl of food with exactly three large, clearly visible aroma curls rising above it, symbolizing a pleasant smell. No additional objects, people, hands, bodies, faces, children, animals, eating, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tosnene",
+      "mode": "animal-only",
+      "instruction": "Show exactly one ordinary colorful parrot perched on a tree branch in daylight. No people, hands, bodies, children, cages, danger, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "eloatolli",
+      "mode": "object-only",
+      "instruction": "Show only one traditional ceramic cup filled with thick sweet-corn atole, with one ear of fresh corn beside it. No people, hands, bodies, faces, children, animals, drinking, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "chachapalli",
+      "mode": "object-only",
+      "instruction": "Show only one clearly recognizable handmade clay cooking pot with two small handles, empty and resting on a woven mat. No people, hands, bodies, faces, children, animals, fire, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tequitl",
+      "mode": "object-only",
+      "instruction": "Show only a tidy set of work objects: a closed notebook, pencil, wooden hand tool, and small woven basket arranged on a table. No people, hands, bodies, faces, children, animals, weapons, writing, letters, numerals, labels, logos, or text."
+    },
+    {
       "headword": "camahtli",
       "mode": "adult-only",
       "instruction": "Show one fully clothed adult pointing to their own closed mouth in a neutral educational illustration. No children, exposed body, medical context, food, injury, or disembodied anatomy."

@@ -10,6 +10,7 @@ import { tr, translateDeep } from "../src/i18n/translate";
 import spanishCatalog from "../src/i18n/es.generated.json";
 import spanishOverrides from "../src/i18n/es.overrides.json";
 import { SOURCE_VOCAB_PROMOTIONS } from "../src/data/source-vocab-promotions";
+import { CURATED_UNIT_VOCAB } from "../src/data/curated-unit-vocab";
 import { getSystemPrompt, refusalForLocale } from "../src/lib/chat-system-prompt";
 
 describe("English and Mexican Spanish localization", () => {
@@ -63,6 +64,13 @@ describe("English and Mexican Spanish localization", () => {
   it("covers every promoted source gloss in the Spanish catalog", () => {
     const catalog: Record<string, string> = { ...spanishCatalog, ...spanishOverrides };
     for (const entry of SOURCE_VOCAB_PROMOTIONS) {
+      expect(Object.hasOwn(catalog, entry.gloss_en), `${entry.entry_id}: ${entry.gloss_en}`).toBe(true);
+    }
+  });
+
+  it("covers every curated word-first gloss in the Spanish catalog", () => {
+    const catalog: Record<string, string> = { ...spanishCatalog, ...spanishOverrides };
+    for (const entry of CURATED_UNIT_VOCAB) {
       expect(Object.hasOwn(catalog, entry.gloss_en), `${entry.entry_id}: ${entry.gloss_en}`).toBe(true);
     }
   });

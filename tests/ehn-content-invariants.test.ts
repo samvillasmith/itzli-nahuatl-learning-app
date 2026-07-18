@@ -5,11 +5,12 @@ import { describe, expect, it } from "vitest";
 import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
 import { GRAMMAR_LABS } from "../src/data/grammar-labs";
 import { LESSON_FOCUS_CARDS } from "../src/data/lesson-focus-cards";
+import { CURATED_UNIT_VOCAB } from "../src/data/curated-unit-vocab";
 import {
   isCoreVocabItem,
   SOURCE_VERIFIED_UNLINKED_VOCAB_IDS,
 } from "../src/data/excluded-vocab";
-import { getAllPrimerVocab, getAllUnits, getVocabCount } from "../src/lib/db";
+import { getAllPrimerVocab, getAllUnits, getUnitVocab, getVocabCount } from "../src/lib/db";
 
 const require = createRequire(import.meta.url);
 const { validateEhnLine } = require("../scripts/generate-dialogues.js") as {
@@ -190,10 +191,48 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(620);
+    expect(getVocabCount()).toBe(671);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
     ).toBe(173);
+  });
+
+  it("keeps formerly thin units stocked with standalone vocabulary", () => {
+    const expectedUnitCounts = new Map([
+      [28, 8],
+      [33, 12],
+      [35, 10],
+      [36, 10],
+      [37, 10],
+      [38, 8],
+      [39, 8],
+      [40, 8],
+      [41, 8],
+      [42, 8],
+    ]);
+    const units = new Map(getAllUnits().map((unit) => [unit.lesson_number, unit]));
+
+    expect(CURATED_UNIT_VOCAB).toHaveLength(75);
+    expect(CURATED_UNIT_VOCAB.every((card) => !card.headword.trim().includes(" "))).toBe(true);
+    for (const [lessonNumber, count] of expectedUnitCounts) {
+      expect(units.get(lessonNumber)?.english_vocab_count, `Unit ${lessonNumber}`).toBe(count);
+    }
+
+    const animalHeadwords = getUnitVocab(37).map((card) => card.headword.toLowerCase());
+    expect(animalHeadwords).toEqual(
+      expect.arrayContaining([
+        "masatl",
+        "koatl",
+        "oselotl",
+        "tosnene",
+        "piyo",
+        "chapolin",
+        "papalotl",
+        "kimichin",
+        "kechpechin",
+        "miston",
+      ]),
+    );
   });
 });
 

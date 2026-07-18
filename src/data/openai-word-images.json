@@ -344,6 +344,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T00:18:19.005Z"
   },
+  "ahwiak": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ahwiak-curated-36-7.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for ahwiak: tasty; fragrant",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:42:39.031Z",
+    "reviewed_at": "2026-07-18T17:46:48.225Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ahwiak-curated-36-7.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "aicmo": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/aicmo-7737.png",
     "license": "OpenAI-generated image; review before publication",
@@ -1824,6 +1841,23 @@
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ch-7.png",
     "review_source": "openai-word-image-audit/contact-sheet-42"
   },
+  "chachapalli": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chachapalli-curated-39-3.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for chachapalli: clay pot",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:37:58.561Z",
+    "reviewed_at": "2026-07-18T17:46:48.673Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chachapalli-curated-39-3.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "chalchocoātl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chalchocoatl-source-19-26.png",
     "license": "OpenAI-generated image; review before publication",
@@ -3301,6 +3335,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T00:27:06.549Z"
   },
+  "eloatolli": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/eloatolli-curated-38-1.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for eloatolli: sweet-corn atole",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:37:36.012Z",
+    "reviewed_at": "2026-07-18T17:46:49.101Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/eloatolli-curated-38-1.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "ēlōtl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/elotl-source-1-54.png",
     "license": "OpenAI-generated image; review before publication",
@@ -3336,6 +3387,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T04:22:41.590Z"
+  },
+  "enero": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/enero-curated-33-1.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for enero: January",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:33:38.384Z",
+    "reviewed_at": "2026-07-18T17:46:49.543Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/enero-curated-33-1.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "escuela": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/escuela-548.png",
@@ -3459,6 +3527,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T00:25:23.430Z"
+  },
+  "febrero": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/febrero-curated-33-2.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for febrero: February",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:45:00.299Z",
+    "reviewed_at": "2026-07-18T17:46:49.988Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/febrero-curated-33-2.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "firmaroa": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/firmaroa-310.png",
@@ -4299,6 +4384,23 @@
     "review_scope": "exact-published-image",
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/iicni-205.png",
     "review_source": "openai-word-image-audit/contact-sheet-46"
+  },
+  "ikwsik": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ikwsik-curated-36-5.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for ikwsik: cooked; ripe",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:36:28.965Z",
+    "reviewed_at": "2026-07-18T17:46:50.427Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ikwsik-curated-36-5.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "ilama": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ilama-462.png",
@@ -5453,6 +5555,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T03:55:50.763Z"
   },
+  "malakachtik": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/malakachtik-curated-35-4.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for malakachtik: round",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:35:14.181Z",
+    "reviewed_at": "2026-07-18T17:46:50.871Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/malakachtik-curated-35-4.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "malakaxtik": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/malakaxtik-6060.png",
     "license": "OpenAI-generated image; review before publication",
@@ -5695,6 +5814,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T04:05:46.897Z"
+  },
+  "mayo": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mayo-curated-33-5.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for mayo: May",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:41:49.478Z",
+    "reviewed_at": "2026-07-18T17:46:51.300Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mayo-curated-33-5.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "mazātl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mazatl-source-1-4.png",
@@ -6944,6 +7080,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T01:13:46.460Z"
   },
+  "Nikah": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nikah-curated-28-7.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Nikah: I am here; I am well",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:31:14.428Z",
+    "reviewed_at": "2026-07-18T17:46:51.735Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nikah-curated-28-7.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "niman": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/niman-7740.png",
     "license": "OpenAI-generated image; review before publication",
@@ -7087,6 +7240,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T01:11:02.814Z"
+  },
+  "Nipaxalotoh": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nipaxalotoh-curated-28-2.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Nipaxalotoh: I am visiting or passing by",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:31:38.601Z",
+    "reviewed_at": "2026-07-18T17:46:52.170Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nipaxalotoh-curated-28-2.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "nitequiti": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nitequiti-source-6-9.png",
@@ -8498,6 +8668,23 @@
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/para-tlen-33.png",
     "review_source": "openai-word-image-audit/contact-sheet-49"
   },
+  "patiyoh": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/patiyoh-curated-36-4.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for patiyoh: expensive",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:36:53.025Z",
+    "reviewed_at": "2026-07-18T17:46:52.599Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/patiyoh-curated-36-4.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "patlahuac": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/patlahuac-6268.png",
     "license": "OpenAI-generated image; review before publication",
@@ -9186,6 +9373,23 @@
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/sehco-443.png",
     "review_source": "openai-word-image-audit/contact-sheet-50"
   },
+  "septiembre": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/septiembre-curated-33-9.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for septiembre: September",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:34:49.415Z",
+    "reviewed_at": "2026-07-18T17:46:53.081Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/septiembre-curated-33-9.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "sitlalli": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/sitlalli-686.png",
     "license": "OpenAI-generated illustration",
@@ -9606,6 +9810,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T00:28:01.053Z"
   },
+  "tequitl": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tequitl-curated-41-7.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for tequitl: work; task",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:38:20.526Z",
+    "reviewed_at": "2026-07-18T17:46:53.500Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tequitl-curated-41-7.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "tetl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tetl-6294.png",
     "license": "OpenAI-generated image; review before publication",
@@ -9862,6 +10083,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T01:08:00.950Z"
+  },
+  "Timoyolia": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/timoyolia-curated-28-5.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Timoyolia: you feel",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:32:04.065Z",
+    "reviewed_at": "2026-07-18T17:46:53.930Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/timoyolia-curated-28-5.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
   },
   "tiotlac": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tiotlac-162.png",
@@ -10680,6 +10918,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T03:59:33.808Z"
   },
+  "tlapalli": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlapalli-curated-35-1.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for tlapalli: color",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:44:17.435Z",
+    "reviewed_at": "2026-07-18T17:46:54.376Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlapalli-curated-35-1.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "tlapanco": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlapanco-541.png",
     "license": "OpenAI-generated image; review before publication",
@@ -11340,6 +11595,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T00:34:42.357Z"
   },
+  "tosnene": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tosnene-curated-37-4.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for tosnene: parrot",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:37:15.044Z",
+    "reviewed_at": "2026-07-18T17:46:54.803Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tosnene-curated-37-4.png",
+    "review_source": "openai-word-image-audit/contact-sheet-02"
+  },
   "totoli": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/totoli-483.png",
     "license": "OpenAI-generated image; review before publication",
@@ -11755,6 +12027,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T02:44:19.086Z"
   },
+  "Ximoaxilti": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximoaxilti-curated-28-4.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Ximoaxilti: welcome; make yourself at home",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:32:26.759Z",
+    "reviewed_at": "2026-07-18T17:46:55.238Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximoaxilti-curated-28-4.png",
+    "review_source": "openai-word-image-audit/contact-sheet-03"
+  },
   "Ximocehui": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximocehui-source-2-19.png",
     "license": "OpenAI-generated image; review before publication",
@@ -11790,6 +12079,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T02:21:36.124Z"
+  },
+  "Ximokalaki": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximokalaki-curated-28-3.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Ximokalaki: come in",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:43:28.904Z",
+    "reviewed_at": "2026-07-18T17:46:55.662Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximokalaki-curated-28-3.png",
+    "review_source": "openai-word-image-audit/contact-sheet-03"
   },
   "ximopanolti": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xipano-source-2-9.png",
@@ -11839,6 +12145,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T22:21:25.194Z"
+  },
+  "Ximotlali": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximotlali-curated-28-6.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for Ximotlali: sit down",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T17:33:15.429Z",
+    "reviewed_at": "2026-07-18T17:46:56.171Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximotlali-curated-28-6.png",
+    "review_source": "openai-word-image-audit/contact-sheet-03"
   },
   "Xipano": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xipano-source-2-9.png",

@@ -21,6 +21,17 @@ const {
   speakableNahuatlText,
 } = require("./lib/nahuatl-pronunciation");
 
+loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
+loadEnvFile(path.resolve(__dirname, "..", ".env"));
+
+const CURATED_UNIT_VOCAB_PATH = path.resolve(
+  __dirname,
+  "..",
+  "src",
+  "data",
+  "curated-unit-vocab.json",
+);
+
 const DEFAULTS = {
   model: process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts",
   voice: process.env.OPENAI_TTS_VOICE || "marin",
@@ -30,6 +41,26 @@ const DEFAULTS = {
   inputMode: process.env.NAHUATL_TTS_INPUT_MODE || "orthography",
   concurrency: Number(process.env.TTS_CONCURRENCY || "2"),
 };
+
+function loadEnvFile(file) {
+  if (!fs.existsSync(file)) return;
+  const text = fs.readFileSync(file, "utf8");
+  for (const line of text.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq <= 0) continue;
+    const key = trimmed.slice(0, eq).trim();
+    let value = trimmed.slice(eq + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (!(key in process.env)) process.env[key] = value;
+  }
+}
 
 function parseArgs(argv) {
   const args = {
@@ -164,6 +195,18 @@ function loadRows(args) {
       .prepare("SELECT id, display_form AS text FROM lesson_vocab ORDER BY lesson_number, rank, id")
       .all();
     for (const row of vocab) rows.push({ kind: "vocab", id: String(row.id), text: row.text });
+
+    const curated = JSON.parse(fs.readFileSync(CURATED_UNIT_VOCAB_PATH, "utf8"));
+    const unitCounts = new Map();
+    for (const card of curated) {
+      const unitIndex = (unitCounts.get(card.unit) || 0) + 1;
+      unitCounts.set(card.unit, unitIndex);
+      rows.push({
+        kind: "vocab",
+        id: String(900_000 + Number(card.unit) * 100 + unitIndex),
+        text: speakableNahuatlText(card.headword),
+      });
+    }
   }
 
   if (args.kind === "all" || args.kind === "dialogue") {

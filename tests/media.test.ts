@@ -1,13 +1,20 @@
 import fs from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import reviewedAudio from "@/data/reviewed-audio.json";
+import { CURATED_UNIT_VOCAB } from "@/data/curated-unit-vocab";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 import { SOURCE_VOCAB_PROMOTIONS } from "@/data/source-vocab-promotions";
 import { getWordImage } from "@/data/word-images";
 import { dialogueAudioUrl, vocabCardAudioUrl } from "@/lib/audio";
 
 const audioRoot = path.join(process.cwd(), "public", "audio-google");
+const require = createRequire(import.meta.url);
+const { buildTtsInstructions, cueForWord } = require("../scripts/lib/nahuatl-pronunciation.js") as {
+  buildTtsInstructions: (text: string) => string;
+  cueForWord: (text: string) => string;
+};
 
 describe("reviewed media", () => {
   it("ships every reviewed Spanish-voice pronunciation clip", () => {
@@ -66,5 +73,29 @@ describe("reviewed media", () => {
         `${entry.entry_id}: ${entry.headword}`,
       ).not.toBeNull();
     }
+  });
+
+  it("gives every curated word-first card explicit audio and reviewed imagery", () => {
+    expect(CURATED_UNIT_VOCAB).toHaveLength(75);
+    expect(new Set(CURATED_UNIT_VOCAB.map((entry) => entry.id)).size).toBe(75);
+
+    for (const entry of CURATED_UNIT_VOCAB) {
+      expect(entry.audioSrc, `${entry.entry_id}: ${entry.headword}`).toMatch(/^https:\/\//);
+      expect(vocabCardAudioUrl(entry.id, entry.audioSrc)).toBe(entry.audioSrc);
+      expect(
+        getWordImage(entry.imageHeadword, {
+          allowLegacyFallback: true,
+          safetyText: [entry.gloss_en, entry.part_of_speech],
+        }),
+        `${entry.entry_id}: ${entry.headword}`,
+      ).not.toBeNull();
+    }
+  });
+
+  it("preserves Mexican Spanish pronunciation for the month loans", () => {
+    expect(cueForWord("febrero")).toBe("feh-BREH-roh");
+    expect(cueForWord("junio")).toBe("JOON-yoh");
+    expect(cueForWord("septiembre")).toBe("sep-TYEM-breh");
+    expect(buildTtsInstructions("diciembre")).toContain("natural Mexican Spanish pronunciation");
   });
 });

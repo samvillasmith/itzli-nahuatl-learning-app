@@ -38,6 +38,20 @@ const PUNCTUATION = /[¿¡?!.,;:()[\]{}"<>/]/g;
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 const VOWELS = new Set(["a", "e", "i", "o", "u", "\u0101", "\u0113", "\u012b", "\u014d", "\u016b"]);
 const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "w", "sh"]);
+const SPANISH_LOAN_CUES = new Map([
+  ["enero", "eh-NEH-roh"],
+  ["febrero", "feh-BREH-roh"],
+  ["marzo", "MAR-soh"],
+  ["abril", "ah-BREEL"],
+  ["mayo", "MAH-yoh"],
+  ["junio", "JOON-yoh"],
+  ["julio", "JOOL-yoh"],
+  ["agosto", "ah-GOHS-toh"],
+  ["septiembre", "sep-TYEM-breh"],
+  ["octubre", "ohk-TOO-breh"],
+  ["noviembre", "noh-BYEM-breh"],
+  ["diciembre", "dee-SYEM-breh"],
+]);
 
 function stripParentheticalDirections(text) {
   let cleaned = String(text || "");
@@ -231,6 +245,11 @@ function cueForSyllable(syllable) {
 }
 
 function cueForWord(word, options = {}) {
+  const loanCue = SPANISH_LOAN_CUES.get(normalizeNahuatlText(word));
+  if (loanCue) {
+    return options.markStress === false ? loanCue.toLowerCase() : loanCue;
+  }
+
   const tokens = tokenizeWord(word);
   if (!tokens.length) return "";
 
@@ -252,6 +271,10 @@ function cueForText(text, options = {}) {
 function buildTtsInstructions(text, options = {}) {
   const cue = cueForText(text);
   const kind = options.kind === "dialogue" ? "dialogue line" : "word";
+  const normalized = normalizeNahuatlText(text);
+  const spanishLoanInstruction = SPANISH_LOAN_CUES.has(normalized)
+    ? "This month name is a Spanish loan used in Eastern Huasteca Nahuatl; preserve its natural Mexican Spanish pronunciation."
+    : "";
 
   return [
     `Generate clear Eastern Huasteca Nahuatl learning audio for this ${kind}.`,
@@ -263,8 +286,9 @@ function buildTtsInstructions(text, options = {}) {
     "x is sh. qu is k. cu or hu before a vowel is kw or w. z is s. Keep ch, tz, and tl crisp.",
     "h or apostrophe marks a brief glottal catch or light h; do not drop it.",
     "Stress the penultimate syllable unless the cue marks a different syllable.",
+    spanishLoanInstruction,
     `Pronunciation cue: ${cue}`,
-  ].join(" ");
+  ].filter(Boolean).join(" ");
 }
 
 function buildTtsInput(text, options = {}) {

@@ -200,6 +200,7 @@ function main() {
   const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadTsModule("src/data/excluded-vocab.ts");
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
   const { getSourceVocabPromotions } = loadTsModule("src/data/source-vocab-promotions.ts");
+  const { getCuratedUnitVocab } = loadTsModule("src/data/curated-unit-vocab.ts");
   const { getWordImage } = loadTsModule("src/data/word-images.ts");
   const { isAppContentExcluded } = loadTsModule("src/lib/app-content-safety.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
@@ -358,6 +359,7 @@ function main() {
   const disabledDialogueAudio = [];
   const missingVocabImages = [];
   let sourcePromotionCount = 0;
+  let curatedUnitCardCount = 0;
 
   for (const unit of units) {
     const filtered = filterCoreVocab(vocabRows.all(unit.lesson_number), unit.lesson_number);
@@ -370,6 +372,14 @@ function main() {
     });
     sourcePromotionCount += promotions.length;
     filtered.push(...promotions);
+    const curatedCards = getCuratedUnitVocab(unit.lesson_number).filter((card) => {
+      const key = card.headword.trim().toLowerCase();
+      if (seenHeadwords.has(key)) return false;
+      seenHeadwords.add(key);
+      return true;
+    });
+    curatedUnitCardCount += curatedCards.length;
+    filtered.push(...curatedCards);
     const { cards } = collapseVariants(filtered, unit.lesson_number);
     const unitLabIds = GRAMMAR_LABS.filter((lab) => lab.unit === unit.lesson_number).map((lab) => lab.id);
     const focusCards = LESSON_FOCUS_CARDS.filter((card) =>
@@ -497,6 +507,9 @@ function main() {
   if (sourcePromotionCount !== 240) {
     grammarFailures.push(`Expected 240 promoted source-course cards; found ${sourcePromotionCount}.`);
   }
+  if (curatedUnitCardCount !== 75) {
+    grammarFailures.push(`Expected 75 curated unit vocabulary cards; found ${curatedUnitCardCount}.`);
+  }
   if (missingVocabImages.length > 0) {
     grammarFailures.push(`Visible vocabulary cards missing images: ${missingVocabImages.join(", ")}`);
   }
@@ -514,6 +527,7 @@ function main() {
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
   console.log(`- Promoted audio-backed source cards: ${sourcePromotionCount}`);
+  console.log(`- Curated word-first unit cards: ${curatedUnitCardCount}`);
   console.log(`- Grammar-derived lesson cards: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
