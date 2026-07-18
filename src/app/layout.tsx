@@ -83,7 +83,7 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: {
         "en-US": englishUrl,
         "es-MX": spanishUrl,
-        "x-default": englishUrl,
+        "x-default": spanishUrl,
       },
     },
   };

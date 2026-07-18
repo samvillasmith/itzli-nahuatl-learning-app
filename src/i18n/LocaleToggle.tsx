@@ -5,8 +5,8 @@ import { useLocale } from "./LocaleProvider";
 import type { AppLocale } from "./config";
 
 const OPTIONS: Array<{ locale: AppLocale; flag: string; label: string; shortLabel: string }> = [
-  { locale: "en", flag: "🇺🇸", label: "English", shortLabel: "EN" },
   { locale: "es", flag: "🇲🇽", label: "Español", shortLabel: "ES" },
+  { locale: "en", flag: "🇺🇸", label: "English", shortLabel: "EN" },
 ];
 
 export default function LocaleToggle({ compact = false }: { compact?: boolean }) {

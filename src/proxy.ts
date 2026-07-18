@@ -1,6 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse, type NextRequest } from "next/server";
 import {
+  ENGLISH_PATH_PREFIX,
+  LEGACY_SPANISH_PATH_PREFIX,
   LOCALE_COOKIE,
   LOCALE_HEADER,
   PATHNAME_HEADER,
@@ -70,32 +72,55 @@ export default clerkMiddleware(async (auth, req) => {
   const requestedPathname = req.nextUrl.pathname;
   const locale = localeFromPathname(requestedPathname);
   const pathname = stripLocalePrefix(requestedPathname);
-  const hasSpanishPrefix = locale === "es";
+  const hasEnglishPrefix =
+    requestedPathname === ENGLISH_PATH_PREFIX ||
+    requestedPathname.startsWith(`${ENGLISH_PATH_PREFIX}/`);
+  const hasLegacySpanishPrefix =
+    requestedPathname === LEGACY_SPANISH_PATH_PREFIX ||
+    requestedPathname.startsWith(`${LEGACY_SPANISH_PATH_PREFIX}/`);
 
-  if (
-    !hasSpanishPrefix &&
-    isLocalizedPage(pathname) &&
-    req.cookies.get(LOCALE_COOKIE)?.value === "es"
-  ) {
+  if (hasLegacySpanishPrefix && isLocalizedPage(pathname)) {
     const destination = req.nextUrl.clone();
     destination.pathname = localizedPathname(pathname, "es");
+    const response = NextResponse.redirect(destination, 308);
+    response.cookies.set(LOCALE_COOKIE, "es", {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: "lax",
+    });
+    return response;
+  }
+
+  if (
+    !hasEnglishPrefix &&
+    isLocalizedPage(pathname) &&
+    req.cookies.get(LOCALE_COOKIE)?.value === "en"
+  ) {
+    const destination = req.nextUrl.clone();
+    destination.pathname = localizedPathname(pathname, "en");
     return NextResponse.redirect(destination);
   }
 
   if (!isPublicRoute(pathname)) {
-    await auth.protect();
+    if (isLocalizedPage(pathname)) {
+      const signInUrl = new URL(localizedPathname("/sign-in", locale), req.url);
+      signInUrl.searchParams.set("redirect_url", req.url);
+      await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
+    } else {
+      await auth.protect();
+    }
   }
 
   const requestHeaders = localizedRequestHeaders(req, locale, pathname);
-  const response = hasSpanishPrefix && isLocalizedPage(pathname)
+  const response = hasEnglishPrefix && isLocalizedPage(pathname)
     ? NextResponse.rewrite(new URL(`${pathname}${req.nextUrl.search}`, req.url), {
         request: { headers: requestHeaders },
       })
     : NextResponse.next({ request: { headers: requestHeaders } });
 
   response.headers.set("Content-Language", htmlLang(locale));
-  if (hasSpanishPrefix) {
-    response.cookies.set(LOCALE_COOKIE, "es", {
+  if (isLocalizedPage(pathname)) {
+    response.cookies.set(LOCALE_COOKIE, locale, {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
       sameSite: "lax",

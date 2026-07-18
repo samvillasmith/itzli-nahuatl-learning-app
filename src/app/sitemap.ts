@@ -23,13 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       languages: {
         "en-US": englishUrl,
         "es-MX": spanishUrl,
-        "x-default": englishUrl,
+        "x-default": spanishUrl,
       },
     };
 
     return [
-      { url: englishUrl, changeFrequency, priority, alternates },
       { url: spanishUrl, changeFrequency, priority, alternates },
+      { url: englishUrl, changeFrequency, priority, alternates },
     ];
   });
 }
