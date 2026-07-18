@@ -13,6 +13,7 @@ const ROOT = path.resolve(__dirname, "..");
 const ACTIVE_PATH = path.join(ROOT, "src", "data", "openai-word-images.json");
 const PENDING_PATH = path.join(ROOT, "data", "openai-word-images-pending.json");
 const S3_PREFIX = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/";
+const REQUIRED_CACHE_CONTROL = "public,max-age=31536000,immutable";
 
 function readJson(filePath, fallback) {
   if (!fs.existsSync(filePath)) return fallback;
@@ -81,6 +82,15 @@ async function main() {
   const response = await fetch(publicUrl, { method: "HEAD" });
   if (!response.ok) {
     console.error(`The reviewed image is not available at the supplied URL (HTTP ${response.status}).`);
+    process.exit(1);
+  }
+  const cacheControl = (response.headers.get("cache-control") || "")
+    .toLowerCase()
+    .replace(/\s+/g, "");
+  if (cacheControl !== REQUIRED_CACHE_CONTROL) {
+    console.error(
+      `The reviewed image must be uploaded with Cache-Control: ${REQUIRED_CACHE_CONTROL}.`,
+    );
     process.exit(1);
   }
 

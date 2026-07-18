@@ -13,6 +13,7 @@ import LocaleToggle from "@/i18n/LocaleToggle";
 import { htmlLang, localizedPathname, type AppLocale } from "@/i18n/config";
 import { getRequestLocale, getRequestPathname } from "@/i18n/server";
 import { tr, trChoice } from "@/i18n/translate";
+import { WordImageOriginHints } from "@/components/WordImageResourceHints";
 
 const SITE_URL = "https://www.itzli.app";
 const DESCRIPTION =
@@ -97,6 +98,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <ClerkProvider localization={locale === "es" ? esMX : undefined}>
       <html lang={htmlLang(locale)}>
         <body className="min-h-screen pb-20 md:pb-0">
+          <WordImageOriginHints />
           <LocaleProvider initialLocale={locale}>
             <div className="brand-ribbon" />
             <nav className="site-nav">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { WordImage } from "@/data/word-images";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { WordImagePreloads } from "@/components/WordImageResourceHints";
 
 export function WordCardMedia({
   image,
@@ -18,22 +19,29 @@ export function WordCardMedia({
   const frameAspect = image.source === "itzli" ? "aspect-[5/4]" : "aspect-[4/3]";
 
   return (
-    <div
-      data-testid="word-card-media"
-      className="border-b border-stone-200 bg-[#fbf1d8] px-3 py-3 sm:px-5 sm:py-4"
-    >
+    <>
+      <WordImagePreloads urls={[image.url]} limit={1} />
       <div
-        className={`relative mx-auto w-full max-w-lg overflow-hidden bg-[#fbf1d8] ${frameAspect}`}
+        data-testid="word-card-media"
+        className="border-b border-stone-200 bg-[#fbf1d8] px-3 py-3 sm:px-5 sm:py-4"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={image.url}
-          alt={alt}
-          className="h-full w-full object-cover object-top"
-          onError={() => setFailedUrl(image.url)}
-        />
+        <div
+          className={`relative mx-auto w-full max-w-lg overflow-hidden bg-[#fbf1d8] ${frameAspect}`}
+        >
+          {/* Direct S3 delivery avoids image-optimization cold starts and Vercel image charges. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image.url}
+            alt={alt}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover object-top"
+            onError={() => setFailedUrl(image.url)}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

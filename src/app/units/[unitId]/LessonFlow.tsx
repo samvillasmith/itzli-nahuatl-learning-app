@@ -18,6 +18,7 @@ import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { translateDeepClient } from "@/i18n/client-translate";
+import { WordImagePreloads } from "@/components/WordImageResourceHints";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -1518,6 +1519,14 @@ export default function LessonFlow({
   }, [learningCards]);
 
   const currentChunk = useMemo(() => chunks[chunkIndex] ?? [], [chunks, chunkIndex]);
+  const currentChunkImageUrls = useMemo(
+    () => currentChunk.map((card) => cardImage(card)?.url),
+    [currentChunk],
+  );
+  const nextChunkImageUrls = useMemo(
+    () => (chunks[chunkIndex + 1] ?? []).map((card) => cardImage(card)?.url),
+    [chunks, chunkIndex],
+  );
   const totalChunks = chunks.length;
   const isLastChunk = chunkIndex === totalChunks - 1;
   const introducedCards = useMemo(
@@ -1667,6 +1676,7 @@ export default function LessonFlow({
   if (flow.screen === "intro") {
     return (
       <div className="max-w-lg mx-auto">
+        <WordImagePreloads urls={currentChunkImageUrls} />
         <ProgressBar value={0} />
         <div className="rounded-lg border border-stone-200 bg-white p-8 text-center shadow-sm">
           <div className="flex justify-center gap-2 mb-6">
@@ -1759,6 +1769,7 @@ export default function LessonFlow({
 
     return (
       <div className="max-w-lg mx-auto">
+        <WordImagePreloads urls={nextChunkImageUrls} />
         <ProgressBar value={1} />
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center">
           <div className="text-5xl mb-5">{star}</div>

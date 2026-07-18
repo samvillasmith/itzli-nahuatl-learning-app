@@ -9,6 +9,7 @@ import { getWordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { WordImagePreloads } from "@/components/WordImageResourceHints";
 
 type Card = {
   id: number;
@@ -20,6 +21,13 @@ type Card = {
   imageHeadword?: string | null;
   alsoWritten?: string[];
 };
+
+function cardImage(card: Card) {
+  return getWordImage(card.imageHeadword ?? card.headword, {
+    allowLegacyFallback: true,
+    safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
+  });
+}
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
@@ -100,14 +108,15 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
     );
   }
 
-  const img = getWordImage(card.imageHeadword ?? card.headword, {
-    allowLegacyFallback: true,
-    safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
-  });
+  const img = cardImage(card);
+  const preloadUrls = [0, 1, 2].map((offset) =>
+    cardImage(cards[(index + offset) % cards.length])?.url,
+  );
   const audioSrc = card.audioSrc ?? vocabCardAudioUrl(card.id);
 
   return (
     <div className="max-w-lg mx-auto">
+      <WordImagePreloads urls={preloadUrls} />
       {/* Progress */}
       <div className="flex items-center justify-between text-sm mb-3">
         <span className="text-stone-400 font-medium">{index + 1} / {cards.length}</span>
