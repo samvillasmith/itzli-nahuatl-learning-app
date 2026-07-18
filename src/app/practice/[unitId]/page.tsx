@@ -58,6 +58,8 @@ export default async function PracticePage({
           gloss_en: tr(locale, v.gloss_en),
           safety_gloss_en: v.gloss_en,
           part_of_speech: v.part_of_speech,
+          audioSrc: v.audioSrc,
+          imageHeadword: v.imageHeadword,
           alsoWritten: notes[v.id],
         }))}
       />

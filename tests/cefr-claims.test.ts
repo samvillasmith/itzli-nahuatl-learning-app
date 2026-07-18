@@ -26,7 +26,8 @@ describe("public CEFR claims", () => {
 
   it("publishes the current reviewed vocabulary count", () => {
     const readme = read("README.md");
-    expect(readme).toContain("380 reviewed lesson cards");
+    expect(readme).toContain("620 reviewed words and forms");
+    expect(readme).toContain("240 carefully selected source-course additions");
     expect(readme).not.toContain("825 core lesson cards");
     expect(readme).not.toContain("37,000-entry EHN lexicon");
   });

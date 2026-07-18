@@ -80,7 +80,7 @@ export default async function LandingPage() {
             </Show>
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-stone-500">
-            <span>{tr(locale, "Eastern Huasteca variety")}</span><span className="text-stone-300">•</span><span>{trChoice(locale, `${audit.totalUnits} guided units`, `${audit.totalUnits} unidades guiadas`)}</span><span className="text-stone-300">•</span><span>{tr(locale, "A1–A2 + B1-oriented extensions")}</span>
+            <span>{trChoice(locale, `${vocabCount.toLocaleString("en-US")} words and forms`, `${vocabCount.toLocaleString("es-MX")} palabras y formas`)}</span><span className="text-stone-300">•</span><span>{trChoice(locale, `${audit.totalUnits} guided units`, `${audit.totalUnits} unidades guiadas`)}</span><span className="text-stone-300">•</span><span>{tr(locale, "A1–A2 + B1-oriented extensions")}</span>
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-lg lg:justify-self-end">
@@ -130,7 +130,7 @@ export default async function LandingPage() {
           <h2 className="display-title mt-4 text-4xl text-stone-950 sm:text-5xl">{tr(locale, "From sounds to conversation.")}</h2>
           <p className="mt-5 max-w-md leading-7 text-stone-600">{tr(locale, "Start small. Every milestone adds language you can recognize, remember, and use.")}</p>
           <div className="mt-7 flex gap-6 border-t border-stone-200 pt-6">
-            <div><p className="text-2xl font-black text-stone-950">{vocabCount.toLocaleString(locale === "es" ? "es-MX" : "en-US")}</p><p className="text-xs text-stone-500">{tr(locale, "core word cards")}</p></div>
+            <div><p className="text-2xl font-black text-stone-950">{vocabCount.toLocaleString(locale === "es" ? "es-MX" : "en-US")}</p><p className="text-xs text-stone-500">{tr(locale, "words and forms taught")}</p></div>
             <div><p className="text-2xl font-black text-stone-950">{dialogueCount.toLocaleString(locale === "es" ? "es-MX" : "en-US")}</p><p className="text-xs text-stone-500">{tr(locale, "dialogue lines")}</p></div>
           </div>
         </div>

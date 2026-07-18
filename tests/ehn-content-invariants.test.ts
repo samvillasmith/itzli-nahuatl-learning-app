@@ -190,7 +190,7 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(380);
+    expect(getVocabCount()).toBe(620);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
     ).toBe(173);

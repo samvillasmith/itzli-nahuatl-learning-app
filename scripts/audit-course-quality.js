@@ -199,6 +199,7 @@ function main() {
 
   const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadTsModule("src/data/excluded-vocab.ts");
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
+  const { getSourceVocabPromotions } = loadTsModule("src/data/source-vocab-promotions.ts");
   const { getWordImage } = loadTsModule("src/data/word-images.ts");
   const { isAppContentExcluded } = loadTsModule("src/lib/app-content-safety.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
@@ -355,9 +356,20 @@ function main() {
   const missingVocabAudio = [];
   const missingDialogueAudio = [];
   const disabledDialogueAudio = [];
+  const missingVocabImages = [];
+  let sourcePromotionCount = 0;
 
   for (const unit of units) {
     const filtered = filterCoreVocab(vocabRows.all(unit.lesson_number), unit.lesson_number);
+    const seenHeadwords = new Set(filtered.map((card) => card.headword.trim().toLowerCase()));
+    const promotions = getSourceVocabPromotions(unit.lesson_number).filter((card) => {
+      const key = card.headword.trim().toLowerCase();
+      if (seenHeadwords.has(key)) return false;
+      seenHeadwords.add(key);
+      return true;
+    });
+    sourcePromotionCount += promotions.length;
+    filtered.push(...promotions);
     const { cards } = collapseVariants(filtered, unit.lesson_number);
     const unitLabIds = GRAMMAR_LABS.filter((lab) => lab.unit === unit.lesson_number).map((lab) => lab.id);
     const focusCards = LESSON_FOCUS_CARDS.filter((card) =>
@@ -366,25 +378,34 @@ function main() {
     focusCardCount += focusCards.length;
     visibleCards += cards.length;
     for (const card of cards) {
-      const image = getWordImage(card.headword, {
+      const image = getWordImage(card.imageHeadword || card.headword, {
         allowLegacyFallback: true,
         safetyText: [card.gloss_en, card.part_of_speech],
       });
+      if (!image?.url) {
+        missingVocabImages.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+      }
       if (image?.url && image.source === "openai") {
         const uses = imageUsage.get(image.url) || [];
         uses.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
         imageUsage.set(image.url, uses);
       }
 
-      const audioPath = path.join(
-        process.cwd(),
-        "public",
-        "audio-google",
-        "vocab",
-        `${card.id}.wav`
-      );
-      if (!fs.existsSync(audioPath)) {
-        missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+      if (card.audioSrc) {
+        if (!/^https:\/\//.test(card.audioSrc)) {
+          missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}:invalid-source-url`);
+        }
+      } else {
+        const audioPath = path.join(
+          process.cwd(),
+          "public",
+          "audio-google",
+          "vocab",
+          `${card.id}.wav`
+        );
+        if (!fs.existsSync(audioPath)) {
+          missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+        }
       }
     }
     const chunks = [];
@@ -470,6 +491,15 @@ function main() {
       `Distinct visible vocabulary cards reuse image URLs: ${duplicateVisibleImages.join("; ")}`
     );
   }
+  if (visibleCards < 600 || visibleCards > 700) {
+    grammarFailures.push(`Reviewed course inventory must stay between 600 and 700 cards; found ${visibleCards}.`);
+  }
+  if (sourcePromotionCount !== 240) {
+    grammarFailures.push(`Expected 240 promoted source-course cards; found ${sourcePromotionCount}.`);
+  }
+  if (missingVocabImages.length > 0) {
+    grammarFailures.push(`Visible vocabulary cards missing images: ${missingVocabImages.join(", ")}`);
+  }
   if (missingVocabAudio.length > 0) {
     grammarFailures.push(`Visible vocabulary cards missing audio: ${missingVocabAudio.join(", ")}`);
   }
@@ -483,12 +513,14 @@ function main() {
   console.log("Course quality audit");
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
+  console.log(`- Promoted audio-backed source cards: ${sourcePromotionCount}`);
   console.log(`- Grammar-derived lesson cards: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
   console.log(`- Dialogue lines with stage directions stripped/hidden from audio: ${stageDirectionLines}`);
   console.log(`- Units with curated replacement dialogues: ${curatedUnits}`);
   console.log(`- Same-unit generated image collisions: ${duplicateVisibleImages.length}`);
+  console.log(`- Visible vocabulary cards missing images: ${missingVocabImages.length}`);
   console.log(`- Visible vocabulary cards missing audio: ${missingVocabAudio.length}`);
   console.log(`- Visible dialogue lines missing/disabled audio: ${missingDialogueAudio.length + disabledDialogueAudio.length}`);
 

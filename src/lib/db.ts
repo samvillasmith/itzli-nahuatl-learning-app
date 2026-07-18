@@ -10,6 +10,7 @@ import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
 import reviewedAudio from "@/data/reviewed-audio.json";
+import { getSourceVocabPromotions } from "@/data/source-vocab-promotions";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -75,6 +76,9 @@ export type VocabItem = {
   part_of_speech: string;
   first_lesson_number: number;
   semantic_domain: string;
+  audioSrc?: string | null;
+  imageHeadword?: string | null;
+  sourceUrl?: string | null;
 };
 
 export type DialogueLine = {
@@ -193,7 +197,7 @@ export function getUnitVocab(lessonNumber: number): VocabItem[] {
     )
     .all(lessonNumber) as VocabItem[];
 
-  return filterCoreVocab(rows, lessonNumber);
+  return mergeSourcePromotions(filterCoreVocab(rows, lessonNumber), lessonNumber);
 }
 
 export function getVocabCount(): number {
@@ -222,11 +226,36 @@ export function getAllPrimerVocab(): VocabItem[] {
     byLesson.set(row.first_lesson_number, group);
   }
 
-  return [...byLesson.entries()]
-    .sort(([a], [b]) => a - b)
-    .flatMap(([lessonNumber, items]) =>
-      collapseVariants(filterCoreVocab(items, lessonNumber), lessonNumber).cards
+  const lessonNumbers = new Set([
+    ...byLesson.keys(),
+    ...getSourceVocabPromotions().map((item) => item.first_lesson_number),
+  ]);
+
+  return [...lessonNumbers]
+    .sort((a, b) => a - b)
+    .flatMap((lessonNumber) =>
+      collapseVariants(
+        mergeSourcePromotions(
+          filterCoreVocab(byLesson.get(lessonNumber) ?? [], lessonNumber),
+          lessonNumber,
+        ),
+        lessonNumber,
+      ).cards
     );
+}
+
+function mergeSourcePromotions(items: VocabItem[], lessonNumber: number): VocabItem[] {
+  const merged = [...items];
+  const seen = new Set(items.map((item) => item.headword.trim().toLowerCase()));
+
+  for (const promotion of getSourceVocabPromotions(lessonNumber)) {
+    const key = promotion.headword.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(promotion);
+  }
+
+  return merged;
 }
 
 export function getUnitDialogues(lessonNumber: number): DialogueLine[] {

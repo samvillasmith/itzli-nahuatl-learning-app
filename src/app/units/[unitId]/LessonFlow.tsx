@@ -33,6 +33,7 @@ type VocabCard = {
   safety_gloss_en?: string;
   part_of_speech: string;
   audioSrc?: string | null;
+  imageHeadword?: string | null;
   source?: "vocab" | "unitPhrase" | "lessonFocus";
 };
 type DialogueLine = {
@@ -227,7 +228,7 @@ function cardAudioSrc(card: VocabCard): string | null {
 }
 
 function cardImage(card: VocabCard) {
-  return getWordImage(card.headword, {
+  return getWordImage(card.imageHeadword ?? card.headword, {
     allowLegacyFallback: true,
     safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
   });
@@ -1683,7 +1684,7 @@ export default function LessonFlow({
             {learningCards.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{learningCards.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">{translate("word cards")}</div>
+                <div className="text-xs text-stone-400 mt-0.5">{translate("learning cards")}</div>
               </div>
             )}
             {dialogues.length > 0 && (

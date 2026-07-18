@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import reviewedAudio from "@/data/reviewed-audio.json";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
+import { SOURCE_VOCAB_PROMOTIONS } from "@/data/source-vocab-promotions";
 import { getWordImage } from "@/data/word-images";
 import { dialogueAudioUrl, vocabCardAudioUrl } from "@/lib/audio";
 
@@ -48,5 +49,22 @@ describe("reviewed media", () => {
 
     expect(image?.source).toBe("itzli");
     expect(image?.license).toBe("First-party generated typography");
+  });
+
+  it("gives every promoted source card explicit audio and reviewed imagery", () => {
+    expect(SOURCE_VOCAB_PROMOTIONS).toHaveLength(240);
+    expect(new Set(SOURCE_VOCAB_PROMOTIONS.map((entry) => entry.id)).size).toBe(240);
+
+    for (const entry of SOURCE_VOCAB_PROMOTIONS) {
+      expect(entry.audioSrc).toMatch(/^https:\/\//);
+      expect(entry.sourceUrl).toMatch(/^https:\/\//);
+      expect(
+        getWordImage(entry.imageHeadword, {
+          allowLegacyFallback: true,
+          safetyText: [entry.gloss_en, entry.part_of_speech],
+        }),
+        `${entry.entry_id}: ${entry.headword}`,
+      ).not.toBeNull();
+    }
   });
 });

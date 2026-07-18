@@ -16,6 +16,8 @@ type Card = {
   gloss_en: string;
   safety_gloss_en?: string;
   part_of_speech: string;
+  audioSrc?: string | null;
+  imageHeadword?: string | null;
   alsoWritten?: string[];
 };
 
@@ -98,11 +100,11 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
     );
   }
 
-  const img = getWordImage(card.headword, {
+  const img = getWordImage(card.imageHeadword ?? card.headword, {
     allowLegacyFallback: true,
     safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
   });
-  const audioSrc = vocabCardAudioUrl(card.id);
+  const audioSrc = card.audioSrc ?? vocabCardAudioUrl(card.id);
 
   return (
     <div className="max-w-lg mx-auto">

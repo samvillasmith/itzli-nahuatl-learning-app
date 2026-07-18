@@ -142,6 +142,8 @@ export default async function UnitPage({
           gloss_en: v.gloss_en,
           safety_gloss_en: v.safety_gloss_en,
           part_of_speech: v.part_of_speech,
+          audioSrc: v.audioSrc,
+          imageHeadword: v.imageHeadword,
         }))}
         dialogues={dialogues.map((d) => ({
           lesson_dialogue_id: d.lesson_dialogue_id,
@@ -165,6 +167,8 @@ export default async function UnitPage({
           gloss_en: v.gloss_en,
           safety_gloss_en: v.safety_gloss_en,
           part_of_speech: v.part_of_speech,
+          audioSrc: v.audioSrc,
+          imageHeadword: v.imageHeadword,
         }))}
         prevUnit={prev ? { num: prev.lesson_number, themeEn: prev.theme_en } : null}
         nextUnit={next ? { num: next.lesson_number, themeEn: next.theme_en } : null}

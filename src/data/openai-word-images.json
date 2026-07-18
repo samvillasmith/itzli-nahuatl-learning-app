@@ -2426,6 +2426,23 @@
     "output_format": "png",
     "generated_at": "2026-05-21T03:57:23.759Z"
   },
+  "choloa": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/choloa-source-6-39.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for choloa: to escape",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T16:46:11.608Z",
+    "reviewed_at": "2026-07-18T16:49:16.128Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/choloa-source-6-39.png",
+    "review_source": "openai-word-image-audit/contact-sheet-01"
+  },
   "cholohua": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cholohua-339.png",
     "license": "OpenAI-generated illustration",
@@ -2725,7 +2742,10 @@
     "review_status": "approved",
     "review_scope": "exact-published-image",
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/conepiya-211.png",
-    "review_source": "openai-word-image-audit/contact-sheet-42"
+    "review_source": "openai-word-image-audit/contact-sheet-42",
+    "reviewed_safe_matches": [
+      "child"
+    ]
   },
   "conētl": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/conetl-source-8-36.png",
@@ -4709,6 +4729,23 @@
     "size": "1024x1024",
     "output_format": "png",
     "generated_at": "2026-05-21T04:18:02.042Z"
+  },
+  "iucci": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/iucci-source-1-33.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for iucci: to ripen",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T16:48:12.338Z",
+    "reviewed_at": "2026-07-18T16:49:15.681Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/iucci-source-1-33.png",
+    "review_source": "openai-word-image-audit/contact-sheet-01"
   },
   "iucxoa": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/iucxoa-370.png",
@@ -8540,7 +8577,7 @@
   },
   "petlayoh": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/petlayoh-source-21-20.png",
-    "license": "OpenAI-generated image; review before publication",
+    "license": "OpenAI-generated illustration",
     "author": "gpt-image-1",
     "alt": "Illustration for petlayoh: dried corn wrapped in its husk",
     "source": "openai",
@@ -8548,7 +8585,12 @@
     "quality": "medium",
     "size": "1024x1024",
     "output_format": "png",
-    "generated_at": "2026-05-21T02:50:23.395Z"
+    "generated_at": "2026-07-18T16:47:05.669Z",
+    "reviewed_at": "2026-07-18T16:49:17.035Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/petlayoh-source-21-20.png",
+    "review_source": "openai-word-image-audit/contact-sheet-01"
   },
   "pezohtli": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pezohtli-423.png",
@@ -8800,6 +8842,23 @@
     "review_scope": "exact-published-image",
     "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/piya-279.png",
     "review_source": "openai-word-image-audit/contact-sheet-50"
+  },
+  "piyali": {
+    "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/piyali-260.png",
+    "license": "OpenAI-generated illustration",
+    "author": "gpt-image-1",
+    "alt": "Illustration for piyali: hello; greeting",
+    "source": "openai",
+    "model": "gpt-image-1",
+    "quality": "medium",
+    "size": "1024x1024",
+    "output_format": "png",
+    "generated_at": "2026-07-18T16:46:36.880Z",
+    "reviewed_at": "2026-07-18T16:49:16.572Z",
+    "review_status": "approved",
+    "review_scope": "exact-published-image",
+    "reviewed_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/piyali-260.png",
+    "review_source": "openai-word-image-audit/contact-sheet-01"
   },
   "piyo": {
     "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/piyo-469.png",

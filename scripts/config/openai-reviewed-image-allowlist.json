@@ -488,6 +488,26 @@
       "instruction": "Use only an empty crib containing one teddy bear as an abstract symbol for having a child. No baby, child, teen, adult, body, bed for a person, bath, changing, medical context, or exposed skin."
     },
     {
+      "headword": "iucci",
+      "mode": "object-only",
+      "instruction": "Illustrate ripening with exactly one short leafy branch bearing exactly three identical round fruits in one clear left-to-right sequence: the left fruit solid green, the middle fruit yellow-green, and the right fruit solid golden yellow. Show no other fruit or branch. No people, hands, bodies, faces, children, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "choloa",
+      "mode": "object-only",
+      "instruction": "Illustrate escape using only one ordinary bird flying away from an open empty birdcage in an outdoor landscape. No people, hands, bodies, children, danger, weapons, injury, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "petlayoh",
+      "mode": "object-only",
+      "instruction": "Show only one clearly recognizable dried ear of corn still wrapped in its dry tan husk, resting on an empty woven mat. No people, hands, bodies, faces, children, food preparation, tools, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "piyali",
+      "mode": "adult-only",
+      "instruction": "Show exactly two clearly mature adults age 30 or older greeting each other outdoors with a friendly wave. Both must have unmistakably adult faces and opaque modest clothing covering torso, shoulders, arms, hips, legs, and feet. No children, teens, young-looking people, touching, romance, beds, bathing, exposed bodies, writing, letters, numerals, labels, logos, or text."
+    },
+    {
       "headword": "hueyitata",
       "mode": "adult-family",
       "instruction": "Show one fully clothed elderly grandfather age 65 or older beside a fully clothed adult descendant age 25 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."

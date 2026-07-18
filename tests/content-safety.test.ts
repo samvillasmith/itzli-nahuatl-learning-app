@@ -62,4 +62,12 @@ describe("strict content safety", () => {
     expect(getWordImage("ehuatl", { safetyText: ["skin (of humans, animals, fruit)"] })).not.toBeNull();
     expect(getWordImage("ehuatl", { safetyText: ["skin exposed while bathing"] })).toBeNull();
   });
+
+  it("allows only the reviewed object-only image for having a child", () => {
+    expect(getWordImage("conepiya", { safetyText: ["to have a child", "verb"] })?.url).toContain(
+      "/conepiya-211.png",
+    );
+    expect(getWordImage("conepiya", { safetyText: ["child bathing"] })).toBeNull();
+    expect(getWordImage("conepiya", { safetyText: ["nude child"] })).toBeNull();
+  });
 });

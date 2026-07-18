@@ -28,11 +28,14 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 
 | Stage | Units | New reviewed cards | Focus |
 |-------|------:|-------------------:|-------|
-| A1 | 16 | 181 | Greetings, identity, family, numbers, food, daily life |
-| A2 | 18 | 146 | Description, narration, home, market, community, nature, health |
-| B1-oriented | 9 | 54 | Advanced narration, conditionals, object marking, modifiers |
+| A1 | 16 | 330 | Greetings, identity, family, numbers, food, daily life |
+| A2 | 18 | 221 | Description, narration, home, market, community, nature, health |
+| B1-oriented | 9 | 69 | Advanced narration, conditionals, object marking, modifiers |
 
-- **380 reviewed lesson cards after source filtering and variant collapse**, plus 63 grammar-derived focus cards
+- **620 reviewed words and forms after source filtering and variant collapse**, plus 63 grammar-derived focus cards
+- **240 carefully selected source-course additions** distributed through Units 1–21,
+  with original COERLL audio, INALI-style display spelling, source provenance,
+  Spanish glosses, and reviewed visual coverage
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`

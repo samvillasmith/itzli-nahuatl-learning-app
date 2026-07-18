@@ -107,7 +107,7 @@ export default async function SourceLessonPage({ params }: Params) {
         )}
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-stone-500">
           <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.sections.length} {tr(locale, "sections")}</span>
-          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.vocabulary.length} {tr(locale, "audio-backed words")}</span>
+          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.vocabulary.length} {tr(locale, "audio-backed source entries")}</span>
           <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.mediaLinks.length} {tr(locale, "source media links")}</span>
         </div>
         <p className="mt-5 text-sm leading-6 text-stone-500">

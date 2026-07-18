@@ -7,6 +7,9 @@ import {
   stripLocalePrefix,
 } from "../src/i18n/config";
 import { tr, translateDeep } from "../src/i18n/translate";
+import spanishCatalog from "../src/i18n/es.generated.json";
+import spanishOverrides from "../src/i18n/es.overrides.json";
+import { SOURCE_VOCAB_PROMOTIONS } from "../src/data/source-vocab-promotions";
 import { getSystemPrompt, refusalForLocale } from "../src/lib/chat-system-prompt";
 
 describe("English and Mexican Spanish localization", () => {
@@ -55,5 +58,12 @@ describe("English and Mexican Spanish localization", () => {
     expect(refusalForLocale("es")).toContain("solo puedo ayudar");
     expect(getSystemPrompt("practice", "es")).toContain("OUTPUT LANGUAGE: MEXICAN SPANISH");
     expect(getSystemPrompt("practice", "es")).toContain("translation lines MUST be in natural Mexican Spanish");
+  });
+
+  it("covers every promoted source gloss in the Spanish catalog", () => {
+    const catalog: Record<string, string> = { ...spanishCatalog, ...spanishOverrides };
+    for (const entry of SOURCE_VOCAB_PROMOTIONS) {
+      expect(Object.hasOwn(catalog, entry.gloss_en), `${entry.entry_id}: ${entry.gloss_en}`).toBe(true);
+    }
   });
 });

@@ -100,7 +100,7 @@ export default async function SourceCoursePage() {
       <section className="grid gap-3 sm:grid-cols-4">
         {[
           { value: stats.lessons, label: "source lessons" },
-          { value: stats.vocabulary, label: "audio-backed words" },
+          { value: stats.vocabulary, label: "audio-backed source entries" },
           { value: stats.sections, label: "lesson sections" },
           { value: stats.mediaLinks, label: "source media links" },
         ].map((stat) => (
