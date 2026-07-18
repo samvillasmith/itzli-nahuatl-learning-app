@@ -1,9 +1,9 @@
 "use client";
 
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
 import {
   htmlLang,
+  localizedPathname,
   LOCALE_COOKIE,
   type AppLocale,
 } from "./config";
@@ -24,7 +24,6 @@ export default function LocaleProvider({
   initialLocale: AppLocale;
   children: ReactNode;
 }) {
-  const router = useRouter();
   const [locale, setLocaleState] = useState(initialLocale);
 
   const value = useMemo<LocaleContextValue>(() => ({
@@ -34,10 +33,11 @@ export default function LocaleProvider({
       document.cookie = `${LOCALE_COOKIE}=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
       document.documentElement.lang = htmlLang(nextLocale);
       setLocaleState(nextLocale);
-      router.refresh();
+      const nextPathname = localizedPathname(window.location.pathname, nextLocale);
+      window.location.assign(`${nextPathname}${window.location.search}${window.location.hash}`);
     },
     translate: (english) => trClient(locale, english),
-  }), [locale, router]);
+  }), [locale]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }

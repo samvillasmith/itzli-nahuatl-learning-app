@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllUnits } from "@/lib/db";
 import { getCurriculumAudit } from "@/lib/curriculum";
@@ -15,6 +16,16 @@ const BAND_LABEL: Record<string, string> = {
   A2: "A2",
   B1: "B1-oriented",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  return {
+    title: locale === "es" ? "Programa del curso de náhuatl" : "Nahuatl Course Curriculum",
+    description: locale === "es"
+      ? "Explora 43 unidades estructuradas para aprender vocabulario, pronunciación, gramática y conversación en náhuatl."
+      : "Explore 43 structured units for learning Nahuatl vocabulary, pronunciation, grammar, and conversation.",
+  };
+}
 
 export default async function CurriculumPage() {
   const locale = await getRequestLocale();

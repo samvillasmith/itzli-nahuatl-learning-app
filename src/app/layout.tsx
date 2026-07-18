@@ -10,22 +10,29 @@ import { ArrowUpRight, BookOpen, Landmark, LibraryBig, Route, Sparkles } from "l
 import MobileLearningNav from "./MobileLearningNav";
 import LocaleProvider from "@/i18n/LocaleProvider";
 import LocaleToggle from "@/i18n/LocaleToggle";
-import { htmlLang } from "@/i18n/config";
-import { getRequestLocale } from "@/i18n/server";
-import { tr } from "@/i18n/translate";
+import { htmlLang, localizedPathname, type AppLocale } from "@/i18n/config";
+import { getRequestLocale, getRequestPathname } from "@/i18n/server";
+import { tr, trChoice } from "@/i18n/translate";
 
-const SITE_URL = "https://itzli.app";
+const SITE_URL = "https://www.itzli.app";
 const DESCRIPTION =
-  "Learn Eastern Huasteca Nahuatl with Itzli — a free, structured course from A1 foundations through A2, with B1-oriented grammar and narrative modules, hundreds of reviewed lesson words and phrases, 43 units, and real dialogues.";
+  "Learn Nahuatl online for free with Itzli. Build vocabulary, pronunciation, grammar, and conversation through 43 structured units teaching the living Eastern Huasteca variety spoken around Chicontepec, Veracruz.";
 const DESCRIPTION_ES =
-  "Aprende náhuatl de la Huasteca veracruzana con Itzli: un curso gratuito y estructurado desde las bases A1 hasta A2, con módulos de gramática y narración orientados a B1, cientos de palabras y frases revisadas, 43 unidades y diálogos reales.";
+  "Aprende náhuatl en línea gratis con Itzli. Desarrolla vocabulario, pronunciación, gramática y conversación en 43 unidades estructuradas que enseñan la variedad viva de la Huasteca veracruzana hablada alrededor de Chicontepec.";
+
+function localizedUrl(pathname: string, locale: AppLocale): string {
+  return new URL(localizedPathname(pathname, locale), SITE_URL).toString();
+}
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getRequestLocale();
+  const [locale, pathname] = await Promise.all([getRequestLocale(), getRequestPathname()]);
   const title = locale === "es"
-    ? "Itzli — Aprende náhuatl de la Huasteca veracruzana"
-    : "Itzli — Learn Eastern Huasteca Nahuatl";
+    ? "Itzli — Aprende náhuatl en línea gratis"
+    : "Itzli — Learn Nahuatl Online for Free";
   const description = locale === "es" ? DESCRIPTION_ES : DESCRIPTION;
+  const englishUrl = localizedUrl(pathname, "en");
+  const spanishUrl = localizedUrl(pathname, "es");
+  const canonicalUrl = locale === "es" ? spanishUrl : englishUrl;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -33,6 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     keywords: [
       "learn nahuatl",
+      "learn nahuatl online",
+      "learn aztec language",
       "nahuatl language learning",
       "nahuatl course",
       "nahuatl lessons",
@@ -50,18 +59,39 @@ export async function generateMetadata(): Promise<Metadata> {
       "nhe nahuatl",
       "huasteca nahuatl",
       "aprender náhuatl",
+      "aprender náhuatl en línea",
+      "aprender idioma azteca",
       "curso de náhuatl",
       "náhuatl de la Huasteca veracruzana",
     ],
     authors: [{ name: "Sam Villa-Smith", url: "https://amoxcalli.org" }],
-    openGraph: { type: "website", url: SITE_URL, siteName: "Itzli", title, description },
+    creator: "Sam Villa-Smith",
+    publisher: "Itzli",
+    category: locale === "es" ? "Educación de idiomas" : "Language education",
+    openGraph: {
+      type: "website",
+      url: canonicalUrl,
+      siteName: locale === "es" ? "Itzli — Aprende náhuatl" : "Itzli — Learn Nahuatl",
+      title,
+      description,
+      locale: locale === "es" ? "es_MX" : "en_US",
+      alternateLocale: locale === "es" ? ["en_US"] : ["es_MX"],
+    },
     twitter: { card: "summary", title, description },
-    alternates: { canonical: SITE_URL },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "en-US": englishUrl,
+        "es-MX": spanishUrl,
+        "x-default": englishUrl,
+      },
+    },
   };
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getRequestLocale();
+  const [locale, pathname] = await Promise.all([getRequestLocale(), getRequestPathname()]);
+  const pageUrl = localizedUrl(pathname, locale);
 
   return (
     <ClerkProvider localization={locale === "es" ? esMX : undefined}>
@@ -132,11 +162,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <Link href="/curriculum" className="hidden rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex">
                     {tr(locale, "Curriculum")}
                   </Link>
-                  <Link href="/sign-in" className="nav-link">
-                    {tr(locale, "Sign in")}
+                  <Link href="/sign-in" className="nav-link !px-1.5 sm:!px-3">
+                    <span className="sm:hidden">{trChoice(locale, "Sign in", "Entrar")}</span>
+                    <span className="hidden sm:inline">{tr(locale, "Sign in")}</span>
                   </Link>
-                  <Link href="/sign-up" className="button-primary !px-4 !py-2.5">
-                    {tr(locale, "Start learning")} <ArrowUpRight size={15} />
+                  <Link href="/sign-up" className="button-primary !px-3 !py-2.5 sm:!px-4">
+                    <span className="sm:hidden">{trChoice(locale, "Start", "Empezar")}</span>
+                    <span className="hidden sm:inline">{tr(locale, "Start learning")}</span>
+                    <ArrowUpRight size={15} />
                   </Link>
                 </div>
               </Show>
@@ -148,8 +181,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "WebApplication",
-                name: "Itzli",
-                url: "https://itzli.app",
+                name: locale === "es" ? "Itzli — Aprende náhuatl" : "Itzli — Learn Nahuatl",
+                url: pageUrl,
                 description: locale === "es" ? DESCRIPTION_ES : DESCRIPTION,
                 applicationCategory: "EducationApplication",
                 operatingSystem: "Web",
@@ -161,11 +194,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 },
                 about: {
                   "@type": "Language",
-                  name: "Eastern Huasteca Nahuatl",
-                  alternateName: ["Nahuatl", "Náhuatl", "NHE"],
+                  name: "Nahuatl",
+                  alternateName: ["Náhuatl", "Eastern Huasteca Nahuatl", "Náhuatl de la Huasteca veracruzana", "NHE"],
                 },
+                teaches: locale === "es" ? "Náhuatl de la Huasteca veracruzana" : "Eastern Huasteca Nahuatl",
                 educationalLevel: locale === "es" ? "Bases A1 hasta A2, con módulos de extensión orientados a B1" : "A1 foundations through A2, with B1-oriented extension modules",
-                inLanguage: "nhe",
+                inLanguage: htmlLang(locale),
                 isAccessibleForFree: true,
               }),
             }}

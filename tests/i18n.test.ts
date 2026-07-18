@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { htmlLang, normalizeLocale } from "../src/i18n/config";
+import {
+  htmlLang,
+  localeFromPathname,
+  localizedPathname,
+  normalizeLocale,
+  stripLocalePrefix,
+} from "../src/i18n/config";
 import { tr, translateDeep } from "../src/i18n/translate";
 import { getSystemPrompt, refusalForLocale } from "../src/lib/chat-system-prompt";
 
@@ -8,6 +14,15 @@ describe("English and Mexican Spanish localization", () => {
     expect(normalizeLocale("es-MX")).toBe("es");
     expect(normalizeLocale("en-US")).toBe("en");
     expect(htmlLang("es")).toBe("es-MX");
+  });
+
+  it("gives Spanish pages stable crawlable URLs", () => {
+    expect(localeFromPathname("/es/curriculum")).toBe("es");
+    expect(localeFromPathname("/curriculum")).toBe("en");
+    expect(stripLocalePrefix("/es/units/7")).toBe("/units/7");
+    expect(localizedPathname("/units/7", "es")).toBe("/es/units/7");
+    expect(localizedPathname("/es/units/7", "en")).toBe("/units/7");
+    expect(localizedPathname("/", "es")).toBe("/es");
   });
 
   it("translates interface text without changing Nahuatl or unknown text", () => {
