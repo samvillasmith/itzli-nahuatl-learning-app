@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 type Message = { role: "user" | "assistant"; content: string };
 type Mode = "tutor" | "practice";
@@ -41,6 +42,7 @@ const MODE_META: Record<Mode, { title: string; subtitle: string; placeholder: st
 };
 
 export default function TutorClient() {
+  const { locale, translate } = useLocale();
   const [mode, setMode] = useState<Mode>("tutor");
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -79,20 +81,20 @@ export default function TutorClient() {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: newMessages, mode }),
+          body: JSON.stringify({ messages: newMessages, mode, locale }),
         });
 
         if (!res.ok) {
           let msg: string;
-          if (res.status === 401) msg = "Unauthorized — please sign in.";
-          else if (res.status === 429) msg = "Too many messages. Please wait a moment.";
-          else if (res.status === 413) msg = "That message is too long. Please shorten it.";
-          else msg = `Error ${res.status}: ${res.statusText}`;
+          if (res.status === 401) msg = translate("Unauthorized — please sign in.");
+          else if (res.status === 429) msg = translate("Too many messages. Please wait a moment.");
+          else if (res.status === 413) msg = translate("That message is too long. Please shorten it.");
+          else msg = `${translate("Error")} ${res.status}: ${res.statusText}`;
           throw new Error(msg);
         }
 
         const reader = res.body?.getReader();
-        if (!reader) throw new Error("No response stream");
+        if (!reader) throw new Error(translate("No response stream"));
 
         const decoder = new TextDecoder();
         let assistantText = "";
@@ -113,13 +115,13 @@ export default function TutorClient() {
           });
         }
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Something went wrong.");
+        setError(e instanceof Error ? e.message : translate("Something went wrong."));
       } finally {
         setIsLoading(false);
         inputRef.current?.focus();
       }
     },
-    [messages, isLoading, mode],
+    [messages, isLoading, mode, locale, translate],
   );
 
   function handleSubmit(e: React.FormEvent) {
@@ -127,8 +129,15 @@ export default function TutorClient() {
     sendMessage(input);
   }
 
-  const meta = MODE_META[mode];
-  const suggestions = mode === "tutor" ? TUTOR_SUGGESTIONS : PRACTICE_SUGGESTIONS;
+  const meta = {
+    ...MODE_META[mode],
+    title: translate(MODE_META[mode].title),
+    subtitle: translate(MODE_META[mode].subtitle),
+    placeholder: translate(MODE_META[mode].placeholder),
+    emptyHeadline: translate(MODE_META[mode].emptyHeadline),
+    emptyBody: translate(MODE_META[mode].emptyBody),
+  };
+  const suggestions = (mode === "tutor" ? TUTOR_SUGGESTIONS : PRACTICE_SUGGESTIONS).map(translate);
 
   return (
     <div className="flex flex-col h-[calc(100vh-4.5rem)]">
@@ -158,7 +167,7 @@ export default function TutorClient() {
               }`}
               aria-pressed={mode === "tutor"}
             >
-              Tutor
+              {translate("Tutor")}
             </button>
             <button
               type="button"
@@ -170,7 +179,7 @@ export default function TutorClient() {
               }`}
               aria-pressed={mode === "practice"}
             >
-              Practice
+              {translate("Practice")}
             </button>
           </div>
         </div>
@@ -276,7 +285,7 @@ export default function TutorClient() {
             disabled={isLoading || !input.trim()}
             className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 disabled:bg-stone-300 text-white rounded-xl text-sm font-semibold transition-colors shrink-0"
           >
-            Send
+            {translate("Send")}
           </button>
         </form>
       </div>

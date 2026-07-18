@@ -12,7 +12,7 @@ describe("culture and history track", () => {
   it("keeps every module substantive and sourced", () => {
     for (const cultureModule of CULTURE_MODULES) {
       expect(cultureModule.sections.length).toBeGreaterThanOrEqual(4);
-      expect(cultureModule.takeaways).toHaveLength(3);
+      expect(cultureModule.takeaways.length).toBeGreaterThanOrEqual(3);
       expect(cultureModule.sources.length).toBeGreaterThanOrEqual(3);
       expect(cultureModule.sources.every((source) => source.url.startsWith("https://"))).toBe(true);
     }

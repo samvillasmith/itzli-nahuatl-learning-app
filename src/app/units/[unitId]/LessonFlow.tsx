@@ -16,6 +16,8 @@ import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { translateDeepClient } from "@/i18n/client-translate";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -28,6 +30,7 @@ type VocabCard = {
   id: number;
   headword: string;
   gloss_en: string;
+  safety_gloss_en?: string;
   part_of_speech: string;
   audioSrc?: string | null;
   source?: "vocab" | "unitPhrase" | "lessonFocus";
@@ -64,12 +67,13 @@ type TipData = { icon: string; title: string; body: string };
 
 function PronunciationHint({ value }: { value: string }) {
   const hint = pronunciationHintFor(value);
+  const { translate } = useLocale();
   if (!hint) return null;
 
   return (
     <div className="max-w-sm border-l-2 border-amber-400 pl-3 text-left">
-      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
-      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{hint.note}</p>
+      <p className="text-xs font-bold text-amber-800">{translate(hint.cue)}</p>
+      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{translate(hint.note)}</p>
     </div>
   );
 }
@@ -225,7 +229,7 @@ function cardAudioSrc(card: VocabCard): string | null {
 function cardImage(card: VocabCard) {
   return getWordImage(card.headword, {
     allowLegacyFallback: true,
-    safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
+    safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
   });
 }
 
@@ -784,8 +788,9 @@ function buildSequence(
 
 function ProgressBar({ value, label }: { value: number; label?: string }) {
   const pct = Math.min(100, Math.round(value * 100));
+  const { translate } = useLocale();
   return (
-    <div className="mb-6" aria-label={`Lesson progress: ${pct}%`}>
+    <div className="mb-6" aria-label={`${translate("Lesson progress")}: ${pct}%`}>
       <div className="mb-2 flex items-center justify-between">
         {label && <span className="text-xs font-medium text-stone-400">{label}</span>}
         <span className="ml-auto font-mono text-[11px] font-bold text-emerald-700">{pct}%</span>
@@ -843,6 +848,7 @@ function FeedbackBanner({ correct, message }: { correct: boolean; message: strin
 
 function AudioButton({ src, size = "md" }: { src: string; size?: "sm" | "md" | "lg" }) {
   const [playing, setPlaying] = useState(false);
+  const { translate } = useLocale();
 
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
@@ -857,8 +863,8 @@ function AudioButton({ src, size = "md" }: { src: string; size?: "sm" | "md" | "
   return (
     <button
       onClick={handlePlay}
-      title="Play pronunciation"
-      aria-label="Play pronunciation"
+      title={translate("Play pronunciation")}
+      aria-label={translate("Play pronunciation")}
       className={`inline-flex shrink-0 items-center justify-center rounded-full transition-all ${sizeClasses[size]} ${
         playing
           ? "border border-emerald-300 bg-emerald-100 text-emerald-700"
@@ -883,6 +889,7 @@ function StepLabel({ text }: { text: string }) {
 }
 
 function BandBadge({ band }: { band: string }) {
+  const { locale } = useLocale();
   const colors: Record<string, string> = {
     A1: "bg-emerald-100 text-emerald-700 border border-emerald-200",
     A2: "bg-sky-100 text-sky-700 border border-sky-200",
@@ -890,18 +897,19 @@ function BandBadge({ band }: { band: string }) {
   };
   return (
     <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full ${colors[band] ?? "bg-stone-100 text-stone-500"}`}>
-      {band === "B1" ? "B1-oriented" : band}
+      {band === "B1" ? (locale === "es" ? "orientado a B1" : "B1-oriented") : band}
     </span>
   );
 }
 
-function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => void; label?: string }) {
+function ContinueButton({ onClick, label }: { onClick: () => void; label?: string }) {
+  const { translate } = useLocale();
   return (
     <button
       onClick={onClick}
       className="w-full bg-stone-900 hover:bg-stone-700 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors"
     >
-      {label}
+      {label ?? `${translate("Continue")} →`}
     </button>
   );
 }
@@ -919,24 +927,25 @@ function GrammarIntroStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { translate } = useLocale();
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Grammar lab`} />
+      <StepLabel text={`${chunkLabel}${translate("Grammar lab")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div>
-            <p className="text-xs font-bold text-emerald-700 uppercase mb-1">{lab.band} production</p>
+            <p className="text-xs font-bold text-emerald-700 uppercase mb-1">{lab.band} {translate("production")}</p>
             <h2 className="text-2xl font-bold text-stone-900 leading-tight">{lab.title}</h2>
           </div>
           <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-            Unit {lab.unit}
+            {translate("Unit")} {lab.unit}
           </span>
         </div>
         <p className="text-sm text-stone-500 leading-relaxed mb-4">{lab.shortDesc}</p>
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-          <p className="text-xs font-bold text-amber-800 uppercase mb-1">Build it like this</p>
+          <p className="text-xs font-bold text-amber-800 uppercase mb-1">{translate("Build it like this")}</p>
           <p className="font-mono text-sm font-semibold text-stone-900 mb-2">{displayNahuatl(lab.pattern)}</p>
           <p className="text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
         </div>
@@ -960,13 +969,14 @@ function GrammarExampleStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { translate } = useLocale();
   const example = lab.examples[exampleIdx];
   if (!example) return null;
 
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Worked example`} />
+      <StepLabel text={`${chunkLabel}${translate("Worked example")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-2">{lab.title}</p>
@@ -1000,6 +1010,7 @@ function GrammarTransformStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { locale, translate } = useLocale();
   const item = drill.items[itemIdx];
   const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
@@ -1012,7 +1023,7 @@ function GrammarTransformStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Practice the pattern`} />
+      <StepLabel text={`${chunkLabel}${translate("Practice the pattern")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
@@ -1021,11 +1032,11 @@ function GrammarTransformStep({
 
         <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4 space-y-3">
           <div>
-            <p className="text-xs font-bold uppercase text-stone-400 mb-1">Make this meaning</p>
+            <p className="text-xs font-bold uppercase text-stone-400 mb-1">{translate("Make this meaning")}</p>
             <p className="text-lg font-semibold text-stone-900">{item.target}</p>
           </div>
           <div className="border-t border-stone-200 pt-3">
-            <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
+            <p className="text-xs font-bold uppercase text-stone-400 mb-1">{translate("Starting piece or cue")}</p>
             <p className="font-mono text-sm font-semibold text-emerald-700">{displayNahuatl(item.input)}</p>
           </div>
         </div>
@@ -1037,7 +1048,7 @@ function GrammarTransformStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type the Nahuatl form"
+          placeholder={translate("Type the Nahuatl form")}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1045,24 +1056,24 @@ function GrammarTransformStep({
             onClick={() => setChecked(true)}
             className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
           >
-            Check
+            {translate("Check")}
           </button>
           <button
             onClick={() => setRevealed(true)}
             className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
           >
-            Reveal
+            {translate("Reveal")}
           </button>
         </div>
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
+        <FeedbackBanner correct={correct} message={correct ? translate("Correct.") : locale === "es" ? `La respuesta es "${displayNahuatl(item.answer)}"` : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Explanation")}</p>
           <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
           <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
@@ -1089,6 +1100,7 @@ function GrammarProduceStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { locale, translate } = useLocale();
   const item = drill.items[itemIdx];
   const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
@@ -1101,7 +1113,7 @@ function GrammarProduceStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Type it in Nahuatl`} />
+      <StepLabel text={`${chunkLabel}${translate("Type it in Nahuatl")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
@@ -1109,7 +1121,7 @@ function GrammarProduceStep({
         <p className="text-sm text-stone-500 mb-5">{drill.prompt}</p>
 
         <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 mb-4">
-          <p className="text-xs font-bold uppercase text-stone-400 mb-1">Say this in Nahuatl</p>
+          <p className="text-xs font-bold uppercase text-stone-400 mb-1">{translate("Say this in Nahuatl")}</p>
           <p className="text-lg font-semibold text-stone-900">{item.english}</p>
         </div>
 
@@ -1120,7 +1132,7 @@ function GrammarProduceStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type only the Nahuatl answer"
+          placeholder={translate("Type only the Nahuatl answer")}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1128,24 +1140,24 @@ function GrammarProduceStep({
             onClick={() => setChecked(true)}
             className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
           >
-            Check
+            {translate("Check")}
           </button>
           <button
             onClick={() => setRevealed(true)}
             className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
           >
-            Reveal
+            {translate("Reveal")}
           </button>
         </div>
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
+        <FeedbackBanner correct={correct} message={correct ? translate("Correct.") : locale === "es" ? `La respuesta es "${displayNahuatl(item.answer)}"` : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Explanation</p>
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Explanation")}</p>
           <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
           <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
@@ -1174,6 +1186,7 @@ function GrammarCheckpointStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { locale, translate } = useLocale();
   const transformItem = drill.kind === "transform" ? drill.items[itemIdx] : null;
   const produceItem = drill.kind === "produce" ? drill.items[itemIdx] : null;
   const item = transformItem ?? produceItem;
@@ -1183,20 +1196,20 @@ function GrammarCheckpointStep({
   if (!item) return null;
 
   const cue = transformItem ? transformItem.input : produceItem?.english ?? "";
-  const taskLabel = transformItem ? "Make this meaning" : "Say this in Nahuatl";
+  const taskLabel = translate(transformItem ? "Make this meaning" : "Say this in Nahuatl");
   const correct = answerMatches(input, item.answer, item.accepted);
   const showAnswer = checked || revealed;
 
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}One more grammar task`} />
+      <StepLabel text={`${chunkLabel}${translate("One more grammar task")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-emerald-100 p-7 mb-5">
         <div className="flex items-center justify-between gap-3 mb-5">
           <div>
             <p className="text-xs font-bold text-emerald-700 uppercase mb-1">
-              Practice {checkpointIdx + 1}
+              {translate("Practice")} {checkpointIdx + 1}
             </p>
             <h2 className="text-xl font-bold text-stone-900 leading-tight">{lab.title}</h2>
           </div>
@@ -1210,14 +1223,14 @@ function GrammarCheckpointStep({
           <p className="text-lg font-semibold text-stone-900">{transformItem ? transformItem.target : displayNahuatl(cue)}</p>
           {transformItem && (
             <div className="border-t border-stone-200 pt-3">
-              <p className="text-xs font-bold uppercase text-stone-400 mb-1">Starting piece or cue</p>
+              <p className="text-xs font-bold uppercase text-stone-400 mb-1">{translate("Starting piece or cue")}</p>
               <p className="font-mono text-sm font-semibold text-emerald-700">{displayNahuatl(cue)}</p>
             </div>
           )}
         </div>
 
         <p className="mb-3 text-sm leading-relaxed text-stone-500">
-          Use the pattern from this lab. Type only the Nahuatl answer, then check it or reveal the explanation.
+          {translate("Use the pattern from this lab. Type only the Nahuatl answer, then check it or reveal the explanation.")}
         </p>
 
         <input
@@ -1227,7 +1240,7 @@ function GrammarCheckpointStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type the Nahuatl answer"
+          placeholder={translate("Type the Nahuatl answer")}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1235,24 +1248,24 @@ function GrammarCheckpointStep({
             onClick={() => setChecked(true)}
             className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
           >
-            Check
+            {translate("Check")}
           </button>
           <button
             onClick={() => setRevealed(true)}
             className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
           >
-            Reveal
+            {translate("Reveal")}
           </button>
         </div>
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(item.answer)}"`} />
+        <FeedbackBanner correct={correct} message={correct ? translate("Correct.") : locale === "es" ? `La respuesta es "${displayNahuatl(item.answer)}"` : `The answer is "${displayNahuatl(item.answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer and explanation</p>
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Answer and explanation")}</p>
           <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
           <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
@@ -1283,6 +1296,7 @@ function SentenceProduceStep({
   chunkLabel: string;
   onContinue: () => void;
 }) {
+  const { locale, translate } = useLocale();
   const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -1294,12 +1308,12 @@ function SentenceProduceStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}Sentence practice`} />
+      <StepLabel text={`${chunkLabel}${translate("Sentence practice")}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <div className="flex items-center justify-between gap-3 mb-4">
           <div>
-            <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Say this from the unit</p>
+            <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Say this from the unit")}</p>
             <h2 className="text-xl font-bold text-stone-900 leading-tight">{line.translation_en}</h2>
           </div>
           {line.audio_available !== false && (
@@ -1308,7 +1322,7 @@ function SentenceProduceStep({
         </div>
 
         <p className="mb-3 text-sm leading-relaxed text-stone-500">
-          Type the Nahuatl sentence. Punctuation is helpful, and the checker accepts the practical INALI spelling.
+          {translate("Type the Nahuatl sentence. Punctuation is helpful, and the checker accepts the practical INALI spelling.")}
         </p>
 
         <input
@@ -1318,7 +1332,7 @@ function SentenceProduceStep({
             setChecked(false);
           }}
           className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type the Nahuatl sentence"
+          placeholder={translate("Type the Nahuatl sentence")}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1326,27 +1340,27 @@ function SentenceProduceStep({
             onClick={() => setChecked(true)}
             className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
           >
-            Check
+            {translate("Check")}
           </button>
           <button
             onClick={() => setRevealed(true)}
             className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
           >
-            Reveal
+            {translate("Reveal")}
           </button>
         </div>
       </div>
 
       {checked && (
-        <FeedbackBanner correct={correct} message={correct ? "Correct." : `The answer is "${displayNahuatl(answer)}"`} />
+        <FeedbackBanner correct={correct} message={correct ? translate("Correct.") : locale === "es" ? `La respuesta es "${displayNahuatl(answer)}"` : `The answer is "${displayNahuatl(answer)}"`} />
       )}
 
       {showAnswer && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">Answer</p>
+          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Answer")}</p>
           <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">
-            This sentence comes from the unit dialogue. Read it aloud, then continue.
+            {translate("This sentence comes from the unit dialogue. Read it aloud, then continue.")}
           </p>
         </div>
       )}
@@ -1363,6 +1377,7 @@ function MatchPairsExercise({
   pairs: { nahuatl: string; english: string; audioSrc: string }[];
   onComplete: () => void;
 }) {
+  const { translate } = useLocale();
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
   const [matched, setMatched] = useState<Set<number>>(new Set());
   const [wrongPair, setWrongPair] = useState<[number, number] | null>(null);
@@ -1434,7 +1449,7 @@ function MatchPairsExercise({
       </div>
       {matched.size === pairs.length && (
         <div className="mt-4 text-center">
-          <p className="text-emerald-600 font-bold text-sm">All matched!</p>
+          <p className="text-emerald-600 font-bold text-sm">{translate("All matched!")}</p>
         </div>
       )}
     </div>
@@ -1459,6 +1474,7 @@ export default function LessonFlow({
   prevUnit,
   nextUnit,
 }: Props) {
+  const { locale, translate } = useLocale();
   const [flow, setFlow] = useState<FlowMode>({ screen: "intro" });
   const [chunkIndex, setChunkIndex] = useState(0);
   const [chunkCorrect, setChunkCorrect] = useState(0);
@@ -1479,7 +1495,7 @@ export default function LessonFlow({
   }, [vocab, unitNum]);
 
   const learningCards = useMemo(() => {
-    const lessonFocusCards = buildLessonFocusCards(unitNum, grammarLabs);
+    const lessonFocusCards = translateDeepClient(locale, buildLessonFocusCards(unitNum, grammarLabs));
     const unitPhraseCards = buildUnitPhraseCards(unitNum, dialogues);
     const coreWords = filteredVocab.filter((card) => phraseTokens(card.headword).length === 1);
     const focusWords = lessonFocusCards.filter((card) => phraseTokens(card.headword).length === 1);
@@ -1488,7 +1504,7 @@ export default function LessonFlow({
       .filter((card) => phraseTokens(card.headword).length > 1)
       .sort((a, b) => phraseTokens(a.headword).length - phraseTokens(b.headword).length);
     return mergeLearningCards(coreWords, focusWords, corePhrases, focusPhrases, unitPhraseCards);
-  }, [filteredVocab, unitNum, grammarLabs, dialogues]);
+  }, [filteredVocab, unitNum, grammarLabs, dialogues, locale]);
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
 
@@ -1628,8 +1644,12 @@ export default function LessonFlow({
 
   // ── Chunk label helper ──────────────────────────────────────────────────────
 
-  const chunkLabel = totalChunks > 1 ? `Lesson ${chunkIndex + 1} of ${totalChunks} · ` : "";
-  const introActionLabel = chunkIndex > 0 ? `Continue lesson ${chunkIndex + 1}` : "Start lesson";
+  const chunkLabel = totalChunks > 1
+    ? `${translate("Lesson")} ${chunkIndex + 1} ${translate("of")} ${totalChunks} · `
+    : "";
+  const introActionLabel = chunkIndex > 0
+    ? `${translate("Continue lesson")} ${chunkIndex + 1}`
+    : translate("Start lesson");
 
   useEffect(() => {
     if (resumeChecked) return;
@@ -1663,31 +1683,31 @@ export default function LessonFlow({
             {learningCards.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{learningCards.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">word cards</div>
+                <div className="text-xs text-stone-400 mt-0.5">{translate("word cards")}</div>
               </div>
             )}
             {dialogues.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{dialogues.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">dialogue lines</div>
+                <div className="text-xs text-stone-400 mt-0.5">{translate("dialogue lines")}</div>
               </div>
             )}
             {grammarLabs.length > 0 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{grammarLabs.length}</div>
-                <div className="text-xs text-stone-400 mt-0.5">grammar labs</div>
+                <div className="text-xs text-stone-400 mt-0.5">{translate("grammar labs")}</div>
               </div>
             )}
             {totalChunks > 1 && (
               <div className="text-center">
                 <div className="text-2xl font-bold text-stone-900">{totalChunks}</div>
-                <div className="text-xs text-stone-400 mt-0.5">lessons</div>
+                <div className="text-xs text-stone-400 mt-0.5">{translate("lessons")}</div>
               </div>
             )}
           </div>
           {learningCards.length > CHUNK_SIZE && (
             <p className="text-xs font-medium text-stone-400 mb-6">
-              Each lesson is capped at {CHUNK_SIZE} cards.
+              {locale === "es" ? `Cada lección tiene un máximo de ${CHUNK_SIZE} tarjetas.` : `Each lesson is capped at ${CHUNK_SIZE} cards.`}
             </p>
           )}
 
@@ -1700,11 +1720,11 @@ export default function LessonFlow({
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
           ) : (
-            <p className="text-stone-400 text-sm">No content available yet.</p>
+            <p className="text-stone-400 text-sm">{translate("No content available yet.")}</p>
           )}
 
           <div className="mt-4 rounded-lg border border-stone-200 bg-stone-50 p-3 text-left">
-            <p className="text-xs font-bold uppercase text-stone-500">Target task</p>
+            <p className="text-xs font-bold uppercase text-stone-500">{translate("Target task")}</p>
             <p className="mt-1 text-sm leading-snug text-stone-700">{capstoneTask}</p>
           </div>
         </div>
@@ -1734,7 +1754,7 @@ export default function LessonFlow({
   if (flow.screen === "chunkDone") {
     const pct = flow.total > 0 ? flow.correct / flow.total : 1;
     const star = pct === 1 ? "🌟" : pct >= 0.7 ? "✓" : "📖";
-    const msg = pct === 1 ? "Perfect score!" : pct >= 0.7 ? "Great work!" : "Keep practicing — you'll get it!";
+    const msg = translate(pct === 1 ? "Perfect score!" : pct >= 0.7 ? "Great work!" : "Keep practicing — you'll get it!");
 
     return (
       <div className="max-w-lg mx-auto">
@@ -1742,21 +1762,21 @@ export default function LessonFlow({
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center">
           <div className="text-5xl mb-5">{star}</div>
           <h2 className="text-xl font-bold text-stone-900 mb-1">
-            Lesson {chunkIndex + 1} of {totalChunks} done!
+            {translate("Lesson")} {chunkIndex + 1} {translate("of")} {totalChunks} {translate("done!")}
           </h2>
           <p className="text-stone-400 text-sm mb-3">{themeEn}</p>
           <p className="text-emerald-600 font-bold text-lg mb-1">
-            {flow.correct}/{flow.total} correct
+            {flow.correct}/{flow.total} {translate("correct")}
           </p>
           <p className="text-stone-400 text-sm mb-8">{msg}</p>
           <button
             onClick={startNextChunk}
             className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold transition-colors shadow-sm"
           >
-            Next lesson →
+            {translate("Next lesson")} →
           </button>
           <Link href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-2 mt-3">
-            ← Back to all units
+            ← {translate("Back to all units")}
           </Link>
         </div>
       </div>
@@ -1771,9 +1791,9 @@ export default function LessonFlow({
         <ProgressBar value={1} />
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-10 text-center">
           <div className="text-5xl mb-5">🎉</div>
-          <h2 className="text-2xl font-bold text-stone-900 mb-2">Unit complete!</h2>
+          <h2 className="text-2xl font-bold text-stone-900 mb-2">{translate("Unit complete!")}</h2>
           <p className="text-stone-500 mb-2">{themeEn}</p>
-          <p className="text-emerald-600 text-sm font-semibold mb-8">All lessons finished</p>
+          <p className="text-emerald-600 text-sm font-semibold mb-8">{translate("All lessons finished")}</p>
 
           <div className="flex flex-col gap-3">
             {nextUnit && (
@@ -1781,14 +1801,14 @@ export default function LessonFlow({
                 href={`/units/${nextUnit.num}`}
                 className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl text-sm font-bold text-center transition-colors shadow-sm"
               >
-                Next: {nextUnit.themeEn} →
+                {translate("Next")}: {nextUnit.themeEn} →
               </Link>
             )}
             <Link
               href={`/practice/${unitNum}`}
               className="w-full border-2 border-stone-200 hover:border-emerald-300 text-stone-600 hover:text-emerald-700 py-3 rounded-2xl text-sm font-semibold text-center transition-colors"
             >
-              Review flashcards
+              {translate("Review flashcards")}
             </Link>
             <button
               onClick={() => {
@@ -1800,10 +1820,10 @@ export default function LessonFlow({
               }}
               className="w-full border border-stone-200 text-stone-400 hover:text-stone-600 py-2.5 rounded-2xl text-sm transition-colors"
             >
-              Repeat unit
+              {translate("Repeat unit")}
             </button>
             <Link href="/units" className="block text-center text-xs text-stone-400 hover:text-stone-600 py-1">
-              ← Back to all units
+              ← {translate("Back to all units")}
             </Link>
           </div>
         </div>
@@ -1920,7 +1940,7 @@ export default function LessonFlow({
 
     return (
       <div className="mx-auto max-w-2xl">
-        <ProgressBar value={progressValue} label={`${chunkLabel}${learnStepLabel(word)}`} />
+        <ProgressBar value={progressValue} label={`${chunkLabel}${translate(learnStepLabel(word))}`} />
 
         <section
           data-testid="lesson-learn-card"
@@ -1933,11 +1953,11 @@ export default function LessonFlow({
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 {word.part_of_speech && (
                   <span className="rounded-md border border-stone-200 bg-stone-50 px-2 py-1 font-mono text-[11px] text-stone-500">
-                    {word.part_of_speech}
+                    {translate(word.part_of_speech)}
                   </span>
                 )}
                 <span className="text-[11px] font-semibold uppercase text-stone-400">
-                  Eastern Huasteca Nahuatl
+                  {translate("Eastern Huasteca Nahuatl")}
                 </span>
               </div>
 
@@ -1950,13 +1970,13 @@ export default function LessonFlow({
 
               {revealed && (
                 <div className="mt-7 border-t border-stone-200 pt-6">
-                  <p className="text-[11px] font-bold uppercase text-emerald-700">Meaning</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-700">{translate("Meaning")}</p>
                   <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} mt-1 font-bold leading-tight text-emerald-700`}>
                     {displayGloss(word.gloss_en)}
                   </p>
                   {variantNotes[word.id] && variantNotes[word.id].length > 0 && (
                     <p className="mt-3 text-xs text-stone-500">
-                      Also written: {variantNotes[word.id].map(displayNahuatl).join(", ")}
+                      {translate("Also written")}: {variantNotes[word.id].map(displayNahuatl).join(", ")}
                     </p>
                   )}
                 </div>
@@ -1973,12 +1993,12 @@ export default function LessonFlow({
             >
               {revealed ? (
                 <>
-                  Continue
+                  {translate("Continue")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </>
               ) : (
                 <>
-                  Reveal meaning
+                  {translate("Reveal meaning")}
                   <Eye className="h-4 w-4" aria-hidden="true" />
                 </>
               )}
@@ -2002,15 +2022,15 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}Match the pairs`} />
+        <StepLabel text={`${chunkLabel}${translate("Match the pairs")}`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-6 mb-5">
           <p className="text-xs font-semibold text-stone-400 uppercase mb-1 text-center">
-            Tap a Nahuatl word, then its English meaning
+            {translate("Tap a Nahuatl word, then its English meaning")}
           </p>
           <div className="grid grid-cols-2 gap-2 text-center text-xs text-stone-400 mb-4">
             <span>Nahuatl</span>
-            <span>English</span>
+            <span>{locale === "es" ? "Español" : "English"}</span>
           </div>
           <MatchPairsExercise pairs={pairs} onComplete={advance} />
         </div>
@@ -2041,7 +2061,7 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}What does this mean?`} />
+        <StepLabel text={`${chunkLabel}${translate("What does this mean?")}`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
           <div className="flex items-center justify-center gap-3">
@@ -2051,7 +2071,7 @@ export default function LessonFlow({
             {audioSrc && <AudioButton src={audioSrc} size="sm" />}
           </div>
           {word.part_of_speech && (
-            <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
+            <p className="text-stone-400 text-xs mt-2 font-mono">{translate(word.part_of_speech)}</p>
           )}
         </div>
 
@@ -2079,7 +2099,9 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! "${displayNahuatl(word.headword)}" means "${correctGloss}"` : `"${displayNahuatl(word.headword)}" means "${correctGloss}"`}
+              message={isCorrect
+                ? locale === "es" ? `¡Correcto! "${displayNahuatl(word.headword)}" significa "${correctGloss}"` : `Correct! "${displayNahuatl(word.headword)}" means "${correctGloss}"`
+                : locale === "es" ? `"${displayNahuatl(word.headword)}" significa "${correctGloss}"` : `"${displayNahuatl(word.headword)}" means "${correctGloss}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2117,14 +2139,14 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}How do you say this?`} />
+        <StepLabel text={`${chunkLabel}${translate("How do you say this?")}`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5 text-center">
           <p className={`${isUnitPhraseCard(word) ? "text-2xl" : "text-3xl"} font-bold text-stone-900 leading-tight`}>
             {displayGloss(word.gloss_en)}
           </p>
           {word.part_of_speech && (
-            <p className="text-stone-400 text-xs mt-2 font-mono">{word.part_of_speech}</p>
+            <p className="text-stone-400 text-xs mt-2 font-mono">{translate(word.part_of_speech)}</p>
           )}
           {checked && audioSrc && (
             <div className="flex justify-center mt-3">
@@ -2143,7 +2165,9 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! "${displayGloss(word.gloss_en)}" = "${displayNahuatl(word.headword)}"` : `The answer is "${displayNahuatl(word.headword)}"`}
+              message={isCorrect
+                ? locale === "es" ? `¡Correcto! "${displayGloss(word.gloss_en)}" = "${displayNahuatl(word.headword)}"` : `Correct! "${displayGloss(word.gloss_en)}" = "${displayNahuatl(word.headword)}"`
+                : locale === "es" ? `La respuesta es "${displayNahuatl(word.headword)}"` : `The answer is "${displayNahuatl(word.headword)}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2176,7 +2200,7 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}Complete the sentence`} />
+        <StepLabel text={`${chunkLabel}${translate("Complete the sentence")}`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5">
           {ex.patternLabel && !ex.patternLabel.startsWith("Construction ") && (
@@ -2189,7 +2213,7 @@ export default function LessonFlow({
             <p className="text-sm text-stone-400 italic mb-2">{ex.translation}</p>
           )}
           <p className="text-sm text-stone-500">
-            The missing word means: <span className="font-semibold text-emerald-600">{ex.gloss}</span>
+            {translate("The missing word means")}: <span className="font-semibold text-emerald-600">{ex.gloss}</span>
           </p>
         </div>
 
@@ -2203,7 +2227,9 @@ export default function LessonFlow({
           <>
             <FeedbackBanner
               correct={isCorrect}
-              message={isCorrect ? `Correct! The word is "${displayNahuatl(ex.answer)}"` : `The answer is "${displayNahuatl(ex.answer)}"`}
+              message={isCorrect
+                ? locale === "es" ? `¡Correcto! La palabra es "${displayNahuatl(ex.answer)}"` : `Correct! The word is "${displayNahuatl(ex.answer)}"`
+                : locale === "es" ? `La respuesta es "${displayNahuatl(ex.answer)}"` : `The answer is "${displayNahuatl(ex.answer)}"`}
             />
             <ContinueButton onClick={advance} />
           </>
@@ -2225,8 +2251,8 @@ export default function LessonFlow({
           <div className="flex items-start gap-4">
             <span className="text-3xl shrink-0">{icon}</span>
             <div>
-              <h3 className="font-bold text-stone-900 text-lg mb-2">{title}</h3>
-              <p className="text-stone-600 text-sm leading-relaxed">{body}</p>
+              <h3 className="font-bold text-stone-900 text-lg mb-2">{translate(title)}</h3>
+              <p className="text-stone-600 text-sm leading-relaxed">{translate(body)}</p>
             </div>
           </div>
         </div>
@@ -2270,7 +2296,7 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}Conversation`} />
+        <StepLabel text={`${chunkLabel}${translate("Conversation")}`} />
 
         {/* Chat history */}
         <div className="flex flex-col gap-2.5 mb-3">
@@ -2329,7 +2355,7 @@ export default function LessonFlow({
           </div>
           {!isPassive && !checked && match && (
             <p className={`text-xs text-emerald-600 mt-1 px-1 font-medium ${isRight(line.speaker_label) ? "self-end" : "self-start"}`}>
-              Hint: {displayGloss(match.vocabCard.gloss_en)}
+              {translate("Hint")}: {displayGloss(match.vocabCard.gloss_en)}
             </p>
           )}
         </div>
@@ -2348,8 +2374,8 @@ export default function LessonFlow({
             correct={chosen === match?.answer}
             message={
               chosen === match?.answer
-                ? `Correct! "${displayNahuatl(match.answer)}" - ${displayGloss(match.vocabCard.gloss_en)}`
-                : `The answer is "${displayNahuatl(match?.answer)}" - ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`
+                ? locale === "es" ? `¡Correcto! "${displayNahuatl(match.answer)}" - ${displayGloss(match.vocabCard.gloss_en)}` : `Correct! "${displayNahuatl(match.answer)}" - ${displayGloss(match.vocabCard.gloss_en)}`
+                : locale === "es" ? `La respuesta es "${displayNahuatl(match?.answer)}" - ${displayGloss(match?.vocabCard?.gloss_en ?? "")}` : `The answer is "${displayNahuatl(match?.answer)}" - ${displayGloss(match?.vocabCard?.gloss_en ?? "")}`
             }
           />
         )}
@@ -2357,7 +2383,7 @@ export default function LessonFlow({
         {(isPassive || checked) && (
           <ContinueButton
             onClick={advance}
-            label={step.lineIdx === lessonDialogues.length - 1 ? "Finish →" : "Continue →"}
+            label={step.lineIdx === lessonDialogues.length - 1 ? `${translate("Finish")} →` : `${translate("Continue")} →`}
           />
         )}
       </div>

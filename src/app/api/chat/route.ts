@@ -6,7 +6,7 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { moderate, MODERATION_MODEL } from "@/lib/moderation";
 import { detectInjection } from "@/lib/prompt-injection";
 import { hashContent, logAudit, writeAudit } from "@/lib/audit";
-import { getSystemPrompt, REFUSAL, type ChatMode } from "@/lib/chat-system-prompt";
+import { getSystemPrompt, refusalForLocale, type ChatLocale, type ChatMode } from "@/lib/chat-system-prompt";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 import { retrieve, formatRetrieved, EMBED_MODEL } from "@/lib/rag";
 
@@ -51,8 +51,8 @@ function textResponse(body: ReadableStream<Uint8Array> | string, init?: Response
   });
 }
 
-function refusalResponse(): Response {
-  return textResponse(singleChunkStream(REFUSAL));
+function refusalResponse(locale: ChatLocale): Response {
+  return textResponse(singleChunkStream(refusalForLocale(locale)));
 }
 
 function isValidMessage(m: unknown): m is IncomingMessage {
@@ -64,6 +64,10 @@ function isValidMessage(m: unknown): m is IncomingMessage {
 
 function parseMode(raw: unknown): ChatMode {
   return raw === "practice" ? "practice" : "tutor";
+}
+
+function parseLocale(raw: unknown): ChatLocale {
+  return raw === "es" ? "es" : "en";
 }
 
 function getOpenAIClient(): OpenAI {
@@ -196,6 +200,7 @@ export async function POST(req: Request) {
   }
 
   const mode = parseMode((body as { mode?: unknown }).mode);
+  const locale = parseLocale((body as { locale?: unknown }).locale);
   const messages = rawMessages as IncomingMessage[];
   const totalMessageChars = messages.reduce((sum, message) => sum + message.content.length, 0);
   const latest = messages[messages.length - 1];
@@ -266,7 +271,7 @@ export async function POST(req: Request) {
       categories: injection.matches,
       meta: { ...auditBase(requestId, startedAt, mode), score: injection.score },
     });
-    return refusalResponse();
+    return refusalResponse(locale);
   }
 
   // 5. Input moderation
@@ -279,7 +284,7 @@ export async function POST(req: Request) {
       categories: inputVerdict.categories,
       meta: { ...auditBase(requestId, startedAt, mode), topScore: inputVerdict.topScore, moderationModel: MODERATION_MODEL },
     });
-    return refusalResponse();
+    return refusalResponse(locale);
   }
 
   // 6. RAG retrieval — embed the latest user message, pull grounded
@@ -301,7 +306,7 @@ export async function POST(req: Request) {
   );
 
   const systemMessages: { role: "system"; content: string }[] = [
-    { role: "system", content: getSystemPrompt(mode) },
+    { role: "system", content: getSystemPrompt(mode, locale) },
   ];
   if (retrievedBlock) {
     systemMessages.push({ role: "system", content: retrievedBlock });
@@ -343,7 +348,7 @@ export async function POST(req: Request) {
         responseHash: hashContent(assistantText),
       },
     });
-    return refusalResponse();
+    return refusalResponse(locale);
   }
 
   // 8. Output moderation — run BEFORE the bytes leave the server.
@@ -362,7 +367,7 @@ export async function POST(req: Request) {
         model: MODEL,
       },
     });
-    return refusalResponse();
+    return refusalResponse(locale);
   }
 
   // 9. Clean response → stream to client in one chunk so the existing
@@ -376,7 +381,8 @@ export async function POST(req: Request) {
       inputChars: latest.content.length,
       responseChars: assistantText.length,
       responseHash: hashContent(assistantText),
-      refused: assistantText.trim() === REFUSAL,
+      refused: assistantText.trim() === refusalForLocale(locale),
+      locale,
       model: MODEL,
       moderationModel: MODERATION_MODEL,
       embeddingModel: EMBED_MODEL,

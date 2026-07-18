@@ -8,6 +8,9 @@ import {
 } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
 import { requireAuth } from "@/lib/require-auth";
+import { getRequestLocale } from "@/i18n/server";
+import type { AppLocale } from "@/i18n/config";
+import { tr, translateDeep } from "@/i18n/translate";
 
 type Params = {
   params: Promise<{ lessonNumber: string }>;
@@ -23,26 +26,29 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { lessonNumber } = await params;
   const lesson = getNahuatlahtolliLesson(Number(lessonNumber));
   if (!lesson) return {};
+  const locale = await getRequestLocale();
 
   return {
-    title: `${displayNahuatl(lesson.nahuatlTitle)} Source Lesson`,
-    description: `Imported CC BY-SA source material for Nawatlahtolli lesson ${lesson.number}.`,
+    title: `${displayNahuatl(lesson.nahuatlTitle)} ${tr(locale, "Source Lesson")}`,
+    description: locale === "es"
+      ? `Material de la fuente importado bajo CC BY-SA para la lección ${lesson.number} de Nawatlahtolli.`
+      : `Imported CC BY-SA source material for Nawatlahtolli lesson ${lesson.number}.`,
   };
 }
 
-function mediaLabel(link: SourceMediaLink) {
+function mediaLabel(link: SourceMediaLink, locale: AppLocale) {
   const filename = decodeURIComponent(link.url.split("/").pop() ?? link.url);
-  return `${link.type}: ${filename}`;
+  return `${tr(locale, link.type)}: ${filename}`;
 }
 
-function renderLine(line: string, key: string) {
+function renderLine(line: string, key: string, locale: AppLocale) {
   const audio = line.match(/^Audio:\s*(https?:\/\/\S+)/);
-  const image = line.match(/^Image:\s*(https?:\/\/\S+)/);
+  const image = line.match(/^(?:Image|Imagen):\s*(https?:\/\/\S+)/);
   const url = line.match(/^(https?:\/\/\S+)$/);
 
   if (audio || image || url) {
     const href = audio?.[1] ?? image?.[1] ?? url?.[1] ?? "";
-    const label = audio ? "Source audio" : image ? "Source image" : href;
+    const label = audio ? tr(locale, "Source audio") : image ? tr(locale, "Source image") : href;
     return (
       <p key={key}>
         <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 underline">
@@ -66,30 +72,32 @@ function renderLine(line: string, key: string) {
 
 export default async function SourceLessonPage({ params }: Params) {
   await requireAuth();
+  const locale = await getRequestLocale();
   const { lessonNumber } = await params;
   const number = Number(lessonNumber);
-  const lesson = getNahuatlahtolliLesson(number);
-  if (!lesson) notFound();
+  const sourceLesson = getNahuatlahtolliLesson(number);
+  if (!sourceLesson) notFound();
+  const lesson = translateDeep(locale, sourceLesson);
 
-  const prev = getNahuatlahtolliLesson(number - 1);
-  const next = getNahuatlahtolliLesson(number + 1);
-  const source = NAHUATLAHTOLLI_COURSE.source;
+  const prev = translateDeep(locale, getNahuatlahtolliLesson(number - 1));
+  const next = translateDeep(locale, getNahuatlahtolliLesson(number + 1));
+  const source = translateDeep(locale, NAHUATLAHTOLLI_COURSE.source);
   const mediaPreview = lesson.mediaLinks.slice(0, 24);
 
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link href="/source-course" className="text-sm text-stone-400 hover:text-stone-600">
-          ← Source course
+          ← {tr(locale, "Source course")}
         </Link>
         <Link href={`/units/${lesson.number}`} className="text-sm font-semibold text-emerald-700 hover:text-emerald-900">
-          Open Itzli unit →
+          {tr(locale, "Open Itzli unit")} →
         </Link>
       </div>
 
       <header className="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
         <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
-          Nawatlahtolli Lesson {lesson.number}
+          Nawatlahtolli {tr(locale, "Lesson")} {lesson.number}
         </p>
         <h1 className="text-3xl font-black leading-tight text-stone-950">
           {displayNahuatl(lesson.nahuatlTitle)}
@@ -98,26 +106,26 @@ export default async function SourceLessonPage({ params }: Params) {
           <p className="mt-2 text-lg text-stone-600">{lesson.englishTitle}</p>
         )}
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-stone-500">
-          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.sections.length} sections</span>
-          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.vocabulary.length} audio-backed words</span>
-          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.mediaLinks.length} source media links</span>
+          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.sections.length} {tr(locale, "sections")}</span>
+          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.vocabulary.length} {tr(locale, "audio-backed words")}</span>
+          <span className="rounded-full bg-stone-100 px-3 py-1">{lesson.mediaLinks.length} {tr(locale, "source media links")}</span>
         </div>
         <p className="mt-5 text-sm leading-6 text-stone-500">
-          Adapted from{" "}
+          {tr(locale, "Adapted from")}{" "}
           <a className="font-semibold text-emerald-700 underline" href={lesson.originalUrl} target="_blank" rel="noopener noreferrer">
-            the original lesson
+            {tr(locale, "the original lesson")}
           </a>{" "}
-          under{" "}
+          {tr(locale, "under")}{" "}
           <a className="font-semibold text-emerald-700 underline" href={source.license.url} target="_blank" rel="noopener noreferrer">
             {source.license.shortName}
           </a>
-          . Changes include extraction, formatting, and integration into Itzli.
+          . {tr(locale, "Changes include extraction, formatting, and integration into Itzli.")}
         </p>
       </header>
 
       {lesson.vocabulary.length > 0 && (
         <section>
-          <h2 className="mb-3 text-xl font-black text-stone-950">Source Vocabulary</h2>
+          <h2 className="mb-3 text-xl font-black text-stone-950">{tr(locale, "Source Vocabulary")}</h2>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {lesson.vocabulary.map((item) => (
               <div key={`${item.headword}-${item.gloss}`} className="rounded-lg border border-stone-200 bg-white p-3">
@@ -130,7 +138,7 @@ export default async function SourceLessonPage({ params }: Params) {
                       rel="noopener noreferrer"
                       className="shrink-0 rounded-md bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-700 hover:bg-emerald-100"
                     >
-                      Audio
+                      {tr(locale, "Audio")}
                     </a>
                   )}
                 </div>
@@ -142,7 +150,7 @@ export default async function SourceLessonPage({ params }: Params) {
       )}
 
       <section>
-        <h2 className="mb-3 text-xl font-black text-stone-950">Lesson Text</h2>
+        <h2 className="mb-3 text-xl font-black text-stone-950">{tr(locale, "Lesson Text")}</h2>
         <div className="space-y-3">
           {lesson.sections.map((section, sectionIdx) => (
             <details
@@ -155,7 +163,7 @@ export default async function SourceLessonPage({ params }: Params) {
               </summary>
               <div className="mt-4 space-y-3 text-sm leading-6 text-stone-700">
                 {section.body.map((line, lineIdx) =>
-                  renderLine(line, `${sectionIdx}-${lineIdx}`)
+                  renderLine(line, `${sectionIdx}-${lineIdx}`, locale)
                 )}
               </div>
             </details>
@@ -165,7 +173,7 @@ export default async function SourceLessonPage({ params }: Params) {
 
       {mediaPreview.length > 0 && (
         <section>
-          <h2 className="mb-3 text-xl font-black text-stone-950">Source Media Links</h2>
+          <h2 className="mb-3 text-xl font-black text-stone-950">{tr(locale, "Source Media Links")}</h2>
           <div className="grid gap-2 sm:grid-cols-2">
             {mediaPreview.map((link) => (
               <a
@@ -175,13 +183,15 @@ export default async function SourceLessonPage({ params }: Params) {
                 rel="noopener noreferrer"
                 className="truncate rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700 hover:border-emerald-200 hover:text-emerald-800"
               >
-                {mediaLabel(link)}
+                {mediaLabel(link, locale)}
               </a>
             ))}
           </div>
           {lesson.mediaLinks.length > mediaPreview.length && (
             <p className="mt-2 text-xs text-stone-500">
-              Showing {mediaPreview.length} of {lesson.mediaLinks.length} links; the full list is in the imported JSON data.
+              {locale === "es"
+                ? `Se muestran ${mediaPreview.length} de ${lesson.mediaLinks.length} enlaces; la lista completa está en los datos JSON importados.`
+                : `Showing ${mediaPreview.length} of ${lesson.mediaLinks.length} links; the full list is in the imported JSON data.`}
             </p>
           )}
         </section>

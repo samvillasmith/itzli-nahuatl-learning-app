@@ -14,11 +14,14 @@ import type { GrammarDialogue } from '@/lib/db';
 import { dialogueAudioUrl, playAudio } from '@/lib/audio';
 import { displayNahuatl } from '@/lib/orthography';
 import { pronunciationHintFor } from '@/lib/pronunciation';
+import { useLocale } from '@/i18n/LocaleProvider';
+import { translateDeepClient } from '@/i18n/client-translate';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
 function AudioButton({ src }: { src: string }) {
   const [playing, setPlaying] = useState(false);
+  const { translate } = useLocale();
 
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
@@ -30,7 +33,8 @@ function AudioButton({ src }: { src: string }) {
   return (
     <button
       onClick={handlePlay}
-      title="Play pronunciation"
+      title={translate('Play pronunciation')}
+      aria-label={translate('Play pronunciation')}
       className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
         playing
           ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
@@ -81,12 +85,13 @@ function displayGrammarForm(text: string): string {
 
 function PronunciationHint({ value }: { value: string }) {
   const hint = pronunciationHintFor(value);
+  const { translate } = useLocale();
   if (!hint) return null;
 
   return (
     <div className="mt-2 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2">
-      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
-      <p className="mt-0.5 text-xs leading-snug text-stone-500">{hint.note}</p>
+      <p className="text-xs font-bold text-amber-800">{translate(hint.cue)}</p>
+      <p className="mt-0.5 text-xs leading-snug text-stone-500">{translate(hint.note)}</p>
     </div>
   );
 }
@@ -214,9 +219,11 @@ function DrillAnswerPanel({
   breakdown?: string;
   explanation: string;
 }) {
+  const { translate } = useLocale();
+
   return (
     <div className="mt-3 rounded-xl border border-emerald-100 bg-emerald-50 p-3">
-      <p className="text-xs font-bold uppercase text-emerald-700">Answer</p>
+      <p className="text-xs font-bold uppercase text-emerald-700">{translate('Answer')}</p>
       <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
       {breakdown && <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(breakdown)}</p>}
       <PronunciationHint value={answer} />
@@ -230,6 +237,7 @@ function IdentifyItem({
 }: {
   item: Extract<GrammarLabDrill, { kind: 'identify' }>['items'][number];
 }) {
+  const { translate } = useLocale();
   const [input, setInput] = useState('');
   const [checked, setChecked] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -247,24 +255,24 @@ function IdentifyItem({
             setChecked(false);
           }}
           className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type your answer"
+          placeholder={translate('Type your answer')}
         />
         <button
           onClick={() => setChecked(true)}
           className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
         >
-          Check
+          {translate('Check')}
         </button>
         <button
           onClick={() => setRevealed(true)}
           className="rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
         >
-          Reveal answer
+          {translate('Reveal answer')}
         </button>
       </div>
       {checked && (
         <p className={`mt-2 text-xs font-semibold ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>
-          {isCorrect ? 'Correct.' : 'Not quite yet.'}
+          {isCorrect ? translate('Correct.') : translate('Not quite yet.')}
         </p>
       )}
       {showAnswer && (
@@ -279,6 +287,7 @@ function TransformItem({
 }: {
   item: Extract<GrammarLabDrill, { kind: 'transform' }>['items'][number];
 }) {
+  const { translate } = useLocale();
   const [input, setInput] = useState('');
   const [checked, setChecked] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -297,24 +306,24 @@ function TransformItem({
             setChecked(false);
           }}
           className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type the transformed form"
+          placeholder={translate('Type the transformed form')}
         />
         <button
           onClick={() => setChecked(true)}
           className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
         >
-          Check
+          {translate('Check')}
         </button>
         <button
           onClick={() => setRevealed(true)}
           className="rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
         >
-          Reveal answer
+          {translate('Reveal answer')}
         </button>
       </div>
       {checked && (
         <p className={`mt-2 text-xs font-semibold ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>
-          {isCorrect ? 'Correct.' : 'Not quite yet.'}
+          {isCorrect ? translate('Correct.') : translate('Not quite yet.')}
         </p>
       )}
       {showAnswer && (
@@ -333,6 +342,7 @@ function ProduceItem({
 }: {
   item: Extract<GrammarLabDrill, { kind: 'produce' }>['items'][number];
 }) {
+  const { translate } = useLocale();
   const [input, setInput] = useState('');
   const [checked, setChecked] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -341,7 +351,7 @@ function ProduceItem({
 
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-4">
-      <p className="text-xs font-bold uppercase text-stone-400">Produce</p>
+      <p className="text-xs font-bold uppercase text-stone-400">{translate('Produce')}</p>
       <p className="mt-1 text-sm font-semibold text-stone-800">{item.english}</p>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
@@ -351,24 +361,24 @@ function ProduceItem({
             setChecked(false);
           }}
           className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder="Type the Nahuatl form"
+          placeholder={translate('Type the Nahuatl form')}
         />
         <button
           onClick={() => setChecked(true)}
           className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
         >
-          Check
+          {translate('Check')}
         </button>
         <button
           onClick={() => setRevealed(true)}
           className="rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
         >
-          Reveal answer
+          {translate('Reveal answer')}
         </button>
       </div>
       {checked && (
         <p className={`mt-2 text-xs font-semibold ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>
-          {isCorrect ? 'Correct.' : 'Not quite yet.'}
+          {isCorrect ? translate('Correct.') : translate('Not quite yet.')}
         </p>
       )}
       {showAnswer && (
@@ -407,15 +417,17 @@ function ProduceDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'prod
 }
 
 function ParadigmDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'paradigm' }> }) {
+  const { translate } = useLocale();
+
   return (
     <div className="overflow-x-auto rounded-xl border border-stone-200 bg-white">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-stone-200 bg-stone-50">
-            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">Cue</th>
-            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">Answer</th>
-            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">Breakdown</th>
-            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">Meaning</th>
+            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">{translate('Cue')}</th>
+            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">{translate('Answer')}</th>
+            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">{translate('Breakdown')}</th>
+            <th className="px-3 py-2 text-left text-xs font-bold uppercase text-stone-500">{translate('Meaning')}</th>
           </tr>
         </thead>
         <tbody>
@@ -447,11 +459,13 @@ function GrammarDrillRenderer({ drill }: { drill: GrammarLabDrill }) {
 }
 
 function GrammarLabCard({ lab }: { lab: GrammarLab }) {
+  const { translate } = useLocale();
+
   return (
     <div className="rounded-2xl border border-emerald-100 bg-white p-5">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase text-emerald-700">Grammar lab</p>
+          <p className="text-xs font-bold uppercase text-emerald-700">{translate('Grammar lab')}</p>
           <h3 className="mt-1 text-lg font-bold leading-tight text-stone-900">{lab.title}</h3>
           <p className="mt-1 text-sm text-stone-500">{lab.shortDesc}</p>
         </div>
@@ -461,13 +475,13 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
       </div>
 
       <div className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
-        <p className="text-xs font-bold uppercase text-amber-800">Build it like this</p>
+        <p className="text-xs font-bold uppercase text-amber-800">{translate('Build it like this')}</p>
         <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(lab.pattern)}</p>
         <p className="mt-2 text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
       </div>
 
       <div className="mb-5">
-        <h4 className="mb-3 font-semibold text-stone-700">Worked examples</h4>
+        <h4 className="mb-3 font-semibold text-stone-700">{translate('Worked examples')}</h4>
         <GrammarLabExampleList lab={lab} />
       </div>
 
@@ -486,17 +500,18 @@ interface Props {
 }
 
 export default function GrammarLesson({ lesson, dialogues }: Props) {
+  const { locale, translate } = useLocale();
   const idx = GRAMMAR_LESSONS.findIndex((l) => l.id === lesson.id);
   const prev = idx > 0 ? GRAMMAR_LESSONS[idx - 1] : null;
   const next = idx < GRAMMAR_LESSONS.length - 1 ? GRAMMAR_LESSONS[idx + 1] : null;
   const bandStyle = BAND_STYLES[lesson.band];
-  const relatedLabs = getRelatedGrammarLabs(lesson);
+  const relatedLabs = translateDeepClient(locale, getRelatedGrammarLabs(lesson));
 
   return (
     <div className="max-w-2xl mx-auto">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-xs text-stone-400 mb-6">
-        <Link href="/grammar" className="hover:text-stone-600 transition-colors">Grammar</Link>
+        <Link href="/grammar" className="hover:text-stone-600 transition-colors">{translate('Grammar')}</Link>
         <span>›</span>
         <span className="text-stone-600">{lesson.title}</span>
       </div>
@@ -523,9 +538,9 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
       {relatedLabs.length > 0 && (
         <div className="mt-8 mb-8 space-y-5">
           <div>
-            <h2 className="font-semibold text-stone-700">Grammar production labs</h2>
+            <h2 className="font-semibold text-stone-700">{translate('Grammar production labs')}</h2>
             <p className="mt-1 text-sm text-stone-500">
-              Type short Nahuatl answers, check them, and read the explanation for each form.
+              {translate('Type short Nahuatl answers, check them, and read the explanation for each form.')}
             </p>
           </div>
           {relatedLabs.map((lab) => (
@@ -538,7 +553,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
       {dialogues.length > 0 && (
         <div className="mt-8 mb-8">
           <h2 className="font-semibold text-stone-700 mb-3">
-            From the course dialogues
+            {translate('From the course dialogues')}
           </h2>
           <div className="space-y-2">
             {dialogues.map((d, i) => (
@@ -561,9 +576,9 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
 
       {/* Related units */}
       <div className="bg-stone-50 border border-stone-100 rounded-xl p-4 mb-8">
-        <p className="text-xs font-bold text-stone-400 uppercase mb-2">Practice in context</p>
+        <p className="text-xs font-bold text-stone-400 uppercase mb-2">{translate('Practice in context')}</p>
         <p className="text-sm text-stone-500 mb-3">
-          See these patterns in the course lessons:
+          {translate('See these patterns in the course lessons:')}
         </p>
         <div className="flex flex-wrap gap-2">
           {lesson.relatedUnits.map((n) => (
@@ -572,7 +587,7 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
               href={`/units/${n}`}
               className="text-xs font-medium bg-white border border-stone-200 rounded-lg px-3 py-1.5 text-stone-600 hover:text-emerald-700 hover:border-emerald-200 transition-colors"
             >
-              Unit {n} →
+              {translate('Unit')} {n} →
             </Link>
           ))}
         </div>
@@ -585,8 +600,8 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
             href={`/grammar/${prev.id}`}
             className="flex-1 bg-white border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors text-left"
           >
-            <p className="text-xs text-stone-400 mb-1">← Previous</p>
-            <p className="text-sm font-semibold text-stone-700">{prev.title}</p>
+            <p className="text-xs text-stone-400 mb-1">← {translate('Previous')}</p>
+            <p className="text-sm font-semibold text-stone-700">{translate(prev.title)}</p>
           </Link>
         ) : <div className="flex-1" />}
         {next ? (
@@ -594,8 +609,8 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
             href={`/grammar/${next.id}`}
             className="flex-1 bg-white border border-stone-200 rounded-xl p-4 hover:border-stone-300 transition-colors text-right"
           >
-            <p className="text-xs text-stone-400 mb-1">Next →</p>
-            <p className="text-sm font-semibold text-stone-700">{next.title}</p>
+            <p className="text-xs text-stone-400 mb-1">{translate('Next')} →</p>
+            <p className="text-sm font-semibold text-stone-700">{translate(next.title)}</p>
           </Link>
         ) : <div className="flex-1" />}
       </div>

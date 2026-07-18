@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { WordImage } from "@/data/word-images";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function WordCardMedia({
   image,
@@ -37,6 +38,7 @@ export function WordCardMedia({
 }
 
 export function WordImageCredit({ image }: { image: WordImage | null }) {
+  const { translate } = useLocale();
   if (
     !image ||
     image.source === "openai" ||
@@ -48,7 +50,7 @@ export function WordImageCredit({ image }: { image: WordImage | null }) {
   const label = `${image.author} · ${image.license}`;
   return href?.startsWith("http") ? (
     <p className="mt-2 text-center text-[11px] text-stone-400">
-      Image:{" "}
+      {translate("Image")}: {" "}
       <a
         href={href}
         target="_blank"
@@ -59,6 +61,6 @@ export function WordImageCredit({ image }: { image: WordImage | null }) {
       </a>
     </p>
   ) : (
-    <p className="mt-2 text-center text-[11px] text-stone-400">Image: {label}</p>
+    <p className="mt-2 text-center text-[11px] text-stone-400">{translate("Image")}: {label}</p>
   );
 }

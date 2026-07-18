@@ -13,6 +13,8 @@ import { getGrammarLabsForUnit } from "@/data/grammar-labs";
 import { getNahuatlahtolliLesson } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
 import { requireAuth } from "@/lib/require-auth";
+import { getRequestLocale } from "@/i18n/server";
+import { tr, trChoice, translateDeep } from "@/i18n/translate";
 import LessonFlow from "./LessonFlow";
 
 export async function generateStaticParams() {
@@ -26,21 +28,34 @@ export default async function UnitPage({
   params: Promise<{ unitId: string }>;
 }) {
   await requireAuth();
+  const locale = await getRequestLocale();
   const { unitId } = await params;
   const num = parseInt(unitId, 10);
   if (isNaN(num)) notFound();
 
-  const unit = getUnit(num);
-  if (!unit) notFound();
+  const sourceUnit = getUnit(num);
+  if (!sourceUnit) notFound();
+  const unit = translateDeep(locale, sourceUnit);
 
-  const vocab = getUnitVocab(num);
-  const dialogues = getUnitDialogueContent(num);
-  const constructions = getUnitConstructions(num);
-  const lessonBlocks = getUnitLessonBlocks(num);
-  const grammarLabs = getGrammarLabsForUnit(num);
-  const sourceLesson = getNahuatlahtolliLesson(num);
-  const allVocabPool = getAllPrimerVocab();
-  const allUnits = getAllUnits();
+  const vocab = getUnitVocab(num).map((entry) => ({
+    ...entry,
+    safety_gloss_en: entry.gloss_en,
+    gloss_en: tr(locale, entry.gloss_en),
+  }));
+  const dialogues = getUnitDialogueContent(num).map((dialogue) => ({
+    ...dialogue,
+    translation_en: dialogue.translation_en ? tr(locale, dialogue.translation_en) : dialogue.translation_en,
+  }));
+  const constructions = translateDeep(locale, getUnitConstructions(num));
+  const lessonBlocks = translateDeep(locale, getUnitLessonBlocks(num));
+  const grammarLabs = translateDeep(locale, getGrammarLabsForUnit(num));
+  const sourceLesson = translateDeep(locale, getNahuatlahtolliLesson(num));
+  const allVocabPool = getAllPrimerVocab().map((entry) => ({
+    ...entry,
+    safety_gloss_en: entry.gloss_en,
+    gloss_en: tr(locale, entry.gloss_en),
+  }));
+  const allUnits = translateDeep(locale, getAllUnits());
   const idx = allUnits.findIndex((u) => u.lesson_number === num);
   const prev = idx > 0 ? allUnits[idx - 1] : null;
   const next = idx < allUnits.length - 1 ? allUnits[idx + 1] : null;
@@ -49,30 +64,34 @@ export default async function UnitPage({
     <div>
       <div className="mb-8">
         <Link href="/units" className="text-sm text-stone-400 hover:text-stone-600">
-          ← All Units
+          ← {tr(locale, "All Units")}
         </Link>
       </div>
 
       {num === 1 && (
         <div className="mb-8 bg-amber-50 border border-amber-200 rounded-2xl p-5">
           <p className="text-xs font-bold text-amber-800 uppercase mb-1.5">
-            New to Nahuatl spelling?
+            {tr(locale, "New to Nahuatl spelling?")}
           </p>
           <p className="text-sm text-stone-600 leading-relaxed mb-3">
-            This course uses an <strong>INALI-style practical spelling</strong>: k, w, kw, ts, and plain vowels. Start with the pronunciation guide, including why the name question is practiced as <strong>kenihki motokah</strong>.
+            {locale === "es" ? (
+              <>Este curso usa una <strong>ortografía práctica de estilo INALI</strong>: k, w, kw, ts y vocales simples. Empieza con la guía de pronunciación, incluida la razón por la que la pregunta del nombre se practica como <strong>kenihki motokah</strong>.</>
+            ) : (
+              <>This course uses an <strong>INALI-style practical spelling</strong>: k, w, kw, ts, and plain vowels. Start with the pronunciation guide, including why the name question is practiced as <strong>kenihki motokah</strong>.</>
+            )}
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/grammar/alphabet"
               className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
             >
-              Read: Pronunciation Guide →
+              {tr(locale, "Read: Pronunciation Guide")} →
             </Link>
             <Link
               href="/grammar/orthographic-systems"
               className="inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900"
             >
-              Orthographic Systems →
+              {tr(locale, "Orthographic Systems")} →
             </Link>
           </div>
         </div>
@@ -83,7 +102,7 @@ export default async function UnitPage({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="mb-1 text-xs font-bold uppercase text-emerald-700">
-                Nawatlahtolli source lesson
+                {tr(locale, "Nawatlahtolli source lesson")}
               </p>
               <h2 className="text-lg font-black text-stone-950">
                 {displayNahuatl(sourceLesson.nahuatlTitle)}
@@ -92,16 +111,18 @@ export default async function UnitPage({
                 <p className="mt-1 text-sm text-stone-600">{sourceLesson.englishTitle}</p>
               )}
               <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-600">
-                This unit now includes the original COERLL lesson material:
-                {" "}{sourceLesson.sections.length} sections, {sourceLesson.vocabulary.length} audio-backed
-                source vocabulary entries, and provenance links under CC BY-SA.
+                {trChoice(
+                  locale,
+                  `This unit now includes the original COERLL lesson material: ${sourceLesson.sections.length} sections, ${sourceLesson.vocabulary.length} audio-backed source vocabulary entries, and provenance links under CC BY-SA.`,
+                  `Esta unidad ahora incluye el material original de la lección de COERLL: ${sourceLesson.sections.length} secciones, ${sourceLesson.vocabulary.length} entradas de vocabulario de la fuente con audio y enlaces de procedencia bajo CC BY-SA.`,
+                )}
               </p>
             </div>
             <Link
               href={`/source-course/${sourceLesson.number}`}
               className="inline-flex w-fit rounded-lg bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700"
             >
-              Open source lesson
+              {tr(locale, "Open source lesson")}
             </Link>
           </div>
         </section>
@@ -119,6 +140,7 @@ export default async function UnitPage({
           id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
+          safety_gloss_en: v.safety_gloss_en,
           part_of_speech: v.part_of_speech,
         }))}
         dialogues={dialogues.map((d) => ({
@@ -141,6 +163,7 @@ export default async function UnitPage({
           id: v.id,
           headword: v.headword,
           gloss_en: v.gloss_en,
+          safety_gloss_en: v.safety_gloss_en,
           part_of_speech: v.part_of_speech,
         }))}
         prevUnit={prev ? { num: prev.lesson_number, themeEn: prev.theme_en } : null}

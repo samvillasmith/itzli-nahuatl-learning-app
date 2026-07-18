@@ -8,6 +8,7 @@ import { pullAndMerge } from "@/lib/cloudSync";
 import { useUser } from "@clerk/nextjs";
 import type { Unit } from "@/lib/db";
 import { ArrowRight, Check, Play } from "lucide-react";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 const BAND_COLOR: Record<string, string> = {
   A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
@@ -30,6 +31,7 @@ const BAND_SECTION: Record<string, string> = {
 };
 
 export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
+  const { translate } = useLocale();
   const [progress, setProgress] = useState<ProgressData>(emptyProgress());
   const { isLoaded, isSignedIn } = useUser();
 
@@ -53,10 +55,10 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
         <div key={band}>
           <div className={`mb-4 flex items-center gap-3 rounded-xl border px-4 py-3 ${BAND_SECTION[band]}`}>
             <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_COLOR[band]}`}>
-              {band === "B1" ? "B1-oriented" : band}
+              {band === "B1" ? translate("B1-oriented") : band}
             </span>
-            <span className="text-sm font-semibold">{BAND_LABEL[band]}</span>
-            <span className="text-xs ml-auto opacity-60">{bandUnits.length} units</span>
+            <span className="text-sm font-semibold">{translate(BAND_LABEL[band])}</span>
+            <span className="text-xs ml-auto opacity-60">{bandUnits.length} {translate("units")}</span>
           </div>
 
           <div className="grid gap-3 lg:grid-cols-2">
@@ -88,12 +90,12 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
                       {unit.cefr_descriptor}
                     </p>
                     <p className="mt-3 text-xs font-semibold text-stone-400">
-                      {unit.english_vocab_count} words · {unit.english_dialogue_count} dialogue lines
+                      {unit.english_vocab_count} {translate("words")} · {unit.english_dialogue_count} {translate("dialogue lines")}
                     </p>
                   </div>
 
                   <div className="col-span-2 mt-auto flex items-center justify-between border-t border-stone-100 pt-4">
-                    <span className="text-xs font-bold text-stone-500">{status === "completed" ? "Completed" : status === "in_progress" ? "Continue unit" : "Start unit"}</span>
+                    <span className="text-xs font-bold text-stone-500">{translate(status === "completed" ? "Completed" : status === "in_progress" ? "Continue unit" : "Start unit")}</span>
                     {status === "completed" && (
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                         <Check size={15} strokeWidth={3} />

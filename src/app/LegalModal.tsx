@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 // Bump this when the legal docs change materially — everyone will be
 // re-prompted on next visit.
@@ -13,6 +14,7 @@ const STORAGE_KEY = "itzli_legal_accepted_v3";
 const BYPASS_PATHS = ["/terms", "/privacy", "/eula", "/design-preview"];
 
 export default function LegalModal() {
+  const { translate } = useLocale();
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -49,37 +51,31 @@ export default function LegalModal() {
           id="legal-modal-title"
           className="text-xl font-bold text-stone-900 mb-2"
         >
-          Welcome to Itzli
+          {translate("Welcome to Itzli")}
         </h2>
         <p className="text-sm text-stone-500 mb-4">
-          Before you get started, please review and agree to our policies.
+          {translate("Before you get started, please review and agree to our policies.")}
         </p>
 
         <div className="space-y-3 text-sm text-stone-700 leading-relaxed mb-5">
           <p>
-            Itzli is a free educational app for learning Eastern Huasteca
-            Nahuatl. A brief summary of what you&apos;re agreeing to:
+            {translate("Itzli is a free educational app for learning Eastern Huasteca Nahuatl. A brief summary of what you're agreeing to:")}
           </p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              Your account is managed by Clerk; your learning progress is
-              synced to our database.
+              {translate("Your account is managed by Clerk; your learning progress is synced to our database.")}
             </li>
             <li>
-              The AI tutor sends your chat messages to OpenAI for processing.
-              Output may be inaccurate — don&apos;t rely on it for anything
-              safety-critical.
+              {translate("The AI tutor sends your chat messages to OpenAI for processing. Output may be inaccurate — don't rely on it for anything safety-critical.")}
             </li>
             <li>
-              We apply safety moderation and never store raw chat content;
-              audit records use hashes and structured safety metadata.
+              {translate("We apply safety moderation and never store raw chat content; audit records use hashes and structured safety metadata.")}
             </li>
             <li>
-              Imported Nāhuatlahtolli course material is credited to COERLL and
-              its authors and remains reusable under CC BY-SA.
+              {translate("Imported Nāhuatlahtolli course material is credited to COERLL and its authors and remains reusable under CC BY-SA.")}
             </li>
             <li>
-              You can delete your progress or account at any time.
+              {translate("You can delete your progress or account at any time.")}
             </li>
           </ul>
         </div>
@@ -90,21 +86,21 @@ export default function LegalModal() {
             target="_blank"
             className="block text-emerald-600 hover:text-emerald-800 underline"
           >
-            Read the Terms of Service →
+            {translate("Read the Terms of Service")} →
           </Link>
           <Link
             href="/privacy"
             target="_blank"
             className="block text-emerald-600 hover:text-emerald-800 underline"
           >
-            Read the Privacy Policy →
+            {translate("Read the Privacy Policy")} →
           </Link>
           <Link
             href="/eula"
             target="_blank"
             className="block text-emerald-600 hover:text-emerald-800 underline"
           >
-            Read the EULA →
+            {translate("Read the EULA")} →
           </Link>
         </div>
 
@@ -116,9 +112,7 @@ export default function LegalModal() {
             className="mt-0.5 w-4 h-4 accent-emerald-500 flex-shrink-0"
           />
           <span className="text-stone-700">
-            I have read and agree to the Terms of Service, Privacy Policy, and
-            EULA. I understand that the AI tutor may generate inaccurate Nahuatl
-            and is for educational use only.
+            {translate("I have read and agree to the Terms of Service, Privacy Policy, and EULA. I understand that the AI tutor may generate inaccurate Nahuatl and is for educational use only.")}
           </span>
         </label>
 
@@ -128,11 +122,11 @@ export default function LegalModal() {
           disabled={!checked}
           className="w-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-stone-300 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-xl transition-colors"
         >
-          I agree
+          {translate("I agree")}
         </button>
 
         <p className="text-xs text-stone-400 text-center mt-3">
-          If you do not agree, please close this tab.
+          {translate("If you do not agree, please close this tab.")}
         </p>
       </div>
     </div>

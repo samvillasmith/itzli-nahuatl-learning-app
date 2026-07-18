@@ -7,6 +7,7 @@ import { loadProgress, resetProgress, type ProgressData } from "@/lib/progress";
 import { emptyProgress } from "@/lib/progress-schema";
 import { pullAndMerge, deleteCloudProgress } from "@/lib/cloudSync";
 import type { Unit } from "@/lib/db";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 const BAND_COLOR: Record<string, string> = {
   A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
@@ -21,6 +22,7 @@ const BAND_LABEL: Record<string, string> = {
 };
 
 export default function ProgressDashboard({ units }: { units: Unit[] }) {
+  const { translate } = useLocale();
   const [progress, setProgress] = useState<ProgressData>(emptyProgress());
   const [confirmReset, setConfirmReset] = useState(false);
   const [resetError, setResetError] = useState("");
@@ -38,7 +40,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
   async function handleReset() {
     setResetError("");
     if (isSignedIn && !(await deleteCloudProgress())) {
-      setResetError("Cloud progress could not be deleted. Please try again.");
+      setResetError(translate("Cloud progress could not be deleted. Please try again."));
       return;
     }
     resetProgress();
@@ -69,8 +71,8 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
     <div>
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-stone-900 mb-2">Your Progress</h1>
-        <p className="text-stone-500">Track your journey through Eastern Huasteca Nahuatl.</p>
+        <h1 className="text-3xl font-bold text-stone-900 mb-2">{translate("Your Progress")}</h1>
+        <p className="text-stone-500">{translate("Track your journey through Eastern Huasteca Nahuatl.")}</p>
       </div>
 
       {/* Overall progress bar */}
@@ -79,12 +81,12 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
           <div className="flex items-end justify-between mb-3">
             <div>
               <p className="text-xs font-semibold text-stone-400 uppercase mb-1">
-                Overall
+                {translate("Overall")}
               </p>
               <p className="text-2xl font-bold text-stone-900">
                 {completedUnits.length}{" "}
                 <span className="text-stone-400 text-base font-medium">
-                  / {units.length} units complete
+                  / {units.length} {translate("units complete")}
                 </span>
               </p>
             </div>
@@ -103,15 +105,15 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
       <div className="grid grid-cols-3 gap-3 mb-10">
         <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
           <div className="text-2xl font-bold text-emerald-600">{completedUnits.length}</div>
-          <div className="text-xs text-stone-500 mt-1 font-medium">completed</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">{translate("completed")}</div>
         </div>
         <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
           <div className="text-2xl font-bold text-amber-500">{inProgressUnits.length}</div>
-          <div className="text-xs text-stone-500 mt-1 font-medium">in progress</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">{translate("in progress")}</div>
         </div>
         <div className="bg-white border border-stone-200 rounded-2xl p-5 text-center">
           <div className="text-2xl font-bold text-stone-700">{wordsEncountered}</div>
-          <div className="text-xs text-stone-500 mt-1 font-medium">words seen</div>
+          <div className="text-xs text-stone-500 mt-1 font-medium">{translate("words seen")}</div>
         </div>
       </div>
 
@@ -131,12 +133,12 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                 <span
                   className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}
                 >
-                  {band === "B1" ? "B1-oriented" : band}
+                  {band === "B1" ? translate("B1-oriented") : band}
                 </span>
-                <h2 className="text-base font-semibold text-stone-600">{BAND_LABEL[band]}</h2>
+                <h2 className="text-base font-semibold text-stone-600">{translate(BAND_LABEL[band])}</h2>
               </div>
               <span className="text-xs text-stone-400 font-medium">
-                {done}/{bandUnits.length} done
+                {done}/{bandUnits.length} {translate("done")}
               </span>
             </div>
 
@@ -193,7 +195,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                             />
                           </div>
                           <span className="text-xs text-stone-400">
-                            {p.completedChunks}/{p.totalChunks} lessons
+                            {p.completedChunks}/{p.totalChunks} {translate("lessons")}
                             {p.lastTotal > 0 && (
                               <> · {Math.round((p.lastCorrect / p.lastTotal) * 100)}%</>
                             )}
@@ -209,7 +211,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                           href={`/practice/${unit.lesson_number}`}
                           className="text-xs px-3 py-1.5 rounded-lg border border-stone-200 text-stone-500 hover:bg-stone-50 transition-colors"
                         >
-                          Review
+                          {translate("Review")}
                         </Link>
                       )}
                       <Link
@@ -223,10 +225,10 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                         }`}
                       >
                         {status === "completed"
-                          ? "Redo"
+                          ? translate("Redo")
                           : status === "in_progress"
-                          ? "Continue"
-                          : "Start"}
+                          ? translate("Continue")
+                          : translate("Start")}
                       </Link>
                     </div>
                   </div>
@@ -246,24 +248,24 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
             disabled={!hasAnyProgress}
             className="text-sm text-stone-400 hover:text-red-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            Reset all progress
+            {translate("Reset all progress")}
           </button>
         ) : (
           <div className="flex items-center gap-4">
             <span className="text-sm text-stone-600">
-              This will erase all progress. Are you sure?
+              {translate("This will erase all progress. Are you sure?")}
             </span>
             <button
               onClick={handleReset}
               className="text-sm font-bold text-red-600 hover:text-red-700"
             >
-              Yes, reset
+              {translate("Yes, reset")}
             </button>
             <button
               onClick={() => setConfirmReset(false)}
               className="text-sm text-stone-400 hover:text-stone-600"
             >
-              Cancel
+              {translate("Cancel")}
             </button>
           </div>
         )}

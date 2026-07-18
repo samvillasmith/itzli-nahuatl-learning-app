@@ -8,11 +8,13 @@ import { playAudio, vocabCardAudioUrl } from "@/lib/audio";
 import { getWordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 type Card = {
   id: number;
   headword: string;
   gloss_en: string;
+  safety_gloss_en?: string;
   part_of_speech: string;
   alsoWritten?: string[];
 };
@@ -21,6 +23,7 @@ type Card = {
 
 function AudioButton({ src }: { src: string }) {
   const [playing, setPlaying] = useState(false);
+  const { translate } = useLocale();
 
   function handlePlay(e: React.MouseEvent) {
     e.stopPropagation();
@@ -32,8 +35,8 @@ function AudioButton({ src }: { src: string }) {
   return (
     <button
       onClick={handlePlay}
-      title="Play pronunciation"
-      aria-label="Play pronunciation"
+      title={translate("Play pronunciation")}
+      aria-label={translate("Play pronunciation")}
       className={`flex h-10 w-10 items-center justify-center rounded-full transition-all ${
         playing
           ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
@@ -51,17 +54,19 @@ function AudioButton({ src }: { src: string }) {
 
 function PronunciationHint({ value }: { value: string }) {
   const hint = pronunciationHintFor(value);
+  const { translate } = useLocale();
   if (!hint) return null;
 
   return (
     <div className="max-w-xs rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-center">
-      <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
-      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{hint.note}</p>
+      <p className="text-xs font-bold text-amber-800">{translate(hint.cue)}</p>
+      <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{translate(hint.note)}</p>
     </div>
   );
 }
 
 export default function FlashcardDeck({ cards }: { cards: Card[] }) {
+  const { locale, translate } = useLocale();
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [done, setDone] = useState<Set<number>>(new Set());
@@ -75,7 +80,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   const reset = useCallback(() => { setDone(new Set()); setIndex(0); setFlipped(false); }, []);
 
   if (cards.length === 0) {
-    return <p className="text-stone-400 text-center py-16">No vocabulary for this unit.</p>;
+    return <p className="text-stone-400 text-center py-16">{translate("No vocabulary for this unit.")}</p>;
   }
 
   const remaining = cards.length - done.size;
@@ -84,10 +89,10 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
     return (
       <div className="max-w-lg mx-auto flex flex-col items-center gap-6 py-16 text-center">
         <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-3xl">✓</div>
-        <h2 className="text-2xl font-bold text-stone-900">All done!</h2>
-        <p className="text-stone-500">You reviewed all {cards.length} cards.</p>
+        <h2 className="text-2xl font-bold text-stone-900">{translate("All done!")}</h2>
+        <p className="text-stone-500">{locale === "es" ? `Repasaste las ${cards.length} tarjetas.` : `You reviewed all ${cards.length} cards.`}</p>
         <button onClick={reset} className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-2xl text-sm font-bold transition-colors shadow-sm">
-          Start over
+          {translate("Start over")}
         </button>
       </div>
     );
@@ -95,7 +100,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
 
   const img = getWordImage(card.headword, {
     allowLegacyFallback: true,
-    safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
+    safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
   });
   const audioSrc = vocabCardAudioUrl(card.id);
 
@@ -104,7 +109,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
       {/* Progress */}
       <div className="flex items-center justify-between text-sm mb-3">
         <span className="text-stone-400 font-medium">{index + 1} / {cards.length}</span>
-        <span className="text-emerald-600 font-semibold">{done.size} learned · {remaining} remaining</span>
+        <span className="text-emerald-600 font-semibold">{done.size} {translate("learned")} · {remaining} {translate("remaining")}</span>
       </div>
       <div className="w-full bg-stone-100 rounded-full h-2 mb-8">
         <div className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full transition-all duration-300" style={{ width: `${(done.size / cards.length) * 100}%` }} />
@@ -125,11 +130,11 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
               <p className="text-3xl font-bold text-stone-900 leading-tight">{displayNahuatl(card.headword)}</p>
               <PronunciationHint value={card.headword} />
               {card.part_of_speech && (
-                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{card.part_of_speech}</span>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-stone-100 text-stone-400">{translate(card.part_of_speech)}</span>
               )}
               {card.alsoWritten && card.alsoWritten.length > 0 && (
                 <p className="text-xs text-stone-400 text-center">
-                  Also written:{" "}
+                  {translate("Also written")}: {" "}
                   <span className="font-medium text-stone-500">
                     {card.alsoWritten.map(displayNahuatl).join(", ")}
                   </span>
@@ -139,10 +144,10 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center gap-4 p-10 h-full" style={{ minHeight: "280px" }}>
-            <p className="text-xs text-stone-300 uppercase font-semibold">English</p>
+            <p className="text-xs text-stone-300 uppercase font-semibold">{locale === "es" ? "Español" : "English"}</p>
             <p className="text-2xl font-bold text-emerald-600 leading-snug">{displayGloss(card.gloss_en)}</p>
             {card.part_of_speech && (
-              <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-500 border border-emerald-100">{card.part_of_speech}</span>
+              <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-500 border border-emerald-100">{translate(card.part_of_speech)}</span>
             )}
           </div>
         )}
@@ -156,11 +161,11 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
 
       {/* Controls */}
       <div className="flex items-center gap-2.5 mt-5">
-        <button onClick={prev} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">← Back</button>
+        <button onClick={prev} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">← {translate("Back")}</button>
         {flipped && (
-          <button onClick={markDone} className="flex-[2] rounded-lg bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700">Got it ✓</button>
+          <button onClick={markDone} className="flex-[2] rounded-lg bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700">{translate("Got it")} ✓</button>
         )}
-        <button onClick={next} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">Skip →</button>
+        <button onClick={next} className="flex-1 rounded-lg border border-stone-200 py-3 text-sm font-semibold text-stone-500 transition-colors hover:border-stone-300 hover:bg-white">{translate("Skip")} →</button>
       </div>
     </div>
   );

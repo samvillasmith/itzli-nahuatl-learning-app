@@ -1,0 +1,38 @@
+const PRESERVED_DATA_KEYS = new Set([
+  "id",
+  "slug",
+  "icon",
+  "kind",
+  "type",
+  "src",
+  "url",
+  "href",
+  "objectUrl",
+  "originalUrl",
+  "oerListingUrl",
+  "audioUrl",
+  "path_code",
+  "unit_code",
+  "target_band",
+  "band",
+  "speaker_label",
+  "lesson_dialogue_id",
+  "headword",
+  "ehn_spoken_form",
+  "msn_headword",
+  "nahuatl",
+  "nahuatlTitle",
+  "utterance_normalized",
+  "example_original",
+  "form",
+  "breakdown",
+  "answer",
+  "accepted",
+  "pattern",
+  "cue",
+  "input",
+]);
+
+export function shouldPreserveDataKey(key: string): boolean {
+  return PRESERVED_DATA_KEYS.has(key) || /(?:^|_)(?:id|ids|url|urls)$/i.test(key) || /(?:Id|Ids|Url|Urls)$/.test(key);
+}

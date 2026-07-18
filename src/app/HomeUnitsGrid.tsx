@@ -6,6 +6,7 @@ import { loadProgress } from "@/lib/progress";
 import { pullAndMerge } from "@/lib/cloudSync";
 import { useUser } from "@clerk/nextjs";
 import type { Unit } from "@/lib/db";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 const BAND_COLOR: Record<string, string> = {
   A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
@@ -20,6 +21,7 @@ const BAND_HOVER: Record<string, string> = {
 };
 
 export default function HomeUnitsGrid({ units }: { units: Unit[] }) {
+  const { translate } = useLocale();
   const [statuses, setStatuses] = useState<Record<string, "completed" | "in_progress">>({});
   const { isLoaded, isSignedIn } = useUser();
 
@@ -44,13 +46,13 @@ export default function HomeUnitsGrid({ units }: { units: Unit[] }) {
       {bands.map((band) => {
         const bandUnits = units.filter((u) => u.target_band === band);
         if (!bandUnits.length) return null;
-        const bandLabel = band === "A1" ? "Beginner" : band === "A2" ? "Elementary" : "B1-oriented extensions";
+        const bandLabel = translate(band === "A1" ? "Beginner" : band === "A2" ? "Elementary" : "B1-oriented extensions");
 
         return (
           <section key={band} className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}>
-                {band === "B1" ? "B1-oriented" : band}
+                {band === "B1" ? translate("B1-oriented") : band}
               </span>
               <h2 className="text-base font-semibold text-stone-600">{bandLabel}</h2>
             </div>
@@ -95,10 +97,10 @@ export default function HomeUnitsGrid({ units }: { units: Unit[] }) {
 
                     {/* Completion indicator */}
                     {status === "completed" && (
-                      <p className="text-xs text-emerald-600 font-semibold mt-2">Complete ✓</p>
+                      <p className="text-xs text-emerald-600 font-semibold mt-2">{translate("Complete")} ✓</p>
                     )}
                     {status === "in_progress" && (
-                      <p className="text-xs text-amber-500 font-semibold mt-2">In progress…</p>
+                      <p className="text-xs text-amber-500 font-semibold mt-2">{translate("In progress")}…</p>
                     )}
                   </Link>
                 );

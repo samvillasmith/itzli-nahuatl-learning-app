@@ -17,9 +17,10 @@
     "lint": "eslint .",
     "test": "vitest run",
     "preverify": "node scripts/fetch-db.js",
-    "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:app-content && npm run audit:course && npm run images:openai:audit",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:i18n && npm run audit:app-content && npm run audit:course && npm run images:openai:audit",
     "audit:course": "node scripts/audit-course-quality.js",
     "audit:app-content": "node scripts/audit-app-content-exclusions.js",
+    "audit:i18n": "node scripts/audit-spanish-localization.js",
     "images:s3:manifest": "node scripts/import-s3-word-images.js",
     "images:openai:audit": "node scripts/audit-openai-word-images.js",
     "images:openai:contact-sheets": "node scripts/make-openai-word-image-contact-sheets.js",
@@ -37,6 +38,7 @@
     "audio:openai:generate": "node scripts/generate-openai-audio.js --execute"
   },
   "dependencies": {
+    "@clerk/localizations": "^4.13.5",
     "@clerk/nextjs": "^7.5.17",
     "@neondatabase/serverless": "^1.0.2",
     "better-sqlite3": "^12.8.0",

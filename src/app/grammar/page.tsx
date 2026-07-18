@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { GRAMMAR_LESSONS } from '@/data/grammar-lessons';
 import { displayNahuatl } from '@/lib/orthography';
 import { requireAuth } from '@/lib/require-auth';
+import { getRequestLocale } from '@/i18n/server';
+import { tr, translateDeep } from '@/i18n/translate';
 
 const BAND_STYLES: Record<string, string> = {
   A1: 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -11,24 +13,26 @@ const BAND_STYLES: Record<string, string> = {
 
 export default async function GrammarPage() {
   await requireAuth();
+  const locale = await getRequestLocale();
+  const lessons = translateDeep(locale, GRAMMAR_LESSONS);
 
   const byBand = {
-    A1: GRAMMAR_LESSONS.filter((l) => l.band === 'A1'),
-    A2: GRAMMAR_LESSONS.filter((l) => l.band === 'A2'),
-    B1: GRAMMAR_LESSONS.filter((l) => l.band === 'B1'),
+    A1: lessons.filter((l) => l.band === 'A1'),
+    A2: lessons.filter((l) => l.band === 'A2'),
+    B1: lessons.filter((l) => l.band === 'B1'),
   };
 
   return (
     <div>
       <div className="mb-10">
         <p className="text-xs font-bold text-emerald-600 mb-3 uppercase">
-          Grammar · Tlahtoltekpanalitsli
+          {tr(locale, 'Grammar')} · Tlahtoltekpanalitsli
         </p>
         <h1 className="text-3xl font-bold text-stone-900 mb-3">
-          EHN Grammar Lessons
+          {tr(locale, 'EHN Grammar Lessons')}
         </h1>
         <p className="text-stone-500 max-w-xl leading-relaxed">
-          Structured explanations of how Eastern Huasteca Nahuatl works — word formation, verb conjugation, and conversation patterns. Each lesson includes paradigm tables, worked examples, and authentic dialogue.
+          {tr(locale, 'Structured explanations of how Eastern Huasteca Nahuatl works — word formation, verb conjugation, and conversation patterns. Each lesson includes paradigm tables, worked examples, and authentic dialogue.')}
         </p>
       </div>
 
@@ -36,7 +40,7 @@ export default async function GrammarPage() {
         byBand[band].length > 0 && (
           <div key={band} className="mb-10">
             <h2 className="text-xs font-bold uppercase text-stone-400 mb-4">
-              {band === 'A1' ? 'A1 · Beginner' : band === 'A2' ? 'A2 · Elementary' : 'B1-oriented · Extensions'}
+              {tr(locale, band === 'A1' ? 'A1 · Beginner' : band === 'A2' ? 'A2 · Elementary' : 'B1-oriented · Extensions')}
             </h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {byBand[band].map((lesson) => (

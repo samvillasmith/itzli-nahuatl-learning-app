@@ -14,6 +14,9 @@ import {
   type CultureImage,
   type CultureModule,
 } from "@/data/culture-lessons";
+import { getRequestLocale } from "@/i18n/server";
+import type { AppLocale } from "@/i18n/config";
+import { tr, translateDeep } from "@/i18n/translate";
 
 function CultureImagePanel({ image }: { image: CultureImage }) {
   return (
@@ -46,9 +49,11 @@ function CultureImagePanel({ image }: { image: CultureImage }) {
 function ContextPanel({
   icon,
   number,
+  locale,
 }: {
   icon: CultureModule["icon"];
   number: number;
+  locale: AppLocale;
 }) {
   const labels =
     number === 3
@@ -69,7 +74,7 @@ function ContextPanel({
             className="flex items-center gap-3 border-b border-stone-300/80 pb-2 text-sm font-bold text-stone-800"
           >
             <span className="text-xs text-emerald-800">0{index + 1}</span>
-            <span>{label}</span>
+            <span>{tr(locale, label)}</span>
           </div>
         ))}
       </div>
@@ -77,14 +82,15 @@ function ContextPanel({
   );
 }
 
-export default function CultureModuleContent({
+export default async function CultureModuleContent({
   cultureModule,
 }: {
   cultureModule: CultureModule;
 }) {
+  const locale = await getRequestLocale();
   const index = CULTURE_MODULES.findIndex((item) => item.slug === cultureModule.slug);
-  const previous = index > 0 ? CULTURE_MODULES[index - 1] : null;
-  const next = index < CULTURE_MODULES.length - 1 ? CULTURE_MODULES[index + 1] : null;
+  const previous = index > 0 ? translateDeep(locale, CULTURE_MODULES[index - 1]) : null;
+  const next = index < CULTURE_MODULES.length - 1 ? translateDeep(locale, CULTURE_MODULES[index + 1]) : null;
 
   return (
     <div className="mx-auto max-w-6xl">
@@ -92,10 +98,10 @@ export default function CultureModuleContent({
         href="/culture"
         className="inline-flex items-center gap-2 text-sm font-bold text-stone-500 hover:text-emerald-700"
       >
-        <ArrowLeft size={16} /> Culture &amp; History
+        <ArrowLeft size={16} /> {tr(locale, "Culture & History")}
       </Link>
 
-      <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-stone-200" aria-label={`Module ${cultureModule.number} of ${CULTURE_MODULES.length}`}>
+      <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-stone-200" aria-label={`${tr(locale, "Module")} ${cultureModule.number} ${tr(locale, "of")} ${CULTURE_MODULES.length}`}>
         <div
           className="h-full rounded-full bg-emerald-600"
           style={{ width: `${(cultureModule.number / CULTURE_MODULES.length) * 100}%` }}
@@ -109,7 +115,7 @@ export default function CultureModuleContent({
               <CultureModuleIcon icon={cultureModule.icon} />
             </span>
             <p className="text-xs font-black uppercase text-emerald-700">
-              Module {String(cultureModule.number).padStart(2, "0")} of {CULTURE_MODULES.length}
+              {tr(locale, "Module")} {String(cultureModule.number).padStart(2, "0")} {tr(locale, "of")} {CULTURE_MODULES.length}
             </p>
             <span className="inline-flex items-center gap-1 text-xs font-semibold text-stone-400">
               <Clock3 size={14} /> {cultureModule.duration}
@@ -124,7 +130,7 @@ export default function CultureModuleContent({
         {cultureModule.image ? (
           <CultureImagePanel image={cultureModule.image} />
         ) : (
-          <ContextPanel icon={cultureModule.icon} number={cultureModule.number} />
+          <ContextPanel icon={cultureModule.icon} number={cultureModule.number} locale={locale} />
         )}
       </header>
 
@@ -133,7 +139,7 @@ export default function CultureModuleContent({
           !
         </span>
         <div>
-          <p className="text-xs font-black uppercase text-amber-700">Keep this distinction</p>
+          <p className="text-xs font-black uppercase text-amber-700">{tr(locale, "Keep this distinction")}</p>
           <p className="mt-2 leading-7 text-stone-800">{cultureModule.distinction}</p>
         </div>
       </section>
@@ -171,7 +177,7 @@ export default function CultureModuleContent({
         </article>
 
         <aside className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm lg:sticky lg:top-24">
-          <p className="text-xs font-black uppercase text-stone-500">After this module</p>
+          <p className="text-xs font-black uppercase text-stone-500">{tr(locale, "After this module")}</p>
           <ul className="mt-4 space-y-4">
             {cultureModule.takeaways.map((takeaway) => (
               <li key={takeaway} className="flex gap-3 text-sm leading-6 text-stone-700">
@@ -189,15 +195,14 @@ export default function CultureModuleContent({
             <LibraryBig size={19} />
           </span>
           <div>
-            <p className="eyebrow">Evidence</p>
+            <p className="eyebrow">{tr(locale, "Evidence")}</p>
             <h2 id="sources-title" className="mt-1 text-2xl font-black text-stone-950">
-              Sources and further reading
+              {tr(locale, "Sources and further reading")}
             </h2>
           </div>
         </div>
         <p className="mt-4 max-w-3xl text-sm leading-6 text-stone-600">
-          The module text is an original synthesis. These institutional and academic sources
-          provide the factual foundation and a path for deeper study.
+          {tr(locale, "The module text is an original synthesis. These institutional and academic sources provide the factual foundation and a path for deeper study.")}
         </p>
         <div className="mt-5 divide-y divide-stone-200 border-y border-stone-200">
           {cultureModule.sources.map((source) => (
@@ -221,14 +226,14 @@ export default function CultureModuleContent({
         </div>
       </section>
 
-      <nav aria-label="Culture module navigation" className="mt-10 grid gap-3 border-t border-stone-200 pt-6 sm:grid-cols-2">
+      <nav aria-label={tr(locale, "Culture module navigation")} className="mt-10 grid gap-3 border-t border-stone-200 pt-6 sm:grid-cols-2">
         {previous ? (
           <Link
             href={`/culture/${previous.slug}`}
             className="rounded-lg border border-stone-200 bg-white p-4 text-left transition-colors hover:border-emerald-300 hover:bg-emerald-50/40"
           >
             <span className="inline-flex items-center gap-1 text-xs font-bold text-stone-400">
-              <ArrowLeft size={14} /> Previous
+              <ArrowLeft size={14} /> {tr(locale, "Previous")}
             </span>
             <p className="mt-2 font-black text-stone-950">{previous.shortTitle}</p>
           </Link>
@@ -241,13 +246,13 @@ export default function CultureModuleContent({
             className="rounded-lg border border-stone-200 bg-white p-4 text-right transition-colors hover:border-emerald-300 hover:bg-emerald-50/40"
           >
             <span className="inline-flex items-center justify-end gap-1 text-xs font-bold text-stone-400">
-              Next <ArrowRight size={14} />
+              {tr(locale, "Next")} <ArrowRight size={14} />
             </span>
             <p className="mt-2 font-black text-stone-950">{next.shortTitle}</p>
           </Link>
         ) : (
           <Link href="/units" className="button-primary justify-self-end">
-            Return to lessons <ArrowRight size={15} />
+            {tr(locale, "Return to lessons")} <ArrowRight size={15} />
           </Link>
         )}
       </nav>

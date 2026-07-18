@@ -7,40 +7,41 @@ import {
 } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
 import { requireAuth } from "@/lib/require-auth";
+import { getRequestLocale } from "@/i18n/server";
+import type { AppLocale } from "@/i18n/config";
+import { tr, translateDeep } from "@/i18n/translate";
 
-export const metadata: Metadata = {
-  title: "Nawatlahtolli Source Course",
-  description:
-    "Imported CC BY-SA Nawatlahtolli source lessons, support pages, vocabulary, and provenance metadata.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  return {
+    title: tr(locale, "Nawatlahtolli Source Course"),
+    description: tr(locale, "Imported CC BY-SA Nawatlahtolli source lessons, support pages, vocabulary, and provenance metadata."),
+  };
+}
 
-function SourceNotice() {
-  const source = NAHUATLAHTOLLI_COURSE.source;
-
+function SourceNotice({ source, locale }: { source: typeof NAHUATLAHTOLLI_COURSE.source; locale: AppLocale }) {
   return (
     <section className="rounded-lg border border-emerald-200 bg-emerald-50 p-5 text-sm leading-6 text-emerald-950">
-      <p className="font-semibold">Source and license</p>
+      <p className="font-semibold">{tr(locale, "Source and license")}</p>
       <p className="mt-2">
-        This section adapts content from{" "}
+        {tr(locale, "This section adapts content from")}{" "}
         <a className="font-semibold underline" href={source.originalUrl} target="_blank" rel="noopener noreferrer">
           {displayNahuatl(source.name)}
         </a>
-        , published by {source.publisher}, by {source.authors.join(", ")}. Imported
-        lesson content is available under{" "}
+        , {tr(locale, "published by")} {source.publisher}, {tr(locale, "by")} {source.authors.join(", ")}. {tr(locale, "Imported lesson content is available under")}{" "}
         <a className="font-semibold underline" href={source.license.url} target="_blank" rel="noopener noreferrer">
           {source.license.shortName}
         </a>
         .
       </p>
       <p className="mt-2">
-        Itzli keeps media as source links rather than rehosting course audio,
-        images, or institutional marks.
+        {tr(locale, "Itzli keeps media as source links rather than rehosting course audio, images, or institutional marks.")}
       </p>
     </section>
   );
 }
 
-function SupportPagePreview({ page }: { page: SourceSupportPage }) {
+function SupportPagePreview({ page, locale }: { page: SourceSupportPage; locale: AppLocale }) {
   const lines = page.sections.flatMap((section) => [section.heading, ...section.body]).slice(0, 8);
 
   return (
@@ -58,7 +59,7 @@ function SupportPagePreview({ page }: { page: SourceSupportPage }) {
           rel="noopener noreferrer"
           className="inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-900"
         >
-          Open original page →
+          {tr(locale, "Open original page")} →
         </a>
       </div>
     </details>
@@ -67,20 +68,21 @@ function SupportPagePreview({ page }: { page: SourceSupportPage }) {
 
 export default async function SourceCoursePage() {
   await requireAuth();
+  const locale = await getRequestLocale();
   const stats = getNahuatlahtolliStats();
-  const source = NAHUATLAHTOLLI_COURSE.source;
+  const course = translateDeep(locale, NAHUATLAHTOLLI_COURSE);
+  const source = course.source;
 
   return (
     <div className="space-y-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
-            CC BY-SA Source Course
+            {tr(locale, "CC BY-SA Source Course")}
           </p>
           <h1 className="text-3xl font-black text-stone-950">{displayNahuatl(source.name)}</h1>
           <p className="mt-2 max-w-3xl text-stone-600">
-            {source.subtitle}. This browser keeps the imported source lessons
-            visible alongside Itzli&apos;s curated practice path.
+            {source.subtitle}. {tr(locale, "This browser keeps the imported source lessons visible alongside Itzli's curated practice path.")}
           </p>
         </div>
         <a
@@ -89,11 +91,11 @@ export default async function SourceCoursePage() {
           rel="noopener noreferrer"
           className="inline-flex w-fit rounded-lg border border-stone-200 bg-white px-4 py-2 text-sm font-semibold text-stone-700 shadow-sm transition-colors hover:border-emerald-200 hover:text-emerald-800"
         >
-          COERLL listing
+          {tr(locale, "COERLL listing")}
         </a>
       </div>
 
-      <SourceNotice />
+      <SourceNotice source={source} locale={locale} />
 
       <section className="grid gap-3 sm:grid-cols-4">
         {[
@@ -104,20 +106,20 @@ export default async function SourceCoursePage() {
         ].map((stat) => (
           <div key={stat.label} className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
             <div className="text-2xl font-black text-stone-950">{stat.value.toLocaleString()}</div>
-            <div className="mt-1 text-sm font-semibold text-stone-700">{stat.label}</div>
+            <div className="mt-1 text-sm font-semibold text-stone-700">{tr(locale, stat.label)}</div>
           </div>
         ))}
       </section>
 
       <section>
         <div className="mb-4 flex items-center justify-between gap-4">
-          <h2 className="text-xl font-black text-stone-950">Lessons</h2>
+          <h2 className="text-xl font-black text-stone-950">{tr(locale, "Lessons")}</h2>
           <Link href="/units" className="text-sm font-semibold text-emerald-700 hover:text-emerald-900">
-            Open Itzli units
+            {tr(locale, "Open Itzli units")}
           </Link>
         </div>
         <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
-          {NAHUATLAHTOLLI_COURSE.lessons.map((lesson) => (
+          {course.lessons.map((lesson) => (
             <Link
               key={lesson.number}
               href={`/source-course/${lesson.number}`}
@@ -133,7 +135,7 @@ export default async function SourceCoursePage() {
                 )}
               </div>
               <p className="text-xs text-stone-400 sm:text-right">
-                {lesson.vocabulary.length} words · {lesson.sections.length} sections
+                {lesson.vocabulary.length} {tr(locale, "words")} · {lesson.sections.length} {tr(locale, "sections")}
               </p>
             </Link>
           ))}
@@ -141,10 +143,10 @@ export default async function SourceCoursePage() {
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl font-black text-stone-950">Course Context</h2>
+        <h2 className="mb-4 text-xl font-black text-stone-950">{tr(locale, "Course Context")}</h2>
         <div className="grid gap-3 lg:grid-cols-2">
-          {NAHUATLAHTOLLI_COURSE.supportPages.map((page) => (
-            <SupportPagePreview key={page.kind} page={page} />
+          {course.supportPages.map((page) => (
+            <SupportPagePreview key={page.kind} page={page} locale={locale} />
           ))}
         </div>
       </section>
