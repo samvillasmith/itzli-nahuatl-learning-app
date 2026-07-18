@@ -9,7 +9,7 @@ import {
   isCoreVocabItem,
   SOURCE_VERIFIED_UNLINKED_VOCAB_IDS,
 } from "../src/data/excluded-vocab";
-import { getAllPrimerVocab } from "../src/lib/db";
+import { getAllPrimerVocab, getAllUnits, getVocabCount } from "../src/lib/db";
 
 const require = createRequire(import.meta.url);
 const { validateEhnLine } = require("../scripts/generate-dialogues.js") as {
@@ -183,6 +183,13 @@ describe("Eastern Huasteca content invariants", () => {
     expect(byId.get(413)).toBe("poncho");
     expect(byId.get(449)).toBe("dead person; deceased person");
     expect(byId.get(457)).toBe("mandarin orange; tangerine");
+  });
+
+  it("reports the learner-visible course totals", () => {
+    expect(getVocabCount()).toBe(381);
+    expect(
+      getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
+    ).toBe(173);
   });
 });
 

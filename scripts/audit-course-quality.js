@@ -200,6 +200,7 @@ function main() {
   const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadTsModule("src/data/excluded-vocab.ts");
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
   const { getWordImage } = loadTsModule("src/data/word-images.ts");
+  const { isAppContentExcluded } = loadTsModule("src/lib/app-content-safety.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
   const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
@@ -414,7 +415,8 @@ function main() {
       annotatedGlossUnits.push(`${unit.lesson_number}: ${annotated.map((card) => `${card.headword}=${card.gloss_en}`).join("; ")}`);
     }
 
-    const rawDialogues = CURATED_DIALOGUES[unit.lesson_number] || dialogueRows.all(unit.lesson_number);
+    const rawDialogues = (CURATED_DIALOGUES[unit.lesson_number] || dialogueRows.all(unit.lesson_number))
+      .filter((line) => !isAppContentExcluded(line.utterance_normalized, line.translation_en));
     if (CURATED_DIALOGUES[unit.lesson_number]) curatedUnits += 1;
     sourceDialogueLines += rawDialogues.length;
 

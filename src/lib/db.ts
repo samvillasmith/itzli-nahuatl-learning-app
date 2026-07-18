@@ -5,6 +5,7 @@ import os from "os";
 import { execFileSync } from "child_process";
 import { enhanceUnit, type CurriculumFields } from "./curriculum";
 import { filterCoreVocab } from "@/data/excluded-vocab";
+import { collapseVariants } from "@/data/variant-groups";
 import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
@@ -155,7 +156,11 @@ export function getAllUnits(): Unit[] {
       const unit = enhanceUnit(row as Omit<Unit, keyof CurriculumFields>);
       return {
         ...unit,
-        english_vocab_count: getUnitVocab(unit.lesson_number).length,
+        english_vocab_count: collapseVariants(
+          getUnitVocab(unit.lesson_number),
+          unit.lesson_number,
+        ).cards.length,
+        english_dialogue_count: getUnitDialogueContent(unit.lesson_number).length,
       };
     })
     .sort((a, b) => a.path_order - b.path_order) as Unit[];
@@ -169,7 +174,11 @@ export function getUnit(lessonNumber: number): Unit | null {
   const unit = enhanceUnit(row) as Unit;
   return {
     ...unit,
-    english_vocab_count: getUnitVocab(unit.lesson_number).length,
+    english_vocab_count: collapseVariants(
+      getUnitVocab(unit.lesson_number),
+      unit.lesson_number,
+    ).cards.length,
+    english_dialogue_count: getUnitDialogueContent(unit.lesson_number).length,
   };
 }
 
@@ -215,7 +224,9 @@ export function getAllPrimerVocab(): VocabItem[] {
 
   return [...byLesson.entries()]
     .sort(([a], [b]) => a - b)
-    .flatMap(([lessonNumber, items]) => filterCoreVocab(items, lessonNumber));
+    .flatMap(([lessonNumber, items]) =>
+      collapseVariants(filterCoreVocab(items, lessonNumber), lessonNumber).cards
+    );
 }
 
 export function getUnitDialogues(lessonNumber: number): DialogueLine[] {

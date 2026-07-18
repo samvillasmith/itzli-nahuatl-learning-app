@@ -103,7 +103,7 @@ export default function LandingPage() {
           <h2 className="display-title mt-4 text-4xl text-stone-950 sm:text-5xl">From sounds to conversation.</h2>
           <p className="mt-5 max-w-md leading-7 text-stone-600">Start small. Every milestone adds language you can recognize, remember, and use.</p>
           <div className="mt-7 flex gap-6 border-t border-stone-200 pt-6">
-            <div><p className="text-2xl font-black text-stone-950">{vocabCount.toLocaleString()}</p><p className="text-xs text-stone-500">learning cards</p></div>
+            <div><p className="text-2xl font-black text-stone-950">{vocabCount.toLocaleString()}</p><p className="text-xs text-stone-500">core word cards</p></div>
             <div><p className="text-2xl font-black text-stone-950">{dialogueCount.toLocaleString()}</p><p className="text-xs text-stone-500">dialogue lines</p></div>
           </div>
         </div>
