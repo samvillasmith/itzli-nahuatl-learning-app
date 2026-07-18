@@ -2,9 +2,10 @@
 
 import { useState, useCallback } from "react";
 import { LoaderCircle, Volume2 } from "lucide-react";
+import { WordCardMedia, WordImageCredit } from "@/components/WordCardMedia";
 import { displayGloss } from "@/lib/gloss";
 import { playAudio, vocabCardAudioUrl } from "@/lib/audio";
-import { getWordImage, type WordImage } from "@/data/word-images";
+import { getWordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 
@@ -57,19 +58,6 @@ function PronunciationHint({ value }: { value: string }) {
       <p className="text-xs font-bold text-amber-800">{hint.cue}</p>
       <p className="mt-0.5 text-[11px] leading-snug text-stone-500">{hint.note}</p>
     </div>
-  );
-}
-
-function ImageCredit({ image }: { image: WordImage | null }) {
-  if (!image || image.source === "openai" || image.source === "s3") return null;
-  const href = image.pexels_url ?? image.author_url ?? image.source;
-  const label = `${image.author} · ${image.license}`;
-  return href?.startsWith("http") ? (
-    <p className="mt-2 text-center text-[11px] text-stone-400">
-      Image: <a href={href} target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600">{label}</a>
-    </p>
-  ) : (
-    <p className="mt-2 text-center text-[11px] text-stone-400">Image: {label}</p>
   );
 }
 
@@ -131,18 +119,8 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
         {!flipped ? (
           <div className="flex flex-col h-full">
             {/* Image on front if available */}
-            {img && (
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-50">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.url}
-                  alt={displayNahuatl(card.headword)}
-                  className="h-full w-full object-cover object-top"
-                  onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
-                />
-              </div>
-            )}
-            <div className="flex flex-col items-center justify-center gap-3 p-8 flex-1">
+            <WordCardMedia image={img} alt={displayNahuatl(card.headword)} />
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 sm:p-7">
               <p className="text-xs text-stone-300 uppercase font-semibold">Nahuatl</p>
               <p className="text-3xl font-bold text-stone-900 leading-tight">{displayNahuatl(card.headword)}</p>
               <PronunciationHint value={card.headword} />
@@ -169,7 +147,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
           </div>
         )}
       </button>
-      <ImageCredit image={img} />
+      <WordImageCredit image={img} />
       {audioSrc && (
         <div className="mt-3 flex justify-center">
           <AudioButton src={audioSrc} />

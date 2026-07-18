@@ -117,7 +117,7 @@ function openaiImage(headword: string): WordImage | null {
   if (!entry) return null;
   return {
     ...entry,
-    license: "OpenAI-generated illustration",
+    license: entry.license || "OpenAI-generated illustration",
     source: entry.source ?? "openai",
   };
 }

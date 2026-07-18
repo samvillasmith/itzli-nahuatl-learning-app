@@ -3,11 +3,12 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Eye, LoaderCircle, Volume2 } from "lucide-react";
+import { WordCardMedia, WordImageCredit } from "@/components/WordCardMedia";
 import { displayGloss } from "@/lib/gloss";
 import { vocabCardAudioUrl, dialogueAudioUrl, playAudio } from "@/lib/audio";
 import { loadProgress, markChunkDone, recordWordResult, srsOrder } from "@/lib/progress";
 import { pushToCloud } from "@/lib/cloudSync";
-import { getWordImage, type WordImage } from "@/data/word-images";
+import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
@@ -226,19 +227,6 @@ function cardImage(card: VocabCard) {
     allowLegacyFallback: true,
     safetyText: card.part_of_speech === "letter" ? [] : [card.gloss_en, card.part_of_speech],
   });
-}
-
-function ImageCredit({ image }: { image: WordImage | null }) {
-  if (!image || image.source === "openai" || image.source === "s3") return null;
-  const href = image.pexels_url ?? image.author_url ?? image.source;
-  const label = `${image.author} · ${image.license}`;
-  return href?.startsWith("http") ? (
-    <p className="mt-2 text-center text-[11px] text-stone-400">
-      Image: <a href={href} target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600">{label}</a>
-    </p>
-  ) : (
-    <p className="mt-2 text-center text-[11px] text-stone-400">Image: {label}</p>
-  );
 }
 
 function learnStepLabel(card: VocabCard): string {
@@ -1938,20 +1926,9 @@ export default function LessonFlow({
           data-testid="lesson-learn-card"
           className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-[0_22px_60px_rgba(39,36,31,0.10)]"
         >
-          {img && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-100">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.url}
-                alt={displayNahuatl(word.headword)}
-                className="h-full w-full object-cover object-top"
-                onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = "none"; }}
-              />
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-stone-950/30 to-transparent" />
-            </div>
-          )}
+          <WordCardMedia image={img} alt={displayNahuatl(word.headword)} />
 
-          <div className="grid min-h-64 gap-6 p-6 sm:grid-cols-[1fr_auto] sm:items-start sm:p-8">
+          <div className="grid min-h-44 gap-5 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:p-7">
             <div>
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 {word.part_of_speech && (
@@ -2008,7 +1985,7 @@ export default function LessonFlow({
             </button>
           </div>
         </section>
-        <ImageCredit image={img} />
+        <WordImageCredit image={img} />
       </div>
     );
   }

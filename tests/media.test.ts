@@ -42,4 +42,11 @@ describe("reviewed media", () => {
     expect(urls.every(Boolean)).toBe(true);
     expect(new Set(urls).size).toBe(headwords.length);
   });
+
+  it("preserves first-party typography provenance", () => {
+    const image = getWordImage("ts", { safetyText: [] });
+
+    expect(image?.source).toBe("itzli");
+    expect(image?.license).toBe("First-party generated typography");
+  });
 });
