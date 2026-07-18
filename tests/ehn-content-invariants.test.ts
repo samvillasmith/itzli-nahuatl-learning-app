@@ -164,6 +164,10 @@ describe("Eastern Huasteca content invariants", () => {
     }
   });
 
+  it("keeps machete out of the learner-facing curriculum", () => {
+    expect(isCoreVocabItem({ id: 641, headword: "machete", gloss_en: "machete" }, 29)).toBe(false);
+  });
+
   it("allows comparative or Classical labels only when primary-source verified", () => {
     const vocab = getAllPrimerVocab();
     const widerDialectRows = vocab.filter((entry) =>
@@ -186,7 +190,7 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(381);
+    expect(getVocabCount()).toBe(380);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
     ).toBe(173);

@@ -74,6 +74,9 @@ export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 27: Market
   622,  // michtlacualli - fish as food; teach core michi first
 
+  // Unit 29: Illness vocabulary
+  641,  // machete - unnecessary weapon/tool vocabulary for the learner path
+
   // ── Unit 30: The conditional, Part 1 ───────────────────────────────────
   669,  // tsimpa — buttock (off-topic in grammar unit; canonical of variant group)
   671,  // tzintamalli — buttock (variant of tsimpa)

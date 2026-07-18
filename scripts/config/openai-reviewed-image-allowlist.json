@@ -90,7 +90,7 @@
     {
       "headword": "tequi",
       "mode": "object-only",
-      "instruction": "Show already separated pieces of paper, wood, or food. No knife, blade, axe, weapon, person, animal, or cutting action."
+      "instruction": "Show only six already separated rectangles of colored paper arranged on a neutral surface. No person, face, hands, body, knife, blade, scissors, axe, weapon, animal, cutting action, text, letters, or numerals."
     },
     {
       "headword": "tiona",
@@ -446,6 +446,346 @@
       "headword": "yollōtl",
       "mode": "object-only",
       "instruction": "Show a simple non-anatomical heart-shaped craft or symbol-like object. No anatomical organ, body, blood, romance, kissing, people, or exposed body."
+    },
+    {
+      "headword": "motata",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed father age 50 or older beside a fully clothed adult child age 25 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "icni",
+      "mode": "adult-family",
+      "instruction": "Show two fully clothed adult siblings age 25 or older with one visibly elderly fully clothed parent. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "ixhui",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed adult grandson age 25 or older beside one visibly elderly fully clothed grandparent age 65 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "iicni",
+      "mode": "adult-family",
+      "instruction": "Show exactly three fully clothed people: two clearly mature adult brothers age 30 to 45 standing together, plus one visibly elderly parent age 65 or older behind them. All three must have mature adult faces. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "inana",
+      "mode": "adult-family",
+      "instruction": "Show exactly two fully clothed people: one visibly elderly mother age 65 or older with gray hair and one clearly mature adult son or daughter age 35 to 45. Both must have mature adult faces. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "itata",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed father age 50 or older beside a fully clothed adult child age 25 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "huelti",
+      "mode": "adult-family",
+      "instruction": "Show exactly three fully clothed people: two clearly mature adult sisters age 30 to 45 standing together, plus one visibly elderly parent age 65 or older behind them. All three must have mature adult faces. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "conepiya",
+      "mode": "object-only",
+      "instruction": "Use only an empty crib containing one teddy bear as an abstract symbol for having a child. No baby, child, teen, adult, body, bed for a person, bath, changing, medical context, or exposed skin."
+    },
+    {
+      "headword": "hueyitata",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed elderly grandfather age 65 or older beside a fully clothed adult descendant age 25 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "hueyinana",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed elderly grandmother age 65 or older beside a fully clothed adult descendant age 25 or older. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "achtihuiehquetl",
+      "mode": "adult-family",
+      "instruction": "Show one fully clothed oldest adult son or daughter age 30 or older with one visibly elderly fully clothed parent and one younger adult sibling age 25 or older. Every person must clearly be an adult. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "uejpol",
+      "mode": "adult-family",
+      "instruction": "Show fully clothed adult in-laws age 25 or older in a neutral family gathering with one visibly elderly fully clothed parent. No minors, babies, teens, beds, bathing, exposed bodies, romance, or vulnerable context."
+    },
+    {
+      "headword": "telpokatl",
+      "mode": "adult-only",
+      "instruction": "Show exactly one unmistakably adult man in his late twenties, age 29, with mature facial proportions, a strong jawline, and a full neat beard. Use a head-and-shoulders portrait in a slightly more realistic flat editorial style. He wears an opaque high-neck long-sleeve tunic visible from neck through chest; no lower body appears in the frame. No teen, minor, childlike face or proportions, exposed body, bathing, bed, romance, or suggestive pose."
+    },
+    {
+      "headword": "tahtzi",
+      "mode": "adult-only",
+      "instruction": "Show one fully clothed adult priest age 45 or older standing alone in a neutral community setting. No children, teens, students, ceremony, bed, bathing, exposed body, or vulnerable context."
+    },
+    {
+      "headword": "tlamachtihquetl",
+      "mode": "adult-only",
+      "instruction": "Show one fully clothed adult teacher age 35 or older alone in an empty classroom with a blank chalkboard. No children, teens, young-looking students, text, bed, bathing, exposed body, or vulnerable context."
+    },
+    {
+      "headword": "escuela",
+      "mode": "object-only",
+      "instruction": "Show only an empty classroom with several plain desks facing one completely blank dark-green chalkboard. No people, faces, silhouettes, photos, student work, signs, alphabet, writing, pseudo-writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "mococohua",
+      "mode": "object-only",
+      "instruction": "Show only neutral care objects such as herbs, a cup, and a closed medicine container. No patient, person, body, bed, bath, toilet, injury, procedure, distress, or exposed skin."
+    },
+    {
+      "headword": "cīntli",
+      "mode": "object-only",
+      "instruction": "Show only one fresh ear of corn or maize on a neutral surface. No human ear, person, body part, child, or text."
+    },
+    {
+      "headword": "huehcapantic",
+      "mode": "object-only",
+      "instruction": "Show only one very tall tree beside shorter trees or plants for scale. No people, bodies, children, ladders, climbing, or text."
+    },
+    {
+      "headword": "miquiliztli",
+      "mode": "object-only",
+      "instruction": "Show only a simple clean stylized skull-and-crossbones symbol as an abstract sign for death. No corpse, person, grave, body, severed parts, blood, injury, gore, violence, horror, or religious scene."
+    },
+    {
+      "headword": "tlapohualiztli",
+      "mode": "object-only",
+      "instruction": "Show only a neat arrangement of identical unlabeled counting beads or clay tokens in several rows. No people, hands, abacus labels, written numbers, numerals, letters, mathematical symbols, text, books, or paper."
+    },
+    {
+      "headword": "mati",
+      "mode": "object-only",
+      "instruction": "Illustrate knowledge using only a glowing lantern illuminating neatly connected puzzle pieces. No people, students, schools, books, paper, writing, letters, numerals, labels, or text."
+    },
+    {
+      "headword": "xihuitl",
+      "mode": "object-only",
+      "instruction": "Show only one large tree divided visually into four seasonal sections: blossoms, green leaves, autumn leaves, and bare winter branches. No people, calendar, clock, paper, writing, letters, numerals, labels, or text."
+    },
+    {
+      "headword": "ax aqui",
+      "mode": "object-only",
+      "instruction": "Show only an unmistakably empty chair in an empty room beside an open doorway. No people, faces, bodies, shadows shaped like people, silhouettes, photos, dolls, text, letters, or numerals."
+    },
+    {
+      "headword": "cuecuetzi",
+      "mode": "object-only",
+      "instruction": "Illustrate tiny using only one very small flower beside one ordinary larger flower for scale. No people, bodies, hands, measuring tools, text, letters, or numerals."
+    },
+    {
+      "headword": "iyolic",
+      "mode": "object-only",
+      "instruction": "Illustrate slow using only one ordinary snail moving along a leaf with a short dotted trail. No people, children, bodies, clock, text, letters, numerals, labels, or cartoon clothing."
+    },
+    {
+      "headword": "cholohua",
+      "mode": "animal-only",
+      "instruction": "Show only one ordinary adult deer running away across an open landscape. No people, children, hunters, weapons, traps, pursuit, injury, blood, death, exposed body, text, letters, or numerals."
+    },
+    {
+      "headword": "iztlacati",
+      "mode": "object-only",
+      "instruction": "Illustrate an untruth using only one clay pot in front of a mirror whose reflection shows a clearly different-shaped clay vessel. No people, faces, bodies, beds, speech bubbles, text, letters, numerals, labels, or writing."
+    },
+    {
+      "headword": "caxtiltecacamanalli",
+      "mode": "object-only",
+      "instruction": "Illustrate language using only an open completely blank book with two empty interlocking speech-bubble shapes above it. No people, flags, maps, writing, pseudo-writing, glyphs, letters, numerals, labels, logos, or readable marks."
+    },
+    {
+      "headword": "coztlaquemitl",
+      "mode": "object-only",
+      "instruction": "Show only one neatly folded traditional poncho on a plain wooden table. No person, mannequin, body, face, hands, clothing being worn, exposed skin, text, letters, numerals, labels, or logos."
+    },
+    {
+      "headword": "maneharoa",
+      "mode": "object-only",
+      "instruction": "Show only the exterior of one ordinary car traveling along a quiet road, viewed from outside with opaque windows and no visible driver or passenger. No people, bodies, faces, children, crash, injury, license-plate text, letters, numerals, labels, or logos."
+    },
+    {
+      "headword": "xitlahto",
+      "mode": "object-only",
+      "instruction": "Illustrate speaking using only one simple handheld megaphone with three plain curved sound-wave lines coming from it. No people, mouths, faces, bodies, children, speech bubbles, writing, pseudo-writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "icnotzi",
+      "mode": "object-only",
+      "instruction": "Illustrate being an orphan symbolically using only one solitary tree standing apart from two distant empty tree-shaped spaces in a quiet landscape. No people, children, babies, teens, faces, bodies, graves, death imagery, beds, distress, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "otonlalax",
+      "mode": "object-only",
+      "instruction": "Show only one ripe mandarin orange with one peeled segment and two green leaves on a plain neutral surface. No people, hands, faces, bodies, children, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "hueyatl",
+      "mode": "object-only",
+      "instruction": "Show only a broad unmistakably blue-turquoise river of visible rippling water winding through an empty green landscape beneath an open sky. The river must look like water, never like a road or orange path. No people, bodies, faces, children, swimmers, bathers, boats, animals, buildings, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "pochotl",
+      "mode": "object-only",
+      "instruction": "Show only one mature kapok or silk-cotton tree with a broad trunk, leafy canopy, and a few visible white cottony seed pods. No people, faces, bodies, hands, children, animals, buildings, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "gobierno",
+      "mode": "object-only",
+      "instruction": "Illustrate government using only one simple empty civic building with plain columns and a completely blank facade. No people, faces, bodies, flags, stars, seals, emblems, political symbols, signs, writing, pseudo-writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "nopano",
+      "mode": "object-only",
+      "instruction": "Illustrate there using only one small distant house across an open field beneath one tree. No people, hands, arrows, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "huehca",
+      "mode": "object-only",
+      "instruction": "Illustrate far away using only a broad landscape with tiny mountains on the distant horizon. No people, bodies, roads, vehicles, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "huehcapa",
+      "mode": "object-only",
+      "instruction": "Illustrate above using only one small cloud clearly positioned high above one tree. No people, bodies, arrows, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "alaxox",
+      "mode": "object-only",
+      "instruction": "Show only one ripe orange fruit with one cut segment and two green leaves. No people, hands, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "lalaxcuahuitl",
+      "mode": "object-only",
+      "instruction": "Show only one mature orange tree bearing visible orange fruit in an empty landscape. No people, bodies, ladders, baskets, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "pantzi",
+      "mode": "object-only",
+      "instruction": "Show only one plain fresh loaf of bread on a neutral cloth. No people, hands, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "peso",
+      "mode": "object-only",
+      "instruction": "Illustrate a peso using only a small stack of completely unmarked round coins. No banknotes, people, hands, portraits, national emblems, currency symbols, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tomin",
+      "mode": "object-only",
+      "instruction": "Illustrate money using only several completely unmarked round coins in a small open coin purse. No banknotes, people, hands, portraits, currency symbols, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cafe",
+      "mode": "object-only",
+      "instruction": "Show only one plain cup of dark coffee beside several roasted coffee beans. No people, hands, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cuatlahcayotl",
+      "mode": "object-only",
+      "instruction": "Show only a simple basket containing several recognizable fresh fruits. No people, hands, packaging, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cuaxilocuahuitl",
+      "mode": "object-only",
+      "instruction": "Show only one mature banana tree with one visible bunch of bananas. No people, bodies, ladders, tools, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cuaxilomiltitla",
+      "mode": "object-only",
+      "instruction": "Show only several orderly rows of mature banana trees in an empty plantation. No people, bodies, buildings, vehicles, tools, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "michi",
+      "mode": "animal-only",
+      "instruction": "Show only one ordinary living fish swimming underwater. No people, hands, fishing, hooks, nets, dead fish, exposed flesh, injury, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "nakatl",
+      "mode": "object-only",
+      "instruction": "Illustrate meat using only a fully cooked modest serving on a plain plate beside vegetables. No raw flesh, blood, animal body, butcher scene, knife, person, hand, injury, gore, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tlanamacac",
+      "mode": "adult-only",
+      "instruction": "Show exactly one clearly mature adult merchant age 35 or older standing behind a produce table, wearing an opaque high-neck long-sleeve shirt. Frame from head to table so the covered upper body is visible and the lower body is hidden behind the table. No children, teens, young-looking people, exposed body, price signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tzopelatl",
+      "mode": "object-only",
+      "instruction": "Show only one completely unlabeled glass bottle of fizzy soda beside a plain glass with visible bubbles. No people, hands, packaging, brand shapes, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tzopelictli",
+      "mode": "object-only",
+      "instruction": "Show only a small plain bowl of white sugar with several sugar cubes. No people, hands, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "zayolnectli",
+      "mode": "object-only",
+      "instruction": "Show only one completely unlabeled jar of golden honey beside one ordinary bee and a small honeycomb. No people, hands, packaging, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "icha",
+      "mode": "object-only",
+      "instruction": "Illustrate his, her, or its home using only one small welcoming house with a closed door in an empty yard. No people, animals, faces, ownership signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cecuiliztli",
+      "mode": "object-only",
+      "instruction": "Illustrate cold weather using only frost-covered leaves and a pale icy landscape. No people, bodies, clothing, beds, illness, injury, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "tecactli",
+      "mode": "object-only",
+      "instruction": "Show only one traditional woven sandal or huarache resting unworn on a neutral surface. No foot, leg, person, body, exposed skin, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "ahacatl",
+      "mode": "object-only",
+      "instruction": "Illustrate wind using only leaves and grasses bending in the same direction beneath an open sky. No people, bodies, buildings, damage, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "huicatl",
+      "mode": "object-only",
+      "instruction": "Illustrate a song using only one small hand drum and three simple floating musical-note symbols. No people, mouths, faces, bodies, writing, letters, numerals, labels, lyrics, logos, or text."
+    },
+    {
+      "headword": "ilwikatl",
+      "mode": "object-only",
+      "instruction": "Show only a clearly recognizable blue daytime sky with exactly two simple clouds. Do not include a horizon, ground, sun, people, bodies, aircraft, buildings, signs, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "sitlalli",
+      "mode": "object-only",
+      "instruction": "Show only one bright natural star in a dark night sky above a low empty horizon. No people, bodies, flags, political or religious symbols, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "weyiatl",
+      "mode": "object-only",
+      "instruction": "Show only a broad blue-green sea with gentle waves meeting an empty shoreline beneath an open sky. No people, swimmers, bathers, boats, animals, buildings, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "ehquetl",
+      "mode": "adult-only",
+      "instruction": "Show exactly one clearly mature adult resident age 40 or older standing beside a small house, wearing opaque modest long-sleeve clothing with an unmistakably adult face. No children, teens, young-looking people, exposed body, bed, bathing, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "chicuei",
+      "mode": "object-only",
+      "instruction": "Illustrate eight using exactly eight identical unlabeled clay counting tokens arranged in two rows of four. No people, hands, written number, numeral, letters, mathematical symbols, labels, logos, or text."
+    },
+    {
+      "headword": "caxitl",
+      "mode": "object-only",
+      "instruction": "Show only one traditional stone grinding bowl with a matching grinding stone resting beside it. No people, hands, body parts, food preparation, knives, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "cehuetzi",
+      "mode": "object-only",
+      "instruction": "Illustrate hail using only small white hailstones falling onto an empty green field beneath gray clouds. No people, bodies, buildings, vehicles, damage, writing, letters, numerals, labels, logos, or text."
+    },
+    {
+      "headword": "nochipa",
+      "mode": "object-only",
+      "instruction": "Illustrate always using only one perfect unbroken golden circular ring surrounding one evergreen tree. The ring must be continuous with no arrowhead or gap. No people, clocks, calendars, sun, moon, writing, letters, numerals, labels, logos, or text."
     }
   ]
 }

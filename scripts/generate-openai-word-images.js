@@ -9,7 +9,9 @@
  */
 
 const fs = require("fs");
+const Module = require("module");
 const path = require("path");
+const ts = require("typescript");
 const Database = require("better-sqlite3");
 const { resolveDbPath } = require("./_db-path");
 
@@ -20,11 +22,11 @@ const SOURCE_COURSE_PATH = path.join(ROOT, "src", "data", "nahuatlahtolli-course
 const OPENAI_MANIFEST_PATH = path.join(ROOT, "src", "data", "openai-word-images.json");
 const S3_MANIFEST_PATH = path.join(ROOT, "src", "data", "s3-word-images.json");
 const LEGACY_MANIFEST_PATH = path.join(ROOT, "src", "data", "word-images.json");
-const EXCLUDED_VOCAB_PATH = path.join(ROOT, "src", "data", "excluded-vocab.ts");
 const BLOCKLIST_PATH = path.join(ROOT, "scripts", "config", "openai-word-image-blocklist.json");
 const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "scripts", "config", "openai-reviewed-image-allowlist.json");
 const APP_CONTENT_EXCLUSIONS_PATH = path.join(ROOT, "src", "data", "app-content-exclusions.json");
 const SKIPPED_AUDIT_PATH = path.join(ROOT, "data", "openai-word-images-skipped.json");
+const REJECTED_AUDIT_PATH = path.join(ROOT, "data", "openai-word-images-rejected.json");
 const PENDING_MANIFEST_PATH = path.join(ROOT, "data", "openai-word-images-pending.json");
 const S3_IMAGE_BASE_URL =
   process.env.OPENAI_IMAGE_PUBLIC_BASE_URL ||
@@ -66,89 +68,12 @@ const DEFAULTS = {
   outputUnitCostUsd: Number(process.env.OPENAI_IMAGE_UNIT_COST_USD || "0.042"),
   inputTokenCostPerMillionUsd: Number(process.env.OPENAI_IMAGE_INPUT_TOKEN_COST_USD || "5"),
   concurrency: Number(process.env.OPENAI_IMAGE_CONCURRENCY || "1"),
+  visionReviewModel: process.env.OPENAI_IMAGE_REVIEW_MODEL || "gpt-4.1-mini",
   outDir:
     process.env.OPENAI_IMAGE_OUT_DIR ||
     path.join(ROOT, "public", "generated", "word-images", "openai"),
   source: process.env.OPENAI_IMAGE_SOURCE || "all",
   delayMs: Number(process.env.OPENAI_IMAGE_DELAY_MS || "600"),
-};
-
-const QUESTIONABLE_GLOSS_MARKERS = [
-  "misplaced",
-  "off-theme",
-  "non-standard",
-  "not standard",
-  "possible data error",
-  "not widely attested",
-  "not a core",
-  "not attested",
-  "likely corruption",
-  "classical only",
-  "central nahuatl",
-  "comparative",
-  "dubious",
-  "uncertain",
-  "fabricated",
-  "wrong definition",
-  "not ehn",
-  "not learner-facing",
-  "mythological only",
-  "specialized",
-  "obscure",
-  "data error",
-];
-
-const CORE_VOCAB_LIMITS = {
-  9: 28,
-  10: 28,
-  21: 30,
-  27: 30,
-  29: 28,
-  33: 24,
-  34: 28,
-  35: 28,
-  36: 28,
-  37: 32,
-  38: 32,
-  39: 28,
-  40: 32,
-  41: 28,
-  42: 32,
-  43: 28,
-};
-
-const FOCUSED_SEMANTIC_DOMAINS = {
-  33: new Set(["months"]),
-  34: new Set(["numbers", "curated_expansion"]),
-  35: new Set(["colors", "sizes_shapes"]),
-  36: new Set(["qualities", "curated_expansion"]),
-  37: new Set(["animals"]),
-  38: new Set(["food_extra", "curated_expansion"]),
-  39: new Set(["household"]),
-  40: new Set(["nature", "curated_expansion"]),
-  41: new Set(["community"]),
-  42: new Set(["verbs_extra"]),
-  43: new Set(["adverbs", "curated_expansion"]),
-};
-
-const FOCUSED_THEME_PATTERNS = {
-  33: /\b(month|week|day|year|morning|night|dawn|today|tomorrow|yesterday|time|january|february|march|april|may|june|july|august|september|october|november|december)\b/i,
-  34: /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|hundred|first|second|third|times|count|number)\b/i,
-  35: /\b(color|colour|red|blue|green|yellow|white|black|brown|pink|grey|gray|orange|purple|big|small|tall|short|long|wide|round|flat|straight|thick|thin)\b/i,
-  36: /\b(good|bad|new|old|hard|difficult|easy|expensive|cheap|pure|dirty|clean|cooked|hot|cold|warm|dry|wet|heavy|light|strong|weak|happy|sad|sick|healthy|hungry|thirsty|sweet|bitter|sour|tasty|dark|bright)\b/i,
-  37: /\b(animal|bird|fish|snake|dog|cat|horse|pig|chicken|turkey|deer|rabbit|frog|bee|ant|spider|duck|sheep|turtle|donkey|grasshopper|worm|dove|heron)\b/i,
-  38: /\b(food|eat|corn|maize|bean|chili|tortilla|atole|sugar|squash|fruit|guava|jicama|milk|pineapple|avocado|pumpkin|drink|sauce|dough|tamal|honey|meat|salt)\b/i,
-  39: /\b(house|home|room|door|table|chair|mat|blanket|pot|cup|bowl|basket|letter|writing|mirror|soap|stairs|garden|kitchen|hearth|tool|trap|sack|book)\b/i,
-  40: /\b(water|river|lake|rain|cloud|wind|sky|sun|moon|star|earth|stone|rock|mountain|field|sand|tree|leaf|root|flower|grass|ice|fire|cave|thorn|rainbow|flame)\b/i,
-  41: /\b(person|city|village|town|community|friend|doctor|man|woman|sir|soldier|hunter|priest|musician|traveler|festival|hospital|humanity|worker|teacher)\b/i,
-  42: /\bto\s+[a-z]/i,
-  43: /\b(again|always|never|often|much|little|very|more|also|still|already|just|only|here|there|near|where|how|when|suddenly|slowly|quickly|well|thus|together|first|later|afterwards|beforehand)\b/i,
-};
-
-const FOCUSED_BLOCK_PATTERNS = {
-  40: /\bice cream\b/i,
-  41: /\b(german|spaniard|guatemalan|blouse|skirt)\b/i,
-  43: /\b(bag|cub|puma)\b/i,
 };
 
 function parseArgs(argv) {
@@ -195,6 +120,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === "--model") {
       args.model = value;
+      i += 1;
+    } else if (arg === "--review-model") {
+      args.visionReviewModel = value;
       i += 1;
     } else if (arg === "--quality") {
       args.quality = value;
@@ -271,6 +199,7 @@ Options:
   --ids a,b,c                      Only generate selected vocab/source ids
   --lessons 1,2,3                  Only generate selected lesson numbers
   --model MODEL                    Default: ${DEFAULTS.model}
+  --review-model MODEL             Post-generation visual safety reviewer. Default: ${DEFAULTS.visionReviewModel}
   --quality low|medium|high|auto   Default: ${DEFAULTS.quality}
   --size 1024x1024|1024x1536|1536x1024|auto
   --format png|webp|jpeg           Default: ${DEFAULTS.outputFormat}
@@ -335,104 +264,86 @@ function sanitizeGloss(gloss) {
     .trim();
 }
 
-function hasExcludedGloss(gloss) {
-  const normalized = String(gloss || "").toLowerCase();
-  return QUESTIONABLE_GLOSS_MARKERS.some((blocker) => normalized.includes(blocker));
+let projectTsLoaderInstalled = false;
+
+function installProjectTsLoader() {
+  if (projectTsLoaderInstalled) return;
+  projectTsLoaderInstalled = true;
+  const originalResolveFilename = Module._resolveFilename;
+
+  Module._resolveFilename = function resolveProjectAlias(request, parent, isMain, options) {
+    if (typeof request === "string" && request.startsWith("@/")) {
+      const resolved = path.join(ROOT, "src", request.slice(2));
+      const withTs = fs.existsSync(`${resolved}.ts`) ? `${resolved}.ts` : resolved;
+      return originalResolveFilename.call(this, withTs, parent, isMain, options);
+    }
+    return originalResolveFilename.call(this, request, parent, isMain, options);
+  };
+
+  require.extensions[".ts"] = function compileTypeScriptModule(mod, filename) {
+    const source = fs.readFileSync(filename, "utf8");
+    const output = ts.transpileModule(source, {
+      compilerOptions: {
+        module: ts.ModuleKind.CommonJS,
+        target: ts.ScriptTarget.ES2020,
+        esModuleInterop: true,
+        resolveJsonModule: true,
+      },
+      fileName: filename,
+    }).outputText;
+    mod._compile(output, filename);
+  };
 }
 
-function loadExcludedVocabIds() {
-  const text = fs.readFileSync(EXCLUDED_VOCAB_PATH, "utf8");
-  const match = text.match(/EXCLUDED_VOCAB_IDS:[\s\S]*?new Set\(\[([\s\S]*?)\]\)/);
-  if (!match) return new Set();
-
-  const uncommented = match[1].replace(/\/\/.*$/gm, "");
-  return new Set([...uncommented.matchAll(/\b\d+\b/g)].map((item) => Number(item[0])));
-}
-
-function isFocusedLexiconMatch(item, lessonNumber) {
-  const pattern = FOCUSED_THEME_PATTERNS[lessonNumber];
-  if (!pattern) return true;
-
-  const gloss = item.gloss || "";
-  const blocked = FOCUSED_BLOCK_PATTERNS[lessonNumber];
-  if (blocked?.test(gloss)) return false;
-
-  const pos = String(item.partOfSpeech || "").toLowerCase();
-  if (lessonNumber === 34) return /^(num|number|adv|adverb)$/.test(pos) && pattern.test(gloss);
-  if (lessonNumber === 35) return (pos === "adj" || pos === "adjective") && pattern.test(gloss);
-  if (lessonNumber === 36) {
-    return (pos === "adj" || pos === "adjective" || pos === "verb") && pattern.test(gloss);
-  }
-  if (lessonNumber === 42) return pos === "verb" && pattern.test(gloss);
-  if (lessonNumber === 43) {
-    return /^(adv|adverb|particle|conj|conjunction|prep|preposition)$/.test(pos) && pattern.test(gloss);
-  }
-
-  return pattern.test(gloss);
-}
-
-function isCoreVocabItem(item, excludedIds) {
-  if (excludedIds.has(Number(item.id))) return false;
-  if (hasExcludedGloss(item.gloss)) return false;
-
-  const lessonNumber = item.lessonNumber || 0;
-  const focusedDomains = FOCUSED_SEMANTIC_DOMAINS[lessonNumber];
-  if (!focusedDomains) return true;
-
-  const domain = item.semanticDomain || "";
-  if (focusedDomains.has(domain)) return true;
-  if (domain.startsWith("lexicon_")) return isFocusedLexiconMatch(item, lessonNumber);
-  return true;
-}
-
-function filterCoreRows(rows, excludedIds) {
-  const byLesson = new Map();
-  for (const row of rows) {
-    const lessonRows = byLesson.get(row.lessonNumber) || [];
-    lessonRows.push(row);
-    byLesson.set(row.lessonNumber, lessonRows);
-  }
-
-  return [...byLesson.entries()]
-    .sort(([a], [b]) => a - b)
-    .flatMap(([lessonNumber, lessonRows]) => {
-      const filtered = lessonRows.filter((row) => isCoreVocabItem(row, excludedIds));
-      const limit = CORE_VOCAB_LIMITS[lessonNumber];
-      return (typeof limit === "number" ? filtered.slice(0, limit) : filtered).map((row) => ({
-        ...row,
-        gloss: sanitizeGloss(row.gloss),
-      }));
-    });
+function loadProductionCoreTools() {
+  installProjectTsLoader();
+  const { filterCoreVocab } = require(path.join(ROOT, "src", "data", "excluded-vocab.ts"));
+  const { collapseVariants } = require(path.join(ROOT, "src", "data", "variant-groups.ts"));
+  const { orthographySearchVariants } = require(path.join(ROOT, "src", "lib", "orthography.ts"));
+  return { filterCoreVocab, collapseVariants, orthographySearchVariants };
 }
 
 function loadCoreRows(args) {
+  const { filterCoreVocab, collapseVariants } = loadProductionCoreTools();
   const db = new Database(resolveDbPath(), { readonly: true });
   const rows = db
     .prepare(
-      `SELECT id, lesson_number AS lessonNumber, rank,
-              display_form AS headword, gloss_en AS gloss,
-              part_of_speech AS partOfSpeech,
-              semantic_domain AS semanticDomain
+      `SELECT id, entry_id, rank, display_form AS headword, display_form,
+              gloss_en, part_of_speech,
+              lesson_number, lesson_number AS first_lesson_number,
+              semantic_domain
        FROM lesson_vocab
        WHERE display_form IS NOT NULL
          AND length(trim(display_form)) > 0
        ORDER BY lesson_number, rank, id`
     )
-    .all()
+    .all();
+  db.close();
+
+  const byLesson = new Map();
+  for (const row of rows) {
+    const lessonRows = byLesson.get(row.lesson_number) || [];
+    lessonRows.push(row);
+    byLesson.set(row.lesson_number, lessonRows);
+  }
+
+  return [...byLesson.entries()]
+    .sort(([a], [b]) => a - b)
+    .flatMap(([lessonNumber, lessonRows]) =>
+      collapseVariants(filterCoreVocab(lessonRows, lessonNumber), lessonNumber).cards
+    )
     .map((row) => ({
       source: "core",
       sourceId: String(row.id),
       id: row.id,
-      lessonNumber: row.lessonNumber,
+      lessonNumber: row.first_lesson_number,
       rank: row.rank,
       headword: row.headword,
-      gloss: row.gloss,
-      partOfSpeech: row.partOfSpeech,
-      semanticDomain: row.semanticDomain,
-    }));
-  db.close();
-
-  return filterCoreRows(rows, loadExcludedVocabIds()).filter((row) => includeRow(args, row));
+      gloss: row.gloss_en,
+      partOfSpeech: row.part_of_speech,
+      semanticDomain: row.semantic_domain,
+    }))
+    .filter((row) => includeRow(args, row));
 }
 
 function loadSourceCourseRows(args) {
@@ -514,8 +425,8 @@ function isWordLike(row, args) {
   const headword = String(row.headword || "").trim();
   if (!headword) return false;
 
-  const pos = String(row.partOfSpeech || "").toLowerCase();
-  if (pos === "letter" || pos === "phoneme") return false;
+  if (isTypographyItem(row)) return headword.length <= 80;
+  if (row.source === "core") return headword.length <= 160;
 
   if (headword.length > 80) return false;
   if (/\d/.test(headword)) return false;
@@ -528,6 +439,11 @@ function isWordLike(row, args) {
   if (words.length > 4) return false;
 
   return true;
+}
+
+function isTypographyItem(row) {
+  const pos = String(row.partOfSpeech || "").toLowerCase();
+  return pos === "letter" || pos === "phoneme";
 }
 
 function loadBlocklist() {
@@ -664,7 +580,7 @@ function buildPrompt(item, blocklist, reviewedAllowlist) {
       : "";
   const objectOnly =
     classifyObjectOnly(item, blocklist) ||
-    (reviewed && ["object-only", "bird-only"].includes(reviewed.mode)
+    (reviewed && ["object-only", "bird-only", "animal-only"].includes(reviewed.mode)
       ? { category: "reviewed-object-only", match: reviewed.headword }
       : null);
   const key = normalizeSafetyKey(item.headword);
@@ -690,7 +606,9 @@ function buildPrompt(item, blocklist, reviewedAllowlist) {
   return [
     "Create one family-safe vocabulary-card illustration for a Nahuatl language-learning app.",
     `Target word: ${item.headword}.`,
-    `Meaning to illustrate: ${gloss}.`,
+    reviewed && objectOnly
+      ? `Approved composition to illustrate instead of the literal meaning: ${reviewed.instruction}`
+      : `Meaning to illustrate: ${gloss}.`,
     extraGlosses,
     "Style: warm flat editorial illustration with a hand-cut paper feel, subtle printed grain, cream parchment background, simple rounded geometric shapes, bold dark-brown accent lines, and a restrained palette of terracotta, marigold, cacao brown, leaf green, and soft cream.",
     "Composition: square image, centered object or friendly everyday scene, uncluttered, easy to understand at small flashcard size. Leave a quiet cream band at the bottom where the app can render the word label.",
@@ -699,7 +617,7 @@ function buildPrompt(item, blocklist, reviewedAllowlist) {
     childSafetyLine,
     "For allowed health or care concepts, use neutral objects such as simple containers, herbs, or calm household items. Do not show patients, procedures, injuries, distress, or exposed bodies.",
     objectOnly
-      ? "Object-only safety override: do not show people, faces, hands, feet, silhouettes, patients, beds with people, people in water, or anyone receiving care. Use only neutral objects, plants, landscapes, weather, food, tools, furniture, containers, or symbolic scenes."
+      ? "Object-only safety override: do not show people, faces, hands, feet, human silhouettes, patients, beds with people, people in water, or anyone receiving care. Use only the specifically approved neutral objects, animals, plants, landscapes, weather, food, tools, furniture, containers, or symbolic scenes."
       : "",
     specificComposition,
     reviewedRestriction,
@@ -728,10 +646,30 @@ function publicUrlFor(args, outPath) {
 }
 
 function manifestEntryFor(manifest, headword) {
-  const direct = manifest[headword];
-  if (direct) return direct;
-  const key = normalizeKey(headword);
-  const matchedKey = Object.keys(manifest).find((value) => normalizeKey(value) === key && manifest[value]);
+  const { orthographySearchVariants } = loadProductionCoreTools();
+  for (const variant of orthographySearchVariants(headword)) {
+    if (manifest[variant]) return manifest[variant];
+  }
+
+  const normalizeImageHeadword = (value) =>
+    String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[¿¡?!.\,"'“”‘’()[\]{}]+/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  const key = normalizeImageHeadword(headword);
+  if (key.length <= 1) return null;
+  const variants = new Set(
+    orthographySearchVariants(headword)
+      .map(normalizeImageHeadword)
+      .filter((value) => value.length > 1)
+  );
+  variants.add(key);
+  const matchedKey = Object.keys(manifest).find(
+    (value) => variants.has(normalizeImageHeadword(value)) && manifest[value]
+  );
   return matchedKey ? manifest[matchedKey] : null;
 }
 
@@ -754,11 +692,21 @@ function hasExistingAnyImage(item, manifests) {
   );
 }
 
+function pendingEntryHasReviewedFile(entry) {
+  const reviewPassed =
+    entry?.automated_safety_review === "deterministic-typography" ||
+    entry?.automated_safety_review?.pass === true;
+  if (!entry?.local_path || !reviewPassed) return false;
+  const filePath = path.resolve(ROOT, entry.local_path);
+  return filePath.startsWith(ROOT + path.sep) && fs.existsSync(filePath);
+}
+
 function preparePlan(args) {
   const manifests = {
     openai: readJson(OPENAI_MANIFEST_PATH, {}),
     s3: readJson(S3_MANIFEST_PATH, {}),
     legacy: readJson(LEGACY_MANIFEST_PATH, {}),
+    pending: readJson(PENDING_MANIFEST_PATH, {}),
   };
   const blocklist = loadBlocklist();
   const reviewedAllowlist = loadReviewedAllowlist();
@@ -772,8 +720,30 @@ function preparePlan(args) {
   const rows = [];
 
   for (const item of vocabulary) {
+    const renderMode = isTypographyItem(item) ? "typography" : "openai";
     const reviewed = reviewedAllowlistEntry(item, reviewedAllowlist);
-    const appExclusion = classifyAppExcluded(item, appExclusions);
+    const pendingEntry = manifestEntryFor(manifests.pending, item.headword);
+    if (!args.force && pendingEntryHasReviewedFile(pendingEntry)) {
+      existing.push({ ...item, existingReason: "pending-reviewed-file" });
+      continue;
+    }
+    const activeEntry = manifestEntryFor(manifests.openai, item.headword);
+    const activeRendererAlreadyPublished =
+      openaiEntryHasFile(activeEntry) &&
+      (renderMode === "openai" || activeEntry?.source === "itzli");
+    if (!args.force && activeRendererAlreadyPublished) {
+      existing.push({
+        ...item,
+        existingReason: renderMode === "typography" ? "typography-manifest" : "openai-manifest",
+      });
+      continue;
+    }
+    if (renderMode === "openai" && !args.force && args.missingOnly && hasExistingAnyImage(item, manifests)) {
+      existing.push({ ...item, existingReason: "any-image-manifest" });
+      continue;
+    }
+
+    const appExclusion = renderMode === "openai" ? classifyAppExcluded(item, appExclusions) : null;
     if (appExclusion && !reviewed) {
       const blockedItem = {
         ...item,
@@ -785,7 +755,7 @@ function preparePlan(args) {
       continue;
     }
 
-    const block = classifyBlocked(item, blocklist);
+    const block = renderMode === "openai" ? classifyBlocked(item, blocklist) : null;
     if (block && !reviewed) {
       const blockedItem = { ...item, block };
       imageExcluded.push(blockedItem);
@@ -793,41 +763,24 @@ function preparePlan(args) {
       continue;
     }
 
-    const openaiAlready = openaiEntryHasFile(manifestEntryFor(manifests.openai, item.headword));
-    if (!args.force && openaiAlready) {
-      existing.push({ ...item, existingReason: "openai-manifest" });
-      continue;
-    }
-    if (!args.force && args.missingOnly && hasExistingAnyImage(item, manifests)) {
-      existing.push({ ...item, existingReason: "any-image-manifest" });
-      continue;
-    }
-
     const outPath = outputPathFor(args, item);
-    if (!args.force && fs.existsSync(outPath)) {
-      localFiles.push({
-        ...item,
-        reviewed,
-        prompt: buildPrompt(item, blocklist, reviewedAllowlist),
-        outPath,
-      });
-      continue;
-    }
-
     rows.push({
       ...item,
       reviewed,
-      prompt: buildPrompt(item, blocklist, reviewedAllowlist),
+      renderMode,
+      prompt: renderMode === "openai" ? buildPrompt(item, blocklist, reviewedAllowlist) : "",
       outPath,
     });
   }
 
   const limitedRows = args.limit > 0 ? rows.slice(0, args.limit) : rows;
-  const totalPromptTokens = limitedRows.reduce(
+  const openaiRows = limitedRows.filter((item) => item.renderMode === "openai");
+  const typographyRows = limitedRows.filter((item) => item.renderMode === "typography");
+  const totalPromptTokens = openaiRows.reduce(
     (sum, item) => sum + Math.ceil(item.prompt.length / 4),
     0
   );
-  const outputUsd = limitedRows.length * args.outputUnitCostUsd;
+  const outputUsd = openaiRows.length * args.outputUnitCostUsd;
   const inputUsd = (totalPromptTokens / 1_000_000) * args.inputTokenCostPerMillionUsd;
 
   return {
@@ -838,6 +791,8 @@ function preparePlan(args) {
     existing,
     localFiles,
     rows: limitedRows,
+    openaiRows,
+    typographyRows,
     omittedByLimit: rows.length - limitedRows.length,
     cost: {
       outputUsd,
@@ -863,6 +818,8 @@ function printPlan(args, plan) {
   console.log(`Existing skipped:   ${plan.existing.length}`);
   console.log(`Local files index:  ${plan.localFiles.length}`);
   console.log(`To generate:        ${plan.rows.length}`);
+  console.log(`  OpenAI images:    ${plan.openaiRows.length}`);
+  console.log(`  Typography cards: ${plan.typographyRows.length}`);
   if (plan.omittedByLimit > 0) console.log(`Omitted by --limit:  ${plan.omittedByLimit}`);
   console.log("");
   console.log(`Model:              ${args.model}`);
@@ -875,7 +832,7 @@ function printPlan(args, plan) {
   console.log("");
 
   console.log("Prompt/style preview");
-  for (const item of plan.rows.slice(0, 3)) {
+  for (const item of plan.openaiRows.slice(0, 3)) {
     console.log(`\n[${item.sourceIds.join(", ")}] ${item.headword} — ${item.gloss || item.glosses[0] || ""}`);
     console.log(item.prompt.split("\n").map((line) => `  ${line}`).join("\n"));
   }
@@ -926,6 +883,8 @@ function writePlanFile(args, plan) {
           existing: plan.existing.length,
           local_files: plan.localFiles.length,
           to_generate: plan.rows.length,
+          openai_images: plan.openaiRows.length,
+          typography_cards: plan.typographyRows.length,
           omitted_by_limit: plan.omittedByLimit,
         },
         cost: plan.cost,
@@ -935,6 +894,7 @@ function writePlanFile(args, plan) {
           glosses: item.glosses || [],
           lesson_number: item.lessonNumber,
           source_ids: item.sourceIds,
+          render_mode: item.renderMode,
           reviewed_allowlist: item.reviewed || null,
           out_path: path.relative(ROOT, item.outPath),
         })),
@@ -1012,13 +972,16 @@ async function generateOne(client, args, item) {
     throw new Error("OpenAI image response did not include b64_json data.");
   }
 
+  const rawBuffer = Buffer.from(image.b64_json, "base64");
+  const buffer = await removeGeneratedLabelBand(rawBuffer, args.outputFormat);
+  const reviewedBase64 = buffer.toString("base64");
   const moderation = await client.moderations.create({
     model: "omni-moderation-latest",
     input: [
       {
         type: "image_url",
         image_url: {
-          url: `data:image/${args.outputFormat};base64,${image.b64_json}`,
+          url: `data:image/${args.outputFormat};base64,${reviewedBase64}`,
         },
       },
     ],
@@ -1031,30 +994,220 @@ async function generateOne(client, args, item) {
     throw new Error(`Generated image failed visual moderation: ${categories.join(", ")}`);
   }
 
-  const buffer = Buffer.from(image.b64_json, "base64");
+  const safetyReview = await reviewGeneratedImage(client, args, item, reviewedBase64);
   fs.writeFileSync(item.outPath, buffer);
-  return { bytes: buffer.length, usage: response.usage };
+  return { bytes: buffer.length, usage: response.usage, safetyReview };
+}
+
+async function removeGeneratedLabelBand(buffer, outputFormat) {
+  const sharp = require("sharp");
+  const metadata = await sharp(buffer).metadata();
+  const width = metadata.width || 1024;
+  const height = metadata.height || 1024;
+  const retainedHeight = Math.max(1, Math.floor(height * 0.74));
+  return sharp(buffer)
+    .extract({ left: 0, top: 0, width, height: retainedHeight })
+    .extend({
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: height - retainedHeight,
+      background: "#fbf1d8",
+    })
+    .toFormat(outputFormat)
+    .toBuffer();
+}
+
+async function reviewGeneratedImage(client, args, item, imageBase64) {
+  const reviewedRestriction = item.reviewed?.instruction || "No card-specific exception.";
+  const response = await client.responses.create({
+    model: args.visionReviewModel,
+    store: false,
+    instructions:
+      "You are a fail-closed visual safety reviewer for a general-audience language-learning app. " +
+      "Inspect the actual image, not merely the requested prompt. When age, clothing coverage, body exposure, or context is ambiguous, fail it. Return only the required JSON.",
+    input: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "input_text",
+            text: [
+              `Card: ${item.headword}`,
+              `Meaning: ${item.gloss || item.glosses?.[0] || ""}`,
+              `Required composition: ${reviewedRestriction}`,
+              "Hard rules: no babies, children, teens, students who could be minors, or childlike figures; all visible people must clearly be adults age 25+ and fully clothed in opaque modest clothing with covered torso, chest, abdomen, hips, thighs, and legs; no bare feet; no nudity or ambiguous covered-body exposure; no bathing, showering, changing, toilet, urination, defecation, body waste, sexual content, suggestive pose, person in a bed, vulnerable care scene, injury, blood, or gore; no text, letters, numerals, logos, labels, or watermarks. The only generated exception is the exact card-specific composition above, if one is stated.",
+              "Set pass=false if any rule fails or if the requested concept/composition is not clearly depicted.",
+            ].join("\n"),
+          },
+          {
+            type: "input_image",
+            detail: "high",
+            image_url: `data:image/${args.outputFormat};base64,${imageBase64}`,
+          },
+        ],
+      },
+    ],
+    text: {
+      format: {
+        type: "json_schema",
+        name: "vocabulary_image_safety_review",
+        strict: true,
+        schema: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            pass: { type: "boolean" },
+            reasons: { type: "array", items: { type: "string" } },
+            contains_people: { type: "boolean" },
+            contains_minor_or_childlike_person: { type: "boolean" },
+            all_people_clearly_adult_25_plus_and_fully_clothed: { type: "boolean" },
+            contains_nudity_or_ambiguous_covered_body_exposure: { type: "boolean" },
+            contains_bathing_showering_or_changing: { type: "boolean" },
+            contains_toilet_urination_defecation_or_body_waste: { type: "boolean" },
+            contains_sexual_or_suggestive_content: { type: "boolean" },
+            contains_person_in_bed_or_vulnerable_care_scene: { type: "boolean" },
+            contains_injury_blood_or_gore: { type: "boolean" },
+            contains_unapproved_text_letters_numbers_logo_or_watermark: { type: "boolean" },
+            visible_unapproved_text: { type: "string" },
+            unapproved_text_location: { type: "string" },
+            matches_requested_concept_and_composition: { type: "boolean" },
+          },
+          required: [
+            "pass",
+            "reasons",
+            "contains_people",
+            "contains_minor_or_childlike_person",
+            "all_people_clearly_adult_25_plus_and_fully_clothed",
+            "contains_nudity_or_ambiguous_covered_body_exposure",
+            "contains_bathing_showering_or_changing",
+            "contains_toilet_urination_defecation_or_body_waste",
+            "contains_sexual_or_suggestive_content",
+            "contains_person_in_bed_or_vulnerable_care_scene",
+            "contains_injury_blood_or_gore",
+            "contains_unapproved_text_letters_numbers_logo_or_watermark",
+            "visible_unapproved_text",
+            "unapproved_text_location",
+            "matches_requested_concept_and_composition",
+          ],
+        },
+      },
+    },
+  });
+
+  if (!response.output_text) throw new Error("Visual safety review returned no verdict.");
+  const review = JSON.parse(response.output_text);
+  const forbidden = [
+    "contains_minor_or_childlike_person",
+    "contains_nudity_or_ambiguous_covered_body_exposure",
+    "contains_bathing_showering_or_changing",
+    "contains_toilet_urination_defecation_or_body_waste",
+    "contains_sexual_or_suggestive_content",
+    "contains_person_in_bed_or_vulnerable_care_scene",
+    "contains_injury_blood_or_gore",
+    "contains_unapproved_text_letters_numbers_logo_or_watermark",
+  ];
+  const hardFailures = forbidden.filter((field) => review[field] === true);
+  if (review.contains_people && !review.all_people_clearly_adult_25_plus_and_fully_clothed) {
+    hardFailures.push("people_not_clearly_adult_25_plus_and_fully_clothed");
+  }
+  if (["object-only", "bird-only", "animal-only"].includes(item.reviewed?.mode) && review.contains_people) {
+    hardFailures.push("people_in_object_only_card");
+  }
+  if (!review.matches_requested_concept_and_composition) {
+    hardFailures.push("composition_mismatch");
+  }
+  if (review.contains_unapproved_text_letters_numbers_logo_or_watermark) {
+    hardFailures.push(
+      `visible_text=${review.visible_unapproved_text || "unreadable"}` +
+        ` at ${review.unapproved_text_location || "unknown location"}`
+    );
+  }
+  if (!review.pass || hardFailures.length) {
+    const reasons = [...new Set([...(review.reasons || []), ...hardFailures])];
+    const error = new Error(`Generated image failed strict vision review: ${reasons.join(", ")}`);
+    error.safetyReview = review;
+    throw error;
+  }
+  return review;
+}
+
+function typographyLines(headword) {
+  const value = String(headword || "").trim();
+  if (value === "k / kw") return ["k", "kw"];
+  const tokens = value.split(/\s+/).filter(Boolean);
+  if (tokens.length >= 5) {
+    const midpoint = Math.ceil(tokens.length / 2);
+    return [tokens.slice(0, midpoint).join("  "), tokens.slice(midpoint).join("  ")];
+  }
+  return [value];
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+async function renderTypographyCard(args, item) {
+  const sharp = require("sharp");
+  const lines = typographyLines(item.headword);
+  const longest = Math.max(...lines.map((line) => line.length));
+  const fontSize = lines.length > 1
+    ? Math.min(220, Math.max(140, 700 / longest))
+    : Math.min(430, Math.max(180, 780 / longest));
+  const lineGap = fontSize * 1.05;
+  const firstY = lines.length === 1 ? 500 : 380;
+  const text = lines
+    .map(
+      (line, index) =>
+        `<text x="512" y="${firstY + index * lineGap}" text-anchor="middle" dominant-baseline="middle" ` +
+        `font-family="Georgia, 'Times New Roman', serif" font-size="${fontSize}" font-weight="700" fill="#34241d">${escapeXml(line)}</text>`
+    )
+    .join("");
+  const svg = `
+    <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1024" height="1024" fill="#fbf1d8"/>
+      <rect x="70" y="70" width="884" height="710" rx="56" fill="#fffaf0" stroke="#d8c8a7" stroke-width="8"/>
+      <circle cx="154" cy="151" r="31" fill="#d85d35"/>
+      <path d="M850 120c49 0 89 40 89 89-49 0-89-40-89-89Z" fill="#3d7c54"/>
+      <path d="M814 166c0-45 36-81 81-81 0 45-36 81-81 81Z" fill="#e4a52d"/>
+      ${text}
+      <path d="M122 710h780" stroke="#e4a52d" stroke-width="11" stroke-linecap="round"/>
+      <rect y="802" width="1024" height="222" fill="#fbf1d8"/>
+    </svg>`;
+  const buffer = await sharp(Buffer.from(svg)).toFormat(args.outputFormat).toBuffer();
+  fs.mkdirSync(path.dirname(item.outPath), { recursive: true });
+  fs.writeFileSync(item.outPath, buffer);
+  return { bytes: buffer.length };
 }
 
 function updatePendingManifest(args, generated) {
   if (!generated.length) return;
   const manifest = readJson(PENDING_MANIFEST_PATH, {});
   for (const item of generated) {
+    const typography = item.renderMode === "typography";
     manifest[item.headword] = {
       proposed_url: publicUrlFor(args, item.outPath),
       local_path: path.relative(ROOT, item.outPath),
-      license: "OpenAI-generated image; review before publication",
-      author: args.model,
+      license: typography
+        ? "First-party generated typography; review before publication"
+        : "OpenAI-generated image; review before publication",
+      author: typography ? "Itzli typography renderer" : args.model,
       alt: item.gloss
         ? `Illustration for ${item.headword}: ${item.gloss}`
         : `Illustration for ${item.headword}`,
-      source: "openai",
-      model: args.model,
-      quality: args.quality,
+      source: typography ? "itzli" : "openai",
+      model: typography ? null : args.model,
+      quality: typography ? null : args.quality,
       size: args.size,
       output_format: args.outputFormat,
       generated_at: new Date().toISOString(),
       review_status: "pending",
+      automated_safety_review: item.safetyReview || (typography ? "deterministic-typography" : null),
     };
   }
 
@@ -1063,6 +1216,21 @@ function updatePendingManifest(args, generated) {
   );
   fs.mkdirSync(path.dirname(PENDING_MANIFEST_PATH), { recursive: true });
   fs.writeFileSync(PENDING_MANIFEST_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
+}
+
+function appendRejectedAudit(item, error) {
+  const audit = readJson(REJECTED_AUDIT_PATH, []);
+  audit.push({
+    rejected_at: new Date().toISOString(),
+    headword: item.headword,
+    gloss: item.gloss || item.glosses?.[0] || "",
+    lesson_number: item.lessonNumber,
+    source_ids: item.sourceIds,
+    reason: error.message,
+    safety_review: error.safetyReview || null,
+  });
+  fs.mkdirSync(path.dirname(REJECTED_AUDIT_PATH), { recursive: true });
+  fs.writeFileSync(REJECTED_AUDIT_PATH, `${JSON.stringify(audit, null, 2)}\n`);
 }
 
 function writeSkippedAudit(plan) {
@@ -1108,10 +1276,10 @@ async function runPool(items, concurrency, worker) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const plan = preparePlan(args);
+  writePlanFile(args, plan);
 
   if (!args.execute) {
     printPlan(args, plan);
-    writePlanFile(args, plan);
     return;
   }
   if (plan.blocked.length) {
@@ -1124,7 +1292,7 @@ async function main() {
     process.exit(1);
   }
   printPlan(args, plan);
-  if (process.env.CONFIRM_IMAGE_SPEND !== "YES") {
+  if (plan.openaiRows.length && process.env.CONFIRM_IMAGE_SPEND !== "YES") {
     console.error("Refusing to call paid image generation without CONFIRM_IMAGE_SPEND=YES.");
     process.exit(1);
   }
@@ -1137,14 +1305,13 @@ async function main() {
     return;
   }
 
-  const client = await getOpenAIClient();
   const generated = [];
   let failed = 0;
   let completed = 0;
 
-  await runPool(plan.rows, args.concurrency, async (item) => {
+  for (const item of plan.typographyRows) {
     try {
-      const result = await generateOne(client, args, item);
+      const result = await renderTypographyCard(args, item);
       generated.push(item);
       updatePendingManifest(args, [item]);
       completed += 1;
@@ -1155,6 +1322,28 @@ async function main() {
     } catch (error) {
       failed += 1;
       completed += 1;
+      appendRejectedAudit(item, error);
+      console.error(`FAIL ${completed}/${plan.rows.length} ${item.headword}: ${error.message}`);
+    }
+  }
+
+  const client = plan.openaiRows.length ? await getOpenAIClient() : null;
+  await runPool(plan.openaiRows, args.concurrency, async (item) => {
+    try {
+      const result = await generateOne(client, args, item);
+      const reviewedItem = { ...item, safetyReview: result.safetyReview };
+      generated.push(reviewedItem);
+      updatePendingManifest(args, [reviewedItem]);
+      completed += 1;
+      console.log(
+        `OK   ${completed}/${plan.rows.length} ${item.headword} -> ` +
+          `${path.relative(ROOT, item.outPath)} (${result.bytes} bytes; strict review passed)`
+      );
+    } catch (error) {
+      failed += 1;
+      completed += 1;
+      if (fs.existsSync(item.outPath)) fs.rmSync(item.outPath);
+      appendRejectedAudit(item, error);
       console.error(`FAIL ${completed}/${plan.rows.length} ${item.headword}: ${error.message}`);
     }
     if (args.delayMs > 0) await delay(args.delayMs);

@@ -35,11 +35,17 @@ async function main() {
   const argv = process.argv.slice(2);
   const headword = valueAfter(argv, "--headword").trim();
   const publicUrl = valueAfter(argv, "--public-url").trim();
+  const reviewSource = valueAfter(argv, "--review-source").trim();
+  const reviewedSafeMatches = valueAfter(argv, "--reviewed-safe-matches")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
 
-  if (!headword || !publicUrl) {
+  if (!headword || !publicUrl || !reviewSource) {
     console.error(
       "Usage: CONFIRM_IMAGE_REVIEW=YES node scripts/approve-openai-word-image.js " +
-        "--headword <exact-headword> --public-url <uploaded-S3-url>"
+        "--headword <exact-headword> --public-url <uploaded-S3-url> " +
+        "--review-source <contact-sheet-path> [--reviewed-safe-matches word,word]"
     );
     process.exit(1);
   }
@@ -49,6 +55,12 @@ async function main() {
   }
   if (!publicUrl.startsWith(S3_PREFIX)) {
     console.error(`Public URL must use the project S3 image prefix: ${S3_PREFIX}`);
+    process.exit(1);
+  }
+  if (
+    !/^openai-(?:word|reviewed)-image-audit\/contact-sheet-\d{2}$/.test(reviewSource)
+  ) {
+    console.error("Review source must identify an exact approved contact sheet.");
     process.exit(1);
   }
 
@@ -75,7 +87,10 @@ async function main() {
   const active = readJson(ACTIVE_PATH, {});
   active[headword] = {
     url: publicUrl,
-    license: "OpenAI-generated illustration",
+    license:
+      entry.source === "itzli"
+        ? "First-party generated typography"
+        : "OpenAI-generated illustration",
     author: entry.author,
     alt: entry.alt,
     source: entry.source,
@@ -86,6 +101,10 @@ async function main() {
     generated_at: entry.generated_at,
     reviewed_at: new Date().toISOString(),
     review_status: "approved",
+    review_scope: "exact-published-image",
+    reviewed_url: publicUrl,
+    review_source: reviewSource,
+    ...(reviewedSafeMatches.length ? { reviewed_safe_matches: reviewedSafeMatches } : {}),
   };
   delete pending[headword];
 
