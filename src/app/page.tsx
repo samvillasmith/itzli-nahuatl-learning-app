@@ -52,10 +52,10 @@ export default function LandingPage() {
             <Sparkles size={13} /> Eastern Huasteca Nahuatl
           </div>
           <h1 className="display-title max-w-3xl text-[3.4rem] text-stone-950 sm:text-7xl lg:text-[5.15rem]">
-            Speak the living <span className="text-emerald-700">language of the Aztecs.</span>
+            Learn <span className="text-emerald-700">Nahuatl.</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
-            Learn Nahuatl as a language people still speak. Itzli teaches the Eastern Huasteca form used in and around Chicontepec, Veracruz.
+            The Aztecs spoke it in Tenochtitlan. Nahua communities speak it today. Itzli teaches Eastern Huasteca Nahuatl as spoken in and around Chicontepec, Veracruz.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Show when="signed-out">
