@@ -10,6 +10,27 @@ const path  = require("path");
 
 const DB_URL   = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/database/fcn_master_lexicon_phase8_6_primer.sqlite";
 const OUT_PATH = path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite");
+const DOWNLOAD_PATH = `${OUT_PATH}.download`;
+
+function normalizeDatabase(dbPath) {
+  const Database = require("better-sqlite3");
+  const db = new Database(dbPath);
+
+  try {
+    db.pragma("wal_checkpoint(TRUNCATE)");
+    const journalMode = db.pragma("journal_mode = DELETE", { simple: true });
+    const integrity = db.pragma("quick_check", { simple: true });
+
+    if (journalMode !== "delete") {
+      throw new Error(`Could not set portable journal mode: ${journalMode}`);
+    }
+    if (integrity !== "ok") {
+      throw new Error(`Database integrity check failed: ${integrity}`);
+    }
+  } finally {
+    db.close();
+  }
+}
 
 // Always re-download on CI/Vercel so build-cache never serves a stale DB.
 if (fs.existsSync(OUT_PATH) && !process.env.CI && !process.env.VERCEL) {
@@ -18,12 +39,15 @@ if (fs.existsSync(OUT_PATH) && !process.env.CI && !process.env.VERCEL) {
 }
 
 console.log("Downloading database from S3...");
-const file = fs.createWriteStream(OUT_PATH);
+for (const suffix of ["", "-shm", "-wal"]) {
+  fs.rmSync(`${DOWNLOAD_PATH}${suffix}`, { force: true });
+}
+const file = fs.createWriteStream(DOWNLOAD_PATH);
 
 https.get(DB_URL, (res) => {
   if (res.statusCode !== 200) {
     file.close();
-    fs.unlinkSync(OUT_PATH);
+    fs.rmSync(DOWNLOAD_PATH, { force: true });
     console.error(`S3 responded with HTTP ${res.statusCode}`);
     process.exit(1);
   }
@@ -42,12 +66,22 @@ https.get(DB_URL, (res) => {
   res.pipe(file);
 
   file.on("finish", () => {
-    file.close();
-    console.log("\nDatabase downloaded successfully.");
+    file.close((closeError) => {
+      try {
+        if (closeError) throw closeError;
+        normalizeDatabase(DOWNLOAD_PATH);
+        fs.renameSync(DOWNLOAD_PATH, OUT_PATH);
+        console.log("\nDatabase downloaded and normalized successfully.");
+      } catch (err) {
+        fs.rmSync(DOWNLOAD_PATH, { force: true });
+        console.error("\nDatabase validation failed:", err.message);
+        process.exitCode = 1;
+      }
+    });
   });
 }).on("error", (err) => {
   file.close();
-  if (fs.existsSync(OUT_PATH)) fs.unlinkSync(OUT_PATH);
+  fs.rmSync(DOWNLOAD_PATH, { force: true });
   console.error("Download failed:", err.message);
   process.exit(1);
 });

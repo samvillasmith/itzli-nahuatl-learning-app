@@ -160,7 +160,7 @@ const DIALOGUES = [
 
 // ── Apply ───────────────────────────────────────────────────────────────────
 
-db.pragma("journal_mode = WAL");
+db.pragma("journal_mode = DELETE");
 db.pragma("foreign_keys = ON");
 
 const existingUnitIds = DIALOGUES.map((d) => d.synId);
@@ -185,6 +185,7 @@ if (!APPLY) {
   for (const d of DIALOGUES) totalLines += d.lines.length;
   console.log(`Will insert ${totalLines} corrected dialogue lines.`);
   console.log("\nRun again with --apply to apply.");
+  db.close();
   process.exit(0);
 }
 
@@ -248,3 +249,4 @@ const run = db.transaction(() => {
 run();
 
 console.log("\nDone. Dialogues for units 33–43 regenerated with IDIEZ orthography.");
+db.close();
