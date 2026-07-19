@@ -295,7 +295,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       {
         kind: "produce",
         heading: "Say it in the name exchange",
-        prompt: "Type the Nahuatl sentence from Unit 3.",
+        prompt: "Build the Nahuatl sentence from Unit 3.",
         items: [
           {
             english: "My name is Juana.",
@@ -437,8 +437,8 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       },
       {
         kind: "produce",
-        heading: "Type the role sentence",
-        prompt: "Use the Unit 5 role word and the correct prefix. Type only the Nahuatl answer.",
+        heading: "Build the role form",
+        prompt: "Use the Unit 5 role word and the correct prefix to build the Nahuatl answer.",
         items: [
           {
             english: "I am a student.",
@@ -761,7 +761,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       {
         kind: "produce",
         heading: "Produce the present verb",
-        prompt: "Type the Nahuatl sentence form.",
+        prompt: "Build the Nahuatl present form.",
         items: [
           {
             english: "I teach.",
@@ -874,7 +874,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       {
         kind: "produce",
         heading: "Produce a family phrase",
-        prompt: "Type the Nahuatl family phrase.",
+        prompt: "Build the Nahuatl family form.",
         items: [
           {
             english: "my mother",
@@ -1303,7 +1303,7 @@ export const GRAMMAR_LABS: GrammarLab[] = [
       {
         kind: "produce",
         heading: "Produce an if/then sentence",
-        prompt: "Type the Nahuatl sentence.",
+        prompt: "Build the Nahuatl sentence.",
         items: [
           {
             english: "If I work, I eat.",

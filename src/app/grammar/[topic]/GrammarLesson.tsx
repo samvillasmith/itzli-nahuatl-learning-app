@@ -16,6 +16,7 @@ import { displayNahuatl } from '@/lib/orthography';
 import { pronunciationHintFor } from '@/lib/pronunciation';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { translateDeepClient } from '@/i18n/client-translate';
+import { GuidedAnswerBuilder, splitGuidedAnswer } from '@/components/GuidedAnswerBuilder';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
@@ -232,6 +233,34 @@ function DrillAnswerPanel({
   );
 }
 
+function DrillAnswerControl({
+  answer,
+  value,
+  onChange,
+  placeholder,
+  disabled,
+}: {
+  answer: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  disabled: boolean;
+}) {
+  if (splitGuidedAnswer(answer).length > 1) {
+    return <GuidedAnswerBuilder answer={answer} onChange={onChange} disabled={disabled} />;
+  }
+
+  return (
+    <input
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      disabled={disabled}
+      className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 disabled:bg-stone-50 disabled:text-stone-500"
+      placeholder={placeholder}
+    />
+  );
+}
+
 function IdentifyItem({
   item,
 }: {
@@ -298,28 +327,31 @@ function TransformItem({
     <div className="rounded-xl border border-stone-200 bg-white p-4">
       <p className="text-xs font-bold uppercase text-stone-400">{item.target}</p>
       <p className="mt-1 text-sm font-semibold text-stone-800">{displayNahuatl(item.input)}</p>
-      <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-        <input
+      <div className="mt-3 flex flex-col gap-2">
+        <DrillAnswerControl
+          answer={item.answer}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+          onChange={(value) => {
+            setInput(value);
             setChecked(false);
           }}
-          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
           placeholder={translate('Type the transformed form')}
+          disabled={revealed || (checked && isCorrect)}
         />
-        <button
-          onClick={() => setChecked(true)}
-          className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
-        >
-          {translate('Check')}
-        </button>
-        <button
-          onClick={() => setRevealed(true)}
-          className="rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
-        >
-          {translate('Reveal answer')}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setChecked(true)}
+            className="flex-1 rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            {translate('Check')}
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="flex-1 rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            {translate('Reveal answer')}
+          </button>
+        </div>
       </div>
       {checked && (
         <p className={`mt-2 text-xs font-semibold ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>
@@ -353,28 +385,31 @@ function ProduceItem({
     <div className="rounded-xl border border-stone-200 bg-white p-4">
       <p className="text-xs font-bold uppercase text-stone-400">{translate('Produce')}</p>
       <p className="mt-1 text-sm font-semibold text-stone-800">{item.english}</p>
-      <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-        <input
+      <div className="mt-3 flex flex-col gap-2">
+        <DrillAnswerControl
+          answer={item.answer}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+          onChange={(value) => {
+            setInput(value);
             setChecked(false);
           }}
-          className="min-w-0 flex-1 rounded-lg border border-stone-200 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
           placeholder={translate('Type the Nahuatl form')}
+          disabled={revealed || (checked && isCorrect)}
         />
-        <button
-          onClick={() => setChecked(true)}
-          className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
-        >
-          {translate('Check')}
-        </button>
-        <button
-          onClick={() => setRevealed(true)}
-          className="rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
-        >
-          {translate('Reveal answer')}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setChecked(true)}
+            className="flex-1 rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700"
+          >
+            {translate('Check')}
+          </button>
+          <button
+            onClick={() => setRevealed(true)}
+            className="flex-1 rounded-lg border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
+          >
+            {translate('Reveal answer')}
+          </button>
+        </div>
       </div>
       {checked && (
         <p className={`mt-2 text-xs font-semibold ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>

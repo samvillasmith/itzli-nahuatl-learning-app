@@ -12,13 +12,12 @@ import { getWordImage } from "@/data/word-images";
 import { ALL_VARIANT_IDS, collapseVariants } from "@/data/variant-groups";
 import { EXCLUDED_VOCAB_IDS } from "@/data/excluded-vocab";
 import type { GrammarLab } from "@/data/grammar-labs";
-import { getLessonFocusCardsForUnit } from "@/data/lesson-focus-cards";
 import { answerMatches } from "@/lib/grammar-engine";
 import { displayNahuatl, toInaliOrthography } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { translateDeepClient } from "@/i18n/client-translate";
 import { WordImagePreloads } from "@/components/WordImageResourceHints";
+import { GuidedAnswerBuilder, splitGuidedAnswer } from "@/components/GuidedAnswerBuilder";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -27,7 +26,7 @@ const MINI_GROUP = 3;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type VocabCard = {
+export type VocabCard = {
   id: number;
   headword: string;
   gloss_en: string;
@@ -35,7 +34,7 @@ type VocabCard = {
   part_of_speech: string;
   audioSrc?: string | null;
   imageHeadword?: string | null;
-  source?: "vocab" | "unitPhrase" | "lessonFocus";
+  source?: "vocab";
 };
 type DialogueLine = {
   lesson_dialogue_id: string;
@@ -48,13 +47,18 @@ type ConstructionItem = { example_original: string; construction_label?: string;
 type LessonBlockItem = { text_normalized: string };
 type GrammarCheckpointKind = "transform" | "produce";
 
-type FillBlank = {
+export type FillBlank = {
   prompt: string;
+  fullSentence: string;
   translation?: string;
   gloss: string;
   answer: string;
+  baseHeadword: string;
   options: string[];
+  targetKey: string;
   patternLabel?: string;
+  source: "dialogue" | "construction";
+  audioSrc?: string | null;
 };
 
 type DialogueMatch = {
@@ -92,7 +96,6 @@ type LessonStep =
   | { kind: "grammarExample"; labIdx: number; exampleIdx: number }
   | { kind: "grammarTransform"; labIdx: number; drillIdx: number; itemIdx: number }
   | { kind: "grammarProduce"; labIdx: number; drillIdx: number; itemIdx: number }
-  | { kind: "sentenceProduce"; lineIdx: number }
   | {
       kind: "grammarCheckpoint";
       labIdx: number;
@@ -219,12 +222,12 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function isUnitPhraseCard(card: VocabCard): boolean {
-  return card.source === "unitPhrase" || card.source === "lessonFocus" || card.part_of_speech === "phrase";
+  return card.part_of_speech === "phrase" || card.part_of_speech === "sentence" || phraseTokens(card.headword).length > 1;
 }
 
 function cardAudioSrc(card: VocabCard): string | null {
   if (card.audioSrc) return card.audioSrc;
-  if (card.source === "unitPhrase" || card.source === "lessonFocus" || card.id < 0) return null;
+  if (card.id < 0) return null;
   return vocabCardAudioUrl(card.id);
 }
 
@@ -236,11 +239,6 @@ function cardImage(card: VocabCard) {
 }
 
 function learnStepLabel(card: VocabCard): string {
-  if (card.source === "lessonFocus") {
-    if (card.part_of_speech === "sentence") return "Lesson sentence";
-    if (card.part_of_speech === "phrase") return "Lesson phrase";
-    return "Lesson form";
-  }
   return isUnitPhraseCard(card) ? "Unit phrase" : "New word";
 }
 
@@ -298,44 +296,11 @@ function mergeLearningCards(...groups: VocabCard[][]): VocabCard[] {
   return merged;
 }
 
-function buildLessonFocusCards(unitNum: number, grammarLabs: GrammarLab[]): VocabCard[] {
-  const labIds = grammarLabs.map((lab) => lab.id);
-  return getLessonFocusCardsForUnit(unitNum, labIds).map((card, idx) => ({
-    id: -100_000 - unitNum * 1_000 - idx,
-    headword: card.headword,
-    gloss_en: card.gloss_en,
-    part_of_speech: card.part_of_speech,
-    source: "lessonFocus" as const,
-  }));
-}
-
 function sentenceWordLimit(unitNum: number): number {
   if (unitNum <= 5) return 4;
   if (unitNum <= 15) return 5;
   if (unitNum <= 30) return 7;
   return 9;
-}
-
-function buildUnitPhraseCards(unitNum: number, dialogues: DialogueLine[]): VocabCard[] {
-  const maxWords = sentenceWordLimit(unitNum);
-  return dialogues
-    .filter((line) => {
-      const wordCount = phraseTokens(line.utterance_normalized).length;
-      return line.translation_en && wordCount >= 2 && wordCount <= maxWords;
-    })
-    .sort(
-      (a, b) =>
-        phraseTokens(a.utterance_normalized).length - phraseTokens(b.utterance_normalized).length
-    )
-    .slice(0, 6)
-    .map((line, idx) => ({
-      id: -200_000 - unitNum * 1_000 - idx,
-      headword: line.utterance_normalized,
-      gloss_en: line.translation_en ?? "",
-      part_of_speech: "phrase",
-      audioSrc: line.audio_available ? dialogueAudioUrl(line.lesson_dialogue_id) : null,
-      source: "unitPhrase" as const,
-    }));
 }
 
 function normalizeExerciseToken(s: string): string {
@@ -353,9 +318,7 @@ function phraseTokens(text: string): string[] {
 }
 
 function cardProgressKey(card: VocabCard): string {
-  if (card.source === "vocab" || (!card.source && card.id > 0)) return `v:${card.id}`;
-  const kind = card.source === "unitPhrase" ? "phrase" : "focus";
-  return `${kind}:${normalizeExerciseToken(card.headword)}`;
+  return `v:${card.id}`;
 }
 
 function normalizeGlossForExercise(s: string): string {
@@ -407,6 +370,68 @@ function findExactPhraseSpan(text: string, phrase: string) {
   return null;
 }
 
+function findCardUsageSpan(text: string, card: VocabCard) {
+  const exact = findExactPhraseSpan(text, card.headword);
+  if (exact) return exact;
+
+  const cardKey = normalizeExerciseToken(card.headword);
+  if (phraseTokens(card.headword).length !== 1 || cardKey.length < 4) return null;
+
+  const inflected = tokenSpans(text).find((span) => isConservativeCardUsage(span.normalized, card));
+  if (!inflected) return null;
+  return {
+    matchedText: inflected.raw,
+    start: inflected.start,
+    end: inflected.end,
+  };
+}
+
+function stripRecognizedPrefix(value: string, prefixes: string[]): string {
+  for (const prefix of [...prefixes].sort((a, b) => b.length - a.length)) {
+    if (value.startsWith(prefix) && value.length - prefix.length >= 3) {
+      return value.slice(prefix.length);
+    }
+  }
+  return value;
+}
+
+function stripRecognizedSuffix(value: string, suffixes: string[]): string {
+  for (const suffix of [...suffixes].sort((a, b) => b.length - a.length)) {
+    if (value.endsWith(suffix) && value.length - suffix.length >= 3) {
+      return value.slice(0, value.length - suffix.length);
+    }
+  }
+  return value;
+}
+
+function isConservativeCardUsage(token: string, card: VocabCard): boolean {
+  const tokenKey = normalizeExerciseToken(token);
+  const cardKey = normalizeExerciseToken(card.headword);
+  if (tokenKey === cardKey) return true;
+
+  const partOfSpeech = card.part_of_speech.toLowerCase();
+  if (partOfSpeech.includes("verb")) {
+    const verbPrefixes = ["nimitz", "timitz", "nik", "tik", "nim", "tim", "ni", "ti", "ki"];
+    if (stripRecognizedPrefix(cardKey, verbPrefixes) !== cardKey) return false;
+    const tokenStem = stripRecognizedSuffix(stripRecognizedPrefix(tokenKey, verbPrefixes), ["keh", "h"]);
+    return tokenStem === cardKey;
+  }
+
+  if (partOfSpeech.includes("noun")) {
+    const possessivePrefixes = ["amo", "no", "mo", "to", "in", "i"];
+    if (stripRecognizedPrefix(cardKey, possessivePrefixes) !== cardKey) return false;
+    const nounSuffixes = ["tsintli", "tzintli", "tsin", "tzin", "tli", "tl", "li", "uh", "wah", "meh"];
+    const cardStem = stripRecognizedSuffix(cardKey, nounSuffixes);
+    const tokenStem = stripRecognizedSuffix(
+      stripRecognizedPrefix(tokenKey, possessivePrefixes),
+      nounSuffixes,
+    );
+    return cardStem.length >= 3 && tokenStem === cardStem;
+  }
+
+  return false;
+}
+
 function buildWordOptions(correct: string, primaryPool: VocabCard[], fallbackPool: VocabCard[]): string[] {
   const normalizedCorrect = normalizeExerciseToken(correct);
   const correctGloss = normalizeGlossForExercise(
@@ -427,59 +452,89 @@ function buildWordOptions(correct: string, primaryPool: VocabCard[], fallbackPoo
   return shuffle([correct, ...distractors]);
 }
 
-function buildFillBlanks(
+export function buildContextFillBlanks(
   chunk: VocabCard[],
+  introducedCards: VocabCard[],
   constructions: ConstructionItem[],
+  dialogues: DialogueLine[],
   pool: VocabCard[],
   maxWords: number,
 ): FillBlank[] {
   const results: FillBlank[] = [];
-  const usedWords = new Set<string>();
-
-  for (const c of constructions) {
-    const ex = c.example_original?.trim();
-    if (!ex || ex.length < 8) continue;
-
-    const { nahuatl, translation: parenTranslation } = extractTranslation(ex);
-    const translation = c.translation_en?.trim() || parenTranslation?.trim();
-    if (!translation) continue;
-    if (phraseTokens(nahuatl).length > maxWords) continue;
-    if (
-      dialogueCoverage(
+  const candidates = [
+    ...dialogues.map((line) => ({
+      nahuatl: line.utterance_normalized.trim(),
+      translation: line.translation_en?.trim(),
+      patternLabel: undefined,
+      source: "dialogue" as const,
+      audioSrc: line.audio_available === false ? null : dialogueAudioUrl(line.lesson_dialogue_id),
+    })),
+    ...constructions.map((construction) => {
+      const example = construction.example_original?.trim() ?? "";
+      const extracted = extractTranslation(example);
+      return {
+        nahuatl: extracted.nahuatl,
+        translation: construction.translation_en?.trim() || extracted.translation?.trim(),
+        patternLabel: construction.construction_label,
+        source: "construction" as const,
+        audioSrc: null,
+      };
+    }),
+  ]
+    .filter((candidate) => {
+      if (!candidate.nahuatl || !candidate.translation) return false;
+      if (/_{2,}/.test(candidate.nahuatl)) return false;
+      const wordCount = phraseTokens(candidate.nahuatl).length;
+      if (wordCount < 2 || wordCount > maxWords) return false;
+      return dialogueCoverage(
         {
-          lesson_dialogue_id: "construction",
+          lesson_dialogue_id: candidate.source,
           speaker_label: "",
-          utterance_normalized: nahuatl,
-          translation_en: translation,
+          utterance_normalized: candidate.nahuatl,
+          translation_en: candidate.translation,
         },
-        chunk,
-      ) < 0.6
-    ) continue;
+        introducedCards,
+      ) >= 0.25;
+    })
+    .sort((a, b) => {
+      const audioDifference = Number(Boolean(b.audioSrc)) - Number(Boolean(a.audioSrc));
+      return audioDifference || phraseTokens(a.nahuatl).length - phraseTokens(b.nahuatl).length;
+    });
 
-    for (const card of chunk) {
-      if (isUnitPhraseCard(card) || phraseTokens(card.headword).length > 3) continue;
-      const cardKey = normalizeExerciseToken(card.headword);
-      if (cardKey.length < 3 || usedWords.has(cardKey)) continue;
+  for (const card of chunk) {
+    if (phraseTokens(card.headword).length > 2) continue;
+    const targetKey = normalizeExerciseToken(card.headword);
+    if (targetKey.length < 2) continue;
 
-      const match = findExactPhraseSpan(nahuatl, card.headword);
+    for (const candidate of candidates) {
+      const match = findCardUsageSpan(candidate.nahuatl, card);
       if (!match) continue;
 
-      const blanked = nahuatl.slice(0, match.start) + "___" + nahuatl.slice(match.end);
+      const answer = match.matchedText;
+      const optionChunk = chunk.filter(
+        (option) => normalizeExerciseToken(option.headword) !== targetKey,
+      );
+      const optionPool = pool.filter(
+        (option) => normalizeExerciseToken(option.headword) !== targetKey,
+      );
 
       results.push({
-        prompt: blanked,
-        translation,
+        prompt: candidate.nahuatl.slice(0, match.start) + "___" + candidate.nahuatl.slice(match.end),
+        fullSentence: candidate.nahuatl,
+        translation: candidate.translation,
         gloss: displayGloss(card.gloss_en),
-        answer: card.headword,
-        options: buildWordOptions(card.headword, chunk, pool),
-        patternLabel: c.construction_label,
+        answer,
+        baseHeadword: card.headword,
+        options: buildWordOptions(answer, optionChunk, optionPool),
+        targetKey,
+        patternLabel: candidate.patternLabel,
+        source: candidate.source,
+        audioSrc: candidate.audioSrc,
       });
-      usedWords.add(cardKey);
       break;
     }
-
-    if (results.length >= 6) break;
   }
+
   return results;
 }
 
@@ -493,49 +548,40 @@ function dialogueTokens(text: string): string[] {
 const EHN_PREFIXES = [
   "otikitt", "otimom", "onik", "onim", "nimom", "timom",
   "nimo", "timo", "ni", "ti", "mo", "no", "to", "on",
-  "ki", "mi", "in ",
+  "ki", "mi", "in", "i",
 ];
 
 const EHN_SUFFIXES = [
   "tzin", "tzintli", "tztli", "tli", "tic", "toc", "teh",
   "tsin", "tsintli", "tstli", "wah", "keh", "meh", "neh", "iah", "tiah",
-  "lia", "ltia", "ia", "ah", "h",
+  "lia", "ltia", "ia", "ah", "uh", "tl", "li", "h",
 ];
 
+function recognizedMorphologyForms(value: string): Set<string> {
+  const normalized = normalizeExerciseToken(value);
+  const forms = new Set<string>(normalized ? [normalized] : []);
+
+  for (const prefix of [...EHN_PREFIXES].sort((a, b) => b.length - a.length)) {
+    if (normalized.startsWith(prefix) && normalized.length - prefix.length >= 3) {
+      forms.add(normalized.slice(prefix.length));
+    }
+  }
+
+  for (const form of [...forms]) {
+    for (const suffix of [...EHN_SUFFIXES].sort((a, b) => b.length - a.length)) {
+      if (form.endsWith(suffix) && form.length - suffix.length >= 3) {
+        forms.add(form.slice(0, form.length - suffix.length));
+      }
+    }
+  }
+
+  return forms;
+}
+
 function stemMatch(token: string, headword: string): boolean {
-  const plain = toInaliOrthography(token).toLowerCase();
-  const stem = toInaliOrthography(headword).toLowerCase();
-
-  if (stem.length >= 3 && plain.includes(stem)) return true;
-  if (stem.length >= 3 && stem.includes(plain)) return true;
-
-  let stripped = plain;
-  for (const pfx of EHN_PREFIXES) {
-    if (plain.startsWith(pfx) && plain.length - pfx.length >= 3) {
-      stripped = plain.slice(pfx.length);
-      break;
-    }
-  }
-
-  let stemFromToken = stripped;
-  for (const sfx of EHN_SUFFIXES) {
-    if (stripped.endsWith(sfx) && stripped.length - sfx.length >= 3) {
-      stemFromToken = stripped.slice(0, stripped.length - sfx.length);
-      break;
-    }
-  }
-
-  let stemFromHead = stem;
-  for (const sfx of EHN_SUFFIXES) {
-    if (stem.endsWith(sfx) && stem.length - sfx.length >= 3) {
-      stemFromHead = stem.slice(0, stem.length - sfx.length);
-      break;
-    }
-  }
-
-  if (stemFromHead.length >= 3 && stemFromToken.includes(stemFromHead)) return true;
-  if (stemFromToken.length >= 3 && stemFromHead.includes(stemFromToken)) return true;
-  return false;
+  const tokenForms = recognizedMorphologyForms(token);
+  const headwordForms = recognizedMorphologyForms(headword);
+  return [...tokenForms].some((form) => form.length >= 3 && headwordForms.has(form));
 }
 
 function dialogueCoverage(line: DialogueLine, introducedCards: VocabCard[]): number {
@@ -664,23 +710,7 @@ function isDialogueProductionCandidate(line: DialogueLine, maxWords: number): bo
   return true;
 }
 
-function buildSentenceProductionSteps(dialogues: DialogueLine[], maxWords: number, limit = 2): LessonStep[] {
-  const seen = new Set<string>();
-  const candidates: number[] = [];
-  dialogues.forEach((line, lineIdx) => {
-    const key = line.utterance_normalized.trim().toLowerCase();
-    if (!isDialogueProductionCandidate(line, maxWords) || seen.has(key)) return;
-    seen.add(key);
-    candidates.push(lineIdx);
-  });
-
-  return candidates.slice(0, limit).map((lineIdx) => ({
-    kind: "sentenceProduce",
-    lineIdx,
-  }));
-}
-
-function buildSequence(
+export function buildSequence(
   chunk: VocabCard[],
   srsIndices: number[],
   fillBlanks: FillBlank[],
@@ -705,15 +735,12 @@ function buildSequence(
     counts.set(key, (counts.get(key) ?? 0) + 1);
     return counts;
   }, new Map<string, number>());
-  let fillIdx = 0;
+  const usedFillIndices = new Set<number>();
   let tipIdx = 0;
   const showGrammarLab = isLastChunk && grammarLabs.length > 0;
   const grammarIntros = showGrammarLab ? buildGrammarIntroSteps(grammarLabs) : [];
   const grammarExamples = showGrammarLab ? buildGrammarExampleSteps(grammarLabs) : [];
   const grammarPractice = showGrammarLab ? buildGrammarPracticeSteps(grammarLabs) : [];
-  const sentenceProduction = isLastChunk
-    ? buildSentenceProductionSteps(dialogues, sentenceWordLimit(unitNum))
-    : [];
   let grammarIntroIdx = 0;
   let grammarExampleIdx = 0;
   let grammarPracticeIdx = 0;
@@ -746,8 +773,13 @@ function buildSequence(
       steps.push(grammarExamples[grammarExampleIdx++]);
     }
 
-    if (fillIdx < fillBlanks.length) {
-      steps.push({ kind: "fillBlank", fillIdx: fillIdx++ });
+    const groupKeys = new Set(group.map((wordIdx) => normalizeExerciseToken(chunk[wordIdx].headword)));
+    const groupFillIdx = fillBlanks.findIndex(
+      (fill, index) => !usedFillIndices.has(index) && groupKeys.has(fill.targetKey),
+    );
+    if (groupFillIdx >= 0) {
+      steps.push({ kind: "fillBlank", fillIdx: groupFillIdx });
+      usedFillIndices.add(groupFillIdx);
     }
 
     if (grammarPracticeIdx < grammarPractice.length) {
@@ -776,8 +808,6 @@ function buildSequence(
       if (dialogueCount >= 6) break;
     }
   }
-
-  steps.push(...sentenceProduction);
 
   if (isLastChunk) {
     steps.push(...buildGrammarCheckpointSteps(grammarLabs));
@@ -997,6 +1027,34 @@ function GrammarExampleStep({
   );
 }
 
+function GrammarAnswerControl({
+  answer,
+  value,
+  onChange,
+  placeholder,
+  disabled,
+}: {
+  answer: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  disabled: boolean;
+}) {
+  if (splitGuidedAnswer(answer).length > 1) {
+    return <GuidedAnswerBuilder answer={answer} onChange={onChange} disabled={disabled} />;
+  }
+
+  return (
+    <input
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      disabled={disabled}
+      className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 disabled:bg-stone-50 disabled:text-stone-500"
+      placeholder={placeholder}
+    />
+  );
+}
+
 function GrammarTransformStep({
   lab,
   drill,
@@ -1043,14 +1101,15 @@ function GrammarTransformStep({
           </div>
         </div>
 
-        <input
+        <GrammarAnswerControl
+          answer={item.answer}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+          onChange={(value) => {
+            setInput(value);
             setChecked(false);
           }}
-          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
           placeholder={translate("Type the Nahuatl form")}
+          disabled={revealed || (checked && correct)}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1115,7 +1174,7 @@ function GrammarProduceStep({
   return (
     <div className="max-w-lg mx-auto">
       <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}${translate("Type it in Nahuatl")}`} />
+      <StepLabel text={`${chunkLabel}${locale === "es" ? "Constrúyelo en náhuatl" : "Build it in Nahuatl"}`} />
 
       <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
         <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{lab.title}</p>
@@ -1127,14 +1186,15 @@ function GrammarProduceStep({
           <p className="text-lg font-semibold text-stone-900">{item.english}</p>
         </div>
 
-        <input
+        <GrammarAnswerControl
+          answer={item.answer}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+          onChange={(value) => {
+            setInput(value);
             setChecked(false);
           }}
-          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
           placeholder={translate("Type only the Nahuatl answer")}
+          disabled={revealed || (checked && correct)}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1232,17 +1292,22 @@ function GrammarCheckpointStep({
         </div>
 
         <p className="mb-3 text-sm leading-relaxed text-stone-500">
-          {translate("Use the pattern from this lab. Type only the Nahuatl answer, then check it or reveal the explanation.")}
+          {splitGuidedAnswer(item.answer).length > 1
+            ? locale === "es"
+              ? "Usa el patrón de esta lección y ordena las partes de la respuesta."
+              : "Use the pattern from this lesson and arrange the parts of the answer."
+            : translate("Use the pattern from this lab. Type only the Nahuatl answer, then check it or reveal the explanation.")}
         </p>
 
-        <input
+        <GrammarAnswerControl
+          answer={item.answer}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+          onChange={(value) => {
+            setInput(value);
             setChecked(false);
           }}
-          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
           placeholder={translate("Type the Nahuatl answer")}
+          disabled={revealed || (checked && correct)}
         />
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
@@ -1271,99 +1336,6 @@ function GrammarCheckpointStep({
           <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(item.answer)}</p>
           <p className="font-mono text-xs text-emerald-700 mt-1">{displayNahuatl(item.breakdown)}</p>
           <p className="text-sm leading-relaxed text-stone-600 mt-2">{item.explanation}</p>
-        </div>
-      )}
-
-      {(correct && checked) || revealed ? <ContinueButton onClick={onContinue} /> : null}
-    </div>
-  );
-}
-
-function sentenceAcceptedForms(answer: string): string[] {
-  const withoutPunctuation = answer
-    .replace(/[¿¡.,;:?!"'()[\]{}]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  return withoutPunctuation && withoutPunctuation !== answer.trim() ? [withoutPunctuation] : [];
-}
-
-function SentenceProduceStep({
-  line,
-  progressValue,
-  chunkLabel,
-  onContinue,
-}: {
-  line: DialogueLine;
-  progressValue: number;
-  chunkLabel: string;
-  onContinue: () => void;
-}) {
-  const { locale, translate } = useLocale();
-  const [input, setInput] = useState("");
-  const [checked, setChecked] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-  const answer = line.utterance_normalized.trim();
-  const accepted = sentenceAcceptedForms(answer);
-  const correct = answerMatches(input, answer, accepted);
-  const showAnswer = checked || revealed;
-
-  return (
-    <div className="max-w-lg mx-auto">
-      <ProgressBar value={progressValue} />
-      <StepLabel text={`${chunkLabel}${translate("Sentence practice")}`} />
-
-      <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-7 mb-5">
-        <div className="flex items-center justify-between gap-3 mb-4">
-          <div>
-            <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Say this from the unit")}</p>
-            <h2 className="text-xl font-bold text-stone-900 leading-tight">{line.translation_en}</h2>
-          </div>
-          {line.audio_available !== false && (
-            <AudioButton src={dialogueAudioUrl(line.lesson_dialogue_id)} size="sm" />
-          )}
-        </div>
-
-        <p className="mb-3 text-sm leading-relaxed text-stone-500">
-          {translate("Type the Nahuatl sentence. Punctuation is helpful, and the checker accepts the practical INALI spelling.")}
-        </p>
-
-        <input
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-            setChecked(false);
-          }}
-          className="w-full rounded-2xl border border-stone-200 px-4 py-3 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-          placeholder={translate("Type the Nahuatl sentence")}
-        />
-
-        <div className="grid grid-cols-2 gap-2.5 mt-3">
-          <button
-            onClick={() => setChecked(true)}
-            className="rounded-2xl bg-stone-900 px-4 py-3 text-sm font-bold text-white hover:bg-stone-700"
-          >
-            {translate("Check")}
-          </button>
-          <button
-            onClick={() => setRevealed(true)}
-            className="rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-600 hover:border-emerald-200 hover:text-emerald-700"
-          >
-            {translate("Reveal")}
-          </button>
-        </div>
-      </div>
-
-      {checked && (
-        <FeedbackBanner correct={correct} message={correct ? translate("Correct.") : locale === "es" ? `La respuesta es "${displayNahuatl(answer)}"` : `The answer is "${displayNahuatl(answer)}"`} />
-      )}
-
-      {showAnswer && (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 mb-4">
-          <p className="text-xs font-bold uppercase text-emerald-700 mb-1">{translate("Answer")}</p>
-          <p className="font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
-          <p className="text-sm leading-relaxed text-stone-600 mt-2">
-            {translate("This sentence comes from the unit dialogue. Read it aloud, then continue.")}
-          </p>
         </div>
       )}
 
@@ -1496,17 +1468,7 @@ export default function LessonFlow({
     return { filteredVocab: cards, variantNotes: notes };
   }, [vocab, unitNum]);
 
-  const learningCards = useMemo(() => {
-    const lessonFocusCards = translateDeepClient(locale, buildLessonFocusCards(unitNum, grammarLabs));
-    const unitPhraseCards = buildUnitPhraseCards(unitNum, dialogues);
-    const coreWords = filteredVocab.filter((card) => phraseTokens(card.headword).length === 1);
-    const focusWords = lessonFocusCards.filter((card) => phraseTokens(card.headword).length === 1);
-    const corePhrases = filteredVocab.filter((card) => phraseTokens(card.headword).length > 1);
-    const focusPhrases = lessonFocusCards
-      .filter((card) => phraseTokens(card.headword).length > 1)
-      .sort((a, b) => phraseTokens(a.headword).length - phraseTokens(b.headword).length);
-    return mergeLearningCards(coreWords, focusWords, corePhrases, focusPhrases, unitPhraseCards);
-  }, [filteredVocab, unitNum, grammarLabs, dialogues, locale]);
+  const learningCards = useMemo(() => mergeLearningCards(filteredVocab), [filteredVocab]);
 
   // ── Chunk split ─────────────────────────────────────────────────────────────
 
@@ -1548,11 +1510,28 @@ export default function LessonFlow({
 
   // ── Pre-build fill blanks ───────────────────────────────────────────────────
 
+  const contextConstructions = useMemo(
+    () => [
+      ...constructions,
+      ...grammarLabs.flatMap((lab) => lab.examples.map((example) => ({
+        example_original: example.nahuatl,
+        construction_label: lab.title,
+        translation_en: example.translation,
+      }))),
+    ],
+    [constructions, grammarLabs],
+  );
+
   const fillBlanks = useMemo(
-    () => isLastChunk
-      ? buildFillBlanks(introducedCards, constructions, pool, sentenceWordLimit(unitNum))
-      : [],
-    [introducedCards, constructions, pool, isLastChunk, unitNum]
+    () => buildContextFillBlanks(
+      currentChunk,
+      introducedCards,
+      contextConstructions,
+      dialogues,
+      pool,
+      sentenceWordLimit(unitNum),
+    ),
+    [currentChunk, introducedCards, contextConstructions, dialogues, pool, unitNum],
   );
 
   const lessonDialogues = useMemo(() => {
@@ -1913,20 +1892,6 @@ export default function LessonFlow({
     );
   }
 
-  if (step.kind === "sentenceProduce") {
-    const line = lessonDialogues[step.lineIdx];
-    if (!line || !line.translation_en) return null;
-    return (
-      <SentenceProduceStep
-        key={line.lesson_dialogue_id}
-        line={line}
-        progressValue={progressValue}
-        chunkLabel={chunkLabel}
-        onContinue={advance}
-      />
-    );
-  }
-
   if (step.kind === "grammarCheckpoint") {
     const lab = grammarLabs[step.labIdx];
     const drill = lab?.drills[step.drillIdx];
@@ -2192,6 +2157,7 @@ export default function LessonFlow({
 
   if (step.kind === "fillBlank") {
     const ex = fillBlanks[step.fillIdx];
+    if (!ex) return null;
     const isCorrect = chosen === ex.answer;
 
     function check(choice: string) {
@@ -2212,9 +2178,12 @@ export default function LessonFlow({
     return (
       <div className="max-w-lg mx-auto">
         <ProgressBar value={progressValue} />
-        <StepLabel text={`${chunkLabel}${translate("Complete the sentence")}`} />
+        <StepLabel text={`${chunkLabel}${locale === "es" ? "Palabra en contexto" : "Word in context"}`} />
 
         <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-8 mb-5">
+          <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
+            {locale === "es" ? "Completa el ejemplo" : "Complete the example"}
+          </p>
           {ex.patternLabel && !ex.patternLabel.startsWith("Construction ") && (
             <p className="text-xs font-medium text-sky-600 mb-2 uppercase">
               {ex.patternLabel}
@@ -2243,6 +2212,33 @@ export default function LessonFlow({
                 ? locale === "es" ? `¡Correcto! La palabra es "${displayNahuatl(ex.answer)}"` : `Correct! The word is "${displayNahuatl(ex.answer)}"`
                 : locale === "es" ? `La respuesta es "${displayNahuatl(ex.answer)}"` : `The answer is "${displayNahuatl(ex.answer)}"`}
             />
+            <div className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="mb-1 text-xs font-bold uppercase text-emerald-700">
+                    {ex.source === "dialogue"
+                      ? locale === "es" ? "Ejemplo de la conversación" : "Conversation example"
+                      : locale === "es" ? "Ejemplo completo" : "Complete example"}
+                  </p>
+                  <p className="text-lg font-bold leading-snug text-stone-950">
+                    {displayNahuatl(ex.fullSentence)}
+                  </p>
+                </div>
+                {ex.audioSrc && <AudioButton src={ex.audioSrc} size="sm" />}
+              </div>
+              {ex.translation && (
+                <p className="mt-2 text-sm italic text-stone-500">{ex.translation}</p>
+              )}
+              <p className="mt-3 border-t border-emerald-200 pt-3 text-sm leading-relaxed text-stone-600">
+                {normalizeExerciseToken(ex.answer) === normalizeExerciseToken(ex.baseHeadword)
+                  ? locale === "es"
+                    ? `Aquí, “${displayNahuatl(ex.answer)}” significa “${ex.gloss}”. Escucha la oración completa y léela en voz alta.`
+                    : `Here, “${displayNahuatl(ex.answer)}” means “${ex.gloss}.” Listen to the complete sentence and read it aloud.`
+                  : locale === "es"
+                    ? `Aquí, “${displayNahuatl(ex.answer)}” es la forma que aparece en la oración de “${displayNahuatl(ex.baseHeadword)}” (${ex.gloss}). Escucha la oración completa y léela en voz alta.`
+                    : `Here, “${displayNahuatl(ex.answer)}” is the sentence form of “${displayNahuatl(ex.baseHeadword)}” (${ex.gloss}). Listen to the complete sentence and read it aloud.`}
+              </p>
+            </div>
             <ContinueButton onClick={advance} />
           </>
         )}

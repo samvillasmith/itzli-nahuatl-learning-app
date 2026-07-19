@@ -214,6 +214,8 @@ function main() {
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
   const { LESSON_FOCUS_CARDS, getLessonFocusCardsForLab } = loadTsModule("src/data/lesson-focus-cards.ts");
   const lessonFlowSource = fs.readFileSync(path.join(process.cwd(), "src/app/units/[unitId]/LessonFlow.tsx"), "utf8");
+  const grammarLessonSource = fs.readFileSync(path.join(process.cwd(), "src/app/grammar/[topic]/GrammarLesson.tsx"), "utf8");
+  const guidedBuilderSource = fs.readFileSync(path.join(process.cwd(), "src/components/GuidedAnswerBuilder.tsx"), "utf8");
   const reviewedAudio = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "src/data/reviewed-audio.json"), "utf8")
   );
@@ -231,17 +233,23 @@ function main() {
   if (/[\u00c2\u00c3]/.test(lessonFlowSource)) {
     grammarFailures.push("Unit lesson flow contains mojibake characters.");
   }
-  if (!lessonFlowSource.includes("sentenceProduce")) {
-    grammarFailures.push("Unit lesson flow is missing dialogue-based sentence production steps.");
+  if (lessonFlowSource.includes("sentenceProduce") || lessonFlowSource.includes("SentenceProduceStep")) {
+    grammarFailures.push("Unit lessons must not require unscaffolded whole-sentence recall.");
   }
-  if (!lessonFlowSource.includes("buildUnitPhraseCards") || !lessonFlowSource.includes('source: "unitPhrase"')) {
-    grammarFailures.push("Unit lesson flow is missing generated unit phrase cards.");
+  if (lessonFlowSource.includes("buildUnitPhraseCards") || lessonFlowSource.includes('source: "unitPhrase"')) {
+    grammarFailures.push("Complete dialogue lines must not be promoted into vocabulary cards.");
   }
-  if (!lessonFlowSource.includes("buildLessonFocusCards") || !lessonFlowSource.includes('source: "lessonFocus"')) {
-    grammarFailures.push("Unit lesson flow is missing grammar-derived lesson focus cards.");
+  if (lessonFlowSource.includes("buildLessonFocusCards") || lessonFlowSource.includes('source: "lessonFocus"')) {
+    grammarFailures.push("Grammar sentences and synthetic forms must not be promoted into vocabulary cards.");
   }
-  if (!lessonFlowSource.includes("mergeLearningCards(coreWords, focusWords, corePhrases, focusPhrases, unitPhraseCards)")) {
-    grammarFailures.push("Lesson cards must progress from core words to forms, then phrases and sentences.");
+  if (!lessonFlowSource.includes("mergeLearningCards(filteredVocab)")) {
+    grammarFailures.push("Lesson flashcards must be built only from the reviewed unit vocabulary.");
+  }
+  if (!lessonFlowSource.includes("buildContextFillBlanks") || !lessonFlowSource.includes("groupKeys.has(fill.targetKey)")) {
+    grammarFailures.push("Unit lessons must place guided context puzzles after the target word is taught.");
+  }
+  if (!lessonFlowSource.includes("fullSentence") || !lessonFlowSource.includes("audioSrc")) {
+    grammarFailures.push("Context puzzles must reveal the complete example and its available audio.");
   }
   if (!lessonFlowSource.includes("dialogueCoverage(line, introducedCards) < 0.6")) {
     grammarFailures.push("Dialogue practice must require at least 60% introduced-vocabulary coverage.");
@@ -249,14 +257,23 @@ function main() {
   if (!lessonFlowSource.includes("const showGrammarLab = isLastChunk")) {
     grammarFailures.push("Grammar production must wait until the final vocabulary chunk.");
   }
-  if (!lessonFlowSource.includes("phraseTokens(nahuatl).length > maxWords")) {
-    grammarFailures.push("Fill-in-the-blank sentences must obey the unit sentence-length cap.");
+  if (!lessonFlowSource.includes("wordCount > maxWords")) {
+    grammarFailures.push("Context-puzzle sentences must obey the unit sentence-length cap.");
   }
   if (!lessonFlowSource.includes("const line = lessonDialogues[step.lineIdx]")) {
-    grammarFailures.push("Sentence production must render from the same filtered dialogue list used to build steps.");
+    grammarFailures.push("Dialogue practice must render from the same filtered dialogue list used to build steps.");
   }
-  if (!lessonFlowSource.includes("key={line.lesson_dialogue_id}")) {
-    grammarFailures.push("Sentence production must remount for each dialogue line so answers cannot carry forward.");
+  if (!lessonFlowSource.includes("resetStep();")) {
+    grammarFailures.push("Lesson answers must reset before the next step so a prior answer cannot carry forward.");
+  }
+  if (!lessonFlowSource.includes("<GuidedAnswerBuilder") || !grammarLessonSource.includes("<GuidedAnswerBuilder")) {
+    grammarFailures.push("Multiword grammar answers must use guided assembly in unit and reference lessons.");
+  }
+  if (!lessonFlowSource.includes("splitGuidedAnswer(answer).length > 1") || !grammarLessonSource.includes("splitGuidedAnswer(answer).length > 1")) {
+    grammarFailures.push("Guided assembly must activate for every multiword grammar answer.");
+  }
+  if (!guidedBuilderSource.includes("orderGuidedAnswerTokens") || !guidedBuilderSource.includes("selectedIds")) {
+    grammarFailures.push("The guided answer builder must provide stable ordered word-tile interaction.");
   }
   const questionableGlossPattern = new RegExp(
     QUESTIONABLE_GLOSS_MARKERS.map(escapeRegExp).join("|"),
@@ -603,7 +620,7 @@ function main() {
   console.log(`- Learner-visible source-course cards: ${sourcePromotionCount} of ${allSourcePromotions.length} reviewed candidates`);
   console.log(`- Learner-visible curated cards: ${curatedUnitCardCount} of ${allCuratedUnitCards.length} reviewed candidates`);
   console.log(`- Units over ${MAX_LEARNER_CARDS_PER_UNIT} cards: ${oversizedUnits.length}`);
-  console.log(`- Grammar-derived lesson cards: ${focusCardCount}`);
+  console.log(`- Authored grammar focus forms: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
   console.log(`- Dialogue lines with stage directions stripped/hidden from audio: ${stageDirectionLines}`);
