@@ -28,18 +28,18 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 
 | Stage | Units | Learner-visible cards | Focus |
 |-------|------:|----------------------:|-------|
-| A1 | 16 | 215 | Greetings, identity, family, numbers, food, daily life |
+| A1 | 16 | 209 | Greetings, identity, family, numbers, food, daily life |
 | A2 | 18 | 198 | Description, narration, home, market, community, nature, health |
 | B1-oriented | 9 | 69 | Advanced narration, conditionals, object marking, modifiers |
 
-- **469 unique reviewed words and forms after source filtering, topic selection, variant collapse, and cross-unit deduplication**, represented by **482 learner-visible card placements**, plus 63 grammar-derived focus cards
+- **463 unique reviewed words and forms after source filtering, topic selection, variant collapse, and cross-unit deduplication**, represented by **476 learner-visible card placements**, plus 63 grammar-derived focus cards
 - **5–15 standalone cards per guided unit**, with oversized source lists reassigned or trimmed so required vocabulary matches the unit topic
 - **75 curated word-first cards** ensure months, animals, description, food, household tools, nature, community, visiting, and action units teach standalone vocabulary before sentence practice
 - **80 learner-visible source-course additions**, selected from **240 reviewed source-course candidates**, with original COERLL audio, INALI-style display spelling, source provenance, Spanish glosses, and reviewed visual coverage
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`
-- **113 AI-assisted dialogues** — generated for units without attested dialogue data, marked `AI_generated`
+- **176 reviewed dialogue lines**, including 157 AI-assisted lines for units without attested dialogue data and 19 source or curated lines
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
 - **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
 - **Progress tracking** via a local browser mirror and signed-in Neon cloud sync

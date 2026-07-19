@@ -6,11 +6,19 @@ import { GRAMMAR_LESSONS } from "../src/data/grammar-lessons";
 import { GRAMMAR_LABS } from "../src/data/grammar-labs";
 import { LESSON_FOCUS_CARDS } from "../src/data/lesson-focus-cards";
 import { CURATED_UNIT_VOCAB } from "../src/data/curated-unit-vocab";
+import { CURATED_DIALOGUES } from "../src/data/dialogue-overrides";
 import {
   isCoreVocabItem,
   SOURCE_VERIFIED_UNLINKED_VOCAB_IDS,
 } from "../src/data/excluded-vocab";
-import { getAllPrimerVocab, getAllUnits, getDb, getUnitVocab, getVocabCount } from "../src/lib/db";
+import {
+  getAllPrimerVocab,
+  getAllUnits,
+  getDb,
+  getUnitDialogueContent,
+  getUnitVocab,
+  getVocabCount,
+} from "../src/lib/db";
 
 const require = createRequire(import.meta.url);
 const { validateEhnLine } = require("../scripts/generate-dialogues.js") as {
@@ -21,7 +29,7 @@ function learnerText(value: unknown): string {
   return JSON.stringify(value);
 }
 
-const CLASSICAL_PAST_AUGMENT = /\bō(?:ni|ti|qui|mo|tla|an|in)[a-zāēīō]/u;
+const CLASSICAL_PAST_AUGMENT = /(^|[^\p{L}])ō(?:ni|ti|mo|nech|nēch|mits|mitz|tech|mech|qui|ki|k|tla|an|in)[\p{L}]/iu;
 const DECLARATIVE_AMO = /(^|[\s"“¡¿(])[Āā]mo\b(?!\s+xi)/u;
 const LOCATIVE_CAH = /\bnicah\b|\bticah\b/u;
 
@@ -50,6 +58,10 @@ describe("Eastern Huasteca content invariants", () => {
     join(process.cwd(), "scripts/generate-dialogues.js"),
     "utf8",
   );
+  const lateDialogueGenerator = readFileSync(
+    join(process.cwd(), "scripts/regenerate-dialogues-33-43.js"),
+    "utf8",
+  );
   const tutorPrompt = readFileSync(
     join(process.cwd(), "src/lib/chat-system-prompt.ts"),
     "utf8",
@@ -68,7 +80,13 @@ describe("Eastern Huasteca content invariants", () => {
     new Set(["nahuatl", "breakdown", "answer", "accepted"]),
   );
   const focusCardNahuatl = LESSON_FOCUS_CARDS.map((card) => card.headword);
-  const dialogueNahuatl = extractDialogueLines(dialogueGenerator);
+  const dialogueNahuatl = [
+    ...extractDialogueLines(dialogueGenerator),
+    ...[...lateDialogueGenerator.matchAll(/\butterance:\s*"([^"]+)"/gu)].map((match) => match[1]),
+    ...Object.values(CURATED_DIALOGUES).flatMap((lines) =>
+      lines.map((line) => line.utterance_normalized)
+    ),
+  ];
 
   it("does not teach Classical ō-augmented past paradigms", () => {
     for (const text of [lessons, labs, focusCards, tutorPrompt]) {
@@ -194,13 +212,27 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(469);
+    expect(getVocabCount()).toBe(463);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_vocab_count, 0),
-    ).toBe(482);
+    ).toBe(476);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
-    ).toBe(173);
+    ).toBe(176);
+  });
+
+  it("keeps every learner-visible dialogue inside the reviewed EHN gate", () => {
+    const visible = getAllUnits().flatMap((unit) =>
+      getUnitDialogueContent(unit.lesson_number).map((line) => ({
+        unit: unit.lesson_number,
+        ...line,
+      }))
+    );
+
+    expect(visible).toHaveLength(176);
+    expect(visible.filter((line) => !validateEhnLine(line.utterance_normalized))).toEqual([]);
+    expect(visible.filter((line) => /\d/u.test(line.utterance_normalized))).toEqual([]);
+    expect(visible.filter((line) => CLASSICAL_PAST_AUGMENT.test(line.utterance_normalized))).toEqual([]);
   });
 
   it("keeps every guided unit within a coherent learner-card range", () => {

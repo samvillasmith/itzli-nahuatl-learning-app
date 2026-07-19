@@ -11,14 +11,18 @@ import { dialogueAudioUrl, vocabCardAudioUrl } from "@/lib/audio";
 
 const audioRoot = path.join(process.cwd(), "public", "audio-google");
 const require = createRequire(import.meta.url);
-const { buildTtsInstructions, cueForWord, spanishLoanSpokenForm } = require("../scripts/lib/nahuatl-pronunciation.js") as {
+const { buildTtsInstructions, cueForWord, cueInputForText, spanishLoanSpokenForm } = require("../scripts/lib/nahuatl-pronunciation.js") as {
   buildTtsInstructions: (text: string) => string;
   cueForWord: (text: string) => string;
+  cueInputForText: (text: string) => string;
   spanishLoanSpokenForm: (text: string) => string;
 };
 
 describe("reviewed media", () => {
   it("ships every reviewed Spanish-voice pronunciation clip", () => {
+    expect(new Set(reviewedAudio.dialogue.map((entry) => entry.id)).size).toBe(
+      reviewedAudio.dialogue.length,
+    );
     for (const entry of reviewedAudio.vocab) {
       const file = path.join(audioRoot, "vocab", `${entry.id}.wav`);
       expect(fs.statSync(file).size, file).toBeGreaterThan(1_000);
@@ -34,20 +38,23 @@ describe("reviewed media", () => {
     }
   });
 
-  it("cache-busts the corrected Unit 1 teaching question", () => {
+  it("cache-busts the corrected dialogue set", () => {
     expect(
       reviewedAudio.dialogue.find((entry) => entry.id === "FCN-LDG-000218")?.text,
-    ).toBe("Cuālli. ¿Ācquiya mitztlamachtia tlahtōlli?");
+    ).toBe("Cuālli. ¿Ācquiya mitzmachtia nāhuatl?");
     expect(dialogueAudioUrl("FCN-LDG-000218")).toBe(
-      "/audio-google/dialogue/FCN-LDG-000218.wav?v=20260718-2",
+      "/audio-google/dialogue/FCN-LDG-000218.wav?v=20260718-3",
     );
   });
 
-  it("keeps every curated Unit 11 dialogue line audible", () => {
+  it("keeps every curated replacement dialogue line audible", () => {
+    expect(CURATED_DIALOGUES[5]).toHaveLength(3);
     expect(CURATED_DIALOGUES[11]).toHaveLength(6);
-    expect(CURATED_DIALOGUES[11].every((line) => line.audio_available !== false)).toBe(true);
+    expect(CURATED_DIALOGUES[19]).toHaveLength(4);
+    const curatedLines = [5, 11, 19].flatMap((unit) => CURATED_DIALOGUES[unit]);
+    expect(curatedLines.every((line) => line.audio_available !== false)).toBe(true);
     expect(
-      CURATED_DIALOGUES[11].every((line) =>
+      curatedLines.every((line) =>
         reviewedAudio.dialogue.some((entry) => entry.id === line.lesson_dialogue_id)
       )
     ).toBe(true);
@@ -131,5 +138,14 @@ describe("reviewed media", () => {
     expect(spanishLoanSpokenForm("oktubre")).toBe("octubre");
     expect(spanishLoanSpokenForm("disiembre")).toBe("diciembre");
     expect(buildTtsInstructions("diciembre")).toContain("natural Mexican Spanish pronunciation");
+  });
+
+  it("preserves INALI consonants and dialogue punctuation in TTS cues", () => {
+    expect(cueForWord("kwalli")).toBe("KWAHL-lee");
+    expect(cueForWord("tsapotl")).toBe("TSAH-pohtl");
+    expect(cueForWord("mostlaj")).toBe("MOHS-tlah");
+    expect(cueInputForText("Kwalli, ¿kenihki tiistok?")).toBe(
+      "kwahl lee, ¿keh neeh kee tee ees tohk?",
+    );
   });
 });

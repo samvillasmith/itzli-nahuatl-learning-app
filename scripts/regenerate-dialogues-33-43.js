@@ -1,11 +1,9 @@
 /**
  * regenerate-dialogues-33-43.js
  *
- * Replacement for generate-dialogues-33-43.js. The earlier script produced
- * AI-generated dialogues that mixed INALI and IDIEZ spellings (e.g. matlaktli
- * vs mahtlactli, masatl vs mazatl, kuajtla vs cuauhtlah) and contained a few
- * broken compositions.  Since we have now committed to IDIEZ orthography as
- * primary, these dialogues have been rewritten to:
+ * Canonical reviewed dialogue rebuild for Units 33–43. These dialogues retain
+ * source-style spelling in storage and are rendered in the app's practical
+ * INALI spelling. They are maintained to:
  *
  *   1. Use IDIEZ spellings throughout (c/qu for /k/, hu/uh for /w/, x for /ʃ/,
  *      tl as digraph, z/c for /s/, saltillo "h", macron vowels ā ē ī ō).
@@ -26,6 +24,7 @@ const { resolveDbPath } = require("./_db-path");
 const { validateEhnLine } = require("./generate-dialogues");
 
 const APPLY = process.argv.includes("--apply");
+const FIRST_DIALOGUE_NUMBER = 329;
 
 const DB_PATH = resolveDbPath();
 const db = new Database(DB_PATH);
@@ -54,7 +53,7 @@ const DIALOGUES = [
       { speaker: "A", utterance: "¿Quēmman tiyāuh Mēxihcoh?",                                     translation: "When are you going to Mexico City?" },
       { speaker: "B", utterance: "Niyāuh ipan julio. ¿Huan ta, quēmman tiyāuh?",                  translation: "I'm going in July. And you, when are you going?" },
       { speaker: "A", utterance: "Na niyāuh ipan agosto. Huel cuālli in tōnalli.",                translation: "I'm going in August. The weather is very nice." },
-      { speaker: "B", utterance: "Quēma, ipan agosto axcecec. ¿Huan ipan enero, ¿ticpiya tequitl?", translation: "Yes, in August it isn't cold. And in January, do you have work?" },
+      { speaker: "B", utterance: "Quēna, ipan agosto axcecec. Huan ipan enero, ¿ticpiya tequitl?", translation: "Yes, in August it isn't cold. And in January, do you have work?" },
     ],
   },
   {
@@ -64,7 +63,7 @@ const DIALOGUES = [
       { speaker: "A", utterance: "¿Quēzqui tomātl ticnequi?",                                     translation: "How many tomatoes do you want?" },
       { speaker: "B", utterance: "Nicnequi mahtlactli tomātl. ¿Quēzqui pesos quipatiyo?",        translation: "I want ten tomatoes. How much do they cost?" },
       { speaker: "A", utterance: "Macuilli pesos in mahtlactli. ¿Huan chīlli, quēzqui ticnequi?",  translation: "Five pesos for ten. And chili, how many do you want?" },
-      { speaker: "B", utterance: "Nāhui chīlli, tlazohcāmati. Cempōhualli para na.",              translation: "Four chilies, thank you. Twenty (pesos) for me." },
+      { speaker: "B", utterance: "Nāhui chīlli, tlazohcāmati.",                                  translation: "Four chilies, thank you." },
     ],
   },
   {
@@ -73,7 +72,7 @@ const DIALOGUES = [
     lines: [
       { speaker: "A", utterance: "¿Tlen tlapalli ticnequi ipan petlatl?",                         translation: "What color do you want for the mat?" },
       { speaker: "B", utterance: "Nicnequi in tenextic. Cuālli tlapalli. ¿Huan ta?",              translation: "I want the grey one. It's a nice color. And you?" },
-      { speaker: "A", utterance: "Na nicnequi in chocolatic. Huel cuālli ixpan nochi.",           translation: "I want the brown one. It looks very good." },
+      { speaker: "A", utterance: "Na nicnequi in chocolatic. Huel cuālli tlapalli.",             translation: "I want the brown one. It's a very nice color." },
       { speaker: "B", utterance: "¿Huan in malacachtic tecomātl, tlen tlapalli?",                 translation: "And the round bowl, what color is it?" },
     ],
   },
@@ -81,20 +80,20 @@ const DIALOGUES = [
     lessonNumber: 36,
     synId: "FCN-SYN-0036",
     lines: [
-      { speaker: "A", utterance: "¿Tlen ticchīhua īca in ohui tequitl?",                          translation: "What are you doing about the difficult task?" },
-      { speaker: "B", utterance: "Nicchīhua in yancuic āchtopa. Āmo patiyoh.",                    translation: "I'm doing the new one first. It isn't expensive." },
-      { speaker: "A", utterance: "Quēma. ¿Huan in tlacualli iuccic, cuālli?",                     translation: "Good. And the cooked food, is it good?" },
-      { speaker: "B", utterance: "Huel cuālli, āmo ohui quichīhua. Tlazohcāmati.",                translation: "Very good, it isn't hard to make. Thank you." },
+      { speaker: "A", utterance: "¿Totōnic in tlacualli?",                                      translation: "Is the food hot?" },
+      { speaker: "B", utterance: "Axcanah. Cecec in tlacualli.",                                translation: "No. The food is cold." },
+      { speaker: "A", utterance: "¿Patiyoh in tlacualli?",                                      translation: "Is the food expensive?" },
+      { speaker: "B", utterance: "Axcanah patiyoh. Huel cuālli.",                               translation: "It isn't expensive. It's very good." },
     ],
   },
   {
     lessonNumber: 37,
     synId: "FCN-SYN-0037",
     lines: [
-      { speaker: "A", utterance: "¿Ōtiquittac in ocēlōtl ipan cuauhtlah?",                        translation: "Did you see the jaguar in the forest?" },
-      { speaker: "B", utterance: "Āmo ocēlōtl, ōniquittac in mazatl huan cē cōātl.",              translation: "Not a jaguar — I saw a deer and a snake." },
-      { speaker: "A", utterance: "¿Huan in toznēnē, cānin cah?",                                  translation: "And the parrot, where is it?" },
-      { speaker: "B", utterance: "In toznēnē nicān cah. Tlahtoa, āmo choca.",                     translation: "The parrot is right here. It speaks; it doesn't cry." },
+      { speaker: "A", utterance: "¿Tiquittac in ocēlōtl ipan cuauhtlah?",                        translation: "Did you see the jaguar in the forest?" },
+      { speaker: "B", utterance: "Axcanah. Niquittac in mazatl huan cē cōātl.",                  translation: "No. I saw a deer and a snake." },
+      { speaker: "A", utterance: "¿Huan in toznēnē, cāmpa itztoc?",                              translation: "And the parrot, where is it?" },
+      { speaker: "B", utterance: "In toznēnē nicān itztoc. Tlahtoa.",                            translation: "The parrot is right here. It speaks." },
     ],
   },
   {
@@ -102,17 +101,17 @@ const DIALOGUES = [
     synId: "FCN-SYN-0038",
     lines: [
       { speaker: "A", utterance: "¿Ticchīhua eloatolli āxcan?",                                   translation: "Are you making sweet-corn atole today?" },
-      { speaker: "B", utterance: "Quēma, nicchīhua eloatolli huan nicmaca chancaca. ¿Ticnequi?",  translation: "Yes, I'm making atole and adding piloncillo. Do you want some?" },
-      { speaker: "A", utterance: "Huel nicnequi. ¿Huan in cīntli, cānin ōtimomachtih?",           translation: "I really want some. And the corn, where did you learn it?" },
-      { speaker: "B", utterance: "Nonanā ōnēchmachtih. Huel cuālli in cīntli tlacualli.",         translation: "My mother taught me. Corn food is very good." },
+      { speaker: "B", utterance: "Quēna, nicchīhua eloatolli huan nicmaca chancaca. ¿Ticnequi?",  translation: "Yes, I'm making atole and adding piloncillo. Do you want some?" },
+      { speaker: "A", utterance: "Quēna. ¿Huan in chīlli, cāmpa onca?",                           translation: "Yes. And the chili, where is it?" },
+      { speaker: "B", utterance: "In chīlli onca nicān. Huel cuālli tlacualli.",                 translation: "The chili is here. It's very good food." },
     ],
   },
   {
     lessonNumber: 39,
     synId: "FCN-SYN-0039",
     lines: [
-      { speaker: "A", utterance: "¿Cānin cah in āmatlahcuilōlli?",                                translation: "Where is the letter?" },
-      { speaker: "B", utterance: "In āmatlahcuilōlli nicān cah ipan folsah. ¿Tlen ticnequi?",    translation: "The letter is here in the bag. What do you want?" },
+      { speaker: "A", utterance: "¿Cāmpa itztoc in āmatlahcuilōlli?",                            translation: "Where is the letter?" },
+      { speaker: "B", utterance: "In āmatlahcuilōlli nicān itztoc ipan folsah. ¿Tlen ticnequi?", translation: "The letter is here in the bag. What do you want?" },
       { speaker: "A", utterance: "Nicnequi nicpōhua in āmatlahcuilōlli. Huel tlazohtli.",         translation: "I want to read the letter. It's very dear." },
       { speaker: "B", utterance: "Cuālli. ¿Huan in chachapalli, cānin ticpiya?",                  translation: "Good. And the clay pot, where do you have it?" },
     ],
@@ -121,20 +120,20 @@ const DIALOGUES = [
     lessonNumber: 40,
     synId: "FCN-SYN-0040",
     lines: [
-      { speaker: "A", utterance: "¿Ōtiquittac in hueyātl?",                                       translation: "Did you see the big-water (lake/sea)?" },
-      { speaker: "B", utterance: "Quēma, huel huēyi. Nicān cah xālli huan zoyatl.",               translation: "Yes, very big. Here there is sand and a palm tree." },
-      { speaker: "A", utterance: "¿Huan in xōchiātl, cānin cah?",                                 translation: "And the flower-water (perfume), where is it?" },
-      { speaker: "B", utterance: "In xōchiātl cah ipan mīllah. Huel huēlic.",                     translation: "The perfume is in the cornfield. It smells very nice." },
+      { speaker: "A", utterance: "¿Tiquitta in hueyātl?",                                       translation: "Do you see the sea?" },
+      { speaker: "B", utterance: "Quēna. In hueyātl nel huēyi.",                                translation: "Yes. The sea is very large." },
+      { speaker: "A", utterance: "¿Huan in xālli, cāmpa onca?",                                 translation: "And the sand, where is it?" },
+      { speaker: "B", utterance: "Nicān onca xālli huan zoyatl.",                               translation: "Here there is sand and a palm tree." },
     ],
   },
   {
     lessonNumber: 41,
     synId: "FCN-SYN-0041",
     lines: [
-      { speaker: "A", utterance: "¿Tlen ticchiya ipan āltepētl?",                                 translation: "What are you looking for in the town?" },
-      { speaker: "B", utterance: "Nicchiya nocnīuh mācēhualli. ¿Huan ta, cānin tiyāuh?",         translation: "I'm looking for my indigenous friend. And you, where are you going?" },
-      { speaker: "A", utterance: "Na nicnequi niitztōz ipan chinanco. Huel pacti.",               translation: "I want to stay in the village. It's very joyful." },
-      { speaker: "B", utterance: "Quēma, in chinanco cuālli. In āltepētl āmo pan cuālli.",        translation: "Yes, the village is good. The city is not so good." },
+      { speaker: "A", utterance: "¿Tlen tictemoa ipan āltepētl?",                               translation: "What are you looking for in the town?" },
+      { speaker: "B", utterance: "Nictemoa nocnīuh. ¿Huan ta, cāmpa tiyāuh?",                   translation: "I'm looking for my friend. And you, where are you going?" },
+      { speaker: "A", utterance: "Na niyāuh ipan chinanco.",                                   translation: "I'm going to the village." },
+      { speaker: "B", utterance: "Quēna, in chinanco cuālli.",                                 translation: "Yes, the village is good." },
     ],
   },
   {
@@ -142,7 +141,7 @@ const DIALOGUES = [
     synId: "FCN-SYN-0042",
     lines: [
       { speaker: "A", utterance: "¿Tlen ticchīhua āxcan?",                                        translation: "What are you doing today?" },
-      { speaker: "B", utterance: "Nimāltia huan niquitta in pāpālōtl patlāni. ¿Huan ta?",         translation: "I'm bathing and I'm watching the butterfly fly. And you?" },
+      { speaker: "B", utterance: "Nipixca pan mīllah huan nitlahcuiloa. ¿Huan ta?",             translation: "I'm harvesting in the field and writing. And you?" },
       { speaker: "A", utterance: "Na nitlaxahua ipan mīllah. Nicnequi nitlacuāz āchtopa.",        translation: "I'm digging in the cornfield. I want to eat first." },
       { speaker: "B", utterance: "Cuālli, nimitzneltoca. Tlazohcāmati.",                          translation: "Good, I believe you. Thank you." },
     ],
@@ -152,9 +151,9 @@ const DIALOGUES = [
     synId: "FCN-SYN-0043",
     lines: [
       { speaker: "A", utterance: "¿Titlahtoa nāhuatl?",                                           translation: "Do you speak Nahuatl?" },
-      { speaker: "B", utterance: "Āmo huel miac, achiyoc nimomachtia yōlic yōlic. ¿Huan ta?",     translation: "Not a lot — little by little I'm learning more. And you?" },
-      { speaker: "A", utterance: "Na macuilpa nimomachtia ipan tōnalli, nohquiya nicān caltlamachticān.", translation: "I study five times a day, also here at school." },
-      { speaker: "B", utterance: "Huel cuālli. Ocsepa titlahtōzqueh huan miac ticmatizqueh.",     translation: "Very good. We'll talk again and we'll know a lot." },
+      { speaker: "B", utterance: "Axcanah nel miac. Yōlic yōlic nimomachtia. ¿Huan ta?",         translation: "Not very much. Little by little I'm learning. And you?" },
+      { speaker: "A", utterance: "Na nochipa nimomachtia nicān caltlamachticān.",                translation: "I always study here at school." },
+      { speaker: "B", utterance: "Huel cuālli. Ocsepa titlahtōzqueh.",                          translation: "Very good. We'll talk again." },
     ],
   },
 ];
@@ -217,16 +216,12 @@ const updateUnitPlan = db.prepare(
   `UPDATE phase82_unit_plan SET english_lesson_unit_id = ? WHERE lesson_number = ?`
 );
 
-// Find the current max dialogue ID so new rows get unique IDs.
-const maxRow = db.prepare("SELECT MAX(lesson_dialogue_id) AS mx FROM lesson_dialogues").get();
-const maxNumMatch = (maxRow.mx || "FCN-LDG-000000").match(/(\d+)$/);
-let nextNum = maxNumMatch ? parseInt(maxNumMatch[1], 10) + 1 : 1;
-
 const run = db.transaction(() => {
   deleteDialogues.run(...existingUnitIds);
   clearUnitPlan.run();
   deleteLessonUnits.run(...existingUnitIds);
 
+  let nextNum = FIRST_DIALOGUE_NUMBER;
   for (const unit of DIALOGUES) {
     const title = UNIT_THEMES[unit.lessonNumber] || `Unit ${unit.lessonNumber}`;
     const slug = `syn-unit-${unit.lessonNumber}-${title.toLowerCase().replace(/\s+/g, "-")}`;

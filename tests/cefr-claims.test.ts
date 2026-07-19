@@ -26,8 +26,8 @@ describe("public CEFR claims", () => {
 
   it("publishes the current reviewed vocabulary count", () => {
     const readme = read("README.md");
-    expect(readme).toContain("469 unique reviewed words and forms");
-    expect(readme).toContain("482 learner-visible card placements");
+    expect(readme).toContain("463 unique reviewed words and forms");
+    expect(readme).toContain("476 learner-visible card placements");
     expect(readme).toContain("75 curated word-first cards");
     expect(readme).toContain("80 learner-visible source-course additions");
     expect(readme).toContain("240 reviewed source-course candidates");

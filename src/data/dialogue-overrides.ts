@@ -12,6 +12,26 @@ export type CuratedDialogueLine = {
  * only words already introduced in the lesson should appear here.
  */
 export const CURATED_DIALOGUES: Record<number, CuratedDialogueLine[]> = {
+  5: [
+    {
+      lesson_dialogue_id: "CUR-5-001",
+      speaker_label: "A",
+      utterance_normalized: "Piyali, ¿tlen titekiti ta?",
+      translation_en: "Hello, what do you do for work?",
+    },
+    {
+      lesson_dialogue_id: "CUR-5-002",
+      speaker_label: "B",
+      utterance_normalized: "Nitlamachtia nawatl.",
+      translation_en: "I teach Nahuatl.",
+    },
+    {
+      lesson_dialogue_id: "CUR-5-003",
+      speaker_label: "A",
+      utterance_normalized: "Kwalli. Na nitlahkwiloa.",
+      translation_en: "Good. I write.",
+    },
+  ],
   11: [
     {
       lesson_dialogue_id: "CUR-11-001",
@@ -48,6 +68,32 @@ export const CURATED_DIALOGUES: Record<number, CuratedDialogueLine[]> = {
       speaker_label: "B",
       utterance_normalized: "Asta mostlaj.",
       translation_en: "See you tomorrow.",
+    },
+  ],
+  19: [
+    {
+      lesson_dialogue_id: "CUR-19-001",
+      speaker_label: "A",
+      utterance_normalized: "Ximoketsa.",
+      translation_en: "Stand up.",
+    },
+    {
+      lesson_dialogue_id: "CUR-19-002",
+      speaker_label: "B",
+      utterance_normalized: "Kena.",
+      translation_en: "Yes.",
+    },
+    {
+      lesson_dialogue_id: "CUR-19-003",
+      speaker_label: "A",
+      utterance_normalized: "Ximotlali wan xitlapowa.",
+      translation_en: "Sit down and read.",
+    },
+    {
+      lesson_dialogue_id: "CUR-19-004",
+      speaker_label: "B",
+      utterance_normalized: "Kwalli, tlaskamati.",
+      translation_en: "Good, thank you.",
     },
   ],
 };

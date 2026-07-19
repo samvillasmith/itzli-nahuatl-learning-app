@@ -6,7 +6,10 @@ const Database = require("better-sqlite3");
 const { resolveDbPath } = require("./_db-path");
 
 const EHN_LINE_REJECTIONS = [
-  { reason: "Classical ō-augmented past", pattern: /\bō(?:ni|ti|qui|mo|tla|an|in)[a-zāēīō]/u },
+  {
+    reason: "Classical ō-augmented past",
+    pattern: /(^|[^\p{L}])ō(?:ni|ti|mo|nech|nēch|mits|mitz|tech|mech|qui|ki|k|tla|an|in)[\p{L}]/iu,
+  },
   { reason: "declarative āmo", pattern: /(^|[\s"“¡¿(])[Āā]mo\b(?!\s+xi)/u },
   { reason: "Classical aquin", pattern: /\b[Aa]quin\b/u },
   { reason: "Classical intla", pattern: /\bintla\b/iu },
@@ -36,9 +39,9 @@ const dialogues = [
     unitId: "FCN-LSN-0010", // Unit 1 — The Alphabet
     lines: [
       { s: "A", ehn: "Piyālli! ¿Titlahtōa nāhuatl?", en: "Hello! Do you speak Nahuatl?" },
-      { s: "B", ehn: "Axcanah mātzin, āchtopa nimomachtia.", en: "Not yet — I'm just beginning to learn." }, // TODO(EHN-verify): mātzin
-      { s: "A", ehn: "Cuālli. ¿Ācquiya mitztlamachtia tlahtōlli?", en: "Good. Who is teaching you the sounds?" },
-      { s: "B", ehn: "Notlamachtiah nicān pan caltlamachticān. Cuālli quitōa nāhuatl.", en: "My teacher here at school. He speaks Nahuatl well." },
+      { s: "B", ehn: "Ayamo. Āchtopa nimomachtia.", en: "Not yet. I'm beginning to learn." },
+      { s: "A", ehn: "Cuālli. ¿Ācquiya mitzmachtia nāhuatl?", en: "Good. Who teaches you Nahuatl?" },
+      { s: "B", ehn: "Tlamachtihquetl nicān pan caltlamachticān. Cuālli tlahtoa nāhuatl.", en: "The teacher here at school. The teacher speaks Nahuatl well." },
     ],
   },
   {
@@ -126,28 +129,28 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0024", // Unit 14 — Past Tense Verbs Part 1
     lines: [
-      { s: "A", ehn: "¿Tlen mochīuhqui?", en: "What happened?" },
-      { s: "B", ehn: "Axcanah cuālli. Nihuetzqui pan ohtli.", en: "Not good. I fell on the road." }, // TODO(EHN-verify): huetzqui
-      { s: "A", ehn: "¿Axcanah timomauhtihqui?", en: "Weren't you hurt?" }, // TODO(EHN-verify): momauhtihqui
-      { s: "B", ehn: "Axcanah, nimocuapqui nicān. Cuālli niitztoc āxcan.", en: "No, I turned back here. I'm fine now." }, // TODO(EHN-verify): nimocuapqui
+      { s: "A", ehn: "¿Ticpatlac motequi yalhua?", en: "Did you change your work yesterday?" },
+      { s: "B", ehn: "Quēna, nicpatlac. ¿Huan ta?", en: "Yes, I changed it. And you?" },
+      { s: "A", ehn: "Na axcanah nicpatlac. Zan nichōcac.", en: "I didn't change it. I only cried." },
+      { s: "B", ehn: "Āmo xichoca. Āxcan cuālli.", en: "Don't cry. It's fine now." },
     ],
   },
   {
     unitId: "FCN-LSN-0025", // Unit 15 — Past Tense Verbs Part 2
     lines: [
-      { s: "A", ehn: "¿Tlen ticchīuhqui yalhua?", en: "What did you do yesterday?" },
-      { s: "B", ehn: "Yalhua nicuīcac pan teopan. ¿Huan ta?", en: "Yesterday I sang at church. And you?" }, // TODO(EHN-verify): nicuīcac
-      { s: "A", ehn: "Na nichōcac pampa axcanah nihuāllahqui.", en: "I cried because I couldn't come." },
-      { s: "B", ehn: "Āmo ximotequipacho. Tiyāzqueh ōcsepa.", en: "Don't worry. We'll go again." }, // TODO(EHN-verify): ximotequipacho
+      { s: "A", ehn: "¿Ticpixqui tomi yalhua?", en: "Did you have money yesterday?" },
+      { s: "B", ehn: "Quēna, nicpixqui tomi. ¿Huan ta?", en: "Yes, I had money. And you?" },
+      { s: "A", ehn: "Na ninehnenqui pan āltepētl.", en: "I walked through town." },
+      { s: "B", ehn: "Cuālli. Na nocca nitizqui.", en: "Good. I also ground corn." },
     ],
   },
   {
     unitId: "FCN-LSN-0026", // Unit 16 — Past Tense Verbs Part 3
     lines: [
-      { s: "A", ehn: "¿Tlen ticchīuhqui pan tiānquiz?", en: "What did you do at the market?" },
-      { s: "B", ehn: "Ax cuālli. Cē tlacatl nēchichtec in tomi.", en: "Not good. Someone stole my money." },
-      { s: "A", ehn: "¡Axcanah cuālli! ¿Tiquīzqui tiānquiz?", en: "That's terrible! Did you leave the market?" },
-      { s: "B", ehn: "Quēna, niquīzqui. Axcanah nōmpa nihuāllāz.", en: "Yes, I left. I won't go back there." },
+      { s: "A", ehn: "¿Titlacuāhqui yalhua?", en: "Did you eat yesterday?" },
+      { s: "B", ehn: "Quēna, nitlacuāhqui pan nochān.", en: "Yes, I ate at home." },
+      { s: "A", ehn: "¿Huan ticmachtihqui nāhuatl?", en: "And did you teach Nahuatl?" },
+      { s: "B", ehn: "Quēna, nicmachtihqui nāhuatl.", en: "Yes, I taught Nahuatl." },
     ],
   },
   {
@@ -182,8 +185,8 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlen onca pan tomīlli?", en: "What is in our field?" },
       { s: "B", ehn: "Onca elotl huan ōlōtl. Cuālli in tōnalli āxcan.", en: "There are ears of corn and corncobs. Good day today." },
-      { s: "A", ehn: "¿Huan in chichi, cāmpa cateh?", en: "And the dog, where is it?" },
-      { s: "B", ehn: "In chichi onca nopā, quitemoa in piyo.", en: "The dog is over there, looking for the chicken." },
+      { s: "A", ehn: "¿Huan in chichi, cāmpa itztoc?", en: "And the dog, where is it?" },
+      { s: "B", ehn: "In chichi itztoc nopā, quitemoa in piyo.", en: "The dog is over there, looking for the chicken." },
     ],
   },
   {
@@ -209,7 +212,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Cāmpa tiyāhqui yalhua?", en: "Where did you go yesterday?" },
       { s: "B", ehn: "Niyāhqui Mexihco. Niquittac in āltepētl huan tiānquiz.", en: "I went to Mexico. I saw the city and the market." },
-      { s: "A", ehn: "¿Huan ticalac escuela?", en: "And did you enter the school?" }, // TODO(EHN-verify): ticalac
+      { s: "A", ehn: "¿Huan tiquittac escuela?", en: "And did you see the school?" },
       { s: "B", ehn: "Quēna, huan niquittac in tiopa. Cuālli āltepētl.", en: "Yes, and I saw the church. A fine city." }, // TODO(EHN-verify): niquittac
     ],
   },
@@ -227,7 +230,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlen ticōhuaz nicān tiānquiz?", en: "What will you buy here at the market?" },
       { s: "B", ehn: "Nicōhuaz cē pantzi huan ōme lalax. ¿Quēzqui tomi?", en: "I'll buy one bread and two oranges. How much money?" },
-      { s: "A", ehn: "In pantzi, ōme pesos. In lalax, cē peso ciyoc.", en: "The bread, two pesos. The oranges, one more peso." },
+      { s: "A", ehn: "In pantzi, ōme pesos. In lalax, cē peso achiyoc.", en: "The bread is two pesos. The oranges are one peso more." },
       { s: "B", ehn: "Cuālli, niccui. Tlazcāmati.", en: "OK, I'll take them. Thank you." },
     ],
   },
@@ -254,7 +257,7 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Quēniuhqui timoyōlia?", en: "How are you feeling?" },
       { s: "B", ehn: "Axcanah cuālli niitztoc. Nicpiya cecuīliztli.", en: "I'm not well. I have a cold." },
-      { s: "A", ehn: "¿Ticcāhuac in cocoliztli?", en: "Did you catch the sickness?" },
+      { s: "A", ehn: "¿Ticnequi pāhtli?", en: "Do you want medicine?" },
       { s: "B", ehn: "Quēna. Nicnequi niccua pāhtli āxcan.", en: "Yes. I want to take medicine today." },
     ],
   },
@@ -262,9 +265,9 @@ const dialogues = [
     unitId: "FCN-LSN-0040", // Unit 30 — The Conditional, Part 1
     lines: [
       { s: "A", ehn: "Tlan tiyāuh tiānquiz, ¿ticcuīz nākatl?", en: "If you go to the market, will you buy meat?" },
-      { s: "B", ehn: "Tlan onca tomi, quēna. Axcanah mātzin nicpiya.", en: "If there is money, yes. I don't have any yet." },
+      { s: "B", ehn: "Tlan onca tomi, quēna. Ayamo nicpiya.", en: "If there is money, yes. I don't have any yet." },
       { s: "A", ehn: "Tlan ax onca tomi, ¿tlen ticchīhuaz?", en: "If there's no money, what will you do?" },
-      { s: "B", ehn: "Nēlia axcanah niccuīz nākatl. Aic niccuīz.", en: "Truly I won't buy meat. I'll never buy it." },
+      { s: "B", ehn: "Axcanah niccuīz nākatl. Niccuīz etl.", en: "I won't take meat. I'll take beans." },
     ],
   },
   {
@@ -272,8 +275,8 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlen titlahtōz tlan tiquittaz in sitlālli?", en: "What will you say if you see the stars?" },
       { s: "B", ehn: "Tlan niquittaz sitlālli, nitlahtōz īhuaya in tēōtl.", en: "If I see the stars, I will speak with God." },
-      { s: "A", ehn: "¿Huan in āhacatl huan mixtli, quēniuhqui?", en: "And the wind and clouds, what about them?" },
-      { s: "B", ehn: "In āhacatl huan mixtli, nochi quitōa in cuīcatl. Tlazcāmati.", en: "The wind and clouds — they all carry the song. Thank you." },
+      { s: "A", ehn: "¿Huan tlan tiquittaz mixtli?", en: "And if you see clouds?" },
+      { s: "B", ehn: "Tlan niquittaz mixtli, niyāz nochān.", en: "If I see clouds, I will go home." },
     ],
   },
   {
@@ -282,7 +285,7 @@ const dialogues = [
       { s: "A", ehn: "¿Ācquiya tēmachtia nicān pan caltlamachticān?", en: "Who teaches people here at school?" },
       { s: "B", ehn: "Cē cihuātl tēmachtia. Tlāhuēl cuālli quitlahtōa nāhuatl.", en: "A woman teaches. She speaks Nahuatl very well." },
       { s: "A", ehn: "¿Huan ta, ticnequi tēmachtia?", en: "And you, do you want to teach people?" },
-      { s: "B", ehn: "Quēna, nicnequi tlātlamachtia huan tēmachtia. Cuālli notequi.", en: "Yes, I want to teach things and people. It's good work." },
+      { s: "B", ehn: "Quēna, nicnequi nitemachtia. Cuālli notequi.", en: "Yes, I want to teach people. It's good work." },
     ],
   },
 ];

@@ -22,6 +22,7 @@ export function toInaliOrthography(value: string): string {
   // the misleading learner form keniwki.
   out = replaceWithCase(out, /\bqueniuhqui\b/gi, "kenihki");
   out = replaceWithCase(out, /\bkeniuhki\b/gi, "kenihki");
+  out = replaceWithCase(out, /\baxcanah\b/gi, "axkana");
 
   out = replaceWithCase(out, /tz/gi, "ts");
   out = replaceWithCase(out, /z/gi, "s");

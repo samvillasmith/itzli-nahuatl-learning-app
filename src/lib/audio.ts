@@ -3,9 +3,7 @@ const BASE = trimBase(process.env.NEXT_PUBLIC_AUDIO_BASE_URL || "/audio-google")
 const FALLBACK_BASE = trimBase(
   process.env.NEXT_PUBLIC_AUDIO_FALLBACK_BASE_URL || (BASE === S3_BASE ? "" : S3_BASE)
 );
-const DIALOGUE_AUDIO_REVISIONS: Record<string, string> = {
-  "FCN-LDG-000218": "20260718-2",
-};
+const DIALOGUE_AUDIO_REVISION = "20260718-3";
 
 function trimBase(value: string): string {
   return value.replace(/\/+$/, "");
@@ -48,8 +46,7 @@ export const vocabAudioUrl    = (id: number | string) => audioUrl("vocab", id);
 export const dialogueAudioUrl = (id: string | number) => {
   const key = String(id);
   const src = audioUrl("dialogue", key);
-  const revision = DIALOGUE_AUDIO_REVISIONS[key];
-  return revision ? `${src}?v=${revision}` : src;
+  return `${src}?v=${DIALOGUE_AUDIO_REVISION}`;
 };
 
 export function vocabCardAudioUrl(id: number, explicit?: string | null): string | null {

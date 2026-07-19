@@ -343,11 +343,10 @@ function stripStageDirections(value: string | null): { text: string; changed: bo
   return { text: cleaned, changed: cleaned !== value.trim() };
 }
 
-// Returns real A/B dialogue and named-character conversation lines from
-// lesson_dialogues, filtered to actual EHN text (lines with macron vowels
-// or ¿).  English translations that were stored as sibling rows are excluded
-// by the diacritic/¿ requirement.  Named speakers Rufina, Martha, and Angela
-// appear in lesson 19 and produce a genuine three-way conversation there.
+// Returns real A/B dialogue and named-character conversation lines. Imported
+// source rows retain the diacritic/¿ filter that excludes English sibling rows;
+// reviewed AI rows are already separated by attestation tier and must not vanish
+// merely because a valid INALI sentence contains no macron or opening question.
 export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
   const curated = CURATED_DIALOGUES[lessonNumber];
   if (curated) {
@@ -364,7 +363,8 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
        WHERE u.lesson_number = ?
          AND (ld.speaker_label GLOB '[A-Z]'
               OR ld.speaker_label IN ('Rufina', 'Martha', 'Angela'))
-         AND (ld.utterance_normalized LIKE '%ā%'
+         AND (ld.attestation_tier = 'AI_generated'
+              OR ld.utterance_normalized LIKE '%ā%'
               OR ld.utterance_normalized LIKE '%ē%'
               OR ld.utterance_normalized LIKE '%ō%'
               OR ld.utterance_normalized LIKE '%ī%'

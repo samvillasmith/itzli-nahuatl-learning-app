@@ -9,6 +9,7 @@ describe("INALI learner orthography", () => {
   it("converts common legacy spellings without changing case", () => {
     expect(toInaliOrthography("Cualli tlazohcamati")).toBe("Kwalli tlasohkamati");
     expect(toInaliOrthography("Tzapotl")).toBe("Tsapotl");
+    expect(toInaliOrthography("Axcanah. Quēna.")).toBe("Axkana. Kena.");
   });
 
   it("keeps conversational and source-course forms searchable", () => {

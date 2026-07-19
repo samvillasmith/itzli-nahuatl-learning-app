@@ -55,7 +55,9 @@ const GLOSS_OVERRIDES: Record<string, string> = {
   "source-8-50": "the palm of my hand",
   "source-13-9": "he/she/it sees us",
   "source-13-10": "he/she/it sees you all",
+  "source-14-6": "you all cried",
   "source-18-22": "I knead chili peppers",
+  "source-19-8": "go out, everyone",
   "source-20-7": "little butterfly",
   "source-20-8": "little butterflies",
   "source-20-9": "little shrimp",
@@ -71,6 +73,9 @@ const GLOSS_OVERRIDES: Record<string, string> = {
 
 const UNIT_OVERRIDES: Record<string, number> = {
   "source-4-11": 34,
+  "source-15-6": 16,
+  "source-15-7": 16,
+  "source-15-9": 16,
 };
 
 function partOfSpeech(headword: string, gloss: string): string {

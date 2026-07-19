@@ -6,6 +6,7 @@ const Module = require("module");
 const ts = require("typescript");
 const Database = require("better-sqlite3");
 const { resolveDbPath } = require("./_db-path");
+const { validateEhnLine } = require("./generate-dialogues");
 
 const CHUNK_SIZE = 10;
 const originalResolveFilename = Module._resolveFilename;
@@ -216,6 +217,14 @@ function main() {
   const reviewedAudio = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "src/data/reviewed-audio.json"), "utf8")
   );
+  const spanishCatalog = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "src/i18n/es.generated.json"), "utf8")
+  );
+  const spanishOverrides = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "src/i18n/es.overrides.json"), "utf8")
+  );
+  const hasSpanishTranslation = (value) =>
+    !value || Object.hasOwn(spanishOverrides, value) || Object.hasOwn(spanishCatalog, value);
   const reviewedDialogueAudioIds = new Set(
     (reviewedAudio.dialogue || []).map((entry) => String(entry.id))
   );
@@ -360,7 +369,8 @@ function main() {
      WHERE u.lesson_number = ?
        AND (ld.speaker_label GLOB '[A-Z]'
             OR ld.speaker_label IN ('Rufina', 'Martha', 'Angela'))
-       AND (ld.utterance_normalized LIKE '%ā%'
+       AND (ld.attestation_tier = 'AI_generated'
+            OR ld.utterance_normalized LIKE '%ā%'
             OR ld.utterance_normalized LIKE '%ē%'
             OR ld.utterance_normalized LIKE '%ō%'
             OR ld.utterance_normalized LIKE '%ī%'
@@ -385,6 +395,7 @@ function main() {
   const disabledDialogueAudio = [];
   const missingVocabImages = [];
   const oversizedUnits = [];
+  const missingRuntimeSpanish = new Set();
   let sourcePromotionCount = 0;
   let curatedUnitCardCount = 0;
 
@@ -425,6 +436,7 @@ function main() {
     focusCardCount += focusCards.length;
     visibleCards += cards.length;
     for (const card of cards) {
+      if (!hasSpanishTranslation(card.gloss_en)) missingRuntimeSpanish.add(card.gloss_en);
       const image = getWordImage(card.imageHeadword || card.headword, {
         allowLegacyFallback: true,
         safetyText: [card.gloss_en, card.part_of_speech],
@@ -487,6 +499,21 @@ function main() {
       .filter((line) => !isAppContentExcluded(line.utterance_normalized, line.translation_en));
     if (CURATED_DIALOGUES[unit.lesson_number]) curatedUnits += 1;
     sourceDialogueLines += rawDialogues.length;
+    for (const line of rawDialogues) {
+      if (!hasSpanishTranslation(line.translation_en)) {
+        missingRuntimeSpanish.add(line.translation_en);
+      }
+      if (!validateEhnLine(line.utterance_normalized)) {
+        grammarFailures.push(
+          `Visible dialogue fails the Eastern Huasteca content gate: ${unit.lesson_number}:${line.lesson_dialogue_id}:${line.utterance_normalized}`
+        );
+      }
+      if (/\d/u.test(line.utterance_normalized)) {
+        grammarFailures.push(
+          `Visible dialogue contains a malformed digit: ${unit.lesson_number}:${line.lesson_dialogue_id}:${line.utterance_normalized}`
+        );
+      }
+    }
 
     const cleanedDialogues = rawDialogues.map((line) => {
       const utterance = stripStageDirections(line.utterance_normalized);
@@ -564,6 +591,11 @@ function main() {
   if (disabledDialogueAudio.length > 0) {
     grammarFailures.push(`Visible dialogue lines have audio disabled: ${disabledDialogueAudio.join(", ")}`);
   }
+  if (missingRuntimeSpanish.size > 0) {
+    grammarFailures.push(
+      `Learner-visible database content is missing Spanish translations: ${[...missingRuntimeSpanish].join(" | ")}`
+    );
+  }
 
   console.log("Course quality audit");
   console.log(`- Units: ${units.length}`);
@@ -580,6 +612,7 @@ function main() {
   console.log(`- Visible vocabulary cards missing images: ${missingVocabImages.length}`);
   console.log(`- Visible vocabulary cards missing audio: ${missingVocabAudio.length}`);
   console.log(`- Visible dialogue lines missing/disabled audio: ${missingDialogueAudio.length + disabledDialogueAudio.length}`);
+  console.log(`- Learner-visible runtime strings missing Spanish: ${missingRuntimeSpanish.size}`);
 
   console.log("\nUnits split into multiple max-10 lessons:");
   console.log(multiLessonUnits.length ? `- ${multiLessonUnits.join(", ")}` : "- none");

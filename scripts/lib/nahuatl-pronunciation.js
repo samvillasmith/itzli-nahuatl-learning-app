@@ -35,9 +35,9 @@ const SHORT_VOWEL_BEFORE_H_CUE = {
 const PARENTHETICAL_DIRECTIONS = /\([^()]*\)|\[[^\[\]]*\]|\{[^{}]*\}/g;
 const OPEN_PARENTHETICAL_DIRECTION = /[\(\[\{][^()\[\]{}]*$/g;
 const PUNCTUATION = /[¿¡?!.,;:()[\]{}"<>/]/g;
-const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
+const WORD_RE = /[A-Za-z\u0100\u0101\u0112\u0113\u012a\u012b\u014c\u014d\u016a\u016b\u02bc']+/g;
 const VOWELS = new Set(["a", "e", "i", "o", "u", "\u0101", "\u0113", "\u012b", "\u014d", "\u016b"]);
-const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "kw", "w", "sh"]);
+const CONSONANT_CLUSTERS = new Set(["ch", "tl", "tz", "ts", "kw", "w", "sh"]);
 const SPANISH_LOAN_CUES = new Map([
   ["enero", "eh-NEH-roh"],
   ["febrero", "feh-BREH-roh"],
@@ -101,6 +101,7 @@ function normalizeNahuatlText(text) {
     .replace(/\bqu[eē]niuhqui\b/g, "kenihki")
     .replace(/\bkeniuhki\b/g, "kenihki")
     .replace(/\bkeniwki\b/g, "kenihki")
+    .replace(/\baxcanah\b/g, "axcana")
     .replace(PUNCTUATION, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -150,7 +151,19 @@ function tokenizeWord(word) {
       continue;
     }
 
-    if ((ch === "t" && (next === "l" || next === "z")) || (ch === "c" && next === "h")) {
+    if (ch === "j") {
+      tokens.push({ orth: ch, kind: "consonant", cue: "h" });
+      i += 1;
+      continue;
+    }
+
+    if (ch === "k" && next === "w") {
+      tokens.push({ orth: "kw", kind: "consonant", cue: "kw" });
+      i += 2;
+      continue;
+    }
+
+    if ((ch === "t" && (next === "l" || next === "z" || next === "s")) || (ch === "c" && next === "h")) {
       tokens.push({ orth: ch + next, kind: "consonant", cue: ch + next });
       i += 2;
       continue;
@@ -292,6 +305,15 @@ function cueForText(text, options = {}) {
   return normalized.replace(WORD_RE, (word) => cueForWord(word, options));
 }
 
+function cueInputForText(text) {
+  return speakableNahuatlText(text)
+    .replace(WORD_RE, (word) => cueForWord(word, { markStress: false, separator: " " }))
+    .replace(/\s+([,.;:?!])/g, "$1")
+    .replace(/([¿¡])\s+/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function buildTtsInstructions(text, options = {}) {
   const cue = cueForText(text);
   const kind = options.kind === "dialogue" ? "dialogue line" : "word";
@@ -307,7 +329,7 @@ function buildTtsInstructions(text, options = {}) {
     "Use a slow, natural teaching pace with crisp consonants and steady vowels.",
     "Vowels are pure: a=ah, e=eh, i=ee, o=oh, u=oo. Never add an off-glide, so na is nah and ta is tah.",
     "The digraph ll is a held double l, like l-l. It is never the Spanish y sound.",
-    "x is sh. qu is k. cu or hu before a vowel is kw or w. z is s. Keep ch, tz, and tl crisp.",
+    "x is sh. qu is k. cu or kw is kw. hu or w before a vowel is w. z or s is s. j is a light h. Keep ch, tz/ts, and tl crisp.",
     "h or apostrophe marks a brief glottal catch or light h; do not drop it.",
     "Stress the penultimate syllable unless the cue marks a different syllable.",
     spanishLoanInstruction,
@@ -317,7 +339,7 @@ function buildTtsInstructions(text, options = {}) {
 
 function buildTtsInput(text, options = {}) {
   if (options.inputMode === "cue") {
-    return cueForText(text, { markStress: false, separator: " " });
+    return cueInputForText(text);
   }
   return normalizeNahuatlText(text);
 }
@@ -325,6 +347,7 @@ function buildTtsInput(text, options = {}) {
 module.exports = {
   buildTtsInput,
   buildTtsInstructions,
+  cueInputForText,
   cueForText,
   cueForWord,
   normalizeNahuatlText,

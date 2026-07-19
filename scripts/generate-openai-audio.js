@@ -21,6 +21,8 @@ const {
   speakableNahuatlText,
 } = require("./lib/nahuatl-pronunciation");
 
+const REVIEWED_AUDIO_PATH = path.resolve(__dirname, "..", "src", "data", "reviewed-audio.json");
+
 loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
 loadEnvFile(path.resolve(__dirname, "..", ".env"));
 
@@ -58,6 +60,7 @@ function parseArgs(argv) {
   const args = {
     execute: false,
     force: false,
+    reviewed: false,
     kind: "all",
     limit: 0,
     ids: new Set(),
@@ -71,6 +74,7 @@ function parseArgs(argv) {
 
     if (arg === "--execute") args.execute = true;
     else if (arg === "--force") args.force = true;
+    else if (arg === "--reviewed") args.reviewed = true;
     else if (arg === "--dry-run") args.execute = false;
     else if (arg === "--kind") {
       args.kind = value;
@@ -151,6 +155,7 @@ Usage:
 
 Options:
   --kind vocab|dialogue|all       Which rows to generate. Default: all
+  --reviewed                      Load exact text from src/data/reviewed-audio.json
   --limit N                       Cap rows for testing. Default: no cap
   --ids a,b,c                     Only generate selected row ids
   --force                         Overwrite existing files
@@ -177,6 +182,27 @@ function loadRows(args) {
         };
       })
       .filter((row) => row.text);
+  }
+
+  if (args.reviewed) {
+    const reviewed = JSON.parse(fs.readFileSync(REVIEWED_AUDIO_PATH, "utf8"));
+    const rows = [
+      ...(args.kind === "all" || args.kind === "vocab"
+        ? (reviewed.vocab || []).map((row) => ({ ...row, kind: "vocab" }))
+        : []),
+      ...(args.kind === "all" || args.kind === "dialogue"
+        ? (reviewed.dialogue || []).map((row) => ({ ...row, kind: "dialogue" }))
+        : []),
+    ].map((row) => ({
+      ...row,
+      id: String(row.id),
+      text: speakableNahuatlText(row.text),
+    })).filter((row) => row.text);
+
+    let filtered = rows;
+    if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(row.id));
+    if (args.limit > 0) filtered = filtered.slice(0, args.limit);
+    return filtered;
   }
 
   const db = new Database(resolveDbPath(), { readonly: true });
