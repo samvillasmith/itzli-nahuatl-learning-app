@@ -12,7 +12,7 @@ type CuratedUnitVocabSpec = {
 };
 
 const CURATED_AUDIO_BASE_URL =
-  "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab";
+  "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab-reviewed-v2";
 
 export type CuratedUnitVocab = {
   id: number;

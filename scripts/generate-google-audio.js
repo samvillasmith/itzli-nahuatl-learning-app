@@ -18,6 +18,7 @@ const { resolveDbPath } = require("./_db-path");
 const {
   cueForText,
   normalizeNahuatlText,
+  spanishLoanSpokenForm,
   speakableNahuatlText,
   splitSyllables,
   tokenizeWord,
@@ -28,6 +29,7 @@ loadEnvFile(path.resolve(__dirname, "..", ".env"));
 
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const REVIEWED_AUDIO_PATH = path.join(PROJECT_ROOT, "src", "data", "reviewed-audio.json");
+const CURATED_UNIT_VOCAB_PATH = path.join(PROJECT_ROOT, "src", "data", "curated-unit-vocab.json");
 const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
 
 const DEFAULTS = {
@@ -363,6 +365,18 @@ function loadRows(args) {
       .prepare("SELECT id, display_form AS text FROM lesson_vocab ORDER BY lesson_number, rank, id")
       .all();
     for (const row of vocab) rows.push({ kind: "vocab", id: String(row.id), text: row.text });
+
+    const curated = JSON.parse(fs.readFileSync(CURATED_UNIT_VOCAB_PATH, "utf8"));
+    const unitCounts = new Map();
+    for (const card of curated) {
+      const unitIndex = (unitCounts.get(card.unit) || 0) + 1;
+      unitCounts.set(card.unit, unitIndex);
+      rows.push({
+        kind: "vocab",
+        id: String(900_000 + Number(card.unit) * 100 + unitIndex),
+        text: speakableNahuatlText(card.headword),
+      });
+    }
   }
 
   if (args.kind === "all" || args.kind === "dialogue") {
@@ -449,8 +463,11 @@ function buildSsml(text, args) {
   for (const match of source.matchAll(WORD_RE)) {
     const word = match[0];
     out += escapeXmlText(source.slice(last, match.index));
+    const spanishLoan = spanishLoanSpokenForm(word);
 
-    if (args.inputMode === "orthography") {
+    if (spanishLoan) {
+      out += escapeXmlText(spanishLoan);
+    } else if (args.inputMode === "orthography") {
       out += escapeXmlText(normalizeNahuatlText(word));
     } else if (args.inputMode === "cue") {
       out += escapeXmlText(cueForText(word, { markStress: false, separator: " " }));
@@ -472,7 +489,7 @@ function buildSsml(text, args) {
 function xsampaForText(text) {
   return speakableNahuatlText(text)
     .toLowerCase()
-    .replace(WORD_RE, (word) => wordToXsampa(word) || word);
+    .replace(WORD_RE, (word) => spanishLoanSpokenForm(word) || wordToXsampa(word) || word);
 }
 
 function previewRows(args, rows, authLabel) {

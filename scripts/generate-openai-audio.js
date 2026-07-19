@@ -24,14 +24,6 @@ const {
 loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
 loadEnvFile(path.resolve(__dirname, "..", ".env"));
 
-const CURATED_UNIT_VOCAB_PATH = path.resolve(
-  __dirname,
-  "..",
-  "src",
-  "data",
-  "curated-unit-vocab.json",
-);
-
 const DEFAULTS = {
   model: process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts",
   voice: process.env.OPENAI_TTS_VOICE || "marin",
@@ -196,17 +188,6 @@ function loadRows(args) {
       .all();
     for (const row of vocab) rows.push({ kind: "vocab", id: String(row.id), text: row.text });
 
-    const curated = JSON.parse(fs.readFileSync(CURATED_UNIT_VOCAB_PATH, "utf8"));
-    const unitCounts = new Map();
-    for (const card of curated) {
-      const unitIndex = (unitCounts.get(card.unit) || 0) + 1;
-      unitCounts.set(card.unit, unitIndex);
-      rows.push({
-        kind: "vocab",
-        id: String(900_000 + Number(card.unit) * 100 + unitIndex),
-        text: speakableNahuatlText(card.headword),
-      });
-    }
   }
 
   if (args.kind === "all" || args.kind === "dialogue") {

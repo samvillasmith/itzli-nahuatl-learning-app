@@ -94,6 +94,14 @@ https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab/{id}.wav
 https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/dialogue/{id}.wav
 ```
 
+Curated cards with newly synthesized, individually regenerated Spanish-voice
+audio use a versioned immutable prefix so corrected pronunciation cannot be
+masked by a previously cached file:
+
+```text
+https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab-reviewed-v2/{id}.wav
+```
+
 ## Authentication
 
 The Google generator uses a local service-account JSON from `secrets/` or

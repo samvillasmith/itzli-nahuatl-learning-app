@@ -42,6 +42,7 @@ const SPANISH_LOAN_CUES = new Map([
   ["enero", "eh-NEH-roh"],
   ["febrero", "feh-BREH-roh"],
   ["marzo", "MAR-soh"],
+  ["marso", "MAR-soh"],
   ["abril", "ah-BREEL"],
   ["mayo", "MAH-yoh"],
   ["junio", "JOON-yoh"],
@@ -49,8 +50,27 @@ const SPANISH_LOAN_CUES = new Map([
   ["agosto", "ah-GOHS-toh"],
   ["septiembre", "sep-TYEM-breh"],
   ["octubre", "ohk-TOO-breh"],
+  ["oktubre", "ohk-TOO-breh"],
   ["noviembre", "noh-BYEM-breh"],
   ["diciembre", "dee-SYEM-breh"],
+  ["disiembre", "dee-SYEM-breh"],
+]);
+const SPANISH_LOAN_SPOKEN_FORMS = new Map([
+  ["enero", "enero"],
+  ["febrero", "febrero"],
+  ["marzo", "marzo"],
+  ["marso", "marzo"],
+  ["abril", "abril"],
+  ["mayo", "mayo"],
+  ["junio", "junio"],
+  ["julio", "julio"],
+  ["agosto", "agosto"],
+  ["septiembre", "septiembre"],
+  ["octubre", "octubre"],
+  ["oktubre", "octubre"],
+  ["noviembre", "noviembre"],
+  ["diciembre", "diciembre"],
+  ["disiembre", "diciembre"],
 ]);
 
 function stripParentheticalDirections(text) {
@@ -263,6 +283,10 @@ function cueForWord(word, options = {}) {
   return parts.join(options.separator || "-");
 }
 
+function spanishLoanSpokenForm(word) {
+  return SPANISH_LOAN_SPOKEN_FORMS.get(normalizeNahuatlText(word)) || "";
+}
+
 function cueForText(text, options = {}) {
   const normalized = normalizeNahuatlText(text);
   return normalized.replace(WORD_RE, (word) => cueForWord(word, options));
@@ -304,6 +328,7 @@ module.exports = {
   cueForText,
   cueForWord,
   normalizeNahuatlText,
+  spanishLoanSpokenForm,
   speakableNahuatlText,
   splitSyllables,
   stripParentheticalDirections,

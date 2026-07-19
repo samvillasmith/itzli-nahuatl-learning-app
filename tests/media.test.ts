@@ -11,9 +11,10 @@ import { dialogueAudioUrl, vocabCardAudioUrl } from "@/lib/audio";
 
 const audioRoot = path.join(process.cwd(), "public", "audio-google");
 const require = createRequire(import.meta.url);
-const { buildTtsInstructions, cueForWord } = require("../scripts/lib/nahuatl-pronunciation.js") as {
+const { buildTtsInstructions, cueForWord, spanishLoanSpokenForm } = require("../scripts/lib/nahuatl-pronunciation.js") as {
   buildTtsInstructions: (text: string) => string;
   cueForWord: (text: string) => string;
+  spanishLoanSpokenForm: (text: string) => string;
 };
 
 describe("reviewed media", () => {
@@ -92,10 +93,32 @@ describe("reviewed media", () => {
     }
   });
 
+  it("keeps synthesized curated audio on the reviewed Spanish-voice prefix", () => {
+    const synthesized = CURATED_UNIT_VOCAB.filter((entry) => !entry.sourceUrl);
+    const sourceRecorded = CURATED_UNIT_VOCAB.filter((entry) => entry.sourceUrl);
+
+    expect(synthesized).toHaveLength(43);
+    expect(
+      synthesized.every((entry) =>
+        entry.audioSrc?.startsWith(
+          "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/vocab-reviewed-v2/",
+        ),
+      ),
+    ).toBe(true);
+    expect(sourceRecorded).toHaveLength(32);
+    expect(sourceRecorded.every((entry) => entry.audioSrc?.includes("tlahtolli.coerll.utexas.edu"))).toBe(true);
+  });
+
   it("preserves Mexican Spanish pronunciation for the month loans", () => {
     expect(cueForWord("febrero")).toBe("feh-BREH-roh");
     expect(cueForWord("junio")).toBe("JOON-yoh");
     expect(cueForWord("septiembre")).toBe("sep-TYEM-breh");
+    expect(cueForWord("marso")).toBe("MAR-soh");
+    expect(cueForWord("oktubre")).toBe("ohk-TOO-breh");
+    expect(cueForWord("disiembre")).toBe("dee-SYEM-breh");
+    expect(spanishLoanSpokenForm("marso")).toBe("marzo");
+    expect(spanishLoanSpokenForm("oktubre")).toBe("octubre");
+    expect(spanishLoanSpokenForm("disiembre")).toBe("diciembre");
     expect(buildTtsInstructions("diciembre")).toContain("natural Mexican Spanish pronunciation");
   });
 });
