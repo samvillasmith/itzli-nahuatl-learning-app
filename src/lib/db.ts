@@ -12,6 +12,10 @@ import { orthographySearchVariants } from "@/lib/orthography";
 import reviewedAudio from "@/data/reviewed-audio.json";
 import { getSourceVocabPromotions } from "@/data/source-vocab-promotions";
 import { getCuratedUnitVocab } from "@/data/curated-unit-vocab";
+import {
+  getCoreVocabUnit,
+  selectLearnerUnitCards,
+} from "@/data/course-vocab-selection";
 
 const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
 const DB_URL =
@@ -188,18 +192,13 @@ export function getUnit(lessonNumber: number): Unit | null {
 }
 
 export function getUnitVocab(lessonNumber: number): VocabItem[] {
-  const rows = getDb()
-    .prepare(
-      `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
-              lesson_number AS first_lesson_number, semantic_domain
-       FROM lesson_vocab
-       WHERE lesson_number = ?
-       ORDER BY rank, id`
-    )
-    .all(lessonNumber) as VocabItem[];
+  const rows = getCoreVocabByCourseUnit().get(lessonNumber) ?? [];
 
-  return mergeCuratedUnitVocab(
-    mergeSourcePromotions(filterCoreVocab(rows, lessonNumber), lessonNumber),
+  return selectLearnerUnitCards(
+    mergeCuratedUnitVocab(
+      mergeSourcePromotions(rows, lessonNumber),
+      lessonNumber,
+    ),
     lessonNumber,
   );
 }
@@ -214,21 +213,7 @@ export function getPrimerVocabEntryCount(): number {
 }
 
 export function getAllPrimerVocab(): VocabItem[] {
-  const rows = getDb()
-    .prepare(
-      `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
-              lesson_number AS first_lesson_number, semantic_domain
-       FROM lesson_vocab
-       ORDER BY lesson_number, rank, id`
-    )
-    .all() as VocabItem[];
-
-  const byLesson = new Map<number, VocabItem[]>();
-  for (const row of rows) {
-    const group = byLesson.get(row.first_lesson_number) ?? [];
-    group.push(row);
-    byLesson.set(row.first_lesson_number, group);
-  }
+  const byLesson = getCoreVocabByCourseUnit();
 
   const lessonNumbers = new Set([
     ...byLesson.keys(),
@@ -240,13 +225,7 @@ export function getAllPrimerVocab(): VocabItem[] {
     .sort((a, b) => a - b)
     .flatMap((lessonNumber) =>
       collapseVariants(
-        mergeCuratedUnitVocab(
-          mergeSourcePromotions(
-            filterCoreVocab(byLesson.get(lessonNumber) ?? [], lessonNumber),
-            lessonNumber,
-          ),
-          lessonNumber,
-        ),
+        getUnitVocab(lessonNumber),
         lessonNumber,
       ).cards
     );
@@ -258,6 +237,41 @@ export function getAllPrimerVocab(): VocabItem[] {
     seen.add(key);
     return true;
   });
+}
+
+let coreVocabByCourseUnit: Map<number, VocabItem[]> | null = null;
+
+function getCoreVocabByCourseUnit(): Map<number, VocabItem[]> {
+  if (coreVocabByCourseUnit) return coreVocabByCourseUnit;
+
+  const rows = getDb()
+    .prepare(
+      `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
+              lesson_number AS first_lesson_number, semantic_domain
+       FROM lesson_vocab
+       ORDER BY lesson_number, rank, id`
+    )
+    .all() as VocabItem[];
+
+  const byOriginalUnit = new Map<number, VocabItem[]>();
+  for (const row of rows) {
+    const group = byOriginalUnit.get(row.first_lesson_number) ?? [];
+    group.push(row);
+    byOriginalUnit.set(row.first_lesson_number, group);
+  }
+
+  const selectedByCourseUnit = new Map<number, VocabItem[]>();
+  for (const [originalUnit, originalRows] of byOriginalUnit) {
+    for (const row of filterCoreVocab(originalRows, originalUnit)) {
+      const courseUnit = getCoreVocabUnit(row.id, originalUnit);
+      const group = selectedByCourseUnit.get(courseUnit) ?? [];
+      group.push({ ...row, first_lesson_number: courseUnit });
+      selectedByCourseUnit.set(courseUnit, group);
+    }
+  }
+
+  coreVocabByCourseUnit = selectedByCourseUnit;
+  return selectedByCourseUnit;
 }
 
 function mergeSourcePromotions(items: VocabItem[], lessonNumber: number): VocabItem[] {

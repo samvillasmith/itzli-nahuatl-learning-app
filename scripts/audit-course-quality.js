@@ -201,6 +201,11 @@ function main() {
   const { collapseVariants } = loadTsModule("src/data/variant-groups.ts");
   const { getSourceVocabPromotions } = loadTsModule("src/data/source-vocab-promotions.ts");
   const { getCuratedUnitVocab } = loadTsModule("src/data/curated-unit-vocab.ts");
+  const {
+    getCoreVocabUnit,
+    selectLearnerUnitCards,
+    MAX_LEARNER_CARDS_PER_UNIT,
+  } = loadTsModule("src/data/course-vocab-selection.ts");
   const { getWordImage } = loadTsModule("src/data/word-images.ts");
   const { isAppContentExcluded } = loadTsModule("src/lib/app-content-safety.ts");
   const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
@@ -319,13 +324,34 @@ function main() {
      ORDER BY lesson_number`
   ).all();
 
-  const vocabRows = db.prepare(
+  const allVocabRows = db.prepare(
     `SELECT id, entry_id, rank, display_form AS headword, gloss_en, part_of_speech,
             lesson_number AS first_lesson_number, lesson_number, semantic_domain
      FROM lesson_vocab
-     WHERE lesson_number = ?
-     ORDER BY rank, id`
-  );
+     ORDER BY lesson_number, rank, id`
+  ).all();
+
+  const vocabByOriginalUnit = new Map();
+  for (const row of allVocabRows) {
+    const group = vocabByOriginalUnit.get(row.lesson_number) || [];
+    group.push(row);
+    vocabByOriginalUnit.set(row.lesson_number, group);
+  }
+
+  const coreVocabByCourseUnit = new Map();
+  for (const [originalUnit, rows] of vocabByOriginalUnit) {
+    for (const row of filterCoreVocab(rows, originalUnit)) {
+      const courseUnit = getCoreVocabUnit(row.id, originalUnit);
+      const group = coreVocabByCourseUnit.get(courseUnit) || [];
+      group.push({ ...row, first_lesson_number: courseUnit, lesson_number: courseUnit });
+      coreVocabByCourseUnit.set(courseUnit, group);
+    }
+  }
+
+  const allSourcePromotions = getSourceVocabPromotions();
+  const allCuratedUnitCards = getCuratedUnitVocab();
+  const sourcePromotionIds = new Set(allSourcePromotions.map((card) => card.id));
+  const curatedUnitCardIds = new Set(allCuratedUnitCards.map((card) => card.id));
 
   const dialogueRows = db.prepare(
     `SELECT ld.lesson_dialogue_id, ld.speaker_label, ld.utterance_normalized, ld.translation_en
@@ -358,11 +384,12 @@ function main() {
   const missingDialogueAudio = [];
   const disabledDialogueAudio = [];
   const missingVocabImages = [];
+  const oversizedUnits = [];
   let sourcePromotionCount = 0;
   let curatedUnitCardCount = 0;
 
   for (const unit of units) {
-    const filtered = filterCoreVocab(vocabRows.all(unit.lesson_number), unit.lesson_number);
+    const filtered = [...(coreVocabByCourseUnit.get(unit.lesson_number) || [])];
     const seenHeadwords = new Set(filtered.map((card) => card.headword.trim().toLowerCase()));
     const promotions = getSourceVocabPromotions(unit.lesson_number).filter((card) => {
       const key = card.headword.trim().toLowerCase();
@@ -370,7 +397,6 @@ function main() {
       seenHeadwords.add(key);
       return true;
     });
-    sourcePromotionCount += promotions.length;
     filtered.push(...promotions);
     const curatedCards = getCuratedUnitVocab(unit.lesson_number).filter((card) => {
       const key = card.headword.trim().toLowerCase();
@@ -378,9 +404,20 @@ function main() {
       seenHeadwords.add(key);
       return true;
     });
-    curatedUnitCardCount += curatedCards.length;
     filtered.push(...curatedCards);
-    const { cards } = collapseVariants(filtered, unit.lesson_number);
+    const selected = selectLearnerUnitCards(filtered, unit.lesson_number);
+    sourcePromotionCount += selected.filter((card) => sourcePromotionIds.has(card.id)).length;
+    curatedUnitCardCount += selected.filter((card) => curatedUnitCardIds.has(card.id)).length;
+    const { cards } = collapseVariants(selected, unit.lesson_number);
+    if (cards.length > MAX_LEARNER_CARDS_PER_UNIT) {
+      oversizedUnits.push(`${unit.lesson_number}:${cards.length}`);
+    }
+    if (unit.lesson_number === 1 && cards.some((card) => card.part_of_speech !== "letter")) {
+      grammarFailures.push("Sounds and Spelling contains a non-letter vocabulary card.");
+    }
+    if (unit.lesson_number === 34 && cards.length < 12) {
+      grammarFailures.push(`Numbers and Counting must teach at least 12 standalone cards; found ${cards.length}.`);
+    }
     const unitLabIds = GRAMMAR_LABS.filter((lab) => lab.unit === unit.lesson_number).map((lab) => lab.id);
     const focusCards = LESSON_FOCUS_CARDS.filter((card) =>
       card.unit === unit.lesson_number && unitLabIds.includes(card.labId)
@@ -501,14 +538,19 @@ function main() {
       `Distinct visible vocabulary cards reuse image URLs: ${duplicateVisibleImages.join("; ")}`
     );
   }
-  if (visibleCards < 600 || visibleCards > 700) {
-    grammarFailures.push(`Reviewed course inventory must stay between 600 and 700 cards; found ${visibleCards}.`);
+  if (visibleCards < 450 || visibleCards > units.length * MAX_LEARNER_CARDS_PER_UNIT) {
+    grammarFailures.push(`Reviewed course inventory is outside its balanced range; found ${visibleCards}.`);
   }
-  if (sourcePromotionCount !== 240) {
-    grammarFailures.push(`Expected 240 promoted source-course cards; found ${sourcePromotionCount}.`);
+  if (allSourcePromotions.length !== 240) {
+    grammarFailures.push(`Expected 240 reviewed source-course candidates; found ${allSourcePromotions.length}.`);
   }
-  if (curatedUnitCardCount !== 75) {
-    grammarFailures.push(`Expected 75 curated unit vocabulary cards; found ${curatedUnitCardCount}.`);
+  if (allCuratedUnitCards.length !== 75) {
+    grammarFailures.push(`Expected 75 curated unit vocabulary candidates; found ${allCuratedUnitCards.length}.`);
+  }
+  if (oversizedUnits.length > 0) {
+    grammarFailures.push(
+      `Units exceed the ${MAX_LEARNER_CARDS_PER_UNIT}-card learner limit: ${oversizedUnits.join(", ")}`
+    );
   }
   if (missingVocabImages.length > 0) {
     grammarFailures.push(`Visible vocabulary cards missing images: ${missingVocabImages.join(", ")}`);
@@ -526,8 +568,9 @@ function main() {
   console.log("Course quality audit");
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
-  console.log(`- Promoted audio-backed source cards: ${sourcePromotionCount}`);
-  console.log(`- Curated word-first unit cards: ${curatedUnitCardCount}`);
+  console.log(`- Learner-visible source-course cards: ${sourcePromotionCount} of ${allSourcePromotions.length} reviewed candidates`);
+  console.log(`- Learner-visible curated cards: ${curatedUnitCardCount} of ${allCuratedUnitCards.length} reviewed candidates`);
+  console.log(`- Units over ${MAX_LEARNER_CARDS_PER_UNIT} cards: ${oversizedUnits.length}`);
   console.log(`- Grammar-derived lesson cards: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);

@@ -10,7 +10,7 @@ import {
   isCoreVocabItem,
   SOURCE_VERIFIED_UNLINKED_VOCAB_IDS,
 } from "../src/data/excluded-vocab";
-import { getAllPrimerVocab, getAllUnits, getUnitVocab, getVocabCount } from "../src/lib/db";
+import { getAllPrimerVocab, getAllUnits, getDb, getUnitVocab, getVocabCount } from "../src/lib/db";
 
 const require = createRequire(import.meta.url);
 const { validateEhnLine } = require("../scripts/generate-dialogues.js") as {
@@ -180,8 +180,11 @@ describe("Eastern Huasteca content invariants", () => {
     }
   });
 
-  it("publishes the final primary-source gloss corrections", () => {
-    const byId = new Map(getAllPrimerVocab().map((entry) => [entry.id, entry.gloss_en]));
+  it("preserves the final primary-source gloss corrections", () => {
+    const correctedRows = getDb()
+      .prepare("SELECT id, gloss_en FROM lesson_vocab WHERE id IN (97, 100, 228, 413, 449, 457)")
+      .all() as Array<{ id: number; gloss_en: string }>;
+    const byId = new Map(correctedRows.map((entry) => [entry.id, entry.gloss_en]));
     expect(byId.get(97)).toBe("tortilla maker; woman who makes tortillas");
     expect(byId.get(100)).toBe("counting; account; number");
     expect(byId.get(228)).toBe("sister-in-law; female in-law");
@@ -191,10 +194,60 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(671);
+    expect(getVocabCount()).toBe(469);
+    expect(
+      getAllUnits().reduce((sum, unit) => sum + unit.english_vocab_count, 0),
+    ).toBe(482);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
     ).toBe(173);
+  });
+
+  it("keeps every guided unit within a coherent learner-card range", () => {
+    const units = getAllUnits();
+    expect(units.every((unit) => unit.english_vocab_count >= 5)).toBe(true);
+    expect(units.every((unit) => unit.english_vocab_count <= 15)).toBe(true);
+  });
+
+  it("teaches sounds as sounds and moves number vocabulary into counting", () => {
+    const sounds = getUnitVocab(1);
+    expect(sounds).toHaveLength(13);
+    expect(sounds.every((card) => card.part_of_speech === "letter")).toBe(true);
+
+    const colors = getUnitVocab(4).map((card) => card.gloss_en.toLowerCase());
+    expect(colors.some((gloss) => /^(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|fifteen|twenty|hundred)$/.test(gloss))).toBe(false);
+
+    const numbers = getUnitVocab(34).map((card) => card.gloss_en.toLowerCase());
+    expect(numbers).toHaveLength(15);
+    expect(numbers).toEqual(
+      expect.arrayContaining([
+        "zero",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twenty",
+        "hundred",
+        "counting; account; number",
+      ]),
+    );
+  });
+
+  it("places conversational greeting questions with greetings", () => {
+    const questionHeadwords = getUnitVocab(2).map((card) => card.headword);
+    const greetingHeadwords = getUnitVocab(11).map((card) => card.headword);
+    expect(questionHeadwords).not.toContain("Kenihki tiya?");
+    expect(questionHeadwords).not.toContain("Kenihki tiistok?");
+    expect(greetingHeadwords).toEqual(
+      expect.arrayContaining(["Kenihki tiya?", "Kenihki tiistok?"]),
+    );
   });
 
   it("keeps formerly thin units stocked with standalone vocabulary", () => {
@@ -203,7 +256,7 @@ describe("Eastern Huasteca content invariants", () => {
       [33, 12],
       [35, 10],
       [36, 10],
-      [37, 10],
+      [37, 15],
       [38, 8],
       [39, 8],
       [40, 8],
@@ -228,9 +281,14 @@ describe("Eastern Huasteca content invariants", () => {
         "piyo",
         "chapolin",
         "papalotl",
-        "kimichin",
         "kechpechin",
         "miston",
+        "chivo",
+        "chichi",
+        "huacax",
+        "tototl",
+        "kawayoh",
+        "kimichin",
       ]),
     );
   });

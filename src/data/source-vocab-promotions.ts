@@ -43,6 +43,7 @@ const PROMOTED_SOURCE_INDEXES: Record<number, readonly number[]> = {
 };
 
 const GLOSS_OVERRIDES: Record<string, string> = {
+  "source-1-25": "joy; happiness",
   "source-1-28": "elder; older adult",
   "source-2-7": "I greet you",
   "source-2-18": "stand up, everyone",
@@ -66,6 +67,10 @@ const GLOSS_OVERRIDES: Record<string, string> = {
   "source-20-37": "little candle",
   "source-21-19": "banana leaves",
   "source-21-20": "dried ear of corn wrapped in its husk",
+};
+
+const UNIT_OVERRIDES: Record<string, number> = {
+  "source-4-11": 34,
 };
 
 function partOfSpeech(headword: string, gloss: string): string {
@@ -122,7 +127,7 @@ function buildPromotions(): SourceVocabPromotion[] {
         headword,
         gloss_en: gloss,
         part_of_speech: partOfSpeech(headword, gloss),
-        first_lesson_number: lessonNumber,
+        first_lesson_number: UNIT_OVERRIDES[sourceId] ?? lessonNumber,
         semantic_domain: "source_course_expansion",
         audioSrc: item.audioUrl,
         imageHeadword: item.headword,

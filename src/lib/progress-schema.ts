@@ -1,5 +1,5 @@
 export const PROGRESS_VERSION = 2 as const;
-export const CURRICULUM_REVISION = "2026-07-words-first-1";
+export const CURRICULUM_REVISION = "2026-07-balanced-vocab-2";
 
 export type UnitProgress = {
   status: "in_progress" | "completed";
