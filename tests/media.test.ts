@@ -28,8 +28,19 @@ describe("reviewed media", () => {
     for (const entry of reviewedAudio.dialogue) {
       const file = path.join(audioRoot, "dialogue", `${entry.id}.wav`);
       expect(fs.statSync(file).size, file).toBeGreaterThan(1_000);
-      expect(dialogueAudioUrl(entry.id)).toBe(`/audio-google/dialogue/${entry.id}.wav`);
+      expect(dialogueAudioUrl(entry.id)).toMatch(
+        new RegExp(`^/audio-google/dialogue/${entry.id}\\.wav(?:\\?v=\\d{8}-\\d+)?$`),
+      );
     }
+  });
+
+  it("cache-busts the corrected Unit 1 teaching question", () => {
+    expect(
+      reviewedAudio.dialogue.find((entry) => entry.id === "FCN-LDG-000218")?.text,
+    ).toBe("Cuālli. ¿Ācquiya mitztlamachtia tlahtōlli?");
+    expect(dialogueAudioUrl("FCN-LDG-000218")).toBe(
+      "/audio-google/dialogue/FCN-LDG-000218.wav?v=20260718-2",
+    );
   });
 
   it("keeps every curated Unit 11 dialogue line audible", () => {
