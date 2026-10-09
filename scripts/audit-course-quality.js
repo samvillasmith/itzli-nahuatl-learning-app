@@ -5,8 +5,9 @@ const path = require("path");
 const Module = require("module");
 const ts = require("typescript");
 const Database = require("better-sqlite3");
-const { resolveDbPath } = require("./_db-path");
+const { resolveReadonlyCourseDbPath, dictionaryAuditScope } = require("./lib/readonly-course-db.cjs");
 const { validateEhnLine } = require("./generate-dialogues");
+const { collectPublishedAudio } = require("./audit-audio-integrity");
 
 const CHUNK_SIZE = 10;
 const originalResolveFilename = Module._resolveFilename;
@@ -182,7 +183,9 @@ function collectGrammarLabLearnerText(lab) {
 }
 
 function main() {
-  const dbPath = resolveDbPath();
+  const dbPath = resolveReadonlyCourseDbPath();
+  const publishedAudio = collectPublishedAudio();
+  const { displayNahuatl } = loadTsModule("src/lib/orthography.ts");
 
   const grammarWarnings = [];
   const grammarFailures = [];
@@ -207,9 +210,20 @@ function main() {
     selectLearnerUnitCards,
     MAX_LEARNER_CARDS_PER_UNIT,
   } = loadTsModule("src/data/course-vocab-selection.ts");
-  const { getWordImage } = loadTsModule("src/data/word-images.ts");
+  const { getVocabCardImage, getVocabCardImageHold } = loadTsModule("src/data/word-images.ts");
+  const { getDialogueSourceRecording } = loadTsModule("src/data/recording-reuse.ts");
+  const legacyDisabledDialogueAudio = [];
+  const legacyHeldVocabAudio = [];
+  const restoredSourceDialogueAudio = [];
+  const restoredGeneratedDialogueAudio = [];
+  const imageReviews = JSON.parse(fs.readFileSync(path.join(process.cwd(), "src/data/image-content-review.json"), "utf8"));
+  const recordedImageHoldReasons = new Set([...imageReviews.cards, ...imageReviews.assets].filter((row) => row.status === "held" || row.status === "structured-cue").map((row) => row.reason));
+  const withheldVocabImages = [];
+  const structuredCueImageIds = new Set(imageReviews.cards.filter((row) => row.status === "structured-cue").map((row) => row.id));
+  const structuredCueCards = [];
   const { isAppContentExcluded } = loadTsModule("src/lib/app-content-safety.ts");
-  const { CURATED_DIALOGUES } = loadTsModule("src/data/dialogue-overrides.ts");
+  const { CURATED_DIALOGUES, DIALOGUE_LINE_CORRECTIONS } = loadTsModule("src/data/dialogue-overrides.ts");
+  const { reviewConstruction } = loadTsModule("src/data/construction-review.ts");
   const { GRAMMAR_LESSONS } = loadTsModule("src/data/grammar-lessons.ts");
   const { GRAMMAR_LABS } = loadTsModule("src/data/grammar-labs.ts");
   const { LESSON_FOCUS_CARDS, getLessonFocusCardsForLab } = loadTsModule("src/data/lesson-focus-cards.ts");
@@ -343,6 +357,7 @@ function main() {
   }
 
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });
+  const databaseScope = dictionaryAuditScope(db);
 
   const units = db.prepare(
     `SELECT lesson_number, theme_en
@@ -400,6 +415,15 @@ function main() {
   let focusCardCount = 0;
   let lessonChunks = 0;
   let sourceDialogueLines = 0;
+  let reviewedConstructions = 0;
+  let withheldConstructions = 0;
+  const constructionRows = db.prepare(
+    `SELECT priority_id, first_lesson_number, construction_label, pattern_text,
+            example_original, translation_en
+     FROM primer_constructions
+     WHERE first_lesson_number = ? AND translation_en IS NOT NULL
+       AND trim(translation_en) != ''`
+  );
   let stageDirectionLines = 0;
   let curatedUnits = 0;
   const multiLessonUnits = [];
@@ -408,6 +432,7 @@ function main() {
   const annotatedGlossUnits = [];
   const imageUsage = new Map();
   const missingVocabAudio = [];
+  const withheldVocabAudio = [];
   const missingDialogueAudio = [];
   const disabledDialogueAudio = [];
   const missingVocabImages = [];
@@ -417,6 +442,22 @@ function main() {
   let curatedUnitCardCount = 0;
 
   for (const unit of units) {
+    for (const rawConstruction of constructionRows.all(unit.lesson_number)) {
+      const construction = reviewConstruction(rawConstruction);
+      if (!construction) {
+        withheldConstructions += 1;
+        continue;
+      }
+      if (isAppContentExcluded(construction.construction_label, construction.pattern_text,
+        construction.example_original, construction.translation_en)) continue;
+      reviewedConstructions += 1;
+      if (!hasSpanishTranslation(construction.translation_en)) {
+        missingRuntimeSpanish.add(construction.translation_en);
+      }
+      if (!construction.source_url || /[“”"_→]|^[AB]:/u.test(construction.example_original)) {
+        grammarFailures.push(`Unreviewed or unfinished exercise text: ${construction.priority_id}`);
+      }
+    }
     const filtered = [...(coreVocabByCourseUnit.get(unit.lesson_number) || [])];
     const seenHeadwords = new Set(filtered.map((card) => card.headword.trim().toLowerCase()));
     const promotions = getSourceVocabPromotions(unit.lesson_number).filter((card) => {
@@ -454,12 +495,12 @@ function main() {
     visibleCards += cards.length;
     for (const card of cards) {
       if (!hasSpanishTranslation(card.gloss_en)) missingRuntimeSpanish.add(card.gloss_en);
-      const image = getWordImage(card.imageHeadword || card.headword, {
-        allowLegacyFallback: true,
-        safetyText: [card.gloss_en, card.part_of_speech],
-      });
+      const image = getVocabCardImage(card);
       if (!image?.url) {
-        missingVocabImages.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+        const hold = getVocabCardImageHold(card);
+        if (structuredCueImageIds.has(card.id)) structuredCueCards.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+        else if (recordedImageHoldReasons.has(hold)) withheldVocabImages.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+        else missingVocabImages.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
       }
       if (image?.url && image.source === "openai") {
         const uses = imageUsage.get(image.url) || [];
@@ -467,22 +508,10 @@ function main() {
         imageUsage.set(image.url, uses);
       }
 
-      if (card.audioSrc) {
-        if (!/^https:\/\//.test(card.audioSrc)) {
-          missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}:invalid-source-url`);
-        }
-      } else {
-        const audioPath = path.join(
-          process.cwd(),
-          "public",
-          "audio-google",
-          "vocab",
-          `${card.id}.wav`
-        );
-        if (!fs.existsSync(audioPath)) {
-          missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
-        }
-      }
+      if (card.audioSrc === null) legacyHeldVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+      const recording = publishedAudio.resolve(`core-vocab:${card.id}`, displayNahuatl(card.headword));
+      if (recording.state === "held") withheldVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}`);
+      else if (!recording.url) missingVocabAudio.push(`${unit.lesson_number}:${card.id}:${card.headword}:${recording.reason}`);
     }
     const chunks = [];
     for (let i = 0; i < cards.length; i += CHUNK_SIZE) {
@@ -513,6 +542,7 @@ function main() {
     }
 
     const rawDialogues = (CURATED_DIALOGUES[unit.lesson_number] || dialogueRows.all(unit.lesson_number))
+      .map((line) => ({ ...line, ...DIALOGUE_LINE_CORRECTIONS[line.lesson_dialogue_id] }))
       .filter((line) => !isAppContentExcluded(line.utterance_normalized, line.translation_en));
     if (CURATED_DIALOGUES[unit.lesson_number]) curatedUnits += 1;
     sourceDialogueLines += rawDialogues.length;
@@ -537,20 +567,14 @@ function main() {
       const translation = stripStageDirections(line.translation_en);
       if (utterance.changed || translation.changed) stageDirectionLines += 1;
       const reviewedAudioAvailable = reviewedDialogueAudioIds.has(String(line.lesson_dialogue_id));
-      const audioAvailable = line.audio_available !== false && (reviewedAudioAvailable || !utterance.changed);
-      const audioPath = path.join(
-        process.cwd(),
-        "public",
-        "audio-google",
-        "dialogue",
-        `${line.lesson_dialogue_id}.wav`
-      );
-      if (!fs.existsSync(audioPath)) {
-        missingDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
-      }
-      if (!audioAvailable) {
-        disabledDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
-      }
+      const sourceRecording = getDialogueSourceRecording(String(line.lesson_dialogue_id), utterance.text);
+      const legacyAudioAvailable = line.audio_available !== false && (reviewedAudioAvailable || !utterance.changed);
+      if (!legacyAudioAvailable) legacyDisabledDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      if (sourceRecording && !legacyAudioAvailable) restoredSourceDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      const recording = publishedAudio.resolve(`core-dialogue:${line.lesson_dialogue_id}`, displayNahuatl(utterance.text));
+      if (recording.state === "generated" && !legacyAudioAvailable) restoredGeneratedDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      if (recording.state === "held") disabledDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}`);
+      else if (!recording.url) missingDialogueAudio.push(`${unit.lesson_number}:${line.lesson_dialogue_id}:${recording.reason}`);
       return { ...line, utterance_normalized: utterance.text };
     }).filter((line) => line.utterance_normalized);
 
@@ -605,9 +629,10 @@ function main() {
   if (missingDialogueAudio.length > 0) {
     grammarFailures.push(`Visible dialogue lines missing audio: ${missingDialogueAudio.join(", ")}`);
   }
-  if (disabledDialogueAudio.length > 0) {
-    grammarFailures.push(`Visible dialogue lines have audio disabled: ${disabledDialogueAudio.join(", ")}`);
+  if (disabledDialogueAudio.length > 0 || withheldVocabAudio.length > 0) {
+    grammarWarnings.push(`Explicit current audio holds: ${withheldVocabAudio.length} vocabulary placements, ${disabledDialogueAudio.length} dialogue placements. These are separate from unbound recordings and historical mismatching files. Text checks do not verify pronunciation.`);
   }
+  if (withheldVocabImages.length > 0) grammarWarnings.push(`Images withheld for recorded meaning, quantity, spelling, or legacy-review issues: ${withheldVocabImages.length} cards. Text-only coverage does not count as completed image coverage.`);
   if (missingRuntimeSpanish.size > 0) {
     grammarFailures.push(
       `Learner-visible database content is missing Spanish translations: ${[...missingRuntimeSpanish].join(" | ")}`
@@ -615,6 +640,7 @@ function main() {
   }
 
   console.log("Course quality audit");
+  console.log(`- Database scope: ${databaseScope}`);
   console.log(`- Units: ${units.length}`);
   console.log(`- Visible cards after filters/variant collapse: ${visibleCards}`);
   console.log(`- Learner-visible source-course cards: ${sourcePromotionCount} of ${allSourcePromotions.length} reviewed candidates`);
@@ -623,12 +649,25 @@ function main() {
   console.log(`- Authored grammar focus forms: ${focusCardCount}`);
   console.log(`- Lesson chunks at <= ${CHUNK_SIZE} words: ${lessonChunks}`);
   console.log(`- Dialogue lines reviewed by gate: ${sourceDialogueLines}`);
+  console.log(`- Source-backed construction exercises: ${reviewedConstructions}`);
+  console.log(`- Constructions withheld within selected database: ${withheldConstructions}`);
+  if (databaseScope.startsWith("course-only")) console.log("- Private research holdings excluded; this audit does not count their held constructions.");
   console.log(`- Dialogue lines with stage directions stripped/hidden from audio: ${stageDirectionLines}`);
   console.log(`- Units with curated replacement dialogues: ${curatedUnits}`);
   console.log(`- Same-unit generated image collisions: ${duplicateVisibleImages.length}`);
-  console.log(`- Visible vocabulary cards missing images: ${missingVocabImages.length}`);
-  console.log(`- Visible vocabulary cards missing audio: ${missingVocabAudio.length}`);
-  console.log(`- Visible dialogue lines missing/disabled audio: ${missingDialogueAudio.length + disabledDialogueAudio.length}`);
+  console.log(`- Unexplained vocabulary illustration gaps: ${missingVocabImages.length}`);
+  console.log(`- Vocabulary illustration gaps awaiting resolution: ${withheldVocabImages.length + missingVocabImages.length}`);
+  console.log(`- Number/month cards covered by deterministic concept cues: ${structuredCueCards.length}`);
+  console.log(`- Unexplained vocabulary audio gaps: ${missingVocabAudio.length}`);
+  console.log(`- Vocabulary recordings deliberately withheld: ${withheldVocabAudio.length}`);
+  console.log(`- Unexplained dialogue audio gaps: ${missingDialogueAudio.length}`);
+  console.log(`- Dialogue recordings deliberately withheld: ${disabledDialogueAudio.length}`);
+  console.log(`- Historical held-recording placements (old clips remain withheld): ${legacyHeldVocabAudio.length + legacyDisabledDialogueAudio.length}`);
+  console.log(`- Held dialogue playback restored with exact source recordings: ${restoredSourceDialogueAudio.length}`);
+  console.log(`- Held dialogue playback restored with current synthetic bindings: ${restoredGeneratedDialogueAudio.length}`);
+  console.log(`- Current unavailable course playback items: ${withheldVocabAudio.length + disabledDialogueAudio.length + missingVocabAudio.length + missingDialogueAudio.length}`);
+  console.log(`- Full fixed-course published audio: ${publishedAudio.summary.available_reference_records}/${publishedAudio.summary.reference_records} references; ${publishedAudio.summary.unbound_reference_records} unbound, ${publishedAudio.summary.held_reference_records} explicitly held`);
+  console.log(`- Full fixed-course clips: ${publishedAudio.summary.published_synthetic_assets} synthetic files, ${publishedAudio.summary.linked_original_assets} linked original files; remote transport not checked`);
   console.log(`- Learner-visible runtime strings missing Spanish: ${missingRuntimeSpanish.size}`);
 
   console.log("\nUnits split into multiple max-10 lessons:");

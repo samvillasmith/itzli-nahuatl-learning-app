@@ -1,3 +1,4 @@
+import "server-only";
 import { getSql } from "@/lib/neon";
 
 type Window = {
@@ -28,11 +29,12 @@ function ensureRateLimitTable(): Promise<void> {
         PRIMARY KEY (user_id, window_name, bucket_start)
       )
     `;
-  })();
+  })().catch((error: unknown) => { setupPromise = null; throw error; });
   return setupPromise;
 }
 
 export async function checkRateLimit(userId: string): Promise<RateLimitResult> {
+  if (typeof userId !== "string" || !/^[A-Za-z0-9_-]{1,64}$/.test(userId)) throw new TypeError("Invalid chat counter identity");
   await ensureRateLimitTable();
   const now = Date.now();
   let tightest: Extract<RateLimitResult, { ok: true }> = {
@@ -41,18 +43,26 @@ export async function checkRateLimit(userId: string): Promise<RateLimitResult> {
     resetMs: 0,
   };
 
-  for (const [name, window] of Object.entries(WINDOWS)) {
+  const entries = Object.entries(WINDOWS);
+  const bucketStarts = entries.map(([, window]) => new Date(Math.floor(now / window.windowMs) * window.windowMs).toISOString());
+  const sql = getSql();
+  const rows = await sql`
+    INSERT INTO chat_rate_limits (user_id, window_name, bucket_start, request_count)
+    VALUES (${userId}, ${entries[0][0]}, ${bucketStarts[0]}, 1),
+           (${userId}, ${entries[1][0]}, ${bucketStarts[1]}, 1)
+    ON CONFLICT (user_id, window_name, bucket_start)
+    DO UPDATE SET request_count = LEAST(chat_rate_limits.request_count + 1, 101)
+    RETURNING window_name, request_count
+  `;
+  if (rows.length !== entries.length) throw new Error("Incomplete chat counter response");
+  for (const [name, window] of entries) {
     const bucketMs = Math.floor(now / window.windowMs) * window.windowMs;
-    const bucketStart = new Date(bucketMs).toISOString();
-    const sql = getSql();
-    const rows = await sql`
-      INSERT INTO chat_rate_limits (user_id, window_name, bucket_start, request_count)
-      VALUES (${userId}, ${name}, ${bucketStart}, 1)
-      ON CONFLICT (user_id, window_name, bucket_start)
-      DO UPDATE SET request_count = chat_rate_limits.request_count + 1
-      RETURNING request_count
-    `;
-    const count = Number(rows[0]?.request_count ?? window.limit + 1);
+    const matching = rows.filter(row => row.window_name === name);
+    if (matching.length !== 1) throw new Error("Invalid chat counter window");
+    const raw: unknown = matching[0].request_count;
+    if ((typeof raw !== "number" && typeof raw !== "string") || typeof raw === "string" && !/^\d+$/.test(raw)) throw new Error("Invalid chat counter count");
+    const count = Number(raw);
+    if (!Number.isSafeInteger(count) || count < 1) throw new Error("Invalid chat counter count");
     const retryAfterMs = bucketMs + window.windowMs - now;
     if (count > window.limit) {
       return { ok: false, retryAfterMs, window: name };

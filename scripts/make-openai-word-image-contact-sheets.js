@@ -13,19 +13,15 @@ const sharp = require("sharp");
 const ROOT = path.resolve(__dirname, "..");
 const MANIFEST_PATH = path.join(ROOT, "src", "data", "openai-word-images.json");
 const PUBLIC_ROOT = path.join(ROOT, "public");
+const DATA_ROOT = path.join(ROOT, "data");
 const DEFAULT_OUT_DIR = path.join(ROOT, "data", "openai-word-image-audit");
 const GENERATED_DIR = path.join(PUBLIC_ROOT, "generated", "word-images", "openai");
 const S3_IMAGE_BASE_URL = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/";
 
 const COLUMNS = 4;
 const ROWS = 4;
-const TILE_WIDTH = 205;
-const TILE_HEIGHT = 273;
 const IMAGE_SIZE = 176;
 const PADDING = 12;
-const LABEL_TOP = PADDING + IMAGE_SIZE + 8;
-const PAGE_WIDTH = COLUMNS * TILE_WIDTH;
-const PAGE_HEIGHT = ROWS * TILE_HEIGHT;
 
 function readJson(filePath, fallback) {
   if (!fs.existsSync(filePath)) return fallback;
@@ -81,33 +77,80 @@ function parseArgs(argv) {
   const args = {
     planPath: "",
     outDir: DEFAULT_OUT_DIR,
+    columns: COLUMNS,
+    rows: ROWS,
+    imageSize: IMAGE_SIZE,
+    help: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     const value = argv[index + 1];
+    if (["--plan", "--out", "--columns", "--rows", "--image-size"].includes(arg) && (!value || value.startsWith("-"))) {
+      throw new Error(`${arg} requires a value.`);
+    }
     if (arg === "--plan") {
       args.planPath = path.resolve(value);
       index += 1;
     } else if (arg === "--out") {
       args.outDir = path.resolve(value);
       index += 1;
+    } else if (arg === "--columns" || arg === "--rows") {
+      const count = Number(value);
+      if (!/^\d+$/.test(value) || !Number.isInteger(count) || count < 1 || count > 16) {
+        throw new Error(`${arg} must be an integer from 1 to 16.`);
+      }
+      args[arg === "--columns" ? "columns" : "rows"] = count;
+      index += 1;
+    } else if (arg === "--image-size") {
+      const size = Number(value);
+      if (!/^\d+$/.test(value) || !Number.isInteger(size) || size < 128 || size > 1024) {
+        throw new Error("--image-size must be an integer from 128 to 1024.");
+      }
+      args.imageSize = size;
+      index += 1;
     } else if (arg === "--help" || arg === "-h") {
-      console.log(`
-Usage:
-  node scripts/make-openai-word-image-contact-sheets.js
-  node scripts/make-openai-word-image-contact-sheets.js --plan data/openai-reviewed-allowlist-plan.json --out data/openai-reviewed-image-audit
-`);
-      process.exit(0);
+      args.help = true;
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
     }
   }
 
   return args;
 }
 
+function isWithin(parent, target) {
+  const relative = path.relative(parent, target);
+  return relative !== "" && relative !== ".." && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative);
+}
+
+function validateOutputDirectory(outDir) {
+  const resolved = path.resolve(outDir);
+  if (!isWithin(DATA_ROOT, resolved)) {
+    throw new Error("Contact sheets must be written to a folder strictly inside this workspace's data directory.");
+  }
+  const realRoot = fs.realpathSync(ROOT);
+  const realDataRoot = fs.realpathSync(DATA_ROOT);
+  if (!isWithin(realRoot, realDataRoot)) {
+    throw new Error("The workspace data directory resolves outside the workspace.");
+  }
+  let existingAncestor = resolved;
+  while (!fs.existsSync(existingAncestor)) existingAncestor = path.dirname(existingAncestor);
+  const realAncestor = fs.realpathSync(existingAncestor);
+  if (realAncestor !== realDataRoot && !isWithin(realDataRoot, realAncestor)) {
+    throw new Error("The contact-sheet output directory resolves outside the workspace data directory.");
+  }
+  if (!fs.statSync(existingAncestor).isDirectory()) {
+    throw new Error("The contact-sheet output path must be a directory.");
+  }
+  return resolved;
+}
+
 function itemsFromPlan(planPath) {
+  if (!fs.existsSync(planPath)) throw new Error(`Image plan does not exist: ${planPath}`);
   const plan = readJson(planPath, { to_generate: [] });
   return (plan.to_generate || [])
+    .filter((item) => typeof item.out_path === "string" && item.out_path.trim())
     .map((item) => {
       const filePath = path.resolve(ROOT, item.out_path || "");
       return {
@@ -116,11 +159,14 @@ function itemsFromPlan(planPath) {
         filePath,
       };
     })
-    .filter((item) => item.filePath && fs.existsSync(item.filePath))
+    .filter((item) => fs.existsSync(item.filePath) && fs.statSync(item.filePath).isFile())
     .sort((a, b) => normalize(a.headword).localeCompare(normalize(b.headword)));
 }
 
-function labelSvg(item) {
+function labelSvg(item, imageSize) {
+  const tileWidth = imageSize + 29;
+  const tileHeight = imageSize + 97;
+  const labelTop = PADDING + imageSize + 8;
   const headword = wrapText(item.headword, 22, 1);
   const gloss = wrapText(item.gloss, 30, 2);
   const rows = [
@@ -130,26 +176,26 @@ function labelSvg(item) {
 
   const text = rows
     .map((row, index) => {
-      const y = LABEL_TOP + 17 + index * 18;
-      return `<text x="${TILE_WIDTH / 2}" y="${y}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="${row.size}" font-weight="${row.weight}" fill="${row.fill}">${escapeXml(row.line)}</text>`;
+      const y = labelTop + 17 + index * 18;
+      return `<text x="${tileWidth / 2}" y="${y}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="${row.size}" font-weight="${row.weight}" fill="${row.fill}">${escapeXml(row.line)}</text>`;
     })
     .join("");
 
   return Buffer.from(`
-<svg width="${TILE_WIDTH}" height="${TILE_HEIGHT}" viewBox="0 0 ${TILE_WIDTH} ${TILE_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="${TILE_WIDTH}" height="${TILE_HEIGHT}" fill="#fbf0d9"/>
-  <rect x="${PADDING - 1}" y="${PADDING - 1}" width="${IMAGE_SIZE + 2}" height="${IMAGE_SIZE + 2}" rx="6" fill="#d8c6a3"/>
+<svg width="${tileWidth}" height="${tileHeight}" viewBox="0 0 ${tileWidth} ${tileHeight}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="${tileWidth}" height="${tileHeight}" fill="#fbf0d9"/>
+  <rect x="${PADDING - 1}" y="${PADDING - 1}" width="${imageSize + 2}" height="${imageSize + 2}" rx="6" fill="#d8c6a3"/>
   ${text}
 </svg>`);
 }
 
-async function tileFor(item) {
+async function tileFor(item, imageSize) {
   const image = await sharp(item.filePath)
-    .resize(IMAGE_SIZE, IMAGE_SIZE, { fit: "cover" })
+    .resize(imageSize, imageSize, { fit: "cover" })
     .png()
     .toBuffer();
 
-  return sharp(labelSvg(item))
+  return sharp(labelSvg(item, imageSize))
     .composite([{ input: image, left: PADDING, top: PADDING }])
     .png()
     .toBuffer();
@@ -157,6 +203,16 @@ async function tileFor(item) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    console.log(`
+Usage:
+  node scripts/make-openai-word-image-contact-sheets.js
+  node scripts/make-openai-word-image-contact-sheets.js --plan data/openai-reviewed-allowlist-plan.json --out data/openai-reviewed-image-audit --columns 2 --rows 2 --image-size 384
+
+Output folders must be inside data/. Existing files are never overwritten.
+`);
+    return;
+  }
   const manifest = readJson(MANIFEST_PATH, {});
   const items = args.planPath
     ? itemsFromPlan(args.planPath)
@@ -169,44 +225,57 @@ async function main() {
             filePath,
           };
         })
-        .filter((item) => item.filePath && fs.existsSync(item.filePath))
+        .filter((item) => item.filePath && fs.existsSync(item.filePath) && fs.statSync(item.filePath).isFile())
         .sort((a, b) => normalize(a.headword).localeCompare(normalize(b.headword)));
 
-  fs.rmSync(args.outDir, { recursive: true, force: true });
-  fs.mkdirSync(args.outDir, { recursive: true });
-
-  const perPage = COLUMNS * ROWS;
+  if (!items.length) throw new Error("No local image files were found to include in a contact sheet.");
+  args.outDir = validateOutputDirectory(args.outDir);
+  const tileWidth = args.imageSize + 29;
+  const tileHeight = args.imageSize + 97;
+  const perPage = args.columns * args.rows;
   const pageCount = Math.ceil(items.length / perPage);
+  const outputPaths = Array.from({ length: pageCount }, (_, pageIndex) =>
+    path.join(args.outDir, `contact-sheet-${String(pageIndex + 1).padStart(2, "0")}.png`));
+  for (const outPath of outputPaths) {
+    if (fs.existsSync(outPath)) throw new Error(`Contact sheet already exists; choose a fresh output folder: ${outPath}`);
+  }
+  fs.mkdirSync(args.outDir, { recursive: true });
+  validateOutputDirectory(args.outDir);
   for (let pageIndex = 0; pageIndex < pageCount; pageIndex += 1) {
     const pageItems = items.slice(pageIndex * perPage, (pageIndex + 1) * perPage);
     const composites = [];
     for (let index = 0; index < pageItems.length; index += 1) {
-      const tile = await tileFor(pageItems[index]);
+      const tile = await tileFor(pageItems[index], args.imageSize);
       composites.push({
         input: tile,
-        left: (index % COLUMNS) * TILE_WIDTH,
-        top: Math.floor(index / COLUMNS) * TILE_HEIGHT,
+        left: (index % args.columns) * tileWidth,
+        top: Math.floor(index / args.columns) * tileHeight,
       });
     }
 
-    const outPath = path.join(args.outDir, `contact-sheet-${String(pageIndex + 1).padStart(2, "0")}.png`);
-    await sharp({
+    const outPath = outputPaths[pageIndex];
+    const buffer = await sharp({
       create: {
-        width: PAGE_WIDTH,
-        height: PAGE_HEIGHT,
+        width: args.columns * tileWidth,
+        height: args.rows * tileHeight,
         channels: 4,
         background: "#fbf0d9",
       },
     })
       .composite(composites)
       .png()
-      .toFile(outPath);
+      .toBuffer();
+    fs.writeFileSync(outPath, buffer, { flag: "wx" });
   }
 
   console.log(`Wrote ${pageCount} contact sheets for ${items.length} images to ${path.relative(ROOT, args.outDir)}.`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+module.exports = { parseArgs, validateOutputDirectory };
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

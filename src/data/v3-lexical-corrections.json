@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "corrections": [
+    {
+      "id": "word-v3i-c83f50fdd019b866",
+      "field": "meaningEn",
+      "before": "it is present; it is in a place or state",
+      "after": "it is in a place or state (things and plants)",
+      "evidence": "COERLL lesson 25, section 1, body 1 explicitly restricts eltoc to non-animate subjects and plants."
+    },
+    {
+      "id": "word-v3i-c83f50fdd019b866",
+      "field": "meaningEs",
+      "before": "está presente; está en un lugar o estado",
+      "after": "está en un lugar o estado (cosas y plantas)",
+      "evidence": "COERLL lesson 25, section 1, body 1 explicitly restricts eltoc to non-animate subjects and plants."
+    },
+    {
+      "id": "word-v3i-c83f50fdd019b866",
+      "field": "usageNoteEs",
+      "before": "La traducción al español es una redacción de Itzli; las demás acepciones y formas no se deducen automáticamente.",
+      "after": "La fuente limita esta forma a cosas y plantas. Para personas, consulta las formas documentadas de itztok.",
+      "evidence": "COERLL lesson 25, section 1, body 1; person forms appear in lesson 24."
+    },
+    {
+      "id": "word-v3i-5298f519daebae7a",
+      "field": "meaningEs",
+      "before": "adolescente",
+      "after": "muchacha adolescente",
+      "evidence": "COERLL lesson 1 vocabulary item 56 identifies a teen girl, not an adolescent of unspecified gender."
+    },
+    {
+      "id": "word-v3d-7dd527494068f188",
+      "field": "usageNoteEn",
+      "before": "Physical softness of clothing, food, wood, skin or leather is supported. Figurative gentleness and warmth are not inferred.",
+      "after": "Describes physical softness of clothing, food, wood or leather. Figurative gentleness and warmth require separate evidence.",
+      "evidence": "Modern IDIEZ yamanic senses 1–3; keep this use note within the specified everyday object senses."
+    },
+    {
+      "id": "word-v3d-7dd527494068f188",
+      "field": "usageNoteEs",
+      "before": "Se documenta la suavidad física de ropa, alimentos, madera, piel o cuero. No se infieren la delicadeza figurada ni la calidez.",
+      "after": "Describe la suavidad física de ropa, alimentos, madera o cuero. La delicadeza figurada y la calidez requieren evidencia propia.",
+      "evidence": "Modern IDIEZ yamanic senses 1–3; keep this use note within the specified everyday object senses."
+    },
+    {
+      "id": "word-v3d-3416eddabd7fd22f",
+      "field": "usageNoteEn",
+      "before": "The modern source identifies a skirt worn around the waist. A full dress is a different garment meaning and is not verified by this entry.",
+      "after": "The documented garment is a skirt. A full dress is a different garment meaning and requires separate evidence.",
+      "evidence": "Modern IDIEZ cueitl field explicitly identifies skirt; restrict the public note to that garment distinction."
+    },
+    {
+      "id": "word-v3d-3416eddabd7fd22f",
+      "field": "usageNoteEs",
+      "before": "La fuente moderna identifica una falda que se lleva alrededor de la cintura. Un vestido completo es una acepción de prenda distinta y esta entrada no la verifica.",
+      "after": "La prenda documentada es una falda. Un vestido completo es una acepción de prenda distinta y requiere evidencia propia.",
+      "evidence": "Modern IDIEZ cueitl field explicitly identifies skirt; restrict the public note to that garment distinction."
+    },
+    {
+      "id": "word-v3r-11864c91046420d9",
+      "field": "usageNoteEn",
+      "before": "A younger sibling; the entry does not restrict the sibling to one sex.",
+      "after": "A younger brother or sister.",
+      "evidence": "Modern Chicontepec CHOCHO, PDFpage111: younger sibling, without a gender restriction. Use the direct kinship explanation."
+    },
+    {
+      "id": "word-v3r-11864c91046420d9",
+      "field": "usageNoteEs",
+      "before": "Hermano o hermana de menor edad; la entrada no limita el parentesco a un sexo.",
+      "after": "Un hermano o una hermana de menor edad.",
+      "evidence": "Modern Chicontepec CHOCHO, PDFpage111: younger sibling, without a gender restriction. Use the direct kinship explanation."
+    },
+    {
+      "id": "word-v3r-6428068fc2ce0cb7",
+      "field": "usageNoteEn",
+      "before": "A romantic partner. The entry does not restrict the partner to one sex.",
+      "after": "A romantic partner: a boyfriend or girlfriend.",
+      "evidence": "Modern Chicontepec YŌLTZIN, PDFpage630: romantic partner. Give the direct learner meaning without an unnecessary demographic qualification."
+    },
+    {
+      "id": "word-v3r-6428068fc2ce0cb7",
+      "field": "usageNoteEs",
+      "before": "Pareja sentimental. La entrada no limita a la pareja a un sexo.",
+      "after": "Una pareja romántica: un novio o una novia.",
+      "evidence": "Modern Chicontepec YŌLTZIN, PDFpage630: romantic partner. Give the direct learner meaning without an unnecessary demographic qualification."
+    },
+    {
+      "id": "word-v3pv-39801f8dbf503b60",
+      "field": "usageNoteEn",
+      "before": "Thinking privately to oneself; the thinker and the person reflected on are the same.",
+      "after": "Thinking privately to oneself. The speaker addresses the thought to themself.",
+      "evidence": "Modern Chicontepec ILLIA PDF256 reflexive nimo frame: the recipient is the speaker; the topic of the thought need not be the speaker."
+    },
+    {
+      "id": "word-v3pv-39801f8dbf503b60",
+      "field": "usageNoteEs",
+      "before": "Pensar en privado para sí; quien piensa y la persona a quien dirige el pensamiento son la misma.",
+      "after": "Pensar para sí: quien habla se dirige el pensamiento a sí mismo.",
+      "evidence": "Modern Chicontepec ILLIA PDF256 reflexive nimo frame: the recipient is the speaker; the topic of the thought need not be the speaker."
+    }
+  ]
+}

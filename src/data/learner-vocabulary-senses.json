@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-08",
+  "scope": "Current source-qualified learner sense selections, separate from the immutable factual-label redraft review.",
+  "corrections": [
+    {
+      "id": "word-v3rf-c571e43a0548dd42",
+      "display": "teka",
+      "beforeEn": "lay someone down; pour a liquid",
+      "beforeEs": "acostar a alguien; verter un líquido",
+      "meaningEn": "pour a liquid",
+      "meaningEs": "verter un líquido",
+      "usageNoteEn": "This card selects the documented liquid-into-a-container sense only. Other meanings of the same written form are not taught by this card.",
+      "usageNoteEs": "Esta tarjeta selecciona únicamente la acepción documentada de verter un líquido en un recipiente. No enseña las otras acepciones de la misma forma escrita.",
+      "sourceTitle": "Tlahtolxitlauhcayotl: Chicontepec, Veracruz · TĒCA, sense 2",
+      "sourceUrl": "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf#page=432",
+      "sourceFactReviewHash": "b6260e157e4c266fd191b87adfbfbb2d4b823dd2faf4cb770168ce4d08869a34",
+      "selectedSenseOnly": true,
+      "evidence": "User selected the independently documented second sense: pouring water or another liquid into a vessel. Primary PDF432 TĒCA sense2 checked; original mixed record and source evidence remain unchanged. This is a selected sense, not a euphemistic replacement."
+    },
+    {
+      "id": "word-v3d-3f775b3f819cecff",
+      "display": "pestetl",
+      "beforeEn": "diaper; worn-out clothing",
+      "beforeEs": "pañal; ropa vieja",
+      "meaningEn": "worn-out clothing",
+      "meaningEs": "ropa vieja",
+      "usageNoteEn": "This card selects old clothing no longer used for dressing, as documented in sense 2. It does not teach the separate diaper sense.",
+      "usageNoteEs": "Esta tarjeta selecciona la ropa vieja que ya no se usa para vestir, documentada en la acepción 2. No enseña la acepción separada de pañal.",
+      "sourceTitle": "IDIEZ · pēztetl, sense 2",
+      "sourceUrl": "https://nahuatl.wired-humanities.org/content/p%C4%93ztetl",
+      "sourceFactReviewHash": "3756222decb0fac4f94a7118dd64871c5f0b9331173a127934a4fc5ef4de270d",
+      "selectedSenseOnly": true,
+      "evidence": "User selected the live IDIEZ definition's independently documented second meaning: old clothing no longer used for dressing. The source definition and original mixed bilingual record remain intact; no diaper image or relabeling of that first sense is authorized."
+    },
+    {
+      "id": "word-v3rf-050f218449bc3c32",
+      "display": "ihtikokoa",
+      "beforeEn": "cause stomach pain",
+      "beforeEs": "causar dolor de estómago",
+      "meaningEn": "food causes stomach pain",
+      "meaningEs": "un alimento causa dolor de estómago",
+      "usageNoteEn": "This card selects IHTICOCOĀ sense 2 only: food causes a person stomach pain. The separately documented person-inflicted injury meaning is excluded.",
+      "usageNoteEs": "Esta tarjeta selecciona únicamente la acepción 2 de IHTICOCOĀ: un alimento causa dolor de estómago a una persona. Se excluye la acepción distinta de lesión causada por otra persona.",
+      "sourceTitle": "Tlahtolxitlauhcayotl: Chicontepec, Veracruz · IHTICOCOĀ, sense 2",
+      "sourceUrl": "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf#page=246",
+      "sourceFactReviewHash": "34e048bc589ce3c678474b450b23f91f5cad186b4a1f492f43eafdeb2701e22b",
+      "selectedSenseOnly": true,
+      "evidence": "Primary physical PDF page246 explicitly numbers sense1 person/animal striking the abdomen and sense2 food-caused stomach pain. Sense2 uses the experiencer frame nech and prints nechihticocoh with a food stimulus. Select only that independently documented meaning; preserve original mixed fact record, source identity and evidence."
+    }
+  ]
+}

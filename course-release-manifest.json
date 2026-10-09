@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scope": "course-only",
+  "sourceDatabaseSha256": "e924e3fa8ad4c9b2a304ae63ad95e80056af8a3239ef973b88fea7ccac94e861",
+  "builderSha256": "6519d18e4999231f2efc49b3fd3cb52646516ad6f97cf7fdbbcb327b1d9c2918",
+  "sourceTextHashFormat": "UTF-8; CRLF/CR normalized to LF; optional BOM removed",
+  "releaseSha256": "d50186874867472d0b9781811fbdb72ed90f97da414f35cdce90a0c62dabf03b",
+  "bytes": 217088,
+  "selectionFiles": {
+    "src/data/excluded-vocab.ts": "a064f122bb02a665c701c4faabd720597df43fa220218d7a8faf3c30a06a9cc6",
+    "src/data/core-vocabulary-facts.json": "36ac8bced0fdfaa48038baf1df99b315520075ce490c1857b19c28405b29eb66",
+    "src/data/course-vocab-selection.ts": "37d59fc21174636567d9f351e0fe42996c0de0a28cb6c276b5e991ce2ded5dd7",
+    "src/data/app-content-reviewed-allowlist.json": "f9dec878ce23dd9c27241ee27ab538a96d888b9617dc301e85c290a4a8e8d9f4",
+    "src/lib/app-content-safety.ts": "cb3ffc1642fef37cc1e272901546ac8f744d0c2c3dd8befae27e2aea0536a74f",
+    "src/lib/study-card-safety.ts": "44128bfa536580fb3eca9e4c52e8ec3f9ff86351a25426f3d330e412e16da8ff",
+    "src/data/study-card-exclusions.json": "f35cc37e062d302c553682db574a8c09d9579eb2df683f2591d3245d5e92b9e9",
+    "src/data/app-content-exclusions.json": "cb621445e11f4c5a4701493b17a50a796d08ed54bc26fed210b6a4d3325c748d",
+    "src/data/nahuatlahtolli-course.json": "cdad0a5ebc76042c195eb2f28fb09dd55f3c78fba9ce8574867b6c3c4cdbf95d"
+  },
+  "pathIdsSha256": "751a3ae34f1bfcd3448711a3c3ec5f0ebbfaf1d1c6ac1bdf9a619f33b818c8cd",
+  "historicalVocabularyCount": 2043,
+  "historicalVocabularyIdsSha256": "68183ec294d0b3722781ed38be777779bf36460f4aea7d29f7381ff6d0847eb7",
+  "tableCounts": {
+    "phase82_unit_plan": 43,
+    "lesson_vocab": 381,
+    "lesson_dialogues": 163,
+    "lesson_blocks": 232,
+    "primer_dialogues": 22,
+    "primer_constructions": 88,
+    "unit_assessment_manifest": 160,
+    "retired_vocab_ids": 1662,
+    "release_metadata": 1
+  },
+  "runtimeParitySha256": "8696aabc41c1f95f882d85318a1496a5b145b10f4d61e86106115d58818f7079",
+  "verifiedLegacyUnits": 43,
+  "activeDisplayedVocabulary": 460,
+  "exclusions": [
+    "lexicon_entries",
+    "Kaikki/Wiktionary corpus",
+    "Siméon corpus",
+    "non-runtime columns and held source rows",
+    "private source photographs",
+    "learner account/progress data"
+  ],
+  "notice": "Individual checked course facts retain existing identities. This is not the research database. See NOTICE.md and docs/course-only-release.md for rights scope."
+}

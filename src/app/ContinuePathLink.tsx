@@ -2,10 +2,15 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { useLearningAccount as useUser } from "@/components/LearningAccount";
 import { loadProgress, type ProgressData } from "@/lib/progress";
 import { pullAndMerge } from "@/lib/cloudSync";
 import { emptyProgress } from "@/lib/progress-schema";
+import type { UnifiedPathLesson } from "@/lib/unified-course-path";
+import { getNextUnifiedPathLesson } from "@/lib/unified-path-progress";
+import type { ExpansionCourseProgress } from "@/lib/expansion-course";
+import { loadExpansionCourseState } from "@/lib/expansion-state";
+import { subscribeProgressChanges } from "@/lib/progress-storage";
 
 type ContinueUnit = {
   lessonNumber: number;
@@ -13,7 +18,7 @@ type ContinueUnit = {
 };
 
 type Props = {
-  units: ContinueUnit[];
+  units: ContinueUnit[] | UnifiedPathLesson[];
   className: string;
   children: React.ReactNode;
 };
@@ -22,6 +27,10 @@ const EMPTY_PROGRESS: ProgressData = emptyProgress();
 
 function sortedUnits(units: ContinueUnit[]): ContinueUnit[] {
   return [...units].sort((a, b) => a.pathOrder - b.pathOrder);
+}
+
+function isUnifiedPath(units: ContinueUnit[] | UnifiedPathLesson[]): units is UnifiedPathLesson[] {
+  return units.every((unit) => "progressId" in unit);
 }
 
 function continueHref(units: ContinueUnit[], progress: ProgressData): string {
@@ -49,26 +58,31 @@ function continueHref(units: ContinueUnit[], progress: ProgressData): string {
 
 export default function ContinuePathLink({ units, className, children }: Props) {
   const [progress, setProgress] = useState<ProgressData>(EMPTY_PROGRESS);
+  const [courseProgress, setCourseProgress] = useState<ExpansionCourseProgress | null>(null);
   const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
-    setProgress(loadProgress());
-  }, []);
-
-  useEffect(() => {
-    if (!isLoaded || !isSignedIn) return;
-
+    if (!isLoaded) return;
     let active = true;
-    pullAndMerge().then(({ progress: merged }) => {
-      if (active) setProgress(merged);
-    });
-
-    return () => {
-      active = false;
+    const refresh = () => {
+      if (!active) return;
+      setProgress(loadProgress());
+      const course = loadExpansionCourseState();
+      setCourseProgress(course.status === "ready" ? course.progress : null);
     };
+    refresh();
+    const unsubscribe = subscribeProgressChanges(refresh);
+    if (isSignedIn) void pullAndMerge().then(refresh);
+    return () => { active = false; unsubscribe(); };
   }, [isLoaded, isSignedIn]);
 
-  const href = useMemo(() => continueHref(units, progress), [units, progress]);
+  const href = useMemo(() => {
+    if (isUnifiedPath(units)) {
+      const next = getNextUnifiedPathLesson(units, progress, courseProgress);
+      return next ? `/units/${next.lessonNumber}` : "/units";
+    }
+    return continueHref(units, progress);
+  }, [units, progress, courseProgress]);
 
   return (
     <Link href={href} className={className}>

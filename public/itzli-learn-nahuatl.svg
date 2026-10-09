@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Learn Nahuatl with Itzli · Aprende náhuatl</title>
+  <desc id="description">Itzli's free online Nahuatl course. Vocabulary, pronunciation, and grammar. Curso gratuito de náhuatl en línea.</desc>
+  <defs>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173a31"/>
+      <stop offset="1" stop-color="#0b6b57"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f6f3eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#f6f3eb"/>
+  <rect width="420" height="8" fill="#0b6b57"/>
+  <rect x="420" width="264" height="8" fill="#1696a7"/>
+  <rect x="684" width="264" height="8" fill="#d99a2b"/>
+  <rect x="948" width="252" height="8" fill="#c4603e"/>
+  <circle cx="1130" cy="284" r="310" fill="#edf4eb"/>
+  <circle cx="1120" cy="283" r="244" fill="none" stroke="#dce8da" stroke-width="2"/>
+  <circle cx="1120" cy="283" r="186" fill="none" stroke="#dce8da" stroke-width="2"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="76" y="68" width="58" height="58" rx="17" fill="url(#jade)"/>
+    <path d="M105 80 118 93 111 111 99 117 93 98Z" fill="#ffffff"/>
+    <path d="m105 80 6 31 7-18Z" fill="#ccefe4"/>
+    <text x="151" y="113" fill="#14221e" font-size="44" font-weight="700" letter-spacing="-1">Itzli</text>
+    <text x="77" y="181" fill="#0b6b57" font-size="18" font-weight="700" letter-spacing="2.6">A LANGUAGE. A LIVING HERITAGE.</text>
+    <text x="72" y="276" fill="#14221e" font-size="84" font-weight="700" letter-spacing="-3.5">Learn Nahuatl</text>
+    <text x="76" y="349" fill="#0b6b57" font-size="57" font-weight="600" letter-spacing="-1.5">Aprende náhuatl</text>
+    <text x="78" y="413" fill="#3f3a31" font-size="27" font-weight="600">Free online course · Curso gratuito</text>
+    <path d="M78 452H686" stroke="#dedbd1" stroke-width="2"/>
+    <text x="78" y="489" fill="#565145" font-size="21">Vocabulary · Pronunciation · Grammar</text>
+    <text x="78" y="522" fill="#6f6a60" font-size="20">Vocabulario · Pronunciación · Gramática</text>
+    <text x="78" y="583" fill="#0b594d" font-size="21" font-weight="700">itzli.app</text>
+  </g>
+
+  <g transform="translate(820 192)">
+    <rect x="20" y="30" width="257" height="266" rx="28" fill="#c9d7c8" opacity=".45" transform="rotate(8 148 163)"/>
+    <rect x="-8" y="4" width="257" height="266" rx="28" fill="#e8dec9" transform="rotate(-8 120 137)"/>
+    <rect width="257" height="266" rx="28" fill="url(#paper)" stroke="#dedbd1" stroke-width="2"/>
+    <rect x="26" y="25" width="205" height="114" rx="17" fill="url(#jade)"/>
+    <g transform="translate(60 52)" fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M68 11C44-1 23-1 4 6v58c21-6 43-5 64 8 21-13 43-14 64-8V6c-19-7-40-7-64 5Z"/>
+      <path d="M68 11v61M21 22c10-1 21 1 30 5M21 39c10-1 21 1 30 5M85 27c9-4 20-6 30-5M85 44c9-4 20-6 30-5" stroke-width="4"/>
+    </g>
+    <path d="M29 170h144M29 191h105" stroke="#c7c1b2" stroke-width="8" stroke-linecap="round"/>
+    <rect x="26" y="217" width="139" height="25" rx="12.5" fill="#edf8f4"/>
+    <path d="M43 230h103" stroke="#0f6f5c" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="225" cy="245" r="44" fill="#d99a2b"/>
+    <g transform="translate(204 224)" fill="none" stroke="#14221e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 15h7l10-9v30L8 27H1Z" fill="#14221e" stroke-width="2"/>
+      <path d="M27 11c7 5 7 15 0 20M34 4c14 9 14 25 0 34"/>
+    </g>
+  </g>
+</svg>

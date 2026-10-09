@@ -5,6 +5,7 @@ import { CULTURE_MODULES, getCultureModule } from "@/data/culture-lessons";
 import { requireAuth } from "@/lib/require-auth";
 import { getRequestLocale } from "@/i18n/server";
 import { translateDeep } from "@/i18n/translate";
+import { createPageMetadata } from "@/lib/seo";
 
 type CultureModulePageProps = {
   params: Promise<{ slug: string }>;
@@ -22,10 +23,12 @@ export async function generateMetadata({
   const locale = await getRequestLocale();
   const localizedModule = translateDeep(locale, cultureModule);
 
-  return {
+  return createPageMetadata({
+    locale,
+    pathname: `/culture/${cultureModule.slug}`,
     title: localizedModule.title,
     description: localizedModule.summary,
-  };
+  });
 }
 
 export default async function CultureModulePage({ params }: CultureModulePageProps) {

@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": 1,
+  "organization": "Itzli topic anchors with prerequisite-based grammar and recurring vocabulary",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "anchorLesson": 1,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 11,
+      "anchorLesson": 11,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 3,
+      "anchorLesson": 3,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 44,
+      "anchorLesson": 3,
+      "prerequisites": [
+        3
+      ]
+    },
+    {
+      "lessonNumber": 2,
+      "anchorLesson": 2,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 45,
+      "anchorLesson": 2,
+      "prerequisites": [
+        2
+      ]
+    },
+    {
+      "lessonNumber": 34,
+      "anchorLesson": 34,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 4,
+      "anchorLesson": 4,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 52,
+      "anchorLesson": 4,
+      "prerequisites": [
+        34,
+        4
+      ]
+    },
+    {
+      "lessonNumber": 286,
+      "anchorLesson": 4,
+      "prerequisites": [
+        52,
+        4
+      ]
+    },
+    {
+      "lessonNumber": 287,
+      "anchorLesson": 4,
+      "prerequisites": [
+        286,
+        4
+      ]
+    },
+    {
+      "lessonNumber": 145,
+      "anchorLesson": 4,
+      "prerequisites": [
+        4
+      ]
+    },
+    {
+      "lessonNumber": 146,
+      "anchorLesson": 4,
+      "prerequisites": [
+        4
+      ]
+    },
+    {
+      "lessonNumber": 33,
+      "anchorLesson": 33,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 6,
+      "anchorLesson": 6,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 81,
+      "anchorLesson": 6,
+      "prerequisites": [
+        6
+      ]
+    },
+    {
+      "lessonNumber": 46,
+      "anchorLesson": 6,
+      "prerequisites": [
+        81
+      ]
+    },
+    {
+      "lessonNumber": 56,
+      "anchorLesson": 6,
+      "prerequisites": [
+        81
+      ]
+    },
+    {
+      "lessonNumber": 12,
+      "anchorLesson": 12,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 50,
+      "anchorLesson": 12,
+      "prerequisites": [
+        12
+      ]
+    },
+    {
+      "lessonNumber": 321,
+      "anchorLesson": 12,
+      "prerequisites": [
+        50,
+        12
+      ]
+    },
+    {
+      "lessonNumber": 13,
+      "anchorLesson": 13,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 53,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13,
+        81
+      ]
+    },
+    {
+      "lessonNumber": 293,
+      "anchorLesson": 13,
+      "prerequisites": [
+        45,
+        50,
+        53,
+        13
+      ]
+    },
+    {
+      "lessonNumber": 294,
+      "anchorLesson": 13,
+      "prerequisites": [
+        53,
+        13
+      ]
+    },
+    {
+      "lessonNumber": 314,
+      "anchorLesson": 13,
+      "prerequisites": [
+        50,
+        33,
+        13
+      ]
+    },
+    {
+      "lessonNumber": 90,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 91,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 92,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 93,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 94,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 95,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 144,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 153,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 154,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 194,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 195,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 200,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 201,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 202,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 203,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 204,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 205,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 206,
+      "anchorLesson": 13,
+      "prerequisites": [
+        13
+      ]
+    },
+    {
+      "lessonNumber": 8,
+      "anchorLesson": 8,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 68,
+      "anchorLesson": 8,
+      "prerequisites": [
+        44,
+        6
+      ]
+    },
+    {
+      "lessonNumber": 9,
+      "anchorLesson": 9,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 47,
+      "anchorLesson": 9,
+      "prerequisites": [
+        8,
+        9
+      ]
+    },
+    {
+      "lessonNumber": 58,
+      "anchorLesson": 9,
+      "prerequisites": [
+        47
+      ]
+    },
+    {
+      "lessonNumber": 59,
+      "anchorLesson": 9,
+      "prerequisites": [
+        47
+      ]
+    },
+    {
+      "lessonNumber": 60,
+      "anchorLesson": 9,
+      "prerequisites": [
+        59
+      ]
+    },
+    {
+      "lessonNumber": 76,
+      "anchorLesson": 9,
+      "prerequisites": [
+        59,
+        60
+      ]
+    },
+    {
+      "lessonNumber": 282,
+      "anchorLesson": 9,
+      "prerequisites": [
+        47,
+        50,
+        9
+      ]
+    },
+    {
+      "lessonNumber": 309,
+      "anchorLesson": 9,
+      "prerequisites": [
+        282,
+        9
+      ]
+    },
+    {
+      "lessonNumber": 111,
+      "anchorLesson": 9,
+      "prerequisites": [
+        9
+      ]
+    },
+    {
+      "lessonNumber": 112,
+      "anchorLesson": 9,
+      "prerequisites": [
+        9
+      ]
+    },
+    {
+      "lessonNumber": 113,
+      "anchorLesson": 9,
+      "prerequisites": [
+        9
+      ]
+    },
+    {
+      "lessonNumber": 115,
+      "anchorLesson": 9,
+      "prerequisites": [
+        9
+      ]
+    },
+    {
+      "lessonNumber": 20,
+      "anchorLesson": 20,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 82,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 114,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 116,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 117,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 118,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 235,
+      "anchorLesson": 20,
+      "prerequisites": [
+        20
+      ]
+    },
+    {
+      "lessonNumber": 22,
+      "anchorLesson": 22,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 49,
+      "anchorLesson": 22,
+      "prerequisites": [
+        22
+      ]
+    },
+    {
+      "lessonNumber": 281,
+      "anchorLesson": 22,
+      "prerequisites": [
+        53,
+        47,
+        49,
+        22
+      ]
+    },
+    {
+      "lessonNumber": 123,
+      "anchorLesson": 22,
+      "prerequisites": [
+        22
+      ]
+    },
+    {
+      "lessonNumber": 124,
+      "anchorLesson": 22,
+      "prerequisites": [
+        22
+      ]
+    },
+    {
+      "lessonNumber": 21,
+      "anchorLesson": 21,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 305,
+      "anchorLesson": 21,
+      "prerequisites": [
+        52,
+        21
+      ]
+    },
+    {
+      "lessonNumber": 167,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 168,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 171,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 172,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 173,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 177,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 184,
+      "anchorLesson": 21,
+      "prerequisites": [
+        21
+      ]
+    },
+    {
+      "lessonNumber": 23,
+      "anchorLesson": 23,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 48,
+      "anchorLesson": 23,
+      "prerequisites": [
+        6,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 69,
+      "anchorLesson": 23,
+      "prerequisites": [
+        45,
+        48
+      ]
+    },
+    {
+      "lessonNumber": 73,
+      "anchorLesson": 23,
+      "prerequisites": [
+        52,
+        48
+      ]
+    },
+    {
+      "lessonNumber": 265,
+      "anchorLesson": 23,
+      "prerequisites": [
+        8,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 283,
+      "anchorLesson": 23,
+      "prerequisites": [
+        47,
+        48,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 285,
+      "anchorLesson": 23,
+      "prerequisites": [
+        48,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 304,
+      "anchorLesson": 23,
+      "prerequisites": [
+        47,
+        283,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 307,
+      "anchorLesson": 23,
+      "prerequisites": [
+        304,
+        23
+      ]
+    },
+    {
+      "lessonNumber": 96,
+      "anchorLesson": 23,
+      "prerequisites": [
+        23
+      ]
+    },
+    {
+      "lessonNumber": 132,
+      "anchorLesson": 23,
+      "prerequisites": [
+        23
+      ]
+    },
+    {
+      "lessonNumber": 133,
+      "anchorLesson": 23,
+      "prerequisites": [
+        23
+      ]
+    },
+    {
+      "lessonNumber": 237,
+      "anchorLesson": 23,
+      "prerequisites": [
+        23
+      ]
+    },
+    {
+      "lessonNumber": 238,
+      "anchorLesson": 23,
+      "prerequisites": [
+        23
+      ]
+    },
+    {
+      "lessonNumber": 5,
+      "anchorLesson": 5,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 57,
+      "anchorLesson": 5,
+      "prerequisites": [
+        46,
+        56
+      ]
+    },
+    {
+      "lessonNumber": 273,
+      "anchorLesson": 5,
+      "prerequisites": [
+        57,
+        5
+      ]
+    },
+    {
+      "lessonNumber": 79,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 70,
+      "anchorLesson": 5,
+      "prerequisites": [
+        46,
+        57
+      ]
+    },
+    {
+      "lessonNumber": 87,
+      "anchorLesson": 5,
+      "prerequisites": [
+        44,
+        46,
+        53
+      ]
+    },
+    {
+      "lessonNumber": 97,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 119,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 120,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 188,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 189,
+      "anchorLesson": 5,
+      "prerequisites": [
+        5
+      ]
+    },
+    {
+      "lessonNumber": 7,
+      "anchorLesson": 7,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 84,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 65,
+      "anchorLesson": 7,
+      "prerequisites": [
+        6,
+        84
+      ]
+    },
+    {
+      "lessonNumber": 296,
+      "anchorLesson": 7,
+      "prerequisites": [
+        57,
+        81,
+        7
+      ]
+    },
+    {
+      "lessonNumber": 98,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 155,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 207,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 208,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 209,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 239,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 240,
+      "anchorLesson": 7,
+      "prerequisites": [
+        7
+      ]
+    },
+    {
+      "lessonNumber": 10,
+      "anchorLesson": 10,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 83,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10,
+        81
+      ]
+    },
+    {
+      "lessonNumber": 271,
+      "anchorLesson": 10,
+      "prerequisites": [
+        81,
+        53,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 276,
+      "anchorLesson": 10,
+      "prerequisites": [
+        81,
+        53,
+        47,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 277,
+      "anchorLesson": 10,
+      "prerequisites": [
+        276,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 308,
+      "anchorLesson": 10,
+      "prerequisites": [
+        286,
+        277,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 311,
+      "anchorLesson": 10,
+      "prerequisites": [
+        47,
+        282,
+        308,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 319,
+      "anchorLesson": 10,
+      "prerequisites": [
+        48,
+        309,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 320,
+      "anchorLesson": 10,
+      "prerequisites": [
+        271,
+        277,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 312,
+      "anchorLesson": 10,
+      "prerequisites": [
+        305,
+        271,
+        10
+      ]
+    },
+    {
+      "lessonNumber": 136,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10
+      ]
+    },
+    {
+      "lessonNumber": 137,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10
+      ]
+    },
+    {
+      "lessonNumber": 138,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10
+      ]
+    },
+    {
+      "lessonNumber": 147,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10
+      ]
+    },
+    {
+      "lessonNumber": 148,
+      "anchorLesson": 10,
+      "prerequisites": [
+        10
+      ]
+    },
+    {
+      "lessonNumber": 35,
+      "anchorLesson": 35,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 268,
+      "anchorLesson": 35,
+      "prerequisites": [
+        35,
+        52
+      ]
+    },
+    {
+      "lessonNumber": 149,
+      "anchorLesson": 35,
+      "prerequisites": [
+        35
+      ]
+    },
+    {
+      "lessonNumber": 150,
+      "anchorLesson": 35,
+      "prerequisites": [
+        35
+      ]
+    },
+    {
+      "lessonNumber": 36,
+      "anchorLesson": 36,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 151,
+      "anchorLesson": 36,
+      "prerequisites": [
+        36
+      ]
+    },
+    {
+      "lessonNumber": 152,
+      "anchorLesson": 36,
+      "prerequisites": [
+        36
+      ]
+    },
+    {
+      "lessonNumber": 17,
+      "anchorLesson": 17,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 54,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 86,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        54
+      ]
+    },
+    {
+      "lessonNumber": 71,
+      "anchorLesson": 17,
+      "prerequisites": [
+        47,
+        48,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 75,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        54
+      ]
+    },
+    {
+      "lessonNumber": 88,
+      "anchorLesson": 17,
+      "prerequisites": [
+        54,
+        56
+      ]
+    },
+    {
+      "lessonNumber": 275,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 280,
+      "anchorLesson": 17,
+      "prerequisites": [
+        275,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 299,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        276,
+        275,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 291,
+      "anchorLesson": 17,
+      "prerequisites": [
+        53,
+        86,
+        56,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 316,
+      "anchorLesson": 17,
+      "prerequisites": [
+        84,
+        280,
+        17
+      ]
+    },
+    {
+      "lessonNumber": 99,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 134,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 139,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 140,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 141,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 210,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 211,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 241,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 242,
+      "anchorLesson": 17,
+      "prerequisites": [
+        17
+      ]
+    },
+    {
+      "lessonNumber": 14,
+      "anchorLesson": 14,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 51,
+      "anchorLesson": 14,
+      "prerequisites": [
+        14,
+        50
+      ]
+    },
+    {
+      "lessonNumber": 55,
+      "anchorLesson": 14,
+      "prerequisites": [
+        14
+      ]
+    },
+    {
+      "lessonNumber": 212,
+      "anchorLesson": 14,
+      "prerequisites": [
+        14
+      ]
+    },
+    {
+      "lessonNumber": 213,
+      "anchorLesson": 14,
+      "prerequisites": [
+        14
+      ]
+    },
+    {
+      "lessonNumber": 15,
+      "anchorLesson": 15,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 63,
+      "anchorLesson": 15,
+      "prerequisites": [
+        14,
+        15
+      ]
+    },
+    {
+      "lessonNumber": 74,
+      "anchorLesson": 15,
+      "prerequisites": [
+        50,
+        51
+      ]
+    },
+    {
+      "lessonNumber": 85,
+      "anchorLesson": 15,
+      "prerequisites": [
+        14,
+        15
+      ]
+    },
+    {
+      "lessonNumber": 288,
+      "anchorLesson": 15,
+      "prerequisites": [
+        51,
+        56,
+        53,
+        15
+      ]
+    },
+    {
+      "lessonNumber": 318,
+      "anchorLesson": 15,
+      "prerequisites": [
+        50,
+        53,
+        15
+      ]
+    },
+    {
+      "lessonNumber": 125,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 158,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 159,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 166,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 178,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 181,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 182,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 183,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 214,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 215,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 216,
+      "anchorLesson": 15,
+      "prerequisites": [
+        15
+      ]
+    },
+    {
+      "lessonNumber": 24,
+      "anchorLesson": 24,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 64,
+      "anchorLesson": 24,
+      "prerequisites": [
+        51,
+        24
+      ]
+    },
+    {
+      "lessonNumber": 80,
+      "anchorLesson": 24,
+      "prerequisites": [
+        55,
+        24
+      ]
+    },
+    {
+      "lessonNumber": 261,
+      "anchorLesson": 24,
+      "prerequisites": [
+        79,
+        51,
+        24
+      ]
+    },
+    {
+      "lessonNumber": 292,
+      "anchorLesson": 24,
+      "prerequisites": [
+        81,
+        56,
+        48,
+        24
+      ]
+    },
+    {
+      "lessonNumber": 160,
+      "anchorLesson": 24,
+      "prerequisites": [
+        24
+      ]
+    },
+    {
+      "lessonNumber": 161,
+      "anchorLesson": 24,
+      "prerequisites": [
+        24
+      ]
+    },
+    {
+      "lessonNumber": 217,
+      "anchorLesson": 24,
+      "prerequisites": [
+        24
+      ]
+    },
+    {
+      "lessonNumber": 218,
+      "anchorLesson": 24,
+      "prerequisites": [
+        24
+      ]
+    },
+    {
+      "lessonNumber": 25,
+      "anchorLesson": 25,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 264,
+      "anchorLesson": 25,
+      "prerequisites": [
+        50,
+        51,
+        64,
+        25
+      ]
+    },
+    {
+      "lessonNumber": 298,
+      "anchorLesson": 25,
+      "prerequisites": [
+        53,
+        86,
+        264,
+        25
+      ]
+    },
+    {
+      "lessonNumber": 100,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 101,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 156,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 162,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 219,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 220,
+      "anchorLesson": 25,
+      "prerequisites": [
+        25
+      ]
+    },
+    {
+      "lessonNumber": 26,
+      "anchorLesson": 26,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 61,
+      "anchorLesson": 26,
+      "prerequisites": [
+        14,
+        26
+      ]
+    },
+    {
+      "lessonNumber": 77,
+      "anchorLesson": 26,
+      "prerequisites": [
+        58,
+        26
+      ]
+    },
+    {
+      "lessonNumber": 322,
+      "anchorLesson": 26,
+      "prerequisites": [
+        61,
+        264,
+        26
+      ]
+    },
+    {
+      "lessonNumber": 102,
+      "anchorLesson": 26,
+      "prerequisites": [
+        26
+      ]
+    },
+    {
+      "lessonNumber": 196,
+      "anchorLesson": 26,
+      "prerequisites": [
+        26
+      ]
+    },
+    {
+      "lessonNumber": 197,
+      "anchorLesson": 26,
+      "prerequisites": [
+        26
+      ]
+    },
+    {
+      "lessonNumber": 27,
+      "anchorLesson": 27,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 103,
+      "anchorLesson": 27,
+      "prerequisites": [
+        27
+      ]
+    },
+    {
+      "lessonNumber": 126,
+      "anchorLesson": 27,
+      "prerequisites": [
+        27
+      ]
+    },
+    {
+      "lessonNumber": 127,
+      "anchorLesson": 27,
+      "prerequisites": [
+        27
+      ]
+    },
+    {
+      "lessonNumber": 198,
+      "anchorLesson": 27,
+      "prerequisites": [
+        27
+      ]
+    },
+    {
+      "lessonNumber": 199,
+      "anchorLesson": 27,
+      "prerequisites": [
+        27
+      ]
+    },
+    {
+      "lessonNumber": 18,
+      "anchorLesson": 18,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 72,
+      "anchorLesson": 18,
+      "prerequisites": [
+        49,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 266,
+      "anchorLesson": 18,
+      "prerequisites": [
+        49,
+        50,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 278,
+      "anchorLesson": 18,
+      "prerequisites": [
+        53,
+        49,
+        266,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 295,
+      "anchorLesson": 18,
+      "prerequisites": [
+        276,
+        278,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 297,
+      "anchorLesson": 18,
+      "prerequisites": [
+        49,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 317,
+      "anchorLesson": 18,
+      "prerequisites": [
+        56,
+        316,
+        18
+      ]
+    },
+    {
+      "lessonNumber": 104,
+      "anchorLesson": 18,
+      "prerequisites": [
+        18
+      ]
+    },
+    {
+      "lessonNumber": 128,
+      "anchorLesson": 18,
+      "prerequisites": [
+        18
+      ]
+    },
+    {
+      "lessonNumber": 129,
+      "anchorLesson": 18,
+      "prerequisites": [
+        18
+      ]
+    },
+    {
+      "lessonNumber": 190,
+      "anchorLesson": 18,
+      "prerequisites": [
+        18
+      ]
+    },
+    {
+      "lessonNumber": 37,
+      "anchorLesson": 37,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 66,
+      "anchorLesson": 37,
+      "prerequisites": [
+        53,
+        56,
+        37
+      ]
+    },
+    {
+      "lessonNumber": 174,
+      "anchorLesson": 37,
+      "prerequisites": [
+        37
+      ]
+    },
+    {
+      "lessonNumber": 175,
+      "anchorLesson": 37,
+      "prerequisites": [
+        37
+      ]
+    },
+    {
+      "lessonNumber": 176,
+      "anchorLesson": 37,
+      "prerequisites": [
+        37
+      ]
+    },
+    {
+      "lessonNumber": 38,
+      "anchorLesson": 38,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 67,
+      "anchorLesson": 38,
+      "prerequisites": [
+        13,
+        38
+      ]
+    },
+    {
+      "lessonNumber": 78,
+      "anchorLesson": 38,
+      "prerequisites": [
+        56,
+        14,
+        38
+      ]
+    },
+    {
+      "lessonNumber": 269,
+      "anchorLesson": 38,
+      "prerequisites": [
+        56,
+        38
+      ]
+    },
+    {
+      "lessonNumber": 300,
+      "anchorLesson": 38,
+      "prerequisites": [
+        56,
+        34,
+        33,
+        38
+      ]
+    },
+    {
+      "lessonNumber": 130,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 131,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 185,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 186,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 221,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 222,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 223,
+      "anchorLesson": 38,
+      "prerequisites": [
+        38
+      ]
+    },
+    {
+      "lessonNumber": 39,
+      "anchorLesson": 39,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 62,
+      "anchorLesson": 39,
+      "prerequisites": [
+        14,
+        39
+      ]
+    },
+    {
+      "lessonNumber": 135,
+      "anchorLesson": 39,
+      "prerequisites": [
+        39
+      ]
+    },
+    {
+      "lessonNumber": 244,
+      "anchorLesson": 39,
+      "prerequisites": [
+        39
+      ]
+    },
+    {
+      "lessonNumber": 245,
+      "anchorLesson": 39,
+      "prerequisites": [
+        39
+      ]
+    },
+    {
+      "lessonNumber": 40,
+      "anchorLesson": 40,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 310,
+      "anchorLesson": 40,
+      "prerequisites": [
+        48,
+        285,
+        40
+      ]
+    },
+    {
+      "lessonNumber": 163,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 164,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 169,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 170,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 179,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 180,
+      "anchorLesson": 40,
+      "prerequisites": [
+        40
+      ]
+    },
+    {
+      "lessonNumber": 41,
+      "anchorLesson": 41,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 267,
+      "anchorLesson": 41,
+      "prerequisites": [
+        51,
+        266,
+        41
+      ]
+    },
+    {
+      "lessonNumber": 105,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 121,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 122,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 165,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 187,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 236,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 246,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 247,
+      "anchorLesson": 41,
+      "prerequisites": [
+        41
+      ]
+    },
+    {
+      "lessonNumber": 16,
+      "anchorLesson": 16,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 289,
+      "anchorLesson": 16,
+      "prerequisites": [
+        51,
+        288,
+        16
+      ]
+    },
+    {
+      "lessonNumber": 290,
+      "anchorLesson": 16,
+      "prerequisites": [
+        51,
+        289,
+        16
+      ]
+    },
+    {
+      "lessonNumber": 313,
+      "anchorLesson": 16,
+      "prerequisites": [
+        312,
+        16
+      ]
+    },
+    {
+      "lessonNumber": 224,
+      "anchorLesson": 16,
+      "prerequisites": [
+        16
+      ]
+    },
+    {
+      "lessonNumber": 225,
+      "anchorLesson": 16,
+      "prerequisites": [
+        16
+      ]
+    },
+    {
+      "lessonNumber": 19,
+      "anchorLesson": 19,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 274,
+      "anchorLesson": 19,
+      "prerequisites": [
+        24,
+        19
+      ]
+    },
+    {
+      "lessonNumber": 279,
+      "anchorLesson": 19,
+      "prerequisites": [
+        53,
+        19
+      ]
+    },
+    {
+      "lessonNumber": 106,
+      "anchorLesson": 19,
+      "prerequisites": [
+        19
+      ]
+    },
+    {
+      "lessonNumber": 226,
+      "anchorLesson": 19,
+      "prerequisites": [
+        19
+      ]
+    },
+    {
+      "lessonNumber": 227,
+      "anchorLesson": 19,
+      "prerequisites": [
+        19
+      ]
+    },
+    {
+      "lessonNumber": 28,
+      "anchorLesson": 28,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 262,
+      "anchorLesson": 28,
+      "prerequisites": [
+        55,
+        50,
+        28
+      ]
+    },
+    {
+      "lessonNumber": 107,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 157,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 191,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 228,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 229,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 230,
+      "anchorLesson": 28,
+      "prerequisites": [
+        28
+      ]
+    },
+    {
+      "lessonNumber": 29,
+      "anchorLesson": 29,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 303,
+      "anchorLesson": 29,
+      "prerequisites": [
+        47,
+        276,
+        29
+      ]
+    },
+    {
+      "lessonNumber": 142,
+      "anchorLesson": 29,
+      "prerequisites": [
+        29
+      ]
+    },
+    {
+      "lessonNumber": 143,
+      "anchorLesson": 29,
+      "prerequisites": [
+        29
+      ]
+    },
+    {
+      "lessonNumber": 248,
+      "anchorLesson": 29,
+      "prerequisites": [
+        29
+      ]
+    },
+    {
+      "lessonNumber": 30,
+      "anchorLesson": 30,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 89,
+      "anchorLesson": 30,
+      "prerequisites": [
+        30
+      ]
+    },
+    {
+      "lessonNumber": 108,
+      "anchorLesson": 30,
+      "prerequisites": [
+        30
+      ]
+    },
+    {
+      "lessonNumber": 192,
+      "anchorLesson": 30,
+      "prerequisites": [
+        30
+      ]
+    },
+    {
+      "lessonNumber": 243,
+      "anchorLesson": 30,
+      "prerequisites": [
+        30
+      ]
+    },
+    {
+      "lessonNumber": 31,
+      "anchorLesson": 31,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 263,
+      "anchorLesson": 31,
+      "prerequisites": [
+        89,
+        31
+      ]
+    },
+    {
+      "lessonNumber": 32,
+      "anchorLesson": 32,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 260,
+      "anchorLesson": 32,
+      "prerequisites": [
+        53,
+        86,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 272,
+      "anchorLesson": 32,
+      "prerequisites": [
+        86,
+        260
+      ]
+    },
+    {
+      "lessonNumber": 284,
+      "anchorLesson": 32,
+      "prerequisites": [
+        273,
+        47,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 301,
+      "anchorLesson": 32,
+      "prerequisites": [
+        53,
+        86,
+        279,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 306,
+      "anchorLesson": 32,
+      "prerequisites": [
+        57,
+        273,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 323,
+      "anchorLesson": 32,
+      "prerequisites": [
+        57,
+        48,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 324,
+      "anchorLesson": 32,
+      "prerequisites": [
+        323,
+        64,
+        32
+      ]
+    },
+    {
+      "lessonNumber": 109,
+      "anchorLesson": 32,
+      "prerequisites": [
+        32
+      ]
+    },
+    {
+      "lessonNumber": 231,
+      "anchorLesson": 32,
+      "prerequisites": [
+        32
+      ]
+    },
+    {
+      "lessonNumber": 232,
+      "anchorLesson": 32,
+      "prerequisites": [
+        32
+      ]
+    },
+    {
+      "lessonNumber": 42,
+      "anchorLesson": 42,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 270,
+      "anchorLesson": 42,
+      "prerequisites": [
+        264,
+        42
+      ]
+    },
+    {
+      "lessonNumber": 233,
+      "anchorLesson": 42,
+      "prerequisites": [
+        42
+      ]
+    },
+    {
+      "lessonNumber": 234,
+      "anchorLesson": 42,
+      "prerequisites": [
+        42
+      ]
+    },
+    {
+      "lessonNumber": 43,
+      "anchorLesson": 43,
+      "prerequisites": []
+    },
+    {
+      "lessonNumber": 302,
+      "anchorLesson": 43,
+      "prerequisites": [
+        64,
+        43
+      ]
+    },
+    {
+      "lessonNumber": 315,
+      "anchorLesson": 43,
+      "prerequisites": [
+        53,
+        309,
+        43
+      ]
+    },
+    {
+      "lessonNumber": 110,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 193,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 249,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 250,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 251,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 252,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 253,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 254,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 255,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 256,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 257,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 258,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    },
+    {
+      "lessonNumber": 259,
+      "anchorLesson": 43,
+      "prerequisites": [
+        43
+      ]
+    }
+  ]
+}

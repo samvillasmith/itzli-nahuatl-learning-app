@@ -1,3 +1,4 @@
+import "server-only";
 import OpenAI from "openai";
 
 let client: OpenAI | null = null;
@@ -10,7 +11,7 @@ export type ModerationVerdict = {
 };
 
 function getOpenAIClient(): OpenAI {
-  client ??= new OpenAI();
+  client ??= new OpenAI({ timeout: 10_000, maxRetries: 0 });
   return client;
 }
 
@@ -47,7 +48,7 @@ export async function moderate(text: string): Promise<ModerationVerdict> {
       topScore,
     };
   } catch (err) {
-    console.error("[moderation] call failed, failing closed:", err);
+    console.error("[moderation] call failed, failing closed:", err instanceof Error ? err.name : "unknown");
     return { flagged: true, categories: ["moderation_error"], topScore: 1 };
   }
 }

@@ -212,10 +212,11 @@ describe("Eastern Huasteca content invariants", () => {
   });
 
   it("reports the learner-visible course totals", () => {
-    expect(getVocabCount()).toBe(463);
+    // Three source plural-future cards await transcription/display review.
+    expect(getVocabCount()).toBe(460);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_vocab_count, 0),
-    ).toBe(476);
+    ).toBe(473);
     expect(
       getAllUnits().reduce((sum, unit) => sum + unit.english_dialogue_count, 0),
     ).toBe(176);
@@ -276,9 +277,9 @@ describe("Eastern Huasteca content invariants", () => {
     const questionHeadwords = getUnitVocab(2).map((card) => card.headword);
     const greetingHeadwords = getUnitVocab(11).map((card) => card.headword);
     expect(questionHeadwords).not.toContain("Kenihki tiya?");
-    expect(questionHeadwords).not.toContain("Kenihki tiistok?");
+    expect(questionHeadwords).not.toContain("Kenihki tiitstok?");
     expect(greetingHeadwords).toEqual(
-      expect.arrayContaining(["Kenihki tiya?", "Kenihki tiistok?"]),
+      expect.arrayContaining(["Kenihki tiya?", "Kenihki tiitstok?"]),
     );
   });
 

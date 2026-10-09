@@ -24,13 +24,14 @@ describe("public CEFR claims", () => {
     expect(publicCopy).not.toMatch(/A1[–-]B1 curriculum|A1\s*(?:to|→)\s*B1|B1 · Intermediate|Intermediate — B1/);
   });
 
-  it("publishes the current reviewed vocabulary count", () => {
+  it("publishes the audited inventory without claiming every form is a unique lemma", () => {
     const readme = read("README.md");
-    expect(readme).toContain("463 unique reviewed words and forms");
-    expect(readme).toContain("476 learner-visible card placements");
+    expect(readme).toContain("460 distinct stored-spelling vocabulary cards");
+    expect(readme).toContain("473 learner-visible placements");
     expect(readme).toContain("75 curated word-first cards");
-    expect(readme).toContain("80 learner-visible source-course additions");
-    expect(readme).toContain("240 reviewed source-course candidates");
+    expect(readme).toContain("77 learner-visible source-course additions");
+    expect(readme).toContain("240 source-course candidates");
+    expect(readme).toContain("73 additional source-attested forms");
     expect(readme).not.toContain("825 core lesson cards");
     expect(readme).not.toContain("37,000-entry EHN lexicon");
   });

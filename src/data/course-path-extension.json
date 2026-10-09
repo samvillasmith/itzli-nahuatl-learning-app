@@ -1,0 +1,3547 @@
+{
+  "schemaVersion": 1,
+  "organization": "Original Itzli topical groupings of approved public entries. No book order, wording or exercises imported.",
+  "maxWordsPerLesson": 8,
+  "counts": {
+    "verifiedNewEntries": 1236,
+    "earlierPackEntries": 73,
+    "vocabularyLessons": 170
+  },
+  "grammarLessons": [
+    {
+      "lessonNumber": 44,
+      "sourceUnitId": "v3-meet-and-connect"
+    },
+    {
+      "lessonNumber": 45,
+      "sourceUnitId": "v3-keep-speaking"
+    },
+    {
+      "lessonNumber": 46,
+      "sourceUnitId": "v3-work-study"
+    },
+    {
+      "lessonNumber": 47,
+      "sourceUnitId": "v3-family-possession"
+    },
+    {
+      "lessonNumber": 48,
+      "sourceUnitId": "v3-place-and-visit"
+    },
+    {
+      "lessonNumber": 49,
+      "sourceUnitId": "v3-food-preferences"
+    },
+    {
+      "lessonNumber": 50,
+      "sourceUnitId": "v3-personal-plans"
+    },
+    {
+      "lessonNumber": 51,
+      "sourceUnitId": "v3-past-experience"
+    },
+    {
+      "lessonNumber": 52,
+      "sourceUnitId": "v3-amounts-colors"
+    },
+    {
+      "lessonNumber": 53,
+      "sourceUnitId": "v3-who-sees-whom"
+    },
+    {
+      "lessonNumber": 54,
+      "sourceUnitId": "v3-self-actions"
+    },
+    {
+      "lessonNumber": 55,
+      "sourceUnitId": "v3-postures-past-states"
+    },
+    {
+      "lessonNumber": 56,
+      "sourceUnitId": "v3-group-activities"
+    },
+    {
+      "lessonNumber": 57,
+      "sourceUnitId": "v3-learning-together"
+    },
+    {
+      "lessonNumber": 58,
+      "sourceUnitId": "v3-shared-household"
+    },
+    {
+      "lessonNumber": 59,
+      "sourceUnitId": "v3-younger-relatives"
+    },
+    {
+      "lessonNumber": 60,
+      "sourceUnitId": "v3-family-network"
+    },
+    {
+      "lessonNumber": 61,
+      "sourceUnitId": "v3-shopping-report"
+    },
+    {
+      "lessonNumber": 62,
+      "sourceUnitId": "v3-stored-supplies"
+    },
+    {
+      "lessonNumber": 63,
+      "sourceUnitId": "v3-completed-activities"
+    },
+    {
+      "lessonNumber": 64,
+      "sourceUnitId": "v3-retell-movement"
+    },
+    {
+      "lessonNumber": 65,
+      "sourceUnitId": "v3-morning-routine"
+    },
+    {
+      "lessonNumber": 66,
+      "sourceUnitId": "v3-shared-observation"
+    },
+    {
+      "lessonNumber": 67,
+      "sourceUnitId": "v3-meal-and-ability"
+    },
+    {
+      "lessonNumber": 68,
+      "sourceUnitId": "v3-recall-new-meeting"
+    },
+    {
+      "lessonNumber": 69,
+      "sourceUnitId": "v3-recall-clarify-and-visit"
+    },
+    {
+      "lessonNumber": 70,
+      "sourceUnitId": "v3-recall-learning-conversation"
+    },
+    {
+      "lessonNumber": 71,
+      "sourceUnitId": "v3-recall-family-and-place"
+    },
+    {
+      "lessonNumber": 72,
+      "sourceUnitId": "v3-recall-coffee-conversation"
+    },
+    {
+      "lessonNumber": 73,
+      "sourceUnitId": "v3-recall-small-amounts"
+    },
+    {
+      "lessonNumber": 74,
+      "sourceUnitId": "v3-recall-report-and-plan"
+    },
+    {
+      "lessonNumber": 75,
+      "sourceUnitId": "v3-recall-who-sees"
+    },
+    {
+      "lessonNumber": 76,
+      "sourceUnitId": "v3-practical-sibling-identification"
+    },
+    {
+      "lessonNumber": 77,
+      "sourceUnitId": "v3-practical-household-identification"
+    },
+    {
+      "lessonNumber": 78,
+      "sourceUnitId": "v3-practical-corn-work"
+    },
+    {
+      "lessonNumber": 79,
+      "sourceUnitId": "v3-practical-identity"
+    },
+    {
+      "lessonNumber": 80,
+      "sourceUnitId": "v3-practical-arrival-and-posture"
+    },
+    {
+      "lessonNumber": 81,
+      "sourceUnitId": "v3-bones-person"
+    },
+    {
+      "lessonNumber": 82,
+      "sourceUnitId": "v3-bones-respect"
+    },
+    {
+      "lessonNumber": 83,
+      "sourceUnitId": "v3-bones-degree"
+    },
+    {
+      "lessonNumber": 84,
+      "sourceUnitId": "v3-bones-time"
+    },
+    {
+      "lessonNumber": 85,
+      "sourceUnitId": "v3-bones-past-process"
+    },
+    {
+      "lessonNumber": 86,
+      "sourceUnitId": "v3-bones-human-objects"
+    },
+    {
+      "lessonNumber": 87,
+      "sourceUnitId": "v3-bones-community-exchange"
+    },
+    {
+      "lessonNumber": 88,
+      "sourceUnitId": "v3-bones-self-or-each-other"
+    },
+    {
+      "lessonNumber": 89,
+      "sourceUnitId": "v3-bones-imagine-an-action"
+    }
+  ],
+  "lessons": [
+    {
+      "lessonNumber": 90,
+      "progressId": "v3-vocab-conversation-001",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3i-72832ce84be0a5f6",
+        "word-v3f-5d34227606fd066a",
+        "word-v3rf-c6122da1f380827f",
+        "word-v3rf-26ee0be8d6a90f63",
+        "word-v3i-2d93f637894edaf5",
+        "word-v3f-b14fa86f2c53cf62",
+        "word-v3rf-401524d13d95f159",
+        "word-v3f-17bdaf3c38537a87"
+      ]
+    },
+    {
+      "lessonNumber": 91,
+      "progressId": "v3-vocab-conversation-002",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3f-bf62bf5f15a863da",
+        "word-v3f-93a1874b48e3530c",
+        "word-v3f-4c1512fce4af6e18",
+        "word-v3rf-ae45b9cbb8d63151",
+        "word-v3lex-d642d1066a055cc6",
+        "word-v3f-617dce55861641f9",
+        "word-v3f-d225e0f8fa463dd6",
+        "word-v3f-09c000cb0f825983"
+      ]
+    },
+    {
+      "lessonNumber": 92,
+      "progressId": "v3-vocab-conversation-003",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3f-eb9aa108df90f1d3",
+        "word-v3f-986165fc61abf0f3",
+        "word-v3pc-0572f6665df3c494",
+        "word-v3rf-7dba5d88d6406ac5",
+        "word-v3f-818b419f029ebbc7",
+        "word-v3rf-ac95b69b45f68579",
+        "word-v3rf-2727ab90d22c146e",
+        "word-v3rf-ba88959031d45698"
+      ]
+    },
+    {
+      "lessonNumber": 93,
+      "progressId": "v3-vocab-conversation-004",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3f-dedd69adec6430ef",
+        "word-v3-0042",
+        "word-v3f-8af6d5f82d67770d",
+        "word-v3f-f89e728b6de1ddd8",
+        "word-v3f-bf8e974ff0092f45",
+        "word-v3f-a0d8a44ae8b0a889",
+        "word-v3rf-bd01c74047f6bcfa",
+        "word-v3rf-6fbd25eabffb0aa1"
+      ]
+    },
+    {
+      "lessonNumber": 94,
+      "progressId": "v3-vocab-conversation-005",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3rf-ff40329273794327",
+        "word-v3rf-d4b7e944ea219d02",
+        "word-v3f-c16e7b8d68491d51",
+        "word-v3rf-0f77bfbe102364a4",
+        "word-v3f-1c8ba8faf2c8853c",
+        "word-v3rf-b843fa687c551b6d",
+        "word-v3rf-e43cd722046d9046",
+        "word-v3rf-6394ca89d1f73f0d"
+      ]
+    },
+    {
+      "lessonNumber": 95,
+      "progressId": "v3-vocab-conversation-006",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3f-fe5e1f5cd13a2224",
+        "word-v3f-a8cdf22c0b5425ae",
+        "word-v3f-8a597b5ca5110791",
+        "word-v3f-d62a336f0a3b6737",
+        "word-v3f-2e895323a7b7fe3d",
+        "word-v3rf-6fa38b7a497a9970",
+        "word-v3rf-4ff29fba55761f3e",
+        "word-v3f-16be1f43466c64e5"
+      ]
+    },
+    {
+      "lessonNumber": 96,
+      "progressId": "v3-vocab-conversation-007",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3f-48d8e99480833bb1",
+        "word-v3i-ce912ebfe17f2223",
+        "word-v3-0012",
+        "word-v3f-fc2853e6faeb1066",
+        "word-v3getty-fc28895682b388d3",
+        "word-v3-0011",
+        "word-v3rf-6a959621389e2eb3",
+        "word-v3f-d7fdf8f908e4fd3f"
+      ]
+    },
+    {
+      "lessonNumber": 97,
+      "progressId": "v3-vocab-conversation-008",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3f-08fe2f30c5a597b8",
+        "word-v3rf-bd7cbf53a058ccb4",
+        "word-v3rf-be5416362662e21f",
+        "word-v3rf-afcb1f9153335aa0",
+        "word-v3rf-1d15e1b5bdce4add",
+        "word-v3rf-b5f0770a8a3d8a3b",
+        "word-v3rf-f855f01f92092e70",
+        "word-v3rf-55e1bf1a39f349dd"
+      ]
+    },
+    {
+      "lessonNumber": 98,
+      "progressId": "v3-vocab-conversation-009",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3rf-32efdb5887021f0f",
+        "word-v3f-932de1e767514cac",
+        "word-v3function-62dba99d2d0e110d",
+        "word-v3rf-fd97bbcff435f802",
+        "word-v3f-25898d3a082435ec",
+        "word-v3f-04ce8fe92711127c",
+        "word-v3lex-5aaad6542b999dd8",
+        "word-v3rf-c2839cdbc84fb3ef"
+      ]
+    },
+    {
+      "lessonNumber": 99,
+      "progressId": "v3-vocab-conversation-010",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 10,
+      "entryIds": [
+        "word-v3rf-4d276d2bc2866c44",
+        "word-v3f-6099189fd6d034f1",
+        "word-v3rf-e7ebb6e98a9bcbe0",
+        "word-v3rf-2ddd0f84366280cb",
+        "word-v3rf-60e3c81d31ebd348",
+        "word-v3rf-897afc90a4192660",
+        "word-v3rf-1734701dc9eb3855",
+        "word-v3i-cff9e84c1da10335"
+      ]
+    },
+    {
+      "lessonNumber": 100,
+      "progressId": "v3-vocab-conversation-011",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 11,
+      "entryIds": [
+        "word-v3rf-dd7ecfb8ac5e52a8",
+        "word-v3r-b903f9cdb997966e",
+        "word-v3rf-c1823c0a5903f19f",
+        "word-v3i-0dc3e3fe1a25188e",
+        "word-v3pv-d6be54f606cbac01",
+        "word-v3d-27056a228bdb0e33",
+        "word-v3rf-5c2abfe559b4691c",
+        "word-v3f-186e972bab36ff4c"
+      ]
+    },
+    {
+      "lessonNumber": 101,
+      "progressId": "v3-vocab-conversation-012",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 12,
+      "entryIds": [
+        "word-v3f-6f183062b1439949",
+        "word-v3f-95f1d4abf5b5364b",
+        "word-v3rf-cfa586269bfba102",
+        "word-v3rf-f84224cd5f5d1532",
+        "word-v3rf-ad6f8177bdca61b3",
+        "word-v3f-ea6302a6b5926f59",
+        "word-v3rf-dc15db05ef7486de",
+        "word-v3f-237de428e32fea3e"
+      ]
+    },
+    {
+      "lessonNumber": 102,
+      "progressId": "v3-vocab-conversation-013",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 13,
+      "entryIds": [
+        "word-v3rf-18c82964f168c460",
+        "word-v3rf-73658b301cfdcb10",
+        "word-v3rf-caf7514834caba64",
+        "word-v3rf-0822130083b9346e",
+        "word-v3rf-1b7e7bbcbc6e6956",
+        "word-v3f-285c9a606a1a20a6",
+        "word-v3i-6c4d877801f520cf",
+        "word-v3i-01f143dc82bb66c3"
+      ]
+    },
+    {
+      "lessonNumber": 103,
+      "progressId": "v3-vocab-conversation-014",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 14,
+      "entryIds": [
+        "word-v3i-6f1af1da11b9c913",
+        "word-v3rf-f7d4e188dda42649",
+        "word-v3rf-99228c9858236b08",
+        "word-v3rf-924671c39b53e3c1",
+        "word-v3rf-054efc7ce49ecb1f",
+        "word-v3f-e12b9a225b2ccf12",
+        "word-v3f-53c0cf014a3757a5",
+        "word-v3i-21ee71832acfdd86"
+      ]
+    },
+    {
+      "lessonNumber": 104,
+      "progressId": "v3-vocab-conversation-015",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 15,
+      "entryIds": [
+        "word-v3rf-c571e43a0548dd42",
+        "word-v3rf-db7a7ad42ab5220e",
+        "word-v3rf-361bdf0cf5d15d5d",
+        "word-v3rf-250157bb285329aa",
+        "word-v3rf-f50df85f72569baf",
+        "word-v3pv-26f24edbc028d4dd",
+        "word-v3pc-fb3779bc23fe18a7",
+        "word-v3pv-f89d4400744db041"
+      ]
+    },
+    {
+      "lessonNumber": 105,
+      "progressId": "v3-vocab-conversation-016",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 16,
+      "entryIds": [
+        "word-v3f-1f8c3ddc10198172",
+        "word-v3rf-ece50f926199328b",
+        "word-v3rf-32ecda6ba81ca71c",
+        "word-v3rf-5acc1e9baecfefb6",
+        "word-v3rf-d0597e555ce9887f",
+        "word-v3rf-221c536813324d2b",
+        "word-v3reference-8c15372be290df88",
+        "word-v3f-4eae3b96148cd7ef"
+      ]
+    },
+    {
+      "lessonNumber": 106,
+      "progressId": "v3-vocab-conversation-017",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 17,
+      "entryIds": [
+        "word-v3f-d4a19bd345dfcc0d",
+        "word-v3rf-3c09af20fe0c4f86",
+        "word-v3rf-be79faf9fff13e08",
+        "word-v3rf-cd52235d1e7fa878",
+        "word-v3f-ea6f181a5951788b",
+        "word-v3rf-3f066f2191811990",
+        "word-v3f-4e28313ebb993b5e",
+        "word-v3f-64aa6a5f44e86e59"
+      ]
+    },
+    {
+      "lessonNumber": 107,
+      "progressId": "v3-vocab-conversation-018",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 18,
+      "entryIds": [
+        "word-v3inali-aa8b2a986a1d765b",
+        "word-v3f-588b7cb58f668dfb",
+        "word-v3b-ee2235707738e5ef",
+        "word-v3f-fa0500f0c1020593",
+        "word-v3f-cd5d388b03630c91",
+        "word-v3rf-2d8d7385518aefd2",
+        "word-v3rf-9d3eee9d42689286",
+        "word-v3rf-a3a7eb6253afc05b"
+      ]
+    },
+    {
+      "lessonNumber": 108,
+      "progressId": "v3-vocab-conversation-019",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 19,
+      "entryIds": [
+        "word-v3rf-000be007a41524dd",
+        "word-v3f-96c86fe841ca93ea",
+        "word-v3rf-d2b0b89e7337d4a4",
+        "word-v3b-42e1d62b7175bf2a",
+        "word-v3rf-63d5783c14602f45",
+        "word-v3rf-00d046d1f5cd21b1",
+        "word-v3rf-d4e2601ea6e53d5a",
+        "word-v3rf-722df77495d6d6cc"
+      ]
+    },
+    {
+      "lessonNumber": 109,
+      "progressId": "v3-vocab-conversation-020",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 20,
+      "entryIds": [
+        "word-v3rf-9124c4c850541956",
+        "word-v3rf-51a94f0e6e70e443",
+        "word-v3f-b4df220f5afcc035",
+        "word-v3f-c7930eb8082dfb0c",
+        "word-v3f-87e03e14e941a76c",
+        "word-v3f-de7ef49d18262542",
+        "word-v3rf-942ba1b36e2fe7ed",
+        "word-v3rf-e0bc9f297c88c7c3"
+      ]
+    },
+    {
+      "lessonNumber": 110,
+      "progressId": "v3-vocab-conversation-021",
+      "topic": "conversation",
+      "titleEn": "Everyday exchanges",
+      "titleEs": "Intercambios cotidianos",
+      "goalEn": "Recognize the words used to ask, answer and connect an exchange.",
+      "goalEs": "Reconoce las palabras para preguntar, responder y conectar un intercambio.",
+      "ordinal": 21,
+      "entryIds": [
+        "word-v3f-63c4b6b3996a181d",
+        "word-v3f-70969f831b61b148",
+        "word-v3rf-da9d118201cec362"
+      ]
+    },
+    {
+      "lessonNumber": 111,
+      "progressId": "v3-vocab-people-001",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3i-6755340b0dac65c3",
+        "word-v3r-3e113192ca38ba61",
+        "word-v3f-3b22797e6dd9c508",
+        "word-v3r-11864c91046420d9",
+        "word-v3rf-c802744e3f48b6e3",
+        "word-v3f-8d88a2326230bc82",
+        "word-v3i-df18a95c10a2f3d8",
+        "word-v3i-ef4ca1a4dace48f5"
+      ]
+    },
+    {
+      "lessonNumber": 112,
+      "progressId": "v3-vocab-people-002",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3r-5769e6104af06bfa",
+        "word-v3i-d9bc25d5a0726bd4",
+        "word-v3rf-326deb2772cc211e",
+        "word-v3i-d9b7200157c7ba52",
+        "word-v3i-3efecc7bedf733d9",
+        "word-v3i-885636571ec8c58b",
+        "word-v3i-63cbfaad5375ab14",
+        "word-v3i-7ac46387734717c2"
+      ]
+    },
+    {
+      "lessonNumber": 113,
+      "progressId": "v3-vocab-people-003",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3i-58b781e64c34977c",
+        "word-v3i-371381a26de9d2c3",
+        "word-v3i-bace68c2348bc5fa",
+        "word-v3i-243922ede795fc18",
+        "word-v3i-e5f6dff70a514af0",
+        "word-v3i-75ae78aa6e535711",
+        "word-v3i-401ab094c741a99a",
+        "word-v3i-278867e0f77a3186"
+      ]
+    },
+    {
+      "lessonNumber": 114,
+      "progressId": "v3-vocab-people-004",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3rf-8ec29ebc05e55c7c",
+        "word-v3i-f2d93159dad8268e",
+        "word-v3rf-f199cd4318294dcc",
+        "word-v3lex-b6f734d4509f1bc5",
+        "word-v3r-3917ae1ca55f1e66",
+        "word-v3r-46562e2b009026c4",
+        "word-v3r-63f224148fad1422",
+        "word-v3r-9dc6fa944c0fe5ee"
+      ]
+    },
+    {
+      "lessonNumber": 115,
+      "progressId": "v3-vocab-people-005",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3lex-97088223c88dcf4f",
+        "word-v3r-80d3d77b1b58d941",
+        "word-v3r-eec502d233e29b6d",
+        "word-v3r-e961e8fe8e1abafd",
+        "word-v3i-230255248370ab27",
+        "word-v3i-e1e886f1ea57e7c2",
+        "word-v3i-fb8bde1f704b5c6d",
+        "word-v3i-b98481e38d056acc"
+      ]
+    },
+    {
+      "lessonNumber": 116,
+      "progressId": "v3-vocab-people-006",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3r-3a11a643ed2409f6",
+        "word-v3r-092a8a7fec38eebe",
+        "word-v3rf-57157e6fedf7a8d8",
+        "word-v3i-780295e1ccf834a0",
+        "word-v3r-6cfa90f5a7d332f7",
+        "word-v3r-7f09e363a651ce3c",
+        "word-v3d-4e937be654a605d3",
+        "word-v3i-d93a4fa169708a97"
+      ]
+    },
+    {
+      "lessonNumber": 117,
+      "progressId": "v3-vocab-people-007",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3i-2f6dc9ba652247e6",
+        "word-v3i-1357fc65e0ce0f53",
+        "word-v3i-66a0b7a807578965",
+        "word-v3i-c13359d073e142d0",
+        "word-v3p-31bd7e20ab6c46f9",
+        "word-v3r-cabe1db020b5a402",
+        "word-v3f-09fafda181de9f97",
+        "word-v3r-d1d9828711890a0f"
+      ]
+    },
+    {
+      "lessonNumber": 118,
+      "progressId": "v3-vocab-people-008",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3r-9626989dc776205f",
+        "word-v3p-358ef3f779d5c0e9",
+        "word-v3p-f9932b758f81a15e",
+        "word-v3lex-528ba30c4045085b",
+        "word-v3p-784ffcf34c380272",
+        "word-v3p-11a83af7581b8f93",
+        "word-v3f-e56805ae836476ad",
+        "word-v3rf-f323b0bca12c1572"
+      ]
+    },
+    {
+      "lessonNumber": 119,
+      "progressId": "v3-vocab-people-009",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3rf-5cf5b5767c7b1b41",
+        "word-v3i-14904b72d5a6ed9a",
+        "word-v3-0004",
+        "word-v3r-59d6a837517f9efc",
+        "word-v3r-eba12350d1b7a80e",
+        "word-v3rf-a2281975b245247c",
+        "word-v3r-28a3b8d9c2c772c4",
+        "word-v3pc-b1576456cdfa3814"
+      ]
+    },
+    {
+      "lessonNumber": 120,
+      "progressId": "v3-vocab-people-010",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 10,
+      "entryIds": [
+        "word-v3r-035bea99394af334",
+        "word-v3r-0690bcc0d25aaa45",
+        "word-v3r-6b8b4ccbe0f3c90b",
+        "word-v3i-a41faf9e5b5ece20",
+        "word-v3i-7473e5060f197a8a",
+        "word-v3rf-418f40b18722ef88",
+        "word-v3i-ec8ca683ecc6c7ce",
+        "word-v3i-116b7bf8f8cc6a7d"
+      ]
+    },
+    {
+      "lessonNumber": 121,
+      "progressId": "v3-vocab-people-011",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 11,
+      "entryIds": [
+        "word-v3f-4320f136c9d25efd",
+        "word-v3i-96a7946f523c4ea6",
+        "word-v3i-943c2bddf8e93116",
+        "word-v3i-b0face3173b063e6",
+        "word-v3i-f25989c6218ac0b2",
+        "word-v3r-aec91f2e4f9f3257",
+        "word-v3i-a4db4ecfb1033d56",
+        "word-v3f-d016b01f7d5282d8"
+      ]
+    },
+    {
+      "lessonNumber": 122,
+      "progressId": "v3-vocab-people-012",
+      "topic": "people",
+      "titleEn": "People and relationships",
+      "titleEs": "Personas y relaciones",
+      "goalEn": "Keep people and relationships clear using the documented words.",
+      "goalEs": "Distingue personas y relaciones usando las palabras documentadas.",
+      "ordinal": 12,
+      "entryIds": [
+        "word-v3f-be8818039d07370f",
+        "word-v3r-aa405de33d58af6d",
+        "word-v3r-171bdfcc6cf5b703",
+        "word-v3r-ef9c55581794df98",
+        "word-v3r-a49e05f6a2bc7cfb",
+        "word-v3rf-b45fde5604007fb5"
+      ]
+    },
+    {
+      "lessonNumber": 123,
+      "progressId": "v3-vocab-food-001",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3-0052",
+        "word-v3i-b27dd93b1837f965",
+        "word-v3f-b6f3ad0e37788fc4",
+        "word-v3d-c12a3c39f5d0b15f",
+        "word-v3i-b9e2c5996a14847b",
+        "word-v3rf-299d779331cd07ea",
+        "word-v3d-66921f0c4a837c2a",
+        "word-v3-0060"
+      ]
+    },
+    {
+      "lessonNumber": 124,
+      "progressId": "v3-vocab-food-002",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3d-5ea678e0b0cb8c25",
+        "word-v3i-2b7e333100d8776c",
+        "word-v3-0058",
+        "word-v3-0061",
+        "word-v3-0050",
+        "word-v3d-8f4980d165f9f628",
+        "word-v3-0062",
+        "word-v3-0014"
+      ]
+    },
+    {
+      "lessonNumber": 125,
+      "progressId": "v3-vocab-food-003",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3rf-31f86b4bcc8cde88",
+        "word-v3d-cfd39351a7886609",
+        "word-v3ine-add021fa348239dc",
+        "word-v3r-51145077e708605b",
+        "word-v3i-62f8ef8a99b9c303",
+        "word-v3i-1416747433baaa84",
+        "word-v3rf-0106df120c1b332f",
+        "word-v3rf-0d61b203444785a5"
+      ]
+    },
+    {
+      "lessonNumber": 126,
+      "progressId": "v3-vocab-food-004",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3i-b81c71198919a097",
+        "word-v3d-b4d3ca2814e5ce37",
+        "word-v3d-85552d5b54e2af44",
+        "word-v3d-7bf7742e76cb36e0",
+        "word-v3i-2390a579efe135bb",
+        "word-v3i-453c7b1c8714f2e8",
+        "word-v3-0053",
+        "word-v3-0056"
+      ]
+    },
+    {
+      "lessonNumber": 127,
+      "progressId": "v3-vocab-food-005",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3-0057",
+        "word-v3r-4a095787bf5910fc",
+        "word-v3rf-e5e6f0283ae8f984",
+        "word-v3rf-89ac01ea68aa5a54",
+        "word-v3d-303f0a105cd539f5",
+        "word-v3d-9c8dc1469ac55d43",
+        "word-v3form-eb6c5f115c4e2535",
+        "word-v3pv-cb900ec95ef1e411"
+      ]
+    },
+    {
+      "lessonNumber": 128,
+      "progressId": "v3-vocab-food-006",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3i-c8c89b1c4c5ff97f",
+        "word-v3form-091af190ce750aeb",
+        "word-v3composed-7472b78bfc3d90c5",
+        "word-v3composed-3b287c3ea47b3dd0",
+        "word-v3pv-7e484b08f8845466",
+        "word-v3i-20892885963ce69a",
+        "word-v3rf-6a7f8ae992a06652",
+        "word-v3i-415228a59033dec7"
+      ]
+    },
+    {
+      "lessonNumber": 129,
+      "progressId": "v3-vocab-food-007",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3-0055",
+        "word-v3i-b8b97c28fe162629",
+        "word-v3b-76159dc28e61cb60",
+        "word-v3-0049",
+        "word-v3-0048",
+        "word-v3rf-48d7fc4b850d472d",
+        "word-v3-0051",
+        "word-v3rf-b64a5cb29c0e65be"
+      ]
+    },
+    {
+      "lessonNumber": 130,
+      "progressId": "v3-vocab-food-008",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3-0059",
+        "word-v3-0054",
+        "word-v3r-48875336811677ae",
+        "word-v3i-78ca4a1aaf90c32c",
+        "word-v3i-cbd532a425888044",
+        "word-v3i-01fe767ab5388c28",
+        "word-v3i-4a79d96b7ad56d20",
+        "word-v3rf-e86cf96a9981ba0e"
+      ]
+    },
+    {
+      "lessonNumber": 131,
+      "progressId": "v3-vocab-food-009",
+      "topic": "food",
+      "titleEn": "Food and drink",
+      "titleEs": "Comida y bebidas",
+      "goalEn": "Recall the names and actions used around food and drink.",
+      "goalEs": "Recuerda los nombres y las acciones relacionados con la comida y las bebidas.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3r-603bdabb35a361d5",
+        "word-v3i-7cc77e00189f2b1f",
+        "word-v3i-fc17512fcea25efc",
+        "word-v3-0028",
+        "word-v3i-4fa8d87b85ca6209",
+        "word-v3rf-9e2e6d22963dc85c",
+        "word-v3rf-1e16a4673118f678"
+      ]
+    },
+    {
+      "lessonNumber": 132,
+      "progressId": "v3-vocab-home-001",
+      "topic": "home",
+      "titleEn": "Home and belongings",
+      "titleEs": "Hogar y pertenencias",
+      "goalEn": "Identify useful objects, places and belongings.",
+      "goalEs": "Identifica objetos, lugares y pertenencias útiles.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3i-895bb20dbc53d540",
+        "word-v3d-69221a93ea70034c",
+        "word-v3d-edf7458d7b0daa03",
+        "word-v3i-c00ffe652ebc3241",
+        "word-v3rf-88efbeb4cda71e0c",
+        "word-v3rf-c722168fd80bf2c8",
+        "word-v3i-8bac1701a1198bb2",
+        "word-v3i-4fa45b1ba0362abe"
+      ]
+    },
+    {
+      "lessonNumber": 133,
+      "progressId": "v3-vocab-home-002",
+      "topic": "home",
+      "titleEn": "Home and belongings",
+      "titleEs": "Hogar y pertenencias",
+      "goalEn": "Identify useful objects, places and belongings.",
+      "goalEs": "Identifica objetos, lugares y pertenencias útiles.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3i-88b64a1630c818d3",
+        "word-v3f-a12e81f534d42e2b",
+        "word-v3i-d9a730ad7d8f220c",
+        "word-v3i-16c0f41aa26325ef",
+        "word-v3f-10a9e9f9b3379568",
+        "word-v3d-171a754193d8e032",
+        "word-v3rf-15d91cdc66a1dab0",
+        "word-v3rf-630c04f4c84b54bd"
+      ]
+    },
+    {
+      "lessonNumber": 134,
+      "progressId": "v3-vocab-home-003",
+      "topic": "home",
+      "titleEn": "Home and belongings",
+      "titleEs": "Hogar y pertenencias",
+      "goalEn": "Identify useful objects, places and belongings.",
+      "goalEs": "Identifica objetos, lugares y pertenencias útiles.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3d-d04df67f990988ab",
+        "word-v3d-0d71eca5d06ac5b2",
+        "word-v3d-3416eddabd7fd22f",
+        "word-v3rf-9f2beacfbfeffc32",
+        "word-v3rf-605ff16b2aa94bdf",
+        "word-v3d-3f775b3f819cecff",
+        "word-v3rf-a90f118a4095d650",
+        "word-v3f-6930c445b6bd07f2"
+      ]
+    },
+    {
+      "lessonNumber": 135,
+      "progressId": "v3-vocab-home-004",
+      "topic": "home",
+      "titleEn": "Home and belongings",
+      "titleEs": "Hogar y pertenencias",
+      "goalEn": "Identify useful objects, places and belongings.",
+      "goalEs": "Identifica objetos, lugares y pertenencias útiles.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3i-43fabe3570fa0342",
+        "word-v3d-a5cd28d54a56232d",
+        "word-v3r-2ed4016ecf5eb115",
+        "word-v3-0066"
+      ]
+    },
+    {
+      "lessonNumber": 136,
+      "progressId": "v3-vocab-body-001",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3f-9c362c1f68d4edea",
+        "word-v3d-ead6e501ddb79c79",
+        "word-v3d-2639d2d222e871be",
+        "word-v3d-79d2a4c70b54cfc9",
+        "word-v3rf-7f097a65afbab6df",
+        "word-v3d-e7c327ec8feb2068",
+        "word-v3canonical-5e3a2bc9ef2bf548",
+        "word-v3rf-050f218449bc3c32"
+      ]
+    },
+    {
+      "lessonNumber": 137,
+      "progressId": "v3-vocab-body-002",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3rf-d1ea3b4a1d88f1ed",
+        "word-v3i-9890e0ad911d14e3",
+        "word-v3r-b48c1e6358c807dc",
+        "word-v3rf-93b901fecaf32f4b",
+        "word-v3r-d74ae1dff412ea35",
+        "word-v3i-00f406b889dc926d",
+        "word-v3rf-18d234e6903c7108",
+        "word-v3r-ce9a4ddd5ab46175"
+      ]
+    },
+    {
+      "lessonNumber": 138,
+      "progressId": "v3-vocab-body-003",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3r-95db58b110cb0cc9",
+        "word-v3r-5251089bd597d2a6",
+        "word-v3rf-0b2f6fcc3aac22b6",
+        "word-v3rf-b7b4bd46f6c4055d",
+        "word-v3rf-09e530df56134515",
+        "word-v3rf-0f967b1fa4b70de7",
+        "word-v3rf-e9f99bae56123039",
+        "word-v3rf-f859f4b4fdf91e54"
+      ]
+    },
+    {
+      "lessonNumber": 139,
+      "progressId": "v3-vocab-body-004",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3rf-48b4301d797f706b",
+        "word-v3rf-395cf69f84252c43",
+        "word-v3f-d2e2aceccbef39de",
+        "word-v3rf-51a471c2d6650bf4",
+        "word-v3-0024",
+        "word-v3r-1e91a2cb688bccec",
+        "word-v3i-6d63704ab6d09d40",
+        "word-v3d-1fb6ba1c96cba890"
+      ]
+    },
+    {
+      "lessonNumber": 140,
+      "progressId": "v3-vocab-body-005",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3b-9a6e263184ee1cfd",
+        "word-v3b-8c2ef30497bb616f",
+        "word-v3pv-291f1cda4a97a737",
+        "word-v3i-504d4b6916e27089",
+        "word-v3d-3c49b75610498aca",
+        "word-v3pv-ebc81645ab7ee486",
+        "word-v3form-dc93cda9ca718137",
+        "word-v3i-d0f39278beb0e997"
+      ]
+    },
+    {
+      "lessonNumber": 141,
+      "progressId": "v3-vocab-body-006",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3p-b36be64c248f528b",
+        "word-v3r-029177dff9076385",
+        "word-v3p-35bf6fe26acc2c3c",
+        "word-v3r-605f98958f025844",
+        "word-v3f-821959cc00bd4416",
+        "word-v3f-23e7ede45f468b16",
+        "word-v3rf-de00a7e784801a01",
+        "word-v3-0067"
+      ]
+    },
+    {
+      "lessonNumber": 142,
+      "progressId": "v3-vocab-body-007",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3pn-fc5d1162107714e3",
+        "word-v3i-75decbb6986ee81d",
+        "word-v3i-429bcc65bd6c97b1",
+        "word-v3-0031",
+        "word-v3rf-fe6ebbcd6e05a06b",
+        "word-v3d-9f45c8a865e24e5b",
+        "word-v3i-7ddc0641147ffa4f",
+        "word-v3i-44f9a4814314cdf5"
+      ]
+    },
+    {
+      "lessonNumber": 143,
+      "progressId": "v3-vocab-body-008",
+      "topic": "body",
+      "titleEn": "The body and personal care",
+      "titleEs": "El cuerpo y el cuidado personal",
+      "goalEn": "Recognize body words and actions with their exact meanings.",
+      "goalEs": "Reconoce palabras del cuerpo y acciones con sus significados precisos.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3rf-2f4e77a7eaa04e91",
+        "word-v3d-f726bd41089c7362",
+        "word-v3r-2468a6291295ec22",
+        "word-v3-0046",
+        "word-v3rf-60aec1e2ebb48bcf",
+        "word-v3rf-0b0c8566c311fb4d",
+        "word-v3d-156b1bdb425883a5",
+        "word-v3i-f93d68ee3af7ecee"
+      ]
+    },
+    {
+      "lessonNumber": 144,
+      "progressId": "v3-vocab-description-001",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3f-5cfb9e0e009c97d8",
+        "word-v3f-d29835d068b9ed96",
+        "word-v3f-85b32eb54597588a",
+        "word-v3f-a3e996e6b93506f3",
+        "word-v3f-1e5c408a63872aea",
+        "word-v3f-2dcd4f59d9e6e49e",
+        "word-v3f-3de873bbaf7cedc6",
+        "word-v3b-ec11fc1782545fa8"
+      ]
+    },
+    {
+      "lessonNumber": 145,
+      "progressId": "v3-vocab-description-002",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3i-7522d553eba55fa9",
+        "word-v3f-906f0a3a07522d71",
+        "word-v3f-a8b1acc99db240e2",
+        "word-v3f-5c3552b28e0eb7f6",
+        "word-v3f-a5c2ad7cb4a1f41b",
+        "word-v3i-85475ed272b804f1",
+        "word-v3f-ec5b27125d40ded4",
+        "word-v3f-70625f7623963e93"
+      ]
+    },
+    {
+      "lessonNumber": 146,
+      "progressId": "v3-vocab-description-003",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3i-54303ed399eef5e5",
+        "word-v3f-a94b2e06f00c892b",
+        "word-v3f-752dfc0ef9593f5b",
+        "word-v3r-7a59704a387f6d0a",
+        "word-v3f-46314ce212e84c1f",
+        "word-v3r-75f0e2ccd6914551",
+        "word-v3r-09c287a73effba6b",
+        "word-v3canonical-8df385ba63852a86"
+      ]
+    },
+    {
+      "lessonNumber": 147,
+      "progressId": "v3-vocab-description-004",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3lex-937c3421cce10d44",
+        "word-v3r-4aed9f5bdb9cd629",
+        "word-v3lex-e52b0df995bd88f5",
+        "word-v3r-f4e5b78f81234685",
+        "word-v3-0039",
+        "word-v3r-0bed247b9c8014c3",
+        "word-v3r-3c839a46fbb89458",
+        "word-v3r-119b56e3fcfa76ec"
+      ]
+    },
+    {
+      "lessonNumber": 148,
+      "progressId": "v3-vocab-description-005",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3r-face9452a88ecc8d",
+        "word-v3r-42e4ac09e54e4c5e",
+        "word-v3r-6bd6a0c6628001b6",
+        "word-v3r-0bdcd5dae03ca8cb",
+        "word-v3r-7b32f755d483e6ce",
+        "word-v3d-010f5750c887218a",
+        "word-v3r-2f65278df5156f03",
+        "word-v3r-221de0818faeae82"
+      ]
+    },
+    {
+      "lessonNumber": 149,
+      "progressId": "v3-vocab-description-006",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3r-42ba3c4eed176834",
+        "word-v3r-52b88cb5df76aa33",
+        "word-v3r-861a471966df6f3e",
+        "word-v3r-e513888fcb2206d8",
+        "word-v3f-8dc1eac7f7ff7000",
+        "word-v3r-627718443be2c827",
+        "word-v3f-f6da16dcbf01f243",
+        "word-v3f-e680afc0776889a8"
+      ]
+    },
+    {
+      "lessonNumber": 150,
+      "progressId": "v3-vocab-description-007",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3f-511aee2494c6be83",
+        "word-v3f-2623603a067dbc1d",
+        "word-v3reference-dc17eafd156494f1",
+        "word-v3f-6daf640e1280ee34",
+        "word-v3i-43c5135063172b9d",
+        "word-v3f-422a69933010c7cd",
+        "word-v3i-061e272e2538c376",
+        "word-v3i-e09a08a8f4974ddb"
+      ]
+    },
+    {
+      "lessonNumber": 151,
+      "progressId": "v3-vocab-description-008",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3f-01ab1a21fb0010a7",
+        "word-v3f-73f84e134187830f",
+        "word-v3f-7b741961866c46e0",
+        "word-v3f-78c94517f43b06da",
+        "word-v3f-0cd6be1a2bb2afb0",
+        "word-v3lex-392d85d3393be9c1",
+        "word-v3r-723ca6423a56b735",
+        "word-v3f-4582bea7288ca982"
+      ]
+    },
+    {
+      "lessonNumber": 152,
+      "progressId": "v3-vocab-description-009",
+      "topic": "description",
+      "titleEn": "Describe what you notice",
+      "titleEs": "Describe lo que observas",
+      "goalEn": "Choose the precise learned description and recall its form.",
+      "goalEs": "Elige la descripción aprendida precisa y recuerda su forma.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3f-3bf3ffcfc031569c",
+        "word-v3d-7dd527494068f188",
+        "word-v3-0038",
+        "word-v3f-1c8b4911a57e0cf8",
+        "word-v3f-723e8f0ab847512f"
+      ]
+    },
+    {
+      "lessonNumber": 153,
+      "progressId": "v3-vocab-time-001",
+      "topic": "time",
+      "titleEn": "Time and everyday rhythm",
+      "titleEs": "Tiempo y ritmo cotidiano",
+      "goalEn": "Distinguish the learned time and frequency references.",
+      "goalEs": "Distingue las referencias aprendidas de tiempo y frecuencia.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3f-992be84dbc53c970",
+        "word-v3lex-f5ea65851c69063f",
+        "word-v3-0019",
+        "word-v3f-38bb2e9c7a803fb5",
+        "word-v3f-2f2ea447004a8f4d",
+        "word-v3f-c6cf1afb1c28560f",
+        "word-v3f-2c85d01535d6077a",
+        "word-v3r-5999c74c828d8157"
+      ]
+    },
+    {
+      "lessonNumber": 154,
+      "progressId": "v3-vocab-time-002",
+      "topic": "time",
+      "titleEn": "Time and everyday rhythm",
+      "titleEs": "Tiempo y ritmo cotidiano",
+      "goalEn": "Distinguish the learned time and frequency references.",
+      "goalEs": "Distingue las referencias aprendidas de tiempo y frecuencia.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3lex-be67f3d2d2732c0a",
+        "word-v3i-41a2703401b2aec7",
+        "word-v3f-4b8810d99aff19dd",
+        "word-v3f-684a6c11767448fd",
+        "word-v3rf-d8ade0da997f3592",
+        "word-v3b-2c46a787d0ac5d7f",
+        "word-v3r-c7bf6bdaff2e35a3",
+        "word-v3f-6941032a440f705f"
+      ]
+    },
+    {
+      "lessonNumber": 155,
+      "progressId": "v3-vocab-time-003",
+      "topic": "time",
+      "titleEn": "Time and everyday rhythm",
+      "titleEs": "Tiempo y ritmo cotidiano",
+      "goalEn": "Distinguish the learned time and frequency references.",
+      "goalEs": "Distingue las referencias aprendidas de tiempo y frecuencia.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3r-bac7aa091d48f9f8",
+        "word-v3b-f406af7a30580ff6",
+        "word-v3f-5d20e43bd6e0cdf3",
+        "word-v3rf-9daeb6f755ea1680",
+        "word-v3i-586c2be8c5a3da0a",
+        "word-v3i-18671c195e79a9cb",
+        "word-v3rf-cb9c996b14fa079d",
+        "word-v3f-40875b62d9ad7d23"
+      ]
+    },
+    {
+      "lessonNumber": 156,
+      "progressId": "v3-vocab-time-004",
+      "topic": "time",
+      "titleEn": "Time and everyday rhythm",
+      "titleEs": "Tiempo y ritmo cotidiano",
+      "goalEn": "Distinguish the learned time and frequency references.",
+      "goalEs": "Distingue las referencias aprendidas de tiempo y frecuencia.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3r-716b1f9d2979416b",
+        "word-v3reference-2e919e9e2e696426",
+        "word-v3f-dd020b0e48b7d296",
+        "word-v3r-d8b9f69bbffef513",
+        "word-v3f-913af9e4f084a767",
+        "word-v3f-e6d4d86ee637b5de",
+        "word-v3rf-905a91ee7548e243",
+        "word-v3f-ac982bd83a00668e"
+      ]
+    },
+    {
+      "lessonNumber": 157,
+      "progressId": "v3-vocab-time-005",
+      "topic": "time",
+      "titleEn": "Time and everyday rhythm",
+      "titleEs": "Tiempo y ritmo cotidiano",
+      "goalEn": "Distinguish the learned time and frequency references.",
+      "goalEs": "Distingue las referencias aprendidas de tiempo y frecuencia.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3-0034"
+      ]
+    },
+    {
+      "lessonNumber": 158,
+      "progressId": "v3-vocab-place-001",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3pc-6247d6276b530125",
+        "word-v3b-c8c0136c81e8a8ac",
+        "word-v3place-299c2f057f7f2e26",
+        "word-v3i-dd35c86ebed41e8c",
+        "word-v3b-f5b182b4f19eb842",
+        "word-v3i-8605b1842dd7ba56",
+        "word-v3i-c3213b3ffb55e873",
+        "word-v3i-ac11cd7e5ba813d6"
+      ]
+    },
+    {
+      "lessonNumber": 159,
+      "progressId": "v3-vocab-place-002",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3r-a2b08317b9942806",
+        "word-v3rf-909485deb0b24106",
+        "word-v3f-0b5ac5867d3bf1f6",
+        "word-v3f-1fd28ad4a58f713f",
+        "word-v3f-851c6cbfe3fa987d",
+        "word-v3f-8228674e324f3809",
+        "word-v3f-047b49ab6bd9a67b",
+        "word-v3i-2b3839841a4e8644"
+      ]
+    },
+    {
+      "lessonNumber": 160,
+      "progressId": "v3-vocab-place-003",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3i-fc7e517b28b0f112",
+        "word-v3rf-e444b5bc441bdc02",
+        "word-v3rf-a0a3d6d28c95131c",
+        "word-v3-0045",
+        "word-v3rf-1ebc494d01305ab3",
+        "word-v3i-1d3cfde4644749e1",
+        "word-v3i-ea5c4ba403f54740",
+        "word-v3f-b0b36cb2943c8456"
+      ]
+    },
+    {
+      "lessonNumber": 161,
+      "progressId": "v3-vocab-place-004",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3f-0c7171b3193215b1",
+        "word-v3i-e442976b5c0f8542",
+        "word-v3i-1740920fe7564a1b",
+        "word-v3i-0abf148896f06b0d",
+        "word-v3form-ca25803025967299",
+        "word-v3i-fdfade6fb863eaa5",
+        "word-v3i-939afbba0b94638d",
+        "word-v3i-646f4eaea8770a8b"
+      ]
+    },
+    {
+      "lessonNumber": 162,
+      "progressId": "v3-vocab-place-005",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3i-3f2654ade42c0ddb",
+        "word-v3r-b77033a1b1ccbe96",
+        "word-v3i-11988f8d7e0a6b7f",
+        "word-v3p-eec6c9a4d3d6aa9c",
+        "word-v3i-6bb7ce3af57c7fb2",
+        "word-v3f-41933815ce508b90",
+        "word-v3corpus-9de48cbc1183f0a4",
+        "word-v3i-a58c082900621852"
+      ]
+    },
+    {
+      "lessonNumber": 163,
+      "progressId": "v3-vocab-place-006",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3i-86c26987d0927e35",
+        "word-v3rf-0b1fe4a5220df9ac",
+        "word-v3i-fa7b445fc4b75c28",
+        "word-v3rf-336bf8bb2037fb62",
+        "word-v3rf-7c785f0f20465cba",
+        "word-v3d-de2f108faf5394c2",
+        "word-v3i-783f74c33f229edc",
+        "word-v3i-9182d3ac94be86f0"
+      ]
+    },
+    {
+      "lessonNumber": 164,
+      "progressId": "v3-vocab-place-007",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3i-4774decdb3fbf448",
+        "word-v3i-b26bd0d574c7f9d6",
+        "word-v3i-c53585d42dc111cf",
+        "word-v3f-e7b612ce98febeec",
+        "word-v3i-d96339e26e2fa181",
+        "word-v3f-7325a30fe8514c79",
+        "word-v3rf-1f51d97c4137f899",
+        "word-v3i-005a6a8cc1c686a2"
+      ]
+    },
+    {
+      "lessonNumber": 165,
+      "progressId": "v3-vocab-place-008",
+      "topic": "place",
+      "titleEn": "Places and movement",
+      "titleEs": "Lugares y movimiento",
+      "goalEn": "Keep location, direction and movement meanings distinct.",
+      "goalEs": "Distingue los significados de lugar, dirección y movimiento.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3f-84fb5f553663464f",
+        "word-v3i-b016d2e31ecef67c",
+        "word-v3f-c5c329d0c38b0437"
+      ]
+    },
+    {
+      "lessonNumber": 166,
+      "progressId": "v3-vocab-nature-001",
+      "topic": "nature",
+      "titleEn": "Land, water and weather",
+      "titleEs": "Tierra, agua y clima",
+      "goalEn": "Recall documented words for the world around you.",
+      "goalEs": "Recuerda palabras documentadas para el mundo que te rodea.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3r-ba120aa1760f6fba",
+        "word-v3d-e41ee40d8c601b53",
+        "word-v3rf-e0313ba29c88599a",
+        "word-v3r-faf0c7240646d5e8",
+        "word-v3rf-001afc22311642fd",
+        "word-v3r-4eb83c3597ac5f02",
+        "word-v3d-261b4644889fa46b",
+        "word-v3rf-ac496617aa2d0ca7"
+      ]
+    },
+    {
+      "lessonNumber": 167,
+      "progressId": "v3-vocab-nature-002",
+      "topic": "nature",
+      "titleEn": "Land, water and weather",
+      "titleEs": "Tierra, agua y clima",
+      "goalEn": "Recall documented words for the world around you.",
+      "goalEs": "Recuerda palabras documentadas para el mundo que te rodea.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3i-dc096e4dc6760716",
+        "word-v3i-e6008a469248bc7a",
+        "word-v3i-711f6506ee873b77",
+        "word-v3f-3c3bd8d3d921425a",
+        "word-v3d-a83726eb69b2bc6d",
+        "word-v3d-02aaa0bb9646af1e",
+        "word-v3d-bafe8876bfd5b2ed",
+        "word-v3-0008"
+      ]
+    },
+    {
+      "lessonNumber": 168,
+      "progressId": "v3-vocab-nature-003",
+      "topic": "nature",
+      "titleEn": "Land, water and weather",
+      "titleEs": "Tierra, agua y clima",
+      "goalEn": "Recall documented words for the world around you.",
+      "goalEs": "Recuerda palabras documentadas para el mundo que te rodea.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3d-1105a56d161c21a3",
+        "word-v3rf-fd6ff22878c0f879",
+        "word-v3rf-0b87fe6ae26a0997",
+        "word-v3-0022",
+        "word-v3d-bdf310608238490f",
+        "word-v3r-48affaf7f601e8d6",
+        "word-v3b-23e1a1640ffcb09e",
+        "word-v3b-a993f53a123ee57b"
+      ]
+    },
+    {
+      "lessonNumber": 169,
+      "progressId": "v3-vocab-nature-004",
+      "topic": "nature",
+      "titleEn": "Land, water and weather",
+      "titleEs": "Tierra, agua y clima",
+      "goalEn": "Recall documented words for the world around you.",
+      "goalEs": "Recuerda palabras documentadas para el mundo que te rodea.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3r-a005e369103b9792",
+        "word-v3d-ee8ce90f64ef9752",
+        "word-v3-0007",
+        "word-v3i-8d33d90afe11c698",
+        "word-v3-0001",
+        "word-v3pn-f6dcfd90577b3140",
+        "word-v3f-a886c01e5e92133e",
+        "word-v3rf-5359aaac4b9d3413"
+      ]
+    },
+    {
+      "lessonNumber": 170,
+      "progressId": "v3-vocab-nature-005",
+      "topic": "nature",
+      "titleEn": "Land, water and weather",
+      "titleEs": "Tierra, agua y clima",
+      "goalEn": "Recall documented words for the world around you.",
+      "goalEs": "Recuerda palabras documentadas para el mundo que te rodea.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3rf-cc03a5e81e3ac976",
+        "word-v3rf-73dff663378121ec",
+        "word-v3lex-927132d558bd11d3",
+        "word-v3rf-57a3482b029167f3",
+        "word-v3rf-7e14d1fc63430206",
+        "word-v3r-31a7f0bba93f8a8f"
+      ]
+    },
+    {
+      "lessonNumber": 171,
+      "progressId": "v3-vocab-animals-001",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3r-a5592cbcd1fae8e8",
+        "word-v3d-9486c3f3c4ab12fa",
+        "word-v3d-ce28e392f26cca85",
+        "word-v3r-45935ac7d461a9e7",
+        "word-v3d-615a193c063d46e6",
+        "word-v3d-e133f784aa37edf6",
+        "word-v3d-878b3c4aa09e1a7d",
+        "word-v3d-403244b82515a4ad"
+      ]
+    },
+    {
+      "lessonNumber": 172,
+      "progressId": "v3-vocab-animals-002",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3f-67b4bdb06fac63a8",
+        "word-v3d-c7e73823a9e37b82",
+        "word-v3d-e7112be08fa7cbd1",
+        "word-v3i-24d638f69f9c7d44",
+        "word-v3i-171524662b262ccd",
+        "word-v3i-0a0a531a25ef78cf",
+        "word-v3d-987cd2c50c7cd184",
+        "word-v3r-5fa24d90c6f25877"
+      ]
+    },
+    {
+      "lessonNumber": 173,
+      "progressId": "v3-vocab-animals-003",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3rf-bd4dc1914f0280c7",
+        "word-v3r-d13decb8d424955c",
+        "word-v3r-aae3b3ff78cf1d29",
+        "word-v3f-a4d2ea9cc9cd1368",
+        "word-v3i-2007561a40c7925c",
+        "word-v3rf-c09a036fdcb06067",
+        "word-v3i-ce1a614b85e7907b",
+        "word-v3d-5fbb85b3d7ba1b01"
+      ]
+    },
+    {
+      "lessonNumber": 174,
+      "progressId": "v3-vocab-animals-004",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3-0005",
+        "word-v3i-885de742a25e3506",
+        "word-v3r-ced0d631cd1865a5",
+        "word-v3r-0a12cab6799c712c",
+        "word-v3r-54f227101da61d34",
+        "word-v3f-c0040931090161e4",
+        "word-v3d-0ddd5eccae5b3f20",
+        "word-v3rf-1f70209e92f0d4ca"
+      ]
+    },
+    {
+      "lessonNumber": 175,
+      "progressId": "v3-vocab-animals-005",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3d-9d17bcea16cc347e",
+        "word-v3r-902040ee9f2632b2",
+        "word-v3-0035",
+        "word-v3d-7b9f425635985322",
+        "word-v3rf-c57c654be50114df",
+        "word-v3r-7df2e6ef73ad4536",
+        "word-v3r-708899e8c20db359",
+        "word-v3r-f30f38900e8542b1"
+      ]
+    },
+    {
+      "lessonNumber": 176,
+      "progressId": "v3-vocab-animals-006",
+      "topic": "animals",
+      "titleEn": "Animals and living things",
+      "titleEs": "Animales y seres vivos",
+      "goalEn": "Identify living things using the supported names.",
+      "goalEs": "Identifica seres vivos usando los nombres documentados.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3r-1744922ef0af0321",
+        "word-v3r-8c19e4990bdb07f4",
+        "word-v3r-8a101eb67a5f7ce8",
+        "word-v3i-145dd3b00cfc7513",
+        "word-v3r-5c0eb52e58a1bf6f",
+        "word-v3r-75b6c33cfff9431e",
+        "word-v3f-239655f53fdee8df"
+      ]
+    },
+    {
+      "lessonNumber": 177,
+      "progressId": "v3-vocab-plants-001",
+      "topic": "plants",
+      "titleEn": "Plants and the milpa",
+      "titleEs": "Plantas y milpa",
+      "goalEn": "Recall plants and words used around growing and harvesting.",
+      "goalEs": "Recuerda plantas y palabras relacionadas con el cultivo y la cosecha.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3d-6ab42676769f7028",
+        "word-v3f-4ca2d3c1347b3c2a",
+        "word-v3d-7aed637f5e56f30d",
+        "word-v3rf-c31002d063fd46a9",
+        "word-v3f-b894562f93328324",
+        "word-v3f-dfcdb8d9603ad7b5",
+        "word-v3i-c83f50fdd019b866",
+        "word-v3i-9a3d8c52249a64f1"
+      ]
+    },
+    {
+      "lessonNumber": 178,
+      "progressId": "v3-vocab-plants-002",
+      "topic": "plants",
+      "titleEn": "Plants and the milpa",
+      "titleEs": "Plantas y milpa",
+      "goalEn": "Recall plants and words used around growing and harvesting.",
+      "goalEs": "Recuerda plantas y palabras relacionadas con el cultivo y la cosecha.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3i-3f1db5b3b15f78d9",
+        "word-v3rf-fb3b8c7000abccc6",
+        "word-v3r-c36b071745b4d25d",
+        "word-v3r-f5dd98058cd92b10",
+        "word-v3f-a4c18591c1b068c3",
+        "word-v3-0068",
+        "word-v3-0063",
+        "word-v3-0006"
+      ]
+    },
+    {
+      "lessonNumber": 179,
+      "progressId": "v3-vocab-plants-003",
+      "topic": "plants",
+      "titleEn": "Plants and the milpa",
+      "titleEs": "Plantas y milpa",
+      "goalEn": "Recall plants and words used around growing and harvesting.",
+      "goalEs": "Recuerda plantas y palabras relacionadas con el cultivo y la cosecha.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3i-3e5769a3064556a4",
+        "word-v3i-ecefbb0d4db2ae91",
+        "word-v3i-bf97f116f4069efa",
+        "word-v3i-d077e677d0446122",
+        "word-v3i-dddeb6b4298c8aff",
+        "word-v3rf-f7ae34ccb1b5e8c3",
+        "word-v3r-a9108e5f32f19e38",
+        "word-v3i-925a1af28787fcf9"
+      ]
+    },
+    {
+      "lessonNumber": 180,
+      "progressId": "v3-vocab-plants-004",
+      "topic": "plants",
+      "titleEn": "Plants and the milpa",
+      "titleEs": "Plantas y milpa",
+      "goalEn": "Recall plants and words used around growing and harvesting.",
+      "goalEs": "Recuerda plantas y palabras relacionadas con el cultivo y la cosecha.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3rf-977283ba3a733c21",
+        "word-v3lex-7649c375f618f971",
+        "word-v3r-9f74429e2af6a5dd",
+        "word-v3i-ae454240a6c0f1ae",
+        "word-v3d-e520588ea0067973",
+        "word-v3r-c5796a0eac9f3466",
+        "word-v3rf-994b6ae4d6698e53",
+        "word-v3pc-093842a15d390f18"
+      ]
+    },
+    {
+      "lessonNumber": 181,
+      "progressId": "v3-vocab-work-001",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3-0020",
+        "word-v3i-c7600f1858f9c746",
+        "word-v3rf-3a9c70d9a9e3104a",
+        "word-v3i-d0698f5195498e3b",
+        "word-v3i-f947335d771bf08e",
+        "word-v3i-3716a2c2cd949426",
+        "word-v3i-ad94085cbf5c57a7",
+        "word-v3i-23780699700f9bf9"
+      ]
+    },
+    {
+      "lessonNumber": 182,
+      "progressId": "v3-vocab-work-002",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3rf-b964019f637b7a18",
+        "word-v3rf-0881adeeb4fc395b",
+        "word-v3rf-47daa0ff24687c24",
+        "word-v3i-fb42cd5cc89b48d1",
+        "word-v3i-b12e19b7fa226217",
+        "word-v3i-e2a5faa7810e6bbe",
+        "word-v3i-9666d8ef352684ce",
+        "word-v3i-1a25e6e61e05c80b"
+      ]
+    },
+    {
+      "lessonNumber": 183,
+      "progressId": "v3-vocab-work-003",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3rf-d02ecb504a20bf50",
+        "word-v3-0072",
+        "word-v3-0025",
+        "word-v3i-f007fc1aefec5033",
+        "word-v3f-2604f93816e13c12",
+        "word-v3rf-4bc4849ca9e5366d",
+        "word-v3i-9c3de9b79f56ba18",
+        "word-v3i-f62abdeeeaa2297a"
+      ]
+    },
+    {
+      "lessonNumber": 184,
+      "progressId": "v3-vocab-work-004",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3i-2c0d511d8b3d47d9",
+        "word-v3i-e6796906bac0695e",
+        "word-v3pv-d3e84f6251193a0d",
+        "word-v3i-099336bfcc1c87bb",
+        "word-v3i-6b60823553a778fe",
+        "word-v3-0027",
+        "word-v3rf-5aba4f304167bf1e",
+        "word-v3f-c3a0316680038a55"
+      ]
+    },
+    {
+      "lessonNumber": 185,
+      "progressId": "v3-vocab-work-005",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3i-a32ad24f31043579",
+        "word-v3i-0062672d46b246ac",
+        "word-v3r-167821ec5509e43b",
+        "word-v3i-2cf3918dc1e007cb",
+        "word-v3i-41dfa0957d68d899",
+        "word-v3i-322c17c0560e656d",
+        "word-v3i-0f82a68b746da7b4",
+        "word-v3i-477ec352bdda10e9"
+      ]
+    },
+    {
+      "lessonNumber": 186,
+      "progressId": "v3-vocab-work-006",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3i-08fac54d133e05d7",
+        "word-v3i-b66cd40495ad377d",
+        "word-v3i-55ea2dbd0aed1ffa",
+        "word-v3i-a157c728c8892e31",
+        "word-v3i-c0f236349aae827c",
+        "word-v3-0065",
+        "word-v3-0069",
+        "word-v3rf-f271d9b67e70f3b5"
+      ]
+    },
+    {
+      "lessonNumber": 187,
+      "progressId": "v3-vocab-work-007",
+      "topic": "work",
+      "titleEn": "Work and making things",
+      "titleEs": "Trabajo y creación",
+      "goalEn": "Recall the precise actions and objects used in everyday work.",
+      "goalEs": "Recuerda acciones y objetos precisos del trabajo cotidiano.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3-0070",
+        "word-v3rf-88c92472444615f3"
+      ]
+    },
+    {
+      "lessonNumber": 188,
+      "progressId": "v3-vocab-thought-001",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3i-82ae9edf1878528f",
+        "word-v3rf-faef4b6be29604bf",
+        "word-v3f-fd05f7134a7db9df",
+        "word-v3-0044",
+        "word-v3d-4a55bdb677ccbe07",
+        "word-v3f-0e5b1d67b1b897ed",
+        "word-v3i-71b60ead1d7601ef",
+        "word-v3f-743a544660f7c2cd"
+      ]
+    },
+    {
+      "lessonNumber": 189,
+      "progressId": "v3-vocab-thought-002",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3f-aeda18643914588a",
+        "word-v3f-8a338ac7bf556c56",
+        "word-v3d-0607b43fbfe49aa1",
+        "word-v3b-0d5928c460914b76",
+        "word-v3f-333578f6427fe1be",
+        "word-v3f-e698737f06905845",
+        "word-v3f-f625d78a196d1dc4",
+        "word-v3rf-a85cc00ce36ecb1f"
+      ]
+    },
+    {
+      "lessonNumber": 190,
+      "progressId": "v3-vocab-thought-003",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3rf-77d0a255b44fcb43",
+        "word-v3rf-b24f525a819f827f",
+        "word-v3f-ac59d0451610eb22",
+        "word-v3i-2c9a75ca42df0863",
+        "word-v3i-cce871dec1f49d2a",
+        "word-v3rf-f673b343ce88c5b3",
+        "word-v3f-784bcba948105848",
+        "word-v3rf-cdb37403c93bdd08"
+      ]
+    },
+    {
+      "lessonNumber": 191,
+      "progressId": "v3-vocab-thought-004",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3form-79754ab7fcfb4ef4",
+        "word-v3-0026",
+        "word-v3d-66c4ddf8c2163409",
+        "word-v3rf-87b351be2fb34a35",
+        "word-v3rf-49ef5e0bba427a05",
+        "word-v3form-11adaf8ca92bcd15",
+        "word-v3form-7b02c7349ba98a9a",
+        "word-v3form-3095b93b2d4d6855"
+      ]
+    },
+    {
+      "lessonNumber": 192,
+      "progressId": "v3-vocab-thought-005",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3pv-a5022d9d2e1a6b22",
+        "word-v3pv-39801f8dbf503b60",
+        "word-v3pv-434b3b876b703384",
+        "word-v3f-cbb61f0f33aef30a",
+        "word-v3rf-23d8c54acdda9e42",
+        "word-v3rf-439bbc46032243d0",
+        "word-v3r-c3d31c98ac1d2daa",
+        "word-v3i-383bc427355976e4"
+      ]
+    },
+    {
+      "lessonNumber": 193,
+      "progressId": "v3-vocab-thought-006",
+      "topic": "thought",
+      "titleEn": "Thoughts, feelings and communication",
+      "titleEs": "Pensamientos, sentimientos y comunicación",
+      "goalEn": "Distinguish learned words for thinking, feeling and communicating.",
+      "goalEs": "Distingue palabras aprendidas para pensar, sentir y comunicar.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3i-d8ee2dbb3097c868",
+        "word-v3i-ec9c5451871f1296",
+        "word-v3i-0c3e588b6bcfca3c",
+        "word-v3rf-39d0426be2e8334b",
+        "word-v3rf-9fc5ca859735b5b6",
+        "word-v3state-aeb776d3d5325c63",
+        "word-v3f-f50aac8c1eb3d6bc",
+        "word-v3f-927a93baae307672"
+      ]
+    },
+    {
+      "lessonNumber": 194,
+      "progressId": "v3-vocab-numbers-001",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3i-79b2062ffa912015",
+        "word-v3f-abd83195666be2d7",
+        "word-v3i-e3a8bbf6e066c2ab",
+        "word-v3b-388b9d3859dedf23",
+        "word-v3i-ea9312ccf1fd59cc",
+        "word-v3f-b39a911d3baa9152",
+        "word-v3f-857d91f83be4c456",
+        "word-v3function-dec5dc1053abd2b1"
+      ]
+    },
+    {
+      "lessonNumber": 195,
+      "progressId": "v3-vocab-numbers-002",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3number-63751741cf0ffb47",
+        "word-v3b-7089ff52a470be9e",
+        "word-v3rf-8925096034577699",
+        "word-v3i-53dbadc0e8948500",
+        "word-v3i-a786cedf29e58dfe",
+        "word-v3i-04d817431110de48",
+        "word-v3i-9b67b03a1fcff70a",
+        "word-v3i-5f415960f9acb9d1"
+      ]
+    },
+    {
+      "lessonNumber": 196,
+      "progressId": "v3-vocab-numbers-003",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3lex-48da0c180e70666f",
+        "word-v3i-d7439b279eb19777",
+        "word-v3i-b9a3334abc4d85fe",
+        "word-v3i-65967b5ad7d373ad",
+        "word-v3i-75743eb29c7e819c",
+        "word-v3i-f198d646ca6d5186",
+        "word-v3rf-783ae47690fac006",
+        "word-v3r-10e8cb598261bdd6"
+      ]
+    },
+    {
+      "lessonNumber": 197,
+      "progressId": "v3-vocab-numbers-004",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3rf-c8c8723f72918f3d",
+        "word-v3rf-e6a949363b41d9a5",
+        "word-v3rf-aa6c47a122d5cdd9",
+        "word-v3i-64ef28178feb1758",
+        "word-v3pc-a1f8faa01d6a2924",
+        "word-v3lex-00ba4ae8ab0671c2",
+        "word-v3b-b132e90f594dd1b1",
+        "word-v3b-cd2268958f55532a"
+      ]
+    },
+    {
+      "lessonNumber": 198,
+      "progressId": "v3-vocab-numbers-005",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3r-b4d4613dc297e525",
+        "word-v3b-e0a8f78f040ecb47",
+        "word-v3i-5352165ebed17891",
+        "word-v3b-f6792157ef81cee8",
+        "word-v3i-b3b8282de99082b5",
+        "word-v3b-4d6e12a3fa68cca2",
+        "word-v3b-6986f98640d24006",
+        "word-v3b-676eb1ab37153e34"
+      ]
+    },
+    {
+      "lessonNumber": 199,
+      "progressId": "v3-vocab-numbers-006",
+      "topic": "numbers",
+      "titleEn": "Amounts and counting",
+      "titleEs": "Cantidades y conteo",
+      "goalEn": "Keep the documented quantities and counting references distinct.",
+      "goalEs": "Distingue las cantidades y las referencias documentadas de conteo.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3r-e2398b17233eeb58",
+        "word-v3r-842a99f8ac8a545c",
+        "word-v3b-e8b606186860be54",
+        "word-v3rf-e0b993a30c2547c6",
+        "word-v3b-e06934b5955f1ad1",
+        "word-v3b-a678b3728d9a9e97",
+        "word-v3b-0b3538e33cdaf9a1",
+        "word-v3sep-a41d63d5ce45d3bc"
+      ]
+    },
+    {
+      "lessonNumber": 200,
+      "progressId": "v3-vocab-actions-001",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3f-807e631a92f66082",
+        "word-v3f-a214e2acbb3dd346",
+        "word-v3f-7aa34a1783be4e17",
+        "word-v3i-9da3845783f5c537",
+        "word-v3-0041",
+        "word-v3rf-6c2a1e599ba9d7cc",
+        "word-v3rf-dd5c4245899a26af",
+        "word-v3rf-79dbb65a8141a475"
+      ]
+    },
+    {
+      "lessonNumber": 201,
+      "progressId": "v3-vocab-actions-002",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3rf-27ed63a8d459bcce",
+        "word-v3lex-7549ec3965e7da5d",
+        "word-v3i-e4bf0e03fc98c176",
+        "word-v3f-7b8de647c2af1818",
+        "word-v3f-5d88416875abfbd2",
+        "word-v3f-6b3e20519c5f4035",
+        "word-v3rf-b5374f7109411956",
+        "word-v3f-d4609a6b0e52b5cd"
+      ]
+    },
+    {
+      "lessonNumber": 202,
+      "progressId": "v3-vocab-actions-003",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3rf-4c28f9eda79067cd",
+        "word-v3rf-41c3030d02ee95a1",
+        "word-v3rf-a9232ace1d91f7ea",
+        "word-v3f-739305a0843135c1",
+        "word-v3rf-272c3ef5600dde19",
+        "word-v3i-571043dda01510df",
+        "word-v3-0043",
+        "word-v3i-639276759f1caa46"
+      ]
+    },
+    {
+      "lessonNumber": 203,
+      "progressId": "v3-vocab-actions-004",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3i-5f9b16224ed581c8",
+        "word-v3i-801a53dd9d310344",
+        "word-v3f-ce1228c2a49aca0d",
+        "word-v3rf-c8da726ef11e9512",
+        "word-v3f-32fcd267196c7605",
+        "word-v3d-1ea8ed6bd59fb360",
+        "word-v3rf-9db42a15b55ba9ee",
+        "word-v3i-14fefa634586c3ee"
+      ]
+    },
+    {
+      "lessonNumber": 204,
+      "progressId": "v3-vocab-actions-005",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3f-f1aac59ea02c0e94",
+        "word-v3rf-3fc939b7d32f2484",
+        "word-v3rf-57e1bf599a3db56f",
+        "word-v3f-18ce25bfcd863ab2",
+        "word-v3rf-2770479d1b3901d2",
+        "word-v3rf-5500d141cd1f8edb",
+        "word-v3rf-ed7b067bbebe0370",
+        "word-v3lex-6df57f4877fd7051"
+      ]
+    },
+    {
+      "lessonNumber": 205,
+      "progressId": "v3-vocab-actions-006",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3f-119afb210b0b9cca",
+        "word-v3lex-d0ab45ff02aaf26f",
+        "word-v3i-ebcddbc0fa3697bf",
+        "word-v3i-7bc0fff64409d008",
+        "word-v3i-f21e087e387c9972",
+        "word-v3i-3c19df8f6781f403",
+        "word-v3i-bded2058085b6147",
+        "word-v3i-ecc40f3c7b2bc653"
+      ]
+    },
+    {
+      "lessonNumber": 206,
+      "progressId": "v3-vocab-actions-007",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3i-18daabcad4aa41c5",
+        "word-v3i-b455ed29962f1590",
+        "word-v3i-53acb6de5142a118",
+        "word-v3rf-53cace6ab0c1559a",
+        "word-v3rf-a6e9229241e4ebfe",
+        "word-v3source-1-33-inali-review",
+        "word-v3rf-5d2a891f266b3ba4",
+        "word-v3rf-9bfbf45ee752144f"
+      ]
+    },
+    {
+      "lessonNumber": 207,
+      "progressId": "v3-vocab-actions-008",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3f-ebe682ba8eaed301",
+        "word-v3rf-d7f648c2f4ba3d81",
+        "word-v3rf-4d7a3b3eca579c29",
+        "word-v3rf-03daf41fc75c7282",
+        "word-v3rf-88aaa0d92e19f732",
+        "word-v3rf-b08d659533a5f5a7",
+        "word-v3rf-a4ffc01e6daf4deb",
+        "word-v3rf-4736d0c6348cfa17"
+      ]
+    },
+    {
+      "lessonNumber": 208,
+      "progressId": "v3-vocab-actions-009",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3f-06aabf6fde4bbf26",
+        "word-v3rf-91ab42465e23a099",
+        "word-v3rf-557e1c272f0aa3ec",
+        "word-v3i-bb364af09dc8c8ec",
+        "word-v3f-4f823f838cd21591",
+        "word-v3rf-fb9caa2260f908cd",
+        "word-v3i-9978cf7accede3be",
+        "word-v3i-e70008afc2d64fd7"
+      ]
+    },
+    {
+      "lessonNumber": 209,
+      "progressId": "v3-vocab-actions-010",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 10,
+      "entryIds": [
+        "word-v3i-cc8b8e2ff32c3f73",
+        "word-v3form-547748e44aa3770d",
+        "word-v3i-6ac9808194a49ffb",
+        "word-v3i-b47d58103be373c6",
+        "word-v3i-68d841b946ba6e61",
+        "word-v3i-0301d4fb68b69351",
+        "word-v3i-223114eb8923f2f3",
+        "word-v3rf-bbbc3af90a48bed2"
+      ]
+    },
+    {
+      "lessonNumber": 210,
+      "progressId": "v3-vocab-actions-011",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 11,
+      "entryIds": [
+        "word-v3i-fb2867d237fdb166",
+        "word-v3i-994efe41d780d0d7",
+        "word-v3i-ed639ee91224e6e6",
+        "word-v3i-5a8838efd721f273",
+        "word-v3i-f854994e16ac5c3c",
+        "word-v3i-a7f98e2368dd2d04",
+        "word-v3f-9e9b75ca5d73830b",
+        "word-v3-0021"
+      ]
+    },
+    {
+      "lessonNumber": 211,
+      "progressId": "v3-vocab-actions-012",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 12,
+      "entryIds": [
+        "word-v3rf-e4829c50830a6fc4",
+        "word-v3rf-f0be702876c5907e",
+        "word-v3rf-5043dbcc48d48c73",
+        "word-v3rf-c08d548d74be0ee9",
+        "word-v3rf-da7291e16bb6628a",
+        "word-v3-0071",
+        "word-v3-0073",
+        "word-v3rf-0388706795daf35e"
+      ]
+    },
+    {
+      "lessonNumber": 212,
+      "progressId": "v3-vocab-actions-013",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 13,
+      "entryIds": [
+        "word-v3-0023",
+        "word-v3rf-1b64f35ab8ca8190",
+        "word-v3rf-de11cf7cb1cde900",
+        "word-v3i-f607a485a96b1147",
+        "word-v3i-b96a225e3c63c4ff",
+        "word-v3form-68a18a6c5092cce7",
+        "word-v3i-2be1f96e8d0699ab",
+        "word-v3i-bdc01964aa6cb18d"
+      ]
+    },
+    {
+      "lessonNumber": 213,
+      "progressId": "v3-vocab-actions-014",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 14,
+      "entryIds": [
+        "word-v3form-4abff9a436779afe",
+        "word-v3form-3561a389c5b12e52",
+        "word-v3i-25f35fca9d0b1c88",
+        "word-v3rf-fc369874f3eab802",
+        "word-v3rf-f71863ed87bdab20",
+        "word-v3i-49f58d3264e4277a",
+        "word-v3f-ea88b5e0a5050158",
+        "word-v3f-ad69927572b5f295"
+      ]
+    },
+    {
+      "lessonNumber": 214,
+      "progressId": "v3-vocab-actions-015",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 15,
+      "entryIds": [
+        "word-v3rf-bcba4cf710b3bbda",
+        "word-v3pv-2ba7d9ae2c0dae0b",
+        "word-v3i-4dca3a86afc64603",
+        "word-v3i-6d6181f962511382",
+        "word-v3rf-a78fa87ad53971dd",
+        "word-v3form-19a7cff09ba22227",
+        "word-v3rf-bcadbed884fc971e",
+        "word-v3i-5a6080e0895fb55e"
+      ]
+    },
+    {
+      "lessonNumber": 215,
+      "progressId": "v3-vocab-actions-016",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 16,
+      "entryIds": [
+        "word-v3i-b13afb59a9bc9ce5",
+        "word-v3i-86cbe0a0ce381942",
+        "word-v3i-11e822f22e9a4be5",
+        "word-v3i-02ee67a6db1f52ee",
+        "word-v3pv-0fab879d3d4e102d",
+        "word-v3i-f4fceeeb96ed790e",
+        "word-v3i-a96a1fcd56a7ac40",
+        "word-v3i-464b40d424cce869"
+      ]
+    },
+    {
+      "lessonNumber": 216,
+      "progressId": "v3-vocab-actions-017",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 17,
+      "entryIds": [
+        "word-v3form-bc5a1b9d2c3e4dc7",
+        "word-v3i-ecdf6f5cba631d8c",
+        "word-v3form-3198e6c3a79d187e",
+        "word-v3f-d2bf86103d2f0429",
+        "word-v3pv-29dbc34e82e89cfe",
+        "word-v3pv-efbc2747ddf04f04",
+        "word-v3pv-1bff259ba461cd8d",
+        "word-v3i-2fb24f9597c0c8ab"
+      ]
+    },
+    {
+      "lessonNumber": 217,
+      "progressId": "v3-vocab-actions-018",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 18,
+      "entryIds": [
+        "word-v3i-844821a581e827e5",
+        "word-v3pv-4beb8647639052c3",
+        "word-v3form-fa2dc5948e4c2547",
+        "word-v3pv-d0a36bc706ac9e9a",
+        "word-v3pv-9abc1a952706fc66",
+        "word-v3pv-0b7860ba89a78ad6",
+        "word-v3i-4ac68c0f1eb66a5c",
+        "word-v3i-e4ca22e010082b60"
+      ]
+    },
+    {
+      "lessonNumber": 218,
+      "progressId": "v3-vocab-actions-019",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 19,
+      "entryIds": [
+        "word-v3f-3730b63759f67511",
+        "word-v3f-71482b6575b65c51",
+        "word-v3rf-a5c4115b0a67e7e7",
+        "word-v3rf-2f0822ae78460064",
+        "word-v3f-0b8b812314c95e16",
+        "word-v3f-b3007a77e5345090",
+        "word-v3i-f5f959d2371d3fb2",
+        "word-v3f-c099ac51c5ce4669"
+      ]
+    },
+    {
+      "lessonNumber": 219,
+      "progressId": "v3-vocab-actions-020",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 20,
+      "entryIds": [
+        "word-v3-0040",
+        "word-v3i-c174f2e9305cb887",
+        "word-v3rf-b068b95c1438b652",
+        "word-v3rf-8b30fab280a8ff32",
+        "word-v3rf-f43c2b10142f2a6b",
+        "word-v3i-ac236c19d549d304",
+        "word-v3rf-73bd5bb3ec5d5aa8",
+        "word-v3notation-bcfd5a9dbc1e6487"
+      ]
+    },
+    {
+      "lessonNumber": 220,
+      "progressId": "v3-vocab-actions-021",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 21,
+      "entryIds": [
+        "word-v3notation-3805a26be4446053",
+        "word-v3notation-db31cdc9401b5099",
+        "word-v3notation-2ff3ec8c1943f7de",
+        "word-v3rf-3edd165053e1fc9e",
+        "word-v3rf-3117404ab1ef9f82",
+        "word-v3rf-74296d17091d7bf5",
+        "word-v3-0018",
+        "word-v3rf-046272a7cdf8a785"
+      ]
+    },
+    {
+      "lessonNumber": 221,
+      "progressId": "v3-vocab-actions-022",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 22,
+      "entryIds": [
+        "word-v3rf-3d9403263a1b5eb3",
+        "word-v3f-84739f62e0410831",
+        "word-v3form-dd80bd91a9b73f3d",
+        "word-v3rf-dfc30bf9830056bb",
+        "word-v3f-08aeb7ae40fb5212",
+        "word-v3rf-50a9167428aa5078",
+        "word-v3rf-00d84062c75514c8",
+        "word-v3rf-a7cbbfedf983e408"
+      ]
+    },
+    {
+      "lessonNumber": 222,
+      "progressId": "v3-vocab-actions-023",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 23,
+      "entryIds": [
+        "word-v3rf-66e51d9145aba4ce",
+        "word-v3rf-619c9c51f362e500",
+        "word-v3rf-1f9ca0c666e717d3",
+        "word-v3lex-8cc9fccbaba713d5",
+        "word-v3rf-c71f96e7a552b055",
+        "word-v3rf-ce62c9ed6f310cd8",
+        "word-v3rf-f7f1ffa6a29624f2",
+        "word-v3f-356f1ecdb9391435"
+      ]
+    },
+    {
+      "lessonNumber": 223,
+      "progressId": "v3-vocab-actions-024",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 24,
+      "entryIds": [
+        "word-v3i-c967df871c61ae4a",
+        "word-v3i-a3c9e3f764082c9c",
+        "word-v3i-70bf7366c1ef0994",
+        "word-v3i-b880790166609284",
+        "word-v3i-08de8c0e3865a66e",
+        "word-v3i-a90fe60b02d35b5b",
+        "word-v3i-0535b75dd80f3e7f",
+        "word-v3i-9d4c993ceb82fdad"
+      ]
+    },
+    {
+      "lessonNumber": 224,
+      "progressId": "v3-vocab-actions-025",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 25,
+      "entryIds": [
+        "word-v3i-d47b554058fd1324",
+        "word-v3i-aba9ac1973493df9",
+        "word-v3i-96da690a151b0cea",
+        "word-v3i-18d693e47bc647cd",
+        "word-v3i-06791ce68ce69268",
+        "word-v3i-6c177f54c5c9a72e",
+        "word-v3i-1626c692a1e6f3f1",
+        "word-v3i-026d843faf193c26"
+      ]
+    },
+    {
+      "lessonNumber": 225,
+      "progressId": "v3-vocab-actions-026",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 26,
+      "entryIds": [
+        "word-v3i-57423cd398091aac",
+        "word-v3rf-3042ba2cc5e7e0ff",
+        "word-v3rf-7dffc86cec0a68b3",
+        "word-v3i-37945d69f157500e",
+        "word-v3i-ce131d699f579ed9",
+        "word-v3i-8713bd5c9fc8e94e",
+        "word-v3i-03fdd40d16f45922",
+        "word-v3i-11bc8b88c27ef3c3"
+      ]
+    },
+    {
+      "lessonNumber": 226,
+      "progressId": "v3-vocab-actions-027",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 27,
+      "entryIds": [
+        "word-v3i-3d26ef012a93005f",
+        "word-v3i-d49aef3b9e7c3fa9",
+        "word-v3i-6c35318203b28080",
+        "word-v3i-04b9d251e94df04f",
+        "word-v3rf-f1e48cd0c431a3a8",
+        "word-v3f-f7ef899e0877f757",
+        "word-v3rf-02f689621e057656",
+        "word-v3rf-f9b97612669141f6"
+      ]
+    },
+    {
+      "lessonNumber": 227,
+      "progressId": "v3-vocab-actions-028",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 28,
+      "entryIds": [
+        "word-v3rf-58b12819d6b63594",
+        "word-v3rf-821c94337133f335",
+        "word-v3rf-62192c373d450c24",
+        "word-v3f-6f67437407e01d3e",
+        "word-v3f-3fc55040a01ca00a",
+        "word-v3-0029",
+        "word-v3-0030",
+        "word-v3f-42a084f3c73cb8d4"
+      ]
+    },
+    {
+      "lessonNumber": 228,
+      "progressId": "v3-vocab-actions-029",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 29,
+      "entryIds": [
+        "word-v3form-c12d7f8434ef8277",
+        "word-v3rf-58fbd9eb5ae49aee",
+        "word-v3rf-167419a8dd3ac38d",
+        "word-v3rf-ce60f5b731d04c13",
+        "word-v3-0032",
+        "word-v3rf-c7a227014f170596",
+        "word-v3rf-aa63400e4b08a0af",
+        "word-v3-0037"
+      ]
+    },
+    {
+      "lessonNumber": 229,
+      "progressId": "v3-vocab-actions-030",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 30,
+      "entryIds": [
+        "word-v3rf-6975e1cd602f4e0a",
+        "word-v3rf-0c92fe63512119e3",
+        "word-v3rf-ff8b21380b0d08ea",
+        "word-v3rf-b8f7fad6df0793ba",
+        "word-v3rf-e4616a2acb75c73c",
+        "word-v3f-245498b93981d77c",
+        "word-v3rf-40e7ad722cc2b3b1",
+        "word-v3rf-1aacd03d623c58e1"
+      ]
+    },
+    {
+      "lessonNumber": 230,
+      "progressId": "v3-vocab-actions-031",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 31,
+      "entryIds": [
+        "word-v3rf-a65824451d05b576",
+        "word-v3i-42e484a6c21bc169",
+        "word-v3rf-75269fe6b081a765",
+        "word-v3rf-19f653f21b035482",
+        "word-v3rf-8dc30e7028f5db2a",
+        "word-v3rf-171224b86ffa561e",
+        "word-v3rf-c823b18ba77d3535",
+        "word-v3rf-f599724ea8a75610"
+      ]
+    },
+    {
+      "lessonNumber": 231,
+      "progressId": "v3-vocab-actions-032",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 32,
+      "entryIds": [
+        "word-v3-0033",
+        "word-v3f-467a91d0dca7e986",
+        "word-v3f-705fc3fbdfdb024f",
+        "word-v3rf-50eff0b2e22551a5",
+        "word-v3f-847f250930189634",
+        "word-v3i-4d366f28977e0376",
+        "word-v3rf-5054667326921576",
+        "word-v3f-e5361908b2c28c3b"
+      ]
+    },
+    {
+      "lessonNumber": 232,
+      "progressId": "v3-vocab-actions-033",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 33,
+      "entryIds": [
+        "word-v3rf-0af450cbc0ecaf22",
+        "word-v3i-b440211a2ba70ada",
+        "word-v3i-075c400b37c4800c",
+        "word-v3i-80bf8e60a13ea2e5",
+        "word-v3lex-8d585be2557aef59",
+        "word-v3rf-90c166d5e8a48936",
+        "word-v3i-3596bcc08d26fbd1",
+        "word-v3rf-9975fe937fbdea00"
+      ]
+    },
+    {
+      "lessonNumber": 233,
+      "progressId": "v3-vocab-actions-034",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 34,
+      "entryIds": [
+        "word-v3rf-a6c91ab23679a386",
+        "word-v3f-aa6ba3652404f503",
+        "word-v3rf-35fea0293a4bf383",
+        "word-v3f-a1fe384986c35822",
+        "word-v3i-7486e8b21b7c82f6",
+        "word-v3rf-68db317a61db2be0",
+        "word-v3i-629589892f8dbc20",
+        "word-v3i-a79806bf298a113e"
+      ]
+    },
+    {
+      "lessonNumber": 234,
+      "progressId": "v3-vocab-actions-035",
+      "topic": "actions",
+      "titleEn": "Make your actions precise",
+      "titleEs": "Expresa tus acciones con precisión",
+      "goalEn": "Learn each action with its documented person, object and usage.",
+      "goalEs": "Aprende cada acción con su persona, objeto y uso documentados.",
+      "ordinal": 35,
+      "entryIds": [
+        "word-v3rf-f5ad42269e3fac92",
+        "word-v3f-e19383c52c360e15"
+      ]
+    },
+    {
+      "lessonNumber": 235,
+      "progressId": "v3-vocab-community-001",
+      "topic": "community",
+      "titleEn": "Community and cultural words",
+      "titleEs": "Comunidad y palabras culturales",
+      "goalEn": "Recall community words while retaining their specific context.",
+      "goalEs": "Recuerda palabras de la comunidad conservando su contexto específico.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3rf-4a9b12b44bbe45c2",
+        "word-v3f-b83ff13a20ac2b09",
+        "word-v3i-3d616aa11a7b1a38",
+        "word-v3r-03e105fac1a99bc7",
+        "word-v3i-b6f8de5865dc089c",
+        "word-v3i-8ec5231737da6ac8",
+        "word-v3pa-14575a583db8d687",
+        "word-v3r-a555ed1c7d8c6036"
+      ]
+    },
+    {
+      "lessonNumber": 236,
+      "progressId": "v3-vocab-community-002",
+      "topic": "community",
+      "titleEn": "Community and cultural words",
+      "titleEs": "Comunidad y palabras culturales",
+      "goalEn": "Recall community words while retaining their specific context.",
+      "goalEs": "Recuerda palabras de la comunidad conservando su contexto específico.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3lex-633e14803500dbf6",
+        "word-v3i-5dae9399c33ea213",
+        "word-v3i-e35da65de9a66697",
+        "word-v3f-8c4ca00c60f173fe",
+        "word-v3f-1c7a561318d6ee97",
+        "word-v3rf-c1e55c41be6a88bb",
+        "word-v3lex-73e5eccf630c2226",
+        "word-v3r-8376d6a8e702cc2b"
+      ]
+    },
+    {
+      "lessonNumber": 237,
+      "progressId": "v3-vocab-everyday-001",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3d-adec43716dd70c84",
+        "word-v3r-d5bf204a7dcf73c8",
+        "word-v3r-1034aa7ac658d15c",
+        "word-v3r-8fe9810bfe02d0ad",
+        "word-v3r-35e175b487b2bb6c",
+        "word-v3r-d11b7c0029fe94f7",
+        "word-v3r-bf3ef947c9c0d814",
+        "word-v3r-171554bd08a77567"
+      ]
+    },
+    {
+      "lessonNumber": 238,
+      "progressId": "v3-vocab-everyday-002",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3r-9e4432b1ff8a3ebe",
+        "word-v3r-87187d77331e12a1",
+        "word-v3d-6d828e3a8ccd3294",
+        "word-v3f-50b33dbdd7f537e4",
+        "word-v3-0013",
+        "word-v3-0010",
+        "word-v3i-fa57f683e08c7502",
+        "word-v3d-459db6c4d26f0c97"
+      ]
+    },
+    {
+      "lessonNumber": 239,
+      "progressId": "v3-vocab-everyday-003",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3d-d633aa5477ed7291",
+        "word-v3d-28de45720934b81c",
+        "word-v3f-9161188b75883ab5",
+        "word-v3r-fc78bc2e32aafb06",
+        "word-v3r-8cce420b25b2de05",
+        "word-v3i-622d24a90b0ecb03",
+        "word-v3i-f24072ea08d88fa8",
+        "word-v3r-2190cdc3916e8e9b"
+      ]
+    },
+    {
+      "lessonNumber": 240,
+      "progressId": "v3-vocab-everyday-004",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3i-256024238f17189f",
+        "word-v3i-8bc33cef478fdb60",
+        "word-v3f-f00133d8798209e5",
+        "word-v3r-52b9c5744b8789a3",
+        "word-v3i-9f63bb607da9a1f2",
+        "word-v3i-2711c250515317da",
+        "word-v3i-6a4c3dc1fb4af050",
+        "word-v3b-62c3a681e121dc9a"
+      ]
+    },
+    {
+      "lessonNumber": 241,
+      "progressId": "v3-vocab-everyday-005",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3p-0a45e5209d9a36b6",
+        "word-v3p-eb759f8da9cfb168",
+        "word-v3p-2477035aac67fa16",
+        "word-v3r-68d771c52ec20122",
+        "word-v3pa-e857d6133962ba98",
+        "word-v3i-91e25906a72fae5f",
+        "word-v3p-3701c3716073f6ea",
+        "word-v3p-909062db8b28d47f"
+      ]
+    },
+    {
+      "lessonNumber": 242,
+      "progressId": "v3-vocab-everyday-006",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3r-b9da1cc4a18041ab",
+        "word-v3r-8889737063c57dbf",
+        "word-v3-0002",
+        "word-v3r-dab5279ef1ba2a90",
+        "word-v3i-1c4941c99d7ccc47",
+        "word-v3i-d1cdf6425b999506",
+        "word-v3r-5899d84140fafda8",
+        "word-v3r-a1828c91e44cb593"
+      ]
+    },
+    {
+      "lessonNumber": 243,
+      "progressId": "v3-vocab-everyday-007",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3i-faad6dda43c9ea47",
+        "word-v3-0064",
+        "word-v3b-7387c1cb3a484fef",
+        "word-v3f-204b534713278916",
+        "word-v3r-d6a59e3e098161e9",
+        "word-v3r-3b47e8e81bb89bf1",
+        "word-v3d-047de09647a6178c",
+        "word-v3r-b09f07072cd049c2"
+      ]
+    },
+    {
+      "lessonNumber": 244,
+      "progressId": "v3-vocab-everyday-008",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3r-85dce8c5060496bc",
+        "word-v3r-8a72ff00fb9636a8",
+        "word-v3-0015",
+        "word-v3f-7281745e2aa04034",
+        "word-v3-0017",
+        "word-v3-0036",
+        "word-v3i-ae2b6c71356a2095",
+        "word-v3f-e29b2df7aab30d27"
+      ]
+    },
+    {
+      "lessonNumber": 245,
+      "progressId": "v3-vocab-everyday-009",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3r-0ff9c15c6c9db3d9",
+        "word-v3i-9f3f384975ebea63",
+        "word-v3f-df8823b0b6358200",
+        "word-v3lex-b8448ac633cd2f42",
+        "word-v3r-d44a4878088f80e6",
+        "word-v3place-e39ab6b47c3df66c",
+        "word-v3i-7989a5dcd580c969",
+        "word-v3r-3e7d246680448704"
+      ]
+    },
+    {
+      "lessonNumber": 246,
+      "progressId": "v3-vocab-everyday-010",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 10,
+      "entryIds": [
+        "word-v3-0047",
+        "word-v3i-cbb46814c9a53979",
+        "word-v3r-9250e30c57a2c5c6",
+        "word-v3r-cb9f6ccf917d80b3",
+        "word-v3r-3aaf5896b725c874",
+        "word-v3-0016",
+        "word-v3r-0ff2ee837ff12fef",
+        "word-v3lex-10f4ea92fd806f17"
+      ]
+    },
+    {
+      "lessonNumber": 247,
+      "progressId": "v3-vocab-everyday-011",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 11,
+      "entryIds": [
+        "word-v3f-4340dce6ee10b4b1",
+        "word-v3-0009",
+        "word-v3-0003",
+        "word-v3r-d2086c65e2b336e5",
+        "word-v3r-5f36456151374ffd",
+        "word-v3r-1a6b5da50caeea5b",
+        "word-v3r-1eb87a19051c6e42",
+        "word-v3d-9102525251676ff3"
+      ]
+    },
+    {
+      "lessonNumber": 248,
+      "progressId": "v3-vocab-everyday-012",
+      "topic": "everyday",
+      "titleEn": "More useful everyday words",
+      "titleEs": "Más palabras útiles de la vida cotidiana",
+      "goalEn": "Learn the precise meaning and use of each documented word.",
+      "goalEs": "Aprende el significado preciso y el uso de cada palabra documentada.",
+      "ordinal": 12,
+      "entryIds": [
+        "word-v3r-81ea518ec3a41f02",
+        "word-v3r-451cf7b00d6f9f79",
+        "word-v3r-6428068fc2ce0cb7"
+      ]
+    },
+    {
+      "lessonNumber": 249,
+      "progressId": "v3-vocab-reference-001",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 1,
+      "entryIds": [
+        "word-v3r-36bd669d84aaf4be",
+        "word-v3composed-5bd2e551a2a1bf0f",
+        "word-v3composed-9adf623ddc080305",
+        "word-v3stem-de3e95272ca6bcfc",
+        "word-v3stem-d8ef9f6473fd8576",
+        "word-v3lex-d82a542e4d076fc1",
+        "word-v3composed-ac1e09982494ca46",
+        "word-v3composed-845c397d846ddcd3"
+      ]
+    },
+    {
+      "lessonNumber": 250,
+      "progressId": "v3-vocab-reference-002",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 2,
+      "entryIds": [
+        "word-v3lex-cd60c8d4a40454c5",
+        "word-v3rf-2b698351d3ff5afb",
+        "word-v3stem-62909d3333b00eda",
+        "word-v3f-952431e56450a807",
+        "word-v3stem-5feb70a77f9795da",
+        "word-v3stem-df8ce785308adacd",
+        "word-v3lex-51121f953dfec919",
+        "word-v3rf-5d8028dcf607c2af"
+      ]
+    },
+    {
+      "lessonNumber": 251,
+      "progressId": "v3-vocab-reference-003",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 3,
+      "entryIds": [
+        "word-v3reference-9789640ae507e726",
+        "word-v3corpus-acdd58a8169076d0",
+        "word-v3lex-50bf9a94d08282fe",
+        "word-v3r-f9cb58c1a4a598fb",
+        "word-v3b-9177b4b72a5feaf7",
+        "word-v3stem-088f14ad43b80398",
+        "word-v3stem-9b4e8ab429ad5db3",
+        "word-v3f-c204e19dd40c5c0d"
+      ]
+    },
+    {
+      "lessonNumber": 252,
+      "progressId": "v3-vocab-reference-004",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 4,
+      "entryIds": [
+        "word-v3f-a532c09ccdc20b5a",
+        "word-v3r-22923c24377281d1",
+        "word-v3lex-a4da3943bd0e0472",
+        "word-v3stem-8df60d48d5305637",
+        "word-v3lex-90b7e81c5d467985",
+        "word-v3lex-4332239451cbe0af",
+        "word-v3lex-917cb3940f75db65",
+        "word-v3composed-46fca6ad21696640"
+      ]
+    },
+    {
+      "lessonNumber": 253,
+      "progressId": "v3-vocab-reference-005",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 5,
+      "entryIds": [
+        "word-v3lex-3d6e1c85b0b8ca94",
+        "word-v3composed-08de85baea0d0b40",
+        "word-v3r-cbdf4fdaad7c1bf6",
+        "word-v3f-d40c3da1c167833e",
+        "word-v3stem-28158e1a595062dd",
+        "word-v3reference-f29ba5b6fabf5547",
+        "word-v3stem-bd2473f30c89cab5",
+        "word-v3rel-8eb3567df069904e"
+      ]
+    },
+    {
+      "lessonNumber": 254,
+      "progressId": "v3-vocab-reference-006",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 6,
+      "entryIds": [
+        "word-v3lex-cbd4873ffa7af627",
+        "word-v3stem-c36e1cb6b070bab8",
+        "word-v3lex-5f92388966b98ffc",
+        "word-v3lex-329ec85eb44e1506",
+        "word-v3composed-5c64d8ad122dd9e8",
+        "word-v3reference-8f836334a8055f65",
+        "word-v3lex-6620eebd188ab762",
+        "word-v3lex-80a965c5e7ef92b1"
+      ]
+    },
+    {
+      "lessonNumber": 255,
+      "progressId": "v3-vocab-reference-007",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 7,
+      "entryIds": [
+        "word-v3stem-bc3609be78f575de",
+        "word-v3lex-5915ebe922ea84b0",
+        "word-v3f-5846ad9e9973f617",
+        "word-v3f-51052a2ba2589486",
+        "word-v3stem-ebe4907ea4858c2d",
+        "word-v3stem-2a69d1ee63a9ac48",
+        "word-v3stem-61191c20625b5daa",
+        "word-v3lex-28f5a70531b7ae40"
+      ]
+    },
+    {
+      "lessonNumber": 256,
+      "progressId": "v3-vocab-reference-008",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 8,
+      "entryIds": [
+        "word-v3abstract-3a378ae42d7e980b",
+        "word-v3stem-137024097537dc0b",
+        "word-v3stem-bbf6c5128a9161aa",
+        "word-v3rf-cb725694365583fa",
+        "word-v3r-69ac20d13e14cfdf",
+        "word-v3abstract-1af8a35bd33d4a74",
+        "word-v3reference-390cc7777dcf8a38",
+        "word-v3lex-74a98e6a425ebc9f"
+      ]
+    },
+    {
+      "lessonNumber": 257,
+      "progressId": "v3-vocab-reference-009",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 9,
+      "entryIds": [
+        "word-v3lex-18681bf0c66f2021",
+        "word-v3f-c96011393150d403",
+        "word-v3f-9844caf52e844e50",
+        "word-v3lex-cc84bc35858665a7",
+        "word-v3stem-729318ce4481c769",
+        "word-v3r-12d2860877966ada",
+        "word-v3reference-f7eedfea836f2875",
+        "word-v3stem-2ecd58939d186fdd"
+      ]
+    },
+    {
+      "lessonNumber": 258,
+      "progressId": "v3-vocab-reference-010",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 10,
+      "entryIds": [
+        "word-v3rf-12bb5e098e1e6162",
+        "word-v3lex-8ee23f84f068b57e",
+        "word-v3reference-07d9c0ed484d9e1b",
+        "word-v3lex-8bf8c9fd8638b113",
+        "word-v3stem-508348893096e67e",
+        "word-v3stem-ad7d0b11522f36ff",
+        "word-v3form-49733bada5a92664",
+        "word-v3lex-43dd4fac24559d4d"
+      ]
+    },
+    {
+      "lessonNumber": 259,
+      "progressId": "v3-vocab-reference-011",
+      "topic": "reference",
+      "titleEn": "Understand how words are built",
+      "titleEs": "Comprende cómo se forman las palabras",
+      "goalEn": "Learn reference forms and their usage notes before using them in a larger expression.",
+      "goalEs": "Aprende las formas de referencia y sus notas de uso antes de emplearlas en una expresión mayor.",
+      "ordinal": 11,
+      "entryIds": [
+        "word-v3lex-f41136604db05fac",
+        "word-v3rf-1bbe02b3ef0c2682",
+        "word-v3f-56c6e4906d43af20",
+        "word-v3f-95274681f2010d1c"
+      ]
+    }
+  ]
+}

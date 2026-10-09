@@ -1,9 +1,343 @@
 {
+  "learnerExcludedHeadwords": [
+    "xiktli",
+    "xictli",
+    "tepol",
+    "xillantli",
+    "motla",
+    "kixtilia",
+    "quixtilia",
+    "pantalonkixtia",
+    "pantalonquixtia",
+    "pepestik",
+    "pepeztic",
+    "xolohtik",
+    "xolohtic",
+    "xolotik",
+    "xolotic",
+    "teleksa",
+    "telecza",
+    "tewia",
+    "tehuia",
+    "wilana",
+    "miktilia",
+    "mictilia",
+    "otomitl",
+    "ihsotla",
+    "ihzotla",
+    "mihsotla",
+    "mihzotla",
+    "espoloa",
+    "ezpoloa",
+    "xipewa",
+    "xipehua",
+    "nechyolkokoa",
+    "nechyolcocoa",
+    "mitsyolkokoa",
+    "mitsyolcocoa",
+    "pechia"
+  ],
+  "learnerExcludedExactText": [
+    "Inmohuantin ahachica inquimāquiliah inmoconēuh.",
+    "“You all hit your child all the time.”",
+    "¿Quēniuhqui quimictiah piyo huan ācquiya quimictia? / How is the chicken killed and who kills it?"
+  ],
+  "learnerRuleExclusions": [
+    {
+      "ruleId": "v3-vocab-reference-010-final-straggler-rule",
+      "reason": "Explains the excluded genital-pain phrase and its possessed anatomical term."
+    },
+    {
+      "ruleId": "v3-vocab-reference-006-final-straggler-rule",
+      "reason": "Its only examples were the removed protected-group-derived insult, so its offensive-usage narrative cannot remain as an empty rule."
+    }
+  ],
+  "learnerSourceBodyExclusions": [
+    {
+      "lessonNumber": 31,
+      "sectionIndex": 2,
+      "bodyIndex": 11,
+      "reason": "Graphic animal killing, neck cutting and blood sprinkling in the retained Nahuatl source paragraph."
+    }
+  ],
+  "learnerSenseExclusions": [
+    {
+      "entryId": "word-v3rf-ae45b9cbb8d63151",
+      "headword": "awiltia",
+      "category": "sexual-violence",
+      "reason": "Selected record combines object play with rape; omit the complete mixed record rather than relabel it."
+    },
+    {
+      "entryId": "word-v3lex-d642d1066a055cc6",
+      "headword": "axixa",
+      "category": "graphic-bodily-waste",
+      "reason": "Urinate on someone or something."
+    },
+    {
+      "entryId": "word-v3d-ead6e501ddb79c79",
+      "headword": "axixtli",
+      "category": "graphic-bodily-waste",
+      "reason": "Urine."
+    },
+    {
+      "entryId": "word-v3r-8cce420b25b2de05",
+      "headword": "kwitlatl",
+      "category": "graphic-bodily-waste",
+      "reason": "Feces; excrement."
+    },
+    {
+      "entryId": "word-v3rf-fc369874f3eab802",
+      "headword": "moxixa",
+      "category": "graphic-bodily-waste",
+      "reason": "Defecate."
+    },
+    {
+      "entryId": "word-v3rf-f71863ed87bdab20",
+      "headword": "moxixmiki",
+      "category": "graphic-bodily-waste",
+      "reason": "Urgently need to defecate."
+    },
+    {
+      "entryId": "word-v3pv-29dbc34e82e89cfe",
+      "headword": "nimaxixmiki",
+      "category": "graphic-bodily-waste",
+      "reason": "I need to urinate."
+    },
+    {
+      "entryId": "word-v3pv-4beb8647639052c3",
+      "headword": "nimoxixmiki",
+      "category": "graphic-bodily-waste",
+      "reason": "I need to defecate."
+    },
+    {
+      "entryId": "word-v3rf-167419a8dd3ac38d",
+      "headword": "tlanokiya",
+      "category": "graphic-bodily-waste",
+      "reason": "Diarrhea; the selected use describes passing stool."
+    },
+    {
+      "entryId": "word-v3rf-7e14d1fc63430206",
+      "headword": "xixa",
+      "category": "graphic-bodily-waste",
+      "reason": "Defecate on something; soil oneself."
+    },
+    {
+      "entryId": "word-v3rf-60aec1e2ebb48bcf",
+      "headword": "xotla",
+      "category": "harmful-vehicle-act",
+      "reason": "The selected record mixes trampling and running over an unspecified target. Preserve its evidence, but hold this mixed learner record; a separately verified harmless object sense can be evaluated independently."
+    },
+    {
+      "entryId": "word-v3f-04ce8fe92711127c",
+      "headword": "miktia",
+      "category": "harmful-act",
+      "reason": "To kill someone."
+    },
+    {
+      "entryId": "word-v3pc-b1576456cdfa3814",
+      "headword": "temiktihketl",
+      "category": "harmful-act",
+      "reason": "A killer of people."
+    },
+    {
+      "entryId": "word-v3pv-f89d4400744db041",
+      "headword": "temiktia",
+      "category": "harmful-act",
+      "reason": "He or she kills someone."
+    },
+    {
+      "entryId": "word-v3rf-ba88959031d45698",
+      "headword": "ihyexa",
+      "category": "graphic-bodily-waste",
+      "reason": "Pass wind onto someone."
+    },
+    {
+      "entryId": "word-v3rf-fd6ff22878c0f879",
+      "headword": "ihyokisa",
+      "category": "graphic-bodily-waste",
+      "reason": "Pass wind."
+    },
+    {
+      "entryId": "word-v3r-81ea518ec3a41f02",
+      "headword": "xiktli",
+      "category": "user-excluded-record",
+      "reason": "User explicitly removed this entire umbilical-cord record."
+    },
+    {
+      "entryId": "word-v3f-51052a2ba2589486",
+      "headword": "tepol",
+      "category": "explicit-genital-vocabulary",
+      "reason": "Vulgar genital vocabulary is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3lex-8bf8c9fd8638b113",
+      "headword": "xillantli",
+      "category": "explicit-genital-vocabulary",
+      "reason": "Genital vocabulary and its clinical question/answer exercises are outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3rf-4d276d2bc2866c44",
+      "headword": "motla",
+      "category": "human-target-harm",
+      "reason": "This selected meaning shoots a person or animal. Ordinary shooting at an inanimate target remains available through independently selected tlamotla and tlamotlaketl."
+    },
+    {
+      "entryId": "word-v3rf-73658b301cfdcb10",
+      "headword": "pantalonkixtia",
+      "category": "undressing-or-exposure",
+      "reason": "Removing another person's trousers is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3rf-bd7cbf53a058ccb4",
+      "headword": "kixtilia",
+      "category": "undressing-or-exposure",
+      "reason": "This mixed record includes undressing. Omit the whole record rather than relabeling its other meaning."
+    },
+    {
+      "entryId": "word-v3r-7b32f755d483e6ce",
+      "headword": "pepestik",
+      "category": "undressing-or-exposure",
+      "reason": "Unclothed/naked vocabulary is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3lex-392d85d3393be9c1",
+      "headword": "xolohtik",
+      "category": "undressing-or-exposure",
+      "reason": "Unclothed-person vocabulary is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3r-723ca6423a56b735",
+      "headword": "xolotik",
+      "category": "undressing-or-exposure",
+      "reason": "Alternate unclothed/naked vocabulary is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3rf-f50df85f72569baf",
+      "headword": "teleksa",
+      "category": "physical-assault",
+      "reason": "The selected record kicks someone; omit it and its adult-victim exercises."
+    },
+    {
+      "entryId": "word-v3rf-d0597e555ce9887f",
+      "headword": "tewia",
+      "category": "physical-assault",
+      "reason": "The selected record hits someone or fights with others; omit its complete mixed meaning."
+    },
+    {
+      "entryId": "word-v3rf-722df77495d6d6cc",
+      "headword": "wilana",
+      "category": "physical-assault",
+      "reason": "The primary meaning is physical hitting in a fight. The user approved an argument image, which does not establish a verbal-argument lexical meaning; omit the literal record pending separately verified evidence."
+    },
+    {
+      "entryId": "word-v3lex-5aaad6542b999dd8",
+      "headword": "miktilia",
+      "category": "animal-target-harm",
+      "reason": "The selected meaning kills someone else's animal; omit it and its animal-victim exercises."
+    },
+    {
+      "entryId": "word-v3lex-5f92388966b98ffc",
+      "headword": "otomitl",
+      "category": "protected-group-derived-insult",
+      "reason": "Do not teach an insulting sense derived from the name of the Otomi people."
+    },
+    {
+      "entryId": "word-v3rf-ac95b69b45f68579",
+      "headword": "ihsotla",
+      "category": "graphic-bodily-fluid-act",
+      "reason": "Vomiting onto another person is outside the selected learner content."
+    },
+    {
+      "entryId": "word-v3rf-48b4301d797f706b",
+      "headword": "mihsotla",
+      "category": "graphic-bodily-fluid-act",
+      "reason": "The vomiting act is outside the selected learner content; ordinary sickness and nausea remain available."
+    },
+    {
+      "entryId": "word-v3rf-7f097a65afbab6df",
+      "headword": "espoloa",
+      "category": "graphic-bodily-fluid-act",
+      "reason": "Smearing blood is outside the selected learner content; ordinary clinical blood terminology remains separate."
+    },
+    {
+      "entryId": "word-v3rf-9e2e6d22963dc85c",
+      "headword": "xipewa",
+      "category": "graphic-animal-harm",
+      "reason": "This mixed record includes animal skinning. Omit the entire record rather than relabeling its separate peeling or shucking meanings."
+    },
+    {
+      "entryId": "word-v3pv-291f1cda4a97a737",
+      "headword": "nechyolkokoa",
+      "category": "physical-assault",
+      "reason": "The selected causative meaning is physical heart/chest pain caused by another person striking the chest; omit the whole physical-impact record and its source-backed dependent forms."
+    },
+    {
+      "entryId": "word-v3rf-0822130083b9346e",
+      "headword": "pechia",
+      "category": "mixed-target-harm",
+      "reason": "The selected record crushes a person or animal as well as items. Omit the whole mixed record rather than treating its harmless parcel image as a lexical waiver."
+    }
+  ],
+  "learnerSenseRules": [
+    {
+      "category": "explicit-genital-vocabulary",
+      "pattern": "\\b(?:penis|penises|vagina|vaginas|vulva|vulvas|clitoris|testicle\\w*|genitals?|genitalia|foreskin|glans|pene|penes|vaginas?|vulvas?|cl[ií]toris|test[ií]culos?|genitales|prepucio|glande|noxillan|moxillan)\\b"
+    },
+    {
+      "category": "undressing-or-exposure",
+      "pattern": "\\b(?:naked|nude|nudity|unclothed|undress\\w*|desnud\\w*|desvest\\w*)\\b|\\b(?:person|adult|he|she|they|someone)\\b.{0,35}\\b(?:wearing no clothing|without clothes)\\b|\\b(?:sin ropa|quitar(?:le|se)? (?:el|los) pantal[oó]n(?:es)?)\\b|\\b(?:remove|removes|removing|take off|takes off|taking off)\\b.{0,45}\\btrousers\\b"
+    },
+    {
+      "category": "human-target-harm",
+      "pattern": "\\b(?:shoot|shoots|shot|shooting) (?:at )?(?:someone|somebody|people|a person|an adult|another adult|another person|the identified adult|the identified person|a child|a man|a woman|him|her|them)\\b|\\bdispar(?:ar|a|ando)[^.!?]{0,35}\\b(?:a alguien|a una persona|a un hombre|a una mujer|a un ni[nñ]o|a una ni[nñ]a)\\b|\\b(?:hit|hits|hitting|beat|beats|beating) (?:your|my|the|a|his|her|their|our) child\\b|\\b(?:golpear|golpea|golpean|pegar|pega|pegan)[^.!?]{0,30}\\b(?:tu|mi|su|un|una) (?:hijo|hija|ni[nñ]o|ni[nñ]a)\\b"
+    },
+    {
+      "category": "physical-assault",
+      "pattern": "\\b(?:hit|hits|hitting|kick|kicks|kicked|kicking|beat|beats|beating|punch|punches|punched|punching|stab|stabs|stabbed|stabbing) (?:someone|somebody|people|another adult|an adult|a person|a man|a woman|a child|me|you|us|him|her|them)\\b|\\b(?:hit|hits|hitting) (?:it/)?him/her\\b|\\b(?:hit|hits|hitting) \\(something, someone\\)|\\bcuts? (?:someone|somebody|people|another adult|an adult|a person|a man|a woman|a child|me|you|us|him|her|them)(?![’']s hair)\\b|\\bfight(?:s|ing)? with (?:someone|somebody|others|another adult)\\b|\\b(?:golpear|golpea|golpean|golpeando|apu[nñ]alar|apu[nñ]ala)[^.!?]{0,25}\\b(?:a alguien|a otra persona|a una persona|a otro adulto)\\b"
+    },
+    {
+      "category": "animal-target-harm",
+      "pattern": "\\b(?:kill|kills|killed|killing) (?:an?|the|another person[’']s|someone[’']s) (?:animal|chicken|dog|cat)\\b|\\b(?:animal|chicken|dog|cat) (?:is |was )?killed\\b|\\bmatar (?:un|una|el|la) (?:animal|pollo|gallina|perro|gato)\\b"
+    },
+    {
+      "category": "physical-assault-source-forms",
+      "pattern": "\\b(?:maquilia|(?:nic|tic|qui|inqui|nech|mitz|mits|tech|mech|quin)maquill?(?:ia(?:h)?|ih(?:qui|queh)?))\\b"
+    },
+    {
+      "category": "graphic-bodily-fluid-act",
+      "pattern": "\\b(?:vomit(?:s|ed|ing)?|vomitar|vomita|vomitando|vomito)\\b|\\b(?:smear|smears|smearing|sprinkle|sprinkles|sprinkling) blood\\b|\\b(?:untar|esparcir|rociar) sangre\\b"
+    },
+    {
+      "category": "graphic-animal-harm",
+      "pattern": "\\b(?:skin|skins|skinning) (?:an?|the) animal\\b|\\bdespellejar (?:un|el) animal\\b"
+    },
+    {
+      "category": "sexual-violence",
+      "pattern": "\\b(rape|rapes|raped|raping|sexual[- ]+(?:violence|assault)|violaci[oó]n(?:es)?|violencia sexual|abuso sexual)\\b|\\bviolar a (?:alguien|una persona|un hombre|una mujer)\\b"
+    },
+    {
+      "category": "explicit-sexual-act",
+      "pattern": "\\b(sex|intercourse|copulat\\w*|fornicat\\w*|masturbat\\w*|ejaculat\\w*|orgasm\\w*|org(?:y|ies)|cum|semen|sperm|fuck\\w*|jack off|coit\\w*|eyacula\\w*)\\b|\\b(?:sexual|homosexual|heterosexual)[- ]+(?:act\\w*|role\\w*|pleasure|partner\\w*|content)\\b|\\b(?:acto|actos|relaci[oó]n|relaciones|rol|roles|placer|contenido) sexuales?\\b|\\b(?:tener|practicar) sexo\\b"
+    },
+    {
+      "category": "explicit-sexual-role",
+      "pattern": "\\b(?:top|bottom|active|passive|insertive|receptive) (?:sexual )?partner\\b|\\bpartner in (?:gay |lesbian |homosexual |heterosexual )?sex\\b|\\b(?:a|the|be|as|is) (?:sexual )?(?:top|bottom)\\b.{0,45}\\b(?:gay|lesbian|homosexual|sex|sexual)\\b|\\b(?:gay|lesbian|homosexual)\\b.{0,45}\\b(?:a|the|be|as|is) (?:top|bottom)\\b|\\b(?:pareja|compa[nñ]ero) sexual\\b|\\b(?:rol|papel) (?:sexual )?(?:pasivo|activo|receptivo|insertivo)\\b"
+    },
+    {
+      "category": "graphic-bodily-waste",
+      "pattern": "\\b(defecat\\w*|feces|faeces|excrement\\w*|urine|urinat\\w*|orinar\\w*|orina|defecar\\w*|heces|excremento|shit\\w*|poop\\w*|piss\\w*|peeing|peed|dung|mierda|cagar\\w*|flatulen\\w*|fart(?:s|ed|ing)?|intestinal gas)\\b|\\bpass(?:es|ed|ing)? wind\\b|\\b(?:soltar|suelta|sueltan) gases\\b"
+    },
+    {
+      "category": "harmful-act",
+      "pattern": "\\b(?:kill|kills|killed|killing|murder|murders|murdered|murdering) (?:someone|somebody|people|a person|a man|a woman|a child|him|her|them)\\b|\\bkiller of people\\b|\\bmata(?:r|ndo)? (?:a )?(?:alguien|personas|otras personas|una persona)\\b|\\b(?:kill|kills|killed|killing|murder|murders|murdered|murdering) another(?: adult| person)?\\b|\\bmat(?:ar|a|o|an|aron|ando) a otr[oa](?: persona| adult[oa])?\\b"
+    },
+    {
+      "category": "harmful-vehicle-act",
+      "pattern": "\\b(?:run|runs|running|ran) over (?:someone|somebody|a person|people|a pedestrian|a child|a man|a woman|him|her|them)\\b|\\batropell(?:ar|a|ado|ando) (?:a )?(?:alguien|una persona|personas|un peat[oó]n|un ni[nñ]o|una ni[nñ]a|un hombre|una mujer)\\b"
+    }
+  ],
   "headwords": [
     "cocoxqui",
-    "cuiloni",
-    "cuilonyotl",
-    "cuilontli",
     "cuetlaxtli",
     "chichihual",
     "chichihualatl",
@@ -14,8 +348,6 @@
     "chichihualayotl",
     "chichihualmecapalli",
     "chichiualayotl",
-    "chimouhketl",
-    "cihuaoquichtli",
     "ehuatl",
     "elchiquihuitl",
     "ihtetl",
@@ -35,10 +367,8 @@
     "notzintamal",
     "notzintamalli",
     "notzipiuh",
-    "patlachuia",
     "teca",
     "tehuayo",
-    "tepatlachuiani",
     "tepilli",
     "tepoli",
     "tepoleh",
@@ -60,13 +390,10 @@
     "xictli",
     "xillantli",
     "xolotl",
-    "yehuatl",
-    "yecoa"
+    "yehuatl"
   ],
   "patterns": [
-    "\\b(gay|lesbian(?:ism)?|homosexual(?:ity)?|bisexual(?:ity)?|queer|same[- ]sex|sodom(?:y|ite|itic)?|pederast(?:y)?|catamite|lesbiana|sodomita|sodomia)\\b",
-    "(?:\\b(top|bottom|active|passive|insertive|receptive)\\b.{0,60}\\b(gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\\b|\\b(gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\\b.{0,60}\\b(top|bottom|active|passive|insertive|receptive)\\b)",
-    "\\b(sex|sexual|intercourse|copulat|fornicate|prostitut|erotic|porn|fuck|fucking|masturbat|orgasm|orgasms|orgy|orgies|group sex|threesome|threesomes|cum|sperm|semen|ejaculat|suck|stroke|jack off|erect|erection|cock|dick|penis|vagina|pussy|vulva|clit|clitoris|testicle|testicles|genital|genitals|private parts|pubic|pubic bone|pubic hair|foreskin|glans|impotent|homosexual|homosexuality|lesbian|intersex|anal sex)\\b",
+    "\\b(sexual content|sexual pleasure|intercourse|copulat|fornicate|prostitut|erotic|porn|fuck|fucking|masturbat|orgasm|orgasms|orgy|orgies|threesome|threesomes|cum|sperm|semen|ejaculat|suck|stroke|jack off|erect|erection|cock|dick|penis|vagina|pussy|vulva|clit|clitoris|testicle|testicles|genital|genitals|private parts|pubic|pubic bone|pubic hair|foreskin|glans|impotent)\\b",
     "\\b(nipple|nipples|pecs|pectoral|pectorals|boob|boobs|tit|tits|titties|breast|breasts|chest|belly|stomach|navel|belly button|abdomen|armpit|armpits|groin|butt|butts|buttock|buttocks|rump|ass|rear|anus|anal|asshole|rectum)\\b",
     "\\b(body part|body parts|flesh|skin|torso|waist|hip|hips|thigh|thighs|underwear|underclothes|undergarment|undergarments|briefs|panties|bra|loincloth|loin cloth|loin-cloth|swimsuit|bikini|shirtless|topless|exposed|wet|nude|nudity|naked)\\b",
     "\\b(bath|bathe|bathes|bathing|shower|showers|showering|change clothes|changing clothes|clothing change|undress|undresses|undressing|get dressed|getting dressed)\\b",
@@ -80,5 +407,114 @@
     "\\b(?:no|mo|i|to|inmo|inin)?tsimpa\\b",
     "\\b(?:no|mo|i|to|inmo|inin)?(?:pil)?tzipiuh\\b",
     "\\b(?:ni|ti|ximo|inmo)?m[oō]p[aā]tla(?:h|z|zceh|zquiah?)?\\b"
+  ],
+  "learnerRuleTextProjections": [
+    {
+      "ruleId": "v3-vocab-conversation-013-conversation-completion-rule",
+      "before": {
+        "en": "In clothing makes me warm, the clothing is the source and me is affected. Each distributes one action over individual members; some names an unspecified subset. The trousers and accident examples retain their separately learned complete forms, participants and time.",
+        "es": "En la ropa me da calor, la ropa produce la experiencia y me es la persona afectada. Cada uno distribuye una acción entre integrantes; algunos indica una parte no especificada. Los ejemplos de pantalón y accidente conservan sus formas completas, personas y tiempo aprendidos."
+      },
+      "after": {
+        "en": "In clothing makes me warm, the clothing is the source and me is affected. Each distributes one action over individual members; some names an unspecified subset.",
+        "es": "En la ropa me da calor, la ropa produce la experiencia y me es la persona afectada. Cada uno distribuye una acción entre integrantes; algunos indica una parte no especificada."
+      },
+      "reason": "Omit only obsolete explanatory references to an excluded learner example; retain the original safe grammatical explanation."
+    },
+    {
+      "ruleId": "everyday-current-rule-v3-vocab-everyday-012",
+      "before": {
+        "en": "The exact learned iyeyohwi and iyoltsin identify the established other adult’s daughter-in-law and romantic partner. Their whereabouts use animate itstok, while ixik is a separate written umbilical-cord terminology label. Keep third-person possession anchored to the identified person rather than switching to the speaker’s own family.",
+        "es": "Las formas exactas aprendidas iyeyohwi e iyoltsin identifican a la nuera y pareja de otra persona adulta ya mencionada. Su ubicación usa el itstok animado; ixik es otra etiqueta escrita de terminología del cordón umbilical. Mantén la posesión en tercera persona referida a la persona identificada, en vez de cambiar a la familia de quien habla."
+      },
+      "after": {
+        "en": "The exact learned iyeyohwi and iyoltsin identify the established other adult’s daughter-in-law and romantic partner. Their whereabouts use animate itstok. Keep third-person possession anchored to the identified person rather than switching to the speaker’s own family.",
+        "es": "Las formas exactas aprendidas iyeyohwi e iyoltsin identifican a la nuera y pareja de otra persona adulta ya mencionada. Su ubicación usa el itstok animado. Mantén la posesión en tercera persona referida a la persona identificada, en vez de cambiar a la familia de quien habla."
+      },
+      "reason": "Omit only obsolete explanatory references to an excluded learner example; retain the original safe grammatical explanation."
+    },
+    {
+      "ruleId": "description-current-rule-v3-vocab-description-005",
+      "before": {
+        "en": "Give the quality to the identified thing or event. Owih and axowih describe the difficulty of a task. Ostoktik describes a deep interior; patlachtik describes a shallow wide container. Senkah uses the checked comparison with tlen: this flower shares the appearance of that flower. Selik concerns food or plant maturity. The adult clothing-status word is recognized as text only.",
+        "es": "Atribuye la cualidad al objeto o evento identificado. Owih y axowih describen la dificultad de una tarea. Ostoktik describe un interior hondo; patlachtik, un recipiente ancho y poco profundo. Senkah usa la comparación comprobada con tlen: esta flor comparte la apariencia de aquella. Selik se refiere a la madurez de alimentos o plantas. La palabra de vestimenta de adultos se reconoce solo por escrito."
+      },
+      "after": {
+        "en": "Give the quality to the identified thing or event. Owih and axowih describe the difficulty of a task. Ostoktik describes a deep interior; patlachtik describes a shallow wide container. Senkah uses the checked comparison with tlen: this flower shares the appearance of that flower. Selik concerns food or plant maturity.",
+        "es": "Atribuye la cualidad al objeto o evento identificado. Owih y axowih describen la dificultad de una tarea. Ostoktik describe un interior hondo; patlachtik, un recipiente ancho y poco profundo. Senkah usa la comparación comprobada con tlen: esta flor comparte la apariencia de aquella. Selik se refiere a la madurez de alimentos o plantas."
+      },
+      "reason": "Omit only obsolete explanatory references to an excluded learner example; retain the original safe grammatical explanation."
+    },
+    {
+      "ruleId": "description-current-rule-v3-vocab-description-008",
+      "before": {
+        "en": "A physical description must identify the right part or thing. Wihwitstik here describes a cat’s bristly whiskers; xitlaktik describes straight wood; xochitik describes a flower pattern on cloth. In Polatoh mihyotia xokihyak, the unchanged third-person mihyotia supplies “smells” and xokihyak specifies egg smell. Adult clothing-status words are written recognition, without depictions.",
+        "es": "Una descripción física debe identificar la parte u objeto correcto. Aquí wihwitstik describe bigotes erizados de un gato; xitlaktik, madera recta; xochitik, un estampado floral en tela. En Polatoh mihyotia xokihyak, mihyotia en tercera persona expresa «huele» y xokihyak precisa olor a huevo. Las palabras de vestimenta de adultos se reconocen por escrito, sin imágenes."
+      },
+      "after": {
+        "en": "A physical description must identify the right part or thing. Wihwitstik here describes a cat’s bristly whiskers; xitlaktik describes straight wood; xochitik describes a flower pattern on cloth. In Polatoh mihyotia xokihyak, the unchanged third-person mihyotia supplies “smells” and xokihyak specifies egg smell.",
+        "es": "Una descripción física debe identificar la parte u objeto correcto. Aquí wihwitstik describe bigotes erizados de un gato; xitlaktik, madera recta; xochitik, un estampado floral en tela. En Polatoh mihyotia xokihyak, mihyotia en tercera persona expresa «huele» y xokihyak precisa olor a huevo."
+      },
+      "reason": "Omit only obsolete explanatory references to an excluded learner example; retain the original safe grammatical explanation."
+    },
+    {
+      "ruleId": "body-current-rule-v3-vocab-body-005",
+      "before": {
+        "en": "Tlen mitskokoa asks what hurts the person addressed. The reply changes perspective to nechkokoa and the speaker’s own body part. Nimokokoa is an illness report; nikokoxkati reports weakness from illness. Nechyolkokoa in this lesson is the separate physical injury word following an accidental blow, while noyollo in an anatomy label names the organ. Keep those uses distinct.",
+        "es": "Tlen mitskokoa pregunta qué le duele a la persona a quien se habla. La respuesta cambia a nechkokoa y a la parte del cuerpo de quien responde. Nimokokoa informa de enfermedad; nikokoxkati comunica debilidad por una enfermedad. Aquí nechyolkokoa es una palabra distinta de lesión física después de un golpe accidental, mientras que noyollo en una etiqueta anatómica nombra el órgano. Distingue esos usos."
+      },
+      "after": {
+        "en": "Tlen mitskokoa asks what hurts the person addressed. The reply changes perspective to nechkokoa and the speaker’s own body part. Nimokokoa is an illness report; nikokoxkati reports weakness from illness. Noyollo in an anatomy label names the organ. Keep those uses distinct.",
+        "es": "Tlen mitskokoa pregunta qué le duele a la persona a quien se habla. La respuesta cambia a nechkokoa y a la parte del cuerpo de quien responde. Nimokokoa informa de enfermedad; nikokoxkati comunica debilidad por una enfermedad. Noyollo en una etiqueta anatómica nombra el órgano. Distingue esos usos."
+      },
+      "reason": "Omit the abandoned physical-impact lexical example; keep the original pain/illness grammar and ordinary heart organ label."
+    }
+  ],
+  "learnerDialogueContextProjections": [
+    {
+      "unitId": "v3-vocab-conversation-009",
+      "dialogueId": "v3-vocab-conversation-009-conversation-exchange-4",
+      "before": {
+        "en": "Two adults read a fictional account of B working despite illness-related weakness. They then discuss a different event in that story: one identified adult killed another yesterday.",
+        "es": "Dos personas adultas leen un relato ficticio en el que B trabaja pese a la debilidad por una enfermedad. Después hablan de otro hecho del relato: una persona adulta identificada mató a otra ayer."
+      },
+      "after": {
+        "en": "Two adults read a fictional account of B working despite illness-related weakness.",
+        "es": "Dos personas adultas leen un relato ficticio en el que B trabaja pese a la debilidad por una enfermedad."
+      },
+      "reason": "Remove the abandoned adult-killing scenario; retain only the original context for the surviving illness/work question and reply."
+    },
+    {
+      "unitId": "v3-vocab-conversation-010",
+      "dialogueId": "v3-vocab-conversation-010-conversation-exchange-0",
+      "before": {
+        "en": "Two adults read a fictional account in which an adult shot another adult yesterday. They then discuss B personally taking over work previously assigned to someone else.",
+        "es": "Dos personas adultas leen un relato ficticio en el que una persona adulta disparó a otra ayer. Después hablan de que B se encargue personalmente de un trabajo antes asignado a alguien más."
+      },
+      "after": {
+        "en": "Two adults discuss B personally taking over work previously assigned to someone else.",
+        "es": "Dos personas adultas hablan de que B se encargue personalmente de un trabajo antes asignado a alguien más."
+      },
+      "reason": "Omit the removed shooting-another-adult account and retain the existing work-transfer exchange."
+    },
+    {
+      "unitId": "v3-vocab-conversation-005",
+      "dialogueId": "v3-vocab-conversation-005-conversation-exchange-0",
+      "before": {
+        "en": "Two adults discuss a fictional story about a lie told by one adult to another. They then recall a harmful event involving adults in the same written account.",
+        "es": "Dos personas adultas hablan de un relato ficticio sobre una mentira que una persona adulta dijo a otra. Después recuerdan un hecho dañino entre personas adultas del mismo relato escrito."
+      },
+      "after": {
+        "en": "Two adults discuss a fictional story about a lie told by one adult to another. They also report that one identified adult made another adult drunk yesterday.",
+        "es": "Dos personas adultas hablan de un relato ficticio sobre una mentira que una persona adulta dijo a otra. También informan que una persona adulta identificada embriagó a otra ayer."
+      },
+      "reason": "Preserve the actual adult lie/intoxication meanings without inventing harmful intent, coercion or consent."
+    }
+  ],
+  "learnerPhraseExclusions": [
+    {
+      "phraseId": "body-current-model-word-v3rf-050f218449bc3c32-1",
+      "reason": "IHTICOCOĀ sense1 is a person-inflicted physical injury; only independently attested food-caused sense2 remains selected."
+    }
   ]
 }

@@ -1,10 +1,25 @@
 # Itzli — Eastern Huasteca Nahuatl Learning App
 
-A structured, linguistically rigorous language learning app for **Eastern Huasteca Nahuatl** (EHN, ISO 639-3: `nhe`) — a living Uto-Aztecan language spoken by approximately 200,000 people in the Huasteca region of Veracruz, Hidalgo, and San Luis Potosí, Mexico.
+A structured learning app for **Eastern Huasteca Nahuatl** (EHN, ISO 639-3:
+`nhe`), anchored in the living Nahuatl variety taught by the native-authored
+Chicontepec, Veracruz source course. Regional speech is not interchangeable
+solely because it shares a Huasteca label.
 
-This is not a Classical Nahuatl app. EHN is a distinct, modern, spoken language with its own orthography, grammar, and vocabulary — and until now, almost no digital learning infrastructure.
+**INALI's published Nahuatl alphabet governs the teaching orthography** across
+lessons, conversations, sentence building, review, listening, and offline
+practice. The teaching goal is contemporary EHN communication, with regional
+source evidence for vocabulary and grammar. Original source spellings remain
+in labeled references and audio metadata.
 
-> **Version 2.0** — Vocabulary is restricted to reviewed course material, audio pronunciations are machine-generated or linked to credited source-course recordings where available, and generated visual assets remain quarantined until human approval.
+> **Version 3.0 local review** — A daily learning hub, scheduled skill review,
+> six guided conversations, seven sentence patterns, a personal expression
+> notebook, source listening, private record-and-compare practice, and offline
+> text/audio packs. The existing 43-unit path and learner identities are preserved.
+
+The October 2026 audit and **Version 3.0** conversation system are
+documented in [the accuracy report](docs/curriculum-audit.md) and
+[the development plan](docs/version-3-plan.md). Production has not been updated;
+linguistic and audio limitations remain explicit.
 
 ---
 
@@ -24,34 +39,70 @@ Language revitalization is one of the most powerful forms of resistance. When a 
 
 ## What's Inside
 
-**43 units from A1 foundations through A2, with B1-oriented extension modules**, organized around communicative goals:
+**Version 3.0 currently includes 324 guided lessons and 1,724 distinct words and written forms, covering 1,806 meaning entries.** These October 9, 2026 learner totals exclude the removed content. Repeated placements and multiple meanings of the same written form do not increase the advertised word count.
 
-| Stage | Units | Learner-visible cards | Focus |
-|-------|------:|----------------------:|-------|
-| A1 | 16 | 209 | Greetings, identity, family, numbers, food, daily life |
-| A2 | 18 | 198 | Description, narration, home, market, community, nature, health |
-| B1-oriented | 9 | 69 | Advanced narration, conditionals, object marking, modifiers |
+The **original 43 units from A1 foundations through A2, with B1-oriented extension modules** form the course foundation, organized around communicative goals:
 
-- **463 unique reviewed words and forms after source filtering, topic selection, variant collapse, and cross-unit deduplication**, represented by **476 learner-visible card placements**, plus 63 grammar-derived focus cards
+| Stage | Units | Focus |
+|-------|------:|-------|
+| A1 | 16 | Greetings, identity, family, numbers, food, daily life |
+| A2 | 18 | Description, narration, home, market, community, nature, health |
+| B1-oriented | 9 | Advanced narration, conditionals, object marking, modifiers |
+
+- The original foundation inventory contains **460 distinct stored-spelling vocabulary cards**, represented by **473 learner-visible placements**, plus 63 grammar focus forms. These baseline totals include sounds and grammatical forms; they are not the current V3 course total or a count of distinct lexical lemmas.
 - **5–15 standalone cards per guided unit**, with oversized source lists reassigned or trimmed so required vocabulary matches the unit topic
 - **75 curated word-first cards** ensure months, animals, description, food, household tools, nature, community, visiting, and action units teach standalone vocabulary before sentence practice
-- **80 learner-visible source-course additions**, selected from **240 reviewed source-course candidates**, with original COERLL audio, INALI-style display spelling, source provenance, Spanish glosses, and reviewed visual coverage
+- **77 learner-visible source-course additions**, selected from **240 source-course candidates**, with original COERLL audio, practical display spelling, source provenance, Spanish glosses, and image references
 - **32 imported Nāhuatlahtolli source lessons** from COERLL under CC BY-SA,
   with source URLs, attribution, text sections, media links, and audio-backed
   vocabulary preserved in `src/data/nahuatlahtolli-course.json`
-- **176 reviewed dialogue lines**, including 157 AI-assisted lines for units without attested dialogue data and 19 source or curated lines
+- **176 visible dialogue lines**, including 157 AI-assisted lines and 19 source or curated lines. Thirty-eight synthetic lines received source-based text corrections; remaining authored lines need further review.
 - **Grammar sections** with fill-in-the-blank exercises drawn from `primer_constructions`
-- **Language-specific machine audio** for vocabulary and dialogue lines (see [Audio generation](#audio-generation))
-- **Progress tracking** via a local browser mirror and signed-in Neon cloud sync
-- **Vocabulary search** restricted to the reviewed Eastern Huasteca course inventory
+- **Mixed source recordings and synthetic audio**, with six vocabulary/44 dialogue playback gaps and all 54 legacy file holds preserved (see [Audio generation](#audio-generation) and the [current media audit](docs/media-integrity-audit.md))
+- **Progress tracking** via a local browser mirror and signed-in Neon cloud sync,
+  including V3 lesson completions, vocabulary practice, vocabulary bookmarks and
+  vocabulary notes. Existing course IDs and earned progress are preserved.
+- **73 additional source-attested forms** in six separate bilingual packs, with
+  source spelling, stable lemma/sense/form identities, provenance, reuse notices,
+  and original vocabulary recording links. None reorder the existing units.
+- **Six source-based conversation scenarios with 26 turns**, including repetition,
+  branching replies, written recall, speaking practice, explanatory support,
+  and account-scoped device-local resume checkpoints.
+- **Seven sentence patterns**, with bounded proper-name/place substitutions and
+  a device-local exportable expression notebook. Personal substitutions have no
+  fabricated recording or unrestricted conjugation engine.
+- **Scheduled recognition, listening, production, and self-reported oral practice**
+  with per-device counters, account-scoped storage, retryable cloud merges, and
+  completion preservation. Local review never requests a production progress write.
+- **Offline practice** with source attribution, optional original audio downloads,
+  recognition and written recall, and dated, duplicate-safe deferred practice
+  import; personal API responses and pages are never cached.
+- **Vocabulary search** restricted to the selected learner course inventory
 
 CEFR labels describe the orientation of the material, not a certification or guaranteed exit level. Completion of the app alone should be understood as an upper-A1 to emerging-A2 foundation; the final nine modules introduce B1-oriented grammar and narrative work without claiming that learners attain B1 proficiency.
+
+The V3 path adds per-lesson communication goals mapped to the Council of Europe's
+[CEFR Companion volume (2020)](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4).
+The mapping names skill families and the actual practice available. Word-only
+cohorts remain vocabulary foundations; partial contextual coverage is identified.
+Sentence tiles and guided conversations rehearse communication without claiming
+to assess unprompted speaking, listening comprehension or pronunciation.
+
+The in-app **Sources and credits** page (`/source-course`) gathers the published
+lexical, grammatical and cultural references and artwork notices. Itzli authors
+the course path, bilingual teaching notes, scene arrangements and practice tasks;
+licensed Nāhuatlahtolli material is also reused and adapted with credit and
+changes identified. Yan García's *Learn Nahuatl, Second Edition* is acknowledged
+as a reference and inspiration. Itzli develops its own explanations and learning
+activities. Source-linked verification is specific
+to the published form and sense, with unresolved claims held. See [NOTICE.md](NOTICE.md)
+for the license distinction and bibliography.
 
 ---
 
 ## Lesson Flow
 
-Each unit is a state machine that walks learners through spaced, contextualized practice:
+Each unit is a state machine that walks learners through contextualized practice:
 
 ```
 Intro → Learn single words → Quiz (EHN → EN) → Quiz (EN → EHN)
@@ -61,47 +112,47 @@ Intro → Learn single words → Quiz (EHN → EN) → Quiz (EN → EHN)
 
 Dialogue lines are capped by level and require at least 60% coverage from words already introduced in the unit. Every gloss in the UI is passed through `displayGloss()` to strip audit annotations before display.
 
+The standalone review queue uses dated attempts and separate skill schedules.
+Historical v2 accuracy is preserved without invented review dates. Speaking
+practice is self-reported; the app does not certify pronunciation or fluency.
+
 ---
 
 ## Linguistic Accuracy
 
-Vocabulary was systematically audited against:
-- **IDIEZ** (Instituto de Docencia e Investigación Etnológica de Zacatecas) — primary reference
-- **Karttunen's Analytical Dictionary of Nahuatl**
-- Attested EHN texts and field recordings
+Writing follows [INALI's published Nahuatl alphabet](https://site.inali.gob.mx/INALIDhuchlab/assets/files/cartel_alfabeto_Nawatlatolli-espanol.pdf):
+`a, ch, e, i, h, k, kw, l, m, n, o, p, s, t, tl, ts, w, x, y`.
+Online and offline practice use one shared display converter. It preserves
+double `ll` and personal names/places, while original transcriptions and
+vowel-length information remain available as source evidence. The alphabet
+poster does not establish every pronunciation rule or certify this app.
 
-28 entries were corrected for outright errors (wrong definitions, misidentified words). Another 22 were corrected for significant issues. Annotations are preserved in the database for transparency.
+The October vocabulary and grammar review uses the native-authored COERLL
+Chicontepec course and specific IDIEZ and scholarly references. Classical or other regional
+attestation alone does not establish an EHN form. Corrections cover person
+and possession markers, kinship, affectionate forms, past/directional grammar,
+conditionals, vocabulary meanings, dialogues, and source exercises.
 
-Notable corrections: `quema` ("yes", not "when?"), `yankuik` ("new", not "bad"), `acalli` ("canoe", not "stilt house"), `huica` ("to carry", not "to sing").
+Unsupported grammar drafts and unresolved production forms are held. The
+construction gate rejects unknown or changed source pairs. Source matches and
+software checks do not certify every utterance or retained recording; see
+[the audit report](docs/curriculum-audit.md) for exact scope and remaining work.
 
 ---
 
 ## Audio Generation
 
-Audio pronunciations are machine-generated with a neutral `es-US` Spanish voice
-and explicit Eastern Huasteca Nahuatl pronunciation instructions. The Google
-pipeline emits X-SAMPA phoneme tags so initial consonants are retained, vowels
-stay pure, `x` is pronounced `sh`, and `tl`, `tz`, `ch`, `kw`, and glottal `h`
-are not left to a Spanish text normalizer to guess.
+The course preserves original external-course recordings where matched and
+uses the established Spanish Google voice with Nahuatl pronunciation exceptions
+for synthetic audio. INALI governs displayed spelling; the separate spoken-input
+recipe handles `x`, `hu`/`uh`, `ll`, `tl`, `ts/tz`, and the `kenihki` exception.
+The default is `es-US-Standard-A` at rate 0.82. MMS diagnostic clips are no longer
+shown in learner practice.
 
-The full voice pipeline is documented in [`docs/voices.md`](docs/voices.md).
-
-Recommended workflow:
-
-1. Preview the exact text, pronunciation cue, X-SAMPA, and SSML before synthesis.
-2. Listen for initial consonants, short vowels, `ll`, `x`, `tl`, `tz`, and glottal `h`.
-3. Put corrected learner forms and curated dialogue lines in
-   `src/data/reviewed-audio.json`.
-4. Regenerate only that reviewed set and verify every visible card resolves to a WAV.
-
-```bash
-npm run audio:google:test
-CONFIRM_TTS_SPEND=YES node scripts/generate-google-audio.js --reviewed --execute --force
-```
-
-`scripts/generate-audio.py` remains available for MMS comparison clips.
-`scripts/generate-openai-audio.js` and `scripts/colab_xtts.py` remain comparison
-tools, not the active production voice path.
+Regeneration uses a corrected exact-text manifest, keeps original source audio,
+and writes separately versioned candidates. Existing playback files and audio
+holds remain intact. The current coverage and recording workflow are documented in
+[`docs/voices.md`](docs/voices.md) and [the version 3 plan](docs/version-3-plan.md).
 
 ---
 
@@ -187,17 +238,31 @@ Honest limits are part of the design:
 ### Prerequisites
 
 - Node.js 22+
-- The SQLite database is auto-downloaded from S3 at `npm run dev` / `npm run build` via `scripts/fetch-db.js`
+- The checked course-only SQLite database and manifest are included locally.
+  Startup/build hooks prepare or validate them offline; no database is downloaded.
+  The full research database is private and excluded from release packaging.
 
 ### Run
 
 ```bash
 npm install
-npm run dev       # development at localhost:3000 (downloads DB automatically)
-npm run build     # static build
+npm run dev       # development at localhost:3000 (offline course preparation)
+npm run dev:local # review at 127.0.0.1:3000, no login or live progress writes
+npm run build     # optimized build
 npm start         # serve built output
+npm run review:local # open development review on 127.0.0.1:3000 without live progress writes
 npm run verify    # typecheck, lint, tests, and content/course audits
+npm run verify:v3 # same core verification, with image work deferred
+npm run release:check # database identities, scope and public diagnostic-media guard
 ```
+
+Local review uses a separate browser identity and never reads or writes the
+production progress store. The October 4 verification passed 158 automated
+application tests, 10 audio-generator tests, typecheck, lint, localization,
+content and course audits, and the optimized build. English/Spanish browser
+checks covered conversation completion and refresh/resume, personal sentence
+recall, word packs, offline recognition/written recall and re-import, and mobile
+layout. Source matching and technical audio checks do not certify pronunciation.
 
 ### Audio
 
@@ -229,10 +294,12 @@ src/
 │   └── progress-schema.ts   validated cloud/local progress contract
 scripts/
 ├── generate-google-audio.js Spanish voice + Nahuatl X-SAMPA production audio
-├── generate-audio.py        MMS-NHE comparison generation
+├── generate-audio.py        Compatibility launcher for Google pronunciation audio
 ├── generate-openai-audio.js Experimental prompt-controlled OpenAI TTS
 ├── colab_xtts.py            Deprecated Kokoro Spanish-phonemizer script
-├── fetch-db.js              Auto-downloads SQLite DB from S3
+├── fetch-db.js              Compatibility entry point for offline course preparation
+├── prepare-course-release.cjs Course-only SQLite and progress-identity checks
+├── prepare-release-media.cjs Reversible private diagnostic-media archive guard
 └── fetch-images.js          Pexels image metadata fetcher
 ```
 

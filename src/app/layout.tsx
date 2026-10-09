@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import Link from "next/link";
-import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
+import { ClerkProvider, UserButton } from "@clerk/nextjs";
 import { esMX } from "@clerk/localizations";
-import DisclaimerBanner from "./DisclaimerBanner";
 import LegalModal from "./LegalModal";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
-import { ArrowUpRight, BookOpen, Landmark, LibraryBig, Route, Sparkles } from "lucide-react";
+import { ArrowUpRight, BookOpen, ChevronDown, LibraryBig, RotateCcw, Sparkles } from "lucide-react";
+import { isLocalReviewMode } from "@/lib/local-review";
+import LearningAccountProvider, { AccountShow as Show } from "@/components/LearningAccount";
 import MobileLearningNav from "./MobileLearningNav";
 import LocaleProvider from "@/i18n/LocaleProvider";
 import LocaleToggle from "@/i18n/LocaleToggle";
@@ -14,92 +16,53 @@ import { htmlLang, localizedPathname, type AppLocale } from "@/i18n/config";
 import { getRequestLocale, getRequestPathname } from "@/i18n/server";
 import { tr, trChoice } from "@/i18n/translate";
 import { WordImageOriginHints } from "@/components/WordImageResourceHints";
-
-const SITE_URL = "https://www.itzli.app";
-const DESCRIPTION =
-  "Learn Nahuatl online for free with Itzli. Build vocabulary, pronunciation, grammar, and conversation through 43 structured units teaching the living Eastern Huasteca variety spoken around Chicontepec, Veracruz.";
-const DESCRIPTION_ES =
-  "Aprende náhuatl en línea gratis con Itzli. Desarrolla vocabulario, pronunciación, gramática y conversación en 43 unidades estructuradas que enseñan la variedad viva de la Huasteca veracruzana hablada alrededor de Chicontepec.";
-
-function localizedUrl(pathname: string, locale: AppLocale): string {
-  return new URL(localizedPathname(pathname, locale), SITE_URL).toString();
-}
+import ReportIssueButton from "@/components/ReportIssueButton";
+import CourseAudioCache from "@/components/CourseAudioCache";
+import VersionAnnouncement from "@/components/VersionAnnouncement";
+import { getUnifiedCoursePath, getUnifiedVocabularyCount } from "@/lib/unified-course-path";
+import { GENERATED_AUDIO_ASSETS } from "@/lib/generated-audio";
+import { createPageMetadata, fallbackSearchCopy, isIndexablePath, serializeStructuredData, siteStructuredData } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, pathname] = await Promise.all([getRequestLocale(), getRequestPathname()]);
-  const title = locale === "es"
-    ? "Itzli — Aprende náhuatl en línea gratis"
-    : "Itzli — Learn Nahuatl Online for Free";
-  const description = locale === "es" ? DESCRIPTION_ES : DESCRIPTION;
-  const englishUrl = localizedUrl(pathname, "en");
-  const spanishUrl = localizedUrl(pathname, "es");
-  const canonicalUrl = locale === "es" ? spanishUrl : englishUrl;
-
+  const copy = fallbackSearchCopy(locale, pathname, getUnifiedCoursePath().length, getUnifiedVocabularyCount());
   return {
-    metadataBase: new URL(SITE_URL),
-    title: { default: title, template: "%s | Itzli" },
-    description,
-    keywords: [
-      "learn nahuatl",
-      "learn nahuatl online",
-      "learn aztec language",
-      "nahuatl language learning",
-      "nahuatl course",
-      "nahuatl lessons",
-      "nahuatl for beginners",
-      "eastern huasteca nahuatl",
-      "nahuatl app",
-      "nahuatl vocabulary",
-      "nahuatl grammar",
-      "indigenous mexican language",
-      "aztec language",
-      "language revitalization",
-      "nahuatl online",
-      "nahuatl heritage learner",
-      "learn aztec",
-      "nhe nahuatl",
-      "huasteca nahuatl",
-      "aprender náhuatl",
-      "aprender náhuatl en línea",
-      "aprender idioma azteca",
-      "curso de náhuatl",
-      "náhuatl de la Huasteca veracruzana",
-    ],
+    ...createPageMetadata({ locale, pathname, ...copy }),
     authors: [{ name: "Sam Villa-Smith", url: "https://amoxcalli.org" }],
     creator: "Sam Villa-Smith",
     publisher: "Itzli",
-    category: locale === "es" ? "Educación de idiomas" : "Language education",
-    openGraph: {
-      type: "website",
-      url: canonicalUrl,
-      siteName: locale === "es" ? "Itzli — Aprende náhuatl" : "Itzli — Learn Nahuatl",
-      title,
-      description,
-      locale: locale === "es" ? "es_MX" : "en_US",
-      alternateLocale: locale === "es" ? ["en_US"] : ["es_MX"],
-    },
-    twitter: { card: "summary", title, description },
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        "en-US": englishUrl,
-        "es-MX": spanishUrl,
-        "x-default": spanishUrl,
-      },
-    },
   };
+}
+
+function ResourcesMenu({ locale }: { locale: AppLocale }) {
+  const items = [
+    ["/grammar", tr(locale, "Grammar")],
+    ["/conversations", trChoice(locale, "Conversation practice", "Práctica de conversación")],
+    ["/listening", trChoice(locale, "Listening practice", "Práctica de escucha")],
+    ["/sentences", trChoice(locale, "Sentence practice", "Práctica de oraciones")],
+    ["/culture", tr(locale, "Culture")],
+    ["/source-course", trChoice(locale, "Sources and credits", "Fuentes y créditos")],
+    ...(TUTOR_FEATURE_ENABLED ? [["/tutor", tr(locale, "Tutor")]] : []),
+  ];
+  return <details className="relative">
+    <summary className="nav-link cursor-pointer list-none">{trChoice(locale, "Resources", "Recursos")} <ChevronDown size={14} /></summary>
+    <div className="absolute right-0 z-50 mt-2 w-56 rounded-xl border border-stone-200 bg-[#fffdf8] p-2 text-sm shadow-xl">
+      {items.map(([href, label]) => <Link key={href} href={href} className="block rounded-lg px-3 py-2 font-medium text-stone-600 hover:bg-emerald-50 hover:text-emerald-900">{label}</Link>)}
+    </div>
+  </details>;
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [locale, pathname] = await Promise.all([getRequestLocale(), getRequestPathname()]);
-  const pageUrl = localizedUrl(pathname, locale);
 
-  return (
-    <ClerkProvider localization={locale === "es" ? esMX : undefined}>
-      <html lang={htmlLang(locale)}>
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+  const localReview = isLocalReviewMode();
+  const content = (
+      <html lang={htmlLang(locale)} data-scroll-behavior="smooth">
         <body className="min-h-screen pb-20 md:pb-0">
           <WordImageOriginHints />
           <LocaleProvider initialLocale={locale}>
+          <LearningAccountProvider localReview={localReview} waitForProgress={!(isIndexablePath(pathname) || ["/sign-in", "/sign-up"].some(publicPath => publicPath === pathname || pathname.startsWith(`${publicPath}/`)))}>
             <div className="brand-ribbon" />
             <nav className="site-nav">
             <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between px-4 sm:px-6">
@@ -114,7 +77,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <span>Itzli</span>
                   <span className="mt-1 hidden text-[8px] font-extrabold uppercase tracking-[.13em] text-emerald-700 sm:block">{tr(locale, "Eastern Huasteca Nahuatl")}</span>
                 </span>
-                <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 sm:inline">2.0</span>
               </Link>
 
               {/* Signed-in nav */}
@@ -123,37 +85,25 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <Link href="/units" className="nav-link">
                     <BookOpen size={15} /> {tr(locale, "Learn")}
                   </Link>
-                  <Link href="/curriculum" className="nav-link">
-                    <Route size={15} /> {tr(locale, "Path")}
-                  </Link>
                   <Link href="/vocabulary" className="nav-link">
                     <LibraryBig size={15} /> {tr(locale, "Vocabulary")}
                   </Link>
-                  <Link href="/grammar" className="nav-link">
-                    {tr(locale, "Grammar")}
+                  <Link href="/review" className="nav-link">
+                    <RotateCcw size={15} /> {tr(locale, "Review")}
                   </Link>
-                  <Link href="/culture" className="nav-link">
-                    <Landmark size={15} /> {tr(locale, "Culture")}
-                  </Link>
-                  <Link href="/source-course" className="hidden rounded-lg px-2 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 xl:inline-flex sm:px-3">
-                    {tr(locale, "Source")}
-                  </Link>
-                  {TUTOR_FEATURE_ENABLED && (
-                    <Link href="/tutor" className="rounded-lg px-2 py-1.5 font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:px-3">
-                      {tr(locale, "Tutor")}
-                    </Link>
-                  )}
                   <Link href="/progress" className="nav-link">
                     {tr(locale, "Progress")}
                   </Link>
+                  <ResourcesMenu locale={locale} />
                   <LocaleToggle compact />
                   <div className="ml-1 sm:ml-2">
-                    <UserButton />
+                    {!localReview && <UserButton />}
                   </div>
                 </div>
                 <div className="flex items-center gap-2 md:hidden">
+                  <ResourcesMenu locale={locale} />
                   <LocaleToggle compact />
-                  <UserButton />
+                  {!localReview && <UserButton />}
                 </div>
               </Show>
 
@@ -161,8 +111,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <Show when="signed-out">
                 <div className="flex items-center gap-1.5 text-sm sm:gap-2">
                   <LocaleToggle compact />
-                  <Link href="/curriculum" className="hidden rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex">
-                    {tr(locale, "Curriculum")}
+                  <Link href="/units" className="hidden rounded-lg px-3 py-1.5 font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 sm:inline-flex">
+                    {tr(locale, "Explore the course")}
                   </Link>
                   <Link href="/sign-in" className="nav-link !px-1.5 sm:!px-3">
                     <span className="sm:hidden">{trChoice(locale, "Sign in", "Entrar")}</span>
@@ -177,40 +127,27 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               </Show>
             </div>
             </nav>
-          <script
+          {isIndexablePath(pathname) && <script
+            nonce={nonce}
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "WebApplication",
-                name: locale === "es" ? "Itzli — Aprende náhuatl" : "Itzli — Learn Nahuatl",
-                url: pageUrl,
-                description: locale === "es" ? DESCRIPTION_ES : DESCRIPTION,
-                applicationCategory: "EducationApplication",
-                operatingSystem: "Web",
-                offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-                author: {
-                  "@type": "Person",
-                  name: "Sam Villa-Smith",
-                  url: "https://amoxcalli.org",
-                },
-                about: {
-                  "@type": "Language",
-                  name: "Nahuatl",
-                  alternateName: ["Náhuatl", "Eastern Huasteca Nahuatl", "Náhuatl de la Huasteca veracruzana", "NHE"],
-                },
-                teaches: locale === "es" ? "Náhuatl de la Huasteca veracruzana" : "Eastern Huasteca Nahuatl",
-                educationalLevel: locale === "es" ? "Bases A1 hasta A2, con módulos de extensión orientados a B1" : "A1 foundations through A2, with B1-oriented extension modules",
-                inLanguage: htmlLang(locale),
-                isAccessibleForFree: true,
-              }),
+              __html: serializeStructuredData(siteStructuredData({ locale, pathname,
+                lessonCount: getUnifiedCoursePath().length, wordCount: getUnifiedVocabularyCount() })),
             }}
-          />
-            <DisclaimerBanner />
-            <LegalModal />
-            <main className="mx-auto min-h-[70vh] max-w-7xl px-4 py-8 sm:px-6 sm:py-12">{children}</main>
+          />}
+            {!localReview && <LegalModal />}
+            <main className="mx-auto min-h-[70vh] max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
+              <VersionAnnouncement
+                locale={locale}
+                lessonCount={getUnifiedCoursePath().length}
+                vocabularyCount={getUnifiedVocabularyCount()}
+                audioClipCount={GENERATED_AUDIO_ASSETS.length}
+              />
+              {children}
+            </main>
             <Show when="signed-in"><MobileLearningNav /></Show>
             <footer className="mt-20 border-t border-stone-200/80 bg-white/45 py-10 text-xs text-stone-500">
+            <div className="mx-auto mb-6 max-w-7xl px-4 sm:px-6"><CourseAudioCache /></div>
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-4 sm:px-6 lg:flex-row">
               <div className="flex items-center gap-1">
                 <span className="flex h-5 w-5 items-center justify-center rounded-md bg-stone-950 text-xs font-black text-white">✦</span>
@@ -219,6 +156,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <span>{tr(locale, "Eastern Huasteca Nahuatl · A1–A2 course · B1-oriented extensions")}</span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                <ReportIssueButton label={trChoice(locale, "Report an issue", "Reportar un problema")} />
+                <span className="text-stone-300 hidden sm:inline">·</span>
+                <Link href={`${localizedPathname("/source-course", locale)}#community-feedback`} className="hover:text-stone-600 transition-colors">
+                  {trChoice(locale, "Community feedback", "Aportes de la comunidad")}
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">·</span>
+                <Link href={`${localizedPathname("/source-course", locale)}#dedication`} className="hover:text-stone-600 transition-colors">
+                  {trChoice(locale, "Dedication", "Dedicatoria")}
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">·</span>
                 <Link href="/terms" className="hover:text-stone-600 transition-colors">
                   {tr(locale, "Terms")}
                 </Link>
@@ -241,28 +188,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 </a>
                 <span className="text-stone-300 hidden sm:inline">·</span>
                 <a
-                  href="https://www.linkedin.com/in/dr-sam-villa-smith-phd-mba-ccsk-cczt-a803a0109/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-stone-600 transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <span className="text-stone-300 hidden sm:inline">·</span>
-                <a
-                  href="mailto:svillasmith3@gmail.com"
+                  href="mailto:admin@itzli.app"
                   className="hover:text-stone-600 transition-colors select-all"
                 >
-                  svillasmith3@gmail.com
+                  admin@itzli.app
                 </a>
                 <span className="text-stone-300 hidden sm:inline">·</span>
                 <span>{tr(locale, "Image credits appear with each card")}</span>
               </div>
             </div>
             </footer>
+          </LearningAccountProvider>
           </LocaleProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
+  return localReview ? content : <ClerkProvider dynamic localization={locale === "es" ? esMX : undefined}>{content}</ClerkProvider>;
 }

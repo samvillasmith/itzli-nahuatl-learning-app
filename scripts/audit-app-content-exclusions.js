@@ -10,18 +10,22 @@
 const fs = require("fs");
 const path = require("path");
 const Database = require("better-sqlite3");
+const { isReviewedStaticText } = require("./lib/reviewed-static-text.js");
+const { resolveReadonlyCourseDbPath, dictionaryAuditScope } = require("./lib/readonly-course-db.cjs");
+const { loadTs } = require("./lib/course-audio-inputs.js");
+const { getAppContentExclusionReason, getLearnerSenseExclusionReason } = loadTs("src/lib/app-content-safety.ts");
 
 const ROOT = path.resolve(__dirname, "..");
-const CONFIG_PATH = path.join(ROOT, "src", "data", "app-content-exclusions.json");
-const REVIEWED_ALLOWLIST_PATH = path.join(ROOT, "src", "data", "app-content-reviewed-allowlist.json");
 const COURSE_PATH = path.join(ROOT, "src", "data", "nahuatlahtolli-course.json");
-const DB_PATH = path.join(ROOT, "fcn_master_lexicon_phase8_6_primer.sqlite");
 const MANIFEST_PATHS = [
   path.join(ROOT, "src", "data", "openai-word-images.json"),
   path.join(ROOT, "src", "data", "s3-word-images.json"),
   path.join(ROOT, "src", "data", "word-images.json"),
 ];
 const STATIC_TEXT_PATHS = [
+  path.join(ROOT, "src", "data", "v3-verified-lexicon.json"),
+  path.join(ROOT, "src", "data", "v3-original-course.json"),
+  path.join(ROOT, "src", "data", "instructional-lesson-blueprints.json"),
   path.join(ROOT, "src", "data", "grammar-lessons.ts"),
   path.join(ROOT, "src", "data", "grammar-labs.ts"),
   path.join(ROOT, "src", "data", "lesson-focus-cards.ts"),
@@ -35,64 +39,8 @@ function readJson(filePath, fallback) {
   return raw ? JSON.parse(raw) : fallback;
 }
 
-function normalize(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-const config = readJson(CONFIG_PATH, { headwords: [], patterns: [] });
-const reviewedAllowlist = readJson(REVIEWED_ALLOWLIST_PATH, { entries: [] });
-const excludedHeadwords = new Set(config.headwords.map(normalize));
-const exclusionPatterns = config.patterns.map((pattern) => new RegExp(pattern, "iu"));
-const reviewedSafeMatches = new Map(
-  (reviewedAllowlist.entries || []).map((entry) => [normalize(entry.headword), entry.safeMatches || []])
-);
-const DICTIONARY_ORIENTATION_OR_ROLE_PATTERN = new RegExp(
-  String.raw`\b(?:gay|lesbian(?:ism)?|homosexual(?:ity)?|bisexual(?:ity)?|queer|same[- ]sex|sodom(?:y|ite|itic)?|pederast(?:y)?|catamite|lesbiana|sodomita|sodomia)\b|(?:\b(?:top|bottom|active|passive|insertive|receptive)\b.{0,60}\b(?:gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\b|\b(?:gay|lesbian|homosexual|same[- ]sex|sex|sexual|intercourse)\b.{0,60}\b(?:top|bottom|active|passive|insertive|receptive)\b)`,
-  "iu"
-);
-
-function isUrlLike(value) {
-  return /(?:https?:\/\/|\/|\.[a-z0-9]{2,5}\b)/i.test(value);
-}
-
-function hasExcludedHeadwordToken(value, safeMatches = []) {
-  if (!isUrlLike(value)) return false;
-  const safe = new Set(safeMatches.map(normalize));
-  return normalize(value)
-    .split(/[^a-z0-9]+/)
-    .filter(Boolean)
-    .some((token) => excludedHeadwords.has(token) && !safe.has(token));
-}
-
 function reasonFor(...values) {
-  const present = values.filter(Boolean).map(String);
-  const safeMatches = present
-    .map((value) => reviewedSafeMatches.get(normalize(value)))
-    .find(Boolean);
-  for (const value of present) {
-    const normalized = normalize(value);
-    if (safeMatches && reviewedSafeMatches.has(normalized)) continue;
-    if (excludedHeadwords.has(normalized) || hasExcludedHeadwordToken(value, safeMatches)) {
-      return `headword:${value}`;
-    }
-  }
-
-  let haystack = present.join(" ");
-  for (const safeMatch of safeMatches || []) {
-    const escaped = String(safeMatch).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    haystack = haystack.replace(new RegExp(`\\b${escaped}\\b`, "gi"), " ");
-  }
-  const normalizedHaystack = normalize(haystack);
-  for (const pattern of exclusionPatterns) {
-    const match = haystack.match(pattern) ?? normalizedHaystack.match(pattern);
-    if (match) return `pattern:${match[0]}`;
-  }
-  return null;
+  return getAppContentExclusionReason(values);
 }
 
 function cleanSections(sections, hits, scope) {
@@ -194,25 +142,51 @@ function scanStaticText() {
   const hits = [];
   for (const filePath of STATIC_TEXT_PATHS) {
     if (!fs.existsSync(filePath)) continue;
+    if (path.basename(filePath) === 'v3-verified-lexicon.json') {
+      // Raw source history intentionally retains excluded meanings. Audit the
+      // same filtered selected senses that reach learners, without deleting history.
+      for (const entry of loadTs("src/data/v3-expansion.ts").getVerifiedExpansionEntries()) {
+        const reason = reasonFor(entry.id, entry.display, entry.sourceSpelling, entry.meaningEn, entry.meaningEs);
+        if (reason) hits.push(`${path.relative(ROOT, filePath)}:${entry.id}\t${reason}\t${entry.display}`);
+      }
+      continue;
+    }
+    if (path.basename(filePath) === 'instructional-lesson-blueprints.json') {
+      const { getInstructionalLessonPayload } = loadTs("src/lib/instructional-lessons.ts");
+      for (const spec of readJson(filePath, { lessons: [] }).lessons) {
+        const payload = getInstructionalLessonPayload(spec.unitId);
+        if (!payload) continue;
+        for (const phrase of payload.course.phrases) {
+          const reason = getLearnerSenseExclusionReason([phrase.sourceLocator.lexicalEntryId,
+            phrase.english, phrase.spanish, phrase.usageNote?.en, phrase.usageNote?.es]);
+          if (reason) hits.push(`runtime:instructional:${spec.unitId}:${phrase.id}\t${reason}`);
+        }
+        const reason = getLearnerSenseExclusionReason([JSON.stringify(payload.blueprint)]);
+        if (reason) hits.push(`runtime:instructional:${spec.unitId}:blueprint\t${reason}`);
+      }
+      continue;
+    }
     const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
     for (const [index, line] of lines.entries()) {
       const reason = reasonFor(line);
-      if (reason) hits.push(`${path.relative(ROOT, filePath)}:${index + 1}\t${reason}\t${line.trim()}`);
+      if (reason && !isReviewedStaticText(path.relative(ROOT, filePath), line)) hits.push(`${path.relative(ROOT, filePath)}:${index + 1}\t${reason}\t${line.trim()}`);
     }
   }
   return hits;
 }
 
-function auditDictionaryOrientationContent() {
-  if (!fs.existsSync(DB_PATH)) return { blocked: [], leaks: [] };
-
-  const db = new Database(DB_PATH, { readonly: true, fileMustExist: true });
-  const rows = db.prepare(
+function auditDictionaryOrientationContent(dbPath) {
+  const db = new Database(dbPath, { readonly: true, fileMustExist: true });
+  let rows;
+  let scope;
+  try {
+    scope = dictionaryAuditScope(db);
+    rows = scope.startsWith("course-only") ? [] : db.prepare(
     `SELECT entry_id, ehn_spoken_form, msn_headword, gloss_en, gloss_es, notes_public
      FROM lexicon_entries
      WHERE is_active = 1`
-  ).all();
-  db.close();
+    ).all();
+  } finally { db.close(); }
 
   const blocked = [];
   const leaks = [];
@@ -224,34 +198,61 @@ function auditDictionaryOrientationContent() {
       row.gloss_es,
       row.notes_public,
     ];
-    const text = normalize(values.filter(Boolean).join(" "));
-    if (!DICTIONARY_ORIENTATION_OR_ROLE_PATTERN.test(text)) continue;
+    if (!getLearnerSenseExclusionReason(values)) continue;
 
     const description = `${row.entry_id}\t${row.msn_headword || row.ehn_spoken_form}\t${row.gloss_en}`;
     if (reasonFor(...values)) blocked.push(description);
     else leaks.push(description);
   }
 
-  return { blocked, leaks };
+  return { blocked, leaks, scope };
+}
+
+function auditRuntimeCourse(dbPath) {
+  process.env.DATABASE_PATH = dbPath;
+  const courseDb = loadTs("src/lib/db.ts");
+  const hits = [];
+  for (const unit of courseDb.getAllUnits()) {
+    const lesson = unit.lesson_number;
+    const groups = [
+      ["vocabulary", courseDb.getUnitVocab(lesson), ["headword", "gloss_en", "part_of_speech", "semantic_domain"]],
+      ["dialogues", courseDb.getUnitDialogueContent(lesson), ["utterance_normalized", "translation_en"]],
+      ["blocks", courseDb.getUnitLessonBlocks(lesson), ["text_normalized"]],
+      ["constructions", courseDb.getUnitConstructions(lesson), ["construction_label", "pattern_text", "example_original", "translation_en"]],
+      ["assessments", courseDb.getUnitAssessments(lesson), ["prompt"]],
+    ];
+    for (const [kind, rows, fields] of groups) {
+      for (const [index, row] of rows.entries()) {
+        const reason = reasonFor(...fields.map((field) => row[field]));
+        if (reason) hits.push(`runtime:${lesson}:${kind}:${index}\t${reason}`);
+      }
+    }
+  }
+  return hits;
 }
 
 function main() {
   const write = process.argv.includes("--clean");
+  const dbPath = resolveReadonlyCourseDbPath();
   const courseHits = cleanCourse(write);
   const manifestHits = MANIFEST_PATHS.flatMap((filePath) => cleanManifest(filePath, write));
   const staticHits = scanStaticText();
-  const dictionaryAudit = auditDictionaryOrientationContent();
+  const dictionaryAudit = auditDictionaryOrientationContent(dbPath);
+  const runtimeHits = auditRuntimeCourse(dbPath);
 
   console.log(`Source-course excluded items: ${courseHits.length}`);
   console.log(`Image-manifest excluded items: ${manifestHits.length}`);
   console.log(`Static app text hits:         ${staticHits.length}`);
   console.log(`Dictionary sensitive blocked: ${dictionaryAudit.blocked.length}`);
   console.log(`Dictionary sensitive leaks:   ${dictionaryAudit.leaks.length}`);
+  console.log(`Dictionary audit scope:       ${dictionaryAudit.scope}`);
+  console.log(`Runtime course text hits:     ${runtimeHits.length}`);
 
   for (const [label, hits] of [
     ["Source course", courseHits],
     ["Image manifests", manifestHits],
     ["Static app text", staticHits],
+    ["Runtime course", runtimeHits],
   ]) {
     if (!hits.length) continue;
     console.log(`\n${label}`);
@@ -264,7 +265,7 @@ function main() {
   }
 
   if (write) console.log("\nCleaned JSON app content where possible.");
-  if (staticHits.length || dictionaryAudit.leaks.length) process.exitCode = 1;
+  if (staticHits.length || dictionaryAudit.leaks.length || runtimeHits.length) process.exitCode = 1;
 }
 
 main();

@@ -1,28 +1,17 @@
 import type { MetadataRoute } from "next";
-import { localizedPathname, type AppLocale } from "@/i18n/config";
-
-const SITE_URL = "https://www.itzli.app";
-
-const PUBLIC_PAGES = [
-  { pathname: "/", changeFrequency: "weekly", priority: 1 },
-  { pathname: "/curriculum", changeFrequency: "weekly", priority: 0.9 },
-  { pathname: "/terms", changeFrequency: "yearly", priority: 0.2 },
-  { pathname: "/privacy", changeFrequency: "yearly", priority: 0.2 },
-  { pathname: "/eula", changeFrequency: "yearly", priority: 0.2 },
-] as const;
-
-function absoluteUrl(pathname: string, locale: AppLocale): string {
-  return new URL(localizedPathname(pathname, locale), SITE_URL).toString();
-}
+import { localizedUrl, PUBLIC_INDEXABLE_PATHS } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return PUBLIC_PAGES.flatMap(({ pathname, changeFrequency, priority }) => {
-    const englishUrl = absoluteUrl(pathname, "en");
-    const spanishUrl = absoluteUrl(pathname, "es");
+  return PUBLIC_INDEXABLE_PATHS.flatMap((pathname) => {
+    const englishUrl = localizedUrl(pathname, "en");
+    const spanishUrl = localizedUrl(pathname, "es");
+    const isCoursePage = pathname === "/" || pathname === "/curriculum" || pathname === "/source-course";
+    const changeFrequency = isCoursePage ? "weekly" : "yearly";
+    const priority = pathname === "/" ? 1 : pathname === "/curriculum" ? 0.9 : pathname === "/source-course" ? 0.8 : 0.2;
     const alternates = {
       languages: {
-        "en-US": englishUrl,
-        "es-MX": spanishUrl,
+        en: englishUrl,
+        es: spanishUrl,
         "x-default": spanishUrl,
       },
     };

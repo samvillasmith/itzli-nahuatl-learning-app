@@ -6,17 +6,25 @@ import {
   type SourceSupportPage,
 } from "@/lib/nahuatlahtolli";
 import { displayNahuatl } from "@/lib/orthography";
-import { requireAuth } from "@/lib/require-auth";
 import { getRequestLocale } from "@/i18n/server";
 import type { AppLocale } from "@/i18n/config";
-import { tr, translateDeep } from "@/i18n/translate";
+import { tr, trChoice, translateDeep } from "@/i18n/translate";
+import CourseSourceCredits from "@/components/CourseSourceCredits";
+import { COERLL_SOURCE_LICENSE_NOTICE, ITZLI_V3_CONTRIBUTION_LICENSE } from "@/lib/source-license-notices";
+import { CommunityFeedbackInvitation, CommunitySupport, CourseDedicationNote } from "@/components/CoursePurpose";
+import CourseSizeSummary from "@/components/CourseSizeSummary";
+import { createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  return {
-    title: tr(locale, "Nawatlahtolli Source Course"),
-    description: tr(locale, "Imported CC BY-SA Nawatlahtolli source lessons, support pages, vocabulary, and provenance metadata."),
-  };
+  return createPageMetadata({
+    locale,
+    pathname: "/source-course",
+    title: trChoice(locale, "Nahuatl Course Sources & Credits", "Fuentes y créditos del curso de náhuatl"),
+    description: trChoice(locale,
+      "Explore the sources behind Itzli's free Nahuatl course: regional vocabulary references, grammar evidence, original audio links, author credits, and licenses.",
+      "Consulta las fuentes del curso gratis de náhuatl de Itzli: referencias regionales de vocabulario, gramática, enlaces al audio original, autores y licencias."),
+  });
 }
 
 function SourceNotice({ source, locale }: { source: typeof NAHUATLAHTOLLI_COURSE.source; locale: AppLocale }) {
@@ -28,15 +36,17 @@ function SourceNotice({ source, locale }: { source: typeof NAHUATLAHTOLLI_COURSE
         <a className="font-semibold underline" href={source.originalUrl} target="_blank" rel="noopener noreferrer">
           {displayNahuatl(source.name)}
         </a>
-        , {tr(locale, "published by")} {source.publisher}, {tr(locale, "by")} {source.authors.join(", ")}. {tr(locale, "Imported lesson content is available under")}{" "}
-        <a className="font-semibold underline" href={source.license.url} target="_blank" rel="noopener noreferrer">
-          {source.license.shortName}
+        , {tr(locale, "published by")} {source.publisher}, {tr(locale, "by")} {source.authors.join(", ")}.
+        {" "}{trChoice(locale, "The publisher’s OER listing labels the source CC BY-SA without specifying a version. Itzli’s original V3 contributions and adaptations use", "El catálogo de recursos abiertos del editor indica CC BY-SA sin especificar versión. Las aportaciones originales y adaptaciones de Itzli para V3 usan")}{" "}
+        <a className="font-semibold underline" href={ITZLI_V3_CONTRIBUTION_LICENSE.url} target="_blank" rel="noopener noreferrer">
+          {ITZLI_V3_CONTRIBUTION_LICENSE.name}
         </a>
-        .
+        .{" "}<a className="font-semibold underline" href={COERLL_SOURCE_LICENSE_NOTICE.listingUrl} target="_blank" rel="noopener noreferrer">{trChoice(locale, "Publisher’s source-license listing", "Catálogo de licencias de la fuente del editor")}</a>.
       </p>
       <p className="mt-2">
-        {tr(locale, "Itzli keeps media as source links rather than rehosting course audio, images, or institutional marks.")}
+        {trChoice(locale, "Nāhuatlahtolli source media is retained as links to the original recordings and images. Its institutional logos are not imported as Itzli assets.", "Los medios de Nāhuatlahtolli se conservan como enlaces a las grabaciones e imágenes originales. Sus logotipos institucionales no se importan como recursos de Itzli.")}
       </p>
+      <p className="mt-2">{trChoice(locale, "Itzli adapts vocabulary and practice to the INALI alphabet poster identified above. Original source transcriptions are labeled as references and retain their spellings.", "Itzli adapta el vocabulario y la práctica al cartel del alfabeto de INALI identificado arriba. Las transcripciones originales de la fuente se identifican como referencias y conservan su escritura.")}</p>
     </section>
   );
 }
@@ -67,7 +77,6 @@ function SupportPagePreview({ page, locale }: { page: SourceSupportPage; locale:
 }
 
 export default async function SourceCoursePage() {
-  await requireAuth();
   const locale = await getRequestLocale();
   const stats = getNahuatlahtolliStats();
   const course = translateDeep(locale, NAHUATLAHTOLLI_COURSE);
@@ -75,12 +84,16 @@ export default async function SourceCoursePage() {
 
   return (
     <div className="space-y-10">
+      <h1 className="text-3xl font-black text-stone-950">{trChoice(locale, "Sources and credits", "Fuentes y créditos")}</h1>
+      <CourseSourceCredits locale={locale} />
+      <CourseSizeSummary locale={locale} />
+      <CommunitySupport locale={locale} />
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-2 text-xs font-bold uppercase text-emerald-700">
             {tr(locale, "CC BY-SA Source Course")}
           </p>
-          <h1 className="text-3xl font-black text-stone-950">{displayNahuatl(source.name)}</h1>
+          <h2 className="text-3xl font-black text-stone-950">{displayNahuatl(source.name)}</h2>
           <p className="mt-2 max-w-3xl text-stone-600">
             {source.subtitle}. {tr(locale, "This browser keeps the imported source lessons visible alongside Itzli's curated practice path.")}
           </p>
@@ -144,12 +157,15 @@ export default async function SourceCoursePage() {
 
       <section>
         <h2 className="mb-4 text-xl font-black text-stone-950">{tr(locale, "Course Context")}</h2>
+        <p className="mb-3 text-sm text-stone-500">{locale === "es" ? "Referencias originales de la fuente: conservan su escritura original." : "Original source references: these retain the source's own spelling."}</p>
         <div className="grid gap-3 lg:grid-cols-2">
           {course.supportPages.map((page) => (
             <SupportPagePreview key={page.kind} page={page} locale={locale} />
           ))}
         </div>
       </section>
+      <CommunityFeedbackInvitation locale={locale} />
+      <CourseDedicationNote locale={locale} />
     </div>
   );
 }

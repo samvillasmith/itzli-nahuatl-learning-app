@@ -1,0 +1,3652 @@
+[
+  {
+    "id": "word-v3-0001",
+    "cardId": 960001,
+    "lexemeId": "lex-v3-0001",
+    "senseId": "sense-v3-0001-01",
+    "formId": "form-v3-0001-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 13,
+    "sourceSpelling": "tepētl",
+    "english": "hill",
+    "spanish": "cerro",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tepetl",
+    "headword": "tepetl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-13",
+      "lessonNumber": 1,
+      "vocabularyIndex": 13,
+      "excerpt": "tepētl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tepetl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0002",
+    "cardId": 960002,
+    "lexemeId": "lex-v3-0002",
+    "senseId": "sense-v3-0002-01",
+    "formId": "form-v3-0002-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 25,
+    "sourceSpelling": "pāquiliztli",
+    "english": "joy; happiness",
+    "spanish": "alegría; felicidad",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "pakilistli",
+    "headword": "pakilistli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-25",
+      "lessonNumber": 1,
+      "vocabularyIndex": 25,
+      "excerpt": "pāquiliztli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/paquiliztli-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0003",
+    "cardId": 960003,
+    "lexemeId": "lex-v3-0003",
+    "senseId": "sense-v3-0003-01",
+    "formId": "form-v3-0003-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 28,
+    "sourceSpelling": "huehuentzin",
+    "english": "elder; older adult",
+    "spanish": "persona mayor",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "wewentsin",
+    "headword": "wewentsin",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-28",
+      "lessonNumber": 1,
+      "vocabularyIndex": 28,
+      "excerpt": "huehuentzin",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/huehuentzin.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0004",
+    "cardId": 960004,
+    "lexemeId": "lex-v3-0004",
+    "senseId": "sense-v3-0004-01",
+    "formId": "form-v3-0004-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 30,
+    "sourceSpelling": "cihuāpil",
+    "english": "girl",
+    "spanish": "niña",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "siwapil",
+    "headword": "siwapil",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-30",
+      "lessonNumber": 1,
+      "vocabularyIndex": 30,
+      "excerpt": "cihuāpil",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cihuapil-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0005",
+    "cardId": 960005,
+    "lexemeId": "lex-v3-0005",
+    "senseId": "sense-v3-0005-01",
+    "formId": "form-v3-0005-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 32,
+    "sourceSpelling": "neuctzin",
+    "english": "bee",
+    "spanish": "abeja",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "nekwtsin",
+    "headword": "nekwtsin",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-32",
+      "lessonNumber": 1,
+      "vocabularyIndex": 32,
+      "excerpt": "neuctzin",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/neuctzin-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0006",
+    "cardId": 960006,
+    "lexemeId": "lex-v3-0006",
+    "senseId": "sense-v3-0006-01",
+    "formId": "form-v3-0006-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 45,
+    "sourceSpelling": "zacatl",
+    "english": "grass",
+    "spanish": "pasto",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "sakatl",
+    "headword": "sakatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-45",
+      "lessonNumber": 1,
+      "vocabularyIndex": 45,
+      "excerpt": "zacatl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zacatl-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0007",
+    "cardId": 960007,
+    "lexemeId": "lex-v3-0007",
+    "senseId": "sense-v3-0007-01",
+    "formId": "form-v3-0007-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 46,
+    "sourceSpelling": "zoquitl",
+    "english": "mud; dirt",
+    "spanish": "lodo; tierra",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "sokitl",
+    "headword": "sokitl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-46",
+      "lessonNumber": 1,
+      "vocabularyIndex": 46,
+      "excerpt": "zoquitl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zoquitl-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0008",
+    "cardId": 960008,
+    "lexemeId": "lex-v3-0008",
+    "senseId": "sense-v3-0008-01",
+    "formId": "form-v3-0008-01",
+    "packId": "world-people",
+    "lessonNumber": 1,
+    "vocabularyIndex": 55,
+    "sourceSpelling": "ehēcatl",
+    "english": "wind",
+    "spanish": "viento",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "ehekatl",
+    "headword": "ehekatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-1-55",
+      "lessonNumber": 1,
+      "vocabularyIndex": 55,
+      "excerpt": "ehēcatl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ehecatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0009",
+    "cardId": 960009,
+    "lexemeId": "lex-v3-0009",
+    "senseId": "sense-v3-0009-01",
+    "formId": "form-v3-0009-01",
+    "packId": "learning-time",
+    "lessonNumber": 2,
+    "vocabularyIndex": 6,
+    "sourceSpelling": "huapaltlahcuilolli",
+    "english": "whiteboard; blackboard",
+    "spanish": "pizarrón",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "wapaltlahkwilolli",
+    "headword": "wapaltlahkwilolli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-2-6",
+      "lessonNumber": 2,
+      "vocabularyIndex": 6,
+      "excerpt": "huapaltlahcuilolli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/huapaltlahcuilolli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0010",
+    "cardId": 960010,
+    "lexemeId": "lex-v3-0010",
+    "senseId": "sense-v3-0010-01",
+    "formId": "form-v3-0010-01",
+    "packId": "learning-time",
+    "lessonNumber": 2,
+    "vocabularyIndex": 29,
+    "sourceSpelling": "¿Quēmman?",
+    "english": "when?",
+    "spanish": "¿cuándo?",
+    "partOfSpeech": "question word",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "Kemman",
+    "headword": "Kemman",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-2-29",
+      "lessonNumber": 2,
+      "vocabularyIndex": 29,
+      "excerpt": "¿Quēmman?",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Quemman.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0011",
+    "cardId": 960011,
+    "lexemeId": "lex-v3-0011",
+    "senseId": "sense-v3-0011-01",
+    "formId": "form-v3-0011-01",
+    "packId": "learning-time",
+    "lessonNumber": 2,
+    "vocabularyIndex": 32,
+    "sourceSpelling": "¿Quēnque?",
+    "english": "why?",
+    "spanish": "¿por qué?",
+    "partOfSpeech": "question word",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "Kenke",
+    "headword": "Kenke",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-2-32",
+      "lessonNumber": 2,
+      "vocabularyIndex": 32,
+      "excerpt": "¿Quēnque?",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Quenque.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0012",
+    "cardId": 960012,
+    "lexemeId": "lex-v3-0012",
+    "senseId": "sense-v3-0012-01",
+    "formId": "form-v3-0012-01",
+    "packId": "learning-time",
+    "lessonNumber": 2,
+    "vocabularyIndex": 35,
+    "sourceSpelling": "¿Quēniuhcapan?",
+    "english": "how much?",
+    "spanish": "¿cuánto?",
+    "partOfSpeech": "question word",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "Keniwkapan",
+    "headword": "Keniwkapan",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-2-35",
+      "lessonNumber": 2,
+      "vocabularyIndex": 35,
+      "excerpt": "¿Quēniuhcapan?",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Queniuhcapan.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0013",
+    "cardId": 960013,
+    "lexemeId": "lex-v3-0013",
+    "senseId": "sense-v3-0013-01",
+    "formId": "form-v3-0013-01",
+    "packId": "learning-time",
+    "lessonNumber": 2,
+    "vocabularyIndex": 36,
+    "sourceSpelling": "¿Catlinya?",
+    "english": "which?",
+    "spanish": "¿cuál?",
+    "partOfSpeech": "question word",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "Katlinya",
+    "headword": "Katlinya",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-2-36",
+      "lessonNumber": 2,
+      "vocabularyIndex": 36,
+      "excerpt": "¿Catlinya?",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Catlinya.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0014",
+    "cardId": 960014,
+    "lexemeId": "lex-v3-0014",
+    "senseId": "sense-v3-0014-01",
+    "formId": "form-v3-0014-01",
+    "packId": "food-drink",
+    "lessonNumber": 3,
+    "vocabularyIndex": 11,
+    "sourceSpelling": "(ø)chocolātl",
+    "english": "chocolate",
+    "spanish": "chocolate",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chokolatl",
+    "headword": "chokolatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-3-11",
+      "lessonNumber": 3,
+      "vocabularyIndex": 11,
+      "excerpt": "(ø)chocolātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Chocolatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0015",
+    "cardId": 960015,
+    "lexemeId": "lex-v3-0015",
+    "senseId": "sense-v3-0015-01",
+    "formId": "form-v3-0015-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 3,
+    "vocabularyIndex": 13,
+    "sourceSpelling": "(ø)tepōztli",
+    "english": "machine; metal",
+    "spanish": "máquina; metal",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tepostli",
+    "headword": "tepostli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-3-13",
+      "lessonNumber": 3,
+      "vocabularyIndex": 13,
+      "excerpt": "(ø)tepōztli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Tepoztli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0016",
+    "cardId": 960016,
+    "lexemeId": "lex-v3-0016",
+    "senseId": "sense-v3-0016-01",
+    "formId": "form-v3-0016-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 3,
+    "vocabularyIndex": 14,
+    "sourceSpelling": "(ø)vazoh(ø)",
+    "english": "drinking glass",
+    "spanish": "vaso",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "vasoh",
+    "headword": "vasoh",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-3-14",
+      "lessonNumber": 3,
+      "vocabularyIndex": 14,
+      "excerpt": "(ø)vazoh(ø)",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Vazoh.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0017",
+    "cardId": 960017,
+    "lexemeId": "lex-v3-0017",
+    "senseId": "sense-v3-0017-01",
+    "formId": "form-v3-0017-01",
+    "packId": "world-people",
+    "lessonNumber": 5,
+    "vocabularyIndex": 11,
+    "sourceSpelling": "tēxinquetl",
+    "english": "hairstylist; barber",
+    "spanish": "peluquero; barbero",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "texinketl",
+    "headword": "texinketl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-5-11",
+      "lessonNumber": 5,
+      "vocabularyIndex": 11,
+      "excerpt": "tēxinquetl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-5-lesson-5-cehcen-inintequiuh-the-professions/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/texinquetl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0018",
+    "cardId": 960018,
+    "lexemeId": "lex-v3-0018",
+    "senseId": "sense-v3-0018-01",
+    "formId": "form-v3-0018-01",
+    "packId": "daily-actions",
+    "lessonNumber": 6,
+    "vocabularyIndex": 36,
+    "sourceSpelling": "cececui",
+    "english": "to be cold",
+    "spanish": "estar frío",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "sesekwi",
+    "headword": "sesekwi",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-6-36",
+      "lessonNumber": 6,
+      "vocabularyIndex": 36,
+      "excerpt": "cececui",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-6-lesson-6-tlachihualiztli-verbs/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cececui.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0019",
+    "cardId": 960019,
+    "lexemeId": "lex-v3-0019",
+    "senseId": "sense-v3-0019-01",
+    "formId": "form-v3-0019-01",
+    "packId": "learning-time",
+    "lessonNumber": 7,
+    "vocabularyIndex": 1,
+    "sourceSpelling": "cāhuitl",
+    "english": "hour",
+    "spanish": "hora",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kawitl",
+    "headword": "kawitl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-1",
+      "lessonNumber": 7,
+      "vocabularyIndex": 1,
+      "excerpt": "cāhuitl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cahuitl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0020",
+    "cardId": 960020,
+    "lexemeId": "lex-v3-0020",
+    "senseId": "sense-v3-0020-01",
+    "formId": "form-v3-0020-01",
+    "packId": "learning-time",
+    "lessonNumber": 7,
+    "vocabularyIndex": 3,
+    "sourceSpelling": "chāntequitl",
+    "english": "homework",
+    "spanish": "tarea escolar",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chantekitl",
+    "headword": "chantekitl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-3",
+      "lessonNumber": 7,
+      "vocabularyIndex": 3,
+      "excerpt": "chāntequitl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chantequitl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0021",
+    "cardId": 960021,
+    "lexemeId": "lex-v3-0021",
+    "senseId": "sense-v3-0021-01",
+    "formId": "form-v3-0021-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 5,
+    "sourceSpelling": "cochmēhua",
+    "english": "to sleepwalk",
+    "spanish": "caminar dormido",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kochmewa",
+    "headword": "kochmewa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-5",
+      "lessonNumber": 7,
+      "vocabularyIndex": 5,
+      "excerpt": "cochmēhua",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cochmehua.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0022",
+    "cardId": 960022,
+    "lexemeId": "lex-v3-0022",
+    "senseId": "sense-v3-0022-01",
+    "formId": "form-v3-0022-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 9,
+    "sourceSpelling": "māna",
+    "english": "to put a liquid over the fire",
+    "spanish": "poner un líquido al fuego",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mana",
+    "headword": "mana",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-9",
+      "lessonNumber": 7,
+      "vocabularyIndex": 9,
+      "excerpt": "māna",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/mana.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0023",
+    "cardId": 960023,
+    "lexemeId": "lex-v3-0023",
+    "senseId": "sense-v3-0023-01",
+    "formId": "form-v3-0023-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 10,
+    "sourceSpelling": "mēhua",
+    "english": "to get up",
+    "spanish": "levantarse",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mewa",
+    "headword": "mewa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-10",
+      "lessonNumber": 7,
+      "vocabularyIndex": 10,
+      "excerpt": "mēhua",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/mehua.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0024",
+    "cardId": 960024,
+    "lexemeId": "lex-v3-0024",
+    "senseId": "sense-v3-0024-01",
+    "formId": "form-v3-0024-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 11,
+    "sourceSpelling": "mīxxamia",
+    "english": "to wash your face",
+    "spanish": "lavarse la cara",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mixxamia",
+    "headword": "mixxamia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-11",
+      "lessonNumber": 7,
+      "vocabularyIndex": 11,
+      "excerpt": "mīxxamia",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/mixxamia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0025",
+    "cardId": 960025,
+    "lexemeId": "lex-v3-0025",
+    "senseId": "sense-v3-0025-01",
+    "formId": "form-v3-0025-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 12,
+    "sourceSpelling": "mocahcayahua",
+    "english": "to make a mistake",
+    "spanish": "equivocarse",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mokahkayawa",
+    "headword": "mokahkayawa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-12",
+      "lessonNumber": 7,
+      "vocabularyIndex": 12,
+      "excerpt": "mocahcayahua",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/mocahcayahua.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0026",
+    "cardId": 960026,
+    "lexemeId": "lex-v3-0026",
+    "senseId": "sense-v3-0026-01",
+    "formId": "form-v3-0026-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 15,
+    "sourceSpelling": "nehnehuia",
+    "english": "to think",
+    "spanish": "pensar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "nehnewia",
+    "headword": "nehnewia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-15",
+      "lessonNumber": 7,
+      "vocabularyIndex": 15,
+      "excerpt": "nehnehuia",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nehnehuia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0027",
+    "cardId": 960027,
+    "lexemeId": "lex-v3-0027",
+    "senseId": "sense-v3-0027-01",
+    "formId": "form-v3-0027-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 19,
+    "sourceSpelling": "tehtequi",
+    "english": "to chop; to cut",
+    "spanish": "cortar; picar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tehteki",
+    "headword": "tehteki",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-19",
+      "lessonNumber": 7,
+      "vocabularyIndex": 19,
+      "excerpt": "tehtequi",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tehtequi.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0028",
+    "cardId": 960028,
+    "lexemeId": "lex-v3-0028",
+    "senseId": "sense-v3-0028-01",
+    "formId": "form-v3-0028-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 24,
+    "sourceSpelling": "tlacualchīhua",
+    "english": "to cook",
+    "spanish": "cocinar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlakwalchiwa",
+    "headword": "tlakwalchiwa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-24",
+      "lessonNumber": 7,
+      "vocabularyIndex": 24,
+      "excerpt": "tlacualchīhua",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlacualchihua-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0029",
+    "cardId": 960029,
+    "lexemeId": "lex-v3-0029",
+    "senseId": "sense-v3-0029-01",
+    "formId": "form-v3-0029-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 30,
+    "sourceSpelling": "tlamāhuizoa",
+    "english": "to watch television or an event",
+    "spanish": "ver televisión o un evento",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlamawisoa",
+    "headword": "tlamawisoa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-30",
+      "lessonNumber": 7,
+      "vocabularyIndex": 30,
+      "excerpt": "tlamāhuizoa",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlamahuizoa.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0030",
+    "cardId": 960030,
+    "lexemeId": "lex-v3-0030",
+    "senseId": "sense-v3-0030-01",
+    "formId": "form-v3-0030-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 31,
+    "sourceSpelling": "tlami",
+    "english": "to end; to finish",
+    "spanish": "terminar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlami",
+    "headword": "tlami",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-31",
+      "lessonNumber": 7,
+      "vocabularyIndex": 31,
+      "excerpt": "tlami",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlami-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0031",
+    "cardId": 960031,
+    "lexemeId": "lex-v3-0031",
+    "senseId": "sense-v3-0031-01",
+    "formId": "form-v3-0031-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 32,
+    "sourceSpelling": "tlancochpahpāca",
+    "english": "to brush your teeth",
+    "spanish": "cepillarse los dientes",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlankochpahpaka",
+    "headword": "tlankochpahpaka",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-32",
+      "lessonNumber": 7,
+      "vocabularyIndex": 32,
+      "excerpt": "tlancochpahpāca",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlancochpahpaca.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0032",
+    "cardId": 960032,
+    "lexemeId": "lex-v3-0032",
+    "senseId": "sense-v3-0032-01",
+    "formId": "form-v3-0032-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 34,
+    "sourceSpelling": "tlatehtēca",
+    "english": "to prepare and shape tortillas",
+    "spanish": "preparar y formar tortillas",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlatehteka",
+    "headword": "tlatehteka",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-34",
+      "lessonNumber": 7,
+      "vocabularyIndex": 34,
+      "excerpt": "tlatehtēca",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlatehteca.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Source spelling and recording retained; the action label is clarified by the separately cited modern Chicontepec dictionary. Spanish is an Itzli translation.",
+        "es": "Se conservan la escritura de la fuente y la grabación; la descripción de la acción se precisa con el diccionario moderno de Chicontepec citado por separado. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "The documented action includes flattening the dough and placing the tortilla on the griddle. This word does not establish a general verb for kneading other materials.",
+        "es": "La acción documentada incluye aplanar la masa y colocar la tortilla en el comal. Esta palabra no establece un verbo general para amasar otros materiales."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0033",
+    "cardId": 960033,
+    "lexemeId": "lex-v3-0033",
+    "senseId": "sense-v3-0033-01",
+    "formId": "form-v3-0033-01",
+    "packId": "daily-actions",
+    "lessonNumber": 7,
+    "vocabularyIndex": 37,
+    "sourceSpelling": "tzoyōnia",
+    "english": "to stew",
+    "spanish": "guisar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tsoyonia",
+    "headword": "tsoyonia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-37",
+      "lessonNumber": 7,
+      "vocabularyIndex": 37,
+      "excerpt": "tzoyōnia",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tzoyonia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0034",
+    "cardId": 960034,
+    "lexemeId": "lex-v3-0034",
+    "senseId": "sense-v3-0034-01",
+    "formId": "form-v3-0034-01",
+    "packId": "learning-time",
+    "lessonNumber": 7,
+    "vocabularyIndex": 38,
+    "sourceSpelling": "yōhuatzinco",
+    "english": "in the morning",
+    "spanish": "por la mañana",
+    "partOfSpeech": "adverb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "yowatsinko",
+    "headword": "yowatsinko",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-7-38",
+      "lessonNumber": 7,
+      "vocabularyIndex": 38,
+      "excerpt": "yōhuatzinco",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-7-lesson-7-queniuhqui-moxeloa-tonatiuh-how-to-break-up-the-day/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/yohuatzinco.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0035",
+    "cardId": 960035,
+    "lexemeId": "lex-v3-0035",
+    "senseId": "sense-v3-0035-01",
+    "formId": "form-v3-0035-01",
+    "packId": "world-people",
+    "lessonNumber": 8,
+    "vocabularyIndex": 36,
+    "sourceSpelling": "pitzotl",
+    "english": "pig",
+    "spanish": "cerdo",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "pitsotl",
+    "headword": "pitsotl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-8-36",
+      "lessonNumber": 8,
+      "vocabularyIndex": 36,
+      "excerpt": "pitzotl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-8-lesson-8-noyollo-possessive-markers/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/pitzotl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0036",
+    "cardId": 960036,
+    "lexemeId": "lex-v3-0036",
+    "senseId": "sense-v3-0036-01",
+    "formId": "form-v3-0036-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 8,
+    "vocabularyIndex": 39,
+    "sourceSpelling": "tlahco",
+    "english": "middle; half (measurement)",
+    "spanish": "medio; mitad (medida)",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlahko",
+    "headword": "tlahko",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-8-39",
+      "lessonNumber": 8,
+      "vocabularyIndex": 39,
+      "excerpt": "tlahco",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-8-lesson-8-noyollo-possessive-markers/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlahco.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Source spelling and recording retained; the action label is clarified by the separately cited modern Chicontepec dictionary. Spanish is an Itzli translation.",
+        "es": "Se conservan la escritura de la fuente y la grabación; la descripción de la acción se precisa con el diccionario moderno de Chicontepec citado por separado. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Learn the middle-of-a-place use separately from half of a measured amount. The documented half-meter expression does not mean an exact or correct measurement.",
+        "es": "Aprende por separado el uso de en medio de un lugar y el de la mitad de una cantidad medida. La expresión documentada de medio metro no significa una medida exacta o correcta."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0037",
+    "cardId": 960037,
+    "lexemeId": "lex-v3-0037",
+    "senseId": "sense-v3-0037-01",
+    "formId": "form-v3-0037-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 8,
+    "vocabularyIndex": 40,
+    "sourceSpelling": "tlatlahco",
+    "english": "in the middle",
+    "spanish": "en medio",
+    "partOfSpeech": "adverb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlatlahko",
+    "headword": "tlatlahko",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-8-40",
+      "lessonNumber": 8,
+      "vocabularyIndex": 40,
+      "excerpt": "tlatlahco",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-8-lesson-8-noyollo-possessive-markers/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlatlahco.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0038",
+    "cardId": 960038,
+    "lexemeId": "lex-v3-0038",
+    "senseId": "sense-v3-0038-01",
+    "formId": "form-v3-0038-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 10,
+    "vocabularyIndex": 22,
+    "sourceSpelling": "yahualtic",
+    "english": "round",
+    "spanish": "redondo",
+    "partOfSpeech": "adjective",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "yawaltik",
+    "headword": "yawaltik",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-10-22",
+      "lessonNumber": 10,
+      "vocabularyIndex": 22,
+      "excerpt": "yahualtic",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-10-lesson-10-notlachiyaliz-my-appearance/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/yahualtic.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0039",
+    "cardId": 960039,
+    "lexemeId": "lex-v3-0039",
+    "senseId": "sense-v3-0039-01",
+    "formId": "form-v3-0039-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 10,
+    "vocabularyIndex": 23,
+    "sourceSpelling": "cuahuehueyac",
+    "english": "oval-shaped",
+    "spanish": "ovalado",
+    "partOfSpeech": "adjective",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kwaweweyak",
+    "headword": "kwaweweyak",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-10-23",
+      "lessonNumber": 10,
+      "vocabularyIndex": 23,
+      "excerpt": "cuahuehueyac",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-10-lesson-10-notlachiyaliz-my-appearance/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuahuehueyac.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0040",
+    "cardId": 960040,
+    "lexemeId": "lex-v3-0040",
+    "senseId": "sense-v3-0040-01",
+    "formId": "form-v3-0040-01",
+    "packId": "daily-actions",
+    "lessonNumber": 14,
+    "vocabularyIndex": 8,
+    "sourceSpelling": "/patla/",
+    "english": "to change",
+    "spanish": "cambiar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "patla",
+    "headword": "patla",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-14-8",
+      "lessonNumber": 14,
+      "vocabularyIndex": 8,
+      "excerpt": "/patla/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-14-lesson-14-tlachihualiztli-achiyoc-past-tense-verbs/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Patla.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0041",
+    "cardId": 960041,
+    "lexemeId": "lex-v3-0041",
+    "senseId": "sense-v3-0041-01",
+    "formId": "form-v3-0041-01",
+    "packId": "daily-actions",
+    "lessonNumber": 15,
+    "vocabularyIndex": 4,
+    "sourceSpelling": "/ahcocui/",
+    "english": "to preserve; to put away",
+    "spanish": "conservar; guardar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "ahkokwi",
+    "headword": "ahkokwi",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-15-4",
+      "lessonNumber": 15,
+      "vocabularyIndex": 4,
+      "excerpt": "/ahcocui/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-15-lesson-15-tlachihualiztli-tlen-panoc-part-2-past-tense-verbs-part-2/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Ahcocui.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0042",
+    "cardId": 960042,
+    "lexemeId": "lex-v3-0042",
+    "senseId": "sense-v3-0042-01",
+    "formId": "form-v3-0042-01",
+    "packId": "daily-actions",
+    "lessonNumber": 16,
+    "vocabularyIndex": 1,
+    "sourceSpelling": "/illia/",
+    "english": "to tell someone",
+    "spanish": "decirle a alguien",
+    "partOfSpeech": "verb",
+    "noteEn": "The source lists illia as “to say”; its recipient marking is shown in Lessons 16 and 28. This card does not generate object prefixes.",
+    "noteEs": "La fuente presenta illia como «decir»; las lecciones 16 y 28 muestran la persona destinataria. Esta tarjeta no genera prefijos de objeto.",
+    "practicalSpelling": "illia",
+    "headword": "illia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-16-1",
+      "lessonNumber": 16,
+      "vocabularyIndex": 1,
+      "excerpt": "/illia/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-16-lesson-16-tlachihualiztli-tlen-panoc-part-3-past-tense-verts-part-3/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Illia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "The source lists illia as “to say”; its recipient marking is shown in Lessons 16 and 28. This card does not generate object prefixes.",
+        "es": "La fuente presenta illia como «decir»; las lecciones 16 y 28 muestran la persona destinataria. Esta tarjeta no genera prefijos de objeto."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0043",
+    "cardId": 960043,
+    "lexemeId": "lex-v3-0043",
+    "senseId": "sense-v3-0043-01",
+    "formId": "form-v3-0043-01",
+    "packId": "daily-actions",
+    "lessonNumber": 16,
+    "vocabularyIndex": 5,
+    "sourceSpelling": "/choloa/",
+    "english": "to escape",
+    "spanish": "escapar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "choloa",
+    "headword": "choloa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-16-5",
+      "lessonNumber": 16,
+      "vocabularyIndex": 5,
+      "excerpt": "/choloa/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-16-lesson-16-tlachihualiztli-tlen-panoc-part-3-past-tense-verts-part-3/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Choloa.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0044",
+    "cardId": 960044,
+    "lexemeId": "lex-v3-0044",
+    "senseId": "sense-v3-0044-01",
+    "formId": "form-v3-0044-01",
+    "packId": "daily-actions",
+    "lessonNumber": 16,
+    "vocabularyIndex": 7,
+    "sourceSpelling": "/ihtoa/",
+    "english": "to say it",
+    "spanish": "decirlo",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "ihtoa",
+    "headword": "ihtoa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-16-7",
+      "lessonNumber": 16,
+      "vocabularyIndex": 7,
+      "excerpt": "/ihtoa/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-16-lesson-16-tlachihualiztli-tlen-panoc-part-3-past-tense-verts-part-3/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Ihtoa.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0045",
+    "cardId": 960045,
+    "lexemeId": "lex-v3-0045",
+    "senseId": "sense-v3-0045-01",
+    "formId": "form-v3-0045-01",
+    "packId": "daily-actions",
+    "lessonNumber": 16,
+    "vocabularyIndex": 11,
+    "sourceSpelling": "/māmā/",
+    "english": "to carry it on the back",
+    "spanish": "llevarlo en la espalda",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mama",
+    "headword": "mama",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-16-11",
+      "lessonNumber": 16,
+      "vocabularyIndex": 11,
+      "excerpt": "/māmā/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-16-lesson-16-tlachihualiztli-tlen-panoc-part-3-past-tense-verts-part-3/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Mama.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0046",
+    "cardId": 960046,
+    "lexemeId": "lex-v3-0046",
+    "senseId": "sense-v3-0046-01",
+    "formId": "form-v3-0046-01",
+    "packId": "daily-actions",
+    "lessonNumber": 17,
+    "vocabularyIndex": 15,
+    "sourceSpelling": "/xilhuia/",
+    "english": "to comb; to brush",
+    "spanish": "peinar; cepillar",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "xilwia",
+    "headword": "xilwia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-17-15",
+      "lessonNumber": 17,
+      "vocabularyIndex": 15,
+      "excerpt": "/xilhuia/",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-15-lesson-15-na-nimocehuia-pan-cuaciyah-i-sit-on-the-chair/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Xilhuia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0047",
+    "cardId": 960047,
+    "lexemeId": "lex-v3-0047",
+    "senseId": "sense-v3-0047-01",
+    "formId": "form-v3-0047-01",
+    "packId": "food-drink",
+    "lessonNumber": 18,
+    "vocabularyIndex": 4,
+    "sourceSpelling": "tontolon",
+    "english": "meatball",
+    "spanish": "albóndiga",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tontolon",
+    "headword": "tontolon",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-18-4",
+      "lessonNumber": 18,
+      "vocabularyIndex": 4,
+      "excerpt": "tontolon",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Tohtolon.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0048",
+    "cardId": 960048,
+    "lexemeId": "lex-v3-0048",
+    "senseId": "sense-v3-0048-01",
+    "formId": "form-v3-0048-01",
+    "packId": "food-drink",
+    "lessonNumber": 18,
+    "vocabularyIndex": 5,
+    "sourceSpelling": "piyonacatl",
+    "english": "chicken meat",
+    "spanish": "carne de pollo",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "piyonakatl",
+    "headword": "piyonakatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-18-5",
+      "lessonNumber": 18,
+      "vocabularyIndex": 5,
+      "excerpt": "piyonacatl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Piyonacatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0049",
+    "cardId": 960049,
+    "lexemeId": "lex-v3-0049",
+    "senseId": "sense-v3-0049-01",
+    "formId": "form-v3-0049-01",
+    "packId": "food-drink",
+    "lessonNumber": 18,
+    "vocabularyIndex": 6,
+    "sourceSpelling": "pitzonacatl",
+    "english": "pork meat",
+    "spanish": "carne de cerdo",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "pitsonakatl",
+    "headword": "pitsonakatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-18-6",
+      "lessonNumber": 18,
+      "vocabularyIndex": 6,
+      "excerpt": "pitzonacatl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Pitzonacatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0050",
+    "cardId": 960050,
+    "lexemeId": "lex-v3-0050",
+    "senseId": "sense-v3-0050-01",
+    "formId": "form-v3-0050-01",
+    "packId": "food-drink",
+    "lessonNumber": 18,
+    "vocabularyIndex": 7,
+    "sourceSpelling": "chichiquilli",
+    "english": "tamale",
+    "spanish": "tamal",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chichikilli",
+    "headword": "chichikilli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-18-7",
+      "lessonNumber": 18,
+      "vocabularyIndex": 7,
+      "excerpt": "chichiquilli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chichiquilli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0051",
+    "cardId": 960051,
+    "lexemeId": "lex-v3-0051",
+    "senseId": "sense-v3-0051-01",
+    "formId": "form-v3-0051-01",
+    "packId": "food-drink",
+    "lessonNumber": 18,
+    "vocabularyIndex": 11,
+    "sourceSpelling": "zacahuilli",
+    "english": "large tamale (zacahuil)",
+    "spanish": "tamal grande (zacahuil)",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "sakawilli",
+    "headword": "sakawilli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-18-11",
+      "lessonNumber": 18,
+      "vocabularyIndex": 11,
+      "excerpt": "zacahuilli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zacahuilli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0052",
+    "cardId": 960052,
+    "lexemeId": "lex-v3-0052",
+    "senseId": "sense-v3-0052-01",
+    "formId": "form-v3-0052-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 16,
+    "sourceSpelling": "alaxoxātl",
+    "english": "orange juice",
+    "spanish": "jugo de naranja",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "alaxoxatl",
+    "headword": "alaxoxatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-16",
+      "lessonNumber": 19,
+      "vocabularyIndex": 16,
+      "excerpt": "alaxoxātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/alaxoxatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0053",
+    "cardId": 960053,
+    "lexemeId": "lex-v3-0053",
+    "senseId": "sense-v3-0053-01",
+    "formId": "form-v3-0053-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 17,
+    "sourceSpelling": "limonātl",
+    "english": "lime juice",
+    "spanish": "jugo de limón",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "limonatl",
+    "headword": "limonatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-17",
+      "lessonNumber": 19,
+      "vocabularyIndex": 17,
+      "excerpt": "limonātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ilimonatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0054",
+    "cardId": 960054,
+    "lexemeId": "lex-v3-0054",
+    "senseId": "sense-v3-0054-01",
+    "formId": "form-v3-0054-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 19,
+    "sourceSpelling": "tamarintohātl",
+    "english": "tamarind juice",
+    "spanish": "jugo de tamarindo",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tamarintohatl",
+    "headword": "tamarintohatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-19",
+      "lessonNumber": 19,
+      "vocabularyIndex": 19,
+      "excerpt": "tamarintohātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tamarintohatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0055",
+    "cardId": 960055,
+    "lexemeId": "lex-v3-0055",
+    "senseId": "sense-v3-0055-01",
+    "formId": "form-v3-0055-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 20,
+    "sourceSpelling": "papayahātl",
+    "english": "papaya juice",
+    "spanish": "jugo de papaya",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "papayahatl",
+    "headword": "papayahatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-20",
+      "lessonNumber": 19,
+      "vocabularyIndex": 20,
+      "excerpt": "papayahātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/papayahatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0056",
+    "cardId": 960056,
+    "lexemeId": "lex-v3-0056",
+    "senseId": "sense-v3-0056-01",
+    "formId": "form-v3-0056-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 21,
+    "sourceSpelling": "mancohātl",
+    "english": "mango juice",
+    "spanish": "jugo de mango",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "mankohatl",
+    "headword": "mankohatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-21",
+      "lessonNumber": 19,
+      "vocabularyIndex": 21,
+      "excerpt": "mancohātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/mancohatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0057",
+    "cardId": 960057,
+    "lexemeId": "lex-v3-0057",
+    "senseId": "sense-v3-0057-01",
+    "formId": "form-v3-0057-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 22,
+    "sourceSpelling": "melonātl",
+    "english": "melon juice; cantaloupe juice",
+    "spanish": "jugo de melón",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "melonatl",
+    "headword": "melonatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-22",
+      "lessonNumber": 19,
+      "vocabularyIndex": 22,
+      "excerpt": "melonātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/melonatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0058",
+    "cardId": 960058,
+    "lexemeId": "lex-v3-0058",
+    "senseId": "sense-v3-0058-01",
+    "formId": "form-v3-0058-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 23,
+    "sourceSpelling": "chalchocoātl",
+    "english": "guava juice",
+    "spanish": "jugo de guayaba",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chalchokoatl",
+    "headword": "chalchokoatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-23",
+      "lessonNumber": 19,
+      "vocabularyIndex": 23,
+      "excerpt": "chalchocoātl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chalchocoatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0059",
+    "cardId": 960059,
+    "lexemeId": "lex-v3-0059",
+    "senseId": "sense-v3-0059-01",
+    "formId": "form-v3-0059-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 24,
+    "sourceSpelling": "cīnātōlli",
+    "english": "corn atole",
+    "spanish": "atole de maíz",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "sinatolli",
+    "headword": "sinatolli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-24",
+      "lessonNumber": 19,
+      "vocabularyIndex": 24,
+      "excerpt": "cīnātōlli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cinatolli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0060",
+    "cardId": 960060,
+    "lexemeId": "lex-v3-0060",
+    "senseId": "sense-v3-0060-01",
+    "formId": "form-v3-0060-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 25,
+    "sourceSpelling": "ayohātōlli",
+    "english": "squash atole",
+    "spanish": "atole de calabaza",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "ayohatolli",
+    "headword": "ayohatolli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-25",
+      "lessonNumber": 19,
+      "vocabularyIndex": 25,
+      "excerpt": "ayohātōlli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ayohatolli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0061",
+    "cardId": 960061,
+    "lexemeId": "lex-v3-0061",
+    "senseId": "sense-v3-0061-01",
+    "formId": "form-v3-0061-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 26,
+    "sourceSpelling": "chalchocoātōlli",
+    "english": "guava atole",
+    "spanish": "atole de guayaba",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chalchokoatolli",
+    "headword": "chalchokoatolli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-26",
+      "lessonNumber": 19,
+      "vocabularyIndex": 26,
+      "excerpt": "chalchocoātōlli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chalchocoatolli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0062",
+    "cardId": 960062,
+    "lexemeId": "lex-v3-0062",
+    "senseId": "sense-v3-0062-01",
+    "formId": "form-v3-0062-01",
+    "packId": "food-drink",
+    "lessonNumber": 19,
+    "vocabularyIndex": 27,
+    "sourceSpelling": "chocolaātōlli",
+    "english": "chocolate atole",
+    "spanish": "atole de chocolate",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "chokolaatolli",
+    "headword": "chokolaatolli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-19-27",
+      "lessonNumber": 19,
+      "vocabularyIndex": 27,
+      "excerpt": "chocolaātōlli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-17-lesson-17-ximoquetza-sit-down/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chocolaatolli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0063",
+    "cardId": 960063,
+    "lexemeId": "lex-v3-0063",
+    "senseId": "sense-v3-0063-01",
+    "formId": "form-v3-0063-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 20,
+    "vocabularyIndex": 33,
+    "sourceSpelling": "nehpalli",
+    "english": "cactus",
+    "spanish": "nopal",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "nehpalli",
+    "headword": "nehpalli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-20-33",
+      "lessonNumber": 20,
+      "vocabularyIndex": 33,
+      "excerpt": "nehpalli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-19-lesson-19-topilcinhuan-tlahuel-cualtzin-our-little-corn-is-very-beautiful/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nehpalli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0064",
+    "cardId": 960064,
+    "lexemeId": "lex-v3-0064",
+    "senseId": "sense-v3-0064-01",
+    "formId": "form-v3-0064-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 20,
+    "vocabularyIndex": 41,
+    "sourceSpelling": "popochcōmitl",
+    "english": "incense burner",
+    "spanish": "incensario",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "popochkomitl",
+    "headword": "popochkomitl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-20-41",
+      "lessonNumber": 20,
+      "vocabularyIndex": 41,
+      "excerpt": "popochcōmitl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-19-lesson-19-topilcinhuan-tlahuel-cualtzin-our-little-corn-is-very-beautiful/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/popochcomitl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0065",
+    "cardId": 960065,
+    "lexemeId": "lex-v3-0065",
+    "senseId": "sense-v3-0065-01",
+    "formId": "form-v3-0065-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 20,
+    "vocabularyIndex": 44,
+    "sourceSpelling": "tlatehtectli",
+    "english": "paper cut-out",
+    "spanish": "figura de papel recortado",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "tlatehtektli",
+    "headword": "tlatehtektli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-20-44",
+      "lessonNumber": 20,
+      "vocabularyIndex": 44,
+      "excerpt": "tlatehtectli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-19-lesson-19-topilcinhuan-tlahuel-cualtzin-our-little-corn-is-very-beautiful/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tlatehtectli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0066",
+    "cardId": 960066,
+    "lexemeId": "lex-v3-0066",
+    "senseId": "sense-v3-0066-01",
+    "formId": "form-v3-0066-01",
+    "packId": "shapes-objects",
+    "lessonNumber": 20,
+    "vocabularyIndex": 47,
+    "sourceSpelling": "xōchimāntli",
+    "english": "flower pot",
+    "spanish": "maceta",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "xochimantli",
+    "headword": "xochimantli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-20-47",
+      "lessonNumber": 20,
+      "vocabularyIndex": 47,
+      "excerpt": "xōchimāntli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-19-lesson-19-topilcinhuan-tlahuel-cualtzin-our-little-corn-is-very-beautiful/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xochimantli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0067",
+    "cardId": 960067,
+    "lexemeId": "lex-v3-0067",
+    "senseId": "sense-v3-0067-01",
+    "formId": "form-v3-0067-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 20,
+    "sourceSpelling": "petlayoh",
+    "english": "dried ear of corn wrapped in its husk",
+    "spanish": "mazorca seca envuelta en su totomoxtle",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "petlayoh",
+    "headword": "petlayoh",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-20",
+      "lessonNumber": 21,
+      "vocabularyIndex": 20,
+      "excerpt": "petlayoh",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/petlayoh.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0068",
+    "cardId": 960068,
+    "lexemeId": "lex-v3-0068",
+    "senseId": "sense-v3-0068-01",
+    "formId": "form-v3-0068-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 21,
+    "sourceSpelling": "molcatl",
+    "english": "the smallest corn",
+    "spanish": "el maíz más pequeño",
+    "partOfSpeech": "noun",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "molkatl",
+    "headword": "molkatl",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-21",
+      "lessonNumber": 21,
+      "vocabularyIndex": 21,
+      "excerpt": "molcatl",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/molcatl.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0069",
+    "cardId": 960069,
+    "lexemeId": "lex-v3-0069",
+    "senseId": "sense-v3-0069-01",
+    "formId": "form-v3-0069-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 25,
+    "sourceSpelling": "tonalmilli",
+    "english": "corn planting from December to April",
+    "spanish": "siembra de maíz de diciembre a abril",
+    "partOfSpeech": "noun",
+    "noteEn": "Seasonal description from this Chicontepec course; planting calendars vary by community and year.",
+    "noteEs": "Descripción de temporada del curso de Chicontepec; los calendarios de siembra varían según la comunidad y el año.",
+    "practicalSpelling": "tonalmilli",
+    "headword": "tonalmilli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-25",
+      "lessonNumber": 21,
+      "vocabularyIndex": 25,
+      "excerpt": "tonalmilli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tonalmilli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Seasonal description from this Chicontepec course; planting calendars vary by community and year.",
+        "es": "Descripción de temporada del curso de Chicontepec; los calendarios de siembra varían según la comunidad y el año."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0070",
+    "cardId": 960070,
+    "lexemeId": "lex-v3-0070",
+    "senseId": "sense-v3-0070-01",
+    "formId": "form-v3-0070-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 26,
+    "sourceSpelling": "xopamilli",
+    "english": "corn planting from June to September",
+    "spanish": "siembra de maíz de junio a septiembre",
+    "partOfSpeech": "noun",
+    "noteEn": "Seasonal description from this Chicontepec course; planting calendars vary by community and year.",
+    "noteEs": "Descripción de temporada del curso de Chicontepec; los calendarios de siembra varían según la comunidad y el año.",
+    "practicalSpelling": "xopamilli",
+    "headword": "xopamilli",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-26",
+      "lessonNumber": 21,
+      "vocabularyIndex": 26,
+      "excerpt": "xopamilli",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xopamilli.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Seasonal description from this Chicontepec course; planting calendars vary by community and year.",
+        "es": "Descripción de temporada del curso de Chicontepec; los calendarios de siembra varían según la comunidad y el año."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0071",
+    "cardId": 960071,
+    "lexemeId": "lex-v3-0071",
+    "senseId": "sense-v3-0071-01",
+    "formId": "form-v3-0071-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 28,
+    "sourceSpelling": "cuaquixtia",
+    "english": "to take out firewood",
+    "spanish": "sacar leña",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kwakixtia",
+    "headword": "kwakixtia",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-28",
+      "lessonNumber": 21,
+      "vocabularyIndex": 28,
+      "excerpt": "cuaquixtia",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuaquixtia.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0072",
+    "cardId": 960072,
+    "lexemeId": "lex-v3-0072",
+    "senseId": "sense-v3-0072-01",
+    "formId": "form-v3-0072-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 29,
+    "sourceSpelling": "cuahuehhueloa",
+    "english": "to cut firewood into pieces",
+    "spanish": "cortar la leña en trozos",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kwawehweloa",
+    "headword": "kwawehweloa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-29",
+      "lessonNumber": 21,
+      "vocabularyIndex": 29,
+      "excerpt": "cuahuehhueloa",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuahuehhueloa.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  },
+  {
+    "id": "word-v3-0073",
+    "cardId": 960073,
+    "lexemeId": "lex-v3-0073",
+    "senseId": "sense-v3-0073-01",
+    "formId": "form-v3-0073-01",
+    "packId": "milpa-work",
+    "lessonNumber": 21,
+    "vocabularyIndex": 30,
+    "sourceSpelling": "cuatecpichoa",
+    "english": "to stack firewood",
+    "spanish": "apilar leña",
+    "partOfSpeech": "verb",
+    "noteEn": "",
+    "noteEs": "",
+    "practicalSpelling": "kwatekpichoa",
+    "headword": "kwatekpichoa",
+    "formKind": "source-headword",
+    "source": {
+      "id": "coerll-vocab-21-30",
+      "lessonNumber": 21,
+      "vocabularyIndex": 30,
+      "excerpt": "cuatecpichoa",
+      "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-18-lesson-18-tlen-ticpiyah-pan-millah-what-we-have-in-the-field/",
+      "license": "CC BY-SA (publisher listing; version unspecified)",
+      "authors": [
+        "Sabina de la Cruz",
+        "Catalina de la Cruz",
+        "Josefrayn Sánchez-Perry",
+        "Kelly McDonough",
+        "Sergio Romero"
+      ]
+    },
+    "audio": {
+      "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuatecpichoa-1.mp3",
+      "scope": "isolated-word",
+      "status": "source-linked"
+    },
+    "review": {
+      "status": "source-supported",
+      "scope": {
+        "en": "Spelling and this sense checked against the COERLL source. Spanish is an Itzli translation.",
+        "es": "Escritura y acepción cotejadas con la fuente de COERLL. El español es una traducción de Itzli."
+      },
+      "limitations": {
+        "en": "Source headword, not a generated paradigm or a claim of agreement across varieties. Recording retained as a source link; pronunciation has not been independently certified.",
+        "es": "Forma de la fuente, no un paradigma generado ni una afirmación de consenso entre variantes. Se conserva el enlace a la grabación; su pronunciación no se ha certificado de manera independiente."
+      }
+    }
+  }
+]

@@ -13,7 +13,7 @@ export default defineConfig([
     },
   },
   {
-    files: ["scripts/**/*.js"],
+    files: ["scripts/**/*.{js,cjs}"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-unused-vars": "off",
@@ -26,5 +26,7 @@ export default defineConfig([
     "next-env.d.ts",
     "public/audio-google/**",
     "data/**",
+    ".venv/**",
+    ".npm-cache/**",
   ]),
 ]);

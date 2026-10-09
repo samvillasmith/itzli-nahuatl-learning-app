@@ -1,8 +1,9 @@
 /**
- * Embeds curriculum content + morphology analyses and upserts into rag_chunks.
- * Run after scripts/rag-setup.js and (optionally) after the Python cache has
- * been built:   python -m ehn_morph build-cache --out data/morphology_cache.json
+ * Embeds learner vocabulary and selected Chicontepec source examples.
+ * Automated morphology is withheld until a reviewed export exists.
+ * Updating this file does not update an existing remote RAG store.
  *
+ *   node scripts/rag-populate.js --dry-run    # local counts only; no services
  *   node scripts/rag-populate.js              # full rebuild (truncates first)
  *   node scripts/rag-populate.js --append     # keep existing rows
  */
@@ -10,325 +11,123 @@
 const fs = require("fs");
 const path = require("path");
 
-for (const file of [".env.local", ".env"]) {
-  const p = path.join(__dirname, "..", file);
-  if (!fs.existsSync(p)) continue;
-  for (const line of fs.readFileSync(p, "utf8").split("\n")) {
-    const m = line.match(/^([^#=]+)=(.*)$/);
-    if (m && !process.env[m[1].trim()]) {
-      process.env[m[1].trim()] = m[2].trim();
+const Module = require("module");
+const ts = require("typescript");
+const Database = require("better-sqlite3");
+const { resolveDbPath } = require("./_db-path.js");
+const { loadPhrases, loadGrammar } = require("./lib/rag-course-content.js");
+
+function initializeServices() {
+  for (const file of [".env.local", ".env"]) {
+    const filename = path.join(__dirname, "..", file);
+    if (!fs.existsSync(filename)) continue;
+    for (const line of fs.readFileSync(filename, "utf8").split("\n")) {
+      const match = line.match(/^([^#=]+)=(.*)$/);
+      if (match && !process.env[match[1].trim()]) process.env[match[1].trim()] = match[2].trim();
     }
   }
-}
-
-const { neon } = require("@neondatabase/serverless");
-const Database = require("better-sqlite3");
-const OpenAI = require("openai").default || require("openai");
-const { resolveDbPath } = require("./_db-path.js");
-
-if (!process.env.DATABASE_URL) {
-  console.error("DATABASE_URL not set");
-  process.exit(1);
-}
-if (!process.env.OPENAI_API_KEY) {
-  console.error("OPENAI_API_KEY not set");
-  process.exit(1);
+  if (!process.env.DATABASE_URL || !process.env.OPENAI_API_KEY) throw new Error("DATABASE_URL and OPENAI_API_KEY are required");
+  const { neon } = require("@neondatabase/serverless");
+  const OpenAI = require("openai").default || require("openai");
+  sql = neon(process.env.DATABASE_URL);
+  openai = new OpenAI();
 }
 
 const EMBED_MODEL = "text-embedding-3-small"; // 1536 dims, cheap, fast
 const BATCH_SIZE = 100;
 const APPEND = process.argv.includes("--append");
-const APP_EXCLUSIONS = require("../src/data/app-content-exclusions.json");
-const EXCLUDED_HEADWORDS = new Set(APP_EXCLUSIONS.headwords.map(normalizeForSafety));
-const EXCLUSION_PATTERNS = APP_EXCLUSIONS.patterns.map((pattern) => new RegExp(pattern, "iu"));
+let sql;
+let openai;
 
-const sql = neon(process.env.DATABASE_URL);
-const openai = new OpenAI();
-
-// -------- content builders --------
-
-function normalizeForSafety(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function isExcludedAppContent(...values) {
-  for (const value of values.filter(Boolean)) {
-    const normalized = normalizeForSafety(value);
-    if (EXCLUDED_HEADWORDS.has(normalized)) return true;
-    if (
-      /(?:https?:\/\/|\/|\\|\.[a-z0-9]{2,5}\b)/i.test(String(value)) &&
-      normalized
-        .split(/[^a-z0-9]+/)
-        .filter(Boolean)
-        .some((token) => EXCLUDED_HEADWORDS.has(token))
-    ) {
-      return true;
+// Load the same learner filters and source replacements as the app, using an
+// isolated TypeScript loader rather than changing global require hooks.
+const courseModuleCache = new Map();
+function loadCourseModule(relativePath) {
+  const filename = path.resolve(__dirname, "..", relativePath);
+  if (filename.endsWith(".json")) return require(filename);
+  if (courseModuleCache.has(filename)) return courseModuleCache.get(filename).exports;
+  const mod = new Module(filename, module);
+  mod.filename = filename;
+  mod.paths = Module._nodeModulePaths(path.dirname(filename));
+  courseModuleCache.set(filename, mod);
+  mod.require = (request) => {
+    if (request.startsWith("@/") || request.startsWith(".")) {
+      const target = request.startsWith("@/")
+        ? path.resolve(__dirname, "..", "src", request.slice(2))
+        : path.resolve(path.dirname(filename), request);
+      const resolved = fs.existsSync(`${target}.ts`) ? `${target}.ts` : target;
+      return loadCourseModule(path.relative(path.resolve(__dirname, ".."), resolved));
     }
-  }
-
-  const haystack = values.filter(Boolean).join(" ");
-  const normalizedHaystack = normalizeForSafety(haystack);
-  return EXCLUSION_PATTERNS.some((pattern) => pattern.test(haystack) || pattern.test(normalizedHaystack));
+    return Module.prototype.require.call(mod, request);
+  };
+  const output = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true, resolveJsonModule: true },
+    fileName: filename,
+  }).outputText;
+  mod._compile(output, filename);
+  return mod.exports;
 }
 
-function displayGloss(raw) {
-  return String(raw || "")
-    .replace(/\s*\[(?:❌|⚠️)[^\]]*\].*$/u, "")
-    .trim();
+function buildVocabChunks(rows) {
+  const { filterCoreVocab, QUESTIONABLE_GLOSS_MARKERS } = loadCourseModule("src/data/excluded-vocab.ts");
+  const { isAppContentExcluded } = loadCourseModule("src/lib/app-content-safety.ts");
+  const groups = new Map();
+  for (const row of rows) {
+    // Reject annotations before display cleanup; hiding a warning would make
+    // its unreviewed underlying entry appear to be trusted linguistic evidence.
+    const rawGloss = String(row.gloss_en || "");
+    if (/[⚠❌]/u.test(rawGloss) || QUESTIONABLE_GLOSS_MARKERS.some((marker) => rawGloss.toLowerCase().includes(marker))) continue;
+    const number = row.lesson_number ?? row.first_lesson_number;
+    if (!groups.has(number)) groups.set(number, []);
+    groups.get(number).push(row);
+  }
+  return [...groups].flatMap(([number, items]) => filterCoreVocab(items, number))
+    .filter((item) => item.gloss_en && !isAppContentExcluded(item.headword, item.display_form, item.gloss_en))
+    .map((item) => {
+      const headword = item.display_form || item.headword;
+      return {
+        kind: "vocab",
+        content: `${headword} — ${item.gloss_en}${item.part_of_speech ? ` (${item.part_of_speech})` : ""}`,
+        metadata: {
+          headword, gloss: item.gloss_en, pos: item.part_of_speech,
+          vocabulary_id: item.id, lesson_number: item.lesson_number ?? item.first_lesson_number,
+          source_url: item.sourceUrl ?? null,
+          evidence_scope: "Learner vocabulary filters and corrections; retrieval is not certification",
+        },
+      };
+    });
 }
 
 function loadVocab() {
+  const { SOURCE_VOCAB_PROMOTIONS } = loadCourseModule("src/data/source-vocab-promotions.ts");
+  const { sourceMetadata } = require("./lib/rag-course-content.js");
   const db = new Database(resolveDbPath(), { readonly: true, fileMustExist: true });
-  const rows = db
-    .prepare(
-      `SELECT display_form AS headword, gloss_en, part_of_speech, lesson_number, rank
-       FROM lesson_vocab
-       WHERE gloss_en NOT LIKE '%MISPLACED%'
-       ORDER BY lesson_number, rank`,
-    )
-    .all();
-  db.close();
-  return rows
-    .map((r) => {
-      const gloss = displayGloss(r.gloss_en);
-      if (!gloss) return null;
-      if (isExcludedAppContent(r.headword, gloss, r.part_of_speech)) return null;
-      return {
-        kind: "vocab",
-        content: `${r.headword} — ${gloss}${r.part_of_speech ? ` (${r.part_of_speech})` : ""}`,
-        metadata: {
-          headword: r.headword,
-          gloss,
-          pos: r.part_of_speech,
-          lesson_number: r.lesson_number,
-        },
-      };
-    })
-    .filter(Boolean);
-}
-
-const VERIFIED_PHRASES = [
-  { phrase: "Piyali!", gloss: "Hello!" },
-  { phrase: "Tlaskamati.", gloss: "Thank you." },
-  { phrase: "Kena.", gloss: "Yes." },
-  { phrase: "Axkana.", gloss: "No." },
-  { phrase: "Notokah ___.", gloss: "My name is ___." },
-  { phrase: "¿Kenihki motokah?", gloss: "What is your name?" },
-  { phrase: "¿Kenihki tiistok?", gloss: "How are you?" },
-  { phrase: "Kwali niistok.", gloss: "I am well." },
-  { phrase: "¿Kampa ticha? / ¿Kanke ticha?", gloss: "Where do you live?" },
-  { phrase: "Nicha ipan Huasteca.", gloss: "I live in the Huasteca." },
-  { phrase: "¿Tlen tikchihua?", gloss: "What are you doing? / What do you do?" },
-  { phrase: "Nitequiti.", gloss: "I work." },
-  { phrase: "Nitlamachtia.", gloss: "I teach." },
-  { phrase: "Nitlahkwiloa.", gloss: "I write." },
-];
-
-const GRAMMAR_SNIPPETS = [
-  {
-    title: "Subject prefixes on verbs",
-    content:
-      "Eastern Huasteca subject prefixes: ni- (I), ti- (you sg / we), ∅ (he/she or they), in- (you all). Plural also adds -h. Examples: nitequiti (I work), titequiti (you work), tequiti (he/she works), titequitih (we work), intequitih (you all work), tequitih (they work).",
-  },
-  {
-    title: "Object prefixes",
-    content:
-      "Object prefixes on verbs: nech- (me), mits- (you sg), k-/ki- (him/her/it), tech- (us), mech- (you all), kin- (them); te- (someone, non-specific), tla- (something, non-specific). Use ONLY on transitive verbs.",
-  },
-  {
-    title: "tic- vs titech-",
-    content:
-      "tic- = 'you + it/him/her' (2sg subject + 3sg object): ticchihua = 'you do it'. titech- = 'you + us' (2sg subject + 1pl object): titechpalehuia = 'you help us'. Do NOT use titech- on intransitive verbs. 'What do you do?' = ¿Tlen ticchihua? NEVER ¿Tlen titechihua?",
-  },
-  {
-    title: "Past tense (preterit)",
-    content:
-      "Preterit: o- prefix + subject prefix + stem + -c/-qui suffix. Example: onitequitic = 'I worked' (o- PAST + ni- I + tequiti work + -c PRET). The -c form is used after vowels, -qui after consonants.",
-  },
-  {
-    title: "Future tense",
-    content:
-      "Future: subject prefix + stem + -z or -quiz. Example: nitequitiz = 'I will work'. Also used for 'going to' / near-future meanings. Plural adds -queh: titequitizqueh = 'we will work'.",
-  },
-  {
-    title: "Imperfect",
-    content:
-      "Imperfect: subject prefix + stem + -ya. Example: nitequitiya = 'I was working' / 'I used to work'. Expresses ongoing, habitual, or background past action.",
-  },
-  {
-    title: "Progressive (-toc / -tok)",
-    content:
-      "Progressive aspect (action happening right now, in progress): verb stem + -toc (IDIEZ) or -tok (variant spelling). Examples: nitequititoc = 'I am working (at this moment)', titlahcuilohtoc = 'you are writing'. More immediate than the simple present; emphasizes ongoing action. Plural adds -eh: titequititoceh = 'we are working'.",
-  },
-  {
-    title: "Imperative (commands)",
-    content:
-      "Imperative (commands to 'you'): prefix xi- + verb stem. Object prefixes go between xi- and the stem. Examples: xitequiti = 'work!'; xinechwika = 'bring me (it)!' (xi- imperative + nech- me + wika bring); xicchihua = 'do it!' (xi- + c- it + chihua). 2pl command adds -kan: xitequitikan = 'you all work!'. Negative command: ax + xi- + stem — ax xiwika = 'don't bring it'.",
-  },
-  {
-    title: "Negation",
-    content:
-      "Negation in this EHN learner path uses ax before the verb, and axkana for a standalone negative response. Examples: ax nitequiti = 'I don't work', ax nicmati = 'I don't know', ax kwali = 'not good'. Combine with imperative for negative commands: ax xiwika = 'don't bring it'. For 'nothing / no one' use tleno or ax akin depending on context.",
-  },
-  {
-    title: "Directional prefixes (on-, hual-)",
-    content:
-      "Directional prefixes go between subject and object, indicating motion relative to the speaker: on- (away, thither — motion away from speaker) and hual- (hither, toward — motion toward speaker). Examples: niyah = 'I go'; nionyah = 'I go (away from here)'; nihualyah = 'I come (here, toward the speaker)'. Most common on verbs of motion but productive on other verbs for metaphorical direction.",
-  },
-  {
-    title: "Locative suffixes",
-    content:
-      "Locative suffixes attach to noun stems, usually after the standalone noun ending drops, to form location phrases: -co (in, at — general), -pan (on, on top of, on the surface of), -tlan (near, among, with), -can (place where, place of), -nahuac (next to, alongside). Examples: calli 'house' → calco 'in the house'; atl 'water' → apan 'on the water'; tepetl 'mountain' → tepetlan 'among the mountains'; tequiti 'work' → tequican 'workplace'; tlacatl 'person' → tlacananahuac 'next to the person'.",
-  },
-  {
-    title: "Possessive prefixes",
-    content:
-      "Eastern Huasteca possessive prefixes on nouns: no- (my), mo- (your), i- (his/her), to- (our), inmo- (your pl.), inin- (their). The standalone noun ending (-tl/-tli/-li/-in) often drops or changes under possession. Examples: tokaitl → notokah (my name), kali → nokal (my house), chantli → nichan (my home), mistli → tomis (our cat).",
-  },
-  {
-    title: "Noun endings and plural",
-    content:
-      "Many standalone nouns end in -tl (after vowel), -tli (after consonant), -li (after l), or -in (for a smaller set of nouns). Plural patterns include -meh, -tin, and sometimes -h. Reverential/diminutive forms use -tzin or -tzintli. The standalone ending often drops or changes when the noun is possessed or pluralized: calli → nocal (my house), calmeh (houses).",
-  },
-  {
-    title: "Diminutive / reverential -tzin",
-    content:
-      "Suffix -tzin (or -tzintli in a standalone noun form) expresses affection, smallness, respect, or reverence. Examples: cihuatl 'woman' → cihuatzin 'respected woman'; nantli 'mother' → nantzin 'dear mother'; tahtli 'father' → tahtzin 'dear father'. Used in religious contexts (Jesustzin), with elders, and in affectionate address. Not literally diminutive in size — more about social/emotional register.",
-  },
-  {
-    title: "Pronouns (independent)",
-    content:
-      "EHN independent pronouns: na (I), ta (you sg), ya (he/she), tahuan (we), amohuan (you all), yahuan (they). These are the EHN forms, NOT Classical Nahuatl (Classical uses nēhuatl/tēhuatl/yēhuatl — do not use those for EHN). Independent pronouns are used for emphasis or topicalization; the verb's subject prefix normally carries the person information already.",
-  },
-  {
-    title: "Reflexive construction",
-    content:
-      "Reflexive: a prefix matching the subject's person goes in the object slot of the verb. 1sg: no-, 2sg/3sg/2pl/3pl: mo-, 1pl: to-. Note 3rd person uses mo- for both singular and plural. Examples: ninopahpaca = 'I wash myself' (ni- I + no- myself + pahpaca wash); timopahpaca = 'you wash yourself'; mopahpaca = 'he/she washes (him/her)self'. The reflexive prefix is identical in form to the possessive prefix but only attaches to verbs.",
-  },
-  {
-    title: "Identity sentences without an extra 'to be' word",
-    content:
-      "For beginner identity sentences, attach the person prefix directly to the identity word. 'I am a teacher' = Na nitlamachtihquetl (or simply nitlamachtihquetl — the ni- already means 'I am'). 'You are Sam' = Ta tiSam. Eli is a real EHN verb ('to be/become/grow') but is not a generic identity copula.",
-  },
-  {
-    title: "Existence — 'there is / there are'",
-    content:
-      "'There is' / 'there are' = onka/onkah (older spelling onca/oncah). Used to assert existence or availability. Examples: Onkah atl. 'There is water.' Onkah miyak tlakatl. 'There are many people.' Negative: ax onkah = 'there isn't / there aren't'. Past: onkatka; future: onkas.",
-  },
-  {
-    title: "Possession — 'to have'",
-    content:
-      "Nahuatl has no verb 'to have'. Possession is expressed by existence + a possessed noun. Pattern: onkah + POSS-noun. Examples: Onkah nomis. 'I have a cat' (lit. 'my-cat exists'). Onkah ikonetsin. 'She has a child' (lit. 'her-child exists'). The verb -pia 'to guard / keep' is used with Spanish-influenced framings in some modern speech but is not the native 'have'.",
-  },
-  {
-    title: "Question words",
-    content:
-      "Interrogatives (placed at start of question, framed with Spanish-style ¿?): ¿Tlen? 'what?'; ¿Akin? 'who?'; ¿Kampa? / ¿Kanke? 'where?'; ¿Kenihki? 'how?'; ¿Keman? / ¿Kemanian? 'when?'; ¿Keski? 'how many?'; ¿Katli? / ¿Katlih? 'which?'; ¿Tleka? 'why?'. Examples: ¿Kenihki motokah? 'What's your name?'; ¿Kampa ticha? 'Where do you live?'; ¿Keski tomimeh tikpia? 'How many cats do you have?'",
-  },
-  {
-    title: "Word order",
-    content:
-      "Word order is flexible; most common is VSO (verb-subject-object) or SVO. Nahuatl is head-marking: the verb already carries pronoun prefixes for subject and object, so explicit noun phrases are often dropped. Examples: Quita in chichi in tlacatl (VSO) = 'The man sees the dog'; In tlacatl quita in chichi (SVO) = same. With pronouns already encoded: Nēchita = 'he sees me' (no separate subject or object needed).",
-  },
-  {
-    title: "Numbers 1-10",
-    content:
-      "1 ce, 2 ome, 3 eyi (also yei), 4 nahui, 5 macuilli, 6 chicuace, 7 chicome, 8 chicueyi, 9 chicnahui, 10 mahtlactli. 11-14 are mahtlactli once, mahtlactli omome, mahtlactli omeyi, mahtlactli onnahui. 15 = caxtolli. Nahuatl is vigesimal (base-20): 20 = cempoalli, 40 = ompoalli, 400 = centzontli. For counting objects, some sets require numeral classifier suffixes (e.g., -tetl for round objects, -pantli for rows) — check the verified vocabulary for specific counted nouns.",
-  },
-  {
-    title: "Time adverbs",
-    content:
-      "Time expressions, typically placed at the start of a clause: axcan 'today / now', nāmān (also namān) 'right now', yalhua 'yesterday', mōztla 'tomorrow', huiptla 'day after tomorrow', yehueca 'long ago', zan / san 'just, only'. Examples: Yalhua nitequitic. 'Yesterday I worked.' Mōztla nihualaz. 'Tomorrow I will come.'",
-  },
-  {
-    title: "Comparison — 'like / as' (kej / quen)",
-    content:
-      "'Like' or 'as' or 'similar to' = kej (common student spelling) / quen (IDIEZ). Example: kej tlamachtihquetl = 'like a teacher'. For 'more than' or 'less than', EHN traditionally lacks a native comparative construction and often uses paraphrase or borrowed Spanish (mas, menos) in modern speech. Classical used phrases like 'it is very X' or 'it exceeds in X-ness'.",
-  },
-  {
-    title: "Greetings and responses",
-    content:
-      "Opening: Piyali = 'Hello'. Asking how someone is: ¿Kenihki tiistok? = 'How are you?'. Reply: Kwali niistok = 'I am well'. Gratitude: Tlaskamati = 'Thank you'. Affirm: Kena = 'Yes'. Negate: Axkana = 'No'. In conversational EHN, brief acknowledgments like 'Kena' or 'Kwali' often suffice instead of full sentences.",
-  },
-  {
-    title: "Relative clauses",
-    content:
-      "Relative clauses use tlen 'what / that' or in 'the (relative marker)'. Examples: In tlacatl tlen nicmachti = 'The man who(m) I teach' (lit. 'the-man that-I-teach-him'). In tlen ticnequi = 'What you want' (lit. 'the-what-you-want'). In tlahcuilolli tlen oniccualtoc = 'The writing that I finished' (tlen introduces the relative clause).",
-  },
-  {
-    title: "Applicative -lia (do for / to someone)",
-    content:
-      "Applicative suffix -lia (some variants -hia, -huia) adds a beneficiary — the person for whom the action is done — to a transitive verb. The beneficiary becomes the verb's new direct object and takes the usual object prefix. Examples: tekiti 'to work' + -lia → tekitilia 'to work for (someone)'. wika 'to bring' + -lia → wikilia 'to bring to (someone)'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
-  },
-  {
-    title: "Causative -tia (cause someone to do)",
-    content:
-      "Causative suffix -tia (some stems take -ltia) means 'cause X to do Y' or 'make X do Y'. The caused-person becomes the verb's direct object. Examples: kochi 'to sleep' + -tia → kochitia 'to put (someone) to sleep' → nikkochitia = 'I put him to sleep'. tekiti 'to work' + -tia → tekititia 'to make (someone) work'. NOTE: general Nahuatl pattern; verify specific productive forms against IDIEZ/attested EHN data.",
-  },
-  {
-    title: "Noun incorporation",
-    content:
-      "A noun object can fuse into the verb as its first element, especially for generic objects. The incorporated noun usually drops its standalone ending (-tl/-tli/-li). Example: tlaxcalli 'tortilla' + namaca 'sell' → tlaxcalnamaca 'to sell tortillas'; nitlaxcalnamaca = 'I sell tortillas (I am a tortilla-seller)'. Incorporation tends to mean a generic / habitual action; use a separate noun phrase for a specific referent.",
-  },
-  {
-    title: "Reduplication",
-    content:
-      "Reduplication — repeating a stem-initial CV — signals iteration, distribution, intensity, or plurality. Examples: kwali 'good' → kwakwali 'very good / each one good'; pehpena 'to pick up repeatedly' (from pena); tlahtoa 'to speak' → tlahtlahtoa 'to speak repeatedly / to gossip'. NOTE: productive in Nahuatl generally; EHN-specific patterns and which stems reduplicate productively should be verified against attested EHN corpus.",
-  },
-];
-
-function loadPhrases() {
-  return VERIFIED_PHRASES.map((p) => ({
-    kind: "phrase",
-    content: `${p.phrase} — ${p.gloss}`,
-    metadata: { phrase: p.phrase, gloss: p.gloss },
-  }));
-}
-
-function loadGrammar() {
-  return GRAMMAR_SNIPPETS.map((g) => ({
-    kind: "grammar",
-    content: `${g.title}: ${g.content}`,
-    metadata: { title: g.title },
-  }));
+  try {
+    const rows = db.prepare(`SELECT id, entry_id, display_form AS headword, display_form, gloss_en,
+      part_of_speech, semantic_domain, lesson_number, rank FROM lesson_vocab
+      ORDER BY lesson_number, rank`).all();
+    const core = buildVocabChunks(rows);
+    // This selected collection already carries source evidence and corrected
+    // senses; the secondary-dictionary entry_id gate does not apply to it.
+    const promotions = SOURCE_VOCAB_PROMOTIONS.map((item) => ({
+      kind: "vocab", content: `${item.headword} — ${item.gloss_en} (${item.part_of_speech})`,
+      metadata: {
+        headword: item.headword, gloss: item.gloss_en, pos: item.part_of_speech,
+        vocabulary_id: item.id, lesson_number: item.first_lesson_number,
+        source_url: item.sourceUrl,
+        ...sourceMetadata([Number(item.entry_id.split("-")[1])]),
+      },
+    }));
+    return [...core, ...promotions];
+  } finally {
+    db.close();
+  }
 }
 
 function loadMorphology() {
-  const cachePath = path.join(__dirname, "..", "data", "morphology_cache.json");
-  if (!fs.existsSync(cachePath)) {
-    console.warn(
-      "[rag] morphology cache not found at data/morphology_cache.json — skipping (run: python -m ehn_morph build-cache --out data/morphology_cache.json)",
-    );
-    return [];
-  }
-  const payload = JSON.parse(fs.readFileSync(cachePath, "utf8"));
-  const out = [];
-  for (const e of payload.entries) {
-    const a = e.analysis;
-    if (!a.analyzable) continue;
-    const segmented = a.morphemes.map((m) => m.surface).join("·");
-    const glossChain = a.morphemes.map((m) => m.gloss).join(" + ");
-    const forms = a.morphemes.map((m) => m.form).join(" ");
-    out.push({
-      kind: "morphology",
-      content: `${a.input} = ${segmented} | ${glossChain} | canonical: ${forms}${a.stem_gloss ? ` | stem gloss: ${a.stem_gloss}` : ""}`,
-      metadata: {
-        surface: a.input,
-        normalized: a.normalized,
-        stem: a.stem,
-        stem_gloss: a.stem_gloss,
-        pos: a.part_of_speech,
-        source: e.source,
-        confidence: a.confidence,
-      },
-    });
-  }
-  return out;
+  // Analyzer confidence and "analyzable" are not linguistic review. No reviewed
+  // export exists, so generated decompositions must not be tutor facts.
+  return [];
 }
 
 // -------- embedding + insert --------
@@ -365,17 +164,12 @@ async function insertBatch(items) {
 }
 
 async function run() {
-  if (!APPEND) {
-    console.log("Truncating rag_chunks (use --append to keep existing rows)...");
-    await sql`TRUNCATE TABLE rag_chunks RESTART IDENTITY`;
-  }
-
   const all = [
     ...loadVocab(),
     ...loadPhrases(),
     ...loadGrammar(),
     ...loadMorphology(),
-  ].filter((item) => !isExcludedAppContent(item.content, JSON.stringify(item.metadata)));
+  ].filter((item) => !loadCourseModule("src/lib/app-content-safety.ts").isAppContentExcluded(item.content));
 
   console.log(
     `Prepared ${all.length} chunks: ` +
@@ -388,6 +182,14 @@ async function run() {
         .map(([k, v]) => `${k}=${v}`)
         .join(", "),
   );
+
+  console.log("Unreviewed automatic morphology withheld.");
+  if (process.argv.includes("--dry-run")) return;
+  initializeServices();
+  if (!APPEND) {
+    console.log("Truncating rag_chunks (use --append to keep existing rows)...");
+    await sql`TRUNCATE TABLE rag_chunks RESTART IDENTITY`;
+  }
 
   let done = 0;
   for (let i = 0; i < all.length; i += BATCH_SIZE) {
@@ -405,7 +207,8 @@ async function run() {
   console.log(`rag_chunks now holds ${count} rows.`);
 }
 
-run().catch((err) => {
+module.exports = { buildVocabChunks, loadVocab, loadPhrases, loadGrammar, loadMorphology };
+if (require.main === module) run().catch((err) => {
   console.error("\nRAG populate failed:", err);
-  process.exit(1);
+  process.exitCode = 1;
 });

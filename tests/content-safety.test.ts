@@ -20,19 +20,52 @@ describe("strict content safety", () => {
     expect(isAppContentExcluded("ehuatl", "skin (of humans, animals, fruit)")).toBe(false);
   });
 
-  it("blocks orientation and sexual-role dictionary definitions", () => {
-    expect(isAppContentExcluded("ordinary", "a gay man")).toBe(true);
-    expect(isAppContentExcluded("ordinary", "a lesbian")).toBe(true);
-    expect(isAppContentExcluded("ordinary", "male homosexuality")).toBe(true);
+  it("separates neutral identity definitions from explicit sexual roles and acts", () => {
+    expect(isAppContentExcluded("ordinary", "a gay man")).toBe(false);
+    expect(isAppContentExcluded("ordinary", "a lesbian")).toBe(false);
+    expect(isAppContentExcluded("ordinary", "male homosexuality")).toBe(false);
     expect(isAppContentExcluded("ordinary", "a passive partner in sex; a bottom")).toBe(true);
-    expect(isAppContentExcluded("ordinary", "same-sex relationship")).toBe(true);
-    expect(isAppContentExcluded("ordinary", "sodomite")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "same-sex relationship")).toBe(false);
+    expect(isAppContentExcluded("ordinary", "to have lesbian sex with")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "to have heterosexual sex with")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "to be a bottom as a gay person")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "gender identity; transgender person; intersex person")).toBe(false);
   });
 
   it("does not confuse unrelated words with orientation or sexual roles", () => {
     expect(isAppContentExcluded("pilocelotl", "margay")).toBe(false);
     expect(isAppContentExcluded("ordinary", "bottom line")).toBe(false);
     expect(isAppContentExcluded("ordinary", "top of the hill")).toBe(false);
+  });
+
+  it("does not split a Nahuatl word into blocked English tokens at a macron", () => {
+    expect(isAppContentExcluded("¿Huan ta, ticnequi titēmachtia?", "Do you want to teach people?")).toBe(false);
+    expect(isAppContentExcluded("titēmachtia", "explicit sexual content")).toBe(true);
+    expect(isAppContentExcluded("ordinary", "tit")).toBe(true);
+  });
+
+  it("allows reviewed teaching text and source spellings without approving images", () => {
+    expect(isAppContentExcluded("mokwitlawia", "mocuitlahuiā", "look after someone")).toBe(false);
+    expect(isAppContentExcluded("chichiwalli", "chīchīhualli", "breast; teat")).toBe(false);
+    expect(isAppContentExcluded("teka", "tēca", "pour a liquid")).toBe(false);
+    expect(isAppContentExcluded("nechkokoa noihti", "my stomach hurts")).toBe(false);
+    expect(isImageCardExcluded("nechkokoa noihti", "my stomach hurts")).toBe(true);
+    expect(isAppContentExcluded("maltia", "bathe", "explicit sexual content")).toBe(true);
+    expect(isAppContentExcluded("maltia", "nude child bathing")).toBe(true);
+    expect(isAppContentExcluded("tsintenno", "tzīntēnno", "buttocks (possessed location reference); separate rear-projection meaning excluded")).toBe(false);
+    expect(isAppContentExcluded("tsintenno", "explicit sexual content")).toBe(true);
+    expect(isImageCardExcluded("tsintenno", "buttocks (possessed location reference)")).toBe(true);
+    expect(isAppContentExcluded("notsintlan", "at my base; anatomical buttocks use remains unverified")).toBe(false);
+    expect(isAppContentExcluded("notsintlan", "explicit sexual content")).toBe(true);
+    expect(isImageCardExcluded("notsintlan", "buttocks")).toBe(true);
+    expect(isAppContentExcluded("xillantli", "vagina (possessed noun reference)")).toBe(true);
+    expect(isAppContentExcluded("xillantli", "explicit sexual content")).toBe(true);
+    expect(isImageCardExcluded("xillantli", "vagina")).toBe(true);
+    expect(isAppContentExcluded("alaxiwi", "slide across a wet surface")).toBe(false);
+    expect(isAppContentExcluded("awiltia", "rape; recognition of sexual violence")).toBe(true);
+    expect(isAppContentExcluded("awiltia", "explicit sexual content")).toBe(true);
+    expect(isAppContentExcluded("awiltia", "nude child")).toBe(true);
+    expect(isImageCardExcluded("awiltia", "rape; sexual violence")).toBe(true);
   });
 
   it("keeps ordinary object cards eligible", () => {
@@ -59,7 +92,10 @@ describe("strict content safety", () => {
     );
     expect(getWordImage("conētl", { safetyText: ["child bathing"] })).toBeNull();
     expect(getWordImage("conētl", { safetyText: ["child shitting"] })).toBeNull();
-    expect(getWordImage("ehuatl", { safetyText: ["skin (of humans, animals, fruit)"] })).not.toBeNull();
+    // Educational meaning stays available; an ambiguous anatomical image needs
+    // a new exact depiction review and cannot waive the hard image category.
+    expect(isAppContentExcluded("ehuatl", "skin (of humans, animals, fruit)")).toBe(false);
+    expect(getWordImage("ehuatl", { safetyText: ["skin (of humans, animals, fruit)"] })).toBeNull();
     expect(getWordImage("ehuatl", { safetyText: ["skin exposed while bathing"] })).toBeNull();
   });
 

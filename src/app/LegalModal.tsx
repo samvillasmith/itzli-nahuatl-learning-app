@@ -7,14 +7,14 @@ import { useLocale } from "@/i18n/LocaleProvider";
 
 // Bump this when the legal docs change materially — everyone will be
 // re-prompted on next visit.
-const STORAGE_KEY = "itzli_legal_accepted_v3";
+const STORAGE_KEY = "itzli_legal_accepted_v4";
 
 // Never show the modal on the legal docs themselves — users need to be
 // able to read them to decide whether to agree.
-const BYPASS_PATHS = ["/terms", "/privacy", "/eula", "/design-preview"];
+const BYPASS_PATHS = ["/terms", "/privacy", "/eula", "/source-course", "/design-preview"];
 
 export default function LegalModal() {
-  const { translate } = useLocale();
+  const { translate, locale } = useLocale();
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -72,7 +72,9 @@ export default function LegalModal() {
               {translate("We apply safety moderation and never store raw chat content; audit records use hashes and structured safety metadata.")}
             </li>
             <li>
-              {translate("Imported Nāhuatlahtolli course material is credited to COERLL and its authors and remains reusable under CC BY-SA.")}
+              {locale === "es"
+                ? "Nāhuatlahtolli se acredita a COERLL y a sus autores bajo el aviso CC BY-SA del editor, cuya versión no se especifica. Las aportaciones originales de Itzli para V3 usan CC BY-SA 4.0. Las imágenes y grabaciones de terceros conservan sus propios derechos y avisos."
+                : "Nāhuatlahtolli is credited to COERLL and its authors under the publisher’s CC BY-SA notice, whose version is unspecified. Itzli’s original V3 contributions use CC BY-SA 4.0. Third-party images and recordings retain their own rights and notices."}
             </li>
             <li>
               {translate("You can delete your progress or account at any time.")}

@@ -1,0 +1,2958 @@
+[
+  {
+    "id": "alphabet",
+    "title": "Pronunciation Guide: Sounds and Spelling",
+    "nahuatlTitle": "Piltlahcuiloltzitzin",
+    "band": "A1",
+    "shortDesc": "Read the course spelling with INALI’s published Nahuatl alphabet and learn regional pronunciation cues.",
+    "relatedUnits": [
+      1
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "INALI’s published Nahuatl alphabet governs this course’s teaching orthography. Its 19 graphemes are **a, ch, e, i, h, k, kw, l, m, n, o, p, s, t, tl, ts, w, x, y**. We use **h**, not j, for the corresponding Nahuatl consonant, and retain doubled consonants where the taught form has them.\n\nThe alphabet unifies writing criteria while respecting each region’s language. Our vocabulary and grammar remain grounded in Eastern Huasteca Nahuatl, especially the Chicontepec-based source course. A shared alphabet does not make every regional word or pronunciation identical.\n\nSource spellings remain available as labeled references. For example, the source-course spelling queniuhqui is taught here as **kenihki**, a source-aware reading cue rather than a general rule that every uh becomes w. Practice the name question as **kenihki motokah**. The \"Orthographic Systems\" lesson explains how to read source references alongside the INALI course spelling."
+      },
+      {
+        "kind": "rule",
+        "title": "Vowels",
+        "text": "The INALI alphabet has four vowel letters: a, e, i, o. Some source materials mark vowel length with macrons. The course’s main practice text uses plain vowels, as the published alphabet poster’s examples do; original length marks remain in source references. Their omission from practice text does not mean that vowel length is absent in speech. The poster alone does not provide a complete rule for writing vowel length, so listen to source recordings and keep the source pronunciation evidence in view."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Vowels",
+        "headers": [
+          "Vowel",
+          "Example word",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "a",
+            "form": "atl",
+            "gloss": "water"
+          },
+          {
+            "person": "e",
+            "form": "etl",
+            "gloss": "bean"
+          },
+          {
+            "person": "i",
+            "form": "sintli",
+            "gloss": "corn ear"
+          },
+          {
+            "person": "o",
+            "form": "tonatiw",
+            "gloss": "sun"
+          },
+          {
+            "person": "a",
+            "form": "amoxtli",
+            "gloss": "book"
+          },
+          {
+            "person": "e",
+            "form": "tekwtli",
+            "gloss": "lord / sir"
+          },
+          {
+            "person": "i",
+            "form": "xiwitl",
+            "gloss": "year / turquoise"
+          },
+          {
+            "person": "o",
+            "form": "totolin",
+            "gloss": "turkey"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Key consonants and sound clusters",
+        "text": "Most consonants are pronounced close to Spanish values. Several sound combinations are important in Nahuatl:\n\n• **tl** — a lateral affricate found in Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **ts** — like English \"ts\" in \"cats\". Example: tsahtsi (to shout).\n\n• **x** — like English \"sh\" in \"shoe\". Example: xochitl (flower).\n\n• **w** — represents the /w/ sound in words like weyi (big), but do not use it to pronounce the question word kenihki.\n\n• **kw** — represents the /kw/ sound. Example: kwawtli (eagle).\n\n• **k** — represents the /k/ sound everywhere. Example: kenihki (how).\n\n• **h** can mark a brief glottal catch or h-like release. Example: motokah (your name)."
+      },
+      {
+        "kind": "rule",
+        "title": "The name question",
+        "text": "A very common source-course spelling is ¿Quēniuhqui motōcah?. In this app, read and practice it as **¿Kenihki motokah?**.\n\nPronunciation cue: **kenihki motokah**. The first word is not \"keniwki\"; the final h in motokah is a light catch or h-like release."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Special consonant clusters",
+        "headers": [
+          "Spelling",
+          "Sound",
+          "Example"
+        ],
+        "rows": [
+          {
+            "person": "tl",
+            "form": "/tɬ/ (lateral affricate)",
+            "gloss": "tlahtoa — to speak"
+          },
+          {
+            "person": "ts",
+            "form": "/ts/ (like \"ts\" in cats)",
+            "gloss": "tsahtsi — to shout"
+          },
+          {
+            "person": "x",
+            "form": "/ʃ/ (like \"sh\")",
+            "gloss": "xochitl — flower"
+          },
+          {
+            "person": "w",
+            "form": "/w/",
+            "gloss": "weyi — big"
+          },
+          {
+            "person": "kw",
+            "form": "/kw/",
+            "gloss": "kwawtli — eagle"
+          },
+          {
+            "person": "k",
+            "form": "/k/",
+            "gloss": "kemman — when"
+          },
+          {
+            "person": "h",
+            "form": "glottal stop / h-like catch",
+            "gloss": "motokah — your name"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Stress",
+        "text": "Stress in EHN falls on the second-to-last (penultimate) syllable in most words. For example: ni·tla·mach·**ti**·a → stress on -ti-. In practice, you will acquire stress naturally through the dialogue exercises."
+      },
+      {
+        "kind": "examples",
+        "heading": "Practice reading these words",
+        "items": [
+          {
+            "nahuatl": "Piyali",
+            "breakdown": "Pi·ya·li",
+            "translation": "Hello / Greetings",
+            "note": "Common EHN greeting"
+          },
+          {
+            "nahuatl": "axkan",
+            "breakdown": "ax·kan",
+            "translation": "today / now",
+            "note": "x represents the sh sound."
+          },
+          {
+            "nahuatl": "tlahtoa",
+            "breakdown": "tlah·to·a",
+            "translation": "to speak",
+            "note": "Note the tl- onset"
+          },
+          {
+            "nahuatl": "xochitl",
+            "breakdown": "xo·chitl",
+            "translation": "flower",
+            "note": "x = /sh/"
+          },
+          {
+            "nahuatl": "kenihki",
+            "breakdown": "ke·nih·ki",
+            "translation": "how / what is ... like?",
+            "note": "Say kenihki, not keniwki"
+          },
+          {
+            "nahuatl": "¿Quēniuhqui motōcah?",
+            "breakdown": "kenihki mo·tokah",
+            "translation": "What is your name?",
+            "note": "Source spelling: Quēniuhqui motōcah. Practice aloud as kenihki motokah."
+          },
+          {
+            "nahuatl": "kalli",
+            "breakdown": "kal·li",
+            "translation": "house",
+            "note": "k is written the same before every vowel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "orthographic-systems",
+    "title": "Orthographic Systems: INALI Standard and Source References",
+    "nahuatlTitle": "Tlahcuiloliztli",
+    "band": "A1",
+    "shortDesc": "Use INALI’s published alphabet consistently while learning to read original source spellings.",
+    "relatedUnits": [
+      1
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "INALI’s published Nahuatl alphabet is the writing standard for this course. Books, dictionaries, school materials, and community texts may preserve other spelling conventions. Learning to read those references is useful, but they do not change the course’s teaching standard.\n\nA spelling difference can reflect an orthographic convention, a regional form, or a pronunciation distinction. Do not assume that every differently written word is interchangeable. We keep original source forms visible in labeled comparisons and use the INALI alphabet for the primary practice form."
+      },
+      {
+        "kind": "rule",
+        "title": "The teaching standard and source conventions",
+        "text": "• **INALI: the course standard** — the published Nahuatl alphabet contains **a, ch, e, i, h, k, kw, l, m, n, o, p, s, t, tl, ts, w, x, y**. Its examples use h, k, kw, ts, and w; doubled l is retained in examples such as chilli and tlayolli. The poster respects regional vocabulary and pronunciation instead of imposing one region’s words on another.\n\n• **IDIEZ: original course references** — the Chicontepec-based source course uses c/qu, hu/uh, and cu/uc spellings, and macrons such as ā, ē, ī, ō. We retain those original forms in source references so learners can consult the material and its pronunciation evidence. They are reference spellings, not a second teaching standard.\n\n• **Other school and community references** — some materials use j or u, while others retain older c/qu or hu conventions. Read each source according to its own spelling guide. The j spelling in such a reference is not part of INALI’s published alphabet used by this course."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Same word, three spellings",
+        "caption": "The middle column is the INALI course form. The outer columns preserve source-reference spellings; they are not alternative teaching standards.",
+        "headers": [
+          "IDIEZ source reference",
+          "INALI course spelling",
+          "Other source-reference spelling"
+        ],
+        "rows": [
+          {
+            "person": "cualli",
+            "form": "kwalli",
+            "gloss": "cualli"
+          },
+          {
+            "person": "quena",
+            "form": "kena",
+            "gloss": "quena"
+          },
+          {
+            "person": "cihuātl",
+            "form": "siwatl",
+            "gloss": "cihuatl"
+          },
+          {
+            "person": "xōchitl",
+            "form": "xochitl",
+            "gloss": "xochitl"
+          },
+          {
+            "person": "tlahtoa",
+            "form": "tlahtoa",
+            "gloss": "tlajtoa (j-spelling reference)"
+          },
+          {
+            "person": "cuahuitl",
+            "form": "kwawitl",
+            "gloss": "cuahuitl"
+          },
+          {
+            "person": "ahsi",
+            "form": "ahsi",
+            "gloss": "asi / aci"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "heading": "INALI governs the course spelling",
+        "text": "Lessons, conversations, vocabulary practice, and answer checks use the same INALI alphabet. The original source spelling is preserved separately, together with the evidence for each regional form. Changing the writing convention does not change a word’s identity, its meaning, or the learner’s existing progress.\n\nThe course uses plain vowels in its main practice display. Original vowel-length marks remain available in source references; this display choice must not be confused with a claim that length is absent in speech or that the alphabet poster supplies every rule of a complete writing norm."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Quick conversion cheatsheet",
+        "caption": "These sound mappings help read source references. Use the approved course form: letter sequences can have source-specific exceptions, and a spelling conversion must preserve the regional word.",
+        "headers": [
+          "Sound or source feature",
+          "Original source spelling",
+          "INALI course spelling"
+        ],
+        "rows": [
+          {
+            "person": "/k/ before a/o",
+            "form": "c",
+            "gloss": "k"
+          },
+          {
+            "person": "/k/ before e/i",
+            "form": "qu",
+            "gloss": "k"
+          },
+          {
+            "person": "/w/ before vowel",
+            "form": "hu",
+            "gloss": "w"
+          },
+          {
+            "person": "/w/ after vowel",
+            "form": "uh",
+            "gloss": "w"
+          },
+          {
+            "person": "/kw/",
+            "form": "cu / uc",
+            "gloss": "kw"
+          },
+          {
+            "person": "/s/",
+            "form": "c / z",
+            "gloss": "s"
+          },
+          {
+            "person": "/ʃ/",
+            "form": "x",
+            "gloss": "x"
+          },
+          {
+            "person": "saltillo / h consonant",
+            "form": "h",
+            "gloss": "h"
+          },
+          {
+            "person": "source vowel-length marks",
+            "form": "ā ē ī ō",
+            "gloss": "plain vowels in practice; length retained in references"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nouns",
+    "title": "Noun Endings and Plurals",
+    "nahuatlTitle": "Tlatōcaxtiliztli tlen ax quipiya ītecoh",
+    "band": "A1",
+    "shortDesc": "How many EHN nouns are shaped and made plural.",
+    "relatedUnits": [
+      8,
+      9,
+      22
+    ],
+    "relatedGrammarLabIds": [
+      "noun-endings"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In EHN, many nouns in their basic standalone form carry a visible ending. This ending appears when the noun stands alone, not possessed by anyone. When a possessive prefix is added, the ending often drops or changes in a learned possessed form."
+      },
+      {
+        "kind": "rule",
+        "title": "Common standalone noun endings",
+        "text": "• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *chichi* (dog)\n\nIn practice, learn the ending as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Common standalone noun forms",
+        "headers": [
+          "Noun",
+          "Meaning",
+          "Ending type"
+        ],
+        "rows": [
+          {
+            "person": "ātl",
+            "form": "water",
+            "gloss": "-tl (after vowel)"
+          },
+          {
+            "person": "cōātl",
+            "form": "snake",
+            "gloss": "-tl (after vowel)"
+          },
+          {
+            "person": "calli",
+            "form": "house",
+            "gloss": "-li (stem: cal-)"
+          },
+          {
+            "person": "cōmalli",
+            "form": "comal / cooking griddle",
+            "gloss": "-li (stem: cōmal-)"
+          },
+          {
+            "person": "cīntli",
+            "form": "ear of corn",
+            "gloss": "-tli (after consonant)"
+          },
+          {
+            "person": "āmoxtli",
+            "form": "book",
+            "gloss": "-tli (after consonant)"
+          },
+          {
+            "person": "tequitl",
+            "form": "work / task",
+            "gloss": "learn the possessed form explicitly"
+          },
+          {
+            "person": "xōchitl",
+            "form": "flower",
+            "gloss": "-tl"
+          },
+          {
+            "person": "piltsintli",
+            "form": "child / little one",
+            "gloss": "-tli"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Forming the plural",
+        "text": "For beginner production, first learn this animate plural pattern: many animate nouns drop the standalone ending and add **-meh**.\n\nExamples:\n• cihuātl → cihuāmeh (woman → women)\n• mācēhualli → mācēhualmeh (Indigenous person → Indigenous people)\n\nInanimate nouns often do not require plural marking in ordinary use, though usage varies. For animate nouns, an honorific plural **-tzitzin** can also be used (see the Diminutives & Honorifics lesson)."
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples in context",
+        "items": [
+          {
+            "nahuatl": "Cihuāmeh",
+            "breakdown": "cihuā-meh",
+            "translation": "They are women",
+            "note": "Plural form; the standalone ending is replaced by -meh"
+          },
+          {
+            "nahuatl": "Mācēhualmeh",
+            "breakdown": "mācēhual-meh",
+            "translation": "They are indigenous people",
+            "note": "-li suffix drops; -meh added"
+          },
+          {
+            "nahuatl": "Pan tomīllah ticcuahcuepah etl huan chilli huan cīntli.",
+            "breakdown": "Pan to·mīllah ti·c·cuahcuepāh etl huan chilli huan cīntli.",
+            "translation": "In our milpa we cultivate bean, chili, and corn.",
+            "note": "etl, chilli, and cīntli appear here as standalone nouns used as direct objects"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "subject-marking",
+    "title": "Pronouns & Subject Marking",
+    "nahuatlTitle": "Tlatzinpeuhcayōtl",
+    "band": "A1",
+    "shortDesc": "Personal pronouns and the subject prefixes attached to verbs.",
+    "relatedUnits": [
+      3,
+      6,
+      11
+    ],
+    "relatedGrammarLabIds": [
+      "subject-prefixes",
+      "identity-words-introductions"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "EHN does not require an independent pronoun to be stated — the verb itself carries all the information about who is performing the action. Subject prefixes are attached directly to the front of the verb. The independent pronouns exist but are used mainly for emphasis or contrast.\n\n**Source-course pronouns.** Source Lesson 3 teaches **na** (I), **ta** (you), and **ya** (he/she), alongside **tohhuantin**, **inmohhuantin**, and **inihhuantin** for the plural. Other varieties and writing traditions use other forms; this lesson follows the source course.\n\nNew to grammar terms like \"first person\" and \"third person plural\"? See the \"Who's Talking? Person & Number Explained\" lesson for a plain-English guide."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Independent pronouns",
+        "caption": "Everyday EHN forms. Used mainly for emphasis; often omitted.",
+        "headers": [
+          "Person",
+          "Pronoun",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "na",
+            "gloss": "I"
+          },
+          {
+            "person": "you",
+            "form": "ta",
+            "gloss": "you (singular)"
+          },
+          {
+            "person": "he / she",
+            "form": "ya",
+            "gloss": "he / she / it"
+          },
+          {
+            "person": "we",
+            "form": "tohhuantin",
+            "gloss": "we"
+          },
+          {
+            "person": "you all",
+            "form": "inmohhuantin",
+            "gloss": "you (plural)"
+          },
+          {
+            "person": "they",
+            "form": "inihhuantin",
+            "gloss": "they"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Subject prefixes on verbs",
+        "caption": "Using tequiti (to work) as the model verb.",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "ni·tequiti",
+            "gloss": "I work"
+          },
+          {
+            "person": "you",
+            "form": "ti·tequiti",
+            "gloss": "you work"
+          },
+          {
+            "person": "he / she",
+            "form": "tequiti",
+            "gloss": "he/she/it works (no prefix)"
+          },
+          {
+            "person": "we",
+            "form": "ti·tequiti·h",
+            "gloss": "we work"
+          },
+          {
+            "person": "you all",
+            "form": "in·tequiti·h",
+            "gloss": "you all work"
+          },
+          {
+            "person": "they",
+            "form": "tequiti·h",
+            "gloss": "they work"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Key pattern: ni- / ti- / (ø) / ti-...-h / in-...-h / (ø)-...-h",
+        "text": "1st and 2nd person singular are marked by a prefix only (ni-, ti-).\n3rd person singular has no prefix.\nPlural forms add the suffix **-h** in addition to the prefix (for 1pl/2pl) or the suffix alone (3pl).\n\n1pl and 2sg share the prefix **ti-**. Context and the plural suffix -h distinguish them:\n• ti·tequiti = you work (2sg, no -h)\n• ti·tequiti·h = we work (1pl, has -h)"
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Saying “I am...” with an identity word",
+        "caption": "Using mexikatl from the introductions unit.",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "ni·mexikatl",
+            "gloss": "I am Mexican"
+          },
+          {
+            "person": "you",
+            "form": "ti·mexikatl",
+            "gloss": "you are Mexican"
+          },
+          {
+            "person": "he / she",
+            "form": "mexikatl",
+            "gloss": "he/she is Mexican"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from dialogues",
+        "items": [
+          {
+            "nahuatl": "Na notokah Paty.",
+            "breakdown": "Na no·tokah Paty.",
+            "translation": "My name is Paty.",
+            "note": "na = I (pronoun for emphasis); notokah = my name"
+          },
+          {
+            "nahuatl": "¿Huan ta, kenihki motokah?",
+            "breakdown": "¿Huan ta, kenihki mo·tokah?",
+            "translation": "And you, what is your name?",
+            "note": "ta = you (emphatic); huan = and; mo- = your (2sg possessive)"
+          },
+          {
+            "nahuatl": "Na niēhua Tecomate, Chicōntepēc.",
+            "breakdown": "Na ni·ēhua Tecomate, Chicōntepēc.",
+            "translation": "I am from Tecomate, Chicontepec.",
+            "note": "ni- = 1sg subject prefix; ēhua = to be from / to depart"
+          },
+          {
+            "nahuatl": "Na nimomachtia huan nitlamachtia.",
+            "breakdown": "Na ni·momachtia huan ni·tlamachtia.",
+            "translation": "I am a student and I teach.",
+            "note": "ni- appears on each verb in the sentence"
+          },
+          {
+            "nahuatl": "Ya tequiti pan mīllah.",
+            "breakdown": "Ya tequiti pan mīllah.",
+            "translation": "He / she works in the milpa.",
+            "note": "ya = he/she (3sg pronoun); 3sg verb has no prefix"
+          },
+          {
+            "nahuatl": "Nimācēhualli.",
+            "breakdown": "Ni·mācēhualli.",
+            "translation": "I am indigenous.",
+            "note": "ni- + identity word; no separate \"am\" word is added"
+          },
+          {
+            "nahuatl": "Axcanah, āxcan ninēhnemi pan āltepētl.",
+            "breakdown": "Axcanah, āxcan ni·nēhnemi pan āltepētl.",
+            "translation": "No, today I am walking around town.",
+            "note": "Axcanah = no; āxcan = today/now; ninēhnemi = I walk around (ni- prefix)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "present-tense",
+    "title": "Present Tense Verbs",
+    "nahuatlTitle": "Tlachīhualiztli tlen ax quimānēxtia cē tlamantli",
+    "band": "A1",
+    "shortDesc": "Intransitive verbs in the present tense with full conjugation.",
+    "relatedUnits": [
+      6,
+      3,
+      11
+    ],
+    "relatedGrammarLabIds": [
+      "subject-prefixes",
+      "present-tense-verbs"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Intransitive verbs are verbs that don't take a direct object — \"to sleep,\" \"to work,\" \"to walk.\" In EHN, they're formed by attaching the appropriate subject prefix directly to the verb stem. There is no separate \"to be\" verb like Spanish \"estar/ser\"; the subject prefix alone carries that information."
+      },
+      {
+        "kind": "rule",
+        "title": "Structure: [subject prefix] + [verb stem]",
+        "text": "The verb stem is the core of the word. In dictionary entries, verbs are often listed without the prefix. To conjugate, attach the correct EHN prefix:\n\n• 1sg: **ni-** + stem\n• 2sg: **ti-** + stem\n• 3sg: stem alone\n• 1pl: **ti-** + stem + **-h**\n• 2pl: **in-** + stem + **-h**\n• 3pl: stem + **-h**"
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Full conjugation — tequiti (to work)",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nitequiti",
+            "gloss": "I work"
+          },
+          {
+            "person": "you",
+            "form": "titequiti",
+            "gloss": "you work"
+          },
+          {
+            "person": "he / she",
+            "form": "tequiti",
+            "gloss": "he / she / it works"
+          },
+          {
+            "person": "we",
+            "form": "titequitih",
+            "gloss": "we work"
+          },
+          {
+            "person": "you all",
+            "form": "intequitih",
+            "gloss": "you all work"
+          },
+          {
+            "person": "they",
+            "form": "tequitih",
+            "gloss": "they work"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Common intransitive verbs (1sg form)",
+        "headers": [
+          "1sg form",
+          "Stem",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "nitequiti",
+            "form": "tequiti",
+            "gloss": "I work"
+          },
+          {
+            "person": "nimomachtia",
+            "form": "momachtia",
+            "gloss": "I study / I learn"
+          },
+          {
+            "person": "nitlamachtia",
+            "form": "tlamachtia",
+            "gloss": "I teach"
+          },
+          {
+            "person": "niēhua",
+            "form": "ēhua",
+            "gloss": "I am from / I depart"
+          },
+          {
+            "person": "ninēhnemi",
+            "form": "nēhnemi",
+            "gloss": "I walk around"
+          },
+          {
+            "person": "nicōchi",
+            "form": "cōchi",
+            "gloss": "I sleep"
+          },
+          {
+            "person": "niyāuh",
+            "form": "yāuh",
+            "gloss": "I go"
+          },
+          {
+            "person": "nihuāllāuh",
+            "form": "huāllāuh",
+            "gloss": "I come"
+          },
+          {
+            "person": "niātli",
+            "form": "ātli",
+            "gloss": "I drink water"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from dialogues",
+        "items": [
+          {
+            "nahuatl": "¿Cāmpa tiyāuh?",
+            "breakdown": "¿Cāmpa ti·yāuh?",
+            "translation": "Where are you going?",
+            "note": "cāmpa = where (direction); ti- = 2sg; yāuh = to go"
+          },
+          {
+            "nahuatl": "Niyāuh tiānquiz.",
+            "breakdown": "Ni·yāuh tiānquiz.",
+            "translation": "I am going to the market.",
+            "note": "ni- = 1sg; tiānquiz = market"
+          },
+          {
+            "nahuatl": "Nitlamachtia nāhuatl pan caltlamachticān.",
+            "breakdown": "Ni·tlamachtia nāhuatl pan caltlamachticān.",
+            "translation": "I teach Nahuatl at school.",
+            "note": "tlamachtia is an intransitive form here (general teaching)"
+          },
+          {
+            "nahuatl": "Āxcan ninēhnemi pan āltepētl.",
+            "breakdown": "Āxcan ni·nēhnemi pan āltepētl.",
+            "translation": "Today I am walking around town.",
+            "note": "āxcan = today/now; pan = in/at"
+          },
+          {
+            "nahuatl": "Achtohui nitlamachtia, nouhquiya nitequiti pan mīllah.",
+            "breakdown": "Achtohui ni·tlamachtia, nouhquiya ni·tequiti pan mīllah.",
+            "translation": "First I teach; then I also work in the milpa.",
+            "note": "achtohui = first; nouhquiya = also / then; mīllah = in the milpa"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "possession",
+    "title": "Possessive Prefixes",
+    "nahuatlTitle": "Noyōllo — Motocaxtilli tlen quipoz ītecoh",
+    "band": "A1",
+    "shortDesc": "How to express \"my,\" \"your,\" \"his/her,\" etc. on nouns.",
+    "relatedUnits": [
+      8,
+      9,
+      22
+    ],
+    "relatedGrammarLabIds": [
+      "possession-prefixes",
+      "name-exchange",
+      "family-possession"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "To say \"my house,\" \"your name,\" or \"their milpa,\" EHN adds a possessive prefix to the noun. At the same time, the standalone noun ending (-tl, -tli, -li) often drops or changes in the learned possessed form. Start with the possessed forms shown in the course before guessing new ones."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Possessive prefixes",
+        "headers": [
+          "Person",
+          "Prefix",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "no-",
+            "gloss": "my"
+          },
+          {
+            "person": "you",
+            "form": "mo-",
+            "gloss": "your (singular)"
+          },
+          {
+            "person": "he / she",
+            "form": "ī-",
+            "gloss": "his / her / its"
+          },
+          {
+            "person": "we",
+            "form": "to-",
+            "gloss": "our"
+          },
+          {
+            "person": "you all",
+            "form": "inmo-",
+            "gloss": "your (plural)"
+          },
+          {
+            "person": "they",
+            "form": "inin-",
+            "gloss": "their"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Changing the standalone ending",
+        "text": "When you add a possessive prefix, the standalone noun ending often drops or changes:\n\n• tōcah (name) → no·tōcah (my name), mo·tōcah (your name), ī·tōcah (his/her name)\n• mīllah (milpa/field) → no·mīllah (my milpa), to·mīllah (our milpa)\n• chichi (dog) → no·chichi (my dog), ī·chichi (his/her dog)\n\nFor some nouns ending in -tl, the possessed form uses **-uh**:\n• tequitl → no·tequiuh (my work)\n• yōllo → no·yōllo (my heart) — stem yōll- + possessive form"
+      },
+      {
+        "kind": "paradigm",
+        "heading": "tōcah (name) — full possessive paradigm",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "notokah",
+            "gloss": "my name"
+          },
+          {
+            "person": "you",
+            "form": "motokah",
+            "gloss": "your name"
+          },
+          {
+            "person": "he / she",
+            "form": "itokah",
+            "gloss": "his / her name"
+          },
+          {
+            "person": "we",
+            "form": "totokah",
+            "gloss": "our name"
+          },
+          {
+            "person": "you all",
+            "form": "inmotokah",
+            "gloss": "your (pl) name"
+          },
+          {
+            "person": "they",
+            "form": "inintokah",
+            "gloss": "their name"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from dialogues",
+        "items": [
+          {
+            "nahuatl": "¿Kenihki motokah?",
+            "breakdown": "¿Kenihki mo·tokah?",
+            "translation": "What is your name? (lit. \"How is your name?\")",
+            "note": "mo- = your (2sg possessive)"
+          },
+          {
+            "nahuatl": "Na notokah Paty.",
+            "breakdown": "Na no·tokah Paty.",
+            "translation": "My name is Paty.",
+            "note": "no- = my (1sg possessive)"
+          },
+          {
+            "nahuatl": "Felipe yohui mīllah huanya īchichi.",
+            "breakdown": "Felipe yohui mīllah huanya ī·chichi.",
+            "translation": "Felipe goes to the milpa with his dog.",
+            "note": "ī- = his (3sg); chichi = dog in a learned possessed form"
+          },
+          {
+            "nahuatl": "Pan tomīllah ticcuahcuepah etl huan chilli.",
+            "breakdown": "Pan to·mīllah ti·c·cuahcuepāh etl huan chilli.",
+            "translation": "In our milpa we cultivate bean and chili.",
+            "note": "to- = our (1pl possessive); mīllah = milpa/field"
+          },
+          {
+            "nahuatl": "Nopa noaxca, nicān niccāhua.",
+            "breakdown": "Nopa no·axca, nicān ni·c·cāhua.",
+            "translation": "That is mine; I leave it here.",
+            "note": "noaxca = my possession/mine; no- = 1sg possessive"
+          },
+          {
+            "nahuatl": "Neca iaxca nocniuh.",
+            "breakdown": "Neca i·axca no·cniuh.",
+            "translation": "That belongs to my friend.",
+            "note": "iaxca = his/her possession; nocniuh = my friend (no- + cniuh)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "questions",
+    "title": "Question Words",
+    "nahuatlTitle": "Tlahtlaniliztli",
+    "band": "A1",
+    "shortDesc": "How to ask who, what, where, when, how, and how many.",
+    "relatedUnits": [
+      2,
+      3,
+      7
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "EHN has a rich set of question words. Like in Spanish, questions are typically marked with an inverted question mark at the start (¿) and a regular question mark at the end (?). The question word usually comes at the beginning of the sentence."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Core question words",
+        "headers": [
+          "Question word",
+          "Meaning",
+          "Used to ask about…"
+        ],
+        "rows": [
+          {
+            "person": "¿Tlen? / ¿Tlein?",
+            "form": "What?",
+            "gloss": "things, actions, identity"
+          },
+          {
+            "person": "¿Akkia?",
+            "form": "Who?",
+            "gloss": "people, subjects (source spelling: Ācquiya)"
+          },
+          {
+            "person": "¿Kampa? / ¿Kanke?",
+            "form": "Where?",
+            "gloss": "location"
+          },
+          {
+            "person": "¿Kenihki?",
+            "form": "How? / What is … like?",
+            "gloss": "manner, description"
+          },
+          {
+            "person": "¿Keman?",
+            "form": "When?",
+            "gloss": "time"
+          },
+          {
+            "person": "¿Keski?",
+            "form": "How many?",
+            "gloss": "quantity"
+          },
+          {
+            "person": "¿Ken?",
+            "form": "How? (shortened)",
+            "gloss": "manner (informal)"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Using ¿Tlen? vs ¿Tlein?",
+        "text": "Both tlen and tlein mean \"what.\" Tlen is the more common spoken form in EHN. Tlein is found more often in classical and written forms. Use tlen in conversation.\n\nTlen is also used as a relative pronoun meaning \"that/which\": *āmoxtli tlen nicāmati* (the book that I like)."
+      },
+      {
+        "kind": "examples",
+        "heading": "Question patterns in context",
+        "items": [
+          {
+            "nahuatl": "¿Kenihki motokah?",
+            "breakdown": "¿Kenihki mo·tokah?",
+            "translation": "What is your name?",
+            "note": "Literally: \"How is your name?\" — the standard greeting question"
+          },
+          {
+            "nahuatl": "¿Cānin tiēhua?",
+            "breakdown": "¿Cānin ti·ēhua?",
+            "translation": "Where are you from?",
+            "note": "cānin = where; tiēhua = you are from"
+          },
+          {
+            "nahuatl": "¿Cāmpa tiyāuh?",
+            "breakdown": "¿Cāmpa ti·yāuh?",
+            "translation": "Where are you going?",
+            "note": "cāmpa = where (direction/destination)"
+          },
+          {
+            "nahuatl": "¿Tlen ticchīhuaz mōztla?",
+            "breakdown": "¿Tlen ti·c·chīhuaz mōztla?",
+            "translation": "What will you do tomorrow?",
+            "note": "tlen = what; mōztla = tomorrow; -z = future suffix"
+          },
+          {
+            "nahuatl": "¿Quēmman tihuāllāz?",
+            "breakdown": "¿Quēmman ti·huāllāz?",
+            "translation": "When will you come back?",
+            "note": "quēmman = when; -z = future suffix"
+          },
+          {
+            "nahuatl": "¿Tlen ticchihua nicān?",
+            "breakdown": "¿Tlen ti·c·chihua nicān?",
+            "translation": "What are you making here?",
+            "note": "ticchihua = you make it (ti- = 2sg; c = object prefix \"it\"; chihua = to make)"
+          },
+          {
+            "nahuatl": "¿Quēn moxēloa tōnatiuh?",
+            "breakdown": "¿Quēn mo·xēloa tōnatiuh?",
+            "translation": "How is the day divided up? (How does the sun move?)",
+            "note": "Used to ask about time of day"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "future-tense",
+    "title": "Future Tense",
+    "nahuatlTitle": "Tlachīhualiztli tlen panoz",
+    "band": "A1",
+    "shortDesc": "Learn singular future forms attested in Source Lesson 12.",
+    "relatedUnits": [
+      12,
+      7
+    ],
+    "relatedGrammarLabIds": [
+      "future-tense"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Source Lesson 12 teaches singular future forms with -z. Learn the stem with each verb: nitequiti becomes nitequitiz, while nimomachtia loses its final a and becomes nimomachtiz. This lesson practices the attested singular forms."
+      },
+      {
+        "kind": "rule",
+        "title": "Singular future forms and a pending plural review",
+        "text": "The source writes plural -zceh, while some app material has used -zqueh. The transcription and pronunciation need review; neither spelling is presented here as universally correct. Plural future production is withheld while that question is unresolved."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "tequiti (to work) — Singular future",
+        "headers": [
+          "Person",
+          "Future form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nitequitiz",
+            "gloss": "I will work"
+          },
+          {
+            "person": "you",
+            "form": "titequitiz",
+            "gloss": "you will work"
+          },
+          {
+            "person": "he / she",
+            "form": "tequitiz",
+            "gloss": "he/she will work"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "More source-course singular future forms",
+        "headers": [
+          "Future form",
+          "Present form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "nimomachtiz",
+            "form": "nimomachtia",
+            "gloss": "I will study"
+          },
+          {
+            "person": "timomachtiz",
+            "form": "timomachtia",
+            "gloss": "you will study"
+          },
+          {
+            "person": "momachtiz",
+            "form": "momachtia",
+            "gloss": "he/she will study"
+          },
+          {
+            "person": "nitlacuāz",
+            "form": "nitlacua",
+            "gloss": "I will eat"
+          },
+          {
+            "person": "titlacuāz",
+            "form": "titlacua",
+            "gloss": "you will eat"
+          },
+          {
+            "person": "tlacuāz",
+            "form": "tlacua",
+            "gloss": "he/she will eat"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Source Lesson 12 sentences",
+        "items": [
+          {
+            "nahuatl": "Nochocho motlaloz pan caltlamachtihcān.",
+            "breakdown": "Nochocho motlalo-z pan caltlamachtihcān.",
+            "translation": "My brother will run at school.",
+            "note": "Source Lesson 12 singular future example."
+          },
+          {
+            "nahuatl": "Mario mihtōtiz huanya īyōltzin pan tlaixpiyalli.",
+            "breakdown": "Mario mihtōti-z huanya ī-yōltzin pan tlaixpiyalli.",
+            "translation": "Mario will dance with his girlfriend at the dance.",
+            "note": "Source Lesson 12 singular future example."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "transitive-verbs",
+    "title": "Transitive Verbs & Object Prefixes",
+    "nahuatlTitle": "Tlachīhualiztli tlen quimānēxtia ācquiya quīchihua cē tlamantli",
+    "band": "A1",
+    "shortDesc": "How to mark direct objects on transitive verbs.",
+    "relatedUnits": [
+      13,
+      18,
+      3
+    ],
+    "relatedGrammarLabIds": [
+      "object-prefixes"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Transitive verbs take a direct object: \"I eat the tortilla,\" \"she takes the book.\" In EHN, the object is marked by a prefix that appears between the subject prefix and the verb stem. Both the subject AND the object are marked on the verb."
+      },
+      {
+        "kind": "rule",
+        "title": "Word order for transitive verbs",
+        "text": "The structure is: **[subject prefix] + [object prefix] + [verb stem]**\n\nFor example:\n• ni· + k· + kwa = nikkwa (I eat it)\n• ti· + k· + kwa = tikkwa (you eat it)\n• ki· + kwa = kikwa (he/she eats it)\n\nThe object prefix *k-/ki-* means \"it/him/her\" (3rd person singular object). It has two learner-facing shapes: **k-** in forms like nikkwa and tikkwa, and **ki-** in third-person forms like kikwa."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Object prefixes (what/who receives the action)",
+        "headers": [
+          "Object prefix",
+          "Meaning",
+          "Example with cua (to eat)"
+        ],
+        "rows": [
+          {
+            "person": "nech-",
+            "form": "me",
+            "gloss": "nechmaka — he gives me (something)"
+          },
+          {
+            "person": "mits-",
+            "form": "you (sg)",
+            "gloss": "mitstemoa — he/she looks for you"
+          },
+          {
+            "person": "ki- / k-",
+            "form": "him / her / it",
+            "gloss": "kikwa — he/she eats it; nikkwa — I eat it"
+          },
+          {
+            "person": "tech-",
+            "form": "us",
+            "gloss": "techmaka — he/she gives us"
+          },
+          {
+            "person": "mech-",
+            "form": "you all",
+            "gloss": "mechmaka — he/she gives you all"
+          },
+          {
+            "person": "kin-",
+            "form": "them",
+            "gloss": "kinmaka — he/she gives them"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Combining subject + object prefixes",
+        "text": "When subject and object prefixes combine, contractions can occur:\n• ni- + k- → **nik-** (I + it): nikkwa (I eat it), nikamati (I like it)\n• ti- + k- → **tik-**: tikkwa (you eat it), tiktlahtoa (you speak it)\n• ti- + k- + ... + -h (1pl) → **tikk-**: tikkwahkwepah (we cultivate it)\n\nWhen the subject is 3rd person and the object is 3rd person, the beginner form with a singular object is **ki-**: kikwa (he/she eats it), kichihua (he/she makes it). Learn plural-object forms as explicit vocabulary examples before producing them freely."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "cua (to eat) — 3sg object, all subjects",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "niccua",
+            "gloss": "I eat it"
+          },
+          {
+            "person": "you",
+            "form": "ticcua",
+            "gloss": "you eat it"
+          },
+          {
+            "person": "he / she",
+            "form": "quicua",
+            "gloss": "he/she eats it"
+          },
+          {
+            "person": "we",
+            "form": "ticcuah",
+            "gloss": "we eat it"
+          },
+          {
+            "person": "they",
+            "form": "quicuah",
+            "gloss": "they eat it"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Transitive verbs in context",
+        "items": [
+          {
+            "nahuatl": "Niccua tōmātl huan etl.",
+            "breakdown": "Ni·c·cua tōmātl huan etl.",
+            "translation": "I am eating tomato and bean.",
+            "note": "nic- = ni (1sg) + c (3sg object \"it\"); tōmātl = tomato"
+          },
+          {
+            "nahuatl": "¿Huan ta, tlen ticcua?",
+            "breakdown": "¿Huan ta, tlen ti·c·cua?",
+            "translation": "And you, what are you eating?",
+            "note": "ticcua = ti (2sg) + c (3sg obj) + cua; tlen = what"
+          },
+          {
+            "nahuatl": "Nitlaxcaloa.",
+            "breakdown": "Ni·tlaxcaloa.",
+            "translation": "I am making tortillas.",
+            "note": "The tortilla noun is incorporated into the verb, so no object prefix is added."
+          },
+          {
+            "nahuatl": "Nicnequi niccua tamalli āxcan.",
+            "breakdown": "Ni·c·nequi ni·c·cua tamalli āxcan.",
+            "translation": "I want to eat tamales today.",
+            "note": "nicnequi = I want it; niccua = I eat it; two transitive verbs"
+          },
+          {
+            "nahuatl": "Nonanān tēchmāca cafen yāhuatzinco.",
+            "breakdown": "No·nanān tēch·māca cafen yāhuatzinco.",
+            "translation": "My mother gives us coffee in the morning.",
+            "note": "tēch- = us (1pl object); māca = to give; nonanān = my mother"
+          },
+          {
+            "nahuatl": "Nopa noaxca, nicān niccāhua.",
+            "breakdown": "Nopa no·axca, nicān ni·c·cāhua.",
+            "translation": "That's mine; I leave it here.",
+            "note": "niccāhua = ni (1sg) + c (it) + cāhua (to leave/put down)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "past-tense",
+    "title": "Past Tense",
+    "nahuatlTitle": "Tlachīhualiztli tlen panoc",
+    "band": "A2",
+    "shortDesc": "Expressing completed past actions with EHN -qui/-c preterite forms.",
+    "relatedUnits": [
+      14,
+      15,
+      16
+    ],
+    "relatedGrammarLabIds": [
+      "past-tense"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "The Eastern Huasteca Nahuatl preterite marks completed actions. Unlike Classical Nahuatl, the source-course variety does not use an **ō-** augment. Learn the attested past stem of each verb; common singular endings include **-qui / -c**, with **-queh** in many plural forms."
+      },
+      {
+        "kind": "rule",
+        "title": "Structure: [subject prefix] + [EHN past stem] + (-queh for plural)",
+        "text": "The subject prefix stays at the front and the verb takes its Eastern Huasteca past form:\n\n• ni·tlacuāh·qui = I ate\n• ni·c·cōuh·qui = I bought it\n• ni·yāh·qui = I went\n\nPast stems are not fully predictable, so learn them from attested source-course examples rather than adding a Classical **ō-** prefix."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Past tense examples — chōca (to cry)",
+        "headers": [
+          "Person",
+          "Past form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nichōcac",
+            "gloss": "I cried"
+          },
+          {
+            "person": "you",
+            "form": "tichōcac",
+            "gloss": "you cried"
+          },
+          {
+            "person": "he / she",
+            "form": "chōcac",
+            "gloss": "he/she cried"
+          },
+          {
+            "person": "we",
+            "form": "tichōcaqueh",
+            "gloss": "we cried"
+          },
+          {
+            "person": "you all",
+            "form": "inchōcaqueh",
+            "gloss": "you all cried"
+          },
+          {
+            "person": "they",
+            "form": "chōcaqueh",
+            "gloss": "they cried"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Common verbs in the past tense",
+        "headers": [
+          "Past form",
+          "Infinitive / stem",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "niyāhqui",
+            "form": "yāuh (to go)",
+            "gloss": "I went"
+          },
+          {
+            "person": "nitlacuāhqui",
+            "form": "tlacua (to eat)",
+            "gloss": "I ate"
+          },
+          {
+            "person": "niccōuhqui",
+            "form": "cōhua (to buy)",
+            "gloss": "I bought it"
+          },
+          {
+            "person": "nichōcac",
+            "form": "chōca (to cry)",
+            "gloss": "I cried"
+          },
+          {
+            "person": "nicchīuhqui",
+            "form": "chīhua (to make)",
+            "gloss": "I made it"
+          },
+          {
+            "person": "nimomauhtihqui",
+            "form": "momauhtia (to be afraid)",
+            "gloss": "I was afraid"
+          }
+        ]
+      },
+      {
+        "kind": "examples",
+        "heading": "Past tense in dialogue",
+        "items": [
+          {
+            "nahuatl": "Axcanah cuālli. Niyāhqui pan ohtli.",
+            "breakdown": "Axcanah cuālli. Ni·yāh·qui pan ohtli.",
+            "translation": "Not good. I went on the road.",
+            "note": "ni- = 1sg; yāhqui = went; no Classical ō- augment"
+          },
+          {
+            "nahuatl": "¿Ax timomauhtihqui?",
+            "breakdown": "¿Ax ti·mo·mauhti·hqui?",
+            "translation": "Weren't you afraid?",
+            "note": "ax = negation; ti- = 2sg; momauhtihqui = was afraid"
+          },
+          {
+            "nahuatl": "Axcanah. Niyāhqui nicān.",
+            "breakdown": "Axcanah. Ni·yāh·qui nicān.",
+            "translation": "No. I went here.",
+            "note": "axcanah = no/not; niyāhqui = I went"
+          },
+          {
+            "nahuatl": "¿Tlen ticchīuhqui?",
+            "breakdown": "¿Tlen ti·c·chīuh·qui?",
+            "translation": "What did you make?",
+            "note": "ticchīuhqui is an EHN preterite without an ō- augment"
+          },
+          {
+            "nahuatl": "Cuālli niitztoc āxcan.",
+            "breakdown": "Cuālli ni·itztoc āxcan.",
+            "translation": "I'm fine now.",
+            "note": "niitztoc expresses being located or in a state; āxcan = now"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "negation",
+    "title": "Negation",
+    "nahuatlTitle": "Ahīliztli",
+    "band": "A1",
+    "shortDesc": "How to say \"no,\" \"not,\" and \"nothing\" in EHN.",
+    "relatedUnits": [
+      11,
+      18,
+      3
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "The standard negator in the Eastern Huasteca source course is **axcanah**, with a shorter **ax-** form before the word being negated. **Āmo** is retained chiefly in prohibitions such as *Āmo xichoca* (“Don't cry”), not as the default declarative negator."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Negation forms",
+        "headers": [
+          "Form",
+          "Usage",
+          "Example"
+        ],
+        "rows": [
+          {
+            "person": "axcanah",
+            "form": "no / not — standard EHN negator",
+            "gloss": "Axcanah nitlacua. — I am not eating."
+          },
+          {
+            "person": "ax- (short form)",
+            "form": "not — before the negated word",
+            "gloss": "ax nicān — not here; ax quipiya — doesn't have it"
+          },
+          {
+            "person": "āmo",
+            "form": "prohibitive “don’t”",
+            "gloss": "Āmo xichoca. — Don’t cry."
+          },
+          {
+            "person": "ax nelli",
+            "form": "\"not true\" / \"that's not right\"",
+            "gloss": "Ax nelli. — That's not true."
+          },
+          {
+            "person": "axtlen",
+            "form": "nothing",
+            "gloss": "Axtlen nicpiya. — I have nothing."
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "axcanah, ax, and prohibitive āmo",
+        "text": "• **axcanah** is the normal full negator and standalone “no” in the source-course variety.\n\n• **ax** is its shorter form and precedes the negated word: *ax nicān* (not here), *ax quipiya* (he/she doesn't have it).\n\n• **āmo** is useful in negative commands: *Āmo xiyāuh* (don't go)."
+      },
+      {
+        "kind": "examples",
+        "heading": "Negation in context",
+        "items": [
+          {
+            "nahuatl": "Axcanah, āxcan ninēhnemi pan āltepētl.",
+            "breakdown": "Axcanah, āxcan ni·nēhnemi pan āltepētl.",
+            "translation": "No, today I am walking around town.",
+            "note": "Axcanah = \"No\" as a standalone denial"
+          },
+          {
+            "nahuatl": "Ax cuālli.",
+            "breakdown": "Ax cuālli.",
+            "translation": "Not good.",
+            "note": "Simple negation of an adjective"
+          },
+          {
+            "nahuatl": "Niātli, ax nitlacua.",
+            "breakdown": "Ni·ātli, ax ni·tlacua.",
+            "translation": "I'm drinking water, not eating.",
+            "note": "ax negates the second verb in the sequence"
+          },
+          {
+            "nahuatl": "Neca iaxca nocniuh. Ax toaxca.",
+            "breakdown": "Neca i·axca no·cniuh. Ax to·axca.",
+            "translation": "That belongs to my friend. It is not ours.",
+            "note": "Ax toaxca = literally \"not our possession\""
+          },
+          {
+            "nahuatl": "Axcanah. Cuālli niitztoc āxcan.",
+            "breakdown": "Axcanah. Cuālli ni·itztoc āxcan.",
+            "translation": "No. I'm fine now.",
+            "note": "Axcanah as denial; niitztoc expresses the current state"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diminutives",
+    "title": "Diminutives & Honorifics",
+    "nahuatlTitle": "Tlahtoltēcpānalitzli: pil- huan -tzin",
+    "band": "A1",
+    "shortDesc": "The prefix pil- (small/dear) and suffix -tzin (respectful/affectionate).",
+    "relatedUnits": [
+      20,
+      9
+    ],
+    "relatedGrammarLabIds": [
+      "respect-affection"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "The Chicontepec source course teaches the diminutive prefix **pil-** and the suffix **-tzin**, with **-tzitzin** for the plural. These forms can express smallness, affection, or reverence. Learn their meaning in the particular word and social context."
+      },
+      {
+        "kind": "rule",
+        "title": "pil-: smallness and affection",
+        "text": "**pil- comes before the noun base**, after a possessive or subject prefix when present. The source course shows:\n\n• no-pil-ahui = nopilahui (my dear little aunt)\n• no-pil-icxi = nopilicxi (my little foot)\n• pil-cīn-tzin = pilcīntzin (little corn)\n\nPossessed nouns retain their learned possessed endings. Avoid treating pil- as a suffix that can simply be appended to any noun."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Examples of pil- and -tzin in use",
+        "headers": [
+          "Form",
+          "Pieces",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "pilcihuātzin",
+            "form": "pil- + cihuā- + -tzin",
+            "gloss": "little woman"
+          },
+          {
+            "person": "pilcihuātzitzin",
+            "form": "pil- + cihuā- + -tzitzin",
+            "gloss": "little women"
+          },
+          {
+            "person": "pilchichitzin",
+            "form": "pil- + chichi + -tzin",
+            "gloss": "little dog"
+          },
+          {
+            "person": "pilcīntzin",
+            "form": "pil- + cīn- + -tzin",
+            "gloss": "little corn"
+          },
+          {
+            "person": "nopilahui",
+            "form": "no- + pil- + ahui",
+            "gloss": "my dear little aunt"
+          },
+          {
+            "person": "topilahuihuan",
+            "form": "to- + pil- + ahui + -huan",
+            "gloss": "our dear little aunts"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Plural of -tzin",
+        "text": "In the source example pilcihuātzin → pilcihuātzitzin, **-tzitzin replaces -tzin**. Possessed plurals follow their possessed pattern instead: nopilahui → topilahuihuan. Respectful verb forms have their own grammar; appending -tzin to any command is not a general rule."
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from the source course",
+        "items": [
+          {
+            "nahuatl": "Nipilcihuātzin.",
+            "breakdown": "ni-pil-cihuā-tzin",
+            "translation": "I am a little woman.",
+            "note": "ni- marks the speaker in this noun predicate."
+          },
+          {
+            "nahuatl": "Inpilcihuātzitzin.",
+            "breakdown": "in-pil-cihuā-tzitzin",
+            "translation": "You all are little women.",
+            "note": "in- marks second person plural; -tzitzin is the plural ending here."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reflexives",
+    "title": "Reflexive Verbs: mo-",
+    "nahuatlTitle": "Tlachīhualiztli tlen moquīxtia īpan nō yeh",
+    "band": "A2",
+    "shortDesc": "Verbs whose subject and object are the same person: \"I teach myself,\" \"she gets up.\"",
+    "relatedUnits": [
+      10,
+      14,
+      26,
+      42
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Reflexive verbs describe actions the subject performs on themselves: getting up, sitting down, returning, learning (i.e. \"teaching oneself\"). In EHN, reflexives are formed by adding a **reflexive prefix** between the subject prefix and the verb stem. You already know many reflexives without realising it — *nimomachtia* \"I study / I learn\" is literally \"I teach myself.\""
+      },
+      {
+        "kind": "rule",
+        "title": "The reflexive prefix position",
+        "text": "In the source-course reflexive examples, the structure is **[subject prefix] + [mo-] + [verb stem]**. For example, ni-mo-itta means “I see myself.” Reflexive, reciprocal, and middle uses depend on the verb and its context."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Subject and reflexive marking by person",
+        "caption": "The 3rd-person form mo- is also used for \"one (impersonal)\".",
+        "headers": [
+          "Subject",
+          "Combined marking",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nimo-",
+            "gloss": "I + myself (ni- + mo-)"
+          },
+          {
+            "person": "you",
+            "form": "timo-",
+            "gloss": "yourself"
+          },
+          {
+            "person": "he / she",
+            "form": "mo-",
+            "gloss": "himself / herself / itself"
+          },
+          {
+            "person": "we",
+            "form": "timo- …-h",
+            "gloss": "ourselves (final -h marks plural)"
+          },
+          {
+            "person": "you all",
+            "form": "inmo- …-h",
+            "gloss": "yourselves (final -h marks plural)"
+          },
+          {
+            "person": "they",
+            "form": "mo- …-h",
+            "gloss": "themselves"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "momachtia (to learn / study) fully conjugated",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nimomachtia",
+            "gloss": "I study / I am learning"
+          },
+          {
+            "person": "you",
+            "form": "timomachtia",
+            "gloss": "you study"
+          },
+          {
+            "person": "he / she",
+            "form": "momachtia",
+            "gloss": "he / she studies"
+          },
+          {
+            "person": "we",
+            "form": "timomachtiah",
+            "gloss": "we study"
+          },
+          {
+            "person": "you all",
+            "form": "inmomachtiah",
+            "gloss": "you all study"
+          },
+          {
+            "person": "they",
+            "form": "momachtiah",
+            "gloss": "they study"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Common reflexive verbs",
+        "text": "Many everyday EHN verbs include mo-:\n\n• **mehua** (mo- + ehua) — to get up / wake up\n• **mosehuia** — to rest, to sit down\n• **momachtia** — to teach oneself → to study / learn\n• **momauhtia** — to scare oneself → to be afraid\n• **motlaloa** — to run\n• **mokwepa** — to return / come back\n\nLearn mo- in context: it can mark reflexive, reciprocal, or middle voice. In motlaloa it is already part of the lexical verb, rather than a literal action on oneself."
+      },
+      {
+        "kind": "examples",
+        "heading": "Reflexives in context",
+        "items": [
+          {
+            "nahuatl": "Mōztla īca yāhuatzinco nimēhuaz.",
+            "breakdown": "Mōztla īca yāhuatzinco ni·m·ēhua·z.",
+            "translation": "Tomorrow at dawn I will get up.",
+            "note": "ni- (1sg) + m(o)- (refl.) + ēhua (to rise) + -z (future)"
+          },
+          {
+            "nahuatl": "Nimomachtia huan nimocuepa.",
+            "breakdown": "Ni·mo·machtia huan ni·mo·cuepa.",
+            "translation": "I study and I return.",
+            "note": "Two reflexive verbs in one sentence"
+          },
+          {
+            "nahuatl": "¿Kenihki motokah?",
+            "breakdown": "¿Kenihki mo·tokah?",
+            "translation": "What is your name? (lit. \"How is your name?\")",
+            "note": "mo- is possessive “your” in the noun motokah; this name question is not a reflexive verb."
+          },
+          {
+            "nahuatl": "Na nimomachtia Nāhuatl.",
+            "breakdown": "Na ni·mo·machtia Nāhuatl.",
+            "translation": "I am learning Nahuatl.",
+            "note": "Literally: \"I teach myself Nahuatl\""
+          },
+          {
+            "nahuatl": "In piltzin motlaloa pan ohtli.",
+            "breakdown": "In piltzin mo·tlaloa pan ohtli.",
+            "translation": "The child is running on the road.",
+            "note": "mo- + tlaloa (to run); no separate subject prefix needed for 3sg"
+          },
+          {
+            "nahuatl": "Axcanah nimomāuhtia.",
+            "breakdown": "Axcanah ni·mo·māuhtia.",
+            "translation": "I am not afraid at all.",
+            "note": "axcanah = emphatic \"no\"; momāuhtia = to frighten oneself = to be afraid"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "imperatives",
+    "title": "Commands & Requests (Imperative)",
+    "nahuatlTitle": "Tlanahuatiliztli",
+    "band": "A2",
+    "shortDesc": "How to tell someone to do something — politely or directly — with xi-.",
+    "relatedUnits": [
+      11,
+      13,
+      18,
+      26,
+      29
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "To give a command, make a polite request, or extend an invitation, EHN uses the **imperative prefix xi-** on the verb. The imperative replaces the usual subject prefix — you don't say both. Imperatives exist for 2sg (\"do it!\") and 2pl (\"do it, all of you!\"). There is also an optative form using **mā** for \"let X happen\" or \"may X do it\"."
+      },
+      {
+        "kind": "rule",
+        "title": "Basic imperative formation",
+        "text": "Singular imperative: **xi- + [verb stem]**\nPlural imperative: **xi- + [verb stem] + -cān**\n\nThe verb stem used is the short stem (usually the bare root with no final -a if the verb is -oa, dropped to -o). Many of these look identical to the 2sg present form with ti- swapped for xi-:\n\n• *titlacua* (you eat) → *xitlacua!* (eat!)\n• *ticcua tōmātl* (you eat tomato) → *xiccua tōmātl!* (eat the tomato!)\n• *tiyāuh* (you go) → *xiyāuh!* (go!) — irregular; also *xiyah* is heard"
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Imperative forms by verb",
+        "headers": [
+          "Base verb",
+          "Imperative sg.",
+          "Imperative pl."
+        ],
+        "rows": [
+          {
+            "person": "cua (to eat)",
+            "form": "xiccua!",
+            "gloss": "xiccuacān!"
+          },
+          {
+            "person": "cōhua (to buy)",
+            "form": "xiccōhua!",
+            "gloss": "xiccōhuacān!"
+          },
+          {
+            "person": "tlahtoa (to speak)",
+            "form": "xitlahto!",
+            "gloss": "xitlahtocān!"
+          },
+          {
+            "person": "chīhua (to do)",
+            "form": "xicchīhua!",
+            "gloss": "xicchīhuacān!"
+          },
+          {
+            "person": "mocēhuia (to rest)",
+            "form": "ximocēhui!",
+            "gloss": "ximocēhuicān!"
+          },
+          {
+            "person": "mēhua (to get up)",
+            "form": "ximēhua!",
+            "gloss": "ximēhuacān!"
+          },
+          {
+            "person": "huāllāuh (to come)",
+            "form": "xihuāllā!",
+            "gloss": "xihuāllācān!"
+          },
+          {
+            "person": "yāuh (to go)",
+            "form": "xiyāuh!",
+            "gloss": "xihuiyān!"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Softening a command: mā, mah, and xic-",
+        "text": "Three strategies soften an imperative into a polite request:\n\n1. **Add mā at the front.** *Mā xihuāllā* (\"please come\") is much gentler than bare *xihuāllā!*. Some EHN speakers use *mah* or *mā ximo-* for an even softer tone.\n\n2. **Use the honorific -tzin on the verb.** *Ximocēhuitzino!* (\"please have a seat\") combines imperative + reflexive + honorific.\n\n3. **Use the optative (3rd person).** *Mā huāllā* (\"may he come / let him come\") asks indirectly. Plural optative: *Mā huāllāh* with final -h.\n\nThese are the EHN equivalent of saying \"please\" and the social register of the request."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Optative (3rd-person wish) with mā",
+        "caption": "Used for \"may X do Y\" / \"let X happen\" — no xi- prefix.",
+        "headers": [
+          "Form",
+          "Meaning",
+          "Notes"
+        ],
+        "rows": [
+          {
+            "person": "mā cuālli pano",
+            "form": "may it go well",
+            "gloss": "common blessing"
+          },
+          {
+            "person": "mā tihuāllācān",
+            "form": "may we come / let us come",
+            "gloss": "1pl hortative with -cān"
+          },
+          {
+            "person": "mā nicān cah",
+            "form": "let him/her be here",
+            "gloss": "3sg optative with existential cah"
+          },
+          {
+            "person": "mā Dios mitzpalehui",
+            "form": "may God help you",
+            "gloss": "formal/religious register"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Negative imperatives: āmo xi- or mahcamo xi-",
+        "text": "To tell someone NOT to do something, place **āmo** before the imperative:\n\n• *Āmo xicchīhua!* — Don't do it!\n• *Āmo xihuāllā!* — Don't come!\n\nFor a stronger or more formal prohibition, *mahcamo* or *macamō* is used, often in ritual or proverbial speech:\n\n• *Mahcamo xiyāuh pan cuauhtlah īca tlayohua.* — Do not go into the forest at night."
+      },
+      {
+        "kind": "examples",
+        "heading": "Imperatives in context",
+        "items": [
+          {
+            "nahuatl": "Xihuāllā!",
+            "breakdown": "Xi·huāllā!",
+            "translation": "Come!",
+            "note": "xi- (imperative) + huāllā (short stem of huāllāuh)"
+          },
+          {
+            "nahuatl": "Mā ximocēhui.",
+            "breakdown": "Mā xi·mo·cēhui.",
+            "translation": "Please have a seat / please rest.",
+            "note": "mā softens the command; mocēhui is the reflexive verb \"to rest\""
+          },
+          {
+            "nahuatl": "Xinēchilhui.",
+            "breakdown": "Xi·nēch·ilhui.",
+            "translation": "Tell me.",
+            "note": "xi- + nēch- (me, obj.) + ilhui (applicative of ihtoa \"to say\")"
+          },
+          {
+            "nahuatl": "Xiccua tōmātl!",
+            "breakdown": "Xi·c·cua tōmātl!",
+            "translation": "Eat the tomato!",
+            "note": "c- = 3sg object \"it\"; cua = eat"
+          },
+          {
+            "nahuatl": "Āmo xichoca, piltzin.",
+            "breakdown": "Āmo xi·choca, piltzin.",
+            "translation": "Don't cry, child.",
+            "note": "Negative imperative with āmo"
+          },
+          {
+            "nahuatl": "Xitlazohcamatican!",
+            "breakdown": "Xi·tlazohcamati·can!",
+            "translation": "Give thanks, all of you!",
+            "note": "Plural imperative with -can"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "person-and-number",
+    "title": "Who's Talking? Person & Number Explained",
+    "nahuatlTitle": "Āquiya tlahtoa?",
+    "band": "A1",
+    "shortDesc": "A plain-English guide to what \"first person,\" \"second person,\" and \"plural\" mean.",
+    "relatedUnits": [
+      3
+    ],
+    "relatedGrammarLabIds": [
+      "subject-prefixes",
+      "identity-words-introductions"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Grammar books love terms like \"first person singular\" and \"third person plural.\" If that sounds confusing, this page is for you. The idea is simple — every sentence has someone doing the action, and we need a quick way to label who that is.\n\n**Person** tells you WHO is involved. **Number** tells you HOW MANY."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Person — who is involved?",
+        "caption": "Think of a conversation between two people talking about a third.",
+        "headers": [
+          "Label",
+          "Who it means",
+          "English examples"
+        ],
+        "rows": [
+          {
+            "person": "1st person",
+            "form": "The speaker — the one talking right now",
+            "gloss": "I, me, my, we, us, our"
+          },
+          {
+            "person": "2nd person",
+            "form": "The listener — the one being spoken to",
+            "gloss": "you, your, you all"
+          },
+          {
+            "person": "3rd person",
+            "form": "Everyone else — whoever is being talked about",
+            "gloss": "he, she, it, they, them"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "An easy way to remember",
+        "text": "Imagine three people in a room:\n\n• **1st person** = **me** (I'm the one talking)\n• **2nd person** = **you** (I'm talking TO you)\n• **3rd person** = **that person over there** (we're talking ABOUT them)\n\nThat's it. \"First,\" \"second,\" and \"third\" just count outward from the speaker."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Number — how many?",
+        "caption": "Each person can be singular (one) or plural (more than one).",
+        "headers": [
+          "",
+          "Singular (one)",
+          "Plural (more than one)"
+        ],
+        "rows": [
+          {
+            "person": "1st person",
+            "form": "I",
+            "gloss": "we"
+          },
+          {
+            "person": "2nd person",
+            "form": "you",
+            "gloss": "you all / you guys"
+          },
+          {
+            "person": "3rd person",
+            "form": "he / she / it",
+            "gloss": "they"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "heading": "Why does this matter for Nahuatl?",
+        "text": "In English, you use separate words: \"I run,\" \"you run,\" \"they run.\" In Nahuatl, who is doing the action is shown by a **prefix stuck onto the verb**:\n\n• ni·tequiti = I work (ni- = 1st person singular)\n• ti·tequiti = you work (ti- = 2nd person singular)\n• tequiti = he/she works (no prefix = 3rd person singular)\n• ti·tequiti·h = we work (ti- plus -h = 1st person plural)\n\nSo when you see \"1sg\" in a grammar table, it just means \"I.\" When you see \"2pl\" it means \"you all.\" The table below gives you the full cheatsheet."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Complete cheatsheet",
+        "caption": "Abbreviations you may see in grammar books, mapped to plain English and Nahuatl prefixes.",
+        "headers": [
+          "Abbreviation",
+          "Plain English",
+          "Nahuatl verb prefix"
+        ],
+        "rows": [
+          {
+            "person": "1sg",
+            "form": "I",
+            "gloss": "ni-"
+          },
+          {
+            "person": "2sg",
+            "form": "you",
+            "gloss": "ti-"
+          },
+          {
+            "person": "3sg",
+            "form": "he / she / it",
+            "gloss": "(nothing)"
+          },
+          {
+            "person": "1pl",
+            "form": "we",
+            "gloss": "ti- … -h"
+          },
+          {
+            "person": "2pl",
+            "form": "you all",
+            "gloss": "in- … -h"
+          },
+          {
+            "person": "3pl",
+            "form": "they",
+            "gloss": "… -h"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "EHN pronouns — same idea, plain labels",
+        "caption": "These are optional in conversation because the verb prefix already tells you who is acting.",
+        "headers": [
+          "Plain English",
+          "Source-course pronoun",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "na",
+            "gloss": "I"
+          },
+          {
+            "person": "you",
+            "form": "ta",
+            "gloss": "you (singular)"
+          },
+          {
+            "person": "he / she",
+            "form": "ya",
+            "gloss": "he / she"
+          },
+          {
+            "person": "we",
+            "form": "tohhuantin",
+            "gloss": "we"
+          },
+          {
+            "person": "you all",
+            "form": "inmohhuantin",
+            "gloss": "you (plural)"
+          },
+          {
+            "person": "they",
+            "form": "inihhuantin",
+            "gloss": "they"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Bottom line",
+        "text": "Whenever you see \"first person,\" \"second person,\" or \"third person\" in this course, just think: **me, you, or someone else.** Add \"singular\" for one person or \"plural\" for more than one. That's all there is to it."
+      }
+    ]
+  },
+  {
+    "id": "verb-overview",
+    "title": "How Nahuatl Verbs Work",
+    "nahuatlTitle": "Quēn tequitih tlahtōlchihuallōtl",
+    "band": "A1",
+    "shortDesc": "The \"sandwich\" structure: prefix + root + suffix — and why one word can be a whole sentence.",
+    "relatedUnits": [
+      3,
+      5,
+      6
+    ],
+    "relatedGrammarLabIds": [
+      "subject-prefixes",
+      "present-tense-verbs"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "In English, \"I will eat it\" is four separate words. In Nahuatl, the same idea fits into a single word: **niccuaz**. Everything — who is doing it, what they're doing it to, and when — is packed into one verb. This is the key difference between Nahuatl and English, and once you understand the pattern, the whole language opens up."
+      },
+      {
+        "kind": "rule",
+        "title": "The verb sandwich",
+        "text": "The beginner verb patterns in this course can be read as layers. Think of it like a sandwich:\n\n**[subject] + [object] + [VERB ROOT] + [tense/plural suffix]**\n\nNot every slot is always filled — a simple present-tense intransitive verb like *nitequiti* only uses subject + root. Common beginner examples put these pieces in this order; more complex constructions need their own learned patterns."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Breaking down real verbs",
+        "caption": "Each column shows one \"slot\" in the verb sandwich.",
+        "headers": [
+          "Full verb",
+          "Pieces",
+          "English"
+        ],
+        "rows": [
+          {
+            "person": "nitequiti",
+            "form": "ni- + tequiti",
+            "gloss": "I work"
+          },
+          {
+            "person": "ticcua",
+            "form": "ti- + c- + cua",
+            "gloss": "you eat it"
+          },
+          {
+            "person": "niccuaz",
+            "form": "ni- + c- + cua + -z",
+            "gloss": "I will eat it"
+          },
+          {
+            "person": "nimomachtia",
+            "form": "ni- + mo- + machtia",
+            "gloss": "I study (teach myself)"
+          },
+          {
+            "person": "nichōcac",
+            "form": "ni- + chōca + -c",
+            "gloss": "I cried (past)"
+          },
+          {
+            "person": "titequitih",
+            "form": "ti- + tequiti + -h",
+            "gloss": "we work"
+          },
+          {
+            "person": "titequitiz",
+            "form": "ti- + tequiti + -z",
+            "gloss": "you will work"
+          },
+          {
+            "person": "xitlacua",
+            "form": "xi- + tlacua",
+            "gloss": "eat! (command)"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "heading": "The four slots explained",
+        "text": "1. **Subject prefix**: ni- (I), ti- (you), nothing (he/she), ti-…-h (we), in-…-h (you all), …-h (they). For commands, xi- replaces the subject prefix.\n\n2. **Object prefix (optional)**: k-/ki- (him/her/it), nech- (me), mits- (you), tech- (us), mech- (you all), mo- (reflexive \"self\"), tla- (something unspecified). Only present when the verb is transitive.\n\n3. **Verb root**: The core meaning — tekiti (work), kwa (eat), machtia (teach), etc.\n\n4. **Tense/plural suffix**: -s (future singular in app spelling), -h (present plural), and an attested EHN preterite such as -qui/-c or plural -queh. Present singular has no suffix. Plural future production is withheld pending source transcription and pronunciation review."
+      },
+      {
+        "kind": "examples",
+        "heading": "Practice reading verb sandwiches",
+        "items": [
+          {
+            "nahuatl": "Nitlamachtia nāhuatl.",
+            "breakdown": "ni- (I) + tlamachtia (teach)",
+            "translation": "I teach Nahuatl.",
+            "note": "Subject + root only — simple present intransitive"
+          },
+          {
+            "nahuatl": "Tikchihua in tlakwali.",
+            "breakdown": "ti- (you) + k- (it) + chihua (make) = you make it",
+            "translation": "You are making the food.",
+            "note": "Subject + object + root — present transitive"
+          },
+          {
+            "nahuatl": "Niccuāhqui.",
+            "breakdown": "ni- (I) + c- (it) + cuā-hqui (eat-past)",
+            "translation": "I ate it.",
+            "note": "EHN completed-action form; no past augment prefix."
+          },
+          {
+            "nahuatl": "Nimomachtiz.",
+            "breakdown": "ni- (I) + mo- + machti-z (study-future)",
+            "translation": "I will study.",
+            "note": "Source Lesson 12 singular future example."
+          },
+          {
+            "nahuatl": "Nimomachtiznequi.",
+            "breakdown": "ni- (I) + mo- (self) + machti-z (teach-future) + nequi (want)",
+            "translation": "I want to learn.",
+            "note": "Compound: \"I want to teach-myself\" — two verbs fused"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "One word = one sentence",
+        "text": "Because Nahuatl packs so much into the verb, a single word can express a complete thought. *Niccuaz* is \"I will eat it\" — subject (I), object (it), action (eat), tense (future), all in six letters. As you learn more prefixes and suffixes, you build longer and more expressive verbs from the same basic pattern."
+      }
+    ]
+  },
+  {
+    "id": "plurals",
+    "title": "Plural Nouns: Learned Patterns",
+    "nahuatlTitle": "Miaqueh",
+    "band": "A1",
+    "shortDesc": "Source-course noun plurals, profession plurals, and possessed plurals.",
+    "relatedUnits": [
+      3,
+      5,
+      8,
+      20
+    ],
+    "relatedGrammarLabIds": [
+      "noun-endings"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Nahuatl noun plurals depend on the word and its construction. Source Lesson 3 introduces -meh, Lesson 5 shows profession plurals in -nih, Lesson 8 teaches possessed plurals, and Lesson 20 gives diminutive -tzitzin. Learn the complete form with its meaning."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Common plurals from the source course",
+        "headers": [
+          "Singular",
+          "Plural",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "cihuātl",
+            "form": "cihuāmeh",
+            "gloss": "woman → women"
+          },
+          {
+            "person": "mācēhualli",
+            "form": "mācēhualmeh",
+            "gloss": "Indigenous person → Indigenous people"
+          },
+          {
+            "person": "cōmalli",
+            "form": "comalmeh",
+            "gloss": "griddle → griddles"
+          },
+          {
+            "person": "michin",
+            "form": "michimeh",
+            "gloss": "fish → fish (plural)"
+          },
+          {
+            "person": "chichi",
+            "form": "chichimeh",
+            "gloss": "dog → dogs"
+          },
+          {
+            "person": "momachtihquetl",
+            "form": "momachtianih",
+            "gloss": "student → students"
+          },
+          {
+            "person": "tlamachtihquetl",
+            "form": "tlamachtianih",
+            "gloss": "teacher → teachers"
+          },
+          {
+            "person": "pilcihuātzin",
+            "form": "pilcihuātzitzin",
+            "gloss": "little woman → little women"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Possessed plurals",
+        "text": "Possessed nouns use their learned possessed pattern. Source Lesson 8 contrasts **noconēuh** (my child) with **toconēhuan** (our children), and **nopitzo** (my pig) with **topitzohuan** (our pigs). The prefix identifies the possessor; -huan marks multiple possessed individuals. A plural possessor alone does not mean the possessed item must be plural."
+      },
+      {
+        "kind": "rule",
+        "title": "Inanimate plurals",
+        "text": "Inanimate nouns vary. Source Lesson 3 explicitly shows **comalmeh** and **tepōzmeh**, while other inanimate nouns can remain unmarked for plural. Avoid applying a single plural suffix to every noun."
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from the source course",
+        "items": [
+          {
+            "nahuatl": "Incihuāmeh.",
+            "breakdown": "in-cihuā-meh",
+            "translation": "You all are women.",
+            "note": "in- marks the subject; -meh marks the noun plural."
+          },
+          {
+            "nahuatl": "Inmomachtianih.",
+            "breakdown": "in-momachtia-nih",
+            "translation": "You all are students.",
+            "note": "This learned profession plural uses -nih."
+          },
+          {
+            "nahuatl": "Nopitzohuan quicuāh miac cīntli.",
+            "breakdown": "no-pitzo-huan qui-cuā-h miac cīntli",
+            "translation": "My pigs eat a lot of corn.",
+            "note": "-huan marks the possessed pigs; -h marks the plural verb."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "directionals",
+    "title": "Coming & Going: Directional Suffixes",
+    "nahuatlTitle": "Nimomachtiqui",
+    "band": "A2",
+    "shortDesc": "Source-course forms for coming or going to carry out an action.",
+    "relatedUnits": [
+      26
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "Source Lesson 26 teaches four suffixes for motion undertaken to perform an action: **-co, -qui, -to, and -ti**. Learn these distinct from ordinary tense endings. The same spelling -qui can also occur in a completed-action form, so the whole verb and its context matter."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Directional forms from the source course",
+        "headers": [
+          "Suffix",
+          "Source form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "-co",
+            "form": "nitlachpānaco",
+            "gloss": "I came to sweep"
+          },
+          {
+            "person": "-qui",
+            "form": "nimomachtiqui",
+            "gloss": "I will come to study"
+          },
+          {
+            "person": "-to",
+            "form": "niātlacuito",
+            "gloss": "I went to fetch water"
+          },
+          {
+            "person": "-ti",
+            "form": "timomachtiti",
+            "gloss": "you will go to study"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Learn the action stem",
+        "text": "The directional suffix follows the action stem. Source Lesson 26 gives **momachtia → momachti-** before -qui or -ti: nimomachtiqui, timomachtiti. It also gives **tlacuā → tlacuāco** (came to eat). Keep the source forms intact when practicing rather than adding on- or hual- to any unfamiliar verb."
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from the source course",
+        "items": [
+          {
+            "nahuatl": "Nitlacuāco.",
+            "breakdown": "ni-tlacuā-co",
+            "translation": "I came to eat.",
+            "note": "-co marks coming to carry out the action."
+          },
+          {
+            "nahuatl": "Titlacuāqui.",
+            "breakdown": "ti-tlacuā-qui",
+            "translation": "You will come to eat.",
+            "note": "Here -qui is directional, not a completed-action marker."
+          },
+          {
+            "nahuatl": "Yālhuaya niātlacuito huanya nonanān.",
+            "breakdown": "yālhuaya ni-ātlacui-to huanya no-nanān",
+            "translation": "Yesterday I went to fetch water with my mother.",
+            "note": "The source sentence uses -to for going to carry out the action."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "relational-nouns",
+    "title": "Relational Nouns: How Nahuatl Says \"in,\" \"on,\" \"with\"",
+    "nahuatlTitle": "Tlahtōlcēntilīztli",
+    "band": "A2",
+    "shortDesc": "Nahuatl uses possessed nouns instead of prepositions — \"my-face\" means \"in front of me.\"",
+    "relatedUnits": [
+      8,
+      10
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "English uses prepositions: in, on, with, for, about. Nahuatl does something different — it uses **relational nouns**. These are ordinary nouns for spatial concepts that take a possessive prefix to express relationships. \"On top of the table\" becomes literally \"its-top the table.\" Once you see the pattern, it's intuitive."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Common relational nouns",
+        "caption": "The 3sg possessed form (ī-) is shown; swap in no-/mo-/to- for other persons.",
+        "headers": [
+          "Relational noun",
+          "Literal meaning",
+          "Used as…"
+        ],
+        "rows": [
+          {
+            "person": "-pan",
+            "form": "surface / on top of",
+            "gloss": "\"on, upon, at\" — īpan (on it)"
+          },
+          {
+            "person": "-tech",
+            "form": "body / substance",
+            "gloss": "\"on, touching, about\" — ītech (on/about it)"
+          },
+          {
+            "person": "-ica",
+            "form": "face / means",
+            "gloss": "\"with, by means of\" — īca (with it)"
+          },
+          {
+            "person": "-tlan",
+            "form": "teeth / base / near",
+            "gloss": "\"near, beside\" — ītlan (near it/him)"
+          },
+          {
+            "person": "-nahuac",
+            "form": "close-to",
+            "gloss": "\"beside, next to\" — īnāhuac (next to it)"
+          },
+          {
+            "person": "-pampa",
+            "form": "cause / reason",
+            "gloss": "\"because of\" — īpampa (because of it)"
+          },
+          {
+            "person": "-huān",
+            "form": "companion",
+            "gloss": "\"with (a person)\" — īhuān (with him/her)"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "How they work",
+        "text": "Relational nouns take a possessive prefix (no-, mo-, ī-, to-, inmo-, inin-) just like any possessed noun. The \"possessor\" is whoever/whatever the relationship is about.\n\n• **no-pan** = on me / at my place\n• **mo-pampa** = because of you\n• **ī-ca** = with it / by means of it\n• **to-tlan** = near us\n\nThe most common standalone form is **pan**, which often appears without an explicit possessive prefix as a general preposition meaning \"in/at/on.\""
+      },
+      {
+        "kind": "examples",
+        "heading": "Relational nouns in dialogue",
+        "items": [
+          {
+            "nahuatl": "Nitequiti pan caltlamachtiloyan.",
+            "breakdown": "Ni·tequiti pan caltlamachtiloyan.",
+            "translation": "I work at the school.",
+            "note": "pan = general locative \"at/in\" (relational noun without possessor)"
+          },
+          {
+            "nahuatl": "Huānya nocihuāuh niyāuh tiānquiz.",
+            "breakdown": "Huānya no·cihuāuh ni·yāuh tiānquiz.",
+            "translation": "With my wife I go to the market.",
+            "note": "huānya = with (from -huān relational noun + ya)"
+          },
+          {
+            "nahuatl": "Nitlamachtia nāhuatl īca yāhuatzinco.",
+            "breakdown": "Ni·tlamachtia nāhuatl ī·ca yāhuatzinco.",
+            "translation": "I teach Nahuatl in the morning.",
+            "note": "īca = \"with/by/during\" — temporal use of relational noun"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "pan — the Swiss Army knife",
+        "text": "The relational noun **pan** deserves special attention because it's everywhere in EHN:\n\n• pan mīllah = in the milpa\n• pan caltlamachtiloyan = at school\n• pan ohtli = on the road\n• pan āltepētl = in the town\n\nThink of it as the default \"at/in/on\" — similar to how English speakers overuse \"at.\""
+      }
+    ]
+  },
+  {
+    "id": "verb-conjugation-summary",
+    "title": "Verb Conjugation Reference",
+    "nahuatlTitle": "Tlahtōlchihuallōtl mochīn cāhuitl",
+    "band": "A2",
+    "shortDesc": "Selected source-course verb patterns across persons and tenses.",
+    "relatedUnits": [
+      5,
+      6,
+      7,
+      11
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "This reference shows present and singular future **tequiti** (to work), completed-action **chōca** (to cry), and selected forms of **cua** (to eat) with a specific object. Verbs have different past patterns; learn each completed-action stem explicitly."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "tequiti (to work) — Present",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nitequiti",
+            "gloss": "I work"
+          },
+          {
+            "person": "you",
+            "form": "titequiti",
+            "gloss": "you work"
+          },
+          {
+            "person": "he / she",
+            "form": "tequiti",
+            "gloss": "he/she works"
+          },
+          {
+            "person": "we",
+            "form": "titequitih",
+            "gloss": "we work"
+          },
+          {
+            "person": "you all",
+            "form": "intequitih",
+            "gloss": "you all work"
+          },
+          {
+            "person": "they",
+            "form": "tequitih",
+            "gloss": "they work"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "tequiti — Singular future (-z)",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nitequitiz",
+            "gloss": "I will work"
+          },
+          {
+            "person": "you",
+            "form": "titequitiz",
+            "gloss": "you will work"
+          },
+          {
+            "person": "he / she",
+            "form": "tequitiz",
+            "gloss": "he/she will work"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "chōca (to cry) — EHN preterite",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nichōcac",
+            "gloss": "I cried"
+          },
+          {
+            "person": "you",
+            "form": "tichōcac",
+            "gloss": "you cried"
+          },
+          {
+            "person": "he / she",
+            "form": "chōcac",
+            "gloss": "he/she cried"
+          },
+          {
+            "person": "we",
+            "form": "tichōcaqueh",
+            "gloss": "we cried"
+          },
+          {
+            "person": "you all",
+            "form": "inchōcaqueh",
+            "gloss": "you all cried"
+          },
+          {
+            "person": "they",
+            "form": "chōcaqueh",
+            "gloss": "they cried"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "tequiti — Imperative (xi-)",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "you (command)",
+            "form": "xitequiti!",
+            "gloss": "work!"
+          },
+          {
+            "person": "you all (command)",
+            "form": "xitequiticān!",
+            "gloss": "work, all of you!"
+          },
+          {
+            "person": "let him/her (optative)",
+            "form": "mā tequiti",
+            "gloss": "may he/she work"
+          },
+          {
+            "person": "let's (hortative)",
+            "form": "mā titequiticān",
+            "gloss": "let's work"
+          }
+        ]
+      },
+      {
+        "kind": "prose",
+        "heading": "Transitive verb: cua (to eat) with object \"it\"",
+        "text": "When the verb takes an object, the object prefix (k-/ki-) appears between the subject prefix and the verb root. Below is kwa conjugated with a 3rd-person singular object (\"it\")."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "kwa (to eat it) — Present",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nikkwa",
+            "gloss": "I eat it"
+          },
+          {
+            "person": "you",
+            "form": "tikkwa",
+            "gloss": "you eat it"
+          },
+          {
+            "person": "he / she",
+            "form": "kikwa",
+            "gloss": "he/she eats it"
+          },
+          {
+            "person": "we",
+            "form": "tikkwah",
+            "gloss": "we eat it"
+          },
+          {
+            "person": "they",
+            "form": "kikwah",
+            "gloss": "they eat it"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "kwa (to eat it) — Singular future",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nikkwas",
+            "gloss": "I will eat it"
+          },
+          {
+            "person": "you",
+            "form": "tikkwas",
+            "gloss": "you will eat it"
+          },
+          {
+            "person": "he / she",
+            "form": "kikwas",
+            "gloss": "he/she will eat it"
+          }
+        ]
+      },
+      {
+        "kind": "paradigm",
+        "heading": "kwa (to eat it) — Past",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nikkwahki",
+            "gloss": "I ate it"
+          },
+          {
+            "person": "you",
+            "form": "tikkwahki",
+            "gloss": "you ate it"
+          },
+          {
+            "person": "he / she",
+            "form": "kikwahki",
+            "gloss": "he/she ate it"
+          },
+          {
+            "person": "we",
+            "form": "tikkwahkeh",
+            "gloss": "we ate it"
+          },
+          {
+            "person": "they",
+            "form": "kikwahkeh",
+            "gloss": "they ate it"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Pattern summary",
+        "text": "The core template is:\n\n**[subject: ni-/ti-/in-/ø] + [object: k-/ki-] + [root] + [tense/aspect/plural suffix]**\n\nEHN past stems can be irregular and do not take the Classical ō- augment, so learn attested forms such as *niccōuhqui*, *niyāhqui*, and *nichōcac* rather than generating them by a single rule."
+      }
+    ]
+  },
+  {
+    "id": "aspect-mood",
+    "title": "Ongoing Past Actions and States",
+    "nahuatlTitle": "Nipanoyaya",
+    "band": "A2",
+    "shortDesc": "The source-course imperfect -yaya and learned past state forms.",
+    "relatedUnits": [
+      24,
+      25,
+      28
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "A completed event and an ongoing or habitual past action are different. Source Lesson 28 teaches **-yaya** for the imperfect: nipanoyaya can mean “I was passing” or “I used to pass.” The plural adds -h after -yaya."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "pano (to pass) — Imperfect",
+        "headers": [
+          "Person",
+          "Form",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "I",
+            "form": "nipanoyaya",
+            "gloss": "I was passing"
+          },
+          {
+            "person": "you",
+            "form": "tipanoyaya",
+            "gloss": "you were passing"
+          },
+          {
+            "person": "he / she",
+            "form": "panoyaya",
+            "gloss": "he/she was passing"
+          },
+          {
+            "person": "we",
+            "form": "tipanoyayah",
+            "gloss": "we were passing"
+          },
+          {
+            "person": "you all",
+            "form": "inpanoyayah",
+            "gloss": "you all were passing"
+          },
+          {
+            "person": "they",
+            "form": "panoyayah",
+            "gloss": "they were passing"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Stem changes before -yaya",
+        "text": "Verbs ending in -ia or -oa lose their final -a before -yaya in the source-course pattern. For example, **motlaloa → nimotlaloyaya** (I was running). Verbs with specific objects keep an object marker: **niccuāyaya** (I was eating it)."
+      },
+      {
+        "kind": "paradigm",
+        "heading": "Learned past states",
+        "headers": [
+          "Present state",
+          "Past state",
+          "Meaning"
+        ],
+        "rows": [
+          {
+            "person": "niitztoc",
+            "form": "niitztoya",
+            "gloss": "I was in a place or state"
+          },
+          {
+            "person": "niyatoc",
+            "form": "niyatoya",
+            "gloss": "I was sitting"
+          },
+          {
+            "person": "niihcatoc",
+            "form": "niihcatoya",
+            "gloss": "I was standing"
+          },
+          {
+            "person": "eltoc",
+            "form": "eltoya",
+            "gloss": "it was (inanimate object or plant)"
+          }
+        ]
+      },
+      {
+        "kind": "rule",
+        "title": "Actions and states use different learned forms",
+        "text": "The state verbs itztoc, yatoc, ihcatoc, and eltoc have the past forms shown in Source Lessons 24–25. Their -toya forms do not establish a rule to append -toya to every action verb. For ordinary ongoing past actions, use the source-course -yaya pattern and a learned verb stem."
+      },
+      {
+        "kind": "examples",
+        "heading": "Examples from the source course",
+        "items": [
+          {
+            "nahuatl": "Nicōniyaya.",
+            "breakdown": "ni-c-ōni-yaya",
+            "translation": "I was drinking it.",
+            "note": "The specific object marker c- stays between the subject and action stem."
+          },
+          {
+            "nahuatl": "Nimotlaloyaya.",
+            "breakdown": "ni-mo-tlalo-yaya",
+            "translation": "I was running.",
+            "note": "The final -a of motlaloa drops before -yaya."
+          },
+          {
+            "nahuatl": "Niāmiquiyaya.",
+            "breakdown": "ni-āmiqui-yaya",
+            "translation": "I was thirsty.",
+            "note": "This is an attested source-course imperfect form."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "conditionals",
+    "title": "Conditionals with tlan",
+    "nahuatlTitle": "Tlan",
+    "band": "A1",
+    "shortDesc": "How to build simple if/then sentences with familiar present forms.",
+    "relatedUnits": [
+      30
+    ],
+    "relatedGrammarLabIds": [
+      "conditionals"
+    ],
+    "sections": [
+      {
+        "kind": "prose",
+        "text": "The Eastern Huasteca word **tlan** means \"if.\" For beginner production, put **tlan** before the condition, then give the result as a second clause. Each clause keeps its own subject prefix."
+      },
+      {
+        "kind": "rule",
+        "title": "Basic pattern",
+        "text": "**tlan + condition, result**\n\nUse forms you already know in each clause:\n• Tlan nitequiti, nitlacua. = If I work, I eat.\n• Tlan tiyāuh, niyāuh. = If you go, I go.\n• Tlan tequitih, titequitih. = If they work, we work."
+      },
+      {
+        "kind": "examples",
+        "heading": "Simple conditionals",
+        "items": [
+          {
+            "nahuatl": "Tlan nitequiti, nitlacua.",
+            "breakdown": "tlan ni-tequiti, ni-tlacua",
+            "translation": "If I work, I eat.",
+            "note": "tlan introduces the condition."
+          },
+          {
+            "nahuatl": "Tlan tiyāuh, niyāuh.",
+            "breakdown": "tlan ti-yāuh, ni-yāuh",
+            "translation": "If you go, I go.",
+            "note": "Each clause keeps its own subject prefix."
+          },
+          {
+            "nahuatl": "Tlan tequitih, titequitih.",
+            "breakdown": "tlan tequiti-h, ti-tequiti-h",
+            "translation": "If they work, we work.",
+            "note": "Both clauses use present plural forms."
+          }
+        ]
+      }
+    ]
+  }
+]

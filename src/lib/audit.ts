@@ -1,3 +1,4 @@
+import "server-only";
 import { createHmac } from "node:crypto";
 import { getSql } from "@/lib/neon";
 
@@ -62,7 +63,7 @@ export async function logAudit(args: LogArgs): Promise<void> {
   try {
     await writeAudit(args);
   } catch (error) {
-    console.error("[audit] insert failed:", error);
+    console.error("[audit] insert failed:", error instanceof Error ? error.name : "unknown");
     if (process.env.REQUIRE_CHAT_AUDIT === "true") throw error;
   }
 }

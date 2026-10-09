@@ -4,11 +4,17 @@ import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { toInaliOrthography } from "@/lib/orthography";
 import { isStudyCardExcluded } from "@/lib/study-card-safety";
 
-type CuratedUnitVocabSpec = {
+export type CuratedUnitVocabSpec = {
+  id: number;
+  entry_id: string;
+  rank: number;
   unit: number;
   headword: string;
   gloss_en: string;
   part_of_speech: string;
+  audio_available?: false;
+  imageHeadword?: string;
+  source_lesson_number?: number;
 };
 
 const CURATED_AUDIO_BASE_URL =
@@ -42,14 +48,17 @@ for (const lesson of rawCourse.lessons) {
   }
 }
 
-function buildCuratedUnitVocab(): CuratedUnitVocab[] {
+export function buildCuratedUnitVocab(specs: readonly CuratedUnitVocabSpec[] = rawSpecs as CuratedUnitVocabSpec[]): CuratedUnitVocab[] {
   const seenByUnit = new Set<string>();
+  const seenIds = new Set<number>();
 
-  return (rawSpecs as CuratedUnitVocabSpec[]).map((spec, index) => {
+  return specs.map((spec) => {
     const headword = toInaliOrthography(spec.headword).trim();
     const key = `${spec.unit}:${headword.toLowerCase()}`;
     if (seenByUnit.has(key)) throw new Error(`Duplicate curated card ${key}`);
     seenByUnit.add(key);
+    if (!Number.isSafeInteger(spec.id) || seenIds.has(spec.id) || !spec.entry_id) throw new Error(`Invalid curated identity ${spec.id}`);
+    seenIds.add(spec.id);
 
     if (
       isAppContentExcluded(headword, spec.gloss_en, spec.part_of_speech) ||
@@ -59,23 +68,24 @@ function buildCuratedUnitVocab(): CuratedUnitVocab[] {
     }
 
     const source = sourceByHeadword.get(headword.toLowerCase());
-    const unitIndex = (rawSpecs as CuratedUnitVocabSpec[])
-      .slice(0, index + 1)
-      .filter((candidate) => candidate.unit === spec.unit).length;
-    const id = 900_000 + spec.unit * 100 + unitIndex;
+    const id = spec.id;
 
     return {
       id,
-      entry_id: `curated-${spec.unit}-${unitIndex}`,
-      rank: 20_000 + unitIndex,
+      entry_id: spec.entry_id,
+      rank: spec.rank,
       headword,
       gloss_en: spec.gloss_en,
       part_of_speech: spec.part_of_speech,
       first_lesson_number: spec.unit,
       semantic_domain: "curated_unit_vocabulary",
-      audioSrc: source?.audioUrl ?? `${CURATED_AUDIO_BASE_URL}/${id}.wav`,
-      imageHeadword: source?.headword ?? headword,
-      sourceUrl: source?.sourceUrl ?? null,
+      audioSrc: spec.audio_available === false
+        ? null
+        : source?.audioUrl ?? `${CURATED_AUDIO_BASE_URL}/${id}.wav`,
+      imageHeadword: spec.imageHeadword ?? source?.headword ?? headword,
+      sourceUrl: spec.source_lesson_number
+        ? rawCourse.lessons.find((lesson) => lesson.number === spec.source_lesson_number)?.originalUrl ?? null
+        : source?.sourceUrl ?? null,
     };
   });
 }

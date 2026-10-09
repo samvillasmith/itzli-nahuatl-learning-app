@@ -4,13 +4,21 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import reviewedAudio from "@/data/reviewed-audio.json";
 import { CURATED_UNIT_VOCAB } from "@/data/curated-unit-vocab";
-import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
+import { CURATED_DIALOGUES, DIALOGUE_LINE_CORRECTIONS } from "@/data/dialogue-overrides";
 import { SOURCE_VOCAB_PROMOTIONS } from "@/data/source-vocab-promotions";
 import { getWordImage } from "@/data/word-images";
+import { getVocabCardImage, getVocabCardImageHold } from "@/data/word-images";
+import imageReviews from "@/data/image-content-review.json";
 import { dialogueAudioUrl, vocabCardAudioUrl } from "@/lib/audio";
 
 const audioRoot = path.join(process.cwd(), "public", "audio-google");
+const withheldDialogueIds = new Set([
+  ...Object.keys(DIALOGUE_LINE_CORRECTIONS),
+  ...Object.values(CURATED_DIALOGUES).flat().filter((line) => line.audio_available === false)
+    .map((line) => line.lesson_dialogue_id),
+]);
 const require = createRequire(import.meta.url);
+const recordedImageHoldReasons = new Set([...imageReviews.cards, ...imageReviews.assets].filter((entry) => entry.status === "held" || entry.status === "structured-cue").map((entry) => entry.reason));
 const { buildTtsInstructions, cueForWord, cueInputForText, spanishLoanSpokenForm } = require("../scripts/lib/nahuatl-pronunciation.js") as {
   buildTtsInstructions: (text: string) => string;
   cueForWord: (text: string) => string;
@@ -30,6 +38,7 @@ describe("reviewed media", () => {
     }
 
     for (const entry of reviewedAudio.dialogue) {
+      if (withheldDialogueIds.has(entry.id)) continue;
       const file = path.join(audioRoot, "dialogue", `${entry.id}.wav`);
       expect(fs.statSync(file).size, file).toBeGreaterThan(1_000);
       expect(dialogueAudioUrl(entry.id)).toMatch(
@@ -47,27 +56,28 @@ describe("reviewed media", () => {
     );
   });
 
-  it("keeps every curated replacement dialogue line audible", () => {
+  it("withholds stale or missing curated recordings and keeps matching lines audible", () => {
     expect(CURATED_DIALOGUES[5]).toHaveLength(3);
     expect(CURATED_DIALOGUES[11]).toHaveLength(6);
     expect(CURATED_DIALOGUES[19]).toHaveLength(4);
     const curatedLines = [5, 11, 19].flatMap((unit) => CURATED_DIALOGUES[unit]);
-    expect(curatedLines.every((line) => line.audio_available !== false)).toBe(true);
+    expect(curatedLines.filter((line) => line.audio_available === false)).toHaveLength(10);
     expect(
-      curatedLines.every((line) =>
+      curatedLines.filter((line) => line.audio_available !== false).every((line) =>
         reviewedAudio.dialogue.some((entry) => entry.id === line.lesson_dialogue_id)
       )
     ).toBe(true);
   });
 
-  it("uses distinct reviewed illustrations for the Unit 11 greeting cards", () => {
-    const headwords = ["piyali", "axtlen", "nicca", "ximopanolti"];
+  it("uses distinct greeting illustrations and withholds the mislabelled welcome-response image", () => {
+    const headwords = ["piyali", "nicca", "ximopanolti"];
     const urls = headwords.map((headword) =>
       getWordImage(headword, { safetyText: ["greeting"] })?.url
     );
 
     expect(urls.every(Boolean)).toBe(true);
     expect(new Set(urls).size).toBe(headwords.length);
+    expect(getWordImage("axtlen", { safetyText: ["you're welcome"] })).toBeNull();
   });
 
   it("preserves first-party typography provenance", () => {
@@ -77,7 +87,7 @@ describe("reviewed media", () => {
     expect(image?.license).toBe("First-party generated typography");
   });
 
-  it("gives every promoted source card explicit audio and reviewed imagery", () => {
+  it("gives promoted source cards explicit audio and an image or recorded review hold", () => {
     expect(SOURCE_VOCAB_PROMOTIONS).toHaveLength(240);
     expect(new Set(SOURCE_VOCAB_PROMOTIONS.map((entry) => entry.id)).size).toBe(240);
 
@@ -85,37 +95,36 @@ describe("reviewed media", () => {
       expect(entry.audioSrc).toMatch(/^https:\/\//);
       expect(entry.sourceUrl).toMatch(/^https:\/\//);
       expect(
-        getWordImage(entry.imageHeadword, {
-          allowLegacyFallback: true,
-          safetyText: [entry.gloss_en, entry.part_of_speech],
-        }),
+        Boolean(getVocabCardImage(entry)) || recordedImageHoldReasons.has(getVocabCardImageHold(entry) ?? ""),
         `${entry.entry_id}: ${entry.headword}`,
-      ).not.toBeNull();
+      ).toBe(true);
     }
   });
 
-  it("gives every curated word-first card explicit audio and reviewed imagery", () => {
+  it("gives curated cards matching media or explicit recorded review holds", () => {
     expect(CURATED_UNIT_VOCAB).toHaveLength(75);
     expect(new Set(CURATED_UNIT_VOCAB.map((entry) => entry.id)).size).toBe(75);
 
     for (const entry of CURATED_UNIT_VOCAB) {
-      expect(entry.audioSrc, `${entry.entry_id}: ${entry.headword}`).toMatch(/^https:\/\//);
+      if (entry.audioSrc === null) {
+        expect(entry.sourceUrl, entry.entry_id).toMatch(/^https:\/\//);
+      } else {
+        expect(entry.audioSrc, `${entry.entry_id}: ${entry.headword}`).toMatch(/^https:\/\//);
+      }
       expect(vocabCardAudioUrl(entry.id, entry.audioSrc)).toBe(entry.audioSrc);
       expect(
-        getWordImage(entry.imageHeadword, {
-          allowLegacyFallback: true,
-          safetyText: [entry.gloss_en, entry.part_of_speech],
-        }),
+        Boolean(getVocabCardImage(entry)) || recordedImageHoldReasons.has(getVocabCardImageHold(entry) ?? ""),
         `${entry.entry_id}: ${entry.headword}`,
-      ).not.toBeNull();
+      ).toBe(true);
     }
   });
 
   it("keeps synthesized curated audio on the reviewed Spanish-voice prefix", () => {
-    const synthesized = CURATED_UNIT_VOCAB.filter((entry) => !entry.sourceUrl);
-    const sourceRecorded = CURATED_UNIT_VOCAB.filter((entry) => entry.sourceUrl);
+    const synthesized = CURATED_UNIT_VOCAB.filter((entry) => entry.audioSrc?.includes("vocab-reviewed-v2"));
+    const sourceRecorded = CURATED_UNIT_VOCAB.filter((entry) => entry.audioSrc?.includes("tlahtolli.coerll.utexas.edu"));
+    const withheld = CURATED_UNIT_VOCAB.filter((entry) => entry.audioSrc === null);
 
-    expect(synthesized).toHaveLength(43);
+    expect(synthesized).toHaveLength(37);
     expect(
       synthesized.every((entry) =>
         entry.audioSrc?.startsWith(
@@ -123,8 +132,16 @@ describe("reviewed media", () => {
         ),
       ),
     ).toBe(true);
-    expect(sourceRecorded).toHaveLength(32);
+    expect(sourceRecorded).toHaveLength(35);
+    expect(withheld.map((entry) => entry.entry_id)).toEqual(["curated-28-2", "curated-28-5", "curated-28-7"]);
     expect(sourceRecorded.every((entry) => entry.audioSrc?.includes("tlahtolli.coerll.utexas.edu"))).toBe(true);
+  });
+
+  it("never falls back to an old recording when audio is deliberately withheld", () => {
+    expect(vocabCardAudioUrl(661, null)).toBeNull();
+    expect(vocabCardAudioUrl(680, null)).toBeNull();
+    expect(vocabCardAudioUrl(92802, null)).toBeNull();
+    expect(vocabCardAudioUrl(123)).toBe("/audio-google/vocab/123.wav");
   });
 
   it("preserves Mexican Spanish pronunciation for the month loans", () => {

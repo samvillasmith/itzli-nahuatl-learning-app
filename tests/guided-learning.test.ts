@@ -9,6 +9,7 @@ import {
 import {
   buildContextFillBlanks,
   buildSequence,
+  dialoguePracticeMatch,
   type FillBlank,
   type VocabCard,
 } from "../src/app/units/[unitId]/LessonFlow";
@@ -90,6 +91,38 @@ describe("guided sentence learning", () => {
     );
 
     expect(fillIndex).toBeGreaterThan(targetLearnIndex);
+    expect(sequence.findIndex(step=>step.kind==='sentenceContext')).toBeGreaterThan(targetLearnIndex);
+    expect(sequence.findIndex(step=>step.kind==='sentenceContext')).toBeLessThan(fillIndex);
+    expect(sequence.findIndex(step=>step.kind==='sentenceBuilder')).toBeGreaterThan(fillIndex);
+  });
+
+  it("ends with a coherent exchange, retaining the other speaker's unassessed context and exact phrase gaps",()=>{
+    const cards: VocabCard[]=[{id:1,headword:'tlaskamati',gloss_en:'thank you',part_of_speech:'expression'}];
+    const dialogues=[
+      {lesson_dialogue_id:'context-A',speaker_label:'A',utterance_normalized:'Kwalli.',translation_en:'Good.'},
+      {lesson_dialogue_id:'gap-B',speaker_label:'B',utterance_normalized:'Tlaskamati.',translation_en:'Thank you.'},
+    ];
+    const sequence=buildSequence(cards,[0],[],dialogues,cards,11,[],true,cards);
+    const final=sequence.slice(-2);
+    expect(final).toEqual([{kind:'dialogue',lineIdx:0,match:null},{kind:'dialogue',lineIdx:1,match:expect.objectContaining({answer:'tlaskamati'})}]);
+    expect(dialoguePracticeMatch({lesson_dialogue_id:'unfamiliar',speaker_label:'A',utterance_normalized:'Nopitso eltok nonechka, tlaskamati.',translation_en:'My pig is near me, thank you.'},cards,cards)).toBeNull();
+  });
+
+  it("reaches selected grammar drills even when the final vocabulary chunk contains only one word",()=>{
+    const cards: VocabCard[]=[{id:1,headword:'nitekiti',gloss_en:'I work',part_of_speech:'verb'}];
+    let checked=0;
+    for(const unit of getAllUnits()) {
+      const labs=getGrammarLabsForUnit(unit.lesson_number);
+      if(!labs.length) continue;
+      const expected=Math.min(16,labs.reduce((sum,lab)=>sum+lab.drills.reduce((count,drill)=>count+(drill.kind==='produce'||drill.kind==='transform'?Math.min(3,drill.items.length):0),0),0));
+      const sequence=buildSequence(cards,[0],[],[],cards,unit.lesson_number,labs,true,cards);
+      expect(sequence.filter(step=>step.kind==='grammarProduce'||step.kind==='grammarTransform').length,`unit ${unit.lesson_number}`).toBe(expected);
+      const lastPractice=sequence.findLastIndex(step=>step.kind==='grammarProduce'||step.kind==='grammarTransform');
+      const firstCheckpoint=sequence.findIndex(step=>step.kind==='grammarCheckpoint');
+      if(firstCheckpoint>=0) expect(firstCheckpoint).toBeGreaterThan(lastPractice);
+      checked+=1;
+    }
+    expect(checked).toBeGreaterThan(0);
   });
 
   it("turns reviewed dialogue usage into a targeted missing-word example", () => {

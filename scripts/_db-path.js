@@ -25,7 +25,7 @@ function resolveDbPath() {
 
   console.error("Could not locate the SQLite database. Tried:");
   for (const p of candidates) console.error("  -", p);
-  console.error("\nRun `node scripts/fetch-db.js` first, or set DATABASE_PATH.");
+  console.error("\nAuthoring requires your local private research database; set DATABASE_PATH. Normal app releases use the offline course-only subset, without automatic downloads.");
   process.exit(1);
 }
 

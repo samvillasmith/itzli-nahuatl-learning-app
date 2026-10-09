@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "title": "Itzli V3 synthetic practice audio — attribution and media notices",
+  "prepared_on": "2026-10-08",
+  "recipe_id": "spanish-air-b-2026-10-07",
+  "applies_to_url_prefix": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/audio-v3/spanish-air-b-2026-10-07/",
+  "credits_url": "https://www.itzli.app/en/source-course",
+  "contributions": {
+    "creator": "Itzli",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "scope": "Itzli's original authored practice, selection, arrangement, adaptation work and newly produced synthetic practice recordings. Source material retains its separate terms; this notice does not claim exclusive rights in words or language systems, or relicense third-party publications, recordings, images or models."
+  },
+  "licensed_text_source": {
+    "title": "Nāhuatlahtolli — A Beginner to Advanced Level Nahuatl Online Course",
+    "authors": ["Sabina de la Cruz", "Catalina de la Cruz", "Josefrayn Sánchez-Perry", "Kelly McDonough", "Sergio Romero"],
+    "publisher": "COERLL, The University of Texas at Austin",
+    "source_url": "https://tlahtolli.coerll.utexas.edu",
+    "source_license": "CC BY-SA (publisher listing; version unspecified)",
+    "source_license_listing_url": "https://coerll.utexas.edu/coerll/oer/nahuatlahtolli/",
+    "scope": "Selected licensed vocabulary, expressions and lesson text reused or adapted with attribution. The exact lesson links remain in the app's source register. This notice does not establish an unconfirmed source-license version or replace source and asset-specific notices.",
+    "changes": "Selection and arrangement for Itzli practice; INALI teaching respelling where identified, with source transcriptions retained as references; Itzli translations and original practice; a new Google Spanish synthetic reading with Nahuatl pronunciation adjustments, including the selected Air B tl approximation. Original source-text audio cues are not represented as native recordings."
+  },
+  "orthography_reference": {
+    "title": "Alfabeto del idioma Nawatlahtolli (náhuatl), Spanish-language alphabet poster",
+    "author": "Instituto Nacional de Lenguas Indígenas (INALI)",
+    "url": "https://site.inali.gob.mx/INALIDhuchlab/assets/files/cartel_alfabeto_Nawatlatolli-espanol.pdf",
+    "scope": "Teaching alphabet reference; no claim that this poster establishes a finalized full writing norm."
+  },
+  "synthesis": {
+    "provider": "Google Cloud Text-to-Speech",
+    "language_code": "es-US",
+    "voice": "es-US-Standard-A",
+    "speaking_rate": 0.82,
+    "pitch": 0,
+    "master_format": "LINEAR16, mono, 24000 Hz",
+    "delivery_format": "MP3, mono, 24000 Hz, 96 kbps",
+    "tl_approximation": "Air B: X-SAMPA tx, t followed by Spanish /x/ frication; an approximation, not certified native /tɬ/ pronunciation.",
+    "scope": "New synthetic practice media, distinguishable from linked source-speaker recordings. This release pipeline did not train a voice model, clone a source speaker, copy or splice native recordings, or submit native recordings as training material. No claim is made about Google's underlying model-training data."
+  },
+  "original_source_recordings": {
+    "active_distinct_urls": 644,
+    "exact_utterance_distinct_urls": 545,
+    "extra_passage_or_asset_urls": 99,
+    "host": "tlahtolli.coerll.utexas.edu",
+    "scope": "The current reviewed plan retains 545 exact-utterance recording URLs plus 99 other passage or audio-asset URLs, totaling 644 distinct original URLs. They remain unmodified on their original host, with source and asset-specific notices; they were not copied into this S3 release or relicensed by Itzli. Browser-managed native preloading is not a guarantee of durable offline availability."
+  },
+  "fact_reference_scope": {
+    "credits_url": "https://www.itzli.app/en/source-course",
+    "scope": "Individually checked word and grammar facts from dictionaries and other regional references support Itzli's authored practice. Dictionary definitions and examples, other fact-reference prose or exercises, compiled entry collections and Bible verses are not published or relicensed as this audio release. Dictionary and Bible references do not supply an authored-text or media reuse grant. Source-family and regional limits remain in the app's records."
+  },
+  "book_reference": {
+    "title": "Learn Nahuatl, Language of the Aztecs and Modern Nahuas: Second Edition",
+    "author": "Yan García",
+    "url": "https://tlahtoltapazolli.com/books/",
+    "scope": "Reference and inspiration for Itzli's original course; no book-text, exercise, arrangement or media reuse license is claimed, and no endorsement is implied."
+  },
+  "separate_assets": "Historical recordings, experimental diagnostics, images, databases and other release assets retain their own applicable notices. This recipe's notice does not license those asset families.",
+  "summary_es": "Audio nuevo de práctica sintética de Itzli, con voz española de Google y ajustes de pronunciación del náhuatl. Las aportaciones originales de Itzli se ofrecen bajo CC BY-SA 4.0; el texto de Nāhuatlahtolli conserva sus términos CC BY-SA según el catálogo del editor, sin versión confirmada. Se acredita a sus cinco autores y se identifican las adaptaciones. Las grabaciones originales siguen enlazadas, sin copiarse a este lanzamiento de S3. Las referencias de diccionarios y de la Biblia respaldan datos individuales; sus textos, versos y medios no se publican ni se relicencian mediante este aviso."
+}

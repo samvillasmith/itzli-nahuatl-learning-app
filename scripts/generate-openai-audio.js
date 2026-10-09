@@ -6,13 +6,14 @@
  *
  * This is not recommended as the production source for Nahuatl audio. General TTS
  * models can ignore phonology cues and fall back to Spanish/English habits.
- * Prefer scripts/generate-audio.py with facebook/mms-tts-nhe for production.
+ * Use pinned MMS candidates and source comparisons before any release.
  */
 
 const fs = require("fs");
 const path = require("path");
-const Database = require("better-sqlite3");
-const { resolveDbPath } = require("./_db-path");
+const crypto = require("node:crypto");
+const { privateDiagnosticDirectory, assertPrivateDiagnosticDirectory } = require("./lib/audio-diagnostic-storage.cjs");
+const { paidProviderRows, DEFAULT_MANIFEST } = require("./lib/course-audio-inputs");
 const {
   buildTtsInput,
   buildTtsInstructions,
@@ -21,17 +22,12 @@ const {
   speakableNahuatlText,
 } = require("./lib/nahuatl-pronunciation");
 
-const REVIEWED_AUDIO_PATH = path.resolve(__dirname, "..", "src", "data", "reviewed-audio.json");
-
-loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
-loadEnvFile(path.resolve(__dirname, "..", ".env"));
-
 const DEFAULTS = {
   model: process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts",
   voice: process.env.OPENAI_TTS_VOICE || "marin",
   format: process.env.OPENAI_TTS_FORMAT || "wav",
   speed: Number(process.env.OPENAI_TTS_SPEED || "0.86"),
-  outDir: process.env.AUDIO_OUT_DIR || path.resolve(__dirname, "..", "public", "audio"),
+  outDir: process.env.AUDIO_OUT_DIR || privateDiagnosticDirectory(path.resolve(__dirname, ".."), "openai"),
   inputMode: process.env.NAHUATL_TTS_INPUT_MODE || "orthography",
   concurrency: Number(process.env.TTS_CONCURRENCY || "2"),
 };
@@ -66,6 +62,7 @@ function parseArgs(argv) {
     ids: new Set(),
     test: [],
     ...DEFAULTS,
+    manifest: DEFAULT_MANIFEST,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -73,6 +70,7 @@ function parseArgs(argv) {
     const value = argv[i + 1];
 
     if (arg === "--execute") args.execute = true;
+    else if (arg === "--manifest") { args.manifest = value; i += 1; }
     else if (arg === "--force") args.force = true;
     else if (arg === "--reviewed") args.reviewed = true;
     else if (arg === "--dry-run") args.execute = false;
@@ -142,6 +140,7 @@ function parseArgs(argv) {
     process.exit(1);
   }
 
+  args.outDir = assertPrivateDiagnosticDirectory(path.resolve(__dirname, ".."), args.outDir);
   return args;
 }
 
@@ -151,15 +150,15 @@ Usage:
   node scripts/generate-openai-audio.js --dry-run --limit 12
   node scripts/generate-openai-audio.js --test na ta calli tlahtoa xochitl
   CONFIRM_TTS_SPEND=YES node scripts/generate-openai-audio.js --execute --kind vocab --limit 25
-  CONFIRM_TTS_SPEND=YES node scripts/generate-openai-audio.js --execute --force
 
 Options:
   --kind vocab|dialogue|all       Which rows to generate. Default: all
-  --reviewed                      Load exact text from src/data/reviewed-audio.json
+  --manifest FILE                 Frozen corrected-text inputs; default: data/audio-v3/current-course.json
+  --reviewed                      Deprecated; uses the frozen manifest, never stale review text
   --limit N                       Cap rows for testing. Default: no cap
   --ids a,b,c                     Only generate selected row ids
   --force                         Overwrite existing files
-  --out DIR                       Output root. Default: public/audio
+  --out DIR                       Private output root. Default: data/audio-v3/diagnostics/openai/candidates
   --format wav|mp3|opus|aac|flac  Audio format. Default: wav
   --model MODEL                   Default: ${DEFAULTS.model}
   --voice VOICE                   Default: ${DEFAULTS.voice}
@@ -172,71 +171,9 @@ Options:
 
 function loadRows(args) {
   if (args.test.length) {
-    return args.test
-      .map((rawText, index) => {
-        const text = speakableNahuatlText(rawText);
-        return {
-          kind: "test",
-          id: slugify(text) || `test-${index + 1}`,
-          text,
-        };
-      })
-      .filter((row) => row.text);
+    return args.test.map((text, index) => ({ kind: "test", id: slugify(text) || `test-${index + 1}`, text }));
   }
-
-  if (args.reviewed) {
-    const reviewed = JSON.parse(fs.readFileSync(REVIEWED_AUDIO_PATH, "utf8"));
-    const rows = [
-      ...(args.kind === "all" || args.kind === "vocab"
-        ? (reviewed.vocab || []).map((row) => ({ ...row, kind: "vocab" }))
-        : []),
-      ...(args.kind === "all" || args.kind === "dialogue"
-        ? (reviewed.dialogue || []).map((row) => ({ ...row, kind: "dialogue" }))
-        : []),
-    ].map((row) => ({
-      ...row,
-      id: String(row.id),
-      text: speakableNahuatlText(row.text),
-    })).filter((row) => row.text);
-
-    let filtered = rows;
-    if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(row.id));
-    if (args.limit > 0) filtered = filtered.slice(0, args.limit);
-    return filtered;
-  }
-
-  const db = new Database(resolveDbPath(), { readonly: true });
-  const rows = [];
-
-  if (args.kind === "all" || args.kind === "vocab") {
-    const vocab = db
-      .prepare("SELECT id, display_form AS text FROM lesson_vocab ORDER BY lesson_number, rank, id")
-      .all();
-    for (const row of vocab) rows.push({ kind: "vocab", id: String(row.id), text: row.text });
-
-  }
-
-  if (args.kind === "all" || args.kind === "dialogue") {
-    const dialogue = db
-      .prepare(
-        "SELECT lesson_dialogue_id AS id, utterance_normalized AS text " +
-          "FROM lesson_dialogues " +
-          "WHERE utterance_normalized IS NOT NULL AND length(trim(utterance_normalized)) > 1 " +
-          "ORDER BY lesson_dialogue_id"
-      )
-      .all();
-    for (const row of dialogue) {
-      const text = speakableNahuatlText(row.text);
-      if (text) rows.push({ kind: "dialogue", id: String(row.id), text });
-    }
-  }
-
-  db.close();
-
-  let filtered = rows;
-  if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(row.id));
-  if (args.limit > 0) filtered = filtered.slice(0, args.limit);
-  return filtered;
+  return paidProviderRows(args);
 }
 
 function slugify(text) {
@@ -248,7 +185,12 @@ function slugify(text) {
 
 function outputPath(args, row) {
   const folder = row.kind === "test" ? "_tests" : row.kind;
-  return path.join(args.outDir, folder, `${row.id}.${args.format}`);
+  const textHash = row.text_sha256 || crypto.createHash("sha256").update(row.text).digest("hex");
+  const recipeHash = crypto.createHash("sha256").update(JSON.stringify({ text: row.text,
+    model: args.model, voice: args.voice, speed: args.speed, mode: args.inputMode,
+    instructions: buildTtsInstructions(row.text, args),
+  })).digest("hex");
+  return path.join(args.outDir, folder, `${row.id}--${textHash.slice(0, 12)}--${recipeHash.slice(0, 12)}.${args.format}`);
 }
 
 function previewRows(args, rows) {
@@ -338,6 +280,9 @@ async function main() {
     process.exit(1);
   }
 
+  // No env-file reads or provider authentication are possible in dry-run mode.
+  loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
+  loadEnvFile(path.resolve(__dirname, "..", ".env"));
   const client = await getOpenAIClient();
   let generated = 0;
   let skipped = 0;
@@ -365,7 +310,8 @@ async function main() {
   console.log(`Failed:    ${failed}`);
 }
 
-main().catch((error) => {
+if (require.main === module) main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+module.exports = { parseArgs, loadRows, outputPath };

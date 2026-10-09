@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-07",
+  "evidence": "docs/gloss-origin-review.md; individual Chicontepec facts and licensed COERLL components. These exact learner-field overlays preserve frozen source records and every Nahuatl answer.",
+  "phrases": [
+    {
+      "id": "partial-contrast-visible-over-there", "nahuatl": "nepa",
+      "before": { "en": "over there, at a visible distance", "es": "allá, a una distancia visible" },
+      "after": { "en": "there, farther away but still in view", "es": "allá, más lejos pero a la vista" }
+    },
+    {
+      "id": "partial-contrast-child-visible-distance", "nahuatl": "Nepa itstok nokonew.",
+      "before": { "en": "My child is over there, at a visible distance.", "es": "Mi hija o hijo está allá, a una distancia visible." },
+      "after": { "en": "My child is there, farther away but still in view.", "es": "Mi hija o hijo está allá, más lejos pero a la vista." }
+    },
+    {
+      "id": "place-current-model-word-v3f-0c7171b3193215b1-1", "nahuatl": "Nepa eltok amoxtli.",
+      "before": { "en": "The book is over there, at a visible distance.", "es": "El libro está allá, a una distancia visible." },
+      "after": { "en": "The book is there, farther away but still in view.", "es": "El libro está allá, más lejos pero a la vista." }
+    },
+    {
+      "id": "body-current-model-word-v3pn-fc5d1162107714e3-1", "nahuatl": "Eltok tetl tepeikxitlan.",
+      "before": { "en": "The stone is at the hill’s foot.", "es": "La piedra está al pie del cerro." },
+      "after": { "en": "The stone is at the lower end of the hill.", "es": "La piedra está en el extremo inferior del cerro." }
+    },
+    {
+      "id": "v3-finite-answer-v3pv-9abc1a952706fc66", "nahuatl": "Kena, nisokimiki.",
+      "before": { "en": "Yes, I cannot bear being dirty.", "es": "Sí, no soporto estar sucio o sucia." },
+      "after": { "en": "Yes, my own dirt feels unbearable.", "es": "Sí, mi propia suciedad me resulta insoportable." }
+    },
+    {
+      "id": "noun-current-word-v3pn-f6dcfd90577b3140-1", "nahuatl": "Tepetsintlan niitstok.",
+      "before": { "en": "I am at the hill’s base.", "es": "Estoy al pie del cerro." },
+      "after": { "en": "I am at the bottom of the hill.", "es": "Estoy en la parte de abajo del cerro." }
+    },
+    {
+      "id": "v3-conversation-context-word-v3rf-5cf5b5767c7b1b41-a", "nahuatl": "Kena, naman sentiya.",
+      "before": { "en": "Yes, the identified place fills with people now.", "es": "Sí, el lugar identificado se llena de gente ahora." },
+      "after": { "en": "Yes, the identified place is now becoming full of people.", "es": "Sí, el lugar identificado ahora se va llenando de personas." }
+    }
+  ],
+  "lessons": [
+    {
+      "unitId": "v3-mechanic-deictic-reference-points", "blueprintId": "v3-mechanic-deictic-reference-points-scene-v1",
+      "builders": [{
+        "id": "child-visible-distance", "phraseId": "partial-contrast-child-visible-distance",
+        "before": { "en": "Construct: My child is over there, at a visible distance.", "es": "Construye: Mi hija o hijo está allá, a una distancia visible." },
+        "after": { "en": "Construct: My child is there, farther away but still in view.", "es": "Construye: Mi hija o hijo está allá, más lejos pero a la vista." }
+      }],
+      "turns": [{
+        "dialogueId": "deictic-child-movement", "id": "turn-6", "phraseId": "partial-contrast-child-visible-distance",
+        "before": { "en": "My child is over there, at a visible distance.", "es": "Mi hija o hijo está allá, a una distancia visible." },
+        "after": { "en": "My child is there, farther away but still in view.", "es": "Mi hija o hijo está allá, más lejos pero a la vista." }
+      }],
+      "mappings": []
+    },
+    {
+      "unitId": "v3-vocab-place-004", "blueprintId": "v3-vocab-place-004-place-contexts-v1",
+      "builders": [{
+        "id": "place-current-build-word-v3f-0c7171b3193215b1-1", "phraseId": "place-current-model-word-v3f-0c7171b3193215b1-1",
+        "before": { "en": "Build the expression: The book is over there, at a visible distance.", "es": "Construye la expresión: El libro está allá, a una distancia visible." },
+        "after": { "en": "Build the expression: The book is there, farther away but still in view.", "es": "Construye la expresión: El libro está allá, más lejos pero a la vista." }
+      }],
+      "turns": [{
+        "dialogueId": "place-current-exchange", "id": "place-current-turn-2", "phraseId": "place-current-model-word-v3f-0c7171b3193215b1-1",
+        "before": { "en": "The book is over there, at a visible distance.", "es": "El libro está allá, a una distancia visible." },
+        "after": { "en": "The book is there, farther away but still in view.", "es": "El libro está allá, más lejos pero a la vista." }
+      }],
+      "mappings": [{
+        "entryId": "word-v3f-0c7171b3193215b1", "display": "nepa", "phraseIds": ["place-current-model-word-v3f-0c7171b3193215b1-1"],
+        "before": { "en": "over there, at a visible distance", "es": "allá, a una distancia visible" },
+        "after": { "en": "there, farther away but still in view", "es": "allá, más lejos pero a la vista" }
+      }]
+    },
+    {
+      "unitId": "v3-vocab-body-007", "blueprintId": "v3-vocab-body-007-body-contexts-v1",
+      "builders": [{
+        "id": "body-current-build-word-v3pn-fc5d1162107714e3-1", "phraseId": "body-current-model-word-v3pn-fc5d1162107714e3-1",
+        "before": { "en": "Build the expression: The stone is at the hill’s foot.", "es": "Construye la expresión: La piedra está al pie del cerro." },
+        "after": { "en": "Build the expression: The stone is at the lower end of the hill.", "es": "Construye la expresión: La piedra está en el extremo inferior del cerro." }
+      }],
+      "turns": [{
+        "dialogueId": "body-current-exchange", "id": "body-current-turn-2", "phraseId": "body-current-model-word-v3pn-fc5d1162107714e3-1",
+        "before": { "en": "The stone is at the hill’s foot.", "es": "La piedra está al pie del cerro." },
+        "after": { "en": "The stone is at the lower end of the hill.", "es": "La piedra está en el extremo inferior del cerro." }
+      }],
+      "mappings": [{
+        "entryId": "word-v3pn-fc5d1162107714e3", "display": "tepeikxitlan", "phraseIds": ["body-current-model-word-v3pn-fc5d1162107714e3-1"],
+        "before": { "en": "at the hill’s foot", "es": "al pie del cerro" },
+        "after": { "en": "at the lower end of the hill", "es": "en el extremo inferior del cerro" }
+      }]
+    },
+    {
+      "unitId": "v3-vocab-nature-004", "blueprintId": "v3-vocab-nature-004-object-scenes-v1-expanded",
+      "builders": [{
+        "id": "noun-current-build-word-v3pn-f6dcfd90577b3140-1", "phraseId": "noun-current-word-v3pn-f6dcfd90577b3140-1",
+        "before": { "en": "Build the expression: I am at the hill’s base.", "es": "Construye la expresión: Estoy al pie del cerro." },
+        "after": { "en": "Build the expression: I am at the bottom of the hill.", "es": "Construye la expresión: Estoy en la parte de abajo del cerro." }
+      }],
+      "turns": [{
+        "dialogueId": "noun-current-exchange", "id": "noun-current-turn-4", "phraseId": "noun-current-word-v3pn-f6dcfd90577b3140-1",
+        "before": { "en": "I am at the hill’s base.", "es": "Estoy al pie del cerro." },
+        "after": { "en": "I am at the bottom of the hill.", "es": "Estoy en la parte de abajo del cerro." }
+      }],
+      "mappings": [{
+        "entryId": "word-v3pn-f6dcfd90577b3140", "display": "tepetsintlan", "phraseIds": ["noun-current-word-v3pn-f6dcfd90577b3140-1"],
+        "before": { "en": "I am at the hill’s base.", "es": "Estoy al pie del cerro." },
+        "after": { "en": "I am at the bottom of the hill.", "es": "Estoy en la parte de abajo del cerro." }
+      }]
+    },
+    {
+      "unitId": "v3-vocab-people-009", "blueprintId": "v3-vocab-people-009-arrivals-v1-expanded",
+      "builders": [{
+        "id": "v3-vocab-people-009-conversation-build-word-v3rf-5cf5b5767c7b1b41", "phraseId": "v3-conversation-context-word-v3rf-5cf5b5767c7b1b41-a",
+        "before": { "en": "Build: Yes, the identified place fills with people now.", "es": "Construye: Sí, el lugar identificado se llena de gente ahora." },
+        "after": { "en": "Build: Yes, the identified place is now becoming full of people.", "es": "Construye: Sí, el lugar identificado ahora se va llenando de personas." }
+      }],
+      "turns": [{
+        "dialogueId": "v3-vocab-people-009-conversation-exchange-0", "id": "v3-vocab-people-009-conversation-exchange-0-0-1", "phraseId": "v3-conversation-context-word-v3rf-5cf5b5767c7b1b41-a",
+        "before": { "en": "Yes, the identified place fills with people now.", "es": "Sí, el lugar identificado se llena de gente ahora." },
+        "after": { "en": "Yes, the identified place is now becoming full of people.", "es": "Sí, el lugar identificado ahora se va llenando de personas." }
+      }],
+      "mappings": [{
+        "entryId": "word-v3rf-5cf5b5767c7b1b41", "display": "sentiya", "phraseIds": ["v3-conversation-context-word-v3rf-5cf5b5767c7b1b41-a"],
+        "before": { "en": "a place fills with people", "es": "llenarse un lugar de gente" },
+        "after": { "en": "become full of people (a place)", "es": "llenarse de personas (un lugar)" }
+      }]
+    },
+    {
+      "unitId": "v3-vocab-actions-018", "blueprintId": "v3-vocab-actions-018-context-v1",
+      "builders": [{
+        "id": "v3-vocab-actions-018-build-v3pv-9abc1a952706fc66", "phraseId": "v3-finite-answer-v3pv-9abc1a952706fc66",
+        "before": { "en": "Build the affirmative reply: I cannot bear being dirty.", "es": "Construye la respuesta afirmativa: no soporto estar sucio o sucia." },
+        "after": { "en": "Build the affirmative reply: My own dirt feels unbearable.", "es": "Construye la respuesta afirmativa: mi propia suciedad me resulta insoportable." }
+      }],
+      "turns": [{
+        "dialogueId": "confirmation-2", "id": "confirmation-2-1-answer", "phraseId": "v3-finite-answer-v3pv-9abc1a952706fc66",
+        "before": { "en": "Confirm in the stated role: I cannot bear being dirty.", "es": "Confirma en el papel indicado: no soporto estar sucio o sucia." },
+        "after": { "en": "Confirm in the stated role: My own dirt feels unbearable.", "es": "Confirma en el papel indicado: mi propia suciedad me resulta insoportable." }
+      }],
+      "mappings": []
+    }
+  ]
+}

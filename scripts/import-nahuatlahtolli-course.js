@@ -40,7 +40,7 @@ function delay(ms) {
 async function fetchText(url) {
   const res = await fetch(url, {
     headers: {
-      "User-Agent": "Itzli course importer (CC-BY-SA attribution; contact svillasmith3@gmail.com)",
+      "User-Agent": "Itzli course importer (CC-BY-SA attribution; contact admin@itzli.app)",
     },
   });
 

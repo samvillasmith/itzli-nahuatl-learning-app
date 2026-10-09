@@ -2,17 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getRequestLocale } from "@/i18n/server";
 import { tr, trChoice } from "@/i18n/translate";
+import { createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  return {
-    title: tr(locale, "Privacy Policy"),
-    description: tr(locale, "Privacy Policy for Itzli — Eastern Huasteca Nahuatl learning app."),
-  };
+  return createPageMetadata({
+    locale,
+    pathname: "/privacy",
+    title: trChoice(locale, "Privacy Policy", "Política de privacidad"),
+    description: trChoice(locale,
+      "Read how Itzli's free Nahuatl learning app handles account information, learning progress, feedback, and your privacy choices.",
+      "Conoce cómo la app gratuita de náhuatl de Itzli trata los datos de tu cuenta, tu progreso, tus comentarios y tus opciones de privacidad."),
+  });
 }
 
-const EFFECTIVE_DATE = "July 13, 2026";
-const CONTACT_EMAIL = "svillasmith3@gmail.com";
+const EFFECTIVE_DATE = "October 9, 2026";
+const CONTACT_EMAIL = "admin@itzli.app";
 
 export default async function PrivacyPage() {
   const locale = await getRequestLocale();
@@ -20,7 +25,7 @@ export default async function PrivacyPage() {
   return (
     <article className="max-w-2xl mx-auto text-stone-700 leading-relaxed">
       <h1 className="text-3xl font-bold text-stone-900 mb-2">{tr(locale, "Privacy Policy")}</h1>
-      <p className="text-sm text-stone-500 mb-10">{tr(locale, "Effective")}: {trChoice(locale, EFFECTIVE_DATE, "13 de julio de 2026")}</p>
+      <p className="text-sm text-stone-500 mb-10">{tr(locale, "Effective")}: {trChoice(locale, EFFECTIVE_DATE, "9 de octubre de 2026")}</p>
 
       <div className="mb-10 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-sm">
         <p className="font-semibold text-emerald-900 mb-2">{tr(locale, "Short version")}</p>
@@ -32,6 +37,8 @@ export default async function PrivacyPage() {
             {trChoice(locale, "in our database. Chat audit records use one-way hashes and structured safety metadata.", "en nuestra base de datos. Los registros de auditoría del chat usan hashes unidireccionales y metadatos estructurados de seguridad.")}
           </li>
           <li>{tr(locale, "Your messages to the AI tutor are transmitted to OpenAI for processing.")}</li>
+          <li>{trChoice(locale, "Voluntary course reports and community feedback are sent to Sam by email; they are not published automatically.", "Los reportes voluntarios del curso y los aportes de la comunidad se envían a Sam por correo; no se publican automáticamente.")}</li>
+          <li>{trChoice(locale, "When welcome emails are enabled, we send one account welcome email through Resend. Signing up does not subscribe you to recurring marketing emails.", "Cuando los correos de bienvenida están habilitados, enviamos un correo de bienvenida a tu cuenta mediante Resend. Registrarte no te suscribe a correos de marketing periódicos.")}</li>
           <li>{tr(locale, "You can delete your cloud progress or your entire account at any time.")}</li>
         </ul>
       </div>
@@ -60,10 +67,15 @@ export default async function PrivacyPage() {
         </a>{" "}
         {tr(locale, "applies to that data.")}
       </p>
+      <p className="mb-4">{trChoice(locale,
+        "When welcome emails are enabled, we share your verified primary email address and optional first name with Resend to send one welcome email explaining how to use Itzli. We temporarily store the pending email for delivery retries and clear its address, greeting, and body once Resend accepts it or your account is deleted. Stale pending emails are cleared on the next retry. We retain a hashed account identifier and delivery receipt to prevent duplicate welcomes; deleting your account clears the receipt and leaves only a hashed deletion marker to prevent late account events from sending another welcome. This is an account welcome, not a recurring marketing subscription. Local review and preview environments do not send it.",
+        "Cuando los correos de bienvenida están habilitados, compartimos tu dirección de correo principal verificada y tu nombre opcional con Resend para enviar un correo de bienvenida que explica cómo usar Itzli. Guardamos temporalmente el correo pendiente para reintentar el envío y borramos su dirección, saludo y contenido cuando Resend lo acepta o se elimina tu cuenta. Los correos pendientes antiguos se borran en el siguiente reintento. Conservamos un identificador de cuenta con hash y el comprobante del envío para evitar bienvenidas duplicadas; al eliminar tu cuenta, borramos el comprobante y dejamos solo un marcador de eliminación con hash para impedir que eventos tardíos de la cuenta envíen otra bienvenida. Es una bienvenida a tu cuenta, no una suscripción a marketing periódico. Los entornos de revisión local y vista previa no la envían.")}</p>
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">{tr(locale, "Learning progress (Neon Postgres)")}</h3>
       <p className="mb-4">
-        {tr(locale, "We store your unit completion, quiz accuracy, and spaced-repetition state in our database, keyed to your Clerk user ID. This data lets you resume your learning across devices. It contains no personally identifying information beyond the pseudonymous Clerk ID.")}
+        {trChoice(locale,
+          "When you sign in, we store your lesson completions, quiz accuracy, spaced-repetition state, vocabulary practice, vocabulary bookmarks and vocabulary notes in our database, keyed to your Clerk user ID, so they can sync across devices. Vocabulary notes contain the text you choose to save. Your personal expression notebook and unfinished conversation checkpoints remain on your device. Guest progress also stays on the device.",
+          "Cuando inicias sesión, guardamos tus lecciones completadas, precisión en cuestionarios, estado de repetición espaciada, práctica de vocabulario, palabras marcadas y notas de vocabulario en nuestra base de datos, vinculados a tu ID de usuario de Clerk, para sincronizarlos entre dispositivos. Las notas de vocabulario contienen el texto que decides guardar. Tu cuaderno personal de expresiones y los puntos de reanudación de conversaciones sin terminar permanecen en tu dispositivo. El progreso de invitados también permanece en el dispositivo.")}
       </p>
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">{tr(locale, "Chat audit log (Neon Postgres)")}</h3>
@@ -94,6 +106,17 @@ export default async function PrivacyPage() {
         </a>
         . {tr(locale, "Per OpenAI's API policy, API messages are not used to train their models. We do not persist chat messages in our own database.")}
       </p>
+
+      <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">{trChoice(locale, "Course reports and community feedback", "Reportes del curso y aportes de la comunidad")}</h3>
+      <p className="mb-4">{trChoice(locale,
+        "If you choose to submit a report, it includes your written explanation, any suggested correction, your interface language, and the page or lesson context shown in the form. Your name, reply email, community or regional variety, and whether you speak Eastern Huasteca Nahuatl are optional. We do not require ancestry information or photographs. Speaker information is self-reported and does not establish verified authority.",
+        "Si decides enviar un reporte, este incluye tu explicación, la corrección que sugieras, el idioma de la interfaz y el contexto de la página o lección que muestra el formulario. Tu nombre, correo para recibir respuesta, comunidad o variante regional y si hablas náhuatl de la Huasteca veracruzana son opcionales. No pedimos información sobre ascendencia ni fotografías. La información como hablante es declarada por ti y no constituye una autoridad verificada.")}</p>
+      <p className="mb-4">{trChoice(locale,
+        "When email delivery in the app is enabled, reports from signed-in learners are sent through Resend to admin@itzli.app for Sam to review. Your account ID is used for report-rate counters, and a hash derived from it is included in the provider's duplicate-prevention key. The raw account ID is not included in the report email, and the report text is not stored in our database. Local review can send reports only when the owner explicitly enables delivery; it uses temporary local counters without account authentication or database writes. Deployment previews do not send reports. If submission fails, the form keeps your entries so you can retry.",
+        "Cuando está habilitado el envío de correo en la aplicación, los reportes de estudiantes con sesión iniciada se envían mediante Resend a admin@itzli.app para que Sam los revise. Tu ID de cuenta se usa en los contadores de frecuencia de reportes, y un hash derivado de ese ID se incluye en la clave del proveedor para evitar envíos duplicados. El ID de cuenta sin procesar no se incluye en el correo del reporte y el texto del reporte no se guarda en nuestra base de datos. La revisión local puede enviar reportes solo cuando el propietario habilita el envío explícitamente; usa contadores locales temporales sin autenticación de cuenta ni escrituras en la base de datos. Las versiones preliminares del despliegue no envían reportes. Si el envío falla, el formulario conserva tus datos para que puedas reintentarlo.")}</p>
+      <p className="mb-4">{trChoice(locale,
+        "Reports are reviewed before any course change and are not published automatically. Contact details are used to reply about your report or community connection only when you choose to allow contact. Send only information you want Sam to review. You can request access to or deletion of your report by emailing the contact address below; reports received by email are retained there until no longer needed for review or follow-up, or until a deletion request is fulfilled.",
+        "Revisamos los reportes antes de cambiar el curso y no los publicamos automáticamente. Usamos los datos de contacto para responder sobre tu reporte o conexión con la comunidad solo si permites que te contactemos. Envía únicamente información que quieras que Sam revise. Puedes solicitar acceso a tu reporte o su eliminación escribiendo al correo de contacto de abajo; los reportes recibidos por correo se conservan allí hasta que ya no sean necesarios para la revisión o el seguimiento, o hasta que se atienda una solicitud de eliminación.")}</p>
 
       <h3 className="text-base font-semibold text-stone-900 mt-6 mb-2">{tr(locale, "Local storage")}</h3>
       <p className="mb-4">
@@ -129,6 +152,7 @@ export default async function PrivacyPage() {
         <li><strong>Clerk</strong> — {tr(locale, "processes authentication data")}</li>
         <li><strong>Neon (Postgres)</strong> — {tr(locale, "stores progress and hashed audit rows")}</li>
         <li><strong>OpenAI</strong> — {tr(locale, "processes chat content (completion + moderation)")}</li>
+        <li><strong>Resend</strong> — {trChoice(locale, "delivers account welcome emails and course reports when their respective features are enabled", "entrega correos de bienvenida a la cuenta y reportes del curso cuando sus respectivas funciones están habilitadas")}{" "}<a href="https://resend.com/legal/privacy-policy" className="text-emerald-600 underline" target="_blank" rel="noopener noreferrer">{tr(locale, "Privacy Policy")}</a></li>
         <li><strong>Vercel</strong> — {tr(locale, "hosts the app and serves requests")}</li>
         <li><strong>Amazon S3</strong> — {tr(locale, "serves static assets (images, audio, database bundle)")}</li>
         <li><strong>{trChoice(locale, "Pexels, Wikimedia Commons, Flickr, Rawpixel, and StockSnap", "Pexels, Wikimedia Commons, Flickr, Rawpixel y StockSnap")}</strong> — {tr(locale, "serve some vocabulary images")}</li>

@@ -31,8 +31,8 @@ module.exports = { validateEhnLine };
 
 // ── Dialogue data ─────────────────────────────────────────────────────────────
 // Each entry: { unitId, lines: [{ speaker, ehn, en }] }
-// All utterances must contain at least one macron vowel (ā ē ī ō ū) or ¿
-// to pass the getUnitDialogueContent filter.
+// Synthetic rows are selected by attestation tier, independently of spelling.
+// Content lint catches a few known errors; passing it is not speaker review.
 
 const dialogues = [
   {
@@ -50,7 +50,7 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticchihua āxcan?", en: "What are you doing today?" },
       { s: "B", ehn: "Āya nimomachtia. ¿Cāmpa tiyāuh ta?", en: "Not yet studying. Where are you going?" },
       { s: "A", ehn: "Niyāuh niquitta nocniuh. ¿Quēmman tiyāuh ta?", en: "I'm going to see my friend. When are you going?" },
-      { s: "B", ehn: "Āman niyāuh, pampa nicnequi niccua āchtopa.", en: "I'm going now, because I want to eat first." },
+      { s: "B", ehn: "Āman niyāuh, pampa nicnequi niccuāz āchtopa.", en: "I'm going now, because I want to eat first." },
     ],
   },
   {
@@ -92,18 +92,18 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0019", // Unit 9 — The Family
     lines: [
-      { s: "A", ehn: "¿Piyā tā nopiltotontin?", en: "Do you have little children?" },
-      { s: "B", ehn: "Quēna, nicpiya cē nopiltzin huan ōme noichpōcauh. ¿Huan ta?", en: "Yes, I have one son and two daughters. And you?" },
-      { s: "A", ehn: "Ayamo. Zan noconepiyah nohueltiuh huan noicniuh.", en: "Not yet. I only have my sister's and brother's children." }, // TODO(EHN-verify): mātzin
-      { s: "B", ehn: "Cuālli. In nohueyitāta huan nohueyinān nicān cateh.", en: "Good. My grandfather and grandmother are here." },
+      { s: "A", ehn: "¿Ticpiya moconēhuan?", en: "Do you have children?" },
+      { s: "B", ehn: "Quēna, nicpiya ēyi noconēhuan. ¿Huan ta?", en: "Yes, I have three children. And you?" },
+      { s: "A", ehn: "Ayamo. Zan nicpiya nomachconēhuan.", en: "Not yet. I only have nieces and nephews." },
+      { s: "B", ehn: "Cuālli. Nototatah huan notonanān nicān itztoqueh.", en: "Good. My grandfather and grandmother are here." },
     ],
   },
   {
     unitId: "FCN-LSN-0020", // Unit 10 — My Appearance
     lines: [
-      { s: "A", ehn: "¿Quēniuhqui timoyōlia āxcan?", en: "How are you feeling today?" },
+      { s: "A", ehn: "¿Quēniuhqui tiitztoc āxcan?", en: "How are you feeling today?" },
       { s: "B", ehn: "Cuālli niitztoc, tlazcāmati. Ax nicpiya cocoliztli.", en: "I'm well, thank you. I don't have any illness." },
-      { s: "A", ehn: "Quēna, timoyōlia chicāhuac.", en: "Yes, you look strong." },
+      { s: "A", ehn: "Quēna, cuālli tiitztoc.", en: "Yes, you are well." },
       { s: "B", ehn: "Tlazcāmati. Na nocca ninēmi cuālli.", en: "Thank you. I also live well." },
     ],
   },
@@ -113,8 +113,8 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticchīhuaz mōztla?", en: "What will you do tomorrow?" },
       { s: "B", ehn: "Mōztla nitlahtōz nāhuatl īca nocihuāuh.", en: "Tomorrow I will speak Nahuatl with my wife." },
       { s: "A", ehn: "Cuālli. Na nitlahcuilōz pan caltlamachticān.", en: "Good. I will write at school." },
-      { s: "B", ehn: "¿Huan ticmomachtiznequi in tlahtōl?", en: "And do you want to learn the language?" },
-      { s: "A", ehn: "Quēna, tlāhuēl nicnequi nimomachtia nāhuatl.", en: "Yes, I really want to learn Nahuatl." },
+      { s: "B", ehn: "¿Huan ticnequi timomachtiz nāhuatl?", en: "And do you want to learn Nahuatl?" },
+      { s: "A", ehn: "Quēna, tlāhuēl nicnequi nimomachtiz nāhuatl.", en: "Yes, I really want to learn Nahuatl." },
     ],
   },
   {
@@ -123,7 +123,7 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticchihua nicān?", en: "What are you making here?" },
       { s: "B", ehn: "Nitlaxcaloa. ¿Huan ta, tlen ticcua?", en: "I'm making tortillas. And you, what are you eating?" },
       { s: "A", ehn: "Niccua tōmātl huan etl. ¿Huan ta?", en: "I'm eating tomato and bean. And you?" },
-      { s: "B", ehn: "Niātli, ax nitlacua. Nicnequi niccua tamalli āxcan.", en: "I'm drinking water, not eating. I want to eat tamales today." },
+      { s: "B", ehn: "Niātli, ax nitlacua. Nicnequi niccuāz tamalli āxcan.", en: "I'm drinking water, not eating. I want to eat tamales today." },
     ],
   },
   {
@@ -158,24 +158,24 @@ const dialogues = [
     lines: [
       { s: "A", ehn: "¿Tlen onca pan mesa?", en: "What is on the table?" },
       { s: "B", ehn: "Onca cē taza huan ōme comitl.", en: "There is one cup and two pots." },
-      { s: "A", ehn: "¿Ācquiya motlālis pan siya?", en: "Who will sit in the chair?" },
-      { s: "B", ehn: "Ninotlālis nicān. Ximocalaqui pan puerta.", en: "I will sit here. Come in through the door." },
+      { s: "A", ehn: "¿Ācquiya mocēhuiz pan cuaciyah?", en: "Who will sit in the chair?" },
+      { s: "B", ehn: "Nimocēhuiz nicān. Xicalaqui.", en: "I will sit here. Come in." },
     ],
   },
   {
     unitId: "FCN-LSN-0028", // Unit 18 — What I Like and Do Not Like
     lines: [
-      { s: "A", ehn: "¿Tlen ticnequi ticcua?", en: "What do you want to eat?" },
-      { s: "B", ehn: "Nicnequi niccua yēlotl huan camohtli. ¡Huelic!", en: "I want to eat corn and sweet potato. Delicious!" },
+      { s: "A", ehn: "¿Tlen ticnequi ticcuāz?", en: "What do you want to eat?" },
+      { s: "B", ehn: "Nicnequi niccuāz yēlotl huan camohtli. ¡Huelic!", en: "I want to eat corn and sweet potato. Delicious!" },
       { s: "A", ehn: "¿Ticnequi cōcoc o xococ?", en: "Do you want spicy or sour?" },
-      { s: "B", ehn: "Axcanah xococ, nicnequi cōcoc. Tlāhuēl nicnequi cōcoc.", en: "Not sour — I want spicy. I really like spicy." },
+      { s: "B", ehn: "Axcanah xococ, nicnequi cōcoc. Tlāhuēl nicnequi cōcoc.", en: "Not sour — I want spicy. I really want spicy." },
     ],
   },
   {
     unitId: "FCN-LSN-0030", // Unit 20 — Grammar of -pil and -tzin
     lines: [
       { s: "A", ehn: "¿Ācquiya in tlacātzin nicān?", en: "Who is the gentleman here?" },
-      { s: "B", ehn: "In tlacātzin notātatzin. Ximotlāli, ximoāxilti.", en: "The gentleman is my father. Sit, welcome." },
+      { s: "B", ehn: "In tlacātzin notātatzin. Xipano, ximocēhui.", en: "The gentleman is my father. Come in, sit down." },
       { s: "A", ehn: "¿Huan in cihuātzin, ācquiya?", en: "And the lady, who is she?" },
       { s: "B", ehn: "In cihuātzin nonantzin. Tlazcāmati tihuāllahqui.", en: "The lady is my mother. Thank you for coming." },
     ],
@@ -195,16 +195,16 @@ const dialogues = [
       { s: "A", ehn: "¿Tlen ticchihua āxcan?", en: "What are you making today?" },
       { s: "B", ehn: "Nictamalohua. Nictemoa iztatl huan chilli.", en: "I'm making tamales. I'm looking for salt and chili." },
       { s: "A", ehn: "¿Nicān onca āhuacatl?", en: "Is there avocado here?" },
-      { s: "B", ehn: "Quēna, huan onca xōnacatl. Cuālli ticcuazqueh āxcan.", en: "Yes, and there is onion. We'll eat well today." },
+      { s: "B", ehn: "Quēna, huan onca xōnacatl. Cuālli nitlacuāz āxcan.", en: "Yes, and there is onion. I'll eat well today." },
     ],
   },
   {
     unitId: "FCN-LSN-0033", // Unit 23 — What is Inside the House
     lines: [
-      { s: "A", ehn: "¿Tlen onca ītech calli?", en: "What is inside the house?" },
+      { s: "A", ehn: "¿Tlen onca calihtic?", en: "What is inside the house?" },
       { s: "B", ehn: "Onca cē metlatl huan ōme libro. ¿Tlen tictemoa?", en: "There's a metate and two books. What are you looking for?" },
       { s: "A", ehn: "Nictemoa in pāhtli. ¿Cāmpa onca?", en: "I'm looking for the medicine. Where is it?" },
-      { s: "B", ehn: "In pāhtli onca nicān, pan calli. Niquitta.", en: "The medicine is here, in the house. I see it." },
+      { s: "B", ehn: "In pāhtli onca nicān, calihtic. Niquitta.", en: "The medicine is here, in the house. I see it." },
     ],
   },
   {
@@ -228,8 +228,8 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0036", // Unit 26 — I Came to Buy a Tortilla Napkin
     lines: [
-      { s: "A", ehn: "¿Tlen ticōhuaz nicān tiānquiz?", en: "What will you buy here at the market?" },
-      { s: "B", ehn: "Nicōhuaz cē pantzi huan ōme lalax. ¿Quēzqui tomi?", en: "I'll buy one bread and two oranges. How much money?" },
+      { s: "A", ehn: "¿Tlen ticcōhuaz nicān tiānquiz?", en: "What will you buy here at the market?" },
+      { s: "B", ehn: "Niccōhuaz cē pantzi huan ōme lalax. ¿Quēzqui tomi?", en: "I'll buy one bread and two oranges. How much money?" },
       { s: "A", ehn: "In pantzi, ōme pesos. In lalax, cē peso achiyoc.", en: "The bread is two pesos. The oranges are one peso more." },
       { s: "B", ehn: "Cuālli, niccui. Tlazcāmati.", en: "OK, I'll take them. Thank you." },
     ],
@@ -237,55 +237,55 @@ const dialogues = [
   {
     unitId: "FCN-LSN-0037", // Unit 27 — It's market day today!
     lines: [
-      { s: "A", ehn: "¡Āxcan tiānquiz! ¿Tlen ticōhuaz?", en: "It's market day! What will you buy?" },
-      { s: "B", ehn: "Nicōhuaz nākatl huan michi. ¿Huan ta?", en: "I'll buy meat and fish. And you?" },
-      { s: "A", ehn: "Na nicōhuaz tzopelatl huan matzāhtli.", en: "I'll buy soda and pineapple." },
+      { s: "A", ehn: "¡Āxcan tiānquiz! ¿Tlen ticcōhuaz?", en: "It's market day! What will you buy?" },
+      { s: "B", ehn: "Niccōhuaz nākatl huan michi. ¿Huan ta?", en: "I'll buy meat and fish. And you?" },
+      { s: "A", ehn: "Na niccōhuaz tzopelatl huan matzāhtli.", en: "I'll buy soda and pineapple." },
       { s: "B", ehn: "Cuālli! Na nocca nicnequi cē café. Ximopāquilti!", en: "Great! I also want a coffee. Have a good time!" },
     ],
   },
   {
     unitId: "FCN-LSN-0038", // Unit 28 — I Was Passing By Your House
     lines: [
-      { s: "A", ehn: "Piyālli! ¿Nipaxalōtoh moichan?", en: "Hello! Am I passing by your house?" },
-      { s: "B", ehn: "Quēna, ximocalaqui! Ximoāxilti!", en: "Yes! Come in! Welcome!" },
-      { s: "A", ehn: "Tlazcāmati. ¿Cuālli timoyōlia āxcan?", en: "Thank you. Are you well today?" },
-      { s: "B", ehn: "Quēna, cuālli niitztoc. Ximotlāli, ximoāxilti.", en: "Yes, I'm well. Sit down, be welcome." },
+      { s: "A", ehn: "Piyālli! Nipanoyaya mochān.", en: "Hello! I was passing by your house." },
+      { s: "B", ehn: "Quēna, xipano!", en: "Yes! Come in!" },
+      { s: "A", ehn: "Tlazcāmati. ¿Cuālli tiitztoc āxcan?", en: "Thank you. Are you well today?" },
+      { s: "B", ehn: "Quēna, cuālli niitztoc. Ximocēhui.", en: "Yes, I'm well. Sit down." },
     ],
   },
   {
     unitId: "FCN-LSN-0039", // Unit 29 — What Illnesses Do You Know?
     lines: [
-      { s: "A", ehn: "¿Quēniuhqui timoyōlia?", en: "How are you feeling?" },
+      { s: "A", ehn: "¿Quēniuhqui tiitztoc?", en: "How are you feeling?" },
       { s: "B", ehn: "Axcanah cuālli niitztoc. Nicpiya cecuīliztli.", en: "I'm not well. I have a cold." },
       { s: "A", ehn: "¿Ticnequi pāhtli?", en: "Do you want medicine?" },
-      { s: "B", ehn: "Quēna. Nicnequi niccua pāhtli āxcan.", en: "Yes. I want to take medicine today." },
+      { s: "B", ehn: "Quēna. Nicnequi pāhtli āxcan.", en: "Yes. I want medicine today." },
     ],
   },
   {
     unitId: "FCN-LSN-0040", // Unit 30 — The Conditional, Part 1
     lines: [
-      { s: "A", ehn: "Tlan tiyāuh tiānquiz, ¿ticcuīz nākatl?", en: "If you go to the market, will you buy meat?" },
-      { s: "B", ehn: "Tlan onca tomi, quēna. Ayamo nicpiya.", en: "If there is money, yes. I don't have any yet." },
-      { s: "A", ehn: "Tlan ax onca tomi, ¿tlen ticchīhuaz?", en: "If there's no money, what will you do?" },
-      { s: "B", ehn: "Axcanah niccuīz nākatl. Niccuīz etl.", en: "I won't take meat. I'll take beans." },
+      { s: "A", ehn: "¿Tlen ticcōhuazquia?", en: "What would you buy?" },
+      { s: "B", ehn: "Niccōhuazquia nācatl. ¿Huan ta?", en: "I would buy meat. And you?" },
+      { s: "A", ehn: "Na niccōhuazquia etl.", en: "I would buy beans." },
+      { s: "B", ehn: "Quēna, niccōhuazquia etl.", en: "Yes, I would buy beans." },
     ],
   },
   {
     unitId: "FCN-LSN-0041", // Unit 31 — Cleansing ceremonies / Conditional Part 2
     lines: [
-      { s: "A", ehn: "¿Tlen titlahtōz tlan tiquittaz in sitlālli?", en: "What will you say if you see the stars?" },
-      { s: "B", ehn: "Tlan niquittaz sitlālli, nitlahtōz īhuaya in tēōtl.", en: "If I see the stars, I will speak with God." },
-      { s: "A", ehn: "¿Huan tlan tiquittaz mixtli?", en: "And if you see clouds?" },
-      { s: "B", ehn: "Tlan niquittaz mixtli, niyāz nochān.", en: "If I see clouds, I will go home." },
+      { s: "A", ehn: "¿Ticōnitozquia ātl?", en: "Would you have drunk water?" },
+      { s: "B", ehn: "Quēna, nicōnitozquia ātl.", en: "Yes, I would have drunk water." },
+      { s: "A", ehn: "¿Huan ticōnitozquia cafen?", en: "And would you have drunk coffee?" },
+      { s: "B", ehn: "Axcanah. Nicōnitozquia ātl.", en: "No. I would have drunk water." },
     ],
   },
   {
     unitId: "FCN-LSN-0042", // Unit 32 — Tē- and tla- object markers
     lines: [
       { s: "A", ehn: "¿Ācquiya tēmachtia nicān pan caltlamachticān?", en: "Who teaches people here at school?" },
-      { s: "B", ehn: "Cē cihuātl tēmachtia. Tlāhuēl cuālli quitlahtōa nāhuatl.", en: "A woman teaches. She speaks Nahuatl very well." },
-      { s: "A", ehn: "¿Huan ta, ticnequi tēmachtia?", en: "And you, do you want to teach people?" },
-      { s: "B", ehn: "Quēna, nicnequi nitemachtia. Cuālli notequi.", en: "Yes, I want to teach people. It's good work." },
+      { s: "B", ehn: "Cē cihuātl tēmachtia. Tlāhuēl cuālli tlahtōa nāhuatl.", en: "A woman teaches. She speaks Nahuatl very well." },
+      { s: "A", ehn: "¿Huan ta, ticnequi titēmachtiz?", en: "And you, do you want to teach people?" },
+      { s: "B", ehn: "Quēna, nicnequi nitemachtiz. Cuālli notequi.", en: "Yes, I want to teach people. It's good work." },
     ],
   },
 ];

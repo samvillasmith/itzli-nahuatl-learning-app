@@ -1,0 +1,2774 @@
+{
+  "schemaVersion": 1,
+  "scope": "Installed non-dev production packages and supplied Next.js compiled notices",
+  "platform": "win32",
+  "architecture": "x64",
+  "packageLockSha256": "0e4d517d3fdd0a247ac9aa8c1f6c09dc71de2f86b85c566c91407e764d2071cb",
+  "output": "public/third-party-notices.txt",
+  "outputSha256": "2ae1a9fe7ed353bc4bbd2d13a64f29cc1060100c7af2a7f96013bcaca040573d",
+  "packages": [
+    {
+      "location": "node_modules/@clerk/backend",
+      "name": "@clerk/backend",
+      "version": "3.23.2",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/clerk/javascript.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "76d2a007400c2915cfabbe5de54430488d2d17b1a18d86c7133b1df36340f81f",
+      "notices": [
+        {
+          "file": "node_modules/@clerk/backend/LICENSE",
+          "sha256": "629611a2fad128e60cc850d64b8770fcb251b0b55016a60802d70eeb32ee1b04"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@clerk/localizations",
+      "name": "@clerk/localizations",
+      "version": "4.13.5",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/clerk/javascript.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "03ca8b3f44463489ea2e966b08bf1b33094834abccce193a2067cf972b45f1c4",
+      "notices": [
+        {
+          "file": "node_modules/@clerk/localizations/LICENSE",
+          "sha256": "629611a2fad128e60cc850d64b8770fcb251b0b55016a60802d70eeb32ee1b04"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@clerk/nextjs",
+      "name": "@clerk/nextjs",
+      "version": "7.7.8",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/clerk/javascript.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "7cef5a1f7b8ffb898f237f55d125d7c9878c1bb16adc34d785709107ab1ad6f4",
+      "notices": [
+        {
+          "file": "node_modules/@clerk/nextjs/LICENSE",
+          "sha256": "629611a2fad128e60cc850d64b8770fcb251b0b55016a60802d70eeb32ee1b04"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@clerk/react",
+      "name": "@clerk/react",
+      "version": "6.17.8",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/clerk/javascript.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "fb3d8090cf8b2962c28662cd1b143765a28777319d3df05c3bd4dba9a43506f5",
+      "notices": [
+        {
+          "file": "node_modules/@clerk/react/LICENSE",
+          "sha256": "629611a2fad128e60cc850d64b8770fcb251b0b55016a60802d70eeb32ee1b04"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@clerk/shared",
+      "name": "@clerk/shared",
+      "version": "4.40.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/clerk/javascript.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "f53af9fbe06876b5293c24b4831e3786f95014561cc15fad1ccf2f440845402c",
+      "notices": [
+        {
+          "file": "node_modules/@clerk/shared/LICENSE",
+          "sha256": "b36183cf0be2cbda03d80db9b96e5aacd2879462b15fc8e4f4e179a7c91f1ca7"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@img/colour",
+      "name": "@img/colour",
+      "version": "1.1.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/lovell/colour.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "bc38c5097693ed53b91c32f35fb0a52569736c7854ba2eb6d080f3252071f75c",
+      "notices": [
+        {
+          "file": "node_modules/@img/colour/LICENSE.md",
+          "sha256": "e2eaa4603c14cb26f301e88648c12a853fa3f0f5da6d4b0972958c666e7f2ab8"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@img/sharp-wasm32",
+      "name": "@img/sharp-wasm32",
+      "version": "0.35.5",
+      "declaredLicense": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "repository": "https://github.com/lovell/sharp.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "59d5eeaaac1c43434701f08e9ea78648aa54011159ff2eb192550432608e05c1",
+      "notices": [
+        {
+          "file": "node_modules/@img/sharp-wasm32/LICENSE",
+          "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@img/sharp-wasm32/node_modules/@emnapi/runtime",
+      "name": "@emnapi/runtime",
+      "version": "1.11.3",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/toyobayashi/emnapi.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "751db16171cb4d111905122be8a4c0dc2b5c82e6ba2a590ca24fbc6cca048f93",
+      "notices": [
+        {
+          "file": "node_modules/@img/sharp-wasm32/node_modules/@emnapi/runtime/LICENSE",
+          "sha256": "2088f55c6731498410b20c95ebd345ed4a4a800bf74c0fba4d282fd2a021daaa"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@img/sharp-win32-x64",
+      "name": "@img/sharp-win32-x64",
+      "version": "0.35.5",
+      "declaredLicense": "Apache-2.0 AND LGPL-3.0-or-later",
+      "repository": "https://github.com/lovell/sharp.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "3b9569323c591f54bfa64d5ce2d5bc85e3db9a785b64ad6cfafeec6735a45e00",
+      "notices": [
+        {
+          "file": "node_modules/@img/sharp-win32-x64/LICENSE",
+          "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@neondatabase/serverless",
+      "name": "@neondatabase/serverless",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/neondatabase/serverless.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "b238aabb1377b70449e947cf83838a4c9399f0d6f55b86dae82aec79021a3917",
+      "notices": [
+        {
+          "file": "node_modules/@neondatabase/serverless/LICENSE",
+          "sha256": "52d77cad9a5d509fed860399f75f0798b24d27c49be5616f8ff15a42bd98c249"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@neondatabase/serverless/node_modules/@types/node",
+      "name": "@types/node",
+      "version": "22.19.15",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "cd1a45d9cf2e41c65b1ed18f8598a46115105350c6eb0526ceca96c347451244",
+      "notices": [
+        {
+          "file": "node_modules/@neondatabase/serverless/node_modules/@types/node/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@next/env",
+      "name": "@next/env",
+      "version": "16.3.8",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/vercel/next.js",
+      "attributionNote": "This Next.js companion package declares MIT; the parent project's full notice is retained.",
+      "packageMetadataSha256": "225932e843b7307bee980b1a63c1474c468f72107a801fd6d1db0457302da4ed",
+      "notices": [
+        {
+          "file": "node_modules/next/license.md",
+          "sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224",
+          "scope": "Parent Next.js project license"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@next/swc-win32-x64-msvc",
+      "name": "@next/swc-win32-x64-msvc",
+      "version": "16.3.8",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/vercel/next.js",
+      "attributionNote": "This Next.js companion package declares MIT; the parent project's full notice is retained.",
+      "packageMetadataSha256": "9315a268f5a52c46434e4871eace8df9e2011d1ef184d50f9995b1b9d74b9b02",
+      "notices": [
+        {
+          "file": "node_modules/next/license.md",
+          "sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224",
+          "scope": "Parent Next.js project license"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@stablelib/base64",
+      "name": "@stablelib/base64",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/StableLib/stablelib",
+      "attributionNote": null,
+      "packageMetadataSha256": "7821116cc9ab0fb2542c1407ac5e34ff78bcc70b2d1295b753a9ea16134b3df7",
+      "notices": [
+        {
+          "file": "node_modules/@stablelib/base64/LICENSE",
+          "sha256": "1605b77bebe018db1fc27bd22fbcdeed1335c617937a124299a8b042b42b0fb6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@swc/helpers",
+      "name": "@swc/helpers",
+      "version": "0.5.23",
+      "declaredLicense": "Apache-2.0",
+      "repository": "https://github.com/swc-project/swc.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "10ee79b75759afbf8cfa2b8e5a2eff946c487143e935fc31b2433aa68be84596",
+      "notices": [
+        {
+          "file": "node_modules/@swc/helpers/LICENSE",
+          "sha256": "d96eba1f1881334d50ffc144276dfa98e147a415e7c591ecdfcb81680361dc91"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@tanstack/query-core",
+      "name": "@tanstack/query-core",
+      "version": "5.104.1",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/TanStack/query.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "ac5d0763eb06a76a1881315f806d634fb4e88321c37db4ffd757a8e167a85ace",
+      "notices": [
+        {
+          "file": "node_modules/@tanstack/query-core/LICENSE",
+          "sha256": "a405ee70c632bb938acb7ac5f210e814409b3760ea9d2329d8ed8ffcfd11a0e7"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@types/node",
+      "name": "@types/node",
+      "version": "20.19.37",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "02929be4094207be9495fcf6b988214e604e0fb2024df5dbf3f58c3ef611c71a",
+      "notices": [
+        {
+          "file": "node_modules/@types/node/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/@types/pg",
+      "name": "@types/pg",
+      "version": "8.20.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "df5092354fcbbf4acc0f70e0d2885ddd0ac76c21a57bb598d4b41a4ca6832d38",
+      "notices": [
+        {
+          "file": "node_modules/@types/pg/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/base64-js",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/beatgammit/base64-js.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "9758f3ab8c45e07bb9a368e32f9a8b3729623bbf47cbbb205b32d674ab2a91f0",
+      "notices": [
+        {
+          "file": "node_modules/base64-js/LICENSE",
+          "sha256": "5b37224c080cdcc97c871ada971c224e9926370fe74f11b539aa1cf9f3b1aca1"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/baseline-browser-mapping",
+      "name": "baseline-browser-mapping",
+      "version": "2.11.28",
+      "declaredLicense": "Apache-2.0",
+      "repository": "https://github.com/web-platform-dx/baseline-browser-mapping.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "d65aafecbf300a4ce93d19f827e97e71bfd7fb33c09ec8a4f97eeb849de8ab8e",
+      "notices": [
+        {
+          "file": "node_modules/baseline-browser-mapping/LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/better-sqlite3",
+      "name": "better-sqlite3",
+      "version": "12.8.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/WiseLibs/better-sqlite3.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "d94a653fe1c54b480fdbf185c807a80e7c1b80b04e16d2bf21777e40e607f6d9",
+      "notices": [
+        {
+          "file": "node_modules/better-sqlite3/LICENSE",
+          "sha256": "09856b52897c91ab67e7456ef43067019f31dfd3b87fda72e655736b1ebdee55"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/bindings",
+      "name": "bindings",
+      "version": "1.5.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/TooTallNate/node-bindings.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "a87721fe406e1f1798fef44d697b46ea1efe346fda118010334713346ee4207c",
+      "notices": [
+        {
+          "file": "node_modules/bindings/LICENSE.md",
+          "sha256": "85fde19744c84cfacb04aed732c0392ba221231b26090d3271d2ed865bfc0792"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/bl",
+      "name": "bl",
+      "version": "4.1.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/rvagg/bl.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "fea66d3b8671e46f77e83db040837cf72da180b8d390d53c43d882fd553659df",
+      "notices": [
+        {
+          "file": "node_modules/bl/LICENSE.md",
+          "sha256": "9377db95383c8befacf05c6e465d969d756edf178487ca1344fdf3ba147c596f"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/buffer",
+      "name": "buffer",
+      "version": "5.7.1",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/feross/buffer.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "5af7b62dbf5575a301cd13e8616f1d7d9cff3c90f9fab7bc3d6a1f4fbfee94eb",
+      "notices": [
+        {
+          "file": "node_modules/buffer/LICENSE",
+          "sha256": "06bafa45fdad2579ba0e43b0c9b2c6290287c99c4203c300254a462b38a307f6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/caniuse-lite",
+      "name": "caniuse-lite",
+      "version": "1.0.30001815",
+      "declaredLicense": "CC-BY-4.0",
+      "repository": "browserslist/caniuse-lite",
+      "attributionNote": null,
+      "packageMetadataSha256": "9e9e706aee141b078f97ffc2b537f0a3a4cc0b6b0adbe3a8abceb7eb3b5f9436",
+      "notices": [
+        {
+          "file": "node_modules/caniuse-lite/LICENSE",
+          "sha256": "fd3a263fe19ed8faa9068b43abaebafc02c77897b0c6fc09abc04bb592e5f16e"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/chownr",
+      "name": "chownr",
+      "version": "1.1.4",
+      "declaredLicense": "ISC",
+      "repository": "git://github.com/isaacs/chownr.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "7c18e85ac9eff99dc6cb6c5626e11ebea658e69119e0bc8cb4bd799c2b48125a",
+      "notices": [
+        {
+          "file": "node_modules/chownr/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/client-only",
+      "name": "client-only",
+      "version": "0.0.1",
+      "declaredLicense": "MIT",
+      "repository": "https://reactjs.org/",
+      "attributionNote": "This React marker package declares MIT and identifies the React project; the parent project's full notice is retained.",
+      "packageMetadataSha256": "4d6342705767832f299b9a59c28e4275bcf02db19472732f93f67d979441df8f",
+      "notices": [
+        {
+          "file": "node_modules/react/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+          "scope": "Parent React project license"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/decompress-response",
+      "name": "decompress-response",
+      "version": "6.0.0",
+      "declaredLicense": "MIT",
+      "repository": "sindresorhus/decompress-response",
+      "attributionNote": null,
+      "packageMetadataSha256": "8fb6b0b19d09cc1c5b2caad128ae39b2fd693a35bb3d440c4e1143bfb9d10080",
+      "notices": [
+        {
+          "file": "node_modules/decompress-response/license",
+          "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/deep-extend",
+      "name": "deep-extend",
+      "version": "0.6.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/unclechu/node-deep-extend.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "21b307891704eb34e9be621d7563d13734f75f41d8f97825862b05ca5bc2d217",
+      "notices": [
+        {
+          "file": "node_modules/deep-extend/LICENSE",
+          "sha256": "e17120ad3deff741c2ca5cbe511971ca33971a1ba6e49694c6498309bb2680b9"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/dequal",
+      "name": "dequal",
+      "version": "2.0.3",
+      "declaredLicense": "MIT",
+      "repository": "lukeed/dequal",
+      "attributionNote": null,
+      "packageMetadataSha256": "a41e430cd3d990700f1544c5ffece552449ab758d778fa34ad5458cf6ec35d6b",
+      "notices": [
+        {
+          "file": "node_modules/dequal/license",
+          "sha256": "306fa513e39b23a6e8747520de761809d206b99800ef41907b530226574c59ae"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/detect-libc",
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "declaredLicense": "Apache-2.0",
+      "repository": "git://github.com/lovell/detect-libc.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "ee88e5b954fdf3a8480b1d01ef767d68d8ca2c6da269f58c5cf1c5550e9aa2a7",
+      "notices": [
+        {
+          "file": "node_modules/detect-libc/LICENSE",
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/end-of-stream",
+      "name": "end-of-stream",
+      "version": "1.4.5",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/mafintosh/end-of-stream.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "da504d0bef5a5974590b62f58df0003b448eccde6b5fbeb044506b7e43368eb5",
+      "notices": [
+        {
+          "file": "node_modules/end-of-stream/LICENSE",
+          "sha256": "3fe8d55a98dbf260eace67c00cf9bc53edb46234e840098a0b93df3096b97fb6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/expand-template",
+      "name": "expand-template",
+      "version": "2.0.3",
+      "declaredLicense": "(MIT OR WTFPL)",
+      "repository": "https://github.com/ralphtheninja/expand-template.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "90f652967155275d9fab2887a845454ee797340b28cc0c1b00f1889aaa65f771",
+      "notices": [
+        {
+          "file": "node_modules/expand-template/LICENSE",
+          "sha256": "0967624813244bf47da346449804af853437433cbdeb8c977f1e0d4bd14e0a3b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/fast-sha256",
+      "name": "fast-sha256",
+      "version": "1.3.0",
+      "declaredLicense": "Unlicense",
+      "repository": "https://github.com/dchest/fast-sha256-js",
+      "attributionNote": null,
+      "packageMetadataSha256": "d312f1993364bfb4f217f820ff7f9e0a6b1d87930bfc2605138ab660e8d29806",
+      "notices": [
+        {
+          "file": "node_modules/fast-sha256/LICENSE",
+          "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/file-uri-to-path",
+      "name": "file-uri-to-path",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/TooTallNate/file-uri-to-path.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "71eb1e24bb9694f89c613fa0aa307f977dd43f41d11794c7b48fabf6c55f66b0",
+      "notices": [
+        {
+          "file": "node_modules/file-uri-to-path/LICENSE",
+          "sha256": "75070206e4ee2a749be52444cecc05101ca8d314c9d6d335ff914046cbf086a0"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/fs-constants",
+      "name": "fs-constants",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/mafintosh/fs-constants.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "9cefec768b4f8c52591b840367d077a46a5a2b72ea2778dcf037afd96b234671",
+      "notices": [
+        {
+          "file": "node_modules/fs-constants/LICENSE",
+          "sha256": "2281f2db407bdbb54f069eec38128b2dee2c0c952f52b786ef1faecb81767b3c"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/github-from-package",
+      "name": "github-from-package",
+      "version": "0.0.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/substack/github-from-package.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "67742aa2b856e3523c2f89132e41cc5026c49ffe7df58bd3ea906caaa217bd79",
+      "notices": [
+        {
+          "file": "node_modules/github-from-package/LICENSE",
+          "sha256": "435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/glob-to-regexp",
+      "name": "glob-to-regexp",
+      "version": "0.4.1",
+      "declaredLicense": "BSD-2-Clause",
+      "repository": "https://github.com/fitzgen/glob-to-regexp.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "0ff8399a44f66ed52a45be9fe09dce81f68d00f7f80482df53dc8c6fb3d81bc5",
+      "notices": [
+        {
+          "file": "node_modules/glob-to-regexp/README.md",
+          "scope": "License section only",
+          "sha256": "74dee53cf021bc8e06a2d1b90cb1a06c6e9a0d1b147ded5d146fa99e159242c8"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/ieee754",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "declaredLicense": "BSD-3-Clause",
+      "repository": "git://github.com/feross/ieee754.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "a8004b9c8dffe2e1b01a058ecf968a5d50beabcabc43cc98c655184ba6afc050",
+      "notices": [
+        {
+          "file": "node_modules/ieee754/LICENSE",
+          "sha256": "18d45466ba3253deae04667e267a91ea8de8548f18c1125264d1c9db28194cc1"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/inherits",
+      "name": "inherits",
+      "version": "2.0.4",
+      "declaredLicense": "ISC",
+      "repository": "git://github.com/isaacs/inherits",
+      "attributionNote": null,
+      "packageMetadataSha256": "be645800bc94fd8de29c8ae91690549b316cc437100108aeea7b2f347693cc80",
+      "notices": [
+        {
+          "file": "node_modules/inherits/LICENSE",
+          "sha256": "5ffe28e7ade7d8f10d85d5337a73fd793dac5c462fb9a28fbf8c5046c7fbca3b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/ini",
+      "name": "ini",
+      "version": "1.3.8",
+      "declaredLicense": "ISC",
+      "repository": "git://github.com/isaacs/ini.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "8cfafc3521292bd7434d2f40762984f36eb12f03bde92b42a9df2ea17552f4a4",
+      "notices": [
+        {
+          "file": "node_modules/ini/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/js-cookie",
+      "name": "js-cookie",
+      "version": "3.0.8",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/js-cookie/js-cookie.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "a31b0210c02d0499f98c67f9c3fdbe03b9d379a7eee87932fcd21d791749961c",
+      "notices": [
+        {
+          "file": "node_modules/js-cookie/LICENSE",
+          "sha256": "eff040f4184445a6d1f7f76d918101d631402436ff12256b924fb68e4df28a94"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/lucide-react",
+      "name": "lucide-react",
+      "version": "0.468.0",
+      "declaredLicense": "ISC",
+      "repository": "https://github.com/lucide-icons/lucide.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "609e78dffe97aab720c105246eca516f0aaac1de60725e53c0f5abb908b08320",
+      "notices": [
+        {
+          "file": "node_modules/lucide-react/LICENSE",
+          "sha256": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/mimic-response",
+      "name": "mimic-response",
+      "version": "3.1.0",
+      "declaredLicense": "MIT",
+      "repository": "sindresorhus/mimic-response",
+      "attributionNote": null,
+      "packageMetadataSha256": "ff358428a418a46fb2431a2c48b396fb01c8291fec9e1f14434ade01196c8e9c",
+      "notices": [
+        {
+          "file": "node_modules/mimic-response/license",
+          "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/minimist",
+      "name": "minimist",
+      "version": "1.2.8",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/minimistjs/minimist.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "252881f6a068a3e70386706d88a694b5e8e9e053b6d9f309fd9a329e651bbf81",
+      "notices": [
+        {
+          "file": "node_modules/minimist/LICENSE",
+          "sha256": "435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/mkdirp-classic",
+      "name": "mkdirp-classic",
+      "version": "0.5.3",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/mafintosh/mkdirp-classic.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "dd81e4703dc7005247e7c2dc056c67c936923a40b4dc9b266cf8acf3442ba89c",
+      "notices": [
+        {
+          "file": "node_modules/mkdirp-classic/LICENSE",
+          "sha256": "a255b85c1a510ecfe660c4d442ecdbc1e9d07f4b4d3d7f90443f7e5570591e0a"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/nanoid",
+      "name": "nanoid",
+      "version": "3.3.20",
+      "declaredLicense": "MIT",
+      "repository": "ai/nanoid",
+      "attributionNote": null,
+      "packageMetadataSha256": "e2a77185ded1c006171e4e2f8b316d0e3b4c51a135a190851cfc888ea428f6bf",
+      "notices": [
+        {
+          "file": "node_modules/nanoid/LICENSE",
+          "sha256": "da4db1480d9beea3483a2eda5c53b22238d0827d57da162b48f122e04d2d9987"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/napi-build-utils",
+      "name": "napi-build-utils",
+      "version": "2.0.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/inspiredware/napi-build-utils.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "001ba5640df99785e76b7d407ae35a24c490f145737cf3f194408fb17dfec411",
+      "notices": [
+        {
+          "file": "node_modules/napi-build-utils/LICENSE",
+          "sha256": "9c6a91d2847bd9bfd493c1ca87b9c3f96302cfd069667e6dd4a6278e69a33a31"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/next",
+      "name": "next",
+      "version": "16.3.8",
+      "declaredLicense": "MIT",
+      "repository": "vercel/next.js",
+      "attributionNote": null,
+      "packageMetadataSha256": "6da8fc4823b66b8f2906d150002618e3f3e0d2446ebf3823b2a2f7efe73a46a4",
+      "notices": [
+        {
+          "file": "node_modules/next/license.md",
+          "sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/node-abi",
+      "name": "node-abi",
+      "version": "3.89.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/electron/node-abi.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "b46af1d7f0cd1e5e7c779bd138bc25d2e398d5176c283104bd464dd443cc2035",
+      "notices": [
+        {
+          "file": "node_modules/node-abi/LICENSE",
+          "sha256": "9a508cd4122f2dc1cc39f8ab0b6950efbc49fb087a581c7177a4b8c9d5d0d6a1"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/once",
+      "name": "once",
+      "version": "1.4.0",
+      "declaredLicense": "ISC",
+      "repository": "git://github.com/isaacs/once",
+      "attributionNote": null,
+      "packageMetadataSha256": "33840d74c14c94bfb75c76374765b635531b1eacb88d7f1f2f380c94d0ea1328",
+      "notices": [
+        {
+          "file": "node_modules/once/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/openai",
+      "name": "openai",
+      "version": "6.34.0",
+      "declaredLicense": "Apache-2.0",
+      "repository": "github:openai/openai-node",
+      "attributionNote": null,
+      "packageMetadataSha256": "26449367d229499db56cd843f36c7c72905b83f3171bee756f81cb63c1e5aa6e",
+      "notices": [
+        {
+          "file": "node_modules/openai/LICENSE",
+          "sha256": "636eb7d79da9bb6d515a4b3fd417aa26679eb3cf16396ddab4bc55fa74e616e4"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/pg-int8",
+      "name": "pg-int8",
+      "version": "1.0.1",
+      "declaredLicense": "ISC",
+      "repository": "https://github.com/charmander/pg-int8",
+      "attributionNote": null,
+      "packageMetadataSha256": "147155887a41bb6f69ff98b3dde827b7e6a8214c3a71938da4babf8e12adff2e",
+      "notices": [
+        {
+          "file": "node_modules/pg-int8/LICENSE",
+          "sha256": "4e8e87ccdfc7e4b47fd89015f78468aa53b6bf43ab6e6e12d43e8f55294911de"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/pg-protocol",
+      "name": "pg-protocol",
+      "version": "1.13.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/brianc/node-postgres.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "c6725277ca8fa076a8fd065bf56dda9df4d83960b4bfe88b9b234a3273e44f09",
+      "notices": [
+        {
+          "file": "node_modules/pg-protocol/LICENSE",
+          "sha256": "192b8f5c96900f04a1271dec39688655d7416c1c6ea84a508e18b50d2b6751f3"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/pg-types",
+      "name": "pg-types",
+      "version": "2.2.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/brianc/node-pg-types.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "3ec0293cb38cc8d9475e3eb32ac5f19d195bf9fccc8b19a0714e6ecd6e7c2cf0",
+      "notices": [
+        {
+          "file": "node_modules/pg-types/README.md",
+          "scope": "License section only",
+          "sha256": "2c8a6e1b7782f0ca241792868af742f1c281c9661f59ec36c9acf40381c86645"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/picocolors",
+      "name": "picocolors",
+      "version": "1.1.1",
+      "declaredLicense": "ISC",
+      "repository": "alexeyraspopov/picocolors",
+      "attributionNote": null,
+      "packageMetadataSha256": "ef2ac226c4811d312e12c64214c453878653e834482125ae475f27cea60de737",
+      "notices": [
+        {
+          "file": "node_modules/picocolors/LICENSE",
+          "sha256": "6582629e2979466878f6014313dcc2f3756c9616148682227ce3063dde310750"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/postcss",
+      "name": "postcss",
+      "version": "8.5.29",
+      "declaredLicense": "MIT",
+      "repository": "postcss/postcss",
+      "attributionNote": null,
+      "packageMetadataSha256": "d6f3d1e4970b5f3b4424348769974fecc13afccefccb95f09f8883f70b7f3d2e",
+      "notices": [
+        {
+          "file": "node_modules/postcss/LICENSE",
+          "sha256": "5be1f3465bba68a626777f984878814aaf35e7ef8e9fd314d469bcf887050fb8"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/postgres-array",
+      "name": "postgres-array",
+      "version": "2.0.0",
+      "declaredLicense": "MIT",
+      "repository": "bendrucker/postgres-array",
+      "attributionNote": null,
+      "packageMetadataSha256": "dcd6a505fcbc032b409ee2838ab2c776dea3a9cfe02b736364b6cb82a946665f",
+      "notices": [
+        {
+          "file": "node_modules/postgres-array/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/postgres-bytea",
+      "name": "postgres-bytea",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "repository": "bendrucker/postgres-bytea",
+      "attributionNote": null,
+      "packageMetadataSha256": "9125568c5fb51a65b8f11adb0080c2775b99ee82822d73bff8b56b2a9d47d7aa",
+      "notices": [
+        {
+          "file": "node_modules/postgres-bytea/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/postgres-date",
+      "name": "postgres-date",
+      "version": "1.0.7",
+      "declaredLicense": "MIT",
+      "repository": "bendrucker/postgres-date",
+      "attributionNote": null,
+      "packageMetadataSha256": "03f9edefa96697072075e02df045cc61ed4ca2f8dfffb1ff87f4070bc3404151",
+      "notices": [
+        {
+          "file": "node_modules/postgres-date/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/postgres-interval",
+      "name": "postgres-interval",
+      "version": "1.2.0",
+      "declaredLicense": "MIT",
+      "repository": "bendrucker/postgres-interval",
+      "attributionNote": null,
+      "packageMetadataSha256": "cc3056db105e66c9128cb8a387cda782d5f1ae9281be90de0b8d26a90af89c57",
+      "notices": [
+        {
+          "file": "node_modules/postgres-interval/license",
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/prebuild-install",
+      "name": "prebuild-install",
+      "version": "7.1.3",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/prebuild/prebuild-install.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "d8502f5ce977ea10cc7e91e95b595ce845e838cf412801230e9a2f211ad68039",
+      "notices": [
+        {
+          "file": "node_modules/prebuild-install/LICENSE",
+          "sha256": "0aa9add6a9158efad3e6649e3affd607c7e2629f6677af19f9988c8fbb0757b0"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/pump",
+      "name": "pump",
+      "version": "3.0.4",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/mafintosh/pump.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "d369a9c97d4aaca4a637af77b6ead9169146809ff3c27268e62151b613cae016",
+      "notices": [
+        {
+          "file": "node_modules/pump/LICENSE",
+          "sha256": "3fe8d55a98dbf260eace67c00cf9bc53edb46234e840098a0b93df3096b97fb6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/rc",
+      "name": "rc",
+      "version": "1.2.8",
+      "declaredLicense": "(BSD-2-Clause OR MIT OR Apache-2.0)",
+      "repository": "https://github.com/dominictarr/rc.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "96f035349a8e6034d380348ec3d454ed8ea3a602c7a5700eb36ff48310bdbe9f",
+      "notices": [
+        {
+          "file": "node_modules/rc/LICENSE.APACHE2",
+          "sha256": "e8734448285a2dd773d40136ed5d5e8163a70701dd540cdc796cfca232f67d55"
+        },
+        {
+          "file": "node_modules/rc/LICENSE.BSD",
+          "sha256": "65e7e4d223688c601f42959defde380f8c4aa677fa4706da3b4a53f129bd78a3"
+        },
+        {
+          "file": "node_modules/rc/LICENSE.MIT",
+          "sha256": "d72dea1a8cdf3f4dfa2f594253d0c5b37baefc76e806f5ecb0e426393edcd505"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/react",
+      "name": "react",
+      "version": "19.2.4",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/facebook/react.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "e60b92f6031f023907bbfab8f96e63e44307776ec1488f310ba61d41b8cda8cc",
+      "notices": [
+        {
+          "file": "node_modules/react/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/react-dom",
+      "name": "react-dom",
+      "version": "19.2.4",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/facebook/react.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "b8448092689c7e6191595a98526ced808288f35138d97fbce5801a94922e3c36",
+      "notices": [
+        {
+          "file": "node_modules/react-dom/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/readable-stream",
+      "name": "readable-stream",
+      "version": "3.6.2",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/nodejs/readable-stream",
+      "attributionNote": null,
+      "packageMetadataSha256": "469ea81f64037d1f179bcd46412217903a2924dd2e7d7d9b728659b6f12c3e69",
+      "notices": [
+        {
+          "file": "node_modules/readable-stream/LICENSE",
+          "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/safe-buffer",
+      "name": "safe-buffer",
+      "version": "5.2.1",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/feross/safe-buffer.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "e4018fdbfe625433371f48274fee26f520bbe865e0d8c85bf3aa07424134b90c",
+      "notices": [
+        {
+          "file": "node_modules/safe-buffer/LICENSE",
+          "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/scheduler",
+      "name": "scheduler",
+      "version": "0.27.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/facebook/react.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "393bb96b7e481bf50189a1a02c7e0e7f4d01acba5abc6fbe7d214638624462fc",
+      "notices": [
+        {
+          "file": "node_modules/scheduler/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/semver",
+      "name": "semver",
+      "version": "7.8.5",
+      "declaredLicense": "ISC",
+      "repository": "https://github.com/npm/node-semver.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "7c94cb7f2a53c27b20d76386ec144c062894dbcc909cfabd0f728c37874b1776",
+      "notices": [
+        {
+          "file": "node_modules/semver/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/server-only",
+      "name": "server-only",
+      "version": "0.0.1",
+      "declaredLicense": "MIT",
+      "repository": "https://reactjs.org/",
+      "attributionNote": "This React marker package declares MIT and identifies the React project; the parent project's full notice is retained.",
+      "packageMetadataSha256": "e4b0cc01e2e0349c51c694fa97d8a642eb8322521ca1444b20bd1842594b4339",
+      "notices": [
+        {
+          "file": "node_modules/react/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+          "scope": "Parent React project license"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/sharp",
+      "name": "sharp",
+      "version": "0.35.5",
+      "declaredLicense": "Apache-2.0",
+      "repository": "https://github.com/lovell/sharp.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "ad4a2535d72eb638053a38867b1abf43c328cd1c1dbae5cf4172d498365a8b97",
+      "notices": [
+        {
+          "file": "node_modules/sharp/LICENSE",
+          "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/simple-concat",
+      "name": "simple-concat",
+      "version": "1.0.1",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/feross/simple-concat.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "d6ae2e35a0c64b4469f1e531a3244efd50be7c115ef42d1422e54d14d9359e99",
+      "notices": [
+        {
+          "file": "node_modules/simple-concat/LICENSE",
+          "sha256": "d4c2065e2b936e62a4eb400efb4576edec9ca1388a9f78aa288e147275e7bc8b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/simple-get",
+      "name": "simple-get",
+      "version": "4.0.1",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/feross/simple-get.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "8337ba9774d6d8199a5861c6dfa57058f162bfb6210362c01db38f0a593f96d6",
+      "notices": [
+        {
+          "file": "node_modules/simple-get/LICENSE",
+          "sha256": "d4c2065e2b936e62a4eb400efb4576edec9ca1388a9f78aa288e147275e7bc8b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/source-map-js",
+      "name": "source-map-js",
+      "version": "1.2.2",
+      "declaredLicense": "BSD-3-Clause",
+      "repository": "7rulnik/source-map-js",
+      "attributionNote": null,
+      "packageMetadataSha256": "9f1ea63b1661d0f6e5fcd50b625d86cddd77de870a0019b23262360987b487f5",
+      "notices": [
+        {
+          "file": "node_modules/source-map-js/LICENSE",
+          "sha256": "6cb0631f71c7749763fd3dd1d5bee52dd1070ec17f2edc1710079ad070bd2fbd"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/standardwebhooks",
+      "name": "standardwebhooks",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/standard-webhooks/standard-webhooks",
+      "attributionNote": "The installed package declares MIT but omits the license file. The libraries-specific MIT copyright and permission notice is preserved from the npm release's recorded upstream gitHead. The repository's separate Apache-2.0 specification license does not replace this libraries-specific notice.",
+      "packageMetadataSha256": "686397f0f0202e0b693cfd3f6241d7a8da3df326f9642867a484fbbd295690b6",
+      "notices": [
+        {
+          "file": "scripts/licenses/standardwebhooks-1.1.1-libraries.LICENSE",
+          "sha256": "5ec8c7b26b64d881a6706617bed25c049f97f2f35de034c756de8546fd6dbe27",
+          "sourceUrl": "https://raw.githubusercontent.com/standard-webhooks/standard-webhooks/b4d2c14fc5b4ccff3ff271e3b087dff812254c59/libraries/LICENSE"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/string_decoder",
+      "name": "string_decoder",
+      "version": "1.3.0",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/nodejs/string_decoder.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "31984c85cd4f3df0aa75075acdec98c25961496897d1f46d04ed4a701f129c54",
+      "notices": [
+        {
+          "file": "node_modules/string_decoder/LICENSE",
+          "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/strip-json-comments",
+      "name": "strip-json-comments",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "repository": "sindresorhus/strip-json-comments",
+      "attributionNote": null,
+      "packageMetadataSha256": "52fba89a1d2724dfeafa21ec58f8c4a8a210103cc6b65b4468ab3fb973ad1753",
+      "notices": [
+        {
+          "file": "node_modules/strip-json-comments/license",
+          "sha256": "6fb9754611c20f6649f68805e8c990e83261f29316e29de9e6cedae607b8634c"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/styled-jsx",
+      "name": "styled-jsx",
+      "version": "5.1.6",
+      "declaredLicense": "MIT",
+      "repository": "vercel/styled-jsx",
+      "attributionNote": null,
+      "packageMetadataSha256": "0a11b14d7bbeab650019db18883a14cb67daa3615f498a5a625d45828be7eef9",
+      "notices": [
+        {
+          "file": "node_modules/styled-jsx/license.md",
+          "sha256": "24d4a4580df855c345705b3016404f0c9da7e7674dc3b21a3ce7d0e5d0c37e2d"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/tar-fs",
+      "name": "tar-fs",
+      "version": "2.1.4",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/mafintosh/tar-fs.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "ba35bcca6e868b872346f2905b3ff58fed8c99d475f9b3124afbf5de37514443",
+      "notices": [
+        {
+          "file": "node_modules/tar-fs/LICENSE",
+          "sha256": "3fe8d55a98dbf260eace67c00cf9bc53edb46234e840098a0b93df3096b97fb6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/tar-stream",
+      "name": "tar-stream",
+      "version": "2.2.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/mafintosh/tar-stream.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "bf26c92d0b2d3b865681bac5cf3bca4cd405e33fcb47f45216899aaed4f81010",
+      "notices": [
+        {
+          "file": "node_modules/tar-stream/LICENSE",
+          "sha256": "3fe8d55a98dbf260eace67c00cf9bc53edb46234e840098a0b93df3096b97fb6"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/tslib",
+      "name": "tslib",
+      "version": "2.8.1",
+      "declaredLicense": "0BSD",
+      "repository": "https://github.com/Microsoft/tslib.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "f02b4851df316f29bdfcd404aa1eb41e4e216b5859015f81fcd3e91caf8be931",
+      "notices": [
+        {
+          "file": "node_modules/tslib/LICENSE.txt",
+          "sha256": "0e8d2550baea17eb3072c4f919b36fbf9852bb49dba948549872e713863c0834"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/tunnel-agent",
+      "name": "tunnel-agent",
+      "version": "0.6.0",
+      "declaredLicense": "Apache-2.0",
+      "repository": "https://github.com/mikeal/tunnel-agent",
+      "attributionNote": null,
+      "packageMetadataSha256": "08a8560b650b49370af44148a8645c11675ba97d21ee7f347d8d434b13c51074",
+      "notices": [
+        {
+          "file": "node_modules/tunnel-agent/LICENSE",
+          "sha256": "d446a8c73d7bbe4872d6524b15ae206f9a2d7eb53f8c9cb6e6c893a43acc5276"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/undici-types",
+      "name": "undici-types",
+      "version": "6.21.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/nodejs/undici.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "11f873b423b96a5ad444a099685ca6b9de1379dcd83fd8d368e757ddb53658e4",
+      "notices": [
+        {
+          "file": "node_modules/undici-types/LICENSE",
+          "sha256": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/util-deprecate",
+      "name": "util-deprecate",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/TooTallNate/util-deprecate.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "7bba467f049074957e693fc06672848b040c38fa071b6eed8690f5fbe090a8b2",
+      "notices": [
+        {
+          "file": "node_modules/util-deprecate/LICENSE",
+          "sha256": "0154425673db15cdfa80ecba2c9b1f1a867f7197a006764712849bfc3a93cbb7"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/wrappy",
+      "name": "wrappy",
+      "version": "1.0.2",
+      "declaredLicense": "ISC",
+      "repository": "https://github.com/npm/wrappy",
+      "attributionNote": null,
+      "packageMetadataSha256": "712ac9c4c3cef8bc79f42cf6075ff18551f4cb768f35158214fd643853ad7abc",
+      "notices": [
+        {
+          "file": "node_modules/wrappy/LICENSE",
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        }
+      ]
+    },
+    {
+      "location": "node_modules/xtend",
+      "name": "xtend",
+      "version": "4.0.2",
+      "declaredLicense": "MIT",
+      "repository": "git://github.com/Raynos/xtend.git",
+      "attributionNote": null,
+      "packageMetadataSha256": "b02ffef8cda96c5c3ee00a00390e63f608362c2ddfb3ed754e181d013a45d48a",
+      "notices": [
+        {
+          "file": "node_modules/xtend/LICENSE",
+          "sha256": "82e67379203d5794e7c44549847d8d64ae6904591381682360470898bd306821"
+        }
+      ]
+    }
+  ],
+  "bundledNotices": [
+    {
+      "name": "@babel/runtime",
+      "version": "7.27.0",
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@babel/runtime",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@babel/runtime/LICENSE",
+        "sha256": "117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76"
+      }
+    },
+    {
+      "name": "@hapi/accept",
+      "version": null,
+      "declaredLicense": "BSD-3-Clause",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@hapi/accept",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@hapi/accept/LICENSE",
+        "sha256": "ff96bbd6a7408c166f16dbed7f2c87a8061e5a21289ec8f2d3069f8d3b15fc0a"
+      }
+    },
+    {
+      "name": "@mswjs/interceptors",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@mswjs/interceptors/ClientRequest",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@mswjs/interceptors/ClientRequest/LICENSE",
+        "sha256": "bb3a5cb8fb224f632970e31425348f556f7a83b165d5384ea5e142575f5c412e"
+      }
+    },
+    {
+      "name": "@napi-rs/triples",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@napi-rs/triples",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@napi-rs/triples/LICENSE",
+        "sha256": "7b34e99bc43641767fded49f7f03563ffd50c689b1f3b0d50700b4727bc4ae24"
+      }
+    },
+    {
+      "name": "@opentelemetry/api",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@opentelemetry/api",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@opentelemetry/api/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "name": "@vercel/blob",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/blob",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/blob/LICENSE",
+        "sha256": "2b6fc3f4a995e6ad29f4e2ed8881a32979058b8d6557efaa6d86b7e985849f40"
+      }
+    },
+    {
+      "name": "@vercel/detect-agent",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/detect-agent",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/detect-agent/LICENSE",
+        "sha256": "b070d77bfb2c52a1dd6996de0ce5f64c49a0ca55c889b163a963ddf5cb001ee2"
+      }
+    },
+    {
+      "name": "@vercel/nft",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/nft",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/nft/LICENSE",
+        "sha256": "0b31f3a6ab66b272b7de451df39835f310a309a06b1a8aafb3a2fdab20adc166"
+      }
+    },
+    {
+      "name": "@vercel/og",
+      "version": "0.11.1",
+      "declaredLicense": "MPL-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/og",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/og/LICENSE",
+        "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+      }
+    },
+    {
+      "name": "@vercel/og",
+      "version": "0.11.1",
+      "declaredLicense": "MPL-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/og/satori",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/og/satori/LICENSE",
+        "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+      }
+    },
+    {
+      "name": "@vercel/routing-utils",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/@vercel/routing-utils",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/@vercel/routing-utils/LICENSE",
+        "sha256": "b070d77bfb2c52a1dd6996de0ce5f64c49a0ca55c889b163a963ddf5cb001ee2"
+      }
+    },
+    {
+      "name": "acorn",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/acorn",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/acorn/LICENSE",
+        "sha256": "76a876cf886ff9be2a8b5e2e86514fed06223c8c9f0c1e9ee9606e93841e00b7"
+      }
+    },
+    {
+      "name": "anser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/anser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/anser/LICENSE",
+        "sha256": "6d2abc90a426cf65bbf84f7cedf9487f7ff86a3daf0e130b335a45c112f040d0"
+      }
+    },
+    {
+      "name": "assert",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/assert",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/assert/LICENSE",
+        "sha256": "6239c6144c31e58cf925c34483606969c555574d64ffa96518ab5d7f45c75d43"
+      }
+    },
+    {
+      "name": "async-retry",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/async-retry",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/async-retry/LICENSE",
+        "sha256": "8cec82f7beeab8459fa6165c973f5cd6f89aceea7a07de0aa8fc30a9dd339a05"
+      }
+    },
+    {
+      "name": "async-sema",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/async-sema",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/async-sema/LICENSE",
+        "sha256": "291ff3e2bd22891edef553930da53ba64adf79d83f0bd1c5b7f6fe9727526b37"
+      }
+    },
+    {
+      "name": "@babel/core",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/babel",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/babel/LICENSE",
+        "sha256": "117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76"
+      }
+    },
+    {
+      "name": "browserify-zlib",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/browserify-zlib",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/browserify-zlib/LICENSE",
+        "sha256": "ddd770379e07bf0574dfaa4485be80a23b3248b36d09f33ec79276c09b829daf"
+      }
+    },
+    {
+      "name": "browserslist",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/browserslist",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/browserslist/LICENSE",
+        "sha256": "f25bf9bf3ae8984bcd43bf7fb8f78e7eec8d577081fb8d0989cfa7c67ecebb8e"
+      }
+    },
+    {
+      "name": "buffer",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/buffer",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/buffer/LICENSE",
+        "sha256": "06bafa45fdad2579ba0e43b0c9b2c6290287c99c4203c300254a462b38a307f6"
+      }
+    },
+    {
+      "name": "busboy",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/busboy",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/busboy/LICENSE",
+        "sha256": "d06b5d27bbbbe22c36b1fd88406b1208876e2d37d795f5b8eaed951a459a3111"
+      }
+    },
+    {
+      "name": "bytes",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/bytes",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/bytes/LICENSE",
+        "sha256": "e3b44af066615de2ea48d18d852d0762f18c0b2efcea714fa48a6f729d405b85"
+      }
+    },
+    {
+      "name": "ci-info",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ci-info",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ci-info/LICENSE",
+        "sha256": "25bd22427e27b0d3f1c3da2670bb44b622bcced22ebdf4777d5488ac129370a1"
+      }
+    },
+    {
+      "name": "cli-select",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/cli-select",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/cli-select/LICENSE",
+        "sha256": "a8e260b5b60eb27746ff2c5967489e6878c5a6ba99400cbec84c89a9b49a46ca"
+      }
+    },
+    {
+      "name": "commander",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/commander",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/commander/LICENSE",
+        "sha256": "04512a63dce4d2d506ad612dc0bd7681ccf6e3655f7b6eaef7dfac8323d1ec0b"
+      }
+    },
+    {
+      "name": "comment-json",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/comment-json",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/comment-json/LICENSE",
+        "sha256": "9dbd86998d3cdafc1d8c298aea636146568d05d429b81386e60cfce11e6cedb6"
+      }
+    },
+    {
+      "name": "compression",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/compression",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/compression/LICENSE",
+        "sha256": "23d466b1b134b415b66fa50c6526b4cf3e7b9258554da88d3abb371721e7ce68"
+      }
+    },
+    {
+      "name": "conf",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/conf",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/conf/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "content-disposition",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/content-disposition",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/content-disposition/LICENSE",
+        "sha256": "bd47ce7b88c7759630d1e2b9fcfa170a0f1fde522be09e13fb1581a79d090400"
+      }
+    },
+    {
+      "name": "content-type",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/content-type",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/content-type/LICENSE",
+        "sha256": "257aed98914108e91a337912727b6a802eef218248507f74b76faffaff517a38"
+      }
+    },
+    {
+      "name": "cookie",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/cookie",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/cookie/LICENSE",
+        "sha256": "c02110eedc16c7114f1a9bdc026c65626ce1d9c7e27fd51a8e0feee8a48a6858"
+      }
+    },
+    {
+      "name": "cross-spawn",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/cross-spawn",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/cross-spawn/LICENSE",
+        "sha256": "aaa78451b6fecd1b9c4594c796c133c0e90cad100372ff8bc6de615e9ef9adf1"
+      }
+    },
+    {
+      "name": "crypto-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/crypto-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/crypto-browserify/LICENSE",
+        "sha256": "6134c69bc22c8289252e70de3af20bd67071233459055be74d83acfcc4865e7e"
+      }
+    },
+    {
+      "name": "debug",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/debug",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/debug/LICENSE",
+        "sha256": "98c970de440dcfc77471610aec2377c9d9b0db2b3be6d1add524a586e1d7f422"
+      }
+    },
+    {
+      "name": "devalue",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/devalue",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/devalue/LICENSE",
+        "sha256": "e399db7e952e45cae84f1b53d72ba8dbad2daaa7ab8cd1f0ab72fea5ab73b225"
+      }
+    },
+    {
+      "name": "domain-browser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/domain-browser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/domain-browser/LICENSE",
+        "sha256": "fc06db8dd5e7840db84ab328d9f58bdb91a56fbbf045bb977c11fcd07e2d8e3e"
+      }
+    },
+    {
+      "name": "edge-runtime",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/edge-runtime",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/edge-runtime/LICENSE",
+        "sha256": "e4f76a7a19ef2989dd79339bd3abf8afcf1d6f065e5a10c76c19415ffd727eb3"
+      }
+    },
+    {
+      "name": "events",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/events",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/events/LICENSE",
+        "sha256": "631987b7616a325a5b97566c232418481ddf7dbb5ecadefb991e791876cc2599"
+      }
+    },
+    {
+      "name": "find-up",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/find-up",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/find-up/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "fresh",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/fresh",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/fresh/LICENSE",
+        "sha256": "a0ec0dab16b3666f24950f86d257930ac2ad475557b4bfe245620e0817d8a45d"
+      }
+    },
+    {
+      "name": "glob",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/glob",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/glob/LICENSE",
+        "sha256": "6236fa0b88a4a0cce3dda0367979491b2052b3c8d6b1c10b3668de083e86a7f0"
+      }
+    },
+    {
+      "name": "gzip-size",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/gzip-size",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/gzip-size/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "hash.js",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/hash.js/sha256",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/hash.js/sha256/LICENSE",
+        "sha256": "7261b3ab93df04c6d8f3398f87275d28f0e87d88cbd0033b788fb50402de03c5"
+      }
+    },
+    {
+      "name": "https-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/https-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/https-browserify/LICENSE",
+        "sha256": "ff151c00207c908581639851dd8504ce4255be0650b2b236edec2aa90342b0cd"
+      }
+    },
+    {
+      "name": "httpxy",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/httpxy",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/httpxy/LICENSE",
+        "sha256": "4249bd020d1b5c503d20a196c1b686b3bdebcd1c7ac06909c546d9624c64f79b"
+      }
+    },
+    {
+      "name": "icss-utils",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/icss-utils",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/icss-utils/LICENSE",
+        "sha256": "b2b54c738525e98cc42d4a1c239c9d8421507816acce98950e81d0943daae68e"
+      }
+    },
+    {
+      "name": "ignore-loader",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ignore-loader",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ignore-loader/LICENSE",
+        "sha256": "62ba766e9b50f9b175b0229f4ea03e93730c9180408acec50dd617e9ae1fa059"
+      }
+    },
+    {
+      "name": "image-size",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/image-size",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/image-size/LICENSE",
+        "sha256": "3109783dad7527b490aabc49c3cb148573c19b41b843e70cf9388a93f3d7fccd"
+      }
+    },
+    {
+      "name": "ipaddr.js",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ipaddr.js",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ipaddr.js/LICENSE",
+        "sha256": "62568a2d1337b77171ecca9db10579163446de1ba6151678e81f06cdc199971b"
+      }
+    },
+    {
+      "name": "is-animated",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/is-animated",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/is-animated/LICENSE",
+        "sha256": "e08c030e1274fadc495c71e0489612f0c74673b69ae8e41460526c233a94a728"
+      }
+    },
+    {
+      "name": "is-docker",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/is-docker",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/is-docker/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "is-wsl",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/is-wsl",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/is-wsl/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "jest-worker",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/jest-worker",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/jest-worker/LICENSE",
+        "sha256": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85"
+      }
+    },
+    {
+      "name": "json5",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/json5",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/json5/LICENSE",
+        "sha256": "53e59feb13058722d977c699eb0407c7bce2f93c949b681bbd2ff31698535927"
+      }
+    },
+    {
+      "name": "jsonwebtoken",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/jsonwebtoken",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/jsonwebtoken/LICENSE",
+        "sha256": "2144eb6894cb440fde6b2b3aaae3b617c8f1dc9bb19813079dcf62ec6c517042"
+      }
+    },
+    {
+      "name": "loader-runner",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/loader-runner",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/loader-runner/LICENSE",
+        "sha256": "498d39c83164cf8de195090f5564fc0308ab271344ca2f95484a7f1020952d00"
+      }
+    },
+    {
+      "name": "loader-utils",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/loader-utils2",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/loader-utils2/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "loader-utils",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/loader-utils3",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/loader-utils3/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "lodash.curry",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/lodash.curry",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/lodash.curry/LICENSE",
+        "sha256": "ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272"
+      }
+    },
+    {
+      "name": "lru-cache",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/lru-cache",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/lru-cache/LICENSE",
+        "sha256": "451ec07eeb9c4e1b86de9abdaa426462a8be48f887ec7421cf0bbb9c769555ab"
+      }
+    },
+    {
+      "name": "mini-css-extract-plugin",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/mini-css-extract-plugin",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/mini-css-extract-plugin/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "nanoid",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/nanoid",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/nanoid/LICENSE",
+        "sha256": "da4db1480d9beea3483a2eda5c53b22238d0827d57da162b48f122e04d2d9987"
+      }
+    },
+    {
+      "name": "native-url",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/native-url",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/native-url/LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    },
+    {
+      "name": "neo-async",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/neo-async",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/neo-async/LICENSE",
+        "sha256": "811238ba7d85f6fe6b820703a32f92705bcf77bc352ddc3476783491c64a129a"
+      }
+    },
+    {
+      "name": "node-html-parser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/node-html-parser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/node-html-parser/LICENSE",
+        "sha256": "ea75e9321945b7f0bc4644da1e404ad76ce55e9bc05cae3b2f5f2d973aede83b"
+      }
+    },
+    {
+      "name": "ora",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ora",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ora/LICENSE",
+        "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+      }
+    },
+    {
+      "name": "os-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/os-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/os-browserify/LICENSE",
+        "sha256": "d25d1d6d28c35cb6f358e2833e405c4e53fec2fa24d156323ddea5cd438d3407"
+      }
+    },
+    {
+      "name": "p-limit",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/p-limit",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/p-limit/LICENSE",
+        "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+      }
+    },
+    {
+      "name": "p-queue",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/p-queue",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/p-queue/LICENSE",
+        "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+      }
+    },
+    {
+      "name": "path-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/path-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/path-browserify/LICENSE",
+        "sha256": "a22b9d5763f574e5db347c30acc0b33eaf4846767c03d2e27d012e864e79a824"
+      }
+    },
+    {
+      "name": "path-to-regexp",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/path-to-regexp",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/path-to-regexp/LICENSE",
+        "sha256": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25"
+      }
+    },
+    {
+      "name": "picomatch",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/picomatch",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/picomatch/LICENSE",
+        "sha256": "d0cd141b0c322fded5dfad1d4645bb2fedfc05b7321fe1009469638190d59ef9"
+      }
+    },
+    {
+      "name": "postcss-flexbugs-fixes",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-flexbugs-fixes",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-flexbugs-fixes/LICENSE",
+        "sha256": "f26c92c1c16e78c6b1f7474792f7195b7abc851caccb4a73dcc5b3c31efc7321"
+      }
+    },
+    {
+      "name": "postcss-modules-extract-imports",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-modules-extract-imports",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-modules-extract-imports/LICENSE",
+        "sha256": "9e534cfb7f7ae1300e16fe1ee7d203fdfe707dc932429c37246f747c3699ee14"
+      }
+    },
+    {
+      "name": "postcss-modules-local-by-default",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-modules-local-by-default",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-modules-local-by-default/LICENSE",
+        "sha256": "dd40f37957ddcb6a6157f40b677d6f43697583f956144fbce25443e35630453e"
+      }
+    },
+    {
+      "name": "postcss-modules-scope",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-modules-scope",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-modules-scope/LICENSE",
+        "sha256": "7774c8c4a3f750b294b416818062201a404fc2d6c8756d8b89a1688e24b5d5a7"
+      }
+    },
+    {
+      "name": "postcss-modules-values",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-modules-values",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-modules-values/LICENSE",
+        "sha256": "655287aefbf8e292057318c385d77767b1dd9819c87709fd26730b7090efe4d9"
+      }
+    },
+    {
+      "name": "postcss-preset-env",
+      "version": null,
+      "declaredLicense": "CC0-1.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-preset-env",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-preset-env/LICENSE",
+        "sha256": "597756adcb51f243ef4fb386920377f61d012ace0904364e1a8ee9aaec6afc84"
+      }
+    },
+    {
+      "name": "postcss-safe-parser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-safe-parser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-safe-parser/LICENSE",
+        "sha256": "c4630ac8b89cb317ac5bdd60ac5e4e185eab9bd5151a0c7b3afa41aa83d7ec9b"
+      }
+    },
+    {
+      "name": "postcss-scss",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-scss",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-scss/LICENSE",
+        "sha256": "c4630ac8b89cb317ac5bdd60ac5e4e185eab9bd5151a0c7b3afa41aa83d7ec9b"
+      }
+    },
+    {
+      "name": "postcss-value-parser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/postcss-value-parser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/postcss-value-parser/LICENSE",
+        "sha256": "3687447039151857a6ba378db062172c7f33d4aa70a615c87a43a9c50e990485"
+      }
+    },
+    {
+      "name": "process",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/process",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/process/LICENSE",
+        "sha256": "59a400d04c5078579acc27ddd6452c1bdf763f9506e01364700935fbb1a7c91b"
+      }
+    },
+    {
+      "name": "querystring-es3",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/querystring-es3",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/querystring-es3/LICENSE",
+        "sha256": "cb72d9714ddc21e758d63f423be0caddf909d23ccbb10a2f5201a870818e4f57"
+      }
+    },
+    {
+      "name": "raw-body",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/raw-body",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/raw-body/LICENSE",
+        "sha256": "c8e6bca7230689d536a3bd7158f66e9c4f89f95d0748743a0370ac229e9023ad"
+      }
+    },
+    {
+      "name": "react-dom-experimental-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-dom-experimental",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-dom-experimental/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-dom-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-dom",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-dom/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-experimental-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-experimental",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-experimental/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-is",
+      "version": "19.3.0-canary-cbb046ab-20260731",
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-is",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-is/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-refresh",
+      "version": "0.12.0",
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-refresh",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-refresh/LICENSE",
+        "sha256": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85"
+      }
+    },
+    {
+      "name": "react-server-dom-turbopack-experimental-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-server-dom-turbopack-experimental",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-server-dom-turbopack-experimental/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-server-dom-turbopack-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-server-dom-turbopack",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-server-dom-turbopack/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-server-dom-webpack-experimental-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-server-dom-webpack-experimental",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-server-dom-webpack-experimental/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-server-dom-webpack-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react-server-dom-webpack",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react-server-dom-webpack/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "react-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/react",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/react/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "regenerator-runtime",
+      "version": "0.13.4",
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/regenerator-runtime",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/regenerator-runtime/LICENSE",
+        "sha256": "51887a3d47051ac2fce1210562e5b9fe0830a8a8fabeb272c2d586eeb18a05fd"
+      }
+    },
+    {
+      "name": "safe-stable-stringify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/safe-stable-stringify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/safe-stable-stringify/LICENSE",
+        "sha256": "3a6d6de49d284a36c5d271ef0e62eca1838cc460dd7630e3f2c347c8f5b2232a"
+      }
+    },
+    {
+      "name": "sass-loader",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/sass-loader",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/sass-loader/LICENSE",
+        "sha256": "2af12ca8b612a22e6659ae68e0e59ee7ac792718c45524a989b512c49c5f5879"
+      }
+    },
+    {
+      "name": "scheduler-experimental-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/scheduler-experimental",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/scheduler-experimental/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "scheduler-builtin",
+      "version": null,
+      "declaredLicense": null,
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/scheduler",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/scheduler/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    },
+    {
+      "name": "schema-utils",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/schema-utils2",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/schema-utils2/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "schema-utils",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/schema-utils3",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/schema-utils3/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "semver",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/semver",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/semver/LICENSE",
+        "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+      }
+    },
+    {
+      "name": "send",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/send",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/send/LICENSE",
+        "sha256": "25a328069fe771f8ed5b6f983ed4b0e6c84b3312ac0f69b28c3d52dc277962c9"
+      }
+    },
+    {
+      "name": "serve-handler",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/serve-handler",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/serve-handler/LICENSE",
+        "sha256": "be8ba42db3b7c3dbb064bcdc1bbbb191c0a39c8851c2a53564e97c7eea301bca"
+      }
+    },
+    {
+      "name": "shell-quote",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/shell-quote",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/shell-quote/LICENSE",
+        "sha256": "8bb16db1b047019e4395965f2cf3611b06c34bf86dc2d0210b3c3f91b53c21fe"
+      }
+    },
+    {
+      "name": "source-map",
+      "version": null,
+      "declaredLicense": "BSD-3-Clause",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/source-map",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/source-map/LICENSE",
+        "sha256": "6cb0631f71c7749763fd3dd1d5bee52dd1070ec17f2edc1710079ad070bd2fbd"
+      }
+    },
+    {
+      "name": "source-map08",
+      "version": null,
+      "declaredLicense": "BSD-3-Clause",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/source-map08",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/source-map08/LICENSE",
+        "sha256": "6cb0631f71c7749763fd3dd1d5bee52dd1070ec17f2edc1710079ad070bd2fbd"
+      }
+    },
+    {
+      "name": "stacktrace-parser",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/stacktrace-parser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/stacktrace-parser/LICENSE",
+        "sha256": "e1898814043cb5500483d9c8517edda824b352f696d35e5043fcfb537c221531"
+      }
+    },
+    {
+      "name": "stream-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/stream-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/stream-browserify/LICENSE",
+        "sha256": "96e5193183476a03da6667d217ce14110191d26ee105338086e94339edf40d5a"
+      }
+    },
+    {
+      "name": "stream-http",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/stream-http",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/stream-http/LICENSE",
+        "sha256": "a0e6357a5e8ea65827addeb383e0948a1874d2f46bc7feaf6349b7a376ed6e98"
+      }
+    },
+    {
+      "name": "string_decoder",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/string_decoder",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/string_decoder/LICENSE",
+        "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b"
+      }
+    },
+    {
+      "name": "strip-ansi",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/strip-ansi",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/strip-ansi/LICENSE",
+        "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+      }
+    },
+    {
+      "name": "superstruct",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/superstruct",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/superstruct/LICENSE",
+        "sha256": "0f644bc01d85e4b1958bdfe5a851704bd886404c78188d4d6fba43dc8293bc91"
+      }
+    },
+    {
+      "name": "tar",
+      "version": null,
+      "declaredLicense": "BlueOak-1.0.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/tar",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/tar/LICENSE",
+        "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+      }
+    },
+    {
+      "name": "terser",
+      "version": null,
+      "declaredLicense": "BSD-2-Clause",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/terser",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/terser/LICENSE",
+        "sha256": "901d0a7fcaccaae9917d165039c0473c354e5da2e0e94140dde67aad9ffb19da"
+      }
+    },
+    {
+      "name": "text-table",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/text-table",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/text-table/LICENSE",
+        "sha256": "435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b"
+      }
+    },
+    {
+      "name": "timers-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/timers-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/timers-browserify/LICENSE",
+        "sha256": "d5f14c3258420dfe5a3b641a143d6e6dd90eabb5962244d937e25699c3a45ec9"
+      }
+    },
+    {
+      "name": "tty-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/tty-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/tty-browserify/LICENSE",
+        "sha256": "435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b"
+      }
+    },
+    {
+      "name": "ua-parser-js",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ua-parser-js",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ua-parser-js/LICENSE",
+        "sha256": "fb9548e36708f09ae0cc1047ebd8153928bfe5bed67e4051f0ace552bdcbf0b3"
+      }
+    },
+    {
+      "name": "util",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/util",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/util/LICENSE",
+        "sha256": "6239c6144c31e58cf925c34483606969c555574d64ffa96518ab5d7f45c75d43"
+      }
+    },
+    {
+      "name": "vm-browserify",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/vm-browserify",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/vm-browserify/LICENSE",
+        "sha256": "3a62887f73cd035ac1068bc0127ce94291f7a03843391f56df3520e2ca2037f8"
+      }
+    },
+    {
+      "name": "watchpack",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/watchpack",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/watchpack/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "web-vitals",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/web-vitals-attribution",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/web-vitals-attribution/LICENSE",
+        "sha256": "bfdeded4040e05da31ca9b6239dc83bd23fa26ac8db87342a7ca4363f68916ff"
+      }
+    },
+    {
+      "name": "web-vitals",
+      "version": null,
+      "declaredLicense": "Apache-2.0",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/web-vitals",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/web-vitals/LICENSE",
+        "sha256": "bfdeded4040e05da31ca9b6239dc83bd23fa26ac8db87342a7ca4363f68916ff"
+      }
+    },
+    {
+      "name": "webpack-sources",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/webpack-sources1",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/webpack-sources1/LICENSE",
+        "sha256": "214d0ac13edb475ec426df1979d96fd46b443debc466c0fb592e32152ae5a940"
+      }
+    },
+    {
+      "name": "webpack-sources",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/webpack-sources3",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/webpack-sources3/LICENSE",
+        "sha256": "214d0ac13edb475ec426df1979d96fd46b443debc466c0fb592e32152ae5a940"
+      }
+    },
+    {
+      "name": "webpack",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/webpack",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/webpack/LICENSE",
+        "sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e"
+      }
+    },
+    {
+      "name": "write-file-atomic",
+      "version": null,
+      "declaredLicense": "ISC",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/write-file-atomic",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/write-file-atomic/LICENSE",
+        "sha256": "ea7f376fe7a1fc28572b83ac8f806d92effb31852b9981bc9ba9d5266caa6b28"
+      }
+    },
+    {
+      "name": "ws",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/ws",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/ws/LICENSE",
+        "sha256": "dcd0a622a3a2c94fe3aa6238b76363f87df442afe788cbad966afe943ed62281"
+      }
+    },
+    {
+      "name": "zod-validation-error",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/zod-validation-error",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/zod-validation-error/LICENSE",
+        "sha256": "03cc9a630489a2544b799548a0e8b134f382fe09fa06dc22b339091b28b8f4a8"
+      }
+    },
+    {
+      "name": "zod",
+      "version": null,
+      "declaredLicense": "MIT",
+      "bundleOwner": "next@16.3.8",
+      "location": "node_modules/next/dist/compiled/zod",
+      "notice": {
+        "file": "node_modules/next/dist/compiled/zod/LICENSE",
+        "sha256": "3f1189b28e3866e0d979968d466b78f813f76827cfdca1fbb124cc0a5c8841f8"
+      }
+    }
+  ]
+}

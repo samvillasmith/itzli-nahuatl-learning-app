@@ -1,7 +1,7 @@
 /**
  * regenerate-dialogues-33-43.js
  *
- * Canonical reviewed dialogue rebuild for Units 33–43. These dialogues retain
+ * Synthetic dialogue rebuild for Units 33–43. These dialogues retain
  * source-style spelling in storage and are rendered in the app's practical
  * INALI spelling. They are maintained to:
  *
@@ -44,7 +44,7 @@ const UNIT_THEMES = {
   43: "Adverbs and Modifiers",
 };
 
-// ── Corrected dialogues (IDIEZ orthography) ─────────────────────────────────
+// ── Synthetic dialogues (source-style orthography) ─────────────────────────────────
 const DIALOGUES = [
   {
     lessonNumber: 33,
@@ -101,7 +101,7 @@ const DIALOGUES = [
     synId: "FCN-SYN-0038",
     lines: [
       { speaker: "A", utterance: "¿Ticchīhua eloatolli āxcan?",                                   translation: "Are you making sweet-corn atole today?" },
-      { speaker: "B", utterance: "Quēna, nicchīhua eloatolli huan nicmaca chancaca. ¿Ticnequi?",  translation: "Yes, I'm making atole and adding piloncillo. Do you want some?" },
+      { speaker: "B", utterance: "Quēna, nicchīhua eloatolli huan nictlalhuilia chancacah. ¿Ticnequi?",  translation: "Yes, I'm making atole and adding piloncillo. Do you want some?" },
       { speaker: "A", utterance: "Quēna. ¿Huan in chīlli, cāmpa onca?",                           translation: "Yes. And the chili, where is it?" },
       { speaker: "B", utterance: "In chīlli onca nicān. Huel cuālli tlacualli.",                 translation: "The chili is here. It's very good food." },
     ],
@@ -110,9 +110,9 @@ const DIALOGUES = [
     lessonNumber: 39,
     synId: "FCN-SYN-0039",
     lines: [
-      { speaker: "A", utterance: "¿Cāmpa itztoc in āmatlahcuilōlli?",                            translation: "Where is the letter?" },
-      { speaker: "B", utterance: "In āmatlahcuilōlli nicān itztoc ipan folsah. ¿Tlen ticnequi?", translation: "The letter is here in the bag. What do you want?" },
-      { speaker: "A", utterance: "Nicnequi nicpōhua in āmatlahcuilōlli. Huel tlazohtli.",         translation: "I want to read the letter. It's very dear." },
+      { speaker: "A", utterance: "¿Cāmpa eltoc in āmatlahcuilōlli?",                            translation: "Where is the letter?" },
+      { speaker: "B", utterance: "In āmatlahcuilōlli nicān eltoc ipan folsah. ¿Tlen ticnequi?", translation: "The letter is here in the bag. What do you want?" },
+      { speaker: "A", utterance: "Nicnequi nicpōhuaz in āmatlahcuilōlli. Huel tlazohtli.",         translation: "I want to read the letter. It is very dear." },
       { speaker: "B", utterance: "Cuālli. ¿Huan in chachapalli, cānin ticpiya?",                  translation: "Good. And the clay pot, where do you have it?" },
     ],
   },
@@ -153,7 +153,7 @@ const DIALOGUES = [
       { speaker: "A", utterance: "¿Titlahtoa nāhuatl?",                                           translation: "Do you speak Nahuatl?" },
       { speaker: "B", utterance: "Axcanah nel miac. Yōlic yōlic nimomachtia. ¿Huan ta?",         translation: "Not very much. Little by little I'm learning. And you?" },
       { speaker: "A", utterance: "Na nochipa nimomachtia nicān caltlamachticān.",                translation: "I always study here at school." },
-      { speaker: "B", utterance: "Huel cuālli. Ocsepa titlahtōzqueh.",                          translation: "Very good. We'll talk again." },
+      { speaker: "B", utterance: "Huel cuālli. Ocsepa nimomachtiz.",                            translation: "Very good. I'll study again." },
     ],
   },
 ];

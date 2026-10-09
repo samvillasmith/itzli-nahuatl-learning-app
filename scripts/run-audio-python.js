@@ -23,7 +23,7 @@ const python = candidates.find((candidate) =>
 
 const result = spawnSync(
   python,
-  [path.join(__dirname, "generate-audio.py"), ...process.argv.slice(2)],
+  [path.join(__dirname, "generate-audio-v3.py"), ...process.argv.slice(2)],
   { cwd: root, stdio: "inherit" }
 );
 

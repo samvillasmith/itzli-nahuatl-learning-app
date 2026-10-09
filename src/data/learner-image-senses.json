@@ -1,0 +1,23 @@
+[
+  {
+    "id": "word-v3rf-c571e43a0548dd42",
+    "display": "teka",
+    "meaningEn": "pour a liquid",
+    "meaningEs": "verter un líquido",
+    "sourceFactReviewHash": "b6260e157e4c266fd191b87adfbfbb2d4b823dd2faf4cb770168ce4d08869a34"
+  },
+  {
+    "id": "word-v3d-3f775b3f819cecff",
+    "display": "pestetl",
+    "meaningEn": "worn-out clothing",
+    "meaningEs": "ropa vieja",
+    "sourceFactReviewHash": "3756222decb0fac4f94a7118dd64871c5f0b9331173a127934a4fc5ef4de270d"
+  },
+  {
+    "id": "word-v3rf-050f218449bc3c32",
+    "display": "ihtikokoa",
+    "meaningEn": "food causes stomach pain",
+    "meaningEs": "un alimento causa dolor de estómago",
+    "sourceFactReviewHash": "34e048bc589ce3c678474b450b23f91f5cad186b4a1f492f43eafdeb2701e22b"
+  }
+]

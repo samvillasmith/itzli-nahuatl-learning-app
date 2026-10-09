@@ -1,0 +1,20 @@
+{
+  "standardwebhooks@1.0.0": {
+    "file": "scripts/licenses/standardwebhooks-1.0.0-libraries.LICENSE",
+    "sourceUrl": "https://raw.githubusercontent.com/standard-webhooks/standard-webhooks/929bf0c1928b188287eaf88d0a9f0a4e87df6499/libraries/LICENSE",
+    "registrySourceUrl": "https://registry.npmjs.org/standardwebhooks/1.0.0",
+    "retrievedAt": "2026-10-09",
+    "sha256": "5ec8c7b26b64d881a6706617bed25c049f97f2f35de034c756de8546fd6dbe27",
+    "note": "The installed package declares MIT but omits the license file. The libraries-specific MIT copyright and permission notice is preserved from the npm release's recorded upstream gitHead. The repository's separate Apache-2.0 specification license does not replace this libraries-specific notice."
+  },
+  "standardwebhooks@1.1.1": {
+    "file": "scripts/licenses/standardwebhooks-1.1.1-libraries.LICENSE",
+    "sourceUrl": "https://raw.githubusercontent.com/standard-webhooks/standard-webhooks/b4d2c14fc5b4ccff3ff271e3b087dff812254c59/libraries/LICENSE",
+    "registrySourceUrl": "https://registry.npmjs.org/standardwebhooks/1.1.1",
+    "registryGitHead": "b4d2c14fc5b4ccff3ff271e3b087dff812254c59",
+    "registryIntegrity": "sha512-bCbX9ZEyFkWPsRz7Bl3NuQUJohmwGSev/yhr7vhaGPlc4AfIrspIRa6cPTBuI1ItmrTDJ4d/S2hCsfe4+vQGnQ==",
+    "retrievedAt": "2026-10-09",
+    "sha256": "5ec8c7b26b64d881a6706617bed25c049f97f2f35de034c756de8546fd6dbe27",
+    "note": "The installed package declares MIT but omits the license file. The libraries-specific MIT copyright and permission notice is preserved from the npm release's recorded upstream gitHead. The repository's separate Apache-2.0 specification license does not replace this libraries-specific notice."
+  }
+}

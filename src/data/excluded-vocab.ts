@@ -11,6 +11,8 @@
 
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { isStudyCardExcluded } from "@/lib/study-card-safety";
+import rawCourse from "./nahuatlahtolli-course.json";
+import coreVocabularyFacts from "./core-vocabulary-facts.json";
 
 export const EXCLUDED_VOCAB_IDS: Set<number> = new Set([
   // Unit 1: Sounds and spelling
@@ -150,12 +152,14 @@ export const SOURCE_VERIFIED_UNLINKED_VOCAB_IDS = new Set([
 ]);
 
 const CORE_GLOSS_OVERRIDES: Record<number, string> = {
-  4: "vowel [o] — like 'o' in go. Example: onka (there is)",
+  2: "vowel e — like Spanish e in mesa. Example: etl (bean)",
+  4: "vowel o — like Spanish o in ocho, with no English-style glide. Example: onka (there is)",
+  6: "letter h — listen to its sound in the source recordings. Example: pahtli (medicine)",
   8: "[tɬ] — no English sound; tip of tongue on upper teeth, air released sideways. Example: tlakwa (to eat)",
   9: "[ts] — like 'ts' in cats. Example: tsopelatl (soda)",
-  11: "[w] — written w in INALI-style spelling. Example: wika (to sing)",
-  12: "[k/kw] — k and kw in INALI-style spelling. Example: kena (yes)",
-  13: "[s] — like 's' in sun. Example: sayoltsi (bee)",
+  11: "[w] — written w in the app spelling. Example: witstli (thorn)",
+  12: "[k/kw] — written k and kw in the app spelling. Examples: kena (yes), kwawitl (tree; wood)",
+  13: "[s] — like 's' in sun. Example: sakatl (grass)",
   24: "no; negative response",
   25: "how",
   34: "how's it going?",
@@ -172,6 +176,9 @@ const CORE_GLOSS_OVERRIDES: Record<number, string> = {
   413: "poncho",
   449: "dead person; deceased person",
   457: "mandarin orange; tangerine",
+  203: "sibling",
+  661: "if",
+  680: "song",
 };
 
 const CORE_HEADWORD_OVERRIDES: Record<number, string> = {
@@ -182,9 +189,31 @@ const CORE_HEADWORD_OVERRIDES: Record<number, string> = {
   24: "axkana",
   25: "kenihki",
   34: "Kenihki tiya?",
-  35: "Kenihki tiistok?",
+  35: "Kenihki tiitstok?",
   260: "piyali",
   266: "tlaskamati",
+  661: "tlan",
+  680: "huicatl",
+};
+
+// Corrected state/conditional cards and the independently attested huicatl song
+// fact retain their IDs. Old mismatching recordings remain withheld; a new exact
+// generated binding may supply matching practice audio after publication.
+export const CORE_AUDIO_WITHHELD_IDS = new Set([35, 661, 680]);
+
+// Use the source's complete forms and its matching recordings. Stable database
+// IDs preserve unit placement and progress; the old spellings are not reused.
+const CORE_SOURCE_REPLACEMENTS: Record<number, readonly [number, number]> = {
+  54: [3, 4],  // tohhuantin, we
+  55: [3, 6],  // inihhuantin, they
+  57: [3, 5],  // inmohhuantin, you all
+  203: [1, 34], // icniuh, sibling
+  204: [9, 25], // noixhuiuh, my grandchild
+  206: [9, 12], // nonanan, my mother
+  207: [9, 11], // notatah, my father
+  210: [9, 14], // nopipi, my older sister
+  212: [9, 9],  // nototatah, my grandfather
+  213: [9, 10], // notonanan, my grandmother
 };
 
 export const CORE_VOCAB_LIMITS: Record<number, number> = {
@@ -384,16 +413,41 @@ export function filterCoreVocab<T extends CurriculumVocabItem>(
   const limit = CORE_VOCAB_LIMITS[lessonNumber];
   const limited = typeof limit === "number" ? filtered.slice(0, limit) : filtered;
   return limited.map((item) => {
+    const sourceLocation = CORE_SOURCE_REPLACEMENTS[item.id];
+    if (sourceLocation) {
+      const [sourceLesson, sourceIndex] = sourceLocation;
+      const lesson = rawCourse.lessons.find((candidate) => candidate.number === sourceLesson)!;
+      const source = lesson.vocabulary[sourceIndex - 1];
+      if (!source?.audioUrl) throw new Error(`Missing correction source for vocabulary ${item.id}`);
+      return {
+        ...item,
+        headword: source.headword,
+        display_form: source.headword,
+        gloss_en: source.gloss,
+        audioSrc: source.audioUrl,
+        imageHeadword: item.headword ?? item.display_form,
+        sourceUrl: lesson.originalUrl,
+      } as T;
+    }
     const gloss = CORE_GLOSS_OVERRIDES[item.id];
     const headword = CORE_HEADWORD_OVERRIDES[item.id];
+    const fact = coreVocabularyFacts.facts.find((candidate) => candidate.cardId === item.id);
+    if (fact && (headword !== fact.sourceSpelling || gloss !== fact.meaningEn || lessonNumber !== fact.lessonNumber)) {
+      throw new Error(`Changed reviewed core vocabulary fact ${item.id}`);
+    }
     const cleanGloss = gloss ?? sanitizeCoreGloss(item.gloss_en ?? "");
     if (cleanGloss !== (item.gloss_en ?? "") || headword) {
       return {
         ...item,
         ...(headword ? { headword, display_form: headword } : {}),
+        ...(fact ? { sourceUrl: fact.sourceUrl } : {}),
+        ...(CORE_AUDIO_WITHHELD_IDS.has(item.id) ? {
+          audioSrc: null,
+          imageHeadword: item.headword ?? item.display_form,
+        } : {}),
         gloss_en: cleanGloss,
       } as T;
     }
     return item;
-  });
+  }).filter(item => !isAppContentExcluded(item.headword, item.display_form, item.gloss_en));
 }

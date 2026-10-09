@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 "use strict";
+const { nonOverridableMetadataReason, assertImagePublicationGuard } = require("./lib/image-depiction-guardrails");
+const { isPublishedImageReviewSource } = require("../src/lib/image-review-source.cjs");
 
 /**
  * Audits already-generated OpenAI word images against the strict text blocklist.
@@ -26,7 +28,8 @@ const NON_OVERRIDABLE_CATEGORIES = new Set([
   "hate-or-extremism",
 ]);
 
-for (const name of [".env.local", ".env"]) {
+// Offline metadata audits do not need credentials or environment files.
+if (process.argv.includes("--visual")) for (const name of [".env.local", ".env"]) {
   const filePath = path.join(ROOT, name);
   if (!fs.existsSync(filePath)) continue;
   for (const line of fs.readFileSync(filePath, "utf8").split(/\r?\n/)) {
@@ -83,9 +86,7 @@ function isExactPublishedReview(entry) {
     entry?.review_status === "approved" &&
     entry?.review_scope === "exact-published-image" &&
     entry?.reviewed_url === entry?.url &&
-    /^openai-(?:word|reviewed)-image-audit\/contact-sheet-\d{2}$/.test(
-      entry?.review_source || ""
-    )
+    isPublishedImageReviewSource(entry?.review_source)
   );
 }
 
@@ -98,9 +99,52 @@ function stripReviewedMatches(value, matches) {
   return cleaned;
 }
 
+// The historical allowlist uses source spellings; the V3 manifest uses exact
+// entry IDs. Recognize only these source-and-composition-bound adult lessons.
+function hasExactReviewedBodyScene(headword, entry, reviewedHeadwords) {
+  const expected = {
+    "core-808016": { headword: "noixtiyol", en: "my eye", es: "mi ojo", spelling: "noīxtiyōl", index: 16,
+      lexicalHash: "56d2f676710f607cf651cd5b1efb63a6a4eb0351a3838b66f79c8751d1862a31",
+      modeHash: "c4541b261277a157f276be2e4ca437c21acda86a8a4ba1a3afd9eacbf7ba2101",
+      compositionHash: "620c179e682539b070f8c06c5a11fd6aa34e33b5c4b4b6cf57a761a5c3a2c975" },
+    "core-808024": { headword: "nomahpil", en: "my finger", es: "mi dedo", spelling: "nomāhpil", index: 24,
+      lexicalHash: "e6e6a1525d782809f2a30ae5ea789980f8da39653eef3dd2e37ef21be681f7df",
+      modeHash: "30e48109a9762350fa72d4000f8d192a1f7b72fb35bd0cadef991bf029af1271",
+      compositionHash: "9916aef472f58acef46793e7485ff2ffe78eb3ad69564477c249ef4e0efee228" },
+  }[headword];
+  const provenance = entry?.provenance, evidence = provenance?.reviewed_image_mode_evidence;
+  if (!expected || !isExactPublishedReview(entry) || entry.entry_id !== headword || provenance?.entry_id !== headword ||
+      provenance.headword !== expected.headword || entry.meaning_en !== expected.en || entry.meaning_es !== expected.es ||
+      provenance.meaning_en !== expected.en || provenance.meaning_es !== expected.es ||
+      entry.alt !== `Illustration for ${expected.headword}: ${expected.en}` ||
+      provenance.lexical_review_hash !== expected.lexicalHash || provenance.composition_sha256 !== expected.compositionHash ||
+      evidence?.entry_id !== headword || evidence.headword !== expected.headword || evidence.meaning_en !== expected.en ||
+      evidence.meaning_es !== expected.es || evidence.source_spelling !== expected.spelling ||
+      evidence.source_import_sha256 !== "36711d31d650fde124cee333463b81daf63848d3ad1126d701d0003f4056716f" ||
+      evidence.lesson_number !== 8 || evidence.vocabulary_index !== expected.index || evidence.evidence_role !== "exact-licensed-vocabulary" ||
+      evidence.reviewed_image_mode !== "adult-body" || evidence.reviewed_image_mode_sha256 !== expected.modeHash ||
+      reviewedHeadwords.get(normalizeSafetyKey(expected.spelling)) !== "adult-body") return false;
+  try { assertImagePublicationGuard(expected.headword, entry); return true; } catch { return false; }
+}
+
+function hasExactReviewedPalmTree(headword, entry) {
+  const exact = headword === "core-904003" && entry?.entry_id === headword && isExactPublishedReview(entry) &&
+    entry.meaning_en === "palm tree" && entry.meaning_es === "palmera" && entry.alt === "Illustration for soyatl: palm tree" &&
+    entry.provenance?.entry_id === headword && entry.provenance.headword === "soyatl" &&
+    entry.provenance.meaning_en === "palm tree" && entry.provenance.meaning_es === "palmera" &&
+    entry.provenance.lexical_review_hash === "f0112a64d4c57634b4545b164406d9b3e44be5f25e09085c7188f0cfb83fd8fc" &&
+    entry.provenance.composition_sha256 === "94aba9a3d3cc046e67878186a73335a5f3d5449aef23a740d20fe55b8f697d61" &&
+    entry.automated_safety_review?.contains_people === false;
+  if (!exact) return false;
+  try { assertImagePublicationGuard("soyatl", entry); return true; } catch { return false; }
+}
+
 function classify(headword, entry, blocklist, reviewedHeadwords) {
+  const hardReason = nonOverridableMetadataReason(headword, [entry.alt, entry.title, entry.license, entry.author]);
+  if (hardReason) return hardReason;
   const reviewedMode = reviewedHeadwords.get(normalizeSafetyKey(headword));
   const exactPublishedReview = isExactPublishedReview(entry);
+  const exactReviewedBodyScene = hasExactReviewedBodyScene(headword, entry, reviewedHeadwords);
 
   const key = normalizeKey(headword);
   if (!reviewedMode && blocklist.blockedHeadwords.has(key)) {
@@ -110,15 +154,18 @@ function classify(headword, entry, blocklist, reviewedHeadwords) {
   const rawHaystack = [reviewedMode ? "" : headword, entry.alt, entry.title, entry.license, entry.author]
     .filter(Boolean)
     .join(" ");
-  const haystack = exactPublishedReview
+  let haystack = exactPublishedReview
     ? stripReviewedMatches(rawHaystack, entry.reviewed_safe_matches)
     : rawHaystack;
+  // Remove only the botanical phrase; a separate human palm/hand still matches.
+  if (hasExactReviewedPalmTree(headword, entry)) haystack = haystack.replace(/\bpalm trees?\b/gi, "tree");
   for (const rule of blocklist.rules) {
     const match = haystack.match(rule.pattern);
     if (NON_OVERRIDABLE_CATEGORIES.has(rule.category)) {
       if (match) return { category: rule.category, match: match[0] };
       continue;
     }
+    if (rule.category === "anatomy-card-risk" && exactReviewedBodyScene) continue;
     if (reviewedMode) {
       if (
         reviewedMode === "swaddled-child" &&
@@ -306,7 +353,9 @@ async function main() {
   console.log("\nCleaned flagged entries, missing entries, and orphan files.");
 }
 
-main().catch((error) => {
+if (require.main === module) main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
+module.exports = { classify, loadBlocklist, loadReviewedAllowlist };

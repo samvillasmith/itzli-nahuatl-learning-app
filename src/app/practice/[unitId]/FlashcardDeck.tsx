@@ -1,15 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { LoaderCircle, Volume2 } from "lucide-react";
+import AudioButton from "@/components/PronunciationAudio";
+import WordConceptCue from "@/components/WordConceptCue";
+import { useState, useCallback, useMemo } from "react";
 import { WordCardMedia, WordImageCredit } from "@/components/WordCardMedia";
 import { displayGloss } from "@/lib/gloss";
-import { playAudio, vocabCardAudioUrl } from "@/lib/audio";
-import { getWordImage } from "@/data/word-images";
+import { vocabCardAudioUrl } from "@/lib/audio";
+import { getVocabCardImage, type WordImage } from "@/data/word-images";
 import { displayNahuatl } from "@/lib/orthography";
 import { pronunciationHintFor } from "@/lib/pronunciation";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { WordImagePreloads } from "@/components/WordImageResourceHints";
+import { useLessonImageWarmup } from "@/components/useLessonImageWarmup";
 
 type Card = {
   id: number;
@@ -19,48 +21,16 @@ type Card = {
   part_of_speech: string;
   audioSrc?: string | null;
   imageHeadword?: string | null;
+  previewImage?: WordImage | null;
   alsoWritten?: string[];
 };
 
 function cardImage(card: Card) {
-  return getWordImage(card.imageHeadword ?? card.headword, {
-    allowLegacyFallback: true,
-    safetyText: card.part_of_speech === "letter" ? [] : [card.safety_gloss_en ?? card.gloss_en, card.part_of_speech],
-  });
+  return card.previewImage ?? getVocabCardImage(card);
 }
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
-function AudioButton({ src }: { src: string }) {
-  const [playing, setPlaying] = useState(false);
-  const { translate } = useLocale();
-
-  function handlePlay(e: React.MouseEvent) {
-    e.stopPropagation();
-    if (playing) return;
-    setPlaying(true);
-    playAudio(src, () => setPlaying(false));
-  }
-
-  return (
-    <button
-      onClick={handlePlay}
-      title={translate("Play pronunciation")}
-      aria-label={translate("Play pronunciation")}
-      className={`flex h-10 w-10 items-center justify-center rounded-full transition-all ${
-        playing
-          ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
-          : "border border-stone-200 bg-white text-stone-500 shadow-sm hover:border-emerald-300 hover:text-emerald-700"
-      }`}
-    >
-      {playing ? (
-        <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
-      ) : (
-        <Volume2 className="h-4 w-4" aria-hidden="true" />
-      )}
-    </button>
-  );
-}
 
 function PronunciationHint({ value }: { value: string }) {
   const hint = pronunciationHintFor(value);
@@ -80,6 +50,8 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [done, setDone] = useState<Set<number>>(new Set());
+  const lessonImageUrls = useMemo(() => cards.map(card => cardImage(card)?.url), [cards]);
+  useLessonImageWarmup(lessonImageUrls);
 
   const card = cards[index];
 
@@ -112,7 +84,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
   const preloadUrls = [0, 1, 2].map((offset) =>
     cardImage(cards[(index + offset) % cards.length])?.url,
   );
-  const audioSrc = card.audioSrc ?? vocabCardAudioUrl(card.id);
+  const audioSrc = vocabCardAudioUrl(card.id, card.audioSrc, displayNahuatl(card.headword));
 
   return (
     <div className="max-w-lg mx-auto">
@@ -135,6 +107,7 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
         {!flipped ? (
           <div className="flex flex-col h-full">
             {/* Image on front if available */}
+            <WordConceptCue card={card} />
             <WordCardMedia image={img} alt={displayNahuatl(card.headword)} />
             <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 sm:p-7">
               <p className="text-xs text-stone-300 uppercase font-semibold">Nahuatl</p>
@@ -164,11 +137,9 @@ export default function FlashcardDeck({ cards }: { cards: Card[] }) {
         )}
       </button>
       <WordImageCredit image={img} />
-      {audioSrc && (
-        <div className="mt-3 flex justify-center">
-          <AudioButton src={audioSrc} />
-        </div>
-      )}
+      <div className="mt-3 flex justify-center">
+        <AudioButton src={audioSrc} text={displayNahuatl(card.headword)} referenceId={`core-vocab:${card.id}`} size="lg" />
+      </div>
 
       {/* Controls */}
       <div className="flex items-center gap-2.5 mt-5">

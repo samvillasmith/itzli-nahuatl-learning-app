@@ -1,0 +1,2478 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-06",
+  "entries": [
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "74d623428624363a7a55ee565abd4eeb316e34145ee9acb5b54e92d3f7b859fd",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a451ed5d010a69c8f204108034bf9c5a386c49843bb19bd91e73466f9cfae85f",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1c306bea3fce864eab2172c7e4cd69c367612c4b2e8614a240f81ed0b642a347",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c893f47b338ffd9715b9c5c27a01b04a2dee40e3994315828e5d91e0ab1cc6ab",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "163ff1efa8abac6a69376e0f4a953cafab604724ed8bd5f036f4d3890d2d8aca",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "be39f39d6db4c0cfbe47790196b23124336f6c2dcec93a0bfdcb80d3f028a178",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3757dac4fd8480b40e4d668be27fd79006fbaa862bf9a7978c4cfd2af7a80828",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8a7aba3bbf8099dfb4dedda2b7194c4a5402cd9bed1af7a95ad1f4e10ac81599",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e20a59e179bb20ddf09436d448cf74c51df91faeca7945359ad9b9ebe169b422",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "99a8c0fd98c33202bc6e2f52268ff2084d0cd3aee82adfa3667cea4f850c4dcf",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "21c6b5f3e64013ee1a10e03e9b52e2a4ede47e3d8cfbef50f31b684665964cd6",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0891b6b1f786f022f3ef75556fd0cd3dadc5c41b4e30547348b97b9af241130d",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0bd49d204405cc8d234987a7608b9f73703cb01ac35e22cce48556f4040fdc34",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "40943a67133f3e0d9c9f609369497a7327f9b41edfc3ba543ff57cb9e8323c76",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3c60897ecf012251c14c5bf1e9c3f089cae2c8855e5b0083c8c5b4efe8414962",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "be46cf0c8409e3a6553890f7f1ca0c27761f4e398ac6f8179d348723ce0f02cd",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "cb549fd392ba405a4fa176e220723a0747aa3fd289d2aa48cb8bf532938aa5de",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "29bc5483085096019d14fcb451684267f602db7597f646111bc201fc8c8dc833",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3f4b23c926cff13f1d96015542a93b9e0c15027ea1d7d6694b88c5523e5bff82",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c88faa31ed92d40c5cd0a0b14124fcf2251d86377f2f4e0df512a9f5808a0244",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "54ddcaf7c8200a2159da6eecd863479a46c19076bb0979665f1fae758d5eecbb",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "205ab6de549748ffaba4f5677ce6c3248692646b8c88819972d37ccd9135091d",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "cfbeb9b0ecb322f22c15f91ea61879bfda94783724684454f5e2230c464bee56",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "812ae509bc71cbbc3a594bc73dcf061aed4d80c075899b04d6adc3d67de9b95c",
+      "matchedTerms": [
+        "body part"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "602fa903a0dcac2e1660d90f40488317d33d1ebe26e88b986e4bed06efbd814e",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "27073fb6cd25d14b93916fbda2758bca3d04ed469849713993f644486e119520",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e9ba80aa713393d81f170fec50f7e3ef68c3d53b09fbe86b23a4f21d0147e794",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d8978eaf2598e44b7497863f1db969fd7c74f716ccc9486698619b32bd2a19a5",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b20a1bc268c7e645c11ff3f53968d2539c03473f096a73e9db19c842252508b6",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4a8f8fcc256dae883dc39b12dfb7a77a30c4e751b1966661ed1983041d435e5c",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "602241462f7b2e7a1e23524b054ffd856d3bd38cc1e200c6b0f8895af7f6a063",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "57f41e92635b1a0d45a79627e7eafe9630f9c679368dd3da7c508b2f6693a540",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8bce4ad524ea7506156f03ab1a06ec46b356dacbd6a86bf7b9b20ff101b2e5a0",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "93b5bb1b6328f245425f6220b3d676ef686701cb720927c1fd753f4ccd8972f4",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d1162e013d5c4e39614c2307d0ab581d8280239972a2af19607e883fb1f89171",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "dc2043d796f69dc201c4cdbe8a947542648c5bdb429db01ad3c52601e656a198",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "47b31a3d666fe3afd9ce517ad1aa49b6d1b00d6c3c4288c8aa15d0e5a19c3e41",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ab6131fe2b9b8a5a2031b4873d8f048bbe9ee2ac21550c76bd450016102386ba",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a5f5a71c6bb073c7b99d869a0a9b073b3fba7e1f5e6af860a2d0947ca12ec4d9",
+      "matchedTerms": [
+        "bath"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f1adeb0e329d9860cfa8cd8c3e0f40ca62e23d6dc5ef806bf81917fe5adcf495",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6e2356d9fe3c83f2858791ffbdd797228040fe2a9a45ea76dc514c683ffc17dd",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "518220ae77ed0539b0d9505b119510030db26e3b82d562302a391998f611d07e",
+      "matchedTerms": [
+        "bath"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1580f0a3c70f68aaf02fbce397768863a9cfedd83aed388d75a7377d19da6f4d",
+      "matchedTerms": [
+        "bath"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fbd0265fe8b3426ddf751bdbd036e0f5905d5020be3d596133e94ab51da519f5",
+      "matchedTerms": [
+        "bath"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "12d48c4e4099838c8d430a761ad0ed25f4e720b4cfe43c5a65d4c138c17978c8",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bc9281ed6f2b1ef676b5a780a88ba2dad3d988e48e68ecd333dc6d7ef440dbd4",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "78fac5328ddeb1531237fcfee79bbea7860ab6b72389b977f2aa6efecd8abcf5",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d1b020e61fda6bd4db7ebac5548ca34cc232ac8a7ad0a6caa8fac66f9a305506",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d1773f27f7c6853d30e9f9589463aaaca513a46ce8aa9f397439c0c2e3ca7be2",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact reviewed educational grammar text or its internal references. Literal illness/body-noun facts and adult bathing word forms only; no media, depiction or broader content exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "83a92c96fea2ed072aa4c9eb5bfbd9d5ce41fdc2c9d82680855e274a44e474aa",
+      "matchedTerms": [
+        "chest"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "32556f97cd7bdc0cc542d7b83e7704754daff2f7496d37b1593ed60a2c643e78",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9e8e345eb16cc04d65cf46a322b3d9c6cf41531c2a5ee7ee9fb72d816d329850",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9485520df09e62f1125fcff72a922b3c7a0358b0ec9f0860b0d5127dd9106207",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0b9469deb66329aeef849070be899de062c4cfa1b17a1bc4f2b5adc3c6850453",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f8cce025645a313b4df5669cf7f57eaf7f4aae43170bb225bb4bf80aab78ba6f",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d06acfcfe851adc2faecd037ab3eee99486bcfd7c7382ac83ef1c29280197a36",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ce9d4efbeb3abffb5db806b2f2bf84b8dee050b26af914e137cfabf59507b164",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "66bff0181383a2548c6fbc857ca2da0e6fe230746c348697b16214345e17a269",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ac5441a6d55b26862492eb4569463b58e8401789cfe82b70c6fa4647997c8094",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a1fb1abcc8259cc7c1262701aaa7fe6e778be5aaa1393c090393b51a995e2d58",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8404df1d6012af214b6f23c927347419e3c8e7bc849868efc21bbde650e8ab9e",
+      "matchedTerms": [
+        "sex"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "74939655e4d99ff737db8c8fa69ab05c7d25350be1598cfdb8f27af72b55ff0e",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0ebb496be398c678c02b2c9a91cf15b45f2dd89b52e1f11d92d5c99e6fd480f7",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "83be28fa5eefeb895b50df5308301ef2f931320b15060977c787f6cedfe3bd1e",
+      "matchedTerms": [
+        "naked"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1dbc92543d9d0b9692ea14ddf71348a139542ec9530ce10fb2247d270c909dfd",
+      "matchedTerms": [
+        "naked"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fdcf560d83e326db5de2dd3323c8fd73eb7b9ae0b6d953a9c140a67d659e4581",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2ab51f0f230419f4404a8b90a1a30a229473068b3f951b4e6658578a6b7c7af0",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9f177809bc48f68bce159562400210075d5bbd2ed1ff70bcd080515e30fe2dec",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "059ce19cbb94c66e3496fb0acf990d0a85f8e7cf8a9fee5d01de7b93a4e97138",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "709f7e98508a42ad476946e23b2d6b1ca10effe79a76dbef690f0041003ebf63",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "824ea51bf7bc08f6326a3578ef9f54a9255039f315755f0a841d067ec02f923a",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f90e0de75b9d34b30e58291998ab228dae6a23b79939cc4538200d9d94252453",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "685e8a7fefa6bd4eb983ea6ec2e7780d4563a15e0e701473d4f7cbe4afa7da07",
+      "matchedTerms": [
+        "naked"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1f489bd0b7cb4cfe12e4cfbd763bd0582f1c6ab7f86366d0587fa09da1f98549",
+      "matchedTerms": [
+        "naked"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "108673fda7f52d3aec1396c5a48392e97cdbe5afbd35a41ea7f32013ad3355a0",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bcaee6c6f1363ef25182685e5a27caf8c717d9c809605af1302b8b6ef712c02c",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d52aebc6ee25f7373ba0b29869d869c0478c0509729fc438af4f1f7f7647c434",
+      "matchedTerms": [
+        "notlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a1b998af6e8d8b7265ab79bae33acdb0bc4d03b216b3309a3f6f55ed977c08c9",
+      "matchedTerms": [
+        "tlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7a05c3919b11125d60f325759f340bc29befa8e2cf85b39b94c31e87db9eb5bd",
+      "matchedTerms": [
+        "tlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6433ae307e877fa8fafafc33553ef0776ed4e03119342e06aefbecc49d4a2f24",
+      "matchedTerms": [
+        "tlacayotl"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "355ce3f51718334f8369432d1a2b9f7d4ce52f8d40f9501d36a52dea9f6764b0",
+      "matchedTerms": [
+        "tlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e7054635d7f8c29722dab2799152f8066ec3a21a92f3d9be18d97147fd9113d0",
+      "matchedTerms": [
+        "tlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6f3df2a7a5fccc916dfe091a871010b90225b85c19d439aa33faf72f23ab1032",
+      "matchedTerms": [
+        "tlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1bfe06b93bfec68cc5e1ac2de33122ff884ea98a09505c899654ba45b1a25e07",
+      "matchedTerms": [
+        "motlacayo"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "98601fb39a1aaa739d4427cf12efc96c727d4e198e6a44333bc2e9879b108e67",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d4ec968a7b136181dcc6687c6e8a2daea824b6a9b92ca02af287491f049a48d6",
+      "matchedTerms": [
+        "sexual"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "dc5e81ede759294a22132081223c637303b192e660288dab852d7694e1d0615f",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "debad9836dfaa66e7cdcfc849907de6ff8db55502f806446e998e7cfe41d4094",
+      "matchedTerms": [
+        "sexual"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "38f4abb6f61c43044669c0ec8e48073930866a632157a7f403cbef8cc42ff9e6",
+      "matchedTerms": [
+        "changing clothes"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2b0c1ec8e15ab4bb514bfead2bb2500cc6a445f37378b5f2131d99cada09a7d9",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3e7791d206755de74b013a77a8a8ad6f73a0d3fb902d80e40f5d8f1acd9a8137",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6612d45aa58ae239f146727798dc69448c54a07921d9ae7f1bb8fec7690b7f6a",
+      "matchedTerms": [
+        "skin"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d2513d1169b8c13446a9b6f456cf015c4b072824ca63d589cb74b9c247de8958",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ec5bf315636a2f4bf3f8be2e82cca2d98d2c1fcd85028659eefd2ff6f393a852",
+      "matchedTerms": [
+        "chest"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "675fc7ad3cdefcdf6d19055800b8842b712ca6b76b4cc30cf84da6ff0fd8a711",
+      "matchedTerms": [
+        "chest"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bc33f8f9967a2c4df498d091445dd93d0dd69bd7d160c945a22da4b2dfd0a148",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7c68b43649dbb13650ea4b59726797af8294ef77fd77b958a5fa0a0a8693a863",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4a463b438060e0a2035410f14bbd1926fef7b025c56a86914eec9d7c2fd67f4f",
+      "matchedTerms": [
+        "urinate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e6a723f9413bf2c6fe23f13539ca1419a0b32d71f6db5d1ee985a42ed8b0fc43",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "66af9ecfc996b9e352483b9cfc32ed0568147335df9a138dff7f3ca8caa93a78",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "df7316bca0bbdfa9a78c7d59061aa401dadd1f372c34b9e3574676be40b57717",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "40c6882e5d31971ac7bf008a76f20a23852cc131ea2e92ab4e870f4bf39c1675",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "32dcb7503fa71c1827398837ae276072de57ac3c6b4d857f491003ede848528e",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c228d4423490f9e55135ad9c78a015152fadeda2414872a289c0fd7c40cc93ff",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "989162d3f3de3270b8d219f9af417cce66d5d130369705e6d4d10038d9197851",
+      "matchedTerms": [
+        "noihti"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "cc2bb181272ebc9657d700a16241290af8d3e385cfe61870194f08530fca29c8",
+      "matchedTerms": [
+        "stomach"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "836126a4204023ae4815a20f854ba48f151fac15d6e8666e195410a0a51aeea2",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1c46a6f338514e1a4895545a7a12e25eb0d97a6efd0cf81d05d7efbf5e650155",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2f72c354433377487b446180353b47905fa6f796be79e77caf1b8321a5d341cd",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "913c640f4dfb8bca00726f7b55b6598ca3627540ab66e8dfc107448e19ec9903",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "21b53c250da70f645ee514172a2845a405ad1e8e52736844c133ce9e0e5924a2",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2b6138e10d551784deeb714d75983a5bc0181678cfc18be4970af018fb3f4aea",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f343fb3b7b2b3244cf155ea8d3b78b7f4d64e7b59a8044ae516c13d3cb78d9cc",
+      "matchedTerms": [
+        "anus"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "391c4604476cd7586e8056cc8bc4dd063f2524d8f4d95327323765f5a602c360",
+      "matchedTerms": [
+        "flesh"
+      ],
+      "scope": "Exact independently reviewed educational body vocabulary, adult physical-symptom wording, or source scope metadata in the completed curriculum. User authorized retaining written vocabulary. No imagery, sexual scene, child exposure, or broad text exception is approved."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "81437c111686b0ded98967b3eeffcb95a2417747338c5dce7cc299038b1f8889",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "27e3ab89538ae1f79fa3657ae3c9e4c4b2748d7e8066abaa33ffcdac6e3246e2",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "78c10613f7533ab8a11fc84324140baabed3f8c13c6e8b0c9c3c78e0d38b97b0",
+      "matchedTerms": [
+        "diarrhea"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e471b2dfed2e3199623c4722b75844ad01ea2f486532dbeb7f8169aecf2cf470",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7c9c27da725af98ecbf260df905dbdb28c6c7451e6cedf5e15575b33b7aa082e",
+      "matchedTerms": [
+        "suck"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "56e8ba006b316dbe41396c8c321d011d6d6f9e15bb8c6cde6da99e6e1e854bd4",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f6388e6c2fbe78daf5d40bca419662a14e3e9de19975159221655f0a2909bd82",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e4a5e4bb31f9b87ea95da0dcadcff323f53ae0a8f9d0a5b74149d8cc97faad37",
+      "matchedTerms": [
+        "bathes"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8fa76ed5138ffca2a10325812f9c7755518b5bc238d76ad43572f7e465c37bbc",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0c50b36169e0e5b4546887bd99d385ddd1571bb66ba80ea6b5c12b7fce398566",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b8b26c9cb0fbefd30dc673ebd670338d178c20f90661640e559469de88b5b14e",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "04f8c327e8a25583067072db64bc886fb89a28bc3c076b8a799a0f577fa2fd6b",
+      "matchedTerms": [
+        "suck"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a029b25a2c9d4b14877e28778a3a26fc492b474a3c6f27b36a3ff5f7744d0b10",
+      "matchedTerms": [
+        "suck"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1e8f494ef88d8a5993ebabd0afae8b50eb1f2c07d178b622ab1a210f67e9d1e3",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7c87bff613d1c1004074c04f3b240cc6d30783e1452eac29df0b299718271034",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2d0a7d2867b8f8d819e366867482386d5a743ee26171321ada3a0239ba48679a",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a052ab08f9044d3b1b8fb0b8294e52ad7b86decfe5cf7b55cf32717a2528643e",
+      "matchedTerms": [
+        "suck"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a2da1457aa4c200541b5f82c15e51b7fea9bf8b966838d8f0bd6636a21f96693",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "774bfb68329054c1cadf07b625b1d033d232dceb71730a19ee40eac0b8a9b220",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c64f96f183ba060a1fbaaaa9c093929e983b155b2bec00c24cc9757e70041807",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e9ee7536e9761c47d3d18297608cb16e033f5c190504b036665d8d948171efbc",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "dc1f6929f84ce705008a9a92df500e09c83fdf49185bfeecb0730bda7e729514",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "246a501d5a9da48e795235d7cd7fec4aba81b7c60d7ab93393339805e64c4980",
+      "matchedTerms": [
+        "defecate"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "5d8eb4fc2dd279427bbf08695947fe390f7eab409c40d114c236c1f3c9b0b641",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "df097bb1a86f52cc604c0aabc8551da1eaf6df6aced5a4b13619301cabbfc30c",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d58f11781d26e899a428a3cc15b45f9169dabe65acacb48a9ad966d27e713db8",
+      "matchedTerms": [
+        "diarrhea"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7dc8cce570c82d4c440c4b2c3670a22d8b176b727e7d142fa8767ec89c3ab54a",
+      "matchedTerms": [
+        "diarrhea"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bd3465c29bb602835887c41ff3a55877d38769cec048bc0aeb839b6a04768ad5",
+      "matchedTerms": [
+        "diarrhea"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fb16a053ca7b282c29747e35dc438a435f1837fcc7581fb28b75ea10a7ab209d",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "12e87dba99e71b29d1b98051559b85cff5793fc0a19192733e1d76cc3b947efa",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "42f87da16657f064d26d9e2933e8b0868d23d38c945fd6d579dc4240dadf7efd",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "36bf2d307663bfe90d864c5a8e3e30211ee7b90ce3a89c8cf36bf7a129b28452",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b54ba5627e222f8d0209cdcc4eb62f002a9d40a91384a9516dde8a1f3c2e63e6",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "67fbe3d5d1e25eb93666a03bdeb6b3f6c5f655b4dd0dc0420d31dddff97b9c26",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ecf780ce07b46a1a73ca1c3dc34f7a31744ccdbf368236d3f3b85e0e33f4d8dc",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "24f2571097a7fbd12837d5e9f62c78c15a79ecf1d3aa327ad9a34c46e50f3e09",
+      "matchedTerms": [
+        "wet"
+      ],
+      "scope": "Exact parent-reviewed educational text: adult written bodily-function or symptom vocabulary, ordinary wet clothing/rain/shoe movement, fruit-liquid extraction, or internal source locator. No media, depiction, nudity or child situation exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "818ab64a5e6299e9d0161c6f80adaa803b147aadc58930183d461aa4f3f652e1",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6b10b122eb11890b4904057ec118ea08604628996b77b5df0d9b6b5c40cb15be",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1448931f041f8ffe2db35a6166a0f47f4cac8ca7943b15a3273dcd7011125a29",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "630a5e11545f605ba498140dc8159138db7325922d7a4d58e8d736fe22c467a8",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6b393d2c796c76ebf4cf34fc939466c07243867f4dbd307506139e4b410b0af3",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a46092371d3a773e406d831f161c612efc6bca7c8901a36dd117795c5ac66ef7",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "60017aa3cc58b365bffc0c030a542461a03c75f1913641843fdc3b72bae65e2b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "568eae85d661267386aca3a1282203e0cf5cafedac17eb831d67e6a3505d6eed",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "beae8235d5bc7bdbce6e8fe85e1862985d1d639ee5f7215249258284fb57e0ca",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e978d75248f6bb34bfadea17e063b7b9731f73d1dce20b4d03163bebdb7da12f",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fe212fa2c598a727230ab2f5b142d5e4c2a4713014e384e391600cc63bc1b24a",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c165c3491b2a6190f8282cde92ab22a8baf356db8de366d4b7be53325776c656",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fa19c54826682019ba5734fe1c5b36c6d5d12af4e982b7ef739d727967701bf0",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4cb2922a065a4cd613a203883cf034aabfa82df93936f6b31b7b2f06f824abd0",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "465c89829c14d717c59cb4f36c4decec49c236c309af53e8040d9dd2b9612183",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4fae84e8f30ae7623343870e25ce6f12c994b9a1af7d328368fa14b58f20c609",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8e05bb55bca408e8cb3dd755b0ef4b703ee47dcaa28aa95c33c1a90495686861",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b71a2c9b52f0a81338665f33b0c72f6acd72490210fc7ff29b8a8e39a6ada9cb",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7a3e9a891893c84fbacfa531a21a4ea8a78aeae69cf9a707f03b6805d64d91eb",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1d4d09280b5f15719b38426603ab3449a6769ec1d600b7260fc056db9d8d231a",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "12ca9afd87314b0f6b26678a45e26f10991da1d40e077f113b70ef1650cc2fe2",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fbde15dc53c3bdcb8bca0580ee374f8c1ba440ccc030cfcad4925040597f9bf8",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9946601317c4f3859d7c1dccb2bcc3af0d24797232117a7d8234a94d841baf71",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3d193fbd33cc7c62e7ff7bb36dad081cb200b1c61c125b1f45250c8022d45629",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7d62f08e838ca4404ec62877f93274fb0635500370e4976daad84236a3f54147",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9596b26700cc5770f800bd21fb1f40c527cf293613c9318ba4d534caf33db5c2",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8c98d121b0d77165a41095aa4cc4a38ad3f3d736ae660d5a9eabb5e68a864409",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2a559d030469d76dd31e6fa199f9d646ff942a9920bdde5523b216bc803a234a",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "09576daeb13ad6d527ed8c0f49e397a39d698536e99dfb9d939e412458aa807e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7ac11b13adbb0bf30c443b20147a5d86477e455e969cf1a0302bc517a6f02f3d",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2b17df8e3edd23be5e0fc8d846bb4f4c2d8971f723406d9a1090b2a6bbd97667",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1d390c894553c41e667096bbc6d31ee309d86872e96cc2a97b36c06986ab519f",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "57cb0a06434a98b95f8093a44c99c5ddfe56862d72019ff338ee5ae280ed9f9e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3214c33f27467ef21d0fd9f43bbeacef9e9b1fd0b374d95b7bdfe33eb6623f3a",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a4a5cbb6d4150be3bb86f4ef4f3279c87b7d8fd04a231a7b3a2f1972aaac66af",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "5eb06ebb9ac1a155d9e0fcc2b74a922e62cf495b5953f514fc0d48d89c085519",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ccdc1cde175df1aa67b94775c9e90bb0306a8cd1319b65bfdc08995228593e7f",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7d2eb5d250985d1f7c2f5019e20177f1db82c5a6764ed761ce971f19dc641018",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3684d662fe8df3f3d3ee6c8d8e483ccaeb552ef26dcd2debda9448bed0d78b92",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1784426a62f12acb2beb7ac8754b7d427ffa6393bd05842952b9f354655870a4",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "beca73c61d55797de8fff067695712da3355a49cee847d944b6697984c3fe738",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "69e737f3461a9cdc0205dc03c2a63701565c38f5e992331e7a2d23e5e1f10cac",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1f45b1880825246557b719309e75b6914eb944d178c8654f324344160b96624d",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1d22af1d3faaeccc345b7e4ef4117c3420d270106bcbbf0e2074db49e7f118d2",
+      "matchedTerms": [
+        "headword"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8ab1791560c7366fe0323abc42024193af6c826138b5fe411465f66b5457127b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ab8db2c0bc70588bedb8b74eab29b6776b3d47eeed88d9093328ac49b1279038",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "462ad3995ab80f45d4d8ce912ac703fd095c47106d0da86e43e5fdca93fc8e6b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4c7380fa11af34cd1a6deca803278ad7cdb08d9ec3df6c649f274a11aab2a45c",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b8441549e096a0194abcf4649ce292213db2f990215869bda5c341dcdf16e885",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b94ba305a0daf258fe607b1fb4cf8bd2a25977942b1bbe7671d65c91ef9ed63b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a63716decca4a2d36ddd43e12139523c6b2f4d652b696c2f710300bebf2cf590",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a3491b135954d28f7844d56357b31e929c467f045340d239a394111a03584b29",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3353da5067c0cfc2432e04f75981a7980045e820437eab92633b14bce2e3ee4e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "410308d887c448ef184a218d494ec36faf7117e7457a891d6e2e3377c6197074",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ab4be445a1818dda70f06fcf68bcdd96b09c750225a39c7d95818dd409fef2f3",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9e63d4ccb7774eaae1c636002cbc6ea0a8b99b058cfd872d9face5a9b95ff75e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0ae398f717646bd7ab5fe5d4ffeecf5b44e0c262fc77ef8911af8da636d8d494",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1840f0f4edef7c4b6988173b8d7557a13efbc6b871814ef9e79686239de2fb35",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "5e656fb5d773ca847360f9c6b2db641fbaedefbc6b2ce85d4c7c217038b9b5e9",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "92a8f84c4e0de829d035fa133b1e04c167cad8c2f3f36ecd55962c7a09593e35",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b6475bff6db4c397663b8fe94517e39f2b2205f60f08176bf765fc2ab69c92fa",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "5bb7781074005227967c927e0b4a99716a3ad6c3feee9117f0b370259bbc0f3c",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "47ec0aa24a30a5b759e9190379b0bcc9a7c7d4be8b06647f3ba8122ec2a3eef3",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6415ccf7bf451519c2c9bacf9cca74acace51b96739f5f31d9f2c89442fbfe61",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "83a2ea4a3b8e2a2149b344e1da76f589eb5defe100db8f42b3aa66da45eead41",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2ff615a95cedce02675c04b2e9324105310b3e16f71f01f726c243a6dfc7b48c",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1630057d6ba8788578a5746f879dcd1230e80cdc7cffa66f76b4b2a755c88004",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "de2c3ea21c0f63b4f00f51c4c5214dfc30c48a04fa77851b6aec2d0863c5bc7d",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "42ffb4ff03bd79da03db78d5f1ceced5b81acebc67802f8e78d993665184a1f3",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3097ece960cc88ba38ad2215160245a87fe1c382a78ec4e00dc6187d9bbdae08",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d261f69bfee716f8c91cdd8a0a578e4943f7aa2de7107265ab01c2fd970bbc1e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ae358f0b75ddfca478b705c39a85482fc5a07b2390daa74326f3a8d04f46a983",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ba761991bb4892fdd714217054a3a7cf1c406486bf87bba972b29e7ec68726cf",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2baa934a95edea77043fb601350f8ce5edeb269e267eeb9feca2d59e34c6d8e2",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bcbf007cd40bed44e789166bce5c6252fdf08b112db31eff20f7746ded6ccd37",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2402608425da691336790dfbe88fa5ceec63610473f255af38b1555edaa8d5a4",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f301612a56cae17ded9f3180aff95c0ae65e696abaa69b20dc722aedc1f3a085",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ec4f02f8d529dccf4bcfa586ad63aa7356ee8dca467b5324a5239a16eeaf92e2",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b8191f3abd4c003af2bb7e70c7bc213963349724f1c0b9019df6a16f0ec2f24a",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c32655b695b05f772093ca48ff0d43b32db2f310d80ed601845561ad4d846aa8",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2a7dc38139885e1c08afb06915fbea143d54210431fa01009145192a222d8c80",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "82eb50f304e8d83c30d37d2dc77c8aa034cb9cb42dd14f07987c1c69db09b4e7",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "523dbcc9c25992fd2b73fe21be03a0989530a5a89f5bb3da2fbbd9533fa3ea1f",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7d9b5892686033d70dc2ee7c80ae0f96d19c925dd2ab8e7c1ad496f013553230",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "484161abe0d0b04906c734bbe97819187be6ceff34acca0b9e3009d5deefa2a4",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1cf77434cf63a88fd59eb682f751acf2f117f4be7af053950ceab91d303ee63e",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e24db749e88dc2580eb4322bef0b862a8344a2cf791e6976efbe44418132edac",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "af9aee04524c22008df5a2c5e275292c77c9acb0d894320ffe811e7abcd3f32b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fcbc56505153364d8ea9e600a44882aba53fef6d5ffa2c8d11bf3d7a2234d769",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "971b30a33f34228956c2994dcee6a0c699583b56a896223d16bc06ee6fd09f60",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3b33586a101decfc9b0aed3ab81fc027e892e4dd008d680286c1dbccea0053f3",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "82f1b1289c87de47a4aa757ce4d6dd37c90fb654e6412f00a6edfee939d59390",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "be5aba7e07f6c075cb34f21e0b700838942b30d0d14318c20ff663025c8e1712",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "466699c34b64fe04c69184ae961c7c17980714e3cf433b0739377398ef01300b",
+      "matchedTerms": [
+        "pattern"
+      ],
+      "scope": "Exact separately parent-reviewed written educational anatomy, adult bodily-function/symptom or bathing vocabulary, possession/participant explanation, or its source locator. Words are retained under the user instruction; no image, depiction, exposure, nudity or child bathing/anatomy situation permission."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f2a6baa7a37960f2595d5a4903bb79a63b0314e0c776799ebb58a46f815781bc",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a0a50258573f8fa44d4e53067cd9a7d85c87711f7a440488a6b0d0f04fcffd2d",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a51976fa29e30b28b69b18f120e9282cdbdfd44724833ff03f119117160496fc",
+      "matchedTerms": [
+        "sexual"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fe65325a345e3accbb504c1c10dfc74c675b188c8bfe82110fae8d8065a5d748",
+      "matchedTerms": [
+        "ticmocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c4ed3f7932b8ebf004ae2a5e7fa15b45f5b6396c94998e4ebc4ad0dc03b6a18c",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4b54e1c50f296cbc9e62f8e5a3f63486d0da75e11bfe60cf38ea98c6d0776b72",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0d7c44a01e9315ea4bce181ad215664dcbc405e0f31f39163e4295f726d3f859",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "b9050060ffa13d67c5f04e5710536fe275421007d2e2d60762b16c836668c994",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f7a9ba5020de7d4f4e43e64be5be45c34a886df84d34e498cc614fb9ed1b8ca1",
+      "matchedTerms": [
+        "nicmocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d11e65f35017447af888740fb2329a0591fc9d72ef1e5c0e4b6309a447ed0690",
+      "matchedTerms": [
+        "\"PDF page432 / TĒCA / specified sense 1 and 2 / headword and lexical definition\""
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "9ae74b9a1c0e61bb109ddbd98a150e4f9985283472adf1a21c96a5213479a6da",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "de9729f7c23667963ec2821f5aef8c397183b03c805001cf75df3632649c7452",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "102475b9a1e89c7f6a299c80bc0e6226ad019a560a577db2bf5da80950024592",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "04a69998172d1a6da11c24894f5f1533851bb88f89900ee6d00d722be51b121f",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a56c0ed9f0c49f2a74d65db750bbbdf4045f7693b6ed3886d001577fa584ce59",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2229f718a44cea43aeeee0a1dafd134ae4d734928003b853b33308ff862e3ba0",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6e7b9ad79823c44a1b96174f685f3f21c7413dda1903502395e8dde64e5ee1d6",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c9041bc0531bb244fcc4795085893e679bb3586c1774b4e3a5bcaa61b07ff04f",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "94a3f04baf3b33a36a88c7c2fc0cd3f74e91380bb48d80e2509391a0787cef79",
+      "matchedTerms": [
+        "bathe"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "58c4f7954615ec7efb1131032d227769e692b0ed0ba0a287b7bdb5ae1594374f",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "22add93d1cfb670a1dc522f34863d70b2f4e16f953f8ea892268b94066db48e1",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ebc89c2d77ab9a4e31cc8fdf284772b2277d737f094ce15601afe8044a72bbc1",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "4ac69dc926f84638951703280a7c54d60825bca66ce60692f03c92bfc42ed61b",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "f5ef46e1f30bf3cc4b3867d3f261151e0b06a0fd3f25529fe90d8b9c53126936",
+      "matchedTerms": [
+        "urinated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0fed70634706dd8d7c19b89f46133024241d135264863e34e291f5089714a167",
+      "matchedTerms": [
+        "exposed"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "cbce096fe79ed324eedfe3f74de4b1c0f3424d0d929e8ceea91117c3ec1b9d1c",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1cb4dab2be54017eac4a3d67db2713c729c8bf9e1a9751724420e8d6d6e5f7ce",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "efa18455416dfd958494ce9fe49debc44fb0198ed55bc5177b48aacbf15b26d4",
+      "matchedTerms": [
+        "nudity"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "22ee1c51399913cbdbaf1f836fcb488320b00923a386792aa1e059de5556b53a",
+      "matchedTerms": [
+        "naked"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a94ae546701c7fa3a29bdf8660681f287ea582c9ff6efd72dd08d7dd19ce67c9",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c1a8b3b8d0884037fd71781c5c43b08b4def05ea149d736282f37cce279bb985",
+      "matchedTerms": [
+        "mocuitlahuia"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "c2643a338b0bb1c7e0e46e31097cd6e41c8675990b0fdcafe44ef839c59dd304",
+      "matchedTerms": [
+        "nudity"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e28908ce8c0ae51d929de4e3e578b2bd8f4b043700052c6d98b2a29037bbae63",
+      "matchedTerms": [
+        "nudity"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fce7c2cb387f5f0d8bb67cd154b0dd51fe1b1d6e073853a292442e26736dcd45",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e657f90a1078cc0bd935cd4ef7cca34aac47b2e3f766cd40004e1e7dc8796625",
+      "matchedTerms": [
+        "exposed"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bb91fae8483398d7abe129e9026cc9a8b2d684bcccba1c40ba27a67a70b2ec31",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e7258273f78c5f0c85f95593df53ff9a273807e1e4c37c139f8c242a767a0163",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "2c42f0f599460d1d45a12c430c2ece9081b44bc8d89ae7e8a47e956fe7571bd1",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6170259bad0a62311cfe894e6eae910d44a13dd9db79a2dfd46c4b5c83f90628",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "85920c6cd1156aaa18fe84cf67776f335cfca145b87ce939bc863822f360e375",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "726445a611436d67f91bf420d470c97c12edb73011a369c0f057b9af3941b812",
+      "matchedTerms": [
+        "defecated"
+      ],
+      "scope": "Exact independently read educational word/context or provenance line: adult assistance, non-graphic animal incidents, protective care and ordinary clothed family contexts. An external sense is identified as recognition-only. This approves written facts only; all body, bathing and child depiction restrictions remain unchanged."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8743368aa6b9e9fc96c72f64c9fb11138008b1cfa4875ad71887d1ab3cce9112",
+      "matchedTerms": [
+        "bathing"
+      ],
+      "scope": "Exact reviewed written adult caregiving scene only. No media or depiction exception; all bathing images must have no people of any age."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7d35be6d393cb9a94e03adab1465ab6d3bfc1f2e6d70b846856125b9486cdcc6",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "e157d8bebb053f870322095c585e72568c8207fb136363d08d30dba58824a227",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "d1c93b6e21e60af9f86deb69c417365f9ddcd18867a68c3c41709b6fe01c8a61",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "7f7231d3f706acf36de41cdfbd0d81b195a3603faae5fac724e3815e8961107b",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a93e3e631c8ae68985a67ddb5f4a83862f5df528bc3ef8f90543bc53f6e2d262",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6ef240dd0abe902d9742e0be838b99fb34d6e40b7ff8b501e6c214619922873e",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "6102bd3c92c9d28e7b9d7287b648dc150573552220816b27250c20de226fbd97",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "10cfffd7e699c8d0f51b8336d48a4a143679b39bb289ba914d38126680fb60ba",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ea5248dbf06827a28e9d50f0235a47d4ebaf3319066cea5973271d6c31242ec9",
+      "matchedTerms": [
+        "body part"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "25fd8daf9b5822f253cbde3589c6ac5318e20f53f5bad2a43386301213572ada",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3f50bc4673361eabde23b7cdfa8635993d2c7eb8cd809f410f8299b2d64240cf",
+      "matchedTerms": [
+        "body part"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "1fdd1568d883cdfc683ba2e5f1609f9c2849bb6f1959a8a6a47930f23494326b",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "bc146f75e8ebf9bb85093223340e548f3fb8928c474398e807ce67e4784884c6",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "339249eb6bf47215093eade3c0c980557c036069254af70bd690b5ed9c5abfef",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "cd6ff0b3ab28f60af0e3200a16c1db58b7d43db625b7b0cb32ab445bb46382b9",
+      "matchedTerms": [
+        "buttock"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8a507f5a7e689f20121150aae534f34c7b77112ef310db76a693cc9df1678e63",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "3dfe244fb72c1cd1d54c03a0d189a7364aceaedecbf4129c975e2fd042f70c92",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "8c50967194ae0b2552ff884240afd43cf10b5d841f5aa3942c973af139092ca5",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "fd428d079eac63c4b38502795467d9d241a8b258ebfa4a4cae71a4c1a460411b",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "ebd4b847dab14de6c5ea7642275a2f9aeed3dfa02f18ceee6ef73b8df61bd517",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "0a28d4364c7008e6842840315d4a80b75fedbbda88df68476836863e1ecf3fa9",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "32762241aebfa55837688b70265a557ade829d05947cc431018a1207aaf58e8e",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    },
+    {
+      "file": "src/data/instructional-lesson-blueprints.json",
+      "sha256": "a347cec24c5f2ff3ed8cb13d4c56cdb5ce7d077a29ffade4f3eb555af01346f6",
+      "matchedTerms": [
+        "vagina"
+      ],
+      "scope": "Exact individually reviewed educational body-noun, possession or symptom text only. The user retains written vocabulary. No image, nudity, child-bathing or other depiction exception."
+    }
+  ]
+}

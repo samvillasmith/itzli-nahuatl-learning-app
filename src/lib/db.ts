@@ -1,48 +1,35 @@
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
-import os from "os";
-import { execFileSync } from "child_process";
 import { enhanceUnit, type CurriculumFields } from "./curriculum";
 import { filterCoreVocab } from "@/data/excluded-vocab";
 import { collapseVariants } from "@/data/variant-groups";
-import { CURATED_DIALOGUES } from "@/data/dialogue-overrides";
+import { CURATED_DIALOGUES, DIALOGUE_LINE_CORRECTIONS } from "@/data/dialogue-overrides";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { orthographySearchVariants } from "@/lib/orthography";
 import reviewedAudio from "@/data/reviewed-audio.json";
 import { getSourceVocabPromotions } from "@/data/source-vocab-promotions";
 import { getCuratedUnitVocab } from "@/data/curated-unit-vocab";
+import { reviewConstruction } from "@/data/construction-review";
+import { getDialogueSourceRecording } from "@/data/recording-reuse";
 import {
   getCoreVocabUnit,
   selectLearnerUnitCards,
 } from "@/data/course-vocab-selection";
 
-const DB_FILENAME = "fcn_master_lexicon_phase8_6_primer.sqlite";
-const DB_URL =
-  "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/database/" +
-  DB_FILENAME;
+const DB_FILENAME = "fcn_course_release.sqlite";
 
-// Resolve the DB path with three fallbacks so we stay up even if the build
-// bundler (Webpack or Turbopack) fails to copy the file into the serverless
-// output. On Vercel, /tmp is writable (up to 512 MB) and persists for the
-// lifetime of the warm Lambda, so the cold-start download cost is amortized.
+// Releases use the checked course-only database. Explicit paths are for local
+// research/verification; deployment must never fall back to a remote corpus.
 function resolveDbPath(): string {
-  if (process.env.DATABASE_PATH) return process.env.DATABASE_PATH;
-
-  const localPath = path.join(process.cwd(), DB_FILENAME);
-  if (fs.existsSync(localPath)) return localPath;
-
-  const tmpPath = path.join(os.tmpdir(), DB_FILENAME);
-  if (!fs.existsSync(tmpPath)) {
-    // Synchronous curl fetch — Vercel Lambda base image ships with curl.
-    // Blocking here is fine: this only fires on a cold start where the
-    // bundler dropped the file, and better-sqlite3 is sync throughout.
-    console.log(`[db] DB not bundled at ${localPath}; downloading to ${tmpPath}`);
-    execFileSync("curl", ["-fsSL", "-o", tmpPath, DB_URL], {
-      stdio: "inherit",
-    });
+  const selectedPath = process.env.DATABASE_PATH
+    ? path.resolve(process.env.DATABASE_PATH)
+    : path.join(process.cwd(), DB_FILENAME);
+  if (process.env.VERCEL === "1" && path.basename(selectedPath) !== DB_FILENAME) {
+    throw new Error("Deployment must use the course-only release database.");
   }
-  return tmpPath;
+  if (!fs.existsSync(selectedPath)) throw new Error("Course-only database missing; run the offline release preparation before starting the app.");
+  return selectedPath;
 }
 
 let _db: Database.Database | null = null;
@@ -53,6 +40,15 @@ const REVIEWED_DIALOGUE_AUDIO_IDS = new Set(
 export function getDb(): Database.Database {
   if (!_db) {
     _db = new Database(resolveDbPath(), { readonly: true, fileMustExist: true });
+    if (process.env.VERCEL === "1") {
+      const hasMetadata = _db.prepare("SELECT 1 FROM sqlite_master WHERE name='release_metadata' AND type='table'").get();
+      const hasResearch = _db.prepare("SELECT 1 FROM sqlite_master WHERE name='lexicon_entries' AND type='table'").get();
+      if (!hasMetadata || hasResearch || (_db.prepare("SELECT value FROM release_metadata WHERE key='scope'").get() as { value: string } | undefined)?.value !== "course-only; private dictionary corpora excluded") {
+        _db.close();
+        _db = null;
+        throw new Error("Deployment database does not have the reviewed course-only scope.");
+      }
+    }
   }
   return _db;
 }
@@ -97,7 +93,7 @@ export type DialogueLine = {
 };
 
 export type Construction = {
-  priority_id: number;
+  priority_id: number | string;
   construction_label: string;
   pattern_text: string;
   proficiency_band: string;
@@ -170,6 +166,7 @@ export function getAllUnits(): Unit[] {
           unit.lesson_number,
         ).cards.length,
         english_dialogue_count: getUnitDialogueContent(unit.lesson_number).length,
+        english_construction_count: getUnitConstructions(unit.lesson_number).length,
       };
     })
     .sort((a, b) => a.path_order - b.path_order) as Unit[];
@@ -188,6 +185,7 @@ export function getUnit(lessonNumber: number): Unit | null {
       unit.lesson_number,
     ).cards.length,
     english_dialogue_count: getUnitDialogueContent(unit.lesson_number).length,
+    english_construction_count: getUnitConstructions(unit.lesson_number).length,
   };
 }
 
@@ -208,8 +206,11 @@ export function getVocabCount(): number {
 }
 
 export function getPrimerVocabEntryCount(): number {
-  const row = getDb().prepare("SELECT COUNT(*) AS count FROM lesson_vocab").get() as { count: number };
-  return row.count;
+  const db = getDb();
+  const row = db.prepare("SELECT COUNT(*) AS count FROM lesson_vocab").get() as { count: number };
+  const ledger = db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='retired_vocab_ids'").get();
+  const retired = ledger ? (db.prepare("SELECT COUNT(*) AS count FROM retired_vocab_ids").get() as { count: number }).count : 0;
+  return row.count + retired;
 }
 
 export function getAllPrimerVocab(): VocabItem[] {
@@ -312,7 +313,9 @@ export function getUnitDialogues(lessonNumber: number): DialogueLine[] {
        WHERE lesson_number = ?
        ORDER BY dialogue_order`
     )
-    .all(lessonNumber) as DialogueLine[];
+    .all(lessonNumber)
+    .filter((row) => !isAppContentExcluded((row as DialogueLine).utterance_normalized,
+      (row as DialogueLine).utterance_original, (row as DialogueLine).translation_en)) as DialogueLine[];
 }
 
 export type DialogueLineContent = {
@@ -350,7 +353,11 @@ function stripStageDirections(value: string | null): { text: string; changed: bo
 export function getUnitDialogueContent(lessonNumber: number): DialogueLineContent[] {
   const curated = CURATED_DIALOGUES[lessonNumber];
   if (curated) {
-    return curated.filter(
+    return curated.map((line) => ({
+      ...line,
+      audio_available: Boolean(getDialogueSourceRecording(line.lesson_dialogue_id, line.utterance_normalized)) ||
+        line.audio_available !== false,
+    })).filter(
       (line) => !isAppContentExcluded(line.utterance_normalized, line.translation_en)
     );
   }
@@ -374,7 +381,8 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
     )
     .all(lessonNumber)
     .map((row) => {
-      const line = row as DialogueLineContent;
+      const original = row as DialogueLineContent;
+      const line = { ...original, ...DIALOGUE_LINE_CORRECTIONS[original.lesson_dialogue_id] };
       const utterance = stripStageDirections(line.utterance_normalized);
       const translation = stripStageDirections(line.translation_en);
       return {
@@ -382,7 +390,8 @@ export function getUnitDialogueContent(lessonNumber: number): DialogueLineConten
         utterance_normalized: utterance.text,
         translation_en: translation.text || null,
         audio_available:
-          REVIEWED_DIALOGUE_AUDIO_IDS.has(line.lesson_dialogue_id) || !utterance.changed,
+          line.audio_available !== false &&
+          (REVIEWED_DIALOGUE_AUDIO_IDS.has(line.lesson_dialogue_id) || !utterance.changed),
       };
     })
     .filter(
@@ -436,6 +445,10 @@ export function getUnitConstructions(lessonNumber: number): Construction[] {
       ...(row as Construction),
       translation_en: (row as Record<string, unknown>).translation_en as string | null ?? null,
     }))
+    .flatMap((construction) => {
+      const reviewed = reviewConstruction(construction);
+      return reviewed ? [reviewed] : [];
+    })
     .filter(
       (construction) =>
         !isAppContentExcluded(
@@ -455,7 +468,8 @@ export function getUnitAssessments(lessonNumber: number): Assessment[] {
        WHERE lesson_number = ?
        ORDER BY assessment_id`
     )
-    .all(lessonNumber) as Assessment[];
+    .all(lessonNumber)
+    .filter((row) => !isAppContentExcluded((row as Assessment).prompt)) as Assessment[];
 }
 
 export function searchVocab(query: string, limit = 40): LexiconEntry[] {
@@ -493,34 +507,32 @@ export type GrammarDialogue = {
   speaker_label: string;
   utterance_normalized: string;
   translation_en: string | null;
+  audio_available: boolean;
 };
 
 export function getGrammarDialogues(lessonNumbers: number[]): GrammarDialogue[] {
-  if (lessonNumbers.length === 0) return [];
-  const placeholders = lessonNumbers.map(() => '?').join(',');
-  return getDb()
-    .prepare(
-      `SELECT ld.lesson_dialogue_id, ld.speaker_label, ld.utterance_normalized, ld.translation_en
-       FROM lesson_dialogues ld
-       JOIN phase82_unit_plan u ON u.english_lesson_unit_id = ld.lesson_unit_id
-       WHERE u.lesson_number IN (${placeholders})
-         AND ld.translation_en IS NOT NULL
-         AND (ld.utterance_normalized LIKE '%ā%'
-              OR ld.utterance_normalized LIKE '%ē%'
-              OR ld.utterance_normalized LIKE '%ī%'
-              OR ld.utterance_normalized LIKE '%ō%'
-              OR ld.utterance_normalized LIKE '%¿%')
-         AND length(ld.utterance_normalized) > 8
-         AND length(ld.utterance_normalized) < 150
-       ORDER BY ld.lesson_dialogue_id
-       LIMIT 12`
-    )
-    .all(...lessonNumbers)
-    .filter(
-      (line) =>
-        !isAppContentExcluded(
-          (line as GrammarDialogue).utterance_normalized,
-          (line as GrammarDialogue).translation_en,
-        )
-    ) as GrammarDialogue[];
+  // Share the selected, corrected pairs and audio holds used by the unit pages.
+  // Valid INALI text need not contain a macron or an opening question mark.
+  const selected = new Map<string, DialogueLineContent>();
+  for (const number of new Set(lessonNumbers)) {
+    for (const line of getUnitDialogueContent(number)) {
+      if (
+        line.translation_en?.trim() &&
+        line.utterance_normalized.length > 8 &&
+        line.utterance_normalized.length < 150
+      ) {
+        selected.set(line.lesson_dialogue_id, line);
+      }
+    }
+  }
+  return [...selected.values()]
+    .sort((a, b) => a.lesson_dialogue_id.localeCompare(b.lesson_dialogue_id))
+    .slice(0, 12)
+    .map((line) => ({
+      lesson_dialogue_id: line.lesson_dialogue_id,
+      speaker_label: line.speaker_label,
+      utterance_normalized: line.utterance_normalized,
+      translation_en: line.translation_en,
+      audio_available: line.audio_available !== false,
+    }));
 }

@@ -2,27 +2,486 @@
   "entries": [
     {
       "headword": "tototl",
-      "safeMatches": ["tototl"]
+      "safeMatches": [
+        "tototl"
+      ]
     },
     {
       "headword": "chichiualayotl",
-      "safeMatches": ["chichiualayotl"]
+      "safeMatches": [
+        "chichiualayotl"
+      ]
     },
     {
       "headword": "cocoxqui",
-      "safeMatches": ["cocoxqui"]
+      "safeMatches": [
+        "cocoxqui"
+      ]
     },
     {
       "headword": "ehuatl",
-      "safeMatches": ["ehuatl", "skin"]
+      "safeMatches": [
+        "ehuatl",
+        "skin"
+      ]
     },
     {
       "headword": "notlacal",
-      "safeMatches": ["notlacal"]
+      "safeMatches": [
+        "notlacal"
+      ]
     },
     {
       "headword": "xolentok",
-      "safeMatches": ["xolentok", "wet"]
+      "safeMatches": [
+        "xolentok",
+        "wet"
+      ]
+    },
+    {
+      "headword": "axixtli",
+      "safeMatches": [
+        "axixtli",
+        "āxīxtli",
+        "urine"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "chichitl",
+      "safeMatches": [
+        "chichitl",
+        "chīchītl",
+        "chichihualli",
+        "breast"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "chichiwalli",
+      "safeMatches": [
+        "chichiwalli",
+        "chīchīhualli",
+        "chichihualli",
+        "breast"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "altia",
+      "safeMatches": [
+        "altia",
+        "āltiā",
+        "bathe",
+        "bath"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "chichina",
+      "safeMatches": [
+        "chichina",
+        "chichīna",
+        "suck"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "ichkayolli",
+      "safeMatches": [
+        "ichkayolli",
+        "ichcayōlli",
+        "ichcayolli",
+        "skin"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "tsipitl",
+      "safeMatches": [
+        "tsipitl",
+        "tzīpitl",
+        "tzipitl",
+        "navel"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "xiktli",
+      "safeMatches": [
+        "xiktli",
+        "xīctli",
+        "xictli",
+        "abdomen",
+        "navel"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "elmoyawi",
+      "safeMatches": [
+        "elmoyawi",
+        "ēlmoyāhui",
+        "elmoyahui",
+        "vomit"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "ihsotla",
+      "safeMatches": [
+        "ihsotla",
+        "ihzōtla",
+        "ihzotla",
+        "vomit"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "ihtikokoa",
+      "safeMatches": [
+        "ihtikokoa",
+        "ihticocoā",
+        "ihticocoa",
+        "stomach"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "kixtilia",
+      "safeMatches": [
+        "kixtilia",
+        "quīxtiliā",
+        "quixtilia",
+        "undress"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "maltia",
+      "safeMatches": [
+        "maltia",
+        "māltiā",
+        "bathe"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "mihsotla",
+      "safeMatches": [
+        "mihsotla",
+        "mihzōtla",
+        "mihzotla",
+        "vomit"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "mokwitlawia",
+      "safeMatches": [
+        "mokwitlawia",
+        "mocuitlahuiā",
+        "mocuitlahuia"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "moxixa",
+      "safeMatches": [
+        "moxixa",
+        "moxīxa",
+        "defecate"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "moxixmiki",
+      "safeMatches": [
+        "moxixmiki",
+        "moxīxmiqui",
+        "moxixmiqui",
+        "defecate"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nawa",
+      "safeMatches": [
+        "nawa",
+        "nahuā",
+        "nahua",
+        "chest"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "teka",
+      "safeMatches": [
+        "teka",
+        "tēca",
+        "teca"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "temi",
+      "safeMatches": [
+        "temi",
+        "tēmi",
+        "body part"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "tlanokiya",
+      "safeMatches": [
+        "tlanokiya",
+        "tlanōquiya",
+        "tlanoquiya",
+        "diarrhea"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "waki",
+      "safeMatches": [
+        "waki",
+        "huāqui",
+        "huaqui",
+        "wet"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "wawana",
+      "safeMatches": [
+        "wawana",
+        "huahuana",
+        "body part"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "xipewa",
+      "safeMatches": [
+        "xipewa",
+        "xīpēhua",
+        "xipehua",
+        "skin"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "xixa",
+      "safeMatches": [
+        "xixa",
+        "xīxa",
+        "defecate",
+        "defecating"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "xoloni",
+      "safeMatches": [
+        "xoloni",
+        "xolōni",
+        "wet"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nokwitlapan",
+      "safeMatches": [
+        "nokwitlapan",
+        "nocuitlapan",
+        "body part"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nechkokoa noihti",
+      "safeMatches": [
+        "nechkokoa noihti",
+        "nechcocoa noihti",
+        "noihti",
+        "stomach"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nipatsmiki",
+      "safeMatches": [
+        "nipatsmiki",
+        "nipatzmiqui",
+        "bathes"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "ihti",
+      "safeMatches": [
+        "ihti",
+        "stomach"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nakayo",
+      "safeMatches": [
+        "nakayo",
+        "nacayō",
+        "nacayo",
+        "flesh"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "tlakayo",
+      "safeMatches": [
+        "tlakayo",
+        "tlācayō",
+        "tlacayo",
+        "tlacayotl"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nimaxixmiki",
+      "safeMatches": [
+        "nimaxixmiki",
+        "nimāxīxmiqui",
+        "nimaxixmiqui",
+        "urinate"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nimoxixmiki",
+      "safeMatches": [
+        "nimoxixmiki",
+        "nimoxīxmiqui",
+        "nimoxixmiqui",
+        "defecate"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nonakayo",
+      "safeMatches": [
+        "nonakayo",
+        "nonacayō",
+        "nonacayo",
+        "flesh"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "nechyolkokoa",
+      "safeMatches": [
+        "nechyolkokoa",
+        "nechyōlcocoā",
+        "nechyolcocoa",
+        "chest"
+      ],
+      "scope": "Reviewed educational vocabulary text; image policy is separate."
+    },
+    {
+      "headword": "kwitlatl",
+      "safeMatches": [
+        "kwitlatl",
+        "cuitlatl",
+        "feces",
+        "excrement"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "motsolli",
+      "safeMatches": [
+        "motsolli",
+        "motzolli",
+        "anus"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "pepestik",
+      "safeMatches": [
+        "pepestik",
+        "pepeztic",
+        "naked"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "xolotik",
+      "safeMatches": [
+        "xolotik",
+        "xolotic",
+        "naked"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "notsintamal",
+      "safeMatches": [
+        "notsintamal",
+        "notzintamal",
+        "tzintamal",
+        "tzintamalli",
+        "buttocks",
+        "body"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "tepol",
+      "safeMatches": [
+        "tepol",
+        "penis"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "axixa",
+      "safeMatches": [
+        "axixa",
+        "axixā",
+        "urinate",
+        "urine"
+      ],
+      "scope": "Reviewed vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "tsintenno",
+      "safeMatches": [
+        "tsintenno",
+        "tzintenno",
+        "buttocks",
+        "rear"
+      ],
+      "scope": "Individually reviewed ordinary anatomical possessed-location vocabulary text only; image policy is separate."
+    },
+    {
+      "headword": "notsintlan",
+      "safeMatches": ["notsintlan", "notzintlan", "buttocks", "nalgas"],
+      "scope": "Reviewed literal relational-base vocabulary and nonsexual anatomy limitation notes. Human anatomical meaning remains unverified. Text only; image policy is separate."
+    },
+    {
+      "headword": "xillantli",
+      "safeMatches": ["xillantli", "xīllāntli", "vagina"],
+      "scope": "Individually reviewed ordinary anatomical possessed-noun vocabulary text only. No image, medical guidance or explicit context approval."
+    },
+    {
+      "headword": "alaxiwi",
+      "safeMatches": ["alaxiwi", "alaxihui", "wet"],
+      "scope": "Reviewed ordinary sliding/slippery-surface vocabulary text only; image rules remain separate."
+    },
+    {
+      "headword": "awiltia",
+      "safeMatches": ["awiltia", "āhuiltiā", "rape", "sexual violence", "sexual-violence", "violar", "violencia sexual"],
+      "scope": "Reviewed non-graphic dictionary recognition of an independently supported sexual-violence meaning alongside ordinary object play. No example, practice sentence, explicit context or image approval."
     }
   ]
 }

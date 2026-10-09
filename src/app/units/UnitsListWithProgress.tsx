@@ -5,108 +5,77 @@ import Link from "next/link";
 import { loadProgress, type ProgressData } from "@/lib/progress";
 import { emptyProgress } from "@/lib/progress-schema";
 import { pullAndMerge } from "@/lib/cloudSync";
-import { useUser } from "@clerk/nextjs";
-import type { Unit } from "@/lib/db";
+import { useLearningAccount as useUser } from "@/components/LearningAccount";
+import type { UnifiedPathLesson } from "@/lib/unified-course-path";
+import { getUnifiedPathProgress } from "@/lib/unified-path-progress";
+import { groupCoursePath } from "@/lib/course-path-groups";
+import type { ExpansionCourseProgress } from "@/lib/expansion-course";
+import { loadExpansionCourseState } from "@/lib/expansion-state";
+import { subscribeProgressChanges } from "@/lib/progress-storage";
 import { ArrowRight, Check, Play } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleProvider";
 
-const BAND_COLOR: Record<string, string> = {
-  A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
-  A2: "text-sky-700 bg-sky-100 border-sky-200",
-  B1: "text-violet-700 bg-violet-100 border-violet-200",
-};
-
-const BAND_ORDER = ["A1", "A2", "B1"];
-
-const BAND_LABEL: Record<string, string> = {
-  A1: "Beginner — A1",
-  A2: "Elementary — A2",
-  B1: "B1-oriented extensions",
-};
-
-const BAND_SECTION: Record<string, string> = {
-  A1: "text-emerald-700 bg-emerald-50 border-emerald-100",
-  A2: "text-sky-700 bg-sky-50 border-sky-100",
-  B1: "text-violet-700 bg-violet-50 border-violet-100",
-};
-
-export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
-  const { translate } = useLocale();
+export default function UnitsListWithProgress({ units }: { units: UnifiedPathLesson[] }) {
+  const { locale } = useLocale();
   const [progress, setProgress] = useState<ProgressData>(emptyProgress());
+  const [courseProgress, setCourseProgress] = useState<ExpansionCourseProgress | null>(null);
   const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
     if (!isLoaded) return;
-    if (isSignedIn) {
-      void pullAndMerge().then(({ progress: merged }) => setProgress(merged));
-    } else {
+    let active = true;
+    const refresh = () => {
+      if (!active) return;
       setProgress(loadProgress());
-    }
+      const course = loadExpansionCourseState();
+      setCourseProgress(course.status === "ready" ? course.progress : null);
+    };
+    refresh();
+    const unsubscribe = subscribeProgressChanges(refresh);
+    if (isSignedIn) void pullAndMerge().then(refresh);
+    return () => { active = false; unsubscribe(); };
   }, [isLoaded, isSignedIn]);
 
-  const grouped = BAND_ORDER.map((band) => ({
-    band,
-    units: units.filter((u) => u.target_band === band),
-  })).filter((g) => g.units.length > 0);
+  const grouped = groupCoursePath(units);
 
   return (
     <div className="space-y-12">
-      {grouped.map(({ band, units: bandUnits }) => (
-        <div key={band}>
-          <div className={`mb-4 flex items-center gap-3 rounded-xl border px-4 py-3 ${BAND_SECTION[band]}`}>
-            <span className={`rounded-full border px-2 py-0.5 text-xs font-bold ${BAND_COLOR[band]}`}>
-              {band === "B1" ? translate("B1-oriented") : band}
-            </span>
-            <span className="text-sm font-semibold">{translate(BAND_LABEL[band])}</span>
-            <span className="text-xs ml-auto opacity-60">{bandUnits.length} {translate("units")}</span>
+      {grouped.map(({ title, units: stageUnits }, index) => (
+        <section key={`${title}-${index}`}>
+          <div className="mb-4 flex items-center gap-3 rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-emerald-800">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-900 text-xs font-black text-white">{index + 1}</span>
+            <h2 className="text-sm font-semibold">{locale === "es" ? stageUnits[0].stageTitleEs : stageUnits[0].stageTitleEn}</h2>
+            <span className="ml-auto text-xs opacity-60">{stageUnits.length} {locale === "es" ? "lecciones" : "lessons"}</span>
           </div>
 
           <div className="grid gap-3 lg:grid-cols-2">
-            {bandUnits.map((unit) => {
-              const p = progress.units[unit.lesson_number];
-              const status = p?.status ?? "not_started";
+            {stageUnits.map((unit) => {
+              const status = getUnifiedPathProgress(unit, progress, courseProgress).status;
               return (
                 <Link
-                  key={unit.lesson_number}
-                  href={`/units/${unit.lesson_number}`}
+                  key={unit.lessonNumber}
+                  href={`/units/${unit.lessonNumber}`}
                   className="group grid min-h-44 grid-cols-[auto_1fr] gap-4 rounded-2xl border border-stone-200/90 bg-white/85 p-5 shadow-[0_8px_25px_rgba(39,36,31,.04)] transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-lg"
                 >
                   <div>
-                    <span className="flex h-11 min-w-11 items-center justify-center rounded-xl bg-stone-950 px-2 text-xs font-black text-white">
-                      {unit.path_code}
-                    </span>
+                    <span className="flex h-11 min-w-11 items-center justify-center rounded-xl bg-stone-950 px-2 text-xs font-black text-white">{unit.pathCode}</span>
                   </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="mb-1 flex items-start justify-between gap-2">
-                      <p className="font-black leading-snug text-stone-900 group-hover:text-emerald-800">
-                        {unit.theme_en}
-                      </p>
-                      <span className="hidden text-xs text-stone-400 sm:inline">
-                        {unit.stage_title}
-                      </span>
-                    </div>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-stone-600">
-                      {unit.cefr_descriptor}
-                    </p>
+                  <div className="min-w-0">
+                    <p className="font-black leading-snug text-stone-900 group-hover:text-emerald-800">{locale === "es" ? unit.titleEs : unit.titleEn}</p>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-stone-600">{locale === "es" ? unit.goalEs : unit.goalEn}</p>
                     <p className="mt-3 text-xs font-semibold text-stone-400">
-                      {unit.english_vocab_count} {translate("words")} · {unit.english_dialogue_count} {translate("dialogue lines")}
+                      {unit.wordCount > 0 && <>{unit.wordCount} {locale === "es" ? unit.kind === "grammar" ? "expresiones" : "palabras y formas" : unit.kind === "grammar" ? "expressions" : "words and forms"} · </>}
+                      {unit.patternCount > 0 && <>{unit.patternCount} {locale === "es" ? "patrones" : "patterns"} · </>}
+                      {unit.durationMinutes} min
                     </p>
                   </div>
-
                   <div className="col-span-2 mt-auto flex items-center justify-between border-t border-stone-100 pt-4">
-                    <span className="text-xs font-bold text-stone-500">{translate(status === "completed" ? "Completed" : status === "in_progress" ? "Continue unit" : "Start unit")}</span>
-                    {status === "completed" && (
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                        <Check size={15} strokeWidth={3} />
-                      </span>
-                    )}
-                    {status === "in_progress" && (
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-700">
-                        <Play size={14} fill="currentColor" />
-                      </span>
-                    )}
-                    {status === "not_started" && (
+                    <span className="text-xs font-bold text-stone-500">{locale === "es" ? status === "completed" ? "Completada" : status === "in_progress" ? "Continuar lección" : "Comenzar lección" : status === "completed" ? "Completed" : status === "in_progress" ? "Continue lesson" : "Start lesson"}</span>
+                    {status === "completed" ? (
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Check size={15} strokeWidth={3} /></span>
+                    ) : status === "in_progress" ? (
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-700"><Play size={14} fill="currentColor" /></span>
+                    ) : (
                       <span className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition group-hover:border-emerald-200 group-hover:bg-emerald-50 group-hover:text-emerald-700"><ArrowRight size={15} /></span>
                     )}
                   </div>
@@ -114,7 +83,7 @@ export default function UnitsListWithProgress({ units }: { units: Unit[] }) {
               );
             })}
           </div>
-        </div>
+        </section>
       ))}
     </div>
   );

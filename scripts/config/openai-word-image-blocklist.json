@@ -1,4 +1,37 @@
 {
+  "nonOverridableCategories": [
+    "adult-sexual",
+    "covered-body-or-exposure-risk",
+    "clothing-change-exposure-risk",
+    "body-waste",
+    "graphic-injury-or-death",
+    "hate-or-extremism"
+  ],
+  "nonOverridableDepictionRules": [
+    {
+      "category": "prohibited-nudity-or-sensitive-anatomy",
+      "pattern": "\\b(nude|nudity|naked|unclothed|genital|genitals|penis|vagina|vulva|breast|breasts|buttock|buttocks)\\b|\\b(desnud[ao]s?|desnudez|genitales?|pene|vagina|vulva|senos|nalgas|gluteos)\\b|\\b(exposed|bare|unclothed)\\b.{0,50}\\b(body|skin|chest|torso)\\b|\\b(body|skin|chest|torso)\\b.{0,50}\\b(exposed|exposure|bare|unclothed)\\b|\\b(cuerpo|piel|pecho|torso)\\b.{0,50}\\b(expuest[ao]s?|descubiert[ao]s?|desnud[ao]s?)\\b|\\b(expuest[ao]s?|descubiert[ao]s?|desnud[ao]s?)\\b.{0,50}\\b(cuerpo|piel|pecho|torso)\\b"
+    },
+    {
+      "category": "people-in-bathing-scene",
+      "pattern": "\\b(bathing|showering|banarse|banandose|duchandose|ducharse)\\b|\\b(child|children|baby|babies|infant|infants|teen|teens|minor|minors|boy|boys|girl|girls|person|people|adult|adults|man|woman|men|women|nino|nina|ninos|ninas|bebe|bebes|infante|menor|menores|adulto|adulta|persona|personas|hombre|mujer)\\b.{0,100}\\b(bath|bathe|bathing|shower|showering|tub|bathtub|bano|banera|ducha)\\b|\\b(bath|bathe|bathing|shower|showering|tub|bathtub|bano|banera|ducha)\\b.{0,100}\\b(child|children|baby|babies|infant|infants|teen|teens|minor|minors|boy|boys|girl|girls|person|people|adult|adults|man|woman|men|women|nino|nina|ninos|ninas|bebe|bebes|infante|menor|menores|adulto|adulta|persona|personas|hombre|mujer)\\b|\\b[0-9]{1,2}[ -]+year[ -]+old\\b.{0,100}\\b(bath|shower|tub|bathtub)\\b"
+    },
+    {
+      "category": "prohibited-covered-exposure-context",
+      "pattern": "\\b(shirtless|topless|bare[- ]chested|underwear|underclothes|undergarments?|briefs|panties|bra|loincloth|swimwear|swimsuit|bikini)\\b|\\bsin\\s+(ropa|camisa|blusa|pantalones|vestir)\\b"
+    },
+    {
+      "category": "human-parts-or-age-in-bathing-scene",
+      "pattern": "\\b(bath|bathe|bathing|shower|showering|tub|bathtub|bano|banera|ducha)\\b.{0,100}(?:\\b[0-9]{1,2}[ -]+year[ -]+old\\b|\\baged?\\s+[0-9]{1,2}\\b|\\b(human|hands?|faces?|feet|silhouette|reflection|childlike|underage)\\b)|(?:\\baged?\\s+[0-9]{1,2}\\b|\\b(human|hands?|faces?|feet|silhouette|reflection|childlike|underage)\\b).{0,100}\\b(bath|bathe|bathing|shower|showering|tub|bathtub|bano|banera|ducha)\\b"
+    }
+  ],
+  "nonOverridableHeadwords": [
+    "chichitl", "chīchītl", "chichiwalli", "chichiwal", "chīchīhualli", "chichihual", "chichihualli",
+    "notsintamal", "notsintamalli", "notzīntamal", "notzintamalli", "tsintamalli", "tzintamalli",
+    "tsintenno", "tzīntēnno", "tepol", "tepōl", "xillantli", "xīllāntli"
+  ],
+  "bathingCompositionInstruction": "Non-overridable bathing rule: use only an empty shower, empty tub, or appropriate empty body of water. NO PEOPLE of any age anywhere in the scene, including children, babies, adults, faces, hands, silhouettes, shadows shaped like people, or reflections. Never depict any child in bathing, nudity, changing, or body exposure. Never depict nude people or exposed genitals, breasts, or buttocks. Written vocabulary or educational-text approval does not grant any image exception.",
+  "bathingConceptPattern": "\\b(bath|bathe|bathes|bathing|shower|showering|tub|bathtub|banarse|banandose|bano|banera|ducha|ducharse|duchandose)\\b|\\b(?:ni|ti|xi|ma\\s+|in)?malt(?:ia|ikan|ican|i)\\b",
   "blockedHeadwords": [
     "acelana",
     "ahcohuetzi",

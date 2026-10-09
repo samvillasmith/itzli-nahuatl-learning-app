@@ -1,7 +1,12 @@
+import "server-only";
 import OpenAI from "openai";
 import { getSql } from "@/lib/neon";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { displayNahuatl } from "@/lib/orthography";
+import reviewedTutorContext from "@/data/reviewed-tutor-context.json";
+import { createReviewedTutorGate } from "@/lib/reviewed-tutor-gate.cjs";
+
+const selectReviewedTutorChunk = createReviewedTutorGate(reviewedTutorContext.seeds);
 
 // Retrieval layer for the chat tutor. At request time we embed the latest
 // user message and pull the top-k most semantically similar chunks from
@@ -27,7 +32,7 @@ export type RetrievedChunk = {
 };
 
 function getOpenAIClient(): OpenAI {
-  client ??= new OpenAI();
+  client ??= new OpenAI({ timeout: 10_000, maxRetries: 0 });
   return client;
 }
 
@@ -39,7 +44,7 @@ export async function embedQuery(text: string): Promise<number[] | null> {
     });
     return res.data[0]?.embedding ?? null;
   } catch (err) {
-    console.error("[rag] embedQuery failed:", err);
+    console.error("[rag] embedQuery failed:", err instanceof Error ? err.name : "unknown");
     return null;
   }
 }
@@ -99,7 +104,7 @@ async function vectorRetrieve(
       distance: Number(r.distance),
     }));
   } catch (err) {
-    console.error("[rag] vector retrieve failed:", err);
+    console.error("[rag] vector retrieve failed:", err instanceof Error ? err.name : "unknown");
     return [];
   }
 }
@@ -132,7 +137,7 @@ async function keywordRetrieve(
         });
       }
     } catch (err) {
-      console.error(`[rag] keyword retrieve for "${word}" failed:`, err);
+      console.error("[rag] keyword retrieve failed:", err instanceof Error ? err.name : "unknown");
     }
   }
   return out;
@@ -154,10 +159,11 @@ export async function retrieve(
   const seen = new Set<string>();
   const merged: RetrievedChunk[] = [];
   for (const c of [...keywordHits, ...vectorHits]) {
-    if (isAppContentExcluded(c.content, JSON.stringify(c.metadata))) continue;
-    if (seen.has(c.content)) continue;
-    seen.add(c.content);
-    merged.push(c);
+    const reviewed = selectReviewedTutorChunk(c);
+    if (!reviewed || isAppContentExcluded(reviewed.content, JSON.stringify(reviewed.metadata))) continue;
+    if (seen.has(reviewed.content)) continue;
+    seen.add(reviewed.content);
+    merged.push({ ...reviewed, distance: Number.isFinite(c.distance) ? c.distance : 0 });
   }
   return merged;
 }
@@ -166,10 +172,17 @@ export async function retrieve(
 // The model sees these under a dedicated "## RETRIEVED CONTEXT" header so
 // it's unambiguous that these are grounding facts, not conversation turns.
 export function formatRetrieved(chunks: RetrievedChunk[]): string {
-  if (chunks.length === 0) return "";
+  // Defense in depth for callers that did not use retrieve(). A prompt
+  // instruction to avoid quotation is not a source/provenance check.
+  const reviewedChunks = chunks.flatMap(chunk => {
+    const reviewed = selectReviewedTutorChunk(chunk);
+    return reviewed && !isAppContentExcluded(reviewed.content, JSON.stringify(reviewed.metadata))
+      ? [{ ...reviewed, distance: chunk.distance }] : [];
+  });
+  if (reviewedChunks.length === 0) return "";
 
   const grouped: Record<string, string[]> = {};
-  for (const c of chunks) {
+  for (const c of reviewedChunks) {
     (grouped[c.kind] ??= []).push(`- ${formatChunkContent(c)}`);
   }
 

@@ -1,4 +1,5 @@
 // src/data/grammar-lessons.ts
+import "server-only";
 
 export type Example = {
   nahuatl: string;
@@ -30,23 +31,23 @@ export type GrammarLesson = {
   relatedGrammarLabIds?: string[];
 };
 
-export const GRAMMAR_LESSONS: GrammarLesson[] = [
+const AUTHORED_GRAMMAR_LESSONS: GrammarLesson[] = [
   {
     id: 'alphabet',
     title: 'Pronunciation Guide: Sounds and Spelling',
     nahuatlTitle: 'Piltlahcuiloltzitzin',
     band: 'A1',
-    shortDesc: 'How to read the practical spelling, including common pronunciation traps like kenihki.',
+    shortDesc: 'Read the course spelling with INALI’s published Nahuatl alphabet and learn regional pronunciation cues.',
     relatedUnits: [1],
     sections: [
       {
         kind: 'prose',
-        text: `Eastern Huasteca Nahuatl (EHN) is written in several different systems. This app uses an INALI-style practical spelling for learners: k for /k/, w for /w/, kw for /kw/, ts for /ts/, s for /s/, and plain vowels without macrons.\n\nPronunciation still comes first. Some common source-course spellings need a spoken cue, especially the source spelling queniuhqui, which this app teaches as **kenihki**. When you see the name question, practice it as **kenihki motokah**.\n\nOlder IDIEZ and SEP spellings still appear in dictionaries, academic materials, and source course pages. For a short explainer of the differences, see the "Orthographic Systems" lesson.`,
+        text: `INALI’s published Nahuatl alphabet governs this course’s teaching orthography. Its 19 graphemes are **a, ch, e, i, h, k, kw, l, m, n, o, p, s, t, tl, ts, w, x, y**. We use **h**, not j, for the corresponding Nahuatl consonant, and retain doubled consonants where the taught form has them.\n\nThe alphabet unifies writing criteria while respecting each region’s language. Our vocabulary and grammar remain grounded in Eastern Huasteca Nahuatl, especially the Chicontepec-based source course. A shared alphabet does not make every regional word or pronunciation identical.\n\nSource spellings remain available as labeled references. For example, the source-course spelling queniuhqui is taught here as **kenihki**, a source-aware reading cue rather than a general rule that every uh becomes w. Practice the name question as **kenihki motokah**. The "Orthographic Systems" lesson explains how to read source references alongside the INALI course spelling.`,
       },
       {
         kind: 'rule',
         title: 'Vowels',
-        text: `EHN has four vowel qualities in the practical spelling: a, e, i, o. Some source systems mark long vowels with macrons, but this app keeps learner-facing spelling plain. Listen to the audio and repeat the rhythm rather than trying to type vowel-length marks.`,
+        text: `The INALI alphabet has four vowel letters: a, e, i, o. Some source materials mark vowel length with macrons. The course’s main practice text uses plain vowels, as the published alphabet poster’s examples do; original length marks remain in source references. Their omission from practice text does not mean that vowel length is absent in speech. The poster alone does not provide a complete rule for writing vowel length, so listen to source recordings and keep the source pronunciation evidence in view.`,
       },
       {
         kind: 'paradigm',
@@ -66,7 +67,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Key consonants and sound clusters',
-        text: `Most consonants are pronounced close to Spanish values. Several sound combinations are important in Nahuatl:\n\n• **tl** — a lateral affricate unique to Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **ts** — like English "ts" in "cats". Example: tsahtsi (to shout).\n\n• **x** — like English "sh" in "shoe". Example: xochitl (flower).\n\n• **w** — represents the /w/ sound in words like weyi (big), but do not use it to pronounce the question word kenihki.\n\n• **kw** — represents the /kw/ sound. Example: kwawtli (eagle).\n\n• **k** — represents the /k/ sound everywhere. Example: kenihki (how).\n\n• **h** can mark a brief glottal catch or h-like release. Example: axkan (now/today), motokah (your name).`,
+        text: `Most consonants are pronounced close to Spanish values. Several sound combinations are important in Nahuatl:\n\n• **tl** — a lateral affricate found in Nahuatl. Formed by placing the tongue for an **l** sound and releasing air sideways. Practice with: tlahtoa (to speak).\n\n• **ts** — like English "ts" in "cats". Example: tsahtsi (to shout).\n\n• **x** — like English "sh" in "shoe". Example: xochitl (flower).\n\n• **w** — represents the /w/ sound in words like weyi (big), but do not use it to pronounce the question word kenihki.\n\n• **kw** — represents the /kw/ sound. Example: kwawtli (eagle).\n\n• **k** — represents the /k/ sound everywhere. Example: kenihki (how).\n\n• **h** can mark a brief glottal catch or h-like release. Example: motokah (your name).`,
       },
       {
         kind: 'rule',
@@ -84,7 +85,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'w', form: '/w/', gloss: 'weyi — big' },
           { person: 'kw', form: '/kw/', gloss: 'kwawtli — eagle' },
           { person: 'k', form: '/k/', gloss: 'kemman — when' },
-          { person: 'h', form: 'glottal stop / h-like catch', gloss: 'axkan — today/now' },
+          { person: 'h', form: 'glottal stop / h-like catch', gloss: 'motokah — your name' },
         ],
       },
       {
@@ -97,12 +98,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Practice reading these words',
         items: [
           { nahuatl: 'Piyali', breakdown: 'Pi·ya·li', translation: 'Hello / Greetings', note: 'Common EHN greeting' },
-          { nahuatl: 'axkan', breakdown: 'ax·kan', translation: 'today / now', note: 'Listen for the brief catch in careful speech' },
+          { nahuatl: 'axkan', breakdown: 'ax·kan', translation: 'today / now', note: 'x represents the sh sound.' },
           { nahuatl: 'tlahtoa', breakdown: 'tlah·to·a', translation: 'to speak', note: 'Note the tl- onset' },
           { nahuatl: 'xochitl', breakdown: 'xo·chitl', translation: 'flower', note: 'x = /sh/' },
           { nahuatl: 'kenihki', breakdown: 'ke·nih·ki', translation: 'how / what is ... like?', note: 'Say kenihki, not keniwki' },
           { nahuatl: '¿Quēniuhqui motōcah?', breakdown: 'kenihki mo·tokah', translation: 'What is your name?', note: 'Source spelling: Quēniuhqui motōcah. Practice aloud as kenihki motokah.' },
-          { nahuatl: 'kalli', breakdown: 'ka·lli', translation: 'house', note: 'k is written the same before every vowel' },
+          { nahuatl: 'kalli', breakdown: 'kal·li', translation: 'house', note: 'k is written the same before every vowel' },
         ],
       },
     ],
@@ -110,46 +111,46 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'orthographic-systems',
-    title: 'Orthographic Systems: IDIEZ, INALI & SEP',
+    title: 'Orthographic Systems: INALI Standard and Source References',
     nahuatlTitle: 'Tlahcuiloliztli',
     band: 'A1',
-    shortDesc: 'Why Nahuatl is written different ways, and why this course uses a modern k/w/s spelling with h retained.',
+    shortDesc: 'Use INALI’s published alphabet consistently while learning to read original source spellings.',
     relatedUnits: [1],
     sections: [
       {
         kind: 'prose',
-        text: `If you look up a Nahuatl word in three different books you may find it spelled several different ways: *cualli*, *kualli*, *kuali*, or *kwali*. These refer to the same word ("good"). The difference isn't dialect — it's orthography. Nahuatl has never had a single official writing system, and several competing conventions coexist today.`,
+        text: `INALI’s published Nahuatl alphabet is the writing standard for this course. Books, dictionaries, school materials, and community texts may preserve other spelling conventions. Learning to read those references is useful, but they do not change the course’s teaching standard.\n\nA spelling difference can reflect an orthographic convention, a regional form, or a pronunciation distinction. Do not assume that every differently written word is interchangeable. We keep original source forms visible in labeled comparisons and use the INALI alphabet for the primary practice form.`,
       },
       {
         kind: 'rule',
-        title: 'The three main systems',
-        text: `• **IDIEZ** — the Instituto de Docencia e Investigación Etnológica de Zacatecas standard. Based on colonial conventions (written by Franciscan friars from the 1500s on) with modern refinements: macron vowels (ā ē ī ō) mark phonemic length, "h" marks the saltillo (glottal stop), "c"/"qu" for /k/, "hu"/"uh" for /w/, "cu"/"uc" for /kw/, "x" for /ʃ/, and the characteristic digraph "tl". Strong academic presence — the Hodgin dictionary, Sullivan's chrestomathies, and most recent linguistic work use IDIEZ.\n\n• **INALI** — Mexico's Instituto Nacional de Lenguas Indígenas (2003 – present) promotes a phonemic, Spanish-independent spelling: "k" for /k/, "w" for /w/, "s" for /s/, "kw" for /kw/, no macrons, saltillo marked with "j" or "h". Widely used in state schools and INALI publications.\n\n• **SEP / traditional** — older Secretaría de Educación Pública textbooks and many speakers use an intermediate system mixing Spanish spellings without macrons: "c" and "qu" for /k/, "hu" and "u" for /w/, no diacritics for length. Common in community-produced materials.`,
+        title: 'The teaching standard and source conventions',
+        text: `• **INALI: the course standard** — the published Nahuatl alphabet contains **a, ch, e, i, h, k, kw, l, m, n, o, p, s, t, tl, ts, w, x, y**. Its examples use h, k, kw, ts, and w; doubled l is retained in examples such as chilli and tlayolli. The poster respects regional vocabulary and pronunciation instead of imposing one region’s words on another.\n\n• **IDIEZ: original course references** — the Chicontepec-based source course uses c/qu, hu/uh, and cu/uc spellings, and macrons such as ā, ē, ī, ō. We retain those original forms in source references so learners can consult the material and its pronunciation evidence. They are reference spellings, not a second teaching standard.\n\n• **Other school and community references** — some materials use j or u, while others retain older c/qu or hu conventions. Read each source according to its own spelling guide. The j spelling in such a reference is not part of INALI’s published alphabet used by this course.`,
       },
       {
         kind: 'paradigm',
         heading: 'Same word, three spellings',
-        caption: 'The middle column is the app display; the final column includes SEP and INALI-j alternatives.',
-        headers: ['IDIEZ / academic', 'Course display (k/w/s, h retained)', 'SEP / INALI-j variant'],
+        caption: 'The middle column is the INALI course form. The outer columns preserve source-reference spellings; they are not alternative teaching standards.',
+        headers: ['IDIEZ source reference', 'INALI course spelling', 'Other source-reference spelling'],
         rows: [
           { person: 'cualli', form: 'kwalli', gloss: 'cualli' },
           { person: 'quena', form: 'kena', gloss: 'quena' },
           { person: 'cihuātl', form: 'siwatl', gloss: 'cihuatl' },
           { person: 'xōchitl', form: 'xochitl', gloss: 'xochitl' },
-          { person: 'tlahtoa', form: 'tlahtoa', gloss: 'tlajtoa (SEP / INALI-j)' },
+          { person: 'tlahtoa', form: 'tlahtoa', gloss: 'tlajtoa (j-spelling reference)' },
           { person: 'cuahuitl', form: 'kwawitl', gloss: 'cuahuitl' },
           { person: 'ahsi', form: 'ahsi', gloss: 'asi / aci' },
         ],
       },
       {
         kind: 'prose',
-        heading: 'Why this course uses INALI-style spelling',
-        text: `The practical INALI spelling is easier to type, easier to search, and closer to what many learners will encounter in modern community and school contexts. It avoids macrons and the older c/qu/hu/cu conventions, so learners can focus on listening, speaking, and building sentences.\n\nThe underlying source data still includes IDIEZ-style forms so audio, images, attribution, and database lookups keep working. The app converts learner-facing Nahuatl into the practical spelling at display and answer-check time.`,
+        heading: 'INALI governs the course spelling',
+        text: `Lessons, conversations, vocabulary practice, and answer checks use the same INALI alphabet. The original source spelling is preserved separately, together with the evidence for each regional form. Changing the writing convention does not change a word’s identity, its meaning, or the learner’s existing progress.\n\nThe course uses plain vowels in its main practice display. Original vowel-length marks remain available in source references; this display choice must not be confused with a claim that length is absent in speech or that the alphabet poster supplies every rule of a complete writing norm.`,
       },
       {
         kind: 'paradigm',
         heading: 'Quick conversion cheatsheet',
-        caption: 'Mapping between older spellings and the learner-facing INALI-style display.',
-        headers: ['Sound', 'IDIEZ writes', 'INALI writes'],
+        caption: 'These sound mappings help read source references. Use the approved course form: letter sequences can have source-specific exceptions, and a spelling conversion must preserve the regional word.',
+        headers: ['Sound or source feature', 'Original source spelling', 'INALI course spelling'],
         rows: [
           { person: '/k/ before a/o', form: 'c', gloss: 'k' },
           { person: '/k/ before e/i', form: 'qu', gloss: 'k' },
@@ -158,8 +159,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: '/kw/', form: 'cu / uc', gloss: 'kw' },
           { person: '/s/', form: 'c / z', gloss: 's' },
           { person: '/ʃ/', form: 'x', gloss: 'x' },
-          { person: '/ʔ/ (saltillo)', form: 'h', gloss: 'j or h' },
-          { person: 'long vowel', form: 'ā ē ī ō', gloss: '(unmarked)' },
+          { person: 'saltillo / h consonant', form: 'h', gloss: 'h' },
+          { person: 'source vowel-length marks', form: 'ā ē ī ō', gloss: 'plain vowels in practice; length retained in references' },
         ],
       },
     ],
@@ -181,7 +182,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Common standalone noun endings',
-        text: `• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *nāhuatl*, *āxcan*\n\nIn practice, learn the ending as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun.`,
+        text: `• **-tl** — common after a final vowel: *ātl* (water), *cōātl* (snake)\n• **-tli** — common after many consonants: *cīntli* (corn ear), *āmoxtli* (book)\n• **-li** — common after a stem-final /l/: *cōmalli* (comal/griddle), *calli* (house)\n• **-n** — appears in a smaller set of nouns; learn these forms individually\n• **ø** — some nouns take no visible suffix: *chichi* (dog)\n\nIn practice, learn the ending as part of the word. For beginner production, use explicit possessed forms shown in the course rather than guessing from a new noun.`,
       },
       {
         kind: 'paradigm',
@@ -190,7 +191,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         rows: [
           { person: 'ātl', form: 'water', gloss: '-tl (after vowel)' },
           { person: 'cōātl', form: 'snake', gloss: '-tl (after vowel)' },
-          { person: 'cālli', form: 'house', gloss: '-li (stem: cāl-)' },
+          { person: 'calli', form: 'house', gloss: '-li (stem: cal-)' },
           { person: 'cōmalli', form: 'comal / cooking griddle', gloss: '-li (stem: cōmal-)' },
           { person: 'cīntli', form: 'ear of corn', gloss: '-tli (after consonant)' },
           { person: 'āmoxtli', form: 'book', gloss: '-tli (after consonant)' },
@@ -242,7 +243,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     sections: [
       {
         kind: 'prose',
-        text: `EHN does not require an independent pronoun to be stated — the verb itself carries all the information about who is performing the action. Subject prefixes are attached directly to the front of the verb. The independent pronouns exist but are used mainly for emphasis or contrast.\n\n**Short vs. long forms.** In everyday EHN speech, the singular pronouns are simply **na** (I), **ta** (you), **ya** (he/she). These are the forms you will hear most often and the ones returned by most Nahuatl dictionaries and translators. The longer forms **naha / taha / yaha** exist as emphatic variants (roughly "I myself," "you yourself"), and the Classical Central Nahuatl forms *nehhuatl / tehhuatl / yehhuatl* appear in older texts but are rare in spoken EHN. **Learn the short forms first.**\n\nNew to grammar terms like "first person" and "third person plural"? See the "Who's Talking? Person & Number Explained" lesson for a plain-English guide.`,
+        text: `EHN does not require an independent pronoun to be stated — the verb itself carries all the information about who is performing the action. Subject prefixes are attached directly to the front of the verb. The independent pronouns exist but are used mainly for emphasis or contrast.\n\n**Source-course pronouns.** Source Lesson 3 teaches **na** (I), **ta** (you), and **ya** (he/she), alongside **tohhuantin**, **inmohhuantin**, and **inihhuantin** for the plural. Other varieties and writing traditions use other forms; this lesson follows the source course.\n\nNew to grammar terms like "first person" and "third person plural"? See the "Who's Talking? Person & Number Explained" lesson for a plain-English guide.`,
       },
       {
         kind: 'paradigm',
@@ -253,23 +254,9 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'I', form: 'na', gloss: 'I' },
           { person: 'you', form: 'ta', gloss: 'you (singular)' },
           { person: 'he / she', form: 'ya', gloss: 'he / she / it' },
-          { person: 'we', form: 'tohuantin', gloss: 'we' },
-          { person: 'you all', form: 'amohuantin', gloss: 'you (plural)' },
-          { person: 'they', form: 'yahuantin', gloss: 'they' },
-        ],
-      },
-      {
-        kind: 'paradigm',
-        heading: 'Emphatic and Classical variants',
-        caption: 'Use for "I myself" / "you yourself," or when reading older texts.',
-        headers: ['Person', 'Emphatic EHN', 'Classical'],
-        rows: [
-          { person: 'I', form: 'naha', gloss: 'nehhuatl' },
-          { person: 'you', form: 'taha', gloss: 'tehhuatl' },
-          { person: 'he / she', form: 'yaha', gloss: 'yehhuatl' },
-          { person: 'we', form: 'tohuanti / tohhuantin', gloss: 'tehhuantin' },
-          { person: 'you all', form: 'amohuanti', gloss: 'amehhuantin' },
-          { person: 'they', form: 'yahuanti', gloss: 'yehhuantin' },
+          { person: 'we', form: 'tohhuantin', gloss: 'we' },
+          { person: 'you all', form: 'inmohhuantin', gloss: 'you (plural)' },
+          { person: 'they', form: 'inihhuantin', gloss: 'they' },
         ],
       },
       {
@@ -462,7 +449,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'he / she', form: 'ī-', gloss: 'his / her / its' },
           { person: 'we', form: 'to-', gloss: 'our' },
           { person: 'you all', form: 'inmo-', gloss: 'your (plural)' },
-          { person: 'they', form: 'in-', gloss: 'their' },
+          { person: 'they', form: 'inin-', gloss: 'their' },
         ],
       },
       {
@@ -479,8 +466,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'you', form: 'motokah', gloss: 'your name' },
           { person: 'he / she', form: 'itokah', gloss: 'his / her name' },
           { person: 'we', form: 'totokah', gloss: 'our name' },
-          { person: 'you all', form: 'amotokah', gloss: 'your (pl) name' },
-          { person: 'they', form: 'intokah', gloss: 'their name' },
+          { person: 'you all', form: 'inmotokah', gloss: 'your (pl) name' },
+          { person: 'they', form: 'inintokah', gloss: 'their name' },
         ],
       },
       {
@@ -615,86 +602,57 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     title: 'Future Tense',
     nahuatlTitle: 'Tlachīhualiztli tlen panoz',
     band: 'A1',
-    shortDesc: 'Expressing future and indefinite actions with -z / -zqueh.',
+    shortDesc: 'Learn singular future forms attested in Source Lesson 12.',
     relatedUnits: [12, 7],
     relatedGrammarLabIds: ['future-tense'],
     sections: [
       {
         kind: 'prose',
-        text: `The future tense in EHN is formed by adding a suffix to the present tense verb stem. This same suffix is also used for the "indefinite" tense — expressing habitual or general actions. The suffix changes slightly for plural forms.`,
+        text: `Source Lesson 12 teaches singular future forms with -z. Learn the stem with each verb: nitequiti becomes nitequitiz, while nimomachtia loses its final a and becomes nimomachtiz. This lesson practices the attested singular forms.`,
       },
       {
         kind: 'rule',
-        title: 'Future suffix: -z (singular) / -zqueh (plural)',
-        text: `• Singular forms (1sg, 2sg, 3sg): add **-z** to the present stem\n• Plural forms (1pl, 2pl, 3pl): add **-zqueh** to the present stem\n\nNote: In the plural, the -h that normally marks plural verbs is already contained in -zqueh.`,
+        title: 'Singular future forms and a pending plural review',
+        text: `The source writes plural -zceh, while some app material has used -zqueh. The transcription and pronunciation need review; neither spelling is presented here as universally correct. Plural future production is withheld while that question is unresolved.`,
       },
       {
         kind: 'paradigm',
-        heading: 'Future tense of tequiti (to work)',
+        heading: 'tequiti (to work) — Singular future',
         headers: ['Person', 'Future form', 'Meaning'],
         rows: [
           { person: 'I', form: 'nitequitiz', gloss: 'I will work' },
           { person: 'you', form: 'titequitiz', gloss: 'you will work' },
           { person: 'he / she', form: 'tequitiz', gloss: 'he/she will work' },
-          { person: 'we', form: 'titequitizqueh', gloss: 'we will work' },
-          { person: 'you all', form: 'intequitizqueh', gloss: 'you all will work' },
-          { person: 'they', form: 'tequitizqueh', gloss: 'they will work' },
         ],
       },
       {
         kind: 'paradigm',
-        heading: 'Common verbs in the future (1sg form)',
+        heading: 'More source-course singular future forms',
         headers: ['Future form', 'Present form', 'Meaning'],
         rows: [
-          { person: 'nimēhuaz', form: 'niēhua', gloss: 'I will get up / leave' },
+          { person: 'nimomachtiz', form: 'nimomachtia', gloss: 'I will study' },
+          { person: 'timomachtiz', form: 'timomachtia', gloss: 'you will study' },
+          { person: 'momachtiz', form: 'momachtia', gloss: 'he/she will study' },
           { person: 'nitlacuāz', form: 'nitlacua', gloss: 'I will eat' },
-          { person: 'nimocuepaz', form: 'nimocuepa', gloss: 'I will return' },
-          { person: 'tiyāzceh', form: 'tiyāuh → 1pl', gloss: 'we will go' },
-          { person: 'nihuāllāz', form: 'nihuāllāuh', gloss: 'I will come back' },
-          { person: 'nitlahtōz', form: 'nitlahtoa', gloss: 'I will speak' },
-          { person: 'nitlahcuilōz', form: 'nitlahcuiloa', gloss: 'I will write' },
-          { person: 'nimomachtiznequi', form: 'nimomachtia', gloss: 'I want to learn (with nequi = to want)' },
+          { person: 'titlacuāz', form: 'titlacua', gloss: 'you will eat' },
+          { person: 'tlacuāz', form: 'tlacua', gloss: 'he/she will eat' },
         ],
       },
       {
         kind: 'examples',
-        heading: 'Future tense in dialogue',
+        heading: 'Source Lesson 12 sentences',
         items: [
           {
-            nahuatl: 'Tiotlac nihuāllāz.',
-            breakdown: 'Tiotlac ni·huāllāz.',
-            translation: "I'll come back in the evening.",
-            note: 'tiotlac = evening/afternoon; nihuāllāz = 1sg future of huāllāuh (to come)',
+            nahuatl: 'Nochocho motlaloz pan caltlamachtihcān.',
+            breakdown: 'Nochocho motlalo-z pan caltlamachtihcān.',
+            translation: 'My brother will run at school.',
+            note: 'Source Lesson 12 singular future example.',
           },
           {
-            nahuatl: '¿Quēmman tihuāllāz?',
-            breakdown: '¿Quēmman ti·huāllāz?',
-            translation: 'When will you come back?',
-            note: '2sg future',
-          },
-          {
-            nahuatl: 'Mōztla nitlahtōz nāhuatl īca nocihuāuh.',
-            breakdown: 'Mōztla ni·tlahtōz nāhuatl īca no·cihuāuh.',
-            translation: 'Tomorrow I will speak Nahuatl with my wife.',
-            note: 'mōztla = tomorrow; nocihuāuh = my wife (no- possessive)',
-          },
-          {
-            nahuatl: '¿Tlen ticchīhuaz mōztla?',
-            breakdown: '¿Tlen ti·c·chīhuaz mōztla?',
-            translation: 'What will you do tomorrow?',
-            note: 'ticchīhuaz = you will do/make it (2sg future of chihua)',
-          },
-          {
-            nahuatl: 'Na nitlahcuilōz pan caltlamachticān.',
-            breakdown: 'Na ni·tlahcuilōz pan caltlamachticān.',
-            translation: 'I will write at school.',
-            note: 'nitlahcuilōz = 1sg future; caltlamachticān = school',
-          },
-          {
-            nahuatl: 'Mōztla īcā yāhuatzinco nimēhuaz nitlacuāz huan nimocuepaz.',
-            breakdown: 'Mōztla īcā yāhuatzinco ni·mēhuaz ni·tlacuāz huan ni·mo·cuepaz.',
-            translation: 'Tomorrow at dawn I will get up, eat, and return.',
-            note: 'Multiple future verbs in one sentence; yāhuatzinco = at dawn',
+            nahuatl: 'Mario mihtōtiz huanya īyōltzin pan tlaixpiyalli.',
+            breakdown: 'Mario mihtōti-z huanya ī-yōltzin pan tlaixpiyalli.',
+            translation: 'Mario will dance with his girlfriend at the dance.',
+            note: 'Source Lesson 12 singular future example.',
           },
         ],
       },
@@ -725,7 +683,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         headers: ['Object prefix', 'Meaning', 'Example with cua (to eat)'],
         rows: [
           { person: 'nech-', form: 'me', gloss: 'nechmaka — he gives me (something)' },
-          { person: 'mits-', form: 'you (sg)', gloss: 'mitstemoa — I look for you' },
+          { person: 'mits-', form: 'you (sg)', gloss: 'mitstemoa — he/she looks for you' },
           { person: 'ki- / k-', form: 'him / her / it', gloss: 'kikwa — he/she eats it; nikkwa — I eat it' },
           { person: 'tech-', form: 'us', gloss: 'techmaka — he/she gives us' },
           { person: 'mech-', form: 'you all', gloss: 'mechmaka — he/she gives you all' },
@@ -814,15 +772,15 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       },
       {
         kind: 'paradigm',
-        heading: 'Past tense examples — tequiti (to work)',
+        heading: 'Past tense examples — chōca (to cry)',
         headers: ['Person', 'Past form', 'Meaning'],
         rows: [
-          { person: 'I', form: 'nitequitqui', gloss: 'I worked' },
-          { person: 'you', form: 'titequitqui', gloss: 'you worked' },
-          { person: 'he / she', form: 'tequitqui', gloss: 'he/she worked' },
-          { person: 'we', form: 'titequitqueh', gloss: 'we worked' },
-          { person: 'you all', form: 'intequitqueh', gloss: 'you all worked' },
-          { person: 'they', form: 'tequitqueh', gloss: 'they worked' },
+          { person: 'I', form: 'nichōcac', gloss: 'I cried' },
+          { person: 'you', form: 'tichōcac', gloss: 'you cried' },
+          { person: 'he / she', form: 'chōcac', gloss: 'he/she cried' },
+          { person: 'we', form: 'tichōcaqueh', gloss: 'we cried' },
+          { person: 'you all', form: 'inchōcaqueh', gloss: 'you all cried' },
+          { person: 'they', form: 'chōcaqueh', gloss: 'they cried' },
         ],
       },
       {
@@ -948,67 +906,54 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
   {
     id: 'diminutives',
     title: 'Diminutives & Honorifics',
-    nahuatlTitle: 'Tlahtoltēcpānalitzli: -pil huan -tzin',
+    nahuatlTitle: 'Tlahtoltēcpānalitzli: pil- huan -tzin',
     band: 'A1',
-    shortDesc: 'The suffixes -pil (small/dear) and -tzin (respectful/affectionate).',
+    shortDesc: 'The prefix pil- (small/dear) and suffix -tzin (respectful/affectionate).',
     relatedUnits: [20, 9],
     relatedGrammarLabIds: ['respect-affection'],
     sections: [
       {
         kind: 'prose',
-        text: `Two of the most expressive features of EHN are the diminutive suffix **-pil** and the honorific/affective suffix **-tzin**. These can be added to nouns, verbs, names, and even pronouns. Mastering them gives your speech warmth, nuance, and cultural authenticity.`,
+        text: `The Chicontepec source course teaches the diminutive prefix **pil-** and the suffix **-tzin**, with **-tzitzin** for the plural. These forms can express smallness, affection, or reverence. Learn their meaning in the particular word and social context.`,
       },
       {
         kind: 'rule',
-        title: '-pil: smallness, affection, and belittling',
-        text: `The suffix **-pil** (also seen as **-pil-** before other suffixes) expresses:\n1. **Smallness**: *calpil* (little house)\n2. **Affection**: *nopiltsin* (my dear child)\n3. **Diminution** of an abstract concept: *tlahtōlpil* (a little speech / a few words)\n\nWhen -pil is added, the standalone ending on the noun usually drops first.`,
-      },
-      {
-        kind: 'rule',
-        title: '-tzin: respect, reverence, and tender address',
-        text: `The suffix **-tzin** (plural: **-tzitzin**) expresses:\n1. **Respect for others**: *nocihuātsin* (my respected wife)\n2. **Reverence** toward sacred or high-status beings: *tōnatiuhtsin* (the revered sun)\n3. **Tenderness** toward children or loved ones: *nopiltsin* (my dear little one)\n4. **Polite forms** of verbs and requests: *Ximoquētza!* → *Ximoquētzatsin!* (more polite)\n\n-tzin can combine with -pil: *-piltzin* (dear little one).`,
+        title: 'pil-: smallness and affection',
+        text: `**pil- comes before the noun base**, after a possessive or subject prefix when present. The source course shows:\n\n• no-pil-ahui = nopilahui (my dear little aunt)\n• no-pil-icxi = nopilicxi (my little foot)\n• pil-cīn-tzin = pilcīntzin (little corn)\n\nPossessed nouns retain their learned possessed endings. Avoid treating pil- as a suffix that can simply be appended to any noun.`,
       },
       {
         kind: 'paradigm',
-        heading: 'Examples of -pil and -tzin in use',
-        headers: ['Form', 'Base word', 'Meaning'],
+        heading: 'Examples of pil- and -tzin in use',
+        headers: ['Form', 'Pieces', 'Meaning'],
         rows: [
-          { person: 'piltsintli', form: 'piltsin + tli (standalone noun)', gloss: 'child / little one (noun)' },
-          { person: 'nopiltsin', form: 'no- + pil + tzin', gloss: 'my dear child' },
-          { person: 'notlamachtihtsin', form: 'no- + tlamachtih + tzin', gloss: 'my dear/respected teacher' },
-          { person: 'tōnatiuhtsin', form: 'tōnatiuh + tzin', gloss: 'the revered sun' },
-          { person: 'tlahtōlpil', form: 'tlahtōl + pil', gloss: 'a little speech / a few words' },
-          { person: 'calpiltsin', form: 'cal + pil + tzin', gloss: 'dear little house' },
-          { person: 'motōcatsin', form: 'mo- + tōca + tzin', gloss: 'your respected name' },
-          { person: 'inintequiuhtsin', form: 'in- + in + tequiuh + tzin', gloss: 'their respected work/profession' },
+          { person: 'pilcihuātzin', form: 'pil- + cihuā- + -tzin', gloss: 'little woman' },
+          { person: 'pilcihuātzitzin', form: 'pil- + cihuā- + -tzitzin', gloss: 'little women' },
+          { person: 'pilchichitzin', form: 'pil- + chichi + -tzin', gloss: 'little dog' },
+          { person: 'pilcīntzin', form: 'pil- + cīn- + -tzin', gloss: 'little corn' },
+          { person: 'nopilahui', form: 'no- + pil- + ahui', gloss: 'my dear little aunt' },
+          { person: 'topilahuihuan', form: 'to- + pil- + ahui + -huan', gloss: 'our dear little aunts' },
         ],
       },
       {
         kind: 'rule',
         title: 'Plural of -tzin',
-        text: `The plural of -tzin is -tzitzin. This is used for animate nouns (people, animals) when referring to multiple respected individuals:\n\n• *notlamachtihtsin* (my teacher) → *notlamachtihtzitzin* (my teachers)\n• *nopiltsin* (my child) → *nopiltzitzin* (my children)\n\nThe plural -tzitzin replaces -tzin, not just adds to it.`,
+        text: `In the source example pilcihuātzin → pilcihuātzitzin, **-tzitzin replaces -tzin**. Possessed plurals follow their possessed pattern instead: nopilahui → topilahuihuan. Respectful verb forms have their own grammar; appending -tzin to any command is not a general rule.`,
       },
       {
         kind: 'examples',
-        heading: 'In context',
+        heading: 'Examples from the source course',
         items: [
           {
-            nahuatl: 'Piyalli.',
-            breakdown: 'Pi·ya·lli.',
-            translation: 'Hello!',
-            note: 'Piyalli is itself an affective greeting; used between friends and community members',
+            nahuatl: 'Nipilcihuātzin.',
+            breakdown: 'ni-pil-cihuā-tzin',
+            translation: 'I am a little woman.',
+            note: 'ni- marks the speaker in this noun predicate.',
           },
           {
-            nahuatl: 'Nopiltzitzin mohmōztlah yohuih caltlamachticān.',
-            breakdown: 'No·pil·tzitzin mohmōztlah yohuih caltlamachticān.',
-            translation: 'My children go to school every day.',
-            note: '-tzitzin = honorific plural; mohmōztlah = every day',
-          },
-          {
-            nahuatl: 'Cualtitoc, notlamachtihtsin.',
-            breakdown: 'Cualtitoc, no·tlamachtih·tsin.',
-            translation: 'Good day, my teacher.',
-            note: '-tzin = respectful address to teacher',
+            nahuatl: 'Inpilcihuātzitzin.',
+            breakdown: 'in-pil-cihuā-tzitzin',
+            translation: 'You all are little women.',
+            note: 'in- marks second person plural; -tzitzin is the plural ending here.',
           },
         ],
       },
@@ -1017,7 +962,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'reflexives',
-    title: 'Reflexive Verbs: mo- and ninno-',
+    title: 'Reflexive Verbs: mo-',
     nahuatlTitle: 'Tlachīhualiztli tlen moquīxtia īpan nō yeh',
     band: 'A2',
     shortDesc: 'Verbs whose subject and object are the same person: "I teach myself," "she gets up."',
@@ -1030,19 +975,19 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'The reflexive prefix position',
-        text: `Structure: **[subject prefix] + [reflexive prefix] + [verb stem]**\n\nThe reflexive prefix slot sits where an object prefix would otherwise go. A verb cannot have both a reflexive prefix and a separate 3rd-person object prefix (qui-/c-) at the same time in this slot.`,
+        text: `In the source-course reflexive examples, the structure is **[subject prefix] + [mo-] + [verb stem]**. For example, ni-mo-itta means “I see myself.” Reflexive, reciprocal, and middle uses depend on the verb and its context.`,
       },
       {
         kind: 'paradigm',
-        heading: 'Reflexive prefixes by person',
+        heading: 'Subject and reflexive marking by person',
         caption: 'The 3rd-person form mo- is also used for "one (impersonal)".',
-        headers: ['Subject', 'Reflexive prefix', 'Meaning'],
+        headers: ['Subject', 'Combined marking', 'Meaning'],
         rows: [
-          { person: 'I',        form: 'nino- / nimo-', gloss: 'myself (nimo- is more common in EHN)' },
+          { person: 'I',        form: 'nimo-', gloss: 'I + myself (ni- + mo-)' },
           { person: 'you',      form: 'timo-',         gloss: 'yourself' },
           { person: 'he / she', form: 'mo-',           gloss: 'himself / herself / itself' },
           { person: 'we',       form: 'timo- …-h',     gloss: 'ourselves (final -h marks plural)' },
-          { person: 'you all',  form: 'inmo-',         gloss: 'yourselves' },
+          { person: 'you all',  form: 'inmo- …-h',     gloss: 'yourselves (final -h marks plural)' },
           { person: 'they',     form: 'mo- …-h',       gloss: 'themselves' },
         ],
       },
@@ -1062,7 +1007,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Common reflexive verbs',
-        text: `Many everyday actions in EHN are naturally reflexive:\n\n• **mehua** (mo- + ehua) — to get up / wake up\n• **mosehuia** — to rest, to sit down\n• **motoka** — to bury oneself / to call oneself (as in "my name is…")\n• **momachtia** — to teach oneself → to study / learn\n• **momauhtia** — to scare oneself → to be afraid\n• **motlaloa** — to run\n• **mokwepa** — to return / come back\n\nNotice that several of these have been introduced earlier as ordinary vocabulary. The mo- was always the reflexive prefix.`,
+        text: `Many everyday EHN verbs include mo-:\n\n• **mehua** (mo- + ehua) — to get up / wake up\n• **mosehuia** — to rest, to sit down\n• **momachtia** — to teach oneself → to study / learn\n• **momauhtia** — to scare oneself → to be afraid\n• **motlaloa** — to run\n• **mokwepa** — to return / come back\n\nLearn mo- in context: it can mark reflexive, reciprocal, or middle voice. In motlaloa it is already part of the lexical verb, rather than a literal action on oneself.`,
       },
       {
         kind: 'examples',
@@ -1083,8 +1028,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           {
             nahuatl: '¿Kenihki motokah?',
             breakdown: '¿Kenihki mo·tokah?',
-            translation: 'What is your name? (lit. "How do you call yourself?")',
-            note: 'mo- refl. on the verb tokah "to call / name"',
+            translation: 'What is your name? (lit. "How is your name?")',
+            note: 'mo- is possessive “your” in the noun motokah; this name question is not a reflexive verb.',
           },
           {
             nahuatl: 'Na nimomachtia Nāhuatl.',
@@ -1105,11 +1050,6 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'axcanah = emphatic "no"; momāuhtia = to frighten oneself = to be afraid',
           },
         ],
-      },
-      {
-        kind: 'rule',
-        title: 'Reflexive plus an object: -tla-',
-        text: `When a reflexive verb also needs a generic object (e.g. "I wash [something]"), EHN uses the **tla-** indefinite object prefix. This slot comes after the reflexive prefix:\n\n• ni·**mo**·**tla**·paca = nimotlapaca = "I wash things for myself / I wash"\n• ti·**mo**·**tla**·chīhuilia = timotlachīhuilia = "you make things for yourself"\n\nYou will learn more about -tla- and -tē- in the "Object Markers" lesson.`,
       },
     ],
   },
@@ -1155,8 +1095,8 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         heading: 'Causatives in context',
         items: [
           {
-            nahuatl: 'Nonanā nēchtlacualtia yāhuatzinco.',
-            breakdown: 'No·nanā nēch·tlacual·tia yāhuatzinco.',
+            nahuatl: 'Nonanān nēchtlacualtia yāhuatzinco.',
+            breakdown: 'No·nanān nēch·tlacual·tia yāhuatzinco.',
             translation: 'My mother feeds me in the morning.',
             note: 'tlacua (I eat) + -ltia (causative) = tlacualtia (feed); nēch- = me',
           },
@@ -1294,12 +1234,6 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             translation: 'Give thanks, all of you!',
             note: 'Plural imperative with -can',
           },
-          {
-            nahuatl: 'Mā tiyāzqueh.',
-            breakdown: 'Mā ti·yāz·queh.',
-            translation: "Let's go. / May we go.",
-            note: 'mā + 1pl future = hortative "let us…"',
-          },
         ],
       },
     ],
@@ -1369,14 +1303,14 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
         kind: 'paradigm',
         heading: 'EHN pronouns — same idea, plain labels',
         caption: 'These are optional in conversation because the verb prefix already tells you who is acting.',
-        headers: ['Plain English', 'EHN pronoun', 'Emphatic form'],
+        headers: ['Plain English', 'Source-course pronoun', 'Meaning'],
         rows: [
-          { person: 'I', form: 'na', gloss: 'naha' },
-          { person: 'you', form: 'ta', gloss: 'taha' },
-          { person: 'he / she', form: 'ya', gloss: 'yaha' },
-          { person: 'we', form: 'tohuantin', gloss: 'tohuanti' },
-          { person: 'you all', form: 'amohuantin', gloss: 'amohuanti' },
-          { person: 'they', form: 'yahuantin', gloss: 'yahuanti' },
+          { person: 'I', form: 'na', gloss: 'I' },
+          { person: 'you', form: 'ta', gloss: 'you (singular)' },
+          { person: 'he / she', form: 'ya', gloss: 'he / she' },
+          { person: 'we', form: 'tohhuantin', gloss: 'we' },
+          { person: 'you all', form: 'inmohhuantin', gloss: 'you (plural)' },
+          { person: 'they', form: 'inihhuantin', gloss: 'they' },
         ],
       },
       {
@@ -1403,7 +1337,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'The verb sandwich',
-        text: `Every Nahuatl verb follows the same layered structure. Think of it like a sandwich:\n\n**[tense] + [subject] + [object] + [VERB ROOT] + [tense/plural suffix]**\n\nNot every slot is always filled — a simple present-tense intransitive verb like *nitequiti* only uses subject + root. But the slots are always in this order when they appear.`,
+        text: `The beginner verb patterns in this course can be read as layers. Think of it like a sandwich:\n\n**[subject] + [object] + [VERB ROOT] + [tense/plural suffix]**\n\nNot every slot is always filled — a simple present-tense intransitive verb like *nitequiti* only uses subject + root. Common beginner examples put these pieces in this order; more complex constructions need their own learned patterns.`,
       },
       {
         kind: 'paradigm',
@@ -1415,16 +1349,16 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
           { person: 'ticcua', form: 'ti- + c- + cua', gloss: 'you eat it' },
           { person: 'niccuaz', form: 'ni- + c- + cua + -z', gloss: 'I will eat it' },
           { person: 'nimomachtia', form: 'ni- + mo- + machtia', gloss: 'I study (teach myself)' },
-          { person: 'nitequitqui', form: 'ni- + tequit- + -qui', gloss: 'I worked (past)' },
+          { person: 'nichōcac', form: 'ni- + chōca + -c', gloss: 'I cried (past)' },
           { person: 'titequitih', form: 'ti- + tequiti + -h', gloss: 'we work' },
-          { person: 'intequitizqueh', form: 'in- + tequiti + -zqueh', gloss: 'you all will work' },
+          { person: 'titequitiz', form: 'ti- + tequiti + -z', gloss: 'you will work' },
           { person: 'xitlacua', form: 'xi- + tlacua', gloss: 'eat! (command)' },
         ],
       },
       {
         kind: 'prose',
-        heading: 'The five slots explained',
-        text: `1. **Subject prefix**: ni- (I), ti- (you), nothing (he/she), ti-…-h (we), in-…-h (you all), …-h (they). For commands, xi- replaces the subject prefix.\n\n2. **Object prefix (optional)**: k-/ki- (him/her/it), nech- (me), mits- (you), tech- (us), mech- (you all), mo- (reflexive "self"), tla- (something unspecified). Only present when the verb is transitive.\n\n3. **Verb root**: The core meaning — tekiti (work), kwa (eat), machtia (teach), etc.\n\n4. **Tense/plural suffix**: -s (future singular), -skeh (future plural), -h (present plural), and an attested EHN preterite such as -qui/-c or plural -queh. Present singular has no suffix.`,
+        heading: 'The four slots explained',
+        text: `1. **Subject prefix**: ni- (I), ti- (you), nothing (he/she), ti-…-h (we), in-…-h (you all), …-h (they). For commands, xi- replaces the subject prefix.\n\n2. **Object prefix (optional)**: k-/ki- (him/her/it), nech- (me), mits- (you), tech- (us), mech- (you all), mo- (reflexive "self"), tla- (something unspecified). Only present when the verb is transitive.\n\n3. **Verb root**: The core meaning — tekiti (work), kwa (eat), machtia (teach), etc.\n\n4. **Tense/plural suffix**: -s (future singular in app spelling), -h (present plural), and an attested EHN preterite such as -qui/-c or plural -queh. Present singular has no suffix. Plural future production is withheld pending source transcription and pronunciation review.`,
       },
       {
         kind: 'examples',
@@ -1443,16 +1377,16 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'Subject + object + root — present transitive',
           },
           {
-            nahuatl: 'Okikwak in tamali.',
-            breakdown: 'o- (past) + ki- (it) + kwa-k (eat-past) = he ate it',
-            translation: 'He/she ate the tamal.',
-            note: 'Tense prefix + object + root with past suffix',
+            nahuatl: 'Niccuāhqui.',
+            breakdown: 'ni- (I) + c- (it) + cuā-hqui (eat-past)',
+            translation: 'I ate it.',
+            note: 'EHN completed-action form; no past augment prefix.',
           },
           {
-            nahuatl: 'Titlacuazqueh tiotlac.',
-            breakdown: 'ti- (we) + tlacua (eat) + -zqueh (future plural)',
-            translation: 'We will eat in the afternoon.',
-            note: 'Subject + root + future plural suffix',
+            nahuatl: 'Nimomachtiz.',
+            breakdown: 'ni- (I) + mo- + machti-z (study-future)',
+            translation: 'I will study.',
+            note: 'Source Lesson 12 singular future example.',
           },
           {
             nahuatl: 'Nimomachtiznequi.',
@@ -1472,76 +1406,38 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'plurals',
-    title: 'Plural Nouns: -meh, -tin, and -h',
-    nahuatlTitle: 'Miac tlahtōlcuauhmeh',
+    title: 'Plural Nouns: Learned Patterns',
+    nahuatlTitle: 'Miaqueh',
     band: 'A1',
-    shortDesc: 'Three strategies for making nouns plural and when to use each one.',
-    relatedUnits: [20, 41],
+    shortDesc: 'Source-course noun plurals, profession plurals, and possessed plurals.',
+    relatedUnits: [3, 5, 8, 20],
     relatedGrammarLabIds: ['noun-endings'],
     sections: [
-      {
-        kind: 'prose',
-        text: `English adds "-s" to make things plural: one book, two books. Nahuatl has several plural strategies, and which one you use depends on the noun. For beginner production, start with the explicit forms shown in the course.`,
-      },
-      {
-        kind: 'rule',
-        title: 'Strategy 1: -meh (starter pattern)',
-        text: `For beginner production, first learn the animate pattern: drop the standalone ending and add **-meh**.\n\n• cihuātl → cihuā**meh** (women)\n• mācēhualli → mācēhual**meh** (indigenous people)\n\nSome inanimate nouns can also appear with -meh, but inanimate plural marking varies. Learn the course examples as fixed forms before extending the pattern.`,
-      },
-      {
-        kind: 'rule',
-        title: 'Strategy 2: -tin (animate nouns)',
-        text: `Some animate nouns — especially those referring to people — take **-tin** instead of -meh. This is less common but appears in important words:\n\n• tohuantin (we — from tohuān + -tin)\n• yahuantin (they)\n• amohuantin (you all)\n• pipiltin (nobles / children of nobles — from pilli)\n\nIn practice, many nouns that historically took -tin now also accept -meh in spoken EHN.`,
-      },
-      {
-        kind: 'rule',
-        title: 'Strategy 3: reduplication + -h',
-        text: `A smaller class of nouns forms the plural by **repeating the first syllable** and/or adding **-h**:\n\n• tēuctli → tētēuctin (lords)\n• cihuātl → cicihuah (women — reduplicated alternative)\n• piltzintli → pipiltzitzin (children — with honorific plural)\n\nThis strategy is most common with kinship terms, old words, and the honorific plural -tzitzin.`,
-      },
+      { kind: 'prose', text: `Nahuatl noun plurals depend on the word and its construction. Source Lesson 3 introduces -meh, Lesson 5 shows profession plurals in -nih, Lesson 8 teaches possessed plurals, and Lesson 20 gives diminutive -tzitzin. Learn the complete form with its meaning.` },
       {
         kind: 'paradigm',
-        heading: 'Common plurals at a glance',
+        heading: 'Common plurals from the source course',
         headers: ['Singular', 'Plural', 'Meaning'],
         rows: [
           { person: 'cihuātl', form: 'cihuāmeh', gloss: 'woman → women' },
-          { person: 'āmoxtli', form: 'āmoxmeh', gloss: 'book → books' },
+          { person: 'mācēhualli', form: 'mācēhualmeh', gloss: 'Indigenous person → Indigenous people' },
           { person: 'cōmalli', form: 'comalmeh', gloss: 'griddle → griddles' },
-          { person: 'tepōztli', form: 'tepōzmeh', gloss: 'metal/machine → metals' },
-          { person: 'tōtolin', form: 'tōtolmeh', gloss: 'turkey → turkeys' },
-          { person: 'mācēhualli', form: 'mācēhualmeh', gloss: 'indigenous person → people' },
-          { person: 'pilli', form: 'pipiltin', gloss: 'noble/child → nobles' },
-          { person: 'piltzintli', form: 'pipiltzitzin', gloss: 'child → children (honorific)' },
-          { person: 'conētl', form: 'conēmeh', gloss: 'baby → babies' },
+          { person: 'michin', form: 'michimeh', gloss: 'fish → fish (plural)' },
           { person: 'chichi', form: 'chichimeh', gloss: 'dog → dogs' },
+          { person: 'momachtihquetl', form: 'momachtianih', gloss: 'student → students' },
+          { person: 'tlamachtihquetl', form: 'tlamachtianih', gloss: 'teacher → teachers' },
+          { person: 'pilcihuātzin', form: 'pilcihuātzitzin', gloss: 'little woman → little women' },
         ],
       },
-      {
-        kind: 'rule',
-        title: 'Quick rule of thumb',
-        text: `For new production, use **-meh** only with nouns where the course has shown that pattern or where the noun is a close match to a practiced animate example. Treat -tin and reduplicated forms as vocabulary-specific until you have seen them in context.`,
-      },
+      { kind: 'rule', title: 'Possessed plurals', text: `Possessed nouns use their learned possessed pattern. Source Lesson 8 contrasts **noconēuh** (my child) with **toconēhuan** (our children), and **nopitzo** (my pig) with **topitzohuan** (our pigs). The prefix identifies the possessor; -huan marks multiple possessed individuals. A plural possessor alone does not mean the possessed item must be plural.` },
+      { kind: 'rule', title: 'Inanimate plurals', text: `Inanimate nouns vary. Source Lesson 3 explicitly shows **comalmeh** and **tepōzmeh**, while other inanimate nouns can remain unmarked for plural. Avoid applying a single plural suffix to every noun.` },
       {
         kind: 'examples',
-        heading: 'Plurals in context',
+        heading: 'Examples from the source course',
         items: [
-          {
-            nahuatl: 'Cihuāmeh tequitih pan mīllah.',
-            breakdown: 'cihuā-meh tequiti-h pan mīllah.',
-            translation: 'The women work in the milpa.',
-            note: 'Both noun (-meh) and verb (-h) carry plural markers',
-          },
-          {
-            nahuatl: 'Nopiltzitzin mohmōztlah yohuih caltlamachticān.',
-            breakdown: 'no-pil-tzitzin mohmōztlah yohuih caltlamachticān.',
-            translation: 'My children go to school every day.',
-            note: '-tzitzin = honorific plural of -tzin',
-          },
-          {
-            nahuatl: 'Quezqui āmoxmeh ticpiya?',
-            breakdown: 'Quezqui āmox-meh ti-c-piya?',
-            translation: 'How many books do you have?',
-            note: 'Standard -meh plural',
-          },
+          { nahuatl: 'Incihuāmeh.', breakdown: 'in-cihuā-meh', translation: 'You all are women.', note: 'in- marks the subject; -meh marks the noun plural.' },
+          { nahuatl: 'Inmomachtianih.', breakdown: 'in-momachtia-nih', translation: 'You all are students.', note: 'This learned profession plural uses -nih.' },
+          { nahuatl: 'Nopitzohuan quicuāh miac cīntli.', breakdown: 'no-pitzo-huan qui-cuā-h miac cīntli', translation: 'My pigs eat a lot of corn.', note: '-huan marks the possessed pigs; -h marks the plural verb.' },
         ],
       },
     ],
@@ -1575,7 +1471,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'How locatives are built',
-        text: `Take a noun stem, usually without the standalone ending, and add the locative:\n\n• cāl- (from cālli, house) + -tlamachtiloyan → **caltlamachtiloyan** (school — lit. "house where teaching is done")\n• cuauh- (from cuahuitl, tree/wood) + -tlan → **cuauhtlan** (forest — lit. "among the trees")\n• ā- (from ātl, water) + -tēnco → **ātēnco** (riverbank — "at the edge of water")\n• mīl- (from mīlli, cultivated field) + -lah → **mīllah** (in the milpa)\n\nThe suffix -lah (variant of -tlan) appears in many EHN place words.`,
+        text: `Take a noun stem, usually without the standalone ending, and add the locative:\n\n• cal- (from calli, house) + -tlamachtiloyan → **caltlamachtiloyan** (school — lit. "house where teaching is done")\n• cuauh- (from cuahuitl, tree/wood) + -tlan → **cuauhtlan** (forest — lit. "among the trees")\n• ā- (from ātl, water) + -tēnco → **ātēnco** (riverbank — "at the edge of water")\n• mīl- (from mīlli, cultivated field) + -lah → **mīllah** (in the milpa)\n\nThe suffix -lah (variant of -tlan) appears in many EHN place words.`,
       },
       {
         kind: 'paradigm',
@@ -1625,75 +1521,39 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'directionals',
-    title: 'Coming & Going: on-, hual-',
-    nahuatlTitle: 'Ōntiyāuh, huālniyāuh',
+    title: 'Coming & Going: Directional Suffixes',
+    nahuatlTitle: 'Nimomachtiqui',
     band: 'A2',
-    shortDesc: 'Directional prefixes that show whether the action moves toward or away from the speaker.',
-    relatedUnits: [12, 14],
+    shortDesc: 'Source-course forms for coming or going to carry out an action.',
+    relatedUnits: [26],
     sections: [
       {
         kind: 'prose',
-        text: `English uses separate words like "come" vs. "go" or "bring" vs. "take" to show direction. Nahuatl has a more elegant system: **directional prefixes** that can be attached to ANY verb to show whether the action is moving toward the speaker or away.`,
+        text: `Source Lesson 26 teaches four suffixes for motion undertaken to perform an action: **-co, -qui, -to, and -ti**. Learn these distinct from ordinary tense endings. The same spelling -qui can also occur in a completed-action form, so the whole verb and its context matter.`,
       },
       {
         kind: 'paradigm',
-        heading: 'The two directional prefixes',
-        headers: ['Prefix', 'Direction', 'English equivalent'],
+        heading: 'Directional forms from the source course',
+        headers: ['Suffix', 'Source form', 'Meaning'],
         rows: [
-          { person: 'on-', form: 'away from the speaker', gloss: '"go and do X" / "do X over there"' },
-          { person: 'hual- / huāl-', form: 'toward the speaker', gloss: '"come and do X" / "do X here"' },
+          { person: '-co', form: 'nitlachpānaco', gloss: 'I came to sweep' },
+          { person: '-qui', form: 'nimomachtiqui', gloss: 'I will come to study' },
+          { person: '-to', form: 'niātlacuito', gloss: 'I went to fetch water' },
+          { person: '-ti', form: 'timomachtiti', gloss: 'you will go to study' },
         ],
       },
       {
         kind: 'rule',
-        title: 'Where they go in the verb',
-        text: `Directionals sit between the subject prefix and the object prefix (or verb root):\n\n**[subject] + [directional] + [object] + [verb root] + [suffix]**\n\n• ni- + on- + tequiti = **nontequiti** (I go to work / I work over there)\n• ni- + hual- + lāuh = **nihuāllāuh** (I come — literally "I here-go")\n• ti- + on- + c- + cua = **tonccua** (you go eat it over there)\n• xi- + hual- + lā = **xihuāllā** (come! — the most common greeting command)`,
-      },
-      {
-        kind: 'paradigm',
-        heading: 'Directionals in action',
-        caption: 'Same base verb, different direction.',
-        headers: ['With on- (going)', 'With hual- (coming)', 'Base verb'],
-        rows: [
-          { person: 'nontequiti (I go work)', form: 'nihuāltequiti (I come to work)', gloss: 'tequiti (to work)' },
-          { person: 'xoncua! (go eat it!)', form: 'xihuālcua! (come eat it!)', gloss: 'cua (to eat)' },
-          { person: 'onyāuh (he goes away)', form: 'huāllāuh (he comes)', gloss: 'yāuh (to go)' },
-          { person: 'toncuāzqueh (we\'ll go eat)', form: 'tihuālcuāzqueh (we\'ll come eat)', gloss: 'cua (to eat)' },
-        ],
-      },
-      {
-        kind: 'rule',
-        title: 'on- and hual- with specific verbs',
-        text: `Some directional + verb combinations are so common they feel like their own vocabulary words:\n\n• **huāllāuh** (hual- + yāuh) = "to come" — the most frequent word using hual-\n• **on-nēhnemi** = "to go for a walk / to walk away"\n• **hual-mocuepa** = "to come back / return here"\n• **on-mocuepa** = "to go back / return there"\n\nYou already know *xihuāllā* (come!) — that's the imperative of huāllāuh.`,
+        title: 'Learn the action stem',
+        text: `The directional suffix follows the action stem. Source Lesson 26 gives **momachtia → momachti-** before -qui or -ti: nimomachtiqui, timomachtiti. It also gives **tlacuā → tlacuāco** (came to eat). Keep the source forms intact when practicing rather than adding on- or hual- to any unfamiliar verb.`,
       },
       {
         kind: 'examples',
-        heading: 'In dialogue',
+        heading: 'Examples from the source course',
         items: [
-          {
-            nahuatl: 'Xihuāllā, titlacuāzqueh!',
-            breakdown: 'Xi·huāl·lā, ti·tlacuā·zqueh!',
-            translation: 'Come, we will eat!',
-            note: 'xi- (imperative) + huāl- (toward speaker) + lā (go)',
-          },
-          {
-            nahuatl: 'Tiotlac nihuāllāz.',
-            breakdown: 'Tiotlac ni·huāl·lā·z.',
-            translation: "I'll come back in the afternoon.",
-            note: 'hual- + yāuh + -z (future) = "I will come"',
-          },
-          {
-            nahuatl: 'Onyāuh mīllah.',
-            breakdown: 'On·yāuh mīllah.',
-            translation: 'He went off to the milpa.',
-            note: 'on- = away; yāuh = go; 3sg so no subject prefix',
-          },
-          {
-            nahuatl: 'Mōztla nihuālmocuepaz.',
-            breakdown: 'Mōztla ni·huāl·mo·cuepa·z.',
-            translation: 'Tomorrow I will come back.',
-            note: 'hual- (toward) + mo- (reflexive) + cuepa (turn) + -z (future)',
-          },
+          { nahuatl: 'Nitlacuāco.', breakdown: 'ni-tlacuā-co', translation: 'I came to eat.', note: '-co marks coming to carry out the action.' },
+          { nahuatl: 'Titlacuāqui.', breakdown: 'ti-tlacuā-qui', translation: 'You will come to eat.', note: 'Here -qui is directional, not a completed-action marker.' },
+          { nahuatl: 'Yālhuaya niātlacuito huanya nonanān.', breakdown: 'yālhuaya ni-ātlacui-to huanya no-nanān', translation: 'Yesterday I went to fetch water with my mother.', note: 'The source sentence uses -to for going to carry out the action.' },
         ],
       },
     ],
@@ -1729,7 +1589,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'How they work',
-        text: `Relational nouns take a possessive prefix (no-, mo-, ī-, to-, amo-, in-) just like any possessed noun. The "possessor" is whoever/whatever the relationship is about.\n\n• **no-pan** = on me / at my place\n• **mo-pampa** = because of you\n• **ī-ca** = with it / by means of it\n• **to-tlan** = near us\n\nThe most common standalone form is **pan**, which often appears without an explicit possessive prefix as a general preposition meaning "in/at/on."`,
+        text: `Relational nouns take a possessive prefix (no-, mo-, ī-, to-, inmo-, inin-) just like any possessed noun. The "possessor" is whoever/whatever the relationship is about.\n\n• **no-pan** = on me / at my place\n• **mo-pampa** = because of you\n• **ī-ca** = with it / by means of it\n• **to-tlan** = near us\n\nThe most common standalone form is **pan**, which often appears without an explicit possessive prefix as a general preposition meaning "in/at/on."`,
       },
       {
         kind: 'examples',
@@ -1746,12 +1606,6 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             breakdown: 'Huānya no·cihuāuh ni·yāuh tiānquiz.',
             translation: 'With my wife I go to the market.',
             note: 'huānya = with (from -huān relational noun + ya)',
-          },
-          {
-            nahuatl: 'Ipampa in ātl, axcanah tiyāzqueh.',
-            breakdown: 'I·pampa in ātl, axcanah ti·yāz·queh.',
-            translation: "Because of the water (rain), we won't go.",
-            note: 'ī-pampa = because of it; referring to ātl (water/rain)',
           },
           {
             nahuatl: 'Nitlamachtia nāhuatl īca yāhuatzinco.',
@@ -1771,15 +1625,15 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'verb-conjugation-summary',
-    title: 'Complete Verb Conjugation Table',
+    title: 'Verb Conjugation Reference',
     nahuatlTitle: 'Tlahtōlchihuallōtl mochīn cāhuitl',
     band: 'A2',
-    shortDesc: 'A master reference showing one verb fully conjugated across all tenses and persons.',
+    shortDesc: 'Selected source-course verb patterns across persons and tenses.',
     relatedUnits: [5, 6, 7, 11],
     sections: [
       {
         kind: 'prose',
-        text: `This page is a reference card. It shows the intransitive verb **tequiti** (to work) fully conjugated in every major tense, plus a second table for the transitive verb **cua** (to eat) with a 3rd-person object. Bookmark this and come back whenever you need a quick check.`,
+        text: `This reference shows present and singular future **tequiti** (to work), completed-action **chōca** (to cry), and selected forms of **cua** (to eat) with a specific object. Verbs have different past patterns; learn each completed-action stem explicitly.`,
       },
       {
         kind: 'paradigm',
@@ -1796,28 +1650,25 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       },
       {
         kind: 'paradigm',
-        heading: 'tequiti — Future (-z / -zqueh)',
+        heading: 'tequiti — Singular future (-z)',
         headers: ['Person', 'Form', 'Meaning'],
         rows: [
           { person: 'I', form: 'nitequitiz', gloss: 'I will work' },
           { person: 'you', form: 'titequitiz', gloss: 'you will work' },
           { person: 'he / she', form: 'tequitiz', gloss: 'he/she will work' },
-          { person: 'we', form: 'titequitizqueh', gloss: 'we will work' },
-          { person: 'you all', form: 'intequitizqueh', gloss: 'you all will work' },
-          { person: 'they', form: 'tequitizqueh', gloss: 'they will work' },
         ],
       },
       {
         kind: 'paradigm',
-        heading: 'tequiti — EHN preterite',
+        heading: 'chōca (to cry) — EHN preterite',
         headers: ['Person', 'Form', 'Meaning'],
         rows: [
-          { person: 'I', form: 'nitequitqui', gloss: 'I worked' },
-          { person: 'you', form: 'titequitqui', gloss: 'you worked' },
-          { person: 'he / she', form: 'tequitqui', gloss: 'he/she worked' },
-          { person: 'we', form: 'titequitqueh', gloss: 'we worked' },
-          { person: 'you all', form: 'intequitqueh', gloss: 'you all worked' },
-          { person: 'they', form: 'tequitqueh', gloss: 'they worked' },
+          { person: 'I', form: 'nichōcac', gloss: 'I cried' },
+          { person: 'you', form: 'tichōcac', gloss: 'you cried' },
+          { person: 'he / she', form: 'chōcac', gloss: 'he/she cried' },
+          { person: 'we', form: 'tichōcaqueh', gloss: 'we cried' },
+          { person: 'you all', form: 'inchōcaqueh', gloss: 'you all cried' },
+          { person: 'they', form: 'chōcaqueh', gloss: 'they cried' },
         ],
       },
       {
@@ -1850,14 +1701,12 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       },
       {
         kind: 'paradigm',
-        heading: 'kwa (to eat it) — Future',
+        heading: 'kwa (to eat it) — Singular future',
         headers: ['Person', 'Form', 'Meaning'],
         rows: [
           { person: 'I', form: 'nikkwas', gloss: 'I will eat it' },
           { person: 'you', form: 'tikkwas', gloss: 'you will eat it' },
           { person: 'he / she', form: 'kikwas', gloss: 'he/she will eat it' },
-          { person: 'we', form: 'tikkwaskeh', gloss: 'we will eat it' },
-          { person: 'they', form: 'kikwaskeh', gloss: 'they will eat it' },
         ],
       },
       {
@@ -1875,7 +1724,7 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
       {
         kind: 'rule',
         title: 'Pattern summary',
-        text: `The core template is:\n\n**[subject: ni-/ti-/in-/ø] + [object: k-/ki-] + [root] + [tense/aspect/plural suffix]**\n\nEHN past stems can be irregular and do not take the Classical ō- augment, so learn attested forms such as *niccōuhqui*, *niyāhqui*, and *nitequitqui* rather than generating them by a single rule.`,
+        text: `The core template is:\n\n**[subject: ni-/ti-/in-/ø] + [object: k-/ki-] + [root] + [tense/aspect/plural suffix]**\n\nEHN past stems can be irregular and do not take the Classical ō- augment, so learn attested forms such as *niccōuhqui*, *niyāhqui*, and *nichōcac* rather than generating them by a single rule.`,
       },
     ],
   },
@@ -1939,14 +1788,14 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
             note: 'momachtia + future -z + nequi (want) = compound verb',
           },
           {
-            nahuatl: 'Nonanā tēchmāca cafen yāhuatzinco.',
-            breakdown: 'No-nanā tēch-māca cafen yāhuatzinco.',
+            nahuatl: 'Nonanān tēchmāca cafen yāhuatzinco.',
+            breakdown: 'No-nanān tēch-māca cafen yāhuatzinco.',
             translation: 'My mother gives us coffee in the morning.',
             note: 'tēch- (us, object) + māca (give) — not incorporation but shows tē-type object',
           },
           {
-            nahuatl: 'Axcanah niccochiznequi āxcan.',
-            breakdown: 'Axcanah ni-c-cochi-z-nequi āxcan.',
+            nahuatl: 'Axcanah nicochiznequi āxcan.',
+            breakdown: 'Axcanah ni-cochi-z-nequi āxcan.',
             translation: "I don't want to sleep now.",
             note: 'Negation + verb compound: cochi (sleep) + znequi (want)',
           },
@@ -1957,78 +1806,57 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
 
   {
     id: 'aspect-mood',
-    title: 'Beyond Tense: Aspect & Mood',
-    nahuatlTitle: 'Oc cequin tlen cāhuitl',
-    band: 'B1',
-    shortDesc: 'Habitual actions, ongoing processes, wishes, and other ways to talk about time beyond past/present/future.',
-    relatedUnits: [18, 22],
+    title: 'Ongoing Past Actions and States',
+    nahuatlTitle: 'Nipanoyaya',
+    band: 'A2',
+    shortDesc: 'The source-course imperfect -yaya and learned past state forms.',
+    relatedUnits: [24, 25, 28],
     sections: [
       {
         kind: 'prose',
-        text: `You've learned the EHN preterite (-qui/-c), present, and future (-z). But not everything fits neatly into those three boxes. What about "I used to work there" or "I was eating when…"? Nahuatl handles these through **aspect** (how an action unfolds in time) and **mood** (the speaker's attitude toward the action — is it a fact, a wish, a possibility?).`,
-      },
-      {
-        kind: 'rule',
-        title: 'Habitual: "I always / I usually"',
-        text: `In EHN, the present tense already covers habitual actions — "nitequiti" can mean both "I work (right now)" and "I work (in general / as my job)." Context and time words make the habitual reading clear:\n\n• **mohmōztlah** nitequiti = "I work every day" (habitual)\n• **quēmman** nitequiti = "sometimes I work" (occasional habitual)\n• **nochipa** nitlacua etl = "I always eat beans" (persistent habitual)`,
-      },
-      {
-        kind: 'rule',
-        title: 'Progressive: "I am doing it right now"',
-        text: `To emphasize that something is happening right now (not habitual), EHN can use **itztoc** (to be located / be in a state) alongside the main verb:\n\n• Nicān ni**itztoc** ni**tequiti** = "I am (here) working" (right now)\n• Ti**itztoc** ti**tlacua** = "you are (sitting) eating"\n\nThe auxiliary verb carries the "in progress" meaning. The main verb stays in its present form.`,
+        text: `A completed event and an ongoing or habitual past action are different. Source Lesson 28 teaches **-yaya** for the imperfect: nipanoyaya can mean “I was passing” or “I used to pass.” The plural adds -h after -yaya.`,
       },
       {
         kind: 'paradigm',
-        heading: 'Aspect and mood markers',
-        headers: ['Marker', 'What it expresses', 'Example'],
+        heading: 'pano (to pass) — Imperfect',
+        headers: ['Person', 'Form', 'Meaning'],
         rows: [
-          { person: '(present form)', form: 'Present / habitual', gloss: 'nitequiti — I work / I am working' },
-          { person: '-toc', form: 'Progressive (right now)', gloss: 'nitequititoc — I am working (right now)' },
-          { person: '-qui / -c preterite', form: 'Completed past', gloss: 'nitequitqui — I worked (finished)' },
-          { person: '-z / -zqueh', form: 'Future / intention', gloss: 'nitequitiz — I will work' },
-          { person: 'mā', form: 'Optative / wish', gloss: 'mā nitequiti — may I work / let me work' },
-          { person: 'quemmantica', form: 'Occasional habitual', gloss: 'quemmantica nitequiti — sometimes I work' },
-          { person: '-toya', form: 'Imperfect (was doing)', gloss: 'nitequititoya — I was working / I used to work' },
+          { person: 'I', form: 'nipanoyaya', gloss: 'I was passing' },
+          { person: 'you', form: 'tipanoyaya', gloss: 'you were passing' },
+          { person: 'he / she', form: 'panoyaya', gloss: 'he/she was passing' },
+          { person: 'we', form: 'tipanoyayah', gloss: 'we were passing' },
+          { person: 'you all', form: 'inpanoyayah', gloss: 'you all were passing' },
+          { person: 'they', form: 'panoyayah', gloss: 'they were passing' },
         ],
       },
       {
         kind: 'rule',
-        title: 'Imperfect: "I was doing / I used to"',
-        text: `For past actions that were ongoing (not completed), EHN uses the suffix **-toya** (from "to be lying/existing"):\n\n• ni-tequiti-**toya** = "I was working / I used to work"\n• ti-cochi-**toya** = "you were sleeping"\n• tlacua-**toya** = "he/she was eating"\n\nThis is similar to the Spanish imperfect (trabajaba vs. trabajé). Use -toya when the action was in progress or repeated in the past, and an attested -qui/-c preterite when it was a one-time completed event.`,
+        title: 'Stem changes before -yaya',
+        text: `Verbs ending in -ia or -oa lose their final -a before -yaya in the source-course pattern. For example, **motlaloa → nimotlaloyaya** (I was running). Verbs with specific objects keep an object marker: **niccuāyaya** (I was eating it).`,
+      },
+      {
+        kind: 'paradigm',
+        heading: 'Learned past states',
+        headers: ['Present state', 'Past state', 'Meaning'],
+        rows: [
+          { person: 'niitztoc', form: 'niitztoya', gloss: 'I was in a place or state' },
+          { person: 'niyatoc', form: 'niyatoya', gloss: 'I was sitting' },
+          { person: 'niihcatoc', form: 'niihcatoya', gloss: 'I was standing' },
+          { person: 'eltoc', form: 'eltoya', gloss: 'it was (inanimate object or plant)' },
+        ],
       },
       {
         kind: 'rule',
-        title: 'Optative / wish: mā',
-        text: `The particle **mā** before a verb expresses a wish, permission, or gentle command:\n\n• **mā cuālli pano** = "may it go well" (farewell blessing)\n• **mā tiyāzqueh** = "let's go" (hortative — 1pl)\n• **mā nicān itztoc** = "let him/her be here"\n• **mā Dios mitzpalēhui** = "may God help you"\n\nWith 2nd person, mā softens an imperative into a polite request (see the Commands lesson).`,
+        title: 'Actions and states use different learned forms',
+        text: `The state verbs itztoc, yatoc, ihcatoc, and eltoc have the past forms shown in Source Lessons 24–25. Their -toya forms do not establish a rule to append -toya to every action verb. For ordinary ongoing past actions, use the source-course -yaya pattern and a learned verb stem.`,
       },
       {
         kind: 'examples',
-        heading: 'Aspect and mood in context',
+        heading: 'Examples from the source course',
         items: [
-          {
-            nahuatl: 'Mohmōztlah nitequiti pan caltlamachtiloyan.',
-            breakdown: 'Mohmōztlah ni-tequiti pan caltlamachtiloyan.',
-            translation: 'Every day I work at the school.',
-            note: 'Habitual: present tense + time word mohmōztlah (every day)',
-          },
-          {
-            nahuatl: 'Nitlaxcalchihuatoc.',
-            breakdown: 'Ni-tlaxcal-chihua-toc.',
-            translation: 'I am making tortillas (right now).',
-            note: 'Progressive: -toc marks an action in progress',
-          },
-          {
-            nahuatl: 'Nitequititoya quēmman huāllahqui.',
-            breakdown: 'Ni-tequiti-toya quēmman huāllah-qui.',
-            translation: 'I was working when he arrived.',
-            note: 'Imperfect -toya for ongoing past; EHN -qui preterite for the interrupting event',
-          },
-          {
-            nahuatl: 'Mā cuālli ximopano.',
-            breakdown: 'Mā cuālli xi-mo-pano.',
-            translation: 'May things go well for you.',
-            note: 'Optative mā expressing a wish/blessing',
-          },
+          { nahuatl: 'Nicōniyaya.', breakdown: 'ni-c-ōni-yaya', translation: 'I was drinking it.', note: 'The specific object marker c- stays between the subject and action stem.' },
+          { nahuatl: 'Nimotlaloyaya.', breakdown: 'ni-mo-tlalo-yaya', translation: 'I was running.', note: 'The final -a of motlaloa drops before -yaya.' },
+          { nahuatl: 'Niāmiquiyaya.', breakdown: 'ni-āmiqui-yaya', translation: 'I was thirsty.', note: 'This is an attested source-course imperfect form.' },
         ],
       },
     ],
@@ -2078,6 +1906,17 @@ export const GRAMMAR_LESSONS: GrammarLesson[] = [
     ],
   },
 ];
+
+// These drafts remain available for specialist review but are not served to learners.
+export const GRAMMAR_REVIEW_HOLDS: Record<string, string> = {
+  'applicatives-causatives': 'Unverified derivation rules and honorific/applicative examples require Chicontepec specialist review.',
+  'compound-verbs': 'Unverified incorporation and desiderative production rules require primary-source evidence.',
+  'locatives': 'Speculative place-name analyses and productive locative rules require primary-source evidence.',
+};
+
+export const GRAMMAR_LESSONS: GrammarLesson[] = AUTHORED_GRAMMAR_LESSONS.filter(
+  (lesson) => !Object.hasOwn(GRAMMAR_REVIEW_HOLDS, lesson.id),
+);
 
 export function getGrammarLesson(id: string): GrammarLesson | undefined {
   return GRAMMAR_LESSONS.find((l) => l.id === id);

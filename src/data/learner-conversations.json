@@ -1,0 +1,4560 @@
+{
+  "scenarios": [
+    {
+      "id": "introductions",
+      "titleEn": "Meeting someone",
+      "titleEs": "Conocer a alguien",
+      "descriptionEn": "Introduce yourself, share where you are from, and ask for repetition when needed.",
+      "descriptionEs": "Preséntate, di de dónde eres y pide que repitan cuando lo necesites.",
+      "unitNumbers": [
+        2,
+        3
+      ],
+      "startTurnId": "name",
+      "turns": [
+        {
+          "id": "name",
+          "speaker": "Paty",
+          "nahuatl": "Piyalli, ¿quēniuhqui motōcah?",
+          "english": "Hello, what is your name?",
+          "spanish": "Hola, ¿cómo te llamas?",
+          "audioUrl": "/audio-google/dialogue/FCN-LDG-000006.wav",
+          "audioKind": "synthetic",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "Piyalli, ¿quēniuhqui motōcah?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "You are playing Juana. Say your name.",
+            "es": "Representas a Juana. Di tu nombre."
+          },
+          "options": [
+            {
+              "id": "name-juana",
+              "nahuatl": "Na notōcah Juana.",
+              "english": "My name is Juana.",
+              "spanish": "Me llamo Juana.",
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000008.wav",
+              "audioKind": "synthetic",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na notōcah Juana.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "origin",
+              "intent": "reply",
+              "explanation": {
+                "en": "Introduce yourself with the source name frame.",
+                "es": "Preséntate con la estructura de nombre de la fuente."
+              }
+            },
+            {
+              "id": "name-location",
+              "nahuatl": "Nicān niitztoc",
+              "english": "I am here",
+              "spanish": "Estoy aquí",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nican-niitztoc.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-38",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 38,
+                  "excerpt": "Nicān niitztoc",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This tells where you are, rather than your name.",
+                "es": "Esta respuesta dice dónde estás, en lugar de tu nombre."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "name-repeat",
+              "correct": true,
+              "nextTurnId": "name",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Na notōcah Juana."
+          ],
+          "explanation": {
+            "en": "The original source dialogue uses Paty and Juana; these roles are adapted for this activity.",
+            "es": "El diálogo original usa Paty y Juana; aquí se adaptaron sus papeles para la actividad."
+          }
+        },
+        {
+          "id": "origin",
+          "speaker": "Paty",
+          "nahuatl": "¿Cānin tiēhua?",
+          "english": "Where are you from?",
+          "spanish": "¿De dónde eres?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "¿Cānin tiēhua?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "In this role you are from Tecomate, Chicontepec.",
+            "es": "En este papel eres de Tecomate, Chicontepec."
+          },
+          "options": [
+            {
+              "id": "origin-tecomate",
+              "nahuatl": "Na niēhua Tecomate, Chicōntepēc.",
+              "english": "I am from Tecomate, Chicontepec.",
+              "spanish": "Soy de Tecomate, Chicontepec.",
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000009.wav",
+              "audioKind": "synthetic",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na niēhua Tecomate, Chicōntepēc.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "work",
+              "intent": "reply",
+              "explanation": {
+                "en": "This names your place of origin.",
+                "es": "Esta respuesta indica tu lugar de origen."
+              }
+            },
+            {
+              "id": "origin-name",
+              "nahuatl": "Na notōcah Juana.",
+              "english": "My name is Juana.",
+              "spanish": "Me llamo Juana.",
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000008.wav",
+              "audioKind": "synthetic",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na notōcah Juana.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "The question asks for a place of origin.",
+                "es": "La pregunta pide el lugar de origen."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "origin-repeat",
+              "correct": true,
+              "nextTurnId": "origin",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Na niēhua Tecomate, Chicōntepēc."
+          ],
+          "explanation": {
+            "en": "The word ēhua has the source-supported sense ‘be from’ here.",
+            "es": "Aquí ēhua tiene el sentido documentado de «ser de»."
+          }
+        },
+        {
+          "id": "work",
+          "speaker": "Paty",
+          "nahuatl": "¿Tlen titlamachtia?",
+          "english": "What do you teach?",
+          "spanish": "¿Qué enseñas?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "¿Tlen titlamachtia?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Your role teaches Nahuatl.",
+            "es": "Tu personaje enseña náhuatl."
+          },
+          "options": [
+            {
+              "id": "teach-nahuatl",
+              "nahuatl": "Na nitlamachtia Nahuatl.",
+              "english": "I teach Nahuatl.",
+              "spanish": "Enseño náhuatl.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na nitlamachtia Nahuatl.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "The reply answers what you teach.",
+                "es": "La respuesta indica qué enseñas."
+              }
+            },
+            {
+              "id": "teach-name",
+              "nahuatl": "Na notōcah Juana.",
+              "english": "My name is Juana.",
+              "spanish": "Me llamo Juana.",
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000008.wav",
+              "audioKind": "synthetic",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na notōcah Juana.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "A name does not answer what you teach.",
+                "es": "Un nombre no responde qué enseñas."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "work-repeat",
+              "correct": true,
+              "nextTurnId": "work",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Na nitlamachtia Nahuatl."
+          ],
+          "explanation": {
+            "en": "These are the source's complete teaching question and answer.",
+            "es": "Son la pregunta y la respuesta completas de la fuente sobre enseñar."
+          }
+        },
+        {
+          "id": "close",
+          "speaker": "Paty",
+          "nahuatl": "Quena, teipanoc.",
+          "english": "Yes, later.",
+          "spanish": "Sí, hasta luego.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "Quena, teipanoc.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "You have introduced yourself and can close the exchange.",
+            "es": "Ya te presentaste y puedes terminar el intercambio."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "Use the name workbench to practice your own name next.",
+            "es": "Después usa el taller de nombres para practicar con tu propio nombre."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Piyalli, ¿quēniuhqui motōcah?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na notōcah Juana.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-38",
+          "lessonNumber": 2,
+          "vocabularyIndex": 38,
+          "excerpt": "Nicān niitztoc",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "¿Cānin tiēhua?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na niēhua Tecomate, Chicōntepēc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "¿Tlen titlamachtia?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na nitlamachtia Nahuatl.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Quena, teipanoc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can introduce myself and ask for repetition.",
+          "es": "Puedo presentarme y pedir que repitan."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": []
+    },
+    {
+      "id": "family",
+      "titleEn": "Talking about family",
+      "titleEs": "Hablar de la familia",
+      "descriptionEn": "Identify family members with short replies, then answer a sibling-count question.",
+      "descriptionEs": "Identifica familiares con respuestas breves y contesta una pregunta sobre cuántos hermanos tienes.",
+      "unitNumbers": [
+        4,
+        9
+      ],
+      "startTurnId": "mother",
+      "turns": [
+        {
+          "id": "mother",
+          "speaker": "Friend",
+          "nahuatl": "¿Ācquiya?",
+          "english": "Who?",
+          "spanish": "¿Quién?",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Acquiya.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-34",
+              "lessonNumber": 2,
+              "vocabularyIndex": 34,
+              "excerpt": "¿Ācquiya?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "Your friend asks who your mother is. Identify her with the source family term.",
+            "es": "Tu amistad pregunta quién es tu mamá. Identifícala con la palabra de la fuente."
+          },
+          "options": [
+            {
+              "id": "my-mother",
+              "nahuatl": "nonanān",
+              "english": "my mother",
+              "spanish": "mi mamá",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nonanan.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-9-12",
+                  "lessonNumber": 9,
+                  "vocabularyIndex": 12,
+                  "excerpt": "nonanān",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "sister",
+              "intent": "reply",
+              "explanation": {
+                "en": "A short noun reply identifies your mother.",
+                "es": "La respuesta breve identifica a tu mamá."
+              }
+            },
+            {
+              "id": "my-father",
+              "nahuatl": "notatah",
+              "english": "my father",
+              "spanish": "mi papá",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/notatah.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-9-11",
+                  "lessonNumber": 9,
+                  "vocabularyIndex": 11,
+                  "excerpt": "notatah",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This identifies your father.",
+                "es": "Esta respuesta identifica a tu papá."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "mother-repeat",
+              "correct": true,
+              "nextTurnId": "mother",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "nonanān"
+          ],
+          "explanation": {
+            "en": "This activity uses noun replies; it does not invent a new full family sentence.",
+            "es": "La actividad usa respuestas nominales; no inventa una oración completa sobre la familia."
+          }
+        },
+        {
+          "id": "sister",
+          "speaker": "Friend",
+          "nahuatl": "¿Ācquiya?",
+          "english": "Who?",
+          "spanish": "¿Quién?",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Acquiya.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-34",
+              "lessonNumber": 2,
+              "vocabularyIndex": 34,
+              "excerpt": "¿Ācquiya?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "Now identify your older sister.",
+            "es": "Ahora identifica a tu hermana mayor."
+          },
+          "options": [
+            {
+              "id": "my-older-sister",
+              "nahuatl": "nopipi",
+              "english": "my older sister",
+              "spanish": "mi hermana mayor",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nopipi.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-9-14",
+                  "lessonNumber": 9,
+                  "vocabularyIndex": 14,
+                  "excerpt": "nopipi",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "count",
+              "intent": "reply",
+              "explanation": {
+                "en": "The source distinguishes an older sister from a younger sibling.",
+                "es": "La fuente distingue a una hermana mayor de un hermano menor."
+              }
+            },
+            {
+              "id": "my-older-brother",
+              "nahuatl": "nomimi",
+              "english": "my older brother",
+              "spanish": "mi hermano mayor",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nomimi.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-9-13",
+                  "lessonNumber": 9,
+                  "vocabularyIndex": 13,
+                  "excerpt": "nomimi",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This identifies your older brother.",
+                "es": "Esta respuesta identifica a tu hermano mayor."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "sister-repeat",
+              "correct": true,
+              "nextTurnId": "sister",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "nopipi"
+          ],
+          "explanation": {
+            "en": "Preserve the source kinship distinctions and possessed endings.",
+            "es": "Conserva las distinciones de parentesco y las terminaciones posesivas de la fuente."
+          }
+        },
+        {
+          "id": "count",
+          "speaker": "Friend",
+          "nahuatl": "Quezqui mochochohuan ticpiya?",
+          "english": "How many younger siblings do you have?",
+          "spanish": "¿Cuántos hermanos menores tienes?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-9",
+              "lessonNumber": 9,
+              "excerpt": "Quezqui mochochohuan ticpiya?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Choose a short number reply for this practice role.",
+            "es": "Elige una respuesta numérica breve para este papel de práctica."
+          },
+          "options": [
+            {
+              "id": "siblings-one",
+              "nahuatl": "cē",
+              "english": "one",
+              "spanish": "uno",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Ce.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-4-12",
+                  "lessonNumber": 4,
+                  "vocabularyIndex": 12,
+                  "excerpt": "cē",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-4-lesson-4-ixnezcayotl-huan-tlapohualiztli-colors-and-numbers/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "one",
+              "intent": "reply",
+              "explanation": {
+                "en": "This role has one younger sibling.",
+                "es": "Este personaje tiene un hermano menor."
+              }
+            },
+            {
+              "id": "siblings-two",
+              "nahuatl": "ōme",
+              "english": "two",
+              "spanish": "dos",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Ome.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-4-13",
+                  "lessonNumber": 4,
+                  "vocabularyIndex": 13,
+                  "excerpt": "ōme",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-4-lesson-4-ixnezcayotl-huan-tlapohualiztli-colors-and-numbers/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "two",
+              "intent": "reply",
+              "explanation": {
+                "en": "This role has two younger siblings.",
+                "es": "Este personaje tiene dos hermanos menores."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "count-repeat",
+              "correct": true,
+              "nextTurnId": "count",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "cē",
+            "ōme"
+          ],
+          "explanation": {
+            "en": "Both answers are valid; your choice creates a different practice role.",
+            "es": "Ambas respuestas son válidas; tu elección crea un papel de práctica distinto."
+          }
+        },
+        {
+          "id": "one",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "You answered that you have one younger sibling.",
+            "es": "Respondiste que tienes un hermano menor."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "The answer is a source number used as a conversational fragment.",
+            "es": "La respuesta es un número de la fuente usado como fragmento conversacional."
+          }
+        },
+        {
+          "id": "two",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "You answered that you have two younger siblings.",
+            "es": "Respondiste que tienes dos hermanos menores."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "The plural kinship form remains in the source question.",
+            "es": "La forma plural de parentesco se conserva en la pregunta de la fuente."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-vocab-2-34",
+          "lessonNumber": 2,
+          "vocabularyIndex": 34,
+          "excerpt": "¿Ācquiya?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-12",
+          "lessonNumber": 9,
+          "vocabularyIndex": 12,
+          "excerpt": "nonanān",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-11",
+          "lessonNumber": 9,
+          "vocabularyIndex": 11,
+          "excerpt": "notatah",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-14",
+          "lessonNumber": 9,
+          "vocabularyIndex": 14,
+          "excerpt": "nopipi",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-13",
+          "lessonNumber": 9,
+          "vocabularyIndex": 13,
+          "excerpt": "nomimi",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-9",
+          "lessonNumber": 9,
+          "excerpt": "Quezqui mochochohuan ticpiya?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-4-12",
+          "lessonNumber": 4,
+          "vocabularyIndex": 12,
+          "excerpt": "cē",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-4-lesson-4-ixnezcayotl-huan-tlapohualiztli-colors-and-numbers/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-4-13",
+          "lessonNumber": 4,
+          "vocabularyIndex": 13,
+          "excerpt": "ōme",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-4-lesson-4-ixnezcayotl-huan-tlapohualiztli-colors-and-numbers/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-1",
+          "lessonNumber": 2,
+          "vocabularyIndex": 1,
+          "excerpt": "quēna",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can identify family members and answer a count question with a short reply.",
+          "es": "Puedo identificar familiares y responder una pregunta de cantidad con una respuesta breve."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": []
+    },
+    {
+      "id": "food-market",
+      "titleEn": "Food and the market",
+      "titleEs": "Comida y mercado",
+      "descriptionEn": "Choose food you like, then follow the source market purchase through price, order, and payment.",
+      "descriptionEs": "Elige una comida que te guste y sigue la compra de la fuente: precio, pedido y pago.",
+      "unitNumbers": [
+        18,
+        19,
+        27
+      ],
+      "startTurnId": "food",
+      "turns": [
+        {
+          "id": "food",
+          "speaker": "Friend",
+          "nahuatl": "Tlen ticāmati ticuāz?",
+          "english": "What do you like to eat?",
+          "spanish": "¿Qué te gusta comer?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-18",
+              "lessonNumber": 18,
+              "excerpt": "Tlen ticāmati ticuāz?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Choose one of the source food words as a short reply.",
+            "es": "Elige una palabra de comida de la fuente como respuesta breve."
+          },
+          "options": [
+            {
+              "id": "food-chicken",
+              "nahuatl": "piyonacatl",
+              "english": "chicken meat",
+              "spanish": "carne de pollo",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Piyonacatl.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-18-5",
+                  "lessonNumber": 18,
+                  "vocabularyIndex": 5,
+                  "excerpt": "piyonacatl",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "price",
+              "intent": "reply",
+              "explanation": {
+                "en": "You chose chicken; next, buy pantry staples at the market.",
+                "es": "Elegiste pollo; ahora compra productos de despensa en el mercado."
+              }
+            },
+            {
+              "id": "food-pork",
+              "nahuatl": "pitzonacatl",
+              "english": "pork meat",
+              "spanish": "carne de cerdo",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Pitzonacatl.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-18-6",
+                  "lessonNumber": 18,
+                  "vocabularyIndex": 6,
+                  "excerpt": "pitzonacatl",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "price",
+              "intent": "reply",
+              "explanation": {
+                "en": "You chose pork; next, buy pantry staples at the market.",
+                "es": "Elegiste cerdo; ahora compra productos de despensa en el mercado."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "food-repeat",
+              "correct": true,
+              "nextTurnId": "food",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "piyonacatl",
+            "pitzonacatl"
+          ],
+          "explanation": {
+            "en": "The food choices are noun replies, not new conjugated sentences.",
+            "es": "Las opciones de comida son respuestas nominales, no oraciones conjugadas nuevas."
+          }
+        },
+        {
+          "id": "price",
+          "speaker": "Seller",
+          "nahuatl": "Quēna, ¿tlen maz tichuīcaz?",
+          "english": "Yes, what else will you take?",
+          "spanish": "Sí, ¿qué más vas a llevar?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-27",
+              "lessonNumber": 27,
+              "excerpt": "Quēna, ¿tlen maz tichuīcaz?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Ask the price of rice, oil, and salt.",
+            "es": "Pregunta el precio del arroz, aceite y sal."
+          },
+          "options": [
+            {
+              "id": "ask-price",
+              "nahuatl": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+              "english": "How much are the rice and your oil, and the salt?",
+              "spanish": "¿Cuánto cuestan el arroz, tu aceite y la sal?",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-27",
+                  "lessonNumber": 27,
+                  "excerpt": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "order",
+              "intent": "reply",
+              "explanation": {
+                "en": "This is the source buyer's price question.",
+                "es": "Es la pregunta del comprador en la fuente."
+              }
+            },
+            {
+              "id": "ask-location",
+              "nahuatl": "Nicān niitztoc",
+              "english": "I am here",
+              "spanish": "Estoy aquí",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nican-niitztoc.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-38",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 38,
+                  "excerpt": "Nicān niitztoc",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This says where you are; it does not ask a price.",
+                "es": "Esta respuesta dice dónde estás; no pregunta un precio."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "price-repeat",
+              "correct": true,
+              "nextTurnId": "price",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?"
+          ],
+          "explanation": {
+            "en": "The source dialogue mixes Nahuatl with common borrowed market words.",
+            "es": "El diálogo de la fuente combina náhuatl con préstamos comunes del mercado."
+          }
+        },
+        {
+          "id": "order",
+          "speaker": "Seller",
+          "nahuatl": "Aa arroz īcā 15 cē kiloh huan aceyiteh 30, huan iztātl 10.",
+          "english": "Rice is 15 per kilo, oil is 30, and salt is 10.",
+          "spanish": "El arroz está a 15 el kilo, el aceite a 30 y la sal a 10.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-27",
+              "lessonNumber": 27,
+              "excerpt": "Aa arroz īcā 15 cē kiloh huan aceyiteh 30, huan iztātl 10.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Continue the source order: two kilos of rice, one kilo of salt, and three liters of oil. Prices are historical practice values.",
+            "es": "Sigue el pedido de la fuente: dos kilos de arroz, un kilo de sal y tres litros de aceite. Los precios son valores de práctica de la fuente."
+          },
+          "options": [
+            {
+              "id": "place-order",
+              "nahuatl": "Buenoh, xinēchmāca ōme kiloh arroz, cē kiloh iztātl huan ēyi litroh aceyiteh.",
+              "english": "Well, give me two kilos of rice, one kilo of salt, and three liters of oil.",
+              "spanish": "Bueno, dame dos kilos de arroz, un kilo de sal y tres litros de aceite.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-27",
+                  "lessonNumber": 27,
+                  "excerpt": "Buenoh, xinēchmāca ōme kiloh arroz, cē kiloh iztātl huan ēyi litroh aceyiteh.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "payment",
+              "intent": "reply",
+              "explanation": {
+                "en": "This repeats the source quantities; no new price or grammar has been generated.",
+                "es": "Repite las cantidades de la fuente; no se generó un precio ni una estructura nueva."
+              }
+            },
+            {
+              "id": "order-food",
+              "nahuatl": "piyonacatl",
+              "english": "chicken meat",
+              "spanish": "carne de pollo",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Piyonacatl.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-18-5",
+                  "lessonNumber": 18,
+                  "vocabularyIndex": 5,
+                  "excerpt": "piyonacatl",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This names a food but does not give this order.",
+                "es": "Esta respuesta nombra una comida, pero no expresa este pedido."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "order-repeat",
+              "correct": true,
+              "nextTurnId": "order",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Buenoh, xinēchmāca ōme kiloh arroz, cē kiloh iztātl huan ēyi litroh aceyiteh."
+          ],
+          "explanation": {
+            "en": "The source later states a total of 120 for the full original exchange, which includes an earlier sugar purchase. That total is not used here.",
+            "es": "La fuente después indica un total de 120 por el intercambio completo, que incluye una compra anterior de piloncillo. Aquí no se usa ese total."
+          }
+        },
+        {
+          "id": "payment",
+          "speaker": "Seller",
+          "nahuatl": "Quēna. Aha nicān eltoc.",
+          "english": "Yes. Here it is.",
+          "spanish": "Sí. Aquí está.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-27",
+              "lessonNumber": 27,
+              "excerpt": "Quēna. Aha nicān eltoc.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Ask what you owe, without inventing a new price.",
+            "es": "Pregunta cuánto debes, sin inventar un precio nuevo."
+          },
+          "options": [
+            {
+              "id": "ask-total",
+              "nahuatl": "Naman quena, ¿quezqui nimītzhuīquilia?",
+              "english": "Now, how much do I owe you?",
+              "spanish": "Ahora, ¿cuánto te debo?",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-27",
+                  "lessonNumber": 27,
+                  "excerpt": "Naman quena, ¿quezqui nimītzhuīquilia?",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "Use the source payment question; check the actual total with the seller.",
+                "es": "Usa la pregunta de pago de la fuente; confirma el total real con quien vende."
+              }
+            },
+            {
+              "id": "payment-name",
+              "nahuatl": "Na notōcah Juana.",
+              "english": "My name is Juana.",
+              "spanish": "Me llamo Juana.",
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000008.wav",
+              "audioKind": "synthetic",
+              "sources": [
+                {
+                  "id": "coerll-lesson-3",
+                  "lessonNumber": 3,
+                  "excerpt": "Na notōcah Juana.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "A name does not ask what you owe.",
+                "es": "Un nombre no pregunta cuánto debes."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "payment-repeat",
+              "correct": true,
+              "nextTurnId": "payment",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Naman quena, ¿quezqui nimītzhuīquilia?"
+          ],
+          "explanation": {
+            "en": "This practice ends before an actual total is given; the shortened purchase differs from the source's full basket.",
+            "es": "La práctica termina antes de dar un total real; esta compra abreviada es distinta de la compra completa de la fuente."
+          }
+        },
+        {
+          "id": "close",
+          "speaker": "Buyer",
+          "nahuatl": "Cualtitoc ahui, tlazcāmati.",
+          "english": "All right, auntie, thank you.",
+          "spanish": "Está bien, tía, gracias.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-27",
+              "lessonNumber": 27,
+              "excerpt": "Cualtitoc ahui, tlazcāmati.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "After confirming and paying the real total, thank the seller.",
+            "es": "Después de confirmar y pagar el total real, agradece a quien vende."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "Ahui is the source's aunt term used in this market address; it is not a required way to address every seller.",
+            "es": "Ahui es la palabra para tía que usa la fuente en este mercado; no es obligatorio dirigirse así a todas las personas que venden."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-18",
+          "lessonNumber": 18,
+          "excerpt": "Tlen ticāmati ticuāz?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-18-5",
+          "lessonNumber": 18,
+          "vocabularyIndex": 5,
+          "excerpt": "piyonacatl",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-18-6",
+          "lessonNumber": 18,
+          "vocabularyIndex": 6,
+          "excerpt": "pitzonacatl",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-caxtolli-huan-ce-lesson-16-nicamati-niccua-matzahtli-i-like-to-eat-pineapple/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Quēna, ¿tlen maz tichuīcaz?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-38",
+          "lessonNumber": 2,
+          "vocabularyIndex": 38,
+          "excerpt": "Nicān niitztoc",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Aa arroz īcā 15 cē kiloh huan aceyiteh 30, huan iztātl 10.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Buenoh, xinēchmāca ōme kiloh arroz, cē kiloh iztātl huan ēyi litroh aceyiteh.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Quēna. Aha nicān eltoc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Naman quena, ¿quezqui nimītzhuīquilia?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na notōcah Juana.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Cualtitoc ahui, tlazcāmati.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can ask a market price, recognize a source order, and ask what I owe.",
+          "es": "Puedo preguntar un precio, reconocer un pedido de la fuente y preguntar cuánto debo."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": []
+    },
+    {
+      "id": "directions-visiting",
+      "titleEn": "Finding a place and visiting",
+      "titleEs": "Llegar a un lugar y visitar",
+      "descriptionEn": "Follow the source narrator's route, repeat key steps, then ask to come in.",
+      "descriptionEs": "Sigue el recorrido de la fuente, repite pasos clave y pide permiso para entrar.",
+      "unitNumbers": [
+        2,
+        23,
+        28
+      ],
+      "startTurnId": "straight",
+      "turns": [
+        {
+          "id": "straight",
+          "speaker": "Guide",
+          "nahuatl": "ninehnemi xitlāhuac",
+          "english": "I walk straight",
+          "spanish": "Camino derecho",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-23",
+              "lessonNumber": 23,
+              "excerpt": "ninehnemi xitlāhuac",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Repeat the route's straight-ahead step.",
+            "es": "Repite el paso del recorrido que va derecho."
+          },
+          "options": [
+            {
+              "id": "repeat-straight",
+              "nahuatl": "ninehnemi xitlāhuac",
+              "english": "I walk straight",
+              "spanish": "Camino derecho",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-23",
+                  "lessonNumber": 23,
+                  "excerpt": "ninehnemi xitlāhuac",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "right",
+              "intent": "reply",
+              "explanation": {
+                "en": "This repeats a first-person route description, not a command.",
+                "es": "Repite una descripción del recorrido en primera persona, no una orden."
+              }
+            },
+            {
+              "id": "repeat-right-early",
+              "nahuatl": "nimomalacachoa īca nemahtli",
+              "english": "I turn right",
+              "spanish": "Giro a la derecha",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-23",
+                  "lessonNumber": 23,
+                  "excerpt": "nimomalacachoa īca nemahtli",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "The turn comes at the next route step.",
+                "es": "El giro corresponde al siguiente paso del recorrido."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "straight-repeat",
+              "correct": true,
+              "nextTurnId": "straight",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "ninehnemi xitlāhuac"
+          ],
+          "explanation": {
+            "en": "Route fragments preserve the source's first-person verbs.",
+            "es": "Los fragmentos del recorrido conservan los verbos en primera persona de la fuente."
+          }
+        },
+        {
+          "id": "right",
+          "speaker": "Guide",
+          "nahuatl": "nimomalacachoa īca nemahtli",
+          "english": "I turn right",
+          "spanish": "Giro a la derecha",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-23",
+              "lessonNumber": 23,
+              "excerpt": "nimomalacachoa īca nemahtli",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Repeat the next step, turning right.",
+            "es": "Repite el siguiente paso: girar a la derecha."
+          },
+          "options": [
+            {
+              "id": "repeat-right",
+              "nahuatl": "nimomalacachoa īca nemahtli",
+              "english": "I turn right",
+              "spanish": "Giro a la derecha",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-23",
+                  "lessonNumber": 23,
+                  "excerpt": "nimomalacachoa īca nemahtli",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "arrival",
+              "intent": "reply",
+              "explanation": {
+                "en": "This preserves the source expression for the right turn.",
+                "es": "Conserva la expresión de la fuente para girar a la derecha."
+              }
+            },
+            {
+              "id": "repeat-straight-late",
+              "nahuatl": "ninehnemi xitlāhuac",
+              "english": "I walk straight",
+              "spanish": "Camino derecho",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-23",
+                  "lessonNumber": 23,
+                  "excerpt": "ninehnemi xitlāhuac",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "That was the previous step.",
+                "es": "Ese fue el paso anterior."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "right-repeat",
+              "correct": true,
+              "nextTurnId": "right",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "nimomalacachoa īca nemahtli"
+          ],
+          "explanation": {
+            "en": "This is a route comprehension rehearsal; it is not a new imperative paradigm.",
+            "es": "Es una práctica de comprensión de un recorrido, no un paradigma imperativo nuevo."
+          }
+        },
+        {
+          "id": "arrival",
+          "speaker": "Guide",
+          "nahuatl": "Niahci āmoxcalli",
+          "english": "I arrive at the library",
+          "spanish": "Llego a la biblioteca",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-23",
+              "lessonNumber": 23,
+              "excerpt": "Niahci āmoxcalli",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "You have reached the place. Practice asking to come in.",
+            "es": "Llegaste al lugar. Practica cómo pedir permiso para entrar."
+          },
+          "options": [
+            {
+              "id": "ask-entry",
+              "nahuatl": "¿Hueliz nipano?",
+              "english": "Can I come in?",
+              "spanish": "¿Puedo pasar?",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-2",
+                  "lessonNumber": 2,
+                  "excerpt": "¿Hueliz nipano?",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "welcome",
+              "intent": "reply",
+              "explanation": {
+                "en": "The source classroom exchange supplies the entry request.",
+                "es": "El intercambio de aula de la fuente proporciona la petición para entrar."
+              }
+            },
+            {
+              "id": "entry-location",
+              "nahuatl": "Nicān niitztoc",
+              "english": "I am here",
+              "spanish": "Estoy aquí",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nican-niitztoc.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-38",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 38,
+                  "excerpt": "Nicān niitztoc",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": false,
+              "intent": "reply",
+              "explanation": {
+                "en": "This gives your location but does not ask permission to enter.",
+                "es": "Esta respuesta indica dónde estás, pero no pide permiso para entrar."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "arrival-repeat",
+              "correct": true,
+              "nextTurnId": "arrival",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "¿Hueliz nipano?"
+          ],
+          "explanation": {
+            "en": "Itzli connects two source settings for practice: the library route and an entry request.",
+            "es": "Itzli conecta dos situaciones de la fuente para practicar: el recorrido a la biblioteca y la petición para entrar."
+          }
+        },
+        {
+          "id": "welcome",
+          "speaker": "Host",
+          "nahuatl": "Quēna, xipano, ximocehui.",
+          "english": "Yes, come in and sit down.",
+          "spanish": "Sí, pasa y siéntate.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-2",
+              "lessonNumber": 2,
+              "excerpt": "Quēna, xipano, ximocehui.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "You were invited to come in and sit down.",
+            "es": "Te invitaron a pasar y sentarte."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "The complete welcome appears in the source classroom example.",
+            "es": "La bienvenida completa aparece en el ejemplo de aula de la fuente."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-23",
+          "lessonNumber": 23,
+          "excerpt": "ninehnemi xitlāhuac",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-23",
+          "lessonNumber": 23,
+          "excerpt": "nimomalacachoa īca nemahtli",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-23",
+          "lessonNumber": 23,
+          "excerpt": "Niahci āmoxcalli",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-21-lesson-21-tlen-eltoc-calihtic-what-is-inside-the-house/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-2",
+          "lessonNumber": 2,
+          "excerpt": "¿Hueliz nipano?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-38",
+          "lessonNumber": 2,
+          "vocabularyIndex": 38,
+          "excerpt": "Nicān niitztoc",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-2",
+          "lessonNumber": 2,
+          "excerpt": "Quēna, xipano, ximocehui.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can follow two source route steps and ask permission to enter.",
+          "es": "Puedo seguir dos pasos de un recorrido de la fuente y pedir permiso para entrar."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": [
+        {
+          "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Audio-2-tlamanextilli.mp3",
+          "scope": "whole-passage",
+          "label": {
+            "en": "Original classroom entry exchange",
+            "es": "Intercambio original para entrar al aula"
+          }
+        }
+      ]
+    },
+    {
+      "id": "daily-plans",
+      "titleEn": "Sharing plans",
+      "titleEs": "Compartir planes",
+      "descriptionEn": "Choose an attested singular future and share a study destination.",
+      "descriptionEs": "Elige un futuro singular documentado y comparte un destino para estudiar.",
+      "unitNumbers": [
+        12,
+        26
+      ],
+      "startTurnId": "plan",
+      "turns": [
+        {
+          "id": "plan",
+          "speaker": "Friend",
+          "nahuatl": "¿Huan ta?",
+          "english": "And you?",
+          "spanish": "¿Y tú?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "¿Huan ta?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Your friend asks about your plan. Choose work or study for this role.",
+            "es": "Tu amistad pregunta tu plan. Elige trabajar o estudiar para este papel."
+          },
+          "options": [
+            {
+              "id": "plan-work",
+              "nahuatl": "Nitequitiz",
+              "english": "I will work",
+              "spanish": "Voy a trabajar",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-12",
+                  "lessonNumber": 12,
+                  "excerpt": "Nitequitiz",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "work",
+              "intent": "reply",
+              "explanation": {
+                "en": "This is the source's first-person singular future for work.",
+                "es": "Es el futuro de primera persona singular de trabajar en la fuente."
+              }
+            },
+            {
+              "id": "plan-study",
+              "nahuatl": "Nimomachtiz",
+              "english": "I will study",
+              "spanish": "Voy a estudiar",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nimomachtiz.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-12-4",
+                  "lessonNumber": 12,
+                  "vocabularyIndex": 4,
+                  "excerpt": "Nimomachtiz",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "study",
+              "intent": "reply",
+              "explanation": {
+                "en": "This is the source's first-person singular future for study.",
+                "es": "Es el futuro de primera persona singular de estudiar en la fuente."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "plan-repeat",
+              "correct": true,
+              "nextTurnId": "plan",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Nitequitiz",
+            "Nimomachtiz"
+          ],
+          "explanation": {
+            "en": "The selected future forms are singular; disputed plural spellings are excluded.",
+            "es": "Los futuros seleccionados son singulares; se excluyen las escrituras plurales pendientes de revisión."
+          }
+        },
+        {
+          "id": "work",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "You plan to work. For a later study visit, choose the source library plan.",
+            "es": "Planeas trabajar. Para una visita posterior de estudio, elige el plan de la biblioteca de la fuente."
+          },
+          "options": [
+            {
+              "id": "work-library",
+              "nahuatl": "Niyaz nimomachtiti amoxcalli.",
+              "english": "I will go to study at the library.",
+              "spanish": "Voy a ir a estudiar a la biblioteca.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-26",
+                  "lessonNumber": 26,
+                  "excerpt": "Niyaz nimomachtiti amoxcalli.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "The whole library sentence is attested; it is not assembled from new suffixes.",
+                "es": "La oración completa de la biblioteca está documentada; no se armó con sufijos nuevos."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "work-repeat",
+              "correct": true,
+              "nextTurnId": "work",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Niyaz nimomachtiti amoxcalli."
+          ],
+          "explanation": {
+            "en": "The second plan is a separate source sentence.",
+            "es": "El segundo plan es una oración distinta de la fuente."
+          }
+        },
+        {
+          "id": "study",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "Say where you will go to study using the source sentence.",
+            "es": "Di a dónde irás a estudiar usando la oración de la fuente."
+          },
+          "options": [
+            {
+              "id": "study-library",
+              "nahuatl": "Niyaz nimomachtiti amoxcalli.",
+              "english": "I will go to study at the library.",
+              "spanish": "Voy a ir a estudiar a la biblioteca.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-26",
+                  "lessonNumber": 26,
+                  "excerpt": "Niyaz nimomachtiti amoxcalli.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "The source models going somewhere to carry out an action.",
+                "es": "La fuente muestra cómo ir a un lugar para realizar una acción."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "study-repeat",
+              "correct": true,
+              "nextTurnId": "study",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Niyaz nimomachtiti amoxcalli."
+          ],
+          "explanation": {
+            "en": "The action-purpose form is retained exactly as it appears in Lesson 26.",
+            "es": "La forma de propósito se conserva como aparece en la lección 26."
+          }
+        },
+        {
+          "id": "close",
+          "speaker": "Friend",
+          "nahuatl": "Quena, teipanoc.",
+          "english": "Yes, later.",
+          "spanish": "Sí, hasta luego.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "Quena, teipanoc.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "You shared a plan and can close the conversation.",
+            "es": "Compartiste un plan y puedes terminar la conversación."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "Choose complete attested plans in the sentence workbench.",
+            "es": "Elige planes completos documentados en el taller de oraciones."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "¿Huan ta?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-12",
+          "lessonNumber": 12,
+          "excerpt": "Nitequitiz",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-12-4",
+          "lessonNumber": 12,
+          "vocabularyIndex": 4,
+          "excerpt": "Nimomachtiz",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-1",
+          "lessonNumber": 2,
+          "vocabularyIndex": 1,
+          "excerpt": "quēna",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-26",
+          "lessonNumber": 26,
+          "excerpt": "Niyaz nimomachtiti amoxcalli.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Quena, teipanoc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can share a singular future plan from the source.",
+          "es": "Puedo compartir un plan en futuro singular de la fuente."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": []
+    },
+    {
+      "id": "experiences",
+      "titleEn": "Sharing an experience",
+      "titleEs": "Compartir una experiencia",
+      "descriptionEn": "Share an attested past action, then expand the water-fetching example with its original details.",
+      "descriptionEs": "Comparte una acción pasada documentada y amplía el ejemplo de ir por agua con sus detalles originales.",
+      "unitNumbers": [
+        14,
+        24,
+        26
+      ],
+      "startTurnId": "past",
+      "turns": [
+        {
+          "id": "past",
+          "speaker": "Friend",
+          "nahuatl": "¿Huan ta?",
+          "english": "And you?",
+          "spanish": "¿Y tú?",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "¿Huan ta?",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "Your friend has shared an outing. Choose your past-action reply for this role.",
+            "es": "Tu amistad contó una salida. Elige tu respuesta sobre una acción pasada para este papel."
+          },
+          "options": [
+            {
+              "id": "past-went",
+              "nahuatl": "Niyāhqui",
+              "english": "I went",
+              "spanish": "Fui",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-24",
+                  "lessonNumber": 24,
+                  "excerpt": "Niyāhqui",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-24-lesson-24-niihhuia-pan-altepetl-part-1-i-had-gone-to-the-city-part-1/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "went",
+              "intent": "reply",
+              "explanation": {
+                "en": "The irregular past of ‘go’ is learned as an attested form.",
+                "es": "El pasado irregular de «ir» se aprende como forma documentada."
+              }
+            },
+            {
+              "id": "past-water",
+              "nahuatl": "Niātlacuito",
+              "english": "I went to get water",
+              "spanish": "Fui por agua",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-26",
+                  "lessonNumber": 26,
+                  "excerpt": "Niātlacuito",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "water",
+              "intent": "reply",
+              "explanation": {
+                "en": "This source form says you went to carry out the water-fetching action.",
+                "es": "Esta forma de la fuente indica que fuiste a realizar la acción de ir por agua."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "past-repeat",
+              "correct": true,
+              "nextTurnId": "past",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Niyāhqui",
+            "Niātlacuito"
+          ],
+          "explanation": {
+            "en": "These replies do not use a blanket Classical past augment.",
+            "es": "Estas respuestas no aplican una regla general de aumento del pasado clásico."
+          }
+        },
+        {
+          "id": "went",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "Now specify the source outing: yesterday you went for water with your mother.",
+            "es": "Ahora precisa la salida de la fuente: ayer fuiste por agua con tu mamá."
+          },
+          "options": [
+            {
+              "id": "went-details",
+              "nahuatl": "Yālhuaya niātlacuito huanya nonanān.",
+              "english": "Yesterday I went to get water with my mother.",
+              "spanish": "Ayer fui por agua con mi mamá.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-26",
+                  "lessonNumber": 26,
+                  "excerpt": "Yālhuaya niātlacuito huanya nonanān.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "The time, action, and companion come from the complete source sentence.",
+                "es": "El tiempo, la acción y la compañía provienen de la oración completa de la fuente."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "went-repeat",
+              "correct": true,
+              "nextTurnId": "went",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Yālhuaya niātlacuito huanya nonanān."
+          ],
+          "explanation": {
+            "en": "No new companion or tense is generated in this example.",
+            "es": "Este ejemplo no genera una compañía ni un tiempo verbal nuevos."
+          }
+        },
+        {
+          "id": "water",
+          "speaker": "Friend",
+          "nahuatl": "quēna",
+          "english": "yes",
+          "spanish": "sí",
+          "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3",
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-vocab-2-1",
+              "lessonNumber": 2,
+              "vocabularyIndex": 1,
+              "excerpt": "quēna",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "exact-utterance",
+          "prompt": {
+            "en": "Add when and with whom, using the complete source example.",
+            "es": "Añade cuándo y con quién, usando el ejemplo completo de la fuente."
+          },
+          "options": [
+            {
+              "id": "water-details",
+              "nahuatl": "Yālhuaya niātlacuito huanya nonanān.",
+              "english": "Yesterday I went to get water with my mother.",
+              "spanish": "Ayer fui por agua con mi mamá.",
+              "audioUrl": null,
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-lesson-26",
+                  "lessonNumber": 26,
+                  "excerpt": "Yālhuaya niātlacuito huanya nonanān.",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "correct": true,
+              "nextTurnId": "close",
+              "intent": "reply",
+              "explanation": {
+                "en": "Use the source's complete past outing sentence.",
+                "es": "Usa la oración completa de la fuente sobre la salida pasada."
+              }
+            },
+            {
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source",
+              "sources": [
+                {
+                  "id": "coerll-vocab-2-23",
+                  "lessonNumber": 2,
+                  "vocabularyIndex": 23,
+                  "excerpt": "Zampa xiquihto",
+                  "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                  "license": "CC BY-SA (publisher listing; version unspecified)",
+                  "authors": [
+                    "Sabina de la Cruz",
+                    "Catalina de la Cruz",
+                    "Josefrayn Sánchez-Perry",
+                    "Kelly McDonough",
+                    "Sergio Romero"
+                  ]
+                }
+              ],
+              "id": "water-repeat",
+              "correct": true,
+              "nextTurnId": "water",
+              "intent": "repeat",
+              "explanation": {
+                "en": "Ask for repetition, then listen or read again before choosing a reply.",
+                "es": "Pide que lo repitan; vuelve a escuchar o leer antes de responder."
+              }
+            }
+          ],
+          "acceptedResponses": [
+            "Yālhuaya niātlacuito huanya nonanān."
+          ],
+          "explanation": {
+            "en": "The directional -to form is retained from the source.",
+            "es": "La forma direccional con -to se conserva de la fuente."
+          }
+        },
+        {
+          "id": "close",
+          "speaker": "Friend",
+          "nahuatl": "Quena, teipanoc.",
+          "english": "Yes, later.",
+          "spanish": "Sí, hasta luego.",
+          "audioUrl": null,
+          "audioKind": "source",
+          "sources": [
+            {
+              "id": "coerll-lesson-3",
+              "lessonNumber": 3,
+              "excerpt": "Quena, teipanoc.",
+              "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+              "license": "CC BY-SA (publisher listing; version unspecified)",
+              "authors": [
+                "Sabina de la Cruz",
+                "Catalina de la Cruz",
+                "Josefrayn Sánchez-Perry",
+                "Kelly McDonough",
+                "Sergio Romero"
+              ]
+            }
+          ],
+          "audioScope": "none",
+          "prompt": {
+            "en": "You shared an experience and can close the exchange.",
+            "es": "Compartiste una experiencia y puedes terminar el intercambio."
+          },
+          "options": [],
+          "acceptedResponses": [],
+          "explanation": {
+            "en": "The original source details describe this role, rather than your personal history.",
+            "es": "Los detalles originales describen este papel, no tu historia personal."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "¿Huan ta?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-24",
+          "lessonNumber": 24,
+          "excerpt": "Niyāhqui",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-24-lesson-24-niihhuia-pan-altepetl-part-1-i-had-gone-to-the-city-part-1/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-26",
+          "lessonNumber": 26,
+          "excerpt": "Niātlacuito",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-1",
+          "lessonNumber": 2,
+          "vocabularyIndex": 1,
+          "excerpt": "quēna",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-26",
+          "lessonNumber": 26,
+          "excerpt": "Yālhuaya niātlacuito huanya nonanān.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Quena, teipanoc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "canDo": [
+        {
+          "en": "I can recognize and use a learned past outing sentence.",
+          "es": "Puedo reconocer y usar una oración aprendida sobre una salida pasada."
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "sourceAudio": []
+    }
+  ],
+  "patterns": [
+    {
+      "id": "my-name",
+      "titleEn": "Say your name",
+      "titleEs": "Di tu nombre",
+      "descriptionEn": "Use the source name frame with a proper name.",
+      "descriptionEs": "Usa la estructura de nombre de la fuente con un nombre propio.",
+      "unitNumbers": [
+        3
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "juana",
+              "nahuatl": "Na notōcah Juana.",
+              "english": "My name is Juana.",
+              "spanish": "Me llamo Juana.",
+              "source": {
+                "id": "coerll-lesson-3",
+                "lessonNumber": 3,
+                "excerpt": "Na notōcah Juana.",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000008.wav",
+              "audioKind": "synthetic"
+            },
+            {
+              "id": "paty",
+              "nahuatl": "na notōcah Paty.",
+              "english": "My name is Paty.",
+              "spanish": "Me llamo Paty.",
+              "source": {
+                "id": "coerll-lesson-3",
+                "lessonNumber": 3,
+                "excerpt": "na notōcah Paty.",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na notōcah Juana.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "na notōcah Paty.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "template": {
+        "sourceNahuatl": "Na notōcah Juana.",
+        "nahuatl": "Na notōcah {name}.",
+        "english": "My name is {name}.",
+        "spanish": "Me llamo {name}.",
+        "freeSlots": [
+          {
+            "id": "name",
+            "type": "proper-name",
+            "label": {
+              "en": "Your name",
+              "es": "Tu nombre"
+            },
+            "example": "Juana",
+            "maxLength": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "my-origin",
+      "titleEn": "Say where you are from",
+      "titleEs": "Di de dónde eres",
+      "descriptionEn": "Replace only the proper place name in the attested origin frame.",
+      "descriptionEs": "Sustituye únicamente el nombre propio del lugar en la estructura documentada de origen.",
+      "unitNumbers": [
+        3
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "tecomate",
+              "nahuatl": "Na niēhua Tecomate, Chicōntepēc.",
+              "english": "I am from Tecomate, Chicontepec.",
+              "spanish": "Soy de Tecomate, Chicontepec.",
+              "source": {
+                "id": "coerll-lesson-3",
+                "lessonNumber": 3,
+                "excerpt": "Na niēhua Tecomate, Chicōntepēc.",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "/audio-google/dialogue/FCN-LDG-000009.wav",
+              "audioKind": "synthetic"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-3",
+          "lessonNumber": 3,
+          "excerpt": "Na niēhua Tecomate, Chicōntepēc.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-3-lesson-3-na-niehua-tecomate-chicontepec-i-am-from-tecomate-chicontepec/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      },
+      "template": {
+        "sourceNahuatl": "Na niēhua Tecomate, Chicōntepēc.",
+        "nahuatl": "Na niēhua {place}.",
+        "english": "I am from {place}.",
+        "spanish": "Soy de {place}.",
+        "freeSlots": [
+          {
+            "id": "place",
+            "type": "place-name",
+            "label": {
+              "en": "Your place of origin",
+              "es": "Tu lugar de origen"
+            },
+            "example": "Tecomate",
+            "maxLength": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "ask-repeat",
+      "titleEn": "Ask for clarification",
+      "titleEs": "Pide una aclaración",
+      "descriptionEn": "Choose a source classroom repair phrase.",
+      "descriptionEs": "Elige una frase de aclaración de la fuente.",
+      "unitNumbers": [
+        2
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "repeat",
+              "nahuatl": "Zampa xiquihto",
+              "english": "Say it again",
+              "spanish": "Dilo otra vez",
+              "source": {
+                "id": "coerll-vocab-2-23",
+                "lessonNumber": 2,
+                "vocabularyIndex": 23,
+                "excerpt": "Zampa xiquihto",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/zampa-xiquihto.mp3",
+              "audioKind": "source"
+            },
+            {
+              "id": "not-understand",
+              "nahuatl": "Ax niccuamachilia",
+              "english": "I do not understand",
+              "spanish": "No entiendo",
+              "source": {
+                "id": "coerll-vocab-2-26",
+                "lessonNumber": 2,
+                "vocabularyIndex": 26,
+                "excerpt": "Ax niccuamachilia",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Axniccuamachilia.mp3",
+              "audioKind": "source"
+            },
+            {
+              "id": "question",
+              "nahuatl": "Nicpiya cē tlahtlaniliztli",
+              "english": "I have a question",
+              "spanish": "Tengo una pregunta",
+              "source": {
+                "id": "coerll-vocab-2-24",
+                "lessonNumber": 2,
+                "vocabularyIndex": 24,
+                "excerpt": "Nicpiya cē tlahtlaniliztli",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nicpiya-ce-tlahtlaniliztli.mp3",
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-vocab-2-23",
+          "lessonNumber": 2,
+          "vocabularyIndex": 23,
+          "excerpt": "Zampa xiquihto",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-26",
+          "lessonNumber": 2,
+          "vocabularyIndex": 26,
+          "excerpt": "Ax niccuamachilia",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-2-24",
+          "lessonNumber": 2,
+          "vocabularyIndex": 24,
+          "excerpt": "Nicpiya cē tlahtlaniliztli",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      }
+    },
+    {
+      "id": "family-replies",
+      "titleEn": "Identify your family",
+      "titleEs": "Identifica a tu familia",
+      "descriptionEn": "Select complete possessed kinship forms; endings are learned with each word.",
+      "descriptionEs": "Elige formas posesivas completas de parentesco; aprende la terminación con cada palabra.",
+      "unitNumbers": [
+        9
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "mother",
+              "nahuatl": "nonanān",
+              "english": "my mother",
+              "spanish": "mi mamá",
+              "source": {
+                "id": "coerll-vocab-9-12",
+                "lessonNumber": 9,
+                "vocabularyIndex": 12,
+                "excerpt": "nonanān",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nonanan.mp3",
+              "audioKind": "source"
+            },
+            {
+              "id": "father",
+              "nahuatl": "notatah",
+              "english": "my father",
+              "spanish": "mi papá",
+              "source": {
+                "id": "coerll-vocab-9-11",
+                "lessonNumber": 9,
+                "vocabularyIndex": 11,
+                "excerpt": "notatah",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/notatah.mp3",
+              "audioKind": "source"
+            },
+            {
+              "id": "older-sister",
+              "nahuatl": "nopipi",
+              "english": "my older sister",
+              "spanish": "mi hermana mayor",
+              "source": {
+                "id": "coerll-vocab-9-14",
+                "lessonNumber": 9,
+                "vocabularyIndex": 14,
+                "excerpt": "nopipi",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nopipi.mp3",
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-vocab-9-12",
+          "lessonNumber": 9,
+          "vocabularyIndex": 12,
+          "excerpt": "nonanān",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-11",
+          "lessonNumber": 9,
+          "vocabularyIndex": 11,
+          "excerpt": "notatah",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-9-14",
+          "lessonNumber": 9,
+          "vocabularyIndex": 14,
+          "excerpt": "nopipi",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-9-lesson-9-teixmatcacuahuitl-the-family/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      }
+    },
+    {
+      "id": "singular-plans",
+      "titleEn": "Share a plan",
+      "titleEs": "Comparte un plan",
+      "descriptionEn": "Select an attested singular future or complete action-purpose sentence.",
+      "descriptionEs": "Elige un futuro singular documentado o una oración completa de propósito.",
+      "unitNumbers": [
+        12,
+        26
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "work",
+              "nahuatl": "Nitequitiz",
+              "english": "I will work",
+              "spanish": "Voy a trabajar",
+              "source": {
+                "id": "coerll-lesson-12",
+                "lessonNumber": 12,
+                "excerpt": "Nitequitiz",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            },
+            {
+              "id": "study",
+              "nahuatl": "Nimomachtiz",
+              "english": "I will study",
+              "spanish": "Voy a estudiar",
+              "source": {
+                "id": "coerll-vocab-12-4",
+                "lessonNumber": 12,
+                "vocabularyIndex": 4,
+                "excerpt": "Nimomachtiz",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nimomachtiz.mp3",
+              "audioKind": "source"
+            },
+            {
+              "id": "library",
+              "nahuatl": "Niyaz nimomachtiti amoxcalli.",
+              "english": "I will go to study at the library.",
+              "spanish": "Voy a ir a estudiar a la biblioteca.",
+              "source": {
+                "id": "coerll-lesson-26",
+                "lessonNumber": 26,
+                "excerpt": "Niyaz nimomachtiti amoxcalli.",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-12",
+          "lessonNumber": 12,
+          "excerpt": "Nitequitiz",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-12-4",
+          "lessonNumber": 12,
+          "vocabularyIndex": 4,
+          "excerpt": "Nimomachtiz",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-26",
+          "lessonNumber": 26,
+          "excerpt": "Niyaz nimomachtiti amoxcalli.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      }
+    },
+    {
+      "id": "past-experiences",
+      "titleEn": "Share a past experience",
+      "titleEs": "Comparte una experiencia pasada",
+      "descriptionEn": "Use complete past forms from the source.",
+      "descriptionEs": "Usa formas pasadas completas de la fuente.",
+      "unitNumbers": [
+        14,
+        24,
+        26
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "went",
+              "nahuatl": "Niyāhqui",
+              "english": "I went",
+              "spanish": "Fui",
+              "source": {
+                "id": "coerll-lesson-24",
+                "lessonNumber": 24,
+                "excerpt": "Niyāhqui",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-24-lesson-24-niihhuia-pan-altepetl-part-1-i-had-gone-to-the-city-part-1/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            },
+            {
+              "id": "water",
+              "nahuatl": "Yālhuaya niātlacuito huanya nonanān.",
+              "english": "Yesterday I went to get water with my mother.",
+              "spanish": "Ayer fui por agua con mi mamá.",
+              "source": {
+                "id": "coerll-lesson-26",
+                "lessonNumber": 26,
+                "excerpt": "Yālhuaya niātlacuito huanya nonanān.",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            },
+            {
+              "id": "cried",
+              "nahuatl": "Nichōcac",
+              "english": "I cried",
+              "spanish": "Lloré",
+              "source": {
+                "id": "coerll-vocab-14-2",
+                "lessonNumber": 14,
+                "vocabularyIndex": 2,
+                "excerpt": "Nichōcac",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-14-lesson-14-tlachihualiztli-achiyoc-past-tense-verbs/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nichocac.mp3",
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-24",
+          "lessonNumber": 24,
+          "excerpt": "Niyāhqui",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-24-lesson-24-niihhuia-pan-altepetl-part-1-i-had-gone-to-the-city-part-1/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-26",
+          "lessonNumber": 26,
+          "excerpt": "Yālhuaya niātlacuito huanya nonanān.",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-23-lesson-23-niquicohuaco-ce-tlaxcalyoyomitl-i-came-to-buy-tortilla-napkins/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-vocab-14-2",
+          "lessonNumber": 14,
+          "vocabularyIndex": 2,
+          "excerpt": "Nichōcac",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-14-lesson-14-tlachihualiztli-achiyoc-past-tense-verbs/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      }
+    },
+    {
+      "id": "market-price",
+      "titleEn": "Ask a price",
+      "titleEs": "Pregunta un precio",
+      "descriptionEn": "Practice the complete source market question.",
+      "descriptionEs": "Practica la pregunta completa del mercado de la fuente.",
+      "unitNumbers": [
+        27
+      ],
+      "slots": [
+        {
+          "id": "utterance",
+          "label": {
+            "en": "Choose a reviewed source phrase",
+            "es": "Elige una frase cotejada con la fuente"
+          },
+          "choices": [
+            {
+              "id": "rice-oil-salt",
+              "nahuatl": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+              "english": "How much are the rice and your oil, and the salt?",
+              "spanish": "¿Cuánto cuestan el arroz, tu aceite y la sal?",
+              "source": {
+                "id": "coerll-lesson-27",
+                "lessonNumber": 27,
+                "excerpt": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            },
+            {
+              "id": "owe",
+              "nahuatl": "Naman quena, ¿quezqui nimītzhuīquilia?",
+              "english": "Now, how much do I owe you?",
+              "spanish": "Ahora, ¿cuánto te debo?",
+              "source": {
+                "id": "coerll-lesson-27",
+                "lessonNumber": 27,
+                "excerpt": "Naman quena, ¿quezqui nimītzhuīquilia?",
+                "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+                "license": "CC BY-SA (publisher listing; version unspecified)",
+                "authors": [
+                  "Sabina de la Cruz",
+                  "Catalina de la Cruz",
+                  "Josefrayn Sánchez-Perry",
+                  "Kelly McDonough",
+                  "Sergio Romero"
+                ]
+              },
+              "audioUrl": null,
+              "audioKind": "source"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "¿Quezqui īpatiuh arroz huan moaceyiteh, aa huan iztātl?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        },
+        {
+          "id": "coerll-lesson-27",
+          "lessonNumber": 27,
+          "excerpt": "Naman quena, ¿quezqui nimītzhuīquilia?",
+          "url": "https://tlahtolli.coerll.utexas.edu/tlamactiliztli-24-lesson-24-namantzin-eltoc-tianquiz-there-is-a-market-right-now/",
+          "license": "CC BY-SA (publisher listing; version unspecified)",
+          "authors": [
+            "Sabina de la Cruz",
+            "Catalina de la Cruz",
+            "Josefrayn Sánchez-Perry",
+            "Kelly McDonough",
+            "Sergio Romero"
+          ]
+        }
+      ],
+      "review": {
+        "status": "source-adaptation",
+        "scope": {
+          "en": "COERLL utterances and short source replies arranged by Itzli for guided conversation. English and Spanish are Itzli translations.",
+          "es": "Enunciados y respuestas breves de COERLL organizados por Itzli para practicar conversaciones. El inglés y el español son traducciones de Itzli."
+        },
+        "limitations": {
+          "en": "This is an adapted practice conversation, not a recording of this whole exchange. New personal substitutions and conversational sequencing still need community-speaker review.",
+          "es": "Es una conversación adaptada para practicar, no una grabación de todo este intercambio. Las sustituciones personales y la secuencia conversacional aún requieren revisión con personas hablantes de la comunidad."
+        }
+      }
+    }
+  ]
+}

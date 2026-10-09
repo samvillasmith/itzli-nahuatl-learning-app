@@ -1,0 +1,10 @@
+# Reviewed provenance hashes cover the exact JSON bytes, including line endings.
+# Keep authoring and learner catalogs identical in Windows and Linux checkouts.
+src/data/*.json -text
+public/generated-course-audio.json -text
+public/audio-v3/audio-notices.json -text
+course-release-manifest.json -text
+third-party-notices-manifest.json -text
+
+# The course subset contains stable historical identities and is shipped intact.
+*.sqlite binary

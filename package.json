@@ -1,6 +1,6 @@
 {
   "name": "amoxcalli-app",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "private": true,
   "overrides": {
     "next": {
@@ -8,17 +8,21 @@
     }
   },
   "scripts": {
-    "predev": "node scripts/fetch-db.js",
-    "prebuild": "node scripts/fetch-db.js",
+    "predev": "npm run release:prepare",
+    "prebuild": "npm run release:prepare",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "vitest run",
-    "preverify": "node scripts/fetch-db.js",
-    "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:i18n && npm run audit:app-content && npm run audit:course && npm run images:openai:audit",
+    "test": "vitest run --configLoader native",
+    "preverify": "npm run release:prepare",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run audit:i18n && npm run audit:app-content && npm run audit:course && npm run audit:audio-integrity && npm run audit:image-integrity && npm run images:openai:audit",
     "audit:course": "node scripts/audit-course-quality.js",
+    "audit:audio-integrity": "node scripts/audit-audio-integrity.js",
+    "audit:image-integrity": "node scripts/audit-image-integrity.js",
+    "audit:v3-media": "node scripts/audit-v3-media-expansion.js",
+    "content:v3:publish": "node scripts/publish-v3-research.js",
     "audit:app-content": "node scripts/audit-app-content-exclusions.js",
     "audit:i18n": "node scripts/audit-spanish-localization.js",
     "images:s3:manifest": "node scripts/import-s3-word-images.js",
@@ -27,23 +31,35 @@
     "images:openai:approve": "node scripts/approve-openai-word-image.js",
     "images:openai:dry-run": "node scripts/generate-openai-word-images.js --dry-run --include-phrases",
     "images:openai:generate": "node scripts/generate-openai-word-images.js --execute --include-phrases",
-    "audio:mms:test": "node scripts/run-audio-python.js --test na ta calli chilli tlahtoa xochitl quema --seeds 42 555 1337 2026",
+    "audio:mms:test": "node scripts/run-audio-python.js --benchmark --dry-run",
     "audio:mms:generate": "node scripts/run-audio-python.js",
+    "audio:dry-run": "node scripts/generate-google-audio.js --dry-run --limit 20",
+    "audio:generate": "node scripts/generate-google-audio.js --execute",
     "audio:google:dry-run": "node scripts/generate-google-audio.js --dry-run --limit 20",
     "audio:google:test": "node scripts/generate-google-audio.js --test na ta calli chilli tlahtoa xochitl quema",
     "audio:google:reviewed": "node scripts/generate-google-audio.js --reviewed",
     "audio:google:generate": "node scripts/generate-google-audio.js --execute",
     "audio:openai:dry-run": "node scripts/generate-openai-audio.js --dry-run --limit 20",
     "audio:openai:test": "node scripts/generate-openai-audio.js --test na ta calli tlahtoa xochitl quema",
-    "audio:openai:generate": "node scripts/generate-openai-audio.js --execute"
+    "audio:openai:generate": "node scripts/generate-openai-audio.js --execute",
+    "dev:local": "node scripts/dev-local.js",
+    "verify:v3": "npm run typecheck && npm run lint && npm run test && npm run audit:i18n && npm run audit:app-content && npm run audit:course && npm run audit:audio-integrity && npm run audit:image-integrity && npm run audit:v3-media",
+    "review:local": "node scripts/review-local.js",
+    "release:prepare": "node scripts/prepare-learner-catalogs.cjs --prepare && node scripts/prepare-course-release.cjs --prepare && node scripts/prepare-release-media.cjs --archive && node scripts/prepare-reviewed-tutor-context.cjs --prepare && node scripts/prepare-third-party-notices.cjs --prepare",
+    "release:check": "node scripts/prepare-learner-catalogs.cjs --check && node scripts/prepare-course-release.cjs --check && node scripts/prepare-release-media.cjs --check && node scripts/prepare-reviewed-tutor-context.cjs --check && node scripts/prepare-third-party-notices.cjs --check",
+    "predev:local": "npm run release:prepare",
+    "preverify:v3": "npm run release:check",
+    "prereview:local": "npm run release:check",
+    "release:package:check": "node scripts/check-release-package.cjs",
+    "postbuild": "node scripts/prune-private-release-traces.cjs --write && npm run release:package:check"
   },
   "dependencies": {
     "@clerk/localizations": "^4.13.5",
-    "@clerk/nextjs": "^7.5.17",
+    "@clerk/nextjs": "7.7.8",
     "@neondatabase/serverless": "^1.0.2",
     "better-sqlite3": "^12.8.0",
     "lucide-react": "^0.468.0",
-    "next": "^16.2.10",
+    "next": "16.3.8",
     "openai": "^6.34.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -55,9 +71,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.2.10",
+    "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^3.2.7"
+    "vitest": "4.1.11"
   }
 }

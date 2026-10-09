@@ -1,5 +1,8 @@
+import "server-only";
 import courseData from "@/data/nahuatlahtolli-course.json";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
+import learnerExclusions from "@/data/app-content-exclusions.json";
+import excludedAudio from "@/data/audio-learner-exclusions.json";
 
 export type SourceMediaLink = {
   type: "audio" | "image" | "video" | "file";
@@ -9,12 +12,15 @@ export type SourceMediaLink = {
 export type SourceSection = {
   heading: string;
   body: string[];
+  sourceSectionIndex?: number;
+  sourceBodyIndices?: number[];
 };
 
 export type SourceVocabularyItem = {
   headword: string;
   gloss: string;
   audioUrl: string | null;
+  sourceVocabularyIndex?: number;
 };
 
 export type SourceLesson = {
@@ -63,23 +69,33 @@ export type NahuatlahtolliCourse = {
   lessons: SourceLesson[];
 };
 
-function sanitizeSections(sections: SourceSection[]): SourceSection[] {
+const excludedSourceBody = new Set(learnerExclusions.learnerSourceBodyExclusions.map(
+  row => `${row.lessonNumber}:${row.sectionIndex}:${row.bodyIndex}`,
+));
+const excludedSourceAudio = new Set<string>(excludedAudio.excluded_source_urls);
+
+function sanitizeSections(sections: SourceSection[], lessonNumber?: number): SourceSection[] {
   return sections
-    .map((section) => ({
+    .map((section, sectionIndex) => ({
       ...section,
-      body: section.body.filter((line) => !isAppContentExcluded(line)),
+      sourceSectionIndex: section.sourceSectionIndex ?? sectionIndex,
+      sourceBodyIndices: section.body.flatMap((line, index) => isAppContentExcluded(line) ||
+        excludedSourceBody.has(`${lessonNumber}:${section.sourceSectionIndex ?? sectionIndex}:${section.sourceBodyIndices?.[index] ?? index}`)
+        ? [] : [section.sourceBodyIndices?.[index] ?? index]),
+      body: section.body.filter((line, index) => !isAppContentExcluded(line) &&
+        !excludedSourceBody.has(`${lessonNumber}:${section.sourceSectionIndex ?? sectionIndex}:${section.sourceBodyIndices?.[index] ?? index}`)),
     }))
     .filter((section) => section.body.length > 0 && !isAppContentExcluded(section.heading));
 }
 
-function sanitizeLesson(lesson: SourceLesson): SourceLesson {
+export function sanitizeSourceLesson(lesson: SourceLesson): SourceLesson {
   return {
     ...lesson,
-    sections: sanitizeSections(lesson.sections),
-    vocabulary: lesson.vocabulary.filter(
+    sections: sanitizeSections(lesson.sections, lesson.number),
+    vocabulary: lesson.vocabulary.map((item, index) => ({ ...item, sourceVocabularyIndex: item.sourceVocabularyIndex ?? index + 1 })).filter(
       (item) => !isAppContentExcluded(item.headword, item.gloss, item.audioUrl)
     ),
-    mediaLinks: lesson.mediaLinks.filter((link) => !isAppContentExcluded(link.url)),
+    mediaLinks: lesson.mediaLinks.filter((link) => !isAppContentExcluded(link.url) && !excludedSourceAudio.has(link.url)),
   };
 }
 
@@ -87,7 +103,7 @@ function sanitizeSupportPage(page: SourceSupportPage): SourceSupportPage {
   return {
     ...page,
     sections: sanitizeSections(page.sections),
-    mediaLinks: page.mediaLinks.filter((link) => !isAppContentExcluded(link.url)),
+    mediaLinks: page.mediaLinks.filter((link) => !isAppContentExcluded(link.url) && !excludedSourceAudio.has(link.url)),
   };
 }
 
@@ -95,7 +111,7 @@ function sanitizeCourse(course: NahuatlahtolliCourse): NahuatlahtolliCourse {
   return {
     ...course,
     supportPages: course.supportPages.map(sanitizeSupportPage),
-    lessons: course.lessons.map(sanitizeLesson),
+    lessons: course.lessons.map(sanitizeSourceLesson),
   };
 }
 

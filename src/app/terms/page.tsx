@@ -2,17 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getRequestLocale } from "@/i18n/server";
 import { tr, trChoice } from "@/i18n/translate";
+import { COERLL_SOURCE_LICENSE_NOTICE, ITZLI_V3_CONTRIBUTION_LICENSE } from "@/lib/source-license-notices";
+import { createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  return {
-    title: tr(locale, "Terms of Service"),
-    description: tr(locale, "Terms of Service for Itzli — Eastern Huasteca Nahuatl learning app."),
-  };
+  return createPageMetadata({
+    locale,
+    pathname: "/terms",
+    title: trChoice(locale, "Terms of Service", "Términos de servicio"),
+    description: trChoice(locale,
+      "Read the terms for using Itzli's free Nahuatl learning app, including account responsibilities, course content, source licenses, and support.",
+      "Consulta los términos de uso de la app gratuita de náhuatl de Itzli: responsabilidades de la cuenta, contenido, licencias de las fuentes y ayuda."),
+  });
 }
 
-const EFFECTIVE_DATE = "May 20, 2026";
-const CONTACT_EMAIL = "svillasmith3@gmail.com";
+const EFFECTIVE_DATE = "October 3, 2026";
+const CONTACT_EMAIL = "admin@itzli.app";
 
 export default async function TermsPage() {
   const locale = await getRequestLocale();
@@ -20,7 +26,7 @@ export default async function TermsPage() {
   return (
     <article className="max-w-2xl mx-auto text-stone-700 leading-relaxed">
       <h1 className="text-3xl font-bold text-stone-900 mb-2">{tr(locale, "Terms of Service")}</h1>
-      <p className="text-sm text-stone-500 mb-10">{tr(locale, "Effective")}: {trChoice(locale, EFFECTIVE_DATE, "20 de mayo de 2026")}</p>
+      <p className="text-sm text-stone-500 mb-10">{tr(locale, "Effective")}: {trChoice(locale, EFFECTIVE_DATE, "3 de octubre de 2026")}</p>
 
       <p className="mb-4">
         {tr(locale, "These Terms of Service (\"Terms\") govern your access to and use of Itzli (\"Itzli,\" \"the app,\" \"we,\" \"us\"), a free educational web application for learning Eastern Huasteca Nahuatl. By creating an account or using Itzli, you agree to these Terms. If you do not agree, do not use the app.")}
@@ -42,7 +48,7 @@ export default async function TermsPage() {
         <li>{trChoice(locale, "use Itzli for any unlawful purpose or in violation of any applicable law;", "usar Itzli para cualquier fin ilegal o que infrinja una ley aplicable;")}</li>
         <li>{trChoice(locale, "attempt to probe, scan, or test the vulnerability of the app, circumvent rate limits, or bypass safety guardrails;", "intentar sondear, escanear o probar vulnerabilidades de la aplicación, evadir límites de uso o eludir medidas de seguridad;")}</li>
         <li>{trChoice(locale, "submit content that is sexual (especially involving minors), threatening, harassing, hateful, violent, or that facilitates illegal harm;", "enviar contenido sexual (especialmente si involucra a menores), amenazante, acosador, de odio, violento o que facilite daños ilegales;")}</li>
-        <li>{trChoice(locale, "attempt to extract, copy, or redistribute Itzli content in bulk except where permitted by an applicable open license, including the CC BY-SA license for imported Nāhuatlahtolli materials;", "intentar extraer, copiar o redistribuir contenido de Itzli de forma masiva, salvo cuando lo permita una licencia abierta aplicable, incluida la licencia CC BY-SA del material importado de Nāhuatlahtolli;")}</li>
+        <li>{trChoice(locale, "attempt to extract, copy, or redistribute Itzli content in bulk except where permitted by an applicable open license, including CC BY-SA for imported and adapted Nāhuatlahtolli learning content;", "intentar extraer, copiar o redistribuir contenido de Itzli de forma masiva, salvo cuando lo permita una licencia abierta aplicable, incluida CC BY-SA para el contenido educativo importado y adaptado de Nāhuatlahtolli;")}</li>
         <li>{trChoice(locale, "use the AI tutor to generate content that violates OpenAI's usage policies;", "usar el tutor de IA para generar contenido que infrinja las políticas de uso de OpenAI;")}</li>
         <li>{trChoice(locale, "impersonate others, or use automated scripts or crawlers against the app without our written consent.", "suplantar a otras personas o usar scripts automatizados o rastreadores contra la aplicación sin nuestro consentimiento por escrito.")}</li>
       </ul>
@@ -63,23 +69,30 @@ export default async function TermsPage() {
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">5. {tr(locale, "Content accuracy and audio")}</h2>
       <p className="mb-4">
-        {tr(locale, "Vocabulary and grammar content uses an INALI-style learner display and has been checked against scholarly references, but some entries contain known limitations noted in the curriculum. Audio pronunciations are")} {" "}
-        <strong>{trChoice(locale, "machine-synthesized", "sintetizadas automáticamente")}</strong>{" "}
-        {tr(locale, "using language-specific machine synthesis where available. Treat generated audio as educational support rather than a substitute for a trained instructor or community speaker.")}
+        {tr(locale, "Itzli uses INALI's published Nahuatl alphabet for teaching orthography and COERLL's Chicontepec-based course as regional vocabulary and grammar evidence. Some content remains under review. Audio includes source recordings and machine-generated clips; synthesized pronunciations have not all been validated by speakers of the course variety.")}
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">6. {tr(locale, "Intellectual property")}</h2>
       <p className="mb-4">
-        {tr(locale, "Any distributed copy of the Itzli source code is governed by the project license included with that copy. Imported Nāhuatlahtolli lesson content is adapted from the COERLL course by Sabina de la Cruz, Catalina de la Cruz, Josefrayn Sánchez-Perry, Kelly McDonough, and Sergio Romero and remains available under")}{" "}
+        {trChoice(locale, "The project license governs distributed copies of Itzli's source code. Nāhuatlahtolli source material is credited to Sabina de la Cruz, Catalina de la Cruz, Josefrayn Sánchez-Perry, Kelly McDonough and Sergio Romero, COERLL / UT Austin. Its publisher labels the source CC BY-SA without specifying a version. Itzli's original V3 contributions and adaptations are offered under", "La licencia del proyecto rige las copias distribuidas del código fuente de Itzli. El material de Nāhuatlahtolli se acredita a Sabina de la Cruz, Catalina de la Cruz, Josefrayn Sánchez-Perry, Kelly McDonough y Sergio Romero, COERLL / UT Austin. El editor indica CC BY-SA sin especificar versión. Las aportaciones originales y adaptaciones de Itzli para V3 se ofrecen bajo")}{" "}
         <a
           className="text-emerald-600 underline"
-          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          href={ITZLI_V3_CONTRIBUTION_LICENSE.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          CC BY-SA 4.0
+          {ITZLI_V3_CONTRIBUTION_LICENSE.name}
         </a>
-        . {tr(locale, "Itzli additions, machine-generated audio, photographs, and other third-party assets are licensed from their respective owners or under the notices shown in the app and repository. Account sign-in for the hosted app does not remove the Creative Commons rights attached to the imported Nāhuatlahtolli material.")}
+        . {tr(locale, "The project's NonCommercial condition does not apply to this source-derived content. You may share and adapt it, including commercially, with attribution, a license link, notice of changes, and ShareAlike for adaptations. Hosted-account requirements do not remove those content rights.")}
+      </p>
+      <p className="mb-4">
+        <a className="text-emerald-600 underline" href="https://tlahtolli.coerll.utexas.edu/" target="_blank" rel="noopener noreferrer">
+          {tr(locale, "Original Nāhuatlahtolli course")}
+        </a>
+        {" · "}<a className="text-emerald-600 underline" href={COERLL_SOURCE_LICENSE_NOTICE.listingUrl} target="_blank" rel="noopener noreferrer">{trChoice(locale, "Publisher’s source-license listing", "Catálogo de licencias de la fuente del editor")}</a>
+      </p>
+      <p className="mb-4">
+        {tr(locale, "Reference links support factual checks; they do not grant redistribution rights to linked publications or imply endorsement. Images, recordings, trademarks, and other third-party assets have separate notices and rights; this audit has not fully verified every asset's provenance or reuse permissions.")}
       </p>
       <p className="mb-4">
         {tr(locale, "You retain rights to content you submit, but by submitting content to the tutor you grant us a non-exclusive right to process it (including via OpenAI) for the purpose of delivering your requested response and enforcing safety policies.")}
@@ -98,6 +111,11 @@ export default async function TermsPage() {
       </ul>
       <p className="mb-4">
         {tr(locale, "Your use of Itzli is also subject to the terms and privacy practices of these providers.")}
+      </p>
+      <p className="mb-4">
+        <a className="text-emerald-600 underline" href="/third-party-notices.txt" target="_blank" rel="noopener noreferrer">
+          {trChoice(locale, "Open-source software licenses and notices", "Licencias y avisos del software de código abierto")}
+        </a>
       </p>
 
       <h2 className="text-xl font-semibold text-stone-900 mt-10 mb-3">8. {tr(locale, "Termination")}</h2>

@@ -2,7 +2,7 @@
 "use strict";
 
 /**
- * EXPERIMENTAL: Google Cloud TTS generator with Nahuatl pronunciation rules.
+ * Google Spanish approximation with the course's Nahuatl pronunciation recipe.
  *
  * This intentionally uses Google's REST API directly so the repo does not need
  * another dependency just to test a few voices. It signs a service-account JWT
@@ -13,8 +13,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const Database = require("better-sqlite3");
-const { resolveDbPath } = require("./_db-path");
+const { privateDiagnosticDirectory, assertPrivateDiagnosticDirectory } = require("./lib/audio-diagnostic-storage.cjs");
+const { paidProviderRows, DEFAULT_MANIFEST } = require("./lib/course-audio-inputs");
 const {
   cueForText,
   normalizeNahuatlText,
@@ -24,29 +24,70 @@ const {
   tokenizeWord,
 } = require("./lib/nahuatl-pronunciation");
 
-loadEnvFile(path.resolve(__dirname, "..", ".env.local"));
-loadEnvFile(path.resolve(__dirname, "..", ".env"));
-
 const PROJECT_ROOT = path.resolve(__dirname, "..");
-const REVIEWED_AUDIO_PATH = path.join(PROJECT_ROOT, "src", "data", "reviewed-audio.json");
-const CURATED_UNIT_VOCAB_PATH = path.join(PROJECT_ROOT, "src", "data", "curated-unit-vocab.json");
-const WORD_RE = /[A-Za-z\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
+const WORD_RE = /[A-Za-záéíóúüñ\u0101\u0113\u012b\u014d\u016b\u02bc']+/g;
+const GOOGLE_RECIPE_VERSION = "spanish-air-b-2026-10-07";
+// Attested personal names in the course use the Spanish voice's natural stress.
+// This pronunciation-only allowlist never changes learner-visible written forms.
+const SPANISH_PERSONAL_NAMES = new Set(["maría", "ramón", "tomás"]);
+const SPANISH_ACCENTED_LOANS = new Set(["café"]);
+const NON_SECRET_SETTINGS = new Set([
+  "GOOGLE_TTS_LANGUAGE_CODE", "GOOGLE_TTS_VOICE_NAME", "GOOGLE_TTS_VOICE",
+  "GOOGLE_TTS_AUDIO_ENCODING", "GOOGLE_TTS_FORMAT", "GOOGLE_TTS_SPEAKING_RATE",
+  "GOOGLE_TTS_PITCH", "GOOGLE_TTS_SAMPLE_RATE_HERTZ", "AUDIO_OUT_DIR",
+  "NAHUATL_GOOGLE_INPUT_MODE", "TTS_CONCURRENCY", "GOOGLE_CLOUD_QUOTA_PROJECT",
+]);
 
-const DEFAULTS = {
-  credentials: process.env.GOOGLE_TTS_CREDENTIALS || process.env.GOOGLE_APPLICATION_CREDENTIALS || "",
-  languageCode: process.env.GOOGLE_TTS_LANGUAGE_CODE || "es-US",
-  voiceName: process.env.GOOGLE_TTS_VOICE_NAME || process.env.GOOGLE_TTS_VOICE || "es-US-Standard-A",
-  audioEncoding: process.env.GOOGLE_TTS_AUDIO_ENCODING || "LINEAR16",
-  extension: process.env.GOOGLE_TTS_FORMAT || "wav",
-  speakingRate: Number(process.env.GOOGLE_TTS_SPEAKING_RATE || "0.82"),
-  pitch: Number(process.env.GOOGLE_TTS_PITCH || "0"),
-  sampleRateHertz: Number(process.env.GOOGLE_TTS_SAMPLE_RATE_HERTZ || "0"),
-  outDir: process.env.AUDIO_OUT_DIR || path.resolve(PROJECT_ROOT, "public", "audio-google"),
-  inputMode: process.env.NAHUATL_GOOGLE_INPUT_MODE || "phoneme",
-  concurrency: Number(process.env.TTS_CONCURRENCY || "2"),
-  accessToken: process.env.GOOGLE_TTS_ACCESS_TOKEN || "",
-  quotaProject: process.env.GOOGLE_CLOUD_QUOTA_PROJECT || "",
-};
+function googleDefaults(settings = process.env) {
+  return {
+    // Credentials and access tokens are resolved only after the execute/spend gate.
+    credentials: "",
+    languageCode: settings.GOOGLE_TTS_LANGUAGE_CODE || "es-US",
+    voiceName: settings.GOOGLE_TTS_VOICE_NAME || settings.GOOGLE_TTS_VOICE || "es-US-Standard-A",
+    audioEncoding: settings.GOOGLE_TTS_AUDIO_ENCODING || "LINEAR16",
+    extension: settings.GOOGLE_TTS_FORMAT || "wav",
+    speakingRate: Number(settings.GOOGLE_TTS_SPEAKING_RATE || "0.82"),
+    pitch: Number(settings.GOOGLE_TTS_PITCH || "0"),
+    sampleRateHertz: Number(settings.GOOGLE_TTS_SAMPLE_RATE_HERTZ || "0"),
+    outDir: settings.AUDIO_OUT_DIR || privateDiagnosticDirectory(PROJECT_ROOT, "google"),
+    inputMode: settings.NAHUATL_GOOGLE_INPUT_MODE || "phoneme",
+    concurrency: Number(settings.TTS_CONCURRENCY || "2"),
+    accessToken: "",
+    quotaProject: settings.GOOGLE_CLOUD_QUOTA_PROJECT || "",
+  };
+}
+
+function loadGoogleNonSecretSettings(files, environment = process.env) {
+  const settings = {};
+  for (const key of NON_SECRET_SETTINGS) {
+    if (typeof environment[key] === "string") settings[key] = environment[key];
+  }
+  const pinVoiceAlias = () => {
+    if (!("GOOGLE_TTS_VOICE_NAME" in settings) && "GOOGLE_TTS_VOICE" in settings) {
+      settings.GOOGLE_TTS_VOICE_NAME = settings.GOOGLE_TTS_VOICE;
+    }
+  };
+  pinVoiceAlias();
+  // Caller supplies .env.local before .env; existing process settings win.
+  for (const file of files) {
+    if (!fs.existsSync(file)) continue;
+    for (const line of fs.readFileSync(file, "utf8").split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      // Ignore credential/token and unrelated keys before parsing their values.
+      if (!NON_SECRET_SETTINGS.has(key) || key in settings) continue;
+      let value = trimmed.slice(eq + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+      settings[key] = value;
+    }
+    pinVoiceAlias();
+  }
+  return settings;
+}
 
 const ENCODING_TO_EXTENSION = {
   LINEAR16: "wav",
@@ -76,17 +117,20 @@ function loadEnvFile(file) {
   }
 }
 
-function parseArgs(argv) {
+function parseArgs(argv, settings = process.env) {
+  const defaults = googleDefaults(settings);
   const args = {
     execute: false,
     force: false,
     listVoices: false,
     reviewed: false,
+    held: false,
+    manifest: DEFAULT_MANIFEST,
     kind: "all",
     limit: 0,
     ids: new Set(),
     test: [],
-    ...DEFAULTS,
+    ...defaults,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -98,6 +142,8 @@ function parseArgs(argv) {
     else if (arg === "--dry-run") args.execute = false;
     else if (arg === "--list-voices") args.listVoices = true;
     else if (arg === "--reviewed") args.reviewed = true;
+    else if (arg === "--held") args.held = true;
+    else if (arg === "--manifest") { args.manifest = value; i += 1; }
     else if (arg === "--credentials") {
       args.credentials = value;
       i += 1;
@@ -152,11 +198,11 @@ function parseArgs(argv) {
         i += 1;
       }
     } else if (arg === "--help" || arg === "-h") {
-      printHelp();
+      printHelp(defaults);
       process.exit(0);
     } else {
       console.error(`Unknown argument: ${arg}`);
-      printHelp();
+      printHelp(defaults);
       process.exit(1);
     }
   }
@@ -186,10 +232,11 @@ function parseArgs(argv) {
     process.exit(1);
   }
 
+  args.outDir = assertPrivateDiagnosticDirectory(PROJECT_ROOT, args.outDir);
   return args;
 }
 
-function printHelp() {
+function printHelp(defaults = googleDefaults()) {
   console.log(`
 Usage:
   node scripts/generate-google-audio.js --dry-run --limit 12
@@ -203,20 +250,22 @@ Options:
   --kind vocab|dialogue|all       Which rows to generate. Default: all
   --limit N                       Cap rows for testing. Default: no cap
   --ids a,b,c                     Only generate selected row ids
-  --reviewed                      Generate exact rows from src/data/reviewed-audio.json
+  --manifest FILE                 Frozen corrected runtime inputs; no raw database rows
+  --reviewed                      Deprecated; uses the frozen manifest, never stale review text
+  --held                          Only source-supported corrected held candidates; native clips remain excluded
   --force                         Overwrite existing files
-  --out DIR                       Output root. Default: public/audio-google
-  --language-code CODE            Default: ${DEFAULTS.languageCode}
-  --voice NAME                    Default: ${DEFAULTS.voiceName}
+  --out DIR                       Private output root. Default: data/audio-v3/diagnostics/google/candidates
+  --language-code CODE            Default: ${defaults.languageCode}
+  --voice NAME                    Default: ${defaults.voiceName}
   --encoding LINEAR16|MP3|OGG_OPUS|MULAW|ALAW
-                                  Default: ${DEFAULTS.audioEncoding}
-  --format EXT                    File extension. Default: ${DEFAULTS.extension}
-  --speaking-rate N               Default: ${DEFAULTS.speakingRate}
-  --pitch N                       Semitones, -20 to 20. Default: ${DEFAULTS.pitch}
+                                  Default: ${defaults.audioEncoding}
+  --format EXT                    File extension. Default: ${defaults.extension}
+  --speaking-rate N               Default: ${defaults.speakingRate}
+  --pitch N                       Semitones, -20 to 20. Default: ${defaults.pitch}
   --sample-rate N                 Optional hertz override
   --input-mode phoneme|cue|orthography
-                                  Default: ${DEFAULTS.inputMode}
-  --concurrency N                 Default: ${DEFAULTS.concurrency}
+                                  Default: ${defaults.inputMode}
+  --concurrency N                 Default: ${defaults.concurrency}
   --quota-project PROJECT         Quota project for GOOGLE_TTS_ACCESS_TOKEN
   --execute                       Actually call the TTS API
 `);
@@ -331,75 +380,10 @@ async function listVoices(token, args) {
 }
 
 function loadRows(args) {
-  if (args.reviewed) {
-    const reviewed = JSON.parse(fs.readFileSync(REVIEWED_AUDIO_PATH, "utf8"));
-    const rows = [
-      ...(reviewed.vocab || []).map((row) => ({ ...row, kind: "vocab" })),
-      ...(reviewed.dialogue || []).map((row) => ({ ...row, kind: "dialogue" })),
-    ];
-    let filtered = rows;
-    if (args.kind !== "all") filtered = filtered.filter((row) => row.kind === args.kind);
-    if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(String(row.id)));
-    if (args.limit > 0) filtered = filtered.slice(0, args.limit);
-    return filtered;
-  }
-
   if (args.test.length) {
-    return args.test
-      .map((rawText, index) => {
-        const text = speakableNahuatlText(rawText);
-        return {
-          kind: "test",
-          id: slugify(text) || `test-${index + 1}`,
-          text,
-        };
-      })
-      .filter((row) => row.text);
+    return args.test.map((text, index) => ({ kind: "test", id: slugify(text) || `test-${index + 1}`, text }));
   }
-
-  const db = new Database(resolveDbPath(), { readonly: true });
-  const rows = [];
-
-  if (args.kind === "all" || args.kind === "vocab") {
-    const vocab = db
-      .prepare("SELECT id, display_form AS text FROM lesson_vocab ORDER BY lesson_number, rank, id")
-      .all();
-    for (const row of vocab) rows.push({ kind: "vocab", id: String(row.id), text: row.text });
-
-    const curated = JSON.parse(fs.readFileSync(CURATED_UNIT_VOCAB_PATH, "utf8"));
-    const unitCounts = new Map();
-    for (const card of curated) {
-      const unitIndex = (unitCounts.get(card.unit) || 0) + 1;
-      unitCounts.set(card.unit, unitIndex);
-      rows.push({
-        kind: "vocab",
-        id: String(900_000 + Number(card.unit) * 100 + unitIndex),
-        text: speakableNahuatlText(card.headword),
-      });
-    }
-  }
-
-  if (args.kind === "all" || args.kind === "dialogue") {
-    const dialogue = db
-      .prepare(
-        "SELECT lesson_dialogue_id AS id, utterance_normalized AS text " +
-          "FROM lesson_dialogues " +
-          "WHERE utterance_normalized IS NOT NULL AND length(trim(utterance_normalized)) > 1 " +
-          "ORDER BY lesson_dialogue_id"
-      )
-      .all();
-    for (const row of dialogue) {
-      const text = speakableNahuatlText(row.text);
-      if (text) rows.push({ kind: "dialogue", id: String(row.id), text });
-    }
-  }
-
-  db.close();
-
-  let filtered = rows;
-  if (args.ids.size) filtered = filtered.filter((row) => args.ids.has(row.id));
-  if (args.limit > 0) filtered = filtered.slice(0, args.limit);
-  return filtered;
+  return paidProviderRows(args);
 }
 
 function slugify(text) {
@@ -411,27 +395,59 @@ function slugify(text) {
 
 function outputPath(args, row) {
   const folder = row.kind === "test" ? "_tests" : row.kind;
-  return path.join(args.outDir, folder, `${row.id}.${args.extension}`);
+  const textHash = row.text_sha256 || crypto.createHash("sha256").update(row.text).digest("hex");
+  const recipeHash = crypto.createHash("sha256").update(JSON.stringify({ text: row.text,
+    recipe: GOOGLE_RECIPE_VERSION, ssml: buildSsml(row.text, args),
+    voice: args.voiceName, language: args.languageCode, rate: args.speakingRate,
+    pitch: args.pitch, mode: args.inputMode, sampleRate: args.sampleRateHertz,
+    encoding: args.audioEncoding, extension: args.extension,
+  })).digest("hex");
+  return path.join(args.outDir, folder, `${row.id}--${textHash.slice(0, 12)}--${recipeHash.slice(0, 12)}.${args.extension}`);
 }
 
 function tokenToXsampa(token) {
+  // This is the earlier Spanish synthesis approximation, not an EHN transcription.
   if (token.kind === "vowel") return token.base;
 
   const cue = token.cue || token.orth;
   if (cue === "sh") return "S";
   if (cue === "ch") return "tS";
-  if (cue === "tz") return "ts";
-  if (cue === "tl") return "tl";
+  if (cue === "tz" || cue === "ts") return "ts";
+  // Owner-approved Air approximation B from pilot candidate 12: t + Spanish x.
+  // This is an air/frication cue, not a claim to reproduce the native lateral tl.
+  if (cue === "tl") return "tx";
   if (cue === "kw") return "kw";
   if (cue === "y") return "j";
   if (cue === "h") return "x";
   if (cue === "k") return "k";
   if (/^[a-z]$/.test(cue)) return cue;
-  return "";
+  throw new Error(`Unsupported pronunciation token: ${JSON.stringify(token)}`);
+}
+
+function assertGoogleInputCharacters(text) {
+  const source = speakableNahuatlText(text).normalize("NFC").toLowerCase()
+    .replace(/\u2019|\u2018|\u02bc/g, "'");
+  const unrecognized = source.replace(WORD_RE, "").replace(/[\s¿¡?!.,;:'"-]/g, "");
+  if (unrecognized) throw new Error(`Unsupported pronunciation input: ${JSON.stringify(unrecognized)}`);
+  // Character/token validation prevents silent deletion; it does not certify pronunciation.
+  for (const match of source.matchAll(WORD_RE)) {
+    if (SPANISH_PERSONAL_NAMES.has(match[0]) || SPANISH_ACCENTED_LOANS.has(match[0])) continue;
+    if (/[áéíóúüñ]/.test(match[0])) throw new Error(`Unsupported pronunciation input: ${JSON.stringify(match[0])}`);
+    tokenizeWord(match[0]);
+  }
+}
+
+function googlePronunciationText(text) {
+  // Pronunciation aliases belong only to this synthesis recipe. The source text,
+  // its manifest hashes, and the shared descriptive tokenizer remain unchanged.
+  return normalizeNahuatlText(text)
+    .replace(/\bqu[eē]niuhqui\b/g, "kenihki")
+    .replace(/\bkeniuhki\b/g, "kenihki")
+    .replace(/\bkeniwki\b/g, "kenihki");
 }
 
 function wordToXsampa(word) {
-  const tokens = tokenizeWord(word);
+  const tokens = tokenizeWord(googlePronunciationText(word));
   if (!tokens.length) return "";
   const syllables = splitSyllables(tokens);
   const stressIndex = syllables.length <= 1 ? 0 : syllables.length - 2;
@@ -456,21 +472,23 @@ function escapeXmlSingleAttr(value) {
 }
 
 function buildSsml(text, args) {
-  const source = speakableNahuatlText(text).toLowerCase();
+  assertGoogleInputCharacters(text);
+  const source = speakableNahuatlText(text).normalize("NFC").toLowerCase()
+    .replace(/\u2019|\u2018|\u02bc/g, "'");
   let out = "";
   let last = 0;
 
   for (const match of source.matchAll(WORD_RE)) {
     const word = match[0];
     out += escapeXmlText(source.slice(last, match.index));
-    const spanishLoan = spanishLoanSpokenForm(word);
+    const spanishLoan = SPANISH_PERSONAL_NAMES.has(word) || SPANISH_ACCENTED_LOANS.has(word) ? word : spanishLoanSpokenForm(word);
 
     if (spanishLoan) {
       out += escapeXmlText(spanishLoan);
     } else if (args.inputMode === "orthography") {
-      out += escapeXmlText(normalizeNahuatlText(word));
+      out += escapeXmlText(googlePronunciationText(word));
     } else if (args.inputMode === "cue") {
-      out += escapeXmlText(cueForText(word, { markStress: false, separator: " " }));
+      out += escapeXmlText(cueForText(googlePronunciationText(word), { markStress: false, separator: " " }));
     } else {
       const ph = wordToXsampa(word);
       const label = escapeXmlText(normalizeNahuatlText(word));
@@ -488,8 +506,11 @@ function buildSsml(text, args) {
 
 function xsampaForText(text) {
   return speakableNahuatlText(text)
+    .normalize("NFC")
     .toLowerCase()
-    .replace(WORD_RE, (word) => spanishLoanSpokenForm(word) || wordToXsampa(word) || word);
+    .replace(/\u2019|\u2018|\u02bc/g, "'")
+    .replace(WORD_RE, (word) => SPANISH_PERSONAL_NAMES.has(word) || SPANISH_ACCENTED_LOANS.has(word)
+      ? word : spanishLoanSpokenForm(word) || wordToXsampa(word) || word);
 }
 
 function previewRows(args, rows, authLabel) {
@@ -500,15 +521,17 @@ function previewRows(args, rows, authLabel) {
   console.log(`Encoding: ${args.audioEncoding}`);
   console.log(`Speaking rate: ${args.speakingRate}`);
   console.log(`Input mode: ${args.inputMode}`);
+  console.log(`Recipe: ${GOOGLE_RECIPE_VERSION} (Spanish approximation; unreviewed)`);
   console.log(`Output: ${args.outDir}`);
   console.log("");
 
   for (const row of rows.slice(0, 24)) {
     console.log(`[${row.kind}] ${row.id}`);
     console.log(`  text:    ${row.text}`);
-    console.log(`  cue:     ${cueForText(row.text)}`);
+    console.log(`  cue:     ${cueForText(googlePronunciationText(row.text))}`);
     console.log(`  xsampa:  ${xsampaForText(row.text)}`);
-    console.log(`  ssml:    ${buildSsml(row.text, args)}`);
+    try { console.log(`  ssml:    ${buildSsml(row.text, args)}`); }
+    catch (error) { console.log(`  unsupported: ${error.message}`); }
   }
   if (rows.length > 24) console.log(`... ${rows.length - 24} more rows`);
 }
@@ -563,28 +586,19 @@ async function runPool(items, concurrency, worker) {
 }
 
 async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const credentialsPath = args.accessToken ? "" : resolveCredentialsPath(args);
-  const serviceAccount = credentialsPath ? loadServiceAccount(credentialsPath) : null;
-  const authLabel = args.accessToken
-    ? "temporary Google access token"
-    : path.relative(PROJECT_ROOT, credentialsPath) || credentialsPath;
-  const token = args.accessToken || await getAccessToken(serviceAccount);
-
-  if (args.listVoices) {
-    await listVoices(token, args);
-    return;
-  }
-
-  const rows = loadRows(args);
-  if (!rows.length) {
+  const settings = loadGoogleNonSecretSettings([
+    path.resolve(PROJECT_ROOT, ".env.local"), path.resolve(PROJECT_ROOT, ".env"),
+  ]);
+  const args = parseArgs(process.argv.slice(2), settings);
+  const rows = args.listVoices ? [] : loadRows(args);
+  if (!rows.length && !args.listVoices) {
     console.log("No rows matched.");
     return;
   }
 
-  previewRows(args, rows, authLabel);
+  if (!args.listVoices) previewRows(args, rows, "not accessed for offline preview");
 
-  if (!args.execute) {
+  if (!args.execute && !args.listVoices) {
     console.log("");
     console.log("Dry run only. Add --execute and set CONFIRM_TTS_SPEND=YES to generate files.");
     return;
@@ -594,6 +608,17 @@ async function main() {
     console.error("Refusing to call paid Google TTS without CONFIRM_TTS_SPEND=YES.");
     process.exit(1);
   }
+
+  // Preflight every input before any credential read or authentication request.
+  for (const row of rows) assertGoogleInputCharacters(row.text);
+  loadEnvFile(path.resolve(PROJECT_ROOT, ".env.local"));
+  loadEnvFile(path.resolve(PROJECT_ROOT, ".env"));
+  args.credentials ||= process.env.GOOGLE_TTS_CREDENTIALS || process.env.GOOGLE_APPLICATION_CREDENTIALS || "";
+  args.accessToken ||= process.env.GOOGLE_TTS_ACCESS_TOKEN || "";
+  const credentialsPath = args.accessToken ? "" : resolveCredentialsPath(args);
+  const serviceAccount = credentialsPath ? loadServiceAccount(credentialsPath) : null;
+  const token = args.accessToken || await getAccessToken(serviceAccount);
+  if (args.listVoices) { await listVoices(token, args); return; }
 
   let generated = 0;
   let skipped = 0;
@@ -623,7 +648,11 @@ async function main() {
   if (failed > 0) process.exit(1);
 }
 
-main().catch((error) => {
+if (require.main === module) main().catch((error) => {
   console.error(error.message || error);
   process.exit(1);
 });
+module.exports = { tokenToXsampa, wordToXsampa, xsampaForText, buildSsml,
+  assertGoogleInputCharacters, googlePronunciationText, googleDefaults,
+  loadGoogleNonSecretSettings, outputPath, parseArgs, loadRows, GOOGLE_RECIPE_VERSION,
+  loadServiceAccount, getAccessToken, googleHeaders, fetchJson };

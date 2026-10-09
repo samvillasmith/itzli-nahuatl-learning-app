@@ -7,6 +7,7 @@ import { requireAuth } from "@/lib/require-auth";
 import { getRequestLocale } from "@/i18n/server";
 import { tr, translateDeep } from "@/i18n/translate";
 import FlashcardDeck from "./FlashcardDeck";
+import { getLocalReviewWordImages } from "@/lib/local-review-word-images";
 
 export async function generateStaticParams() {
   const units = getAllUnits();
@@ -30,6 +31,9 @@ export default async function PracticePage({
 
   const rawVocab = getUnitVocab(num).filter((v) => !EXCLUDED_VOCAB_IDS.has(v.id));
   const { cards, notes } = collapseVariants(rawVocab, num);
+  const previewImages = getLocalReviewWordImages(cards.map(card => ({
+    entryId: `core-${card.id}`, headword: card.headword, meaningEn: card.gloss_en,
+  })));
 
   return (
     <div>
@@ -61,6 +65,7 @@ export default async function PracticePage({
           audioSrc: v.audioSrc,
           imageHeadword: v.imageHeadword,
           alsoWritten: notes[v.id],
+          previewImage: previewImages[`core-${v.id}`],
         }))}
       />
     </div>

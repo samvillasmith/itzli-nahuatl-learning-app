@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 "use strict";
+const { assertImagePublicationGuard } = require("./lib/image-depiction-guardrails");
 
 /**
  * Publishes one generated image after a human has visually reviewed it.
@@ -71,6 +72,9 @@ async function main() {
     console.error(`No pending image found for exact headword: ${headword}`);
     process.exit(1);
   }
+  // Manual confirmation and approved_safe_matches cannot waive hard depiction
+  // rules or an absent current visual verdict. Check before any HEAD request.
+  assertImagePublicationGuard(headword, entry);
 
   const localPath = path.resolve(ROOT, entry.local_path || "");
   const generatedRoot = path.resolve(ROOT, "public", "generated", "word-images", "openai");
@@ -109,6 +113,7 @@ async function main() {
     size: entry.size,
     output_format: entry.output_format,
     generated_at: entry.generated_at,
+    automated_safety_review: entry.automated_safety_review,
     reviewed_at: new Date().toISOString(),
     review_status: "approved",
     review_scope: "exact-published-image",

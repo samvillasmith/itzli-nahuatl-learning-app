@@ -1,0 +1,13 @@
+{
+  "sourceDialogues": [
+    { "id": "CUR-11-005", "runtimeText": "Mostlayok.", "sourceText": "Mōztlayoc", "sourceLesson": 11, "sourceIndex": 10, "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Moztlayoc.mp3" },
+    { "id": "CUR-11-006", "runtimeText": "Mostlayok.", "sourceText": "Mōztlayoc", "sourceLesson": 11, "sourceIndex": 10, "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Moztlayoc.mp3" },
+    { "id": "CUR-19-001", "runtimeText": "Ximoketsa.", "sourceText": "Ximoquētza", "sourceLesson": 2, "sourceIndex": 17, "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ximoquetza-1.mp3" },
+    { "id": "CUR-19-002", "runtimeText": "Kena.", "sourceText": "quēna", "sourceLesson": 2, "sourceIndex": 1, "url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/quena.mp3" }
+  ],
+  "syntheticPhrases": [
+    { "id": "FCN-LDG-000006", "text": "Piyalli, ¿quēniuhqui motōcah?", "translation": "Hello, what is your name?", "url": "/audio-google/dialogue/FCN-LDG-000006.wav", "sha256": "734c0e43182dc4a6ddad4b4cde9b360c6e205bc7f78c69aa0f8cb1f5b09bbbfd", "sourceLesson": 3, "pronunciationStatus": "not-certified" },
+    { "id": "FCN-LDG-000008", "text": "Na notōcah Juana.", "translation": "My name is Juana.", "url": "/audio-google/dialogue/FCN-LDG-000008.wav", "sha256": "ff94190eba1a1968f914e28867c88891a5e1d46d3a4f29e4cd65a4972086427a", "sourceLesson": 3, "pronunciationStatus": "not-certified" },
+    { "id": "FCN-LDG-000009", "text": "Na niēhua Tecomate, Chicōntepēc.", "translation": "I am from Tecomate, Chicontepec.", "url": "/audio-google/dialogue/FCN-LDG-000009.wav", "sha256": "f14560ac01f79f8953746a8ebac3fbedcaf4ad3ec4bd9130337a12f2884ce408", "sourceLesson": 3, "pronunciationStatus": "not-certified" }
+  ]
+}

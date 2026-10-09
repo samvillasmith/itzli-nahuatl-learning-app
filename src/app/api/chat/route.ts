@@ -9,6 +9,7 @@ import { hashContent, logAudit, writeAudit } from "@/lib/audit";
 import { getSystemPrompt, refusalForLocale, type ChatLocale, type ChatMode } from "@/lib/chat-system-prompt";
 import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 import { retrieve, formatRetrieved, EMBED_MODEL } from "@/lib/rag";
+import { hasJsonContentType, readBoundedJson, sameOriginRequest } from "@/lib/api-request-security";
 
 export const maxDuration = 60;
 export const runtime = "nodejs";
@@ -75,34 +76,6 @@ function getOpenAIClient(): OpenAI {
   return client;
 }
 
-async function readLimitedJson(req: Request): Promise<unknown> {
-  const declared = Number(req.headers.get("content-length") ?? 0);
-  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
-    throw new RangeError("Payload too large");
-  }
-  const reader = req.body?.getReader();
-  if (!reader) throw new SyntaxError("Missing body");
-  const chunks: Uint8Array[] = [];
-  let total = 0;
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    total += value.byteLength;
-    if (total > MAX_BODY_BYTES) {
-      await reader.cancel();
-      throw new RangeError("Payload too large");
-    }
-    chunks.push(value);
-  }
-  const bytes = new Uint8Array(total);
-  let offset = 0;
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return JSON.parse(new TextDecoder().decode(bytes));
-}
-
 function auditBase(requestId: string, startedAt: number, mode?: ChatMode) {
   return {
     requestId,
@@ -120,7 +93,7 @@ async function writeFinalAudit(
     await writeAudit(args);
     return null;
   } catch (err) {
-    console.error("[audit] final insert failed:", err);
+    console.error("[audit] final insert failed:", err instanceof Error ? err.name : "unknown");
     if (process.env.REQUIRE_CHAT_AUDIT === "true") {
       return NextResponse.json(
         { error: "Audit logging is unavailable." },
@@ -147,6 +120,13 @@ export async function POST(req: Request) {
     );
   }
 
+  if (!sameOriginRequest(req)) {
+    return NextResponse.json({ error: "Invalid request origin" }, { status: 403, headers: { "Cache-Control": "no-store" } });
+  }
+  if (!hasJsonContentType(req)) {
+    return NextResponse.json({ error: "JSON content required" }, { status: 415, headers: { "Cache-Control": "no-store" } });
+  }
+
   // Route handlers enforce auth directly; Proxy adds an optimistic front-door check.
   const { userId } = await auth();
   if (!userId) {
@@ -156,7 +136,7 @@ export async function POST(req: Request) {
   // 2. Parse + validate payload
   let body: unknown;
   try {
-    body = await readLimitedJson(req);
+    body = await readBoundedJson(req, MAX_BODY_BYTES);
   } catch (error) {
     await logAudit({
       userId,
@@ -239,7 +219,7 @@ export async function POST(req: Request) {
   try {
     rl = await checkRateLimit(userId);
   } catch (error) {
-    console.error("[chat] rate limiter unavailable", error);
+    console.error("[chat] rate limiter unavailable", error instanceof Error ? error.name : "unknown");
     return NextResponse.json(
       { error: "The tutor is temporarily unavailable." },
       { status: 503, headers: { "Cache-Control": "no-store" } },
@@ -323,7 +303,7 @@ export async function POST(req: Request) {
     });
     assistantText = completion.choices[0]?.message?.content ?? "";
   } catch (err) {
-    console.error("[chat] OpenAI call failed:", err);
+    console.error("[chat] OpenAI call failed:", err instanceof Error ? err.name : "unknown");
     await logAudit({
       userId,
       kind: "chat_upstream_error",

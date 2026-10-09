@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "scope": "54 legacy holds remain disabled; generated candidates never release them",
+  "records": [
+    {
+      "kind": "vocab",
+      "id": "35",
+      "runtime_text": "Kenihki tiitstok?",
+      "text_sha256": "444170f7273307ec76b4bbd084e75c6db9e9fff4a7507bd02283f60f3277d46d"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-11-002",
+      "runtime_text": "Piyali, xipano.",
+      "text_sha256": "d1838f1c28dce233f20e6c43e69a4f2b3702bf2520e68cbe4e76ecfb731b61b0"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-11-005",
+      "runtime_text": "Mostlayok.",
+      "text_sha256": "0f19439ba6632c70070a3796fafa17cb71aedbee01085c40d22b9c2efba7e199"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-11-006",
+      "runtime_text": "Mostlayok.",
+      "text_sha256": "0f19439ba6632c70070a3796fafa17cb71aedbee01085c40d22b9c2efba7e199"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000251",
+      "runtime_text": "¿Huan ticnequi timomachtia nāhuatl?",
+      "text_sha256": "4b97893475de63028e1e696ac0846b9e8cdb05486472644cc0f70ee89e9b68af"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000240",
+      "runtime_text": "¿Ticpiya moconēhuan?",
+      "text_sha256": "a4cac1cb5b8dbb9727bdf62a408beb681f515a540bbf216098f9f3cfc67fd57f"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000241",
+      "runtime_text": "Quēna, nicpiya ēyi noconēhuan. ¿Huan ta?",
+      "text_sha256": "b5994fa13f052f6b90c9b86310af54ed3524c964adfecec89704c51257a9dbdb"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000242",
+      "runtime_text": "Ayamo. Zan nicpiya nomachconēhuan.",
+      "text_sha256": "44b45863d61ab23559e057ba1a6908c1723536dd9955511b5dd6069b4b368c18"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000243",
+      "runtime_text": "Cuālli. Nototatah huan notonanān nicān itztoqueh.",
+      "text_sha256": "521c0aae15d449fd3179f8b76b6760df24f1afd94a1685511c8679b5c3fc6466"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000278",
+      "runtime_text": "In tlacātzin notātatzin. Xipano, ximocēhui.",
+      "text_sha256": "6fba8d5e0cfdf5eb43848d8be95152c0132b8145db57b4c16c27a2dda2e794dd"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000288",
+      "runtime_text": "Quēna, huan onca xōnacatl. Cuālli nitlacuāz āxcan.",
+      "text_sha256": "10d58006683adbc2fd245b819c09b16d0a6ab885cf2901356a61d1cf12a2e78a"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000289",
+      "runtime_text": "¿Tlen onca calihtic?",
+      "text_sha256": "8bffb9f8487106a2a004610147aaf5709a9f8d80bd09e4d3577f1ff71122d7a1"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000292",
+      "runtime_text": "In pāhtli onca nicān, calihtic. Niquitta.",
+      "text_sha256": "7eaf47b4b0b3a2fd6ea81f8ea22e643a5cce6e5b6ec42f72f693237792a6f802"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-5-001",
+      "runtime_text": "Piyali, ¿tlen titekiti ta?",
+      "text_sha256": "e1d564ce9b62d7698bf2e07da86b23c02be6e278417536131b2385a8f422d1f7"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-5-002",
+      "runtime_text": "Nitlamachtia nawatl.",
+      "text_sha256": "b700d3a1e941441754e26d742f9620d4d6222efb6beec2f4dc78686c16e885d1"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-5-003",
+      "runtime_text": "Kwalli. Na nitlahkwiloa.",
+      "text_sha256": "9b6323bf6d482f8f4969bb8976638c967aed9afeee768cc025794418e525f772"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000244",
+      "runtime_text": "¿Quēniuhqui tiitztoc āxcan?",
+      "text_sha256": "62a2b967e180a258809cf1c9b0bf64dd2d20e75fe1d5b2c931e5772ea261112d"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000246",
+      "runtime_text": "Quēna, cuālli tiitztoc.",
+      "text_sha256": "9da89f0a5f90072085aa81e9311b63a074935f020beeab5f8f923287901aa007"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000271",
+      "runtime_text": "¿Ācquiya mocēhuiz pan cuaciyah?",
+      "text_sha256": "e4dccded60f22e1315d668ec5c1b8a1e46477fd2deb4377ccab9ac0e0838572f"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000272",
+      "runtime_text": "Nimocēhuiz nicān. Xicalaqui.",
+      "text_sha256": "1a9446e8b785f00cd03be250c590b02d7570d9bc848afe3328240563f59b4240"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000301",
+      "runtime_text": "¿Tlen ticcōhuaz nicān tiānquiz?",
+      "text_sha256": "1d6a62d8e26875e1f659291c82be8975dac60ee563d96fb1f9a89adb0ee97f23"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000302",
+      "runtime_text": "Niccōhuaz cē pantzi huan ōme lalax. ¿Quēzqui tomi?",
+      "text_sha256": "8e462556bc006125b2037a998a3e0c96e66bef434508995f003f8f27b21f9903"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000305",
+      "runtime_text": "¡Āxcan tiānquiz! ¿Tlen ticcōhuaz?",
+      "text_sha256": "d5666b205898e89592954132249da59ddf12f60882f7e606f300a9a77f2b3da9"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000306",
+      "runtime_text": "Niccōhuaz nākatl huan michi. ¿Huan ta?",
+      "text_sha256": "b34ac5259b337c7a4d33ff434cf18d69309ec78d5efd0069008747e961d853a0"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000307",
+      "runtime_text": "Na niccōhuaz tzopelatl huan matzāhtli.",
+      "text_sha256": "227616dffe0284ab3f81b5e3e0c65d325ae9a5d382e5bbcd284c6fc18f2d0508"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000276",
+      "runtime_text": "Axcanah xococ, nicnequi cōcoc. Tlāhuēl nicnequi cōcoc.",
+      "text_sha256": "bbb2d5e124108b1d1eff8c7596abccd3449ec8ca4dea129628a3285e343fff9e"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000350",
+      "runtime_text": "Quēna, nicchīhua eloatolli huan nictlalhuilia chancacah. ¿Ticnequi?",
+      "text_sha256": "73272ea1d9ce5fc2e64d566bc4b440628e3552a8e3cddf0d55b72630df9e1fa5"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000353",
+      "runtime_text": "¿Cāmpa eltoc in āmatlahcuilōlli?",
+      "text_sha256": "5e8f9473efd5ebe4b5fff5e43a10d969e39f348df05ca8ae8e31ee9a79c6708c"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000354",
+      "runtime_text": "In āmatlahcuilōlli nicān eltoc ipan folsah. ¿Tlen ticnequi?",
+      "text_sha256": "f0f7bd092f522a5dbf54c3d8ba211e9c62a014b96a39db6b384ee45babb9ea70"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-19-001",
+      "runtime_text": "Ximoketsa.",
+      "text_sha256": "c4015217682600d1edd015a51d4272e0f8ce510cdf6e1f24d8b224e15ef1d76c"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-19-002",
+      "runtime_text": "Kena.",
+      "text_sha256": "71e3b2b1b8b89cdd9385f4bdca257f450241b492380c016aee01ef2d98558ec5"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-19-003",
+      "runtime_text": "Ximosewi wan xitlapowa.",
+      "text_sha256": "38ba76d81cb01a1e4bfdda51d50b31b94138c55b55d94bc1ce200c2271eaa842"
+    },
+    {
+      "kind": "dialogue",
+      "id": "CUR-19-004",
+      "runtime_text": "Kwalli, tlaskamati.",
+      "text_sha256": "d626c5eaba350226634a91fd3a373f86d7b53cd1391803ca62281fdbd56bcf0b"
+    },
+    {
+      "kind": "vocab",
+      "id": "902802",
+      "runtime_text": "Nipanoyaya",
+      "text_sha256": "0e16e5fd27507f46e26dd73fb94ea2d407a048dd57bf4457ee50e045dd1c9de6"
+    },
+    {
+      "kind": "vocab",
+      "id": "902805",
+      "runtime_text": "Tiitstok",
+      "text_sha256": "82d1b497fe636af7e3e27769a98730e76d3e58d7a99d41c9058d03e240e9d27a"
+    },
+    {
+      "kind": "vocab",
+      "id": "902807",
+      "runtime_text": "Niitstok",
+      "text_sha256": "d4eb28e06499f0e2b4dcc69e48d2d8f6e059878bdd684968af24e5f8ed83fe81"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000309",
+      "runtime_text": "Piyālli! Nipanoyaya mochān.",
+      "text_sha256": "767ee563fb3929f48aff31b9f3f2c09e8bb6c28d5a67dce54e6ed00514ff1db9"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000310",
+      "runtime_text": "Quēna, xipano!",
+      "text_sha256": "0aa54817102eb91a7354c41f1a189a5d92399dd175c1b18f4bc2f8c7604c9fdb"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000311",
+      "runtime_text": "Tlazcāmati. ¿Cuālli tiitztoc āxcan?",
+      "text_sha256": "ac620bbae700bb4991ffaaee161968d16966eba05d918061b8575ed9e8a3fcd7"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000312",
+      "runtime_text": "Quēna, cuālli niitztoc. Ximocēhui.",
+      "text_sha256": "8e98eccbade049087067cb1b2e64ecb6ca62de5c0d90cb4a4af9b7c191a15096"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000313",
+      "runtime_text": "¿Quēniuhqui tiitztoc?",
+      "text_sha256": "4761096fbc1e7ff1a4bf2148d5f1d8b1eb76c9b0ebc11ff69f70763a5706ebc0"
+    },
+    {
+      "kind": "vocab",
+      "id": "661",
+      "runtime_text": "tlan",
+      "text_sha256": "0979cda2a7ffd2fca00b3e0412b049e62c19743356439961e65af4ad3f31fda2"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000317",
+      "runtime_text": "¿Tlen ticcōhuazquia?",
+      "text_sha256": "27cee8d29d9f4100e1ad59d555576b664f81f0d2c1a8fa5a52d6cd542c526944"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000318",
+      "runtime_text": "Niccōhuazquia nācatl. ¿Huan ta?",
+      "text_sha256": "1188d223f8c8e7ff2a2cb22e4b832ddffabf0e14fed06bdf0567776c5c33f7c0"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000319",
+      "runtime_text": "Na niccōhuazquia etl.",
+      "text_sha256": "310aff076975d9289f88a1f2e9416d81525d57a05fc4304c0b389724098a1b5f"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000320",
+      "runtime_text": "Quēna, niccōhuazquia etl.",
+      "text_sha256": "783687ab2eee40e8fba390595b6a7707c56cdac95d1e29e23c31541ec108cb04"
+    },
+    {
+      "kind": "vocab",
+      "id": "680",
+      "runtime_text": "cuīcatl",
+      "text_sha256": "0e5e8db85a582ddb1536b9c10f0e2a759ce9e263582beec241c9b71b34de28d3"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000321",
+      "runtime_text": "¿Ticōnitozquia ātl?",
+      "text_sha256": "8a4a6f65d84c2422ab7aacba792ed1cd46cbbbdf58799d8eeeea15a7103bf2fe"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000322",
+      "runtime_text": "Quēna, nicōnitozquia ātl.",
+      "text_sha256": "1b292cb5eb69baffa7dcfc6ccc00bef5c7323fb1110bf8a2341b715d72aec674"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000323",
+      "runtime_text": "¿Huan ticōnitozquia cafen?",
+      "text_sha256": "3cd7c3ee8dac5adfc71029acd04708b3e5ab8505a1dd5f90651c94b608ce4d1f"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000324",
+      "runtime_text": "Axcanah. Nicōnitozquia ātl.",
+      "text_sha256": "aae3cad5bbc7f1db016af1c2dc91a4e715e3b9b1bbf7fcf304111d3a88b9cd70"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000326",
+      "runtime_text": "Cē cihuātl tēmachtia. Tlāhuēl cuālli tlahtōa nāhuatl.",
+      "text_sha256": "e3430170d7e61b4586436b62eb27c258cf27efd4e8aec27bc1d2c8ef559165f9"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000327",
+      "runtime_text": "¿Huan ta, ticnequi titēmachtia?",
+      "text_sha256": "1f8a621f2323de041ee47dba7261c21e62e66b7cee9ba9193e7db16145fffd7f"
+    },
+    {
+      "kind": "dialogue",
+      "id": "FCN-LDG-000372",
+      "runtime_text": "Huel cuālli. Ocsepa nimomachtiz.",
+      "text_sha256": "d316369cf8352f2cd66caa33ce42e9545931bba8026e4ace3cac94485a356345"
+    }
+  ]
+}

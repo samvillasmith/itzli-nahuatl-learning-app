@@ -15,11 +15,50 @@ const Database = require("better-sqlite3");
 
 const BUCKET_URL = "https://nahuatl-language.s3.us-east-1.amazonaws.com/";
 const PREFIX = "itzli-app/images/";
-const DB_PATH =
-  process.env.DATABASE_PATH ||
-  path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite");
+const OWNER_MERO_IMAGE_BASE = "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/";
+const OWNER_CACHED_IMAGE_BASE = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/v3/owner-cache/";
 const OUT_PATH = path.resolve(__dirname, "..", "src", "data", "s3-word-images.json");
 const AUDIT_PATH = path.resolve(__dirname, "..", "data", "s3-word-images-audit.json");
+
+/** A cache migration preserves the original asset's ownership; it creates no
+ * depiction exception or new meaning approval. Every accepted URL is derived
+ * from that original filename and the exact owner-approved byte hash. */
+function isOwnerConfirmedCacheMigration(headword, entry) {
+  if (typeof headword !== "string" || !headword.trim() || !entry || typeof entry.key !== "string") return false;
+  const migration = entry.cache_migration;
+  const sha = entry.image_sha256;
+  return /^[a-f0-9]{64}$/.test(sha || "") &&
+    entry.original_url === OWNER_MERO_IMAGE_BASE + entry.key &&
+    entry.url === OWNER_CACHED_IMAGE_BASE + entry.key.replace(/\.webp$/i, `-${sha}.webp`) &&
+    migration?.schema_version === 1 && migration.scope === "same-approved-image-bytes" &&
+    migration.source_asset_url === entry.original_url && migration.source_asset_sha256 === sha &&
+    /^[a-f0-9]{64}$/.test(migration.owner_approval_receipt_sha256 || "") &&
+    migration.approval_source === "Explicit owner approval of Desktop final image review" &&
+    typeof migration.reviewed_at === "string" && Number.isFinite(Date.parse(migration.reviewed_at)) &&
+    Array.isArray(migration.approved_uses) && migration.approved_uses.length > 0 &&
+    migration.approved_uses.every(use => use && use.manifest_headword === headword &&
+      typeof use.entry_id === "string" && Boolean(use.entry_id.trim()) &&
+      typeof use.headword === "string" && Boolean(use.headword.trim()) &&
+      typeof use.meaning_en === "string" && Boolean(use.meaning_en.trim()));
+}
+
+/** Preserve only the owner's explicitly confirmed original or exact cached mappings. */
+function mergeOwnerConfirmedMeroImages(importedManifest, existingManifest) {
+  const preserved = Object.entries(existingManifest || {}).filter(([headword, entry]) =>
+    entry && typeof entry === "object" && !Array.isArray(entry) &&
+    entry.source === "owner-ai" &&
+    typeof entry.key === "string" && /^[^/\\?#]+\.webp$/i.test(entry.key) &&
+    (entry.url === OWNER_MERO_IMAGE_BASE + entry.key || isOwnerConfirmedCacheMigration(headword, entry)) &&
+    entry.license === "Owner-confirmed AI-generated illustration" &&
+    typeof entry.author === "string" && Boolean(entry.author.trim()) &&
+    typeof entry.owner_confirmed_at === "string" && /^\d{4}-\d{2}-\d{2}$/.test(entry.owner_confirmed_at) &&
+    typeof entry.owner_confirmation === "string" && Boolean(entry.owner_confirmation.trim())
+  );
+  // Confirmed entries win a headword collision. Retain their exact URL and
+  // provenance rather than rebuilding another bucket URL from the filename.
+  // This preserves ownership evidence; it grants no pixel/safety approval.
+  return { ...importedManifest, ...Object.fromEntries(preserved) };
+}
 
 const SPANISH_TO_ENGLISH = {
   "hola": ["hello", "greeting"],
@@ -532,8 +571,8 @@ function buildConceptIndex(keys) {
   return { conceptToKey, slugAudit };
 }
 
-function loadVocab() {
-  const db = new Database(DB_PATH, { readonly: true });
+function loadVocab(dbPath) {
+  const db = new Database(dbPath, { readonly: true });
   const rows = db
     .prepare(
       `SELECT id, display_form, gloss_en, part_of_speech
@@ -576,17 +615,25 @@ function matchVocab(vocab, conceptToKey) {
 }
 
 async function main() {
-  if (!fs.existsSync(DB_PATH)) {
-    console.error(`DB not found at ${DB_PATH}`);
+  const dbPath = process.env.DATABASE_PATH ||
+    path.resolve(__dirname, "..", "fcn_master_lexicon_phase8_6_primer.sqlite");
+  if (!fs.existsSync(dbPath)) {
+    console.error(`DB not found at ${dbPath}`);
     process.exit(1);
   }
 
+  const existingManifest = fs.existsSync(OUT_PATH)
+    ? JSON.parse(fs.readFileSync(OUT_PATH, "utf8")) : {};
+
   const keys = await listKeys();
   const { conceptToKey, slugAudit } = buildConceptIndex(keys);
-  const vocab = loadVocab();
+  const vocab = loadVocab(dbPath);
   const { manifest, matched, unmatched } = matchVocab(vocab, conceptToKey);
+  const mergedManifest = mergeOwnerConfirmedMeroImages(manifest, existingManifest);
+  const preservedOwnerImages = Object.entries(mergedManifest)
+    .filter(([headword, entry]) => existingManifest[headword] === entry).length;
 
-  fs.writeFileSync(OUT_PATH, JSON.stringify(manifest, null, 2) + "\n");
+  fs.writeFileSync(OUT_PATH, JSON.stringify(mergedManifest, null, 2) + "\n");
   fs.mkdirSync(path.dirname(AUDIT_PATH), { recursive: true });
   fs.writeFileSync(
     AUDIT_PATH,
@@ -596,6 +643,7 @@ async function main() {
         indexedConcepts: conceptToKey.size,
         vocabItems: vocab.length,
         matched: matched.length,
+        preservedOwnerImages,
         unmatched: unmatched.length,
         matchedSample: matched.slice(0, 80),
         unmatchedSample: unmatched.slice(0, 120),
@@ -609,14 +657,19 @@ async function main() {
 
   console.log(`Listed ${keys.length} S3 word images.`);
   console.log(`Matched ${matched.length} of ${vocab.length} lesson vocab rows.`);
+  console.log(`Preserved ${preservedOwnerImages} owner-confirmed historical image mappings.`);
   console.log(`Manifest: ${OUT_PATH}`);
   console.log(`Audit: ${AUDIT_PATH}`);
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  console.error(
-    `Could not list the public S3 prefix. Enable ListBucket for ${PREFIX} or provide a manifest.`,
-  );
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.message);
+    console.error(
+      `Could not list the public S3 prefix. Enable ListBucket for ${PREFIX} or provide a manifest.`,
+    );
+    process.exit(1);
+  });
+}
+
+module.exports = { mergeOwnerConfirmedMeroImages, isOwnerConfirmedCacheMigration };

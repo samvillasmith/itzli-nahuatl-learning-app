@@ -9,8 +9,14 @@ import {
 import { displayNahuatl } from "@/lib/orthography";
 import { requireAuth } from "@/lib/require-auth";
 import { getRequestLocale } from "@/i18n/server";
-import type { AppLocale } from "@/i18n/config";
-import { tr, translateDeep } from "@/i18n/translate";
+import { localizedPathname, type AppLocale } from "@/i18n/config";
+import { tr, trChoice, translateDeep } from "@/i18n/translate";
+import ReportIssueButton from "@/components/ReportIssueButton";
+import InaliOrthographyNotice from "@/components/InaliOrthographyNotice";
+import { COERLL_SOURCE_LICENSE_NOTICE, ITZLI_V3_CONTRIBUTION_LICENSE } from "@/lib/source-license-notices";
+import AudioButton from "@/components/PronunciationAudio";
+import { sourceBrowserLineAudio } from "@/lib/course-audio-surfaces";
+import { createPageMetadata } from "@/lib/seo";
 
 type Params = {
   params: Promise<{ lessonNumber: string }>;
@@ -28,12 +34,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!lesson) return {};
   const locale = await getRequestLocale();
 
-  return {
-    title: `${displayNahuatl(lesson.nahuatlTitle)} ${tr(locale, "Source Lesson")}`,
+  return createPageMetadata({
+    locale,
+    pathname: `/source-course/${lesson.number}`,
+    title: `${displayNahuatl(lesson.nahuatlTitle)} — ${trChoice(locale, "Nahuatl Source Lesson", "Lección fuente de náhuatl")}`,
     description: locale === "es"
-      ? `Material de la fuente importado bajo CC BY-SA para la lección ${lesson.number} de Nawatlahtolli.`
-      : `Imported CC BY-SA source material for Nawatlahtolli lesson ${lesson.number}.`,
-  };
+      ? `Consulta la lección ${lesson.number} de Nāhuatlahtolli, adaptada bajo CC BY-SA, con transcripciones de referencia, enlaces al audio original y créditos.`
+      : `Explore Nāhuatlahtolli source lesson ${lesson.number}, adapted under CC BY-SA, with reference transcriptions, original audio links, and author credits.`,
+  });
 }
 
 function mediaLabel(link: SourceMediaLink, locale: AppLocale) {
@@ -41,7 +49,7 @@ function mediaLabel(link: SourceMediaLink, locale: AppLocale) {
   return `${tr(locale, link.type)}: ${filename}`;
 }
 
-function renderLine(line: string, key: string, locale: AppLocale) {
+function renderLine(line: string, key: string, locale: AppLocale, referenceId: string) {
   const audio = line.match(/^Audio:\s*(https?:\/\/\S+)/);
   const image = line.match(/^(?:Image|Imagen):\s*(https?:\/\/\S+)/);
   const url = line.match(/^(https?:\/\/\S+)$/);
@@ -58,16 +66,20 @@ function renderLine(line: string, key: string, locale: AppLocale) {
     );
   }
 
+  const recording = sourceBrowserLineAudio(line, referenceId);
   if (/^[A-Z][A-Za-z]+:/.test(line) || /^[ABCD]:/.test(line)) {
     const [speaker, ...rest] = line.split(":");
     return (
-      <p key={key} className="font-mono text-sm text-stone-800">
-        {speaker}: {displayNahuatl(rest.join(":").trim())}
-      </p>
+      <div key={key} className="flex items-start gap-3">
+        <p className="font-mono text-sm text-stone-800">{speaker}: {rest.join(":").trim()}</p>
+        {recording && <AudioButton src={recording.url} text={recording.text} referenceId={recording.referenceId} size="sm" />}
+      </div>
     );
   }
 
-  return <p key={key}>{line}</p>;
+  return <div key={key} className="flex items-start gap-3"><p>{line}</p>
+    {recording && <AudioButton src={recording.url} text={recording.text} referenceId={recording.referenceId} size="sm" />}
+  </div>;
 }
 
 export default async function SourceLessonPage({ params }: Params) {
@@ -116,21 +128,28 @@ export default async function SourceLessonPage({ params }: Params) {
             {tr(locale, "the original lesson")}
           </a>{" "}
           {tr(locale, "under")}{" "}
-          <a className="font-semibold text-emerald-700 underline" href={source.license.url} target="_blank" rel="noopener noreferrer">
-            {source.license.shortName}
+          <a className="font-semibold text-emerald-700 underline" href={COERLL_SOURCE_LICENSE_NOTICE.listingUrl} target="_blank" rel="noopener noreferrer">
+            {COERLL_SOURCE_LICENSE_NOTICE.shortName}
           </a>
-          . {tr(locale, "Changes include extraction, formatting, and integration into Itzli.")}
+          {" "}{trChoice(locale, "(publisher listing; version unspecified).", "(catálogo del editor; versión no especificada).")}{" "}
+          {source.authors.join(", ")}, {source.publisher}.{" "}{tr(locale, "Changes include extraction, formatting, and integration into Itzli.")}
         </p>
+        <p className="mt-3 text-sm leading-6 text-stone-600">{trChoice(locale, "Itzli’s original V3 contributions and adaptation work use", "Las aportaciones originales de Itzli para V3 y su trabajo de adaptación usan")}{" "}<a href={ITZLI_V3_CONTRIBUTION_LICENSE.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 underline">{ITZLI_V3_CONTRIBUTION_LICENSE.name}</a>.{" "}{trChoice(locale, "Original source and media notices remain applicable.", "Siguen vigentes los avisos originales de las fuentes y sus medios.")}</p>
+        <div className="mt-4"><InaliOrthographyNotice locale={locale} /></div>
       </header>
+
+      <div className="flex justify-end"><ReportIssueButton context={{ pagePath: localizedPathname(`/source-course/${number}`, locale),
+        lessonNumber: number, lessonId: `source-lesson-${number}`, lessonTitle: displayNahuatl(lesson.nahuatlTitle), sourceUrl: lesson.originalUrl }} /></div>
 
       {lesson.vocabulary.length > 0 && (
         <section>
           <h2 className="mb-3 text-xl font-black text-stone-950">{tr(locale, "Source Vocabulary")}</h2>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {lesson.vocabulary.map((item) => (
+            {lesson.vocabulary.map((item, vocabularyIdx) => (
               <div key={`${item.headword}-${item.gloss}`} className="rounded-lg border border-stone-200 bg-white p-3">
                 <div className="flex items-start justify-between gap-3">
                   <p className="font-semibold text-stone-950">{displayNahuatl(item.headword)}</p>
+                  <AudioButton src={item.audioUrl} text={displayNahuatl(item.headword)} referenceId={`source-vocabulary:${number}:${item.sourceVocabularyIndex ?? vocabularyIdx + 1}`} size="sm" />
                   {item.audioUrl && (
                     <a
                       href={item.audioUrl}
@@ -143,6 +162,10 @@ export default async function SourceLessonPage({ params }: Params) {
                   )}
                 </div>
                 <p className="mt-1 text-sm text-stone-600">{item.gloss}</p>
+                <ReportIssueButton category="word" label={locale === "es" ? "Reportar esta palabra" : "Report this word"}
+                  context={{ pagePath: localizedPathname(`/source-course/${number}`, locale), lessonNumber: number,
+                    lessonId: `source-lesson-${number}`, lessonTitle: displayNahuatl(lesson.nahuatlTitle),
+                    itemId: `source-word-${number}-${item.headword}`, form: displayNahuatl(item.headword), meaning: item.gloss, sourceUrl: lesson.originalUrl }} />
               </div>
             ))}
           </div>
@@ -150,20 +173,21 @@ export default async function SourceLessonPage({ params }: Params) {
       )}
 
       <section>
-        <h2 className="mb-3 text-xl font-black text-stone-950">{tr(locale, "Lesson Text")}</h2>
+        <h2 className="mb-3 text-xl font-black text-stone-950">{locale === "es" ? "Referencia: transcripción original de la fuente" : "Reference: original source transcription"}</h2>
+        <p className="mb-3 text-sm text-stone-500">{locale === "es" ? "Estos extractos conservan la escritura del autor original. Para practicar, abre la unidad de Itzli, que usa la ortografía de INALI." : "These excerpts retain the original author's spelling. To practice, open the Itzli unit, which uses INALI orthography."}</p>
         <div className="space-y-3">
           {lesson.sections.map((section, sectionIdx) => (
             <details
               key={`${section.heading}-${sectionIdx}`}
               className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm"
-              open={sectionIdx < 2}
             >
               <summary className="cursor-pointer text-base font-bold text-stone-950">
-                {section.heading}
+                {locale === "es" ? "Extracto original" : "Original excerpt"} {sectionIdx + 1}
               </summary>
               <div className="mt-4 space-y-3 text-sm leading-6 text-stone-700">
+                <p className="font-semibold">{section.heading}</p>
                 {section.body.map((line, lineIdx) =>
-                  renderLine(line, `${sectionIdx}-${lineIdx}`, locale)
+                  renderLine(line, `${sectionIdx}-${lineIdx}`, locale, `source-body:${number}:${section.sourceSectionIndex ?? sectionIdx}:${section.sourceBodyIndices?.[lineIdx] ?? lineIdx}`)
                 )}
               </div>
             </details>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadProgress } from "@/lib/progress";
 import { pullAndMerge } from "@/lib/cloudSync";
-import { useUser } from "@clerk/nextjs";
+import { useLearningAccount as useUser } from "@/components/LearningAccount";
 import type { Unit } from "@/lib/db";
 import { useLocale } from "@/i18n/LocaleProvider";
 

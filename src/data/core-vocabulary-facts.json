@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "facts": [
+    {
+      "cardId": 680,
+      "lessonNumber": 31,
+      "sourceSpelling": "huicatl",
+      "display": "wikatl",
+      "meaningEn": "song",
+      "meaningEs": "canción",
+      "sourceType": "individual-modern-ehn-corpus-fact",
+      "sourceTitle": "New Testament in Nahuatl, Huasteca Oriental (2009) — individual lexical fact",
+      "authors": ["Wycliffe Bible Translators, Inc."],
+      "publisher": "Wycliffe Bible Translators, Inc. / eBible.org",
+      "sourceUrl": "https://ebible.org/nheNT/MAT11.htm#V17",
+      "supplementalSourceUrls": ["https://ebible.org/nheNT/COL03.htm#V16"],
+      "copyrightUrl": "https://ebible.org/nheNT/copyright.htm",
+      "sourceRights": "Individual language fact only; underlying translation retains Wycliffe copyright and its separate CC BY-NC-ND notices. No verse, translation extract, recording or media license is claimed.",
+      "evidence": {
+        "language": "Eastern Huasteca Nahuatl (nhe)",
+        "corpusArchiveSha256": "14687ab098375ba4a14cd0af2deb254f3ef2fbfc94feb77ccb95773ab7e20c03",
+        "exactStandaloneOccurrences": 7,
+        "selectedLocus": "Matthew 11:17",
+        "supplementalLocus": "Colossians 3:16",
+        "selectedSense": "song; musical vocal expression",
+        "scope": "Individually reviewed noun form and song sense only; not a quotation, general derivation rule, dialect-universal claim or endorsement.",
+        "verseTextReused": false,
+        "mediaReuseLicenseClaimed": false
+      },
+      "reviewedOn": "2026-10-08",
+      "decision": "Owner approved attested wikatl form; retain card ID, lesson placement, gloss and progress identity. Stale recording remains withheld."
+    }
+  ]
+}

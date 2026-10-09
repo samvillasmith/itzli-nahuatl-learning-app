@@ -18,20 +18,28 @@ const BLOCKED_PATTERNS = blocklist.rules.map((rule) => ({
 const REVIEWED_MODES = new Map(
   reviewedAllowlist.entries.map((entry) => [normalize(entry.headword), entry.mode]),
 );
-const NON_OVERRIDABLE_CATEGORIES = new Set([
-  "adult-sexual",
-  "covered-body-or-exposure-risk",
-  "clothing-change-exposure-risk",
-  "body-waste",
-  "graphic-injury-or-death",
-  "hate-or-extremism",
-]);
+const NON_OVERRIDABLE_CATEGORIES = new Set(blocklist.nonOverridableCategories);
+const HARD_DEPICTION_RULES = blocklist.nonOverridableDepictionRules.map(
+  (rule) => new RegExp(rule.pattern, "iu"),
+);
+const HARD_HEADWORDS = new Set(blocklist.nonOverridableHeadwords.map(normalize));
 
 function isImageCardExcludedInternal(
   approvedMatches: string[],
   values: Array<string | null | undefined>,
 ): boolean {
   const present = values.filter(Boolean).map((value) => String(value));
+  if (present.some(value => HARD_HEADWORDS.has(normalize(value)))) return true;
+  // Exact-asset false-positive review must never erase a forbidden depiction.
+  // Teaching an anatomical word does not authorize its depiction in an image.
+  const originalText = present.join(" ");
+  if (HARD_DEPICTION_RULES.some((pattern) => pattern.test(originalText) || pattern.test(normalize(originalText)))) {
+    return true;
+  }
+  // Every hard category is checked against ORIGINAL fields. False-positive
+  // image metadata or educational-word approval never overrides those rules.
+  if (BLOCKED_PATTERNS.some(({category, pattern}) => NON_OVERRIDABLE_CATEGORIES.has(category) &&
+    (pattern.test(originalText) || pattern.test(normalize(originalText))))) return true;
   const reviewedMode = present
     .map((value) => REVIEWED_MODES.get(normalize(value)))
     .find(Boolean);

@@ -1,71 +1,87 @@
 "use client";
+import { groupCoursePath } from "@/lib/course-path-groups";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { useLearningAccount as useUser } from "@/components/LearningAccount";
 import { loadProgress, resetProgress, type ProgressData } from "@/lib/progress";
 import { emptyProgress } from "@/lib/progress-schema";
 import { pullAndMerge, deleteCloudProgress } from "@/lib/cloudSync";
-import type { Unit } from "@/lib/db";
+import type { UnifiedPathLesson } from "@/lib/unified-course-path";
+import { getUnifiedPathProgress } from "@/lib/unified-path-progress";
+import type { ExpansionCourseProgress } from "@/lib/expansion-course";
+import { loadExpansionCourseState, loadExpansionPracticeState } from "@/lib/expansion-state";
+import { getProgressAccount, subscribeProgressChanges } from "@/lib/progress-storage";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { loadLearningState } from "@/lib/learning-state";
+import { clearOfflineAttempts, hasPendingOfflineAttempts } from "@/lib/offline-attempts";
+import LearningSummary from "@/components/LearningSummary";
+import LegacyProgressImport from "@/components/LegacyProgressImport";
 
-const BAND_COLOR: Record<string, string> = {
-  A1: "text-emerald-700 bg-emerald-100 border-emerald-200",
-  A2: "text-sky-700 bg-sky-100 border-sky-200",
-  B1: "text-violet-700 bg-violet-100 border-violet-200",
-};
-
-const BAND_LABEL: Record<string, string> = {
-  A1: "Beginner",
-  A2: "Elementary",
-  B1: "B1-oriented extensions",
-};
-
-export default function ProgressDashboard({ units }: { units: Unit[] }) {
-  const { translate } = useLocale();
+export default function ProgressDashboard({ units, reviewableIds }: { units: UnifiedPathLesson[]; reviewableIds: string[] }) {
+  const { translate, locale } = useLocale();
+  const [learningRevision,setLearningRevision]=useState(0);
   const [progress, setProgress] = useState<ProgressData>(emptyProgress());
+  const [courseProgress, setCourseProgress] = useState<ExpansionCourseProgress | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const [resetError, setResetError] = useState("");
   const { isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
     if (!isLoaded) return;
-    if (isSignedIn) {
-      pullAndMerge().then(({ progress: merged }) => setProgress(merged));
-    } else {
+    let active = true;
+    const refresh = () => {
+      if (!active) return;
       setProgress(loadProgress());
-    }
+      const course = loadExpansionCourseState();
+      setCourseProgress(course.status === "ready" ? course.progress : null);
+      setLearningRevision(revision => revision + 1);
+    };
+    refresh();
+    const unsubscribe = subscribeProgressChanges(refresh);
+    if (isSignedIn) void pullAndMerge().then(refresh);
+    return () => { active = false; unsubscribe(); };
   }, [isLoaded, isSignedIn]);
 
   async function handleReset() {
+    const resettingAccount = getProgressAccount();
     setResetError("");
     if (isSignedIn && !(await deleteCloudProgress())) {
       setResetError(translate("Cloud progress could not be deleted. Please try again."));
       return;
     }
+    if (resettingAccount !== getProgressAccount()) return;
+    if (!clearOfflineAttempts()) {
+      setResetError(locale === "es"
+        ? "No se pudieron borrar los intentos pendientes sin conexión. El reinicio no terminó. Inténtalo de nuevo."
+        : "Pending offline attempts could not be cleared. The reset did not finish. Please try again.");
+      return;
+    }
     resetProgress();
+    setLearningRevision(v=>v+1);
     setProgress(emptyProgress());
+    setCourseProgress({ schemaVersion: 1, units: {} });
     setConfirmReset(false);
   }
 
   const unitProgress = progress.units;
   const completedUnits = units.filter(
-    (u) => unitProgress[u.lesson_number]?.status === "completed"
+    (u) => getUnifiedPathProgress(u, progress, courseProgress).status === "completed"
   );
   const inProgressUnits = units.filter(
-    (u) => unitProgress[u.lesson_number]?.status === "in_progress"
+    (u) => getUnifiedPathProgress(u, progress, courseProgress).status === "in_progress"
   );
-  const wordsEncountered = [...completedUnits, ...inProgressUnits].reduce(
-    (sum, u) => sum + u.english_vocab_count,
-    0
-  );
+  const wordsEncountered = new Set(Object.values(loadLearningState().activities).filter(a => a.activityId.startsWith("word:")).map(a=>a.activityId)).size;
   const overallPct =
     completedUnits.length > 0
       ? Math.round((completedUnits.length / units.length) * 100)
       : 0;
 
-  const hasAnyProgress = Object.keys(unitProgress).length > 0;
-  const bands = ["A1", "A2", "B1"] as const;
+  const hasResettableProgress = Object.keys(unitProgress).length > 0 || Object.keys(courseProgress?.units ?? {}).length > 0 ||
+    Object.keys(loadExpansionPracticeState().progress.items).length > 0 ||
+    Object.keys(loadLearningState().activities).length > 0 || hasPendingOfflineAttempts();
+  const hasAnyProgress = hasResettableProgress;
+  const stages = groupCoursePath(units);
 
   return (
     <div>
@@ -76,6 +92,8 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
       </div>
 
       {/* Overall progress bar */}
+      <LegacyProgressImport />
+      <LearningSummary key={learningRevision} reviewableIds={reviewableIds} />
       {hasAnyProgress && (
         <div className="bg-white rounded-2xl border border-stone-100 shadow-sm p-6 mb-8">
           <div className="flex items-end justify-between mb-3">
@@ -86,7 +104,7 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
               <p className="text-2xl font-bold text-stone-900">
                 {completedUnits.length}{" "}
                 <span className="text-stone-400 text-base font-medium">
-                  / {units.length} {translate("units complete")}
+                  / {units.length} {locale === "es" ? "lecciones completadas" : "lessons complete"}
                 </span>
               </p>
             </div>
@@ -117,39 +135,39 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
         </div>
       </div>
 
-      {/* Unit list by band */}
-      {bands.map((band) => {
-        const bandUnits = units.filter((u) => u.target_band === band);
-        if (!bandUnits.length) return null;
+      {/* The same stages and lesson order as the learning path. */}
+      {stages.map((stage, stageIndex) => {
+        const stageUnits = stage.units;
 
-        const done = bandUnits.filter(
-          (u) => unitProgress[u.lesson_number]?.status === "completed"
+        const done = stageUnits.filter(
+          (u) => getUnifiedPathProgress(u, progress, courseProgress).status === "completed"
         ).length;
 
         return (
-          <section key={band} className="mb-10">
+          <section key={`${stage.title}-${stageIndex}`} className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <span
-                  className={`text-xs font-bold px-2.5 py-1 rounded-full border ${BAND_COLOR[band]}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-950 text-xs font-black text-white"
                 >
-                  {band === "B1" ? translate("B1-oriented") : band}
+                  {stageIndex + 1}
                 </span>
-                <h2 className="text-base font-semibold text-stone-600">{translate(BAND_LABEL[band])}</h2>
+                <h2 className="text-base font-semibold text-stone-600">{locale === "es" ? stageUnits[0].stageTitleEs : stageUnits[0].stageTitleEn}</h2>
               </div>
               <span className="text-xs text-stone-400 font-medium">
-                {done}/{bandUnits.length} {translate("done")}
+                {done}/{stageUnits.length} {translate("done")}
               </span>
             </div>
 
             <div className="bg-white border border-stone-100 rounded-2xl shadow-sm divide-y divide-stone-50 overflow-hidden">
-              {bandUnits.map((unit) => {
-                const p = unitProgress[unit.lesson_number];
-                const status = p?.status ?? "not_started";
+              {stageUnits.map((unit) => {
+                const p = unit.kind === "legacy" ? unitProgress[unit.lessonNumber] : null;
+                const courseResult = courseProgress?.units[unit.progressId];
+                const status = getUnifiedPathProgress(unit, progress, courseProgress).status;
 
                 return (
                   <div
-                    key={unit.lesson_number}
+                    key={unit.lessonNumber}
                     className="flex items-center gap-4 px-5 py-4 hover:bg-stone-50/50 transition-colors"
                   >
                     {/* Status icon */}
@@ -173,10 +191,10 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-stone-400">
-                          {unit.path_code}
+                          {unit.pathCode}
                         </span>
                         <span className="text-sm font-semibold text-stone-800 truncate">
-                          {unit.theme_en}
+                          {locale === "es" ? unit.titleEs : unit.titleEn}
                         </span>
                       </div>
                       {p && (
@@ -202,20 +220,21 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
                           </span>
                         </div>
                       )}
+                      {!p && courseResult && <p className="mt-1.5 text-xs text-stone-400">{courseResult.firstAttemptCorrect}/{courseResult.total} {locale === "es" ? "respuestas correctas al primer intento" : "first-attempt answers correct"}</p>}
                     </div>
 
                     {/* Action buttons */}
                     <div className="flex gap-2 shrink-0">
                       {status !== "not_started" && (
                         <Link
-                          href={`/practice/${unit.lesson_number}`}
+                          href={unit.kind === "legacy" ? `/practice/${unit.lessonNumber}` : `/units/${unit.lessonNumber}`}
                           className="text-xs px-3 py-1.5 rounded-lg border border-stone-200 text-stone-500 hover:bg-stone-50 transition-colors"
                         >
                           {translate("Review")}
                         </Link>
                       )}
                       <Link
-                        href={`/units/${unit.lesson_number}`}
+                        href={`/units/${unit.lessonNumber}`}
                         className={`text-xs px-3 py-1.5 rounded-lg font-semibold transition-colors ${
                           status === "completed"
                             ? "border border-stone-200 text-stone-500 hover:bg-stone-50"
@@ -245,15 +264,15 @@ export default function ProgressDashboard({ units }: { units: Unit[] }) {
         {!confirmReset ? (
           <button
             onClick={() => setConfirmReset(true)}
-            disabled={!hasAnyProgress}
+            disabled={!hasResettableProgress}
             className="text-sm text-stone-400 hover:text-red-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            {translate("Reset all progress")}
+            {locale === "es" ? "Reiniciar el progreso de las lecciones y la práctica" : "Reset lesson and practice progress"}
           </button>
         ) : (
           <div className="flex items-center gap-4">
             <span className="text-sm text-stone-600">
-              {translate("This will erase all progress. Are you sure?")}
+              {locale === "es" ? "Se borrará el progreso de todas las lecciones, el historial de práctica y tu cuaderno de vocabulario de esta cuenta. ¿Quieres continuar?" : "This clears all lesson progress, practice history and your vocabulary notebook for this account. Continue?"}
             </span>
             <button
               onClick={handleReset}

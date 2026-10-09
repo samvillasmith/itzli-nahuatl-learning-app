@@ -4,11 +4,19 @@ import { TUTOR_FEATURE_ENABLED } from "@/lib/features";
 import { requireAuth } from "@/lib/require-auth";
 import TutorClient from "./TutorClient";
 import { getRequestLocale } from "@/i18n/server";
-import { tr } from "@/i18n/translate";
+import { tr, trChoice } from "@/i18n/translate";
+import { createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  return { title: tr(locale, "Tutor") };
+  return createPageMetadata({
+    locale,
+    pathname: "/tutor",
+    title: trChoice(locale, "Nahuatl Tutor", "Tutor de náhuatl"),
+    description: trChoice(locale,
+      TUTOR_FEATURE_ENABLED ? "Practice Nahuatl conversation and ask about vocabulary, grammar, pronunciation, and culture with Itzli's AI tutor." : "Itzli's Nahuatl AI tutor is temporarily offline for review. Continue learning with guided lessons, vocabulary, grammar, and audio.",
+      TUTOR_FEATURE_ENABLED ? "Practica conversación en náhuatl y consulta vocabulario, gramática, pronunciación y cultura con el tutor de IA de Itzli." : "El tutor de IA de náhuatl de Itzli está temporalmente en revisión. Sigue aprendiendo con lecciones guiadas, vocabulario, gramática y audio."),
+  });
 }
 
 export default async function TutorPage() {

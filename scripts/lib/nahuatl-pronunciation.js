@@ -19,7 +19,7 @@ const SHORT_VOWEL_CUE = {
 const LONG_VOWEL_CUE = {
   a: "aah",
   e: "ehh",
-  i: "ee",
+  i: "eee",
   o: "ohh",
   u: "ooh",
 };
@@ -95,16 +95,16 @@ function speakableNahuatlText(text) {
 }
 
 function normalizeNahuatlText(text) {
-  return speakableNahuatlText(text)
+  const normalized = speakableNahuatlText(text)
+    .normalize("NFC")
     .toLowerCase()
     .replace(/\u2019|\u2018|\u02bc/g, "'")
-    .replace(/\bqu[eē]niuhqui\b/g, "kenihki")
-    .replace(/\bkeniuhki\b/g, "kenihki")
-    .replace(/\bkeniwki\b/g, "kenihki")
-    .replace(/\baxcanah\b/g, "axcana")
     .replace(PUNCTUATION, " ")
     .replace(/\s+/g, " ")
     .trim();
+  const unsupported = normalized.replace(WORD_RE, "").replace(/[\s-]/g, "");
+  if (unsupported) throw new Error(`Unsupported pronunciation character: ${JSON.stringify(unsupported)}`);
+  return normalized;
 }
 
 function plainVowel(ch) {
@@ -130,6 +130,14 @@ function tokenizeWord(word) {
 
     if (ch === " " || ch === "-") {
       i += 1;
+      continue;
+    }
+
+    // Final/syllable-final uh represents /w/. Match it before u is consumed
+    // as a vowel; otherwise icniuh incorrectly gains an extra vowel and h.
+    if (ch === "u" && next === "h") {
+      tokens.push({ orth: "uh", kind: "consonant", cue: "w" });
+      i += 2;
       continue;
     }
 
@@ -188,19 +196,13 @@ function tokenizeWord(word) {
     }
 
     if (ch === "c") {
-      tokens.push({ orth: ch, kind: "consonant", cue: next === "e" || next === "i" ? "s" : "k" });
+      tokens.push({ orth: ch, kind: "consonant", cue: plainVowel(next) === "e" || plainVowel(next) === "i" ? "s" : "k" });
       i += 1;
       continue;
     }
 
     if (ch === "h" && next === "u" && isVowel(third)) {
       tokens.push({ orth: "hu", kind: "consonant", cue: "w" });
-      i += 2;
-      continue;
-    }
-
-    if (ch === "u" && next === "h") {
-      tokens.push({ orth: "uh", kind: "consonant", cue: "w" });
       i += 2;
       continue;
     }
@@ -218,7 +220,7 @@ function tokenizeWord(word) {
       continue;
     }
 
-    i += 1;
+    throw new Error(`Unsupported pronunciation character ${JSON.stringify(ch)} in ${JSON.stringify(word)}`);
   }
 
   return tokens;
@@ -328,6 +330,7 @@ function buildTtsInstructions(text, options = {}) {
     "Say only the learner text. Do not add translations, commentary, spelling names, or extra words.",
     "Use a slow, natural teaching pace with crisp consonants and steady vowels.",
     "Vowels are pure: a=ah, e=eh, i=ee, o=oh, u=oo. Never add an off-glide, so na is nah and ta is tah.",
+    "Preserve written macron vowel length; long ā ē ī ō are distinct from their unmarked counterparts. A pronunciation cue cannot certify this distinction.",
     "The digraph ll is a held double l, like l-l. It is never the Spanish y sound.",
     "x is sh. qu is k. cu or kw is kw. hu or w before a vowel is w. z or s is s. j is a light h. Keep ch, tz/ts, and tl crisp.",
     "h or apostrophe marks a brief glottal catch or light h; do not drop it.",

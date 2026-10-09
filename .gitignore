@@ -45,15 +45,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# SQLite databases (exceed GitHub's 100MB limit — fetched from S3 at build time)
+# Private research SQLite databases. Only the checked course release is shipped.
 *.sqlite
+!/fcn_course_release.sqlite
 *.sqlite-shm
 *.sqlite-wal
 *.sqlite.bak
 *.db
 *.bak
 
-# Audio files (served from S3 — see scripts/fetch-db.js and src/lib/audio.ts)
+# Own learner audio; release preparation does not fetch remote assets.
 /public/audio/
 /public/audio-google/
 image-gallery.html
@@ -68,5 +69,11 @@ __pycache__/
 # Generated morphology cache — regenerate via: python -m ehn_morph build-cache --out data/morphology_cache.json
 /data/
 
+# Local review exports and temporary research downloads are not release source.
+/output/
+/tmp/
+
 # clerk configuration (can include secrets)
 /.clerk/
+/public/audio-v3/*
+!/public/audio-v3/audio-notices.json

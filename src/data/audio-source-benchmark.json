@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "model": {
+    "id": "facebook/mms-tts-nhe",
+    "revision": "48cc378b4c7bc869e2282e6170a39f10930f20bf",
+    "license": "CC-BY-NC-4.0",
+    "model_card": "https://huggingface.co/facebook/mms-tts-nhe",
+    "language": "nhe",
+    "sample_rate_hz": 16000,
+    "seed": 555,
+    "speaking_rate": 1,
+    "noise_scale": 0.667,
+    "noise_scale_duration": 0.8
+  },
+  "scope": "source-linked pronunciation comparison",
+  "source_sha256": "36711d31d650fde124cee333463b81daf63848d3ad1126d701d0003f4056716f",
+  "records": [
+    {
+      "kind": "benchmark",
+      "id": "source-1-3",
+      "runtime_text": "chīlli",
+      "synthesis_text": "chīlli",
+      "translation": "pepper",
+      "text_sha256": "082c23739cb0265ff105c6c94b1768a1bc33885741c444c6277be5f717b27330",
+      "synthesis_text_sha256": "082c23739cb0265ff105c6c94b1768a1bc33885741c444c6277be5f717b27330",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-i",
+        "double-l"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-3",
+          "source_lesson": 1,
+          "source_index": 3,
+          "text": "chīlli",
+          "translation": "pepper",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chilli.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/chilli.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-11",
+      "runtime_text": "pāpalōtl",
+      "synthesis_text": "pāpalōtl",
+      "translation": "butterfly",
+      "text_sha256": "c6cd5d404e320594ed599d81687fdd151816e25eb692a2c01a455c89999e0a3b",
+      "synthesis_text_sha256": "c6cd5d404e320594ed599d81687fdd151816e25eb692a2c01a455c89999e0a3b",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-a",
+        "long-o",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-11",
+          "source_lesson": 1,
+          "source_index": 11,
+          "text": "pāpalōtl",
+          "translation": "butterfly",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/papalotl.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/papalotl.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-20",
+      "runtime_text": "cuahuitl",
+      "synthesis_text": "cuahuitl",
+      "translation": "wood, tree",
+      "text_sha256": "bcc2ca7c179a8ba3050d89d3a7bf869146596db92e11cbcedd6f2890da1179fa",
+      "synthesis_text_sha256": "bcc2ca7c179a8ba3050d89d3a7bf869146596db92e11cbcedd6f2890da1179fa",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "cu",
+        "hu",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-20",
+          "source_lesson": 1,
+          "source_index": 20,
+          "text": "cuahuitl",
+          "translation": "wood, tree",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuahuitl.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/cuahuitl.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-27",
+      "runtime_text": "huitztli",
+      "synthesis_text": "huitztli",
+      "translation": "thorn",
+      "text_sha256": "c13cfe0faef12788e65c4e762d6e7c3fb1c1ffc82c35bb53c1fba8a5f3df62db",
+      "synthesis_text_sha256": "c13cfe0faef12788e65c4e762d6e7c3fb1c1ffc82c35bb53c1fba8a5f3df62db",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "hu",
+        "tz",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-27",
+          "source_lesson": 1,
+          "source_index": 27,
+          "text": "huitztli",
+          "translation": "thorn",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/huitztli.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/huitztli.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-34",
+      "runtime_text": "icnīuh",
+      "synthesis_text": "icnīuh",
+      "translation": "sibling",
+      "text_sha256": "7dcf483d51131bbfcb2afd2ef3475a3b6c9751550c4788c2191d3b52a07650e8",
+      "synthesis_text_sha256": "7dcf483d51131bbfcb2afd2ef3475a3b6c9751550c4788c2191d3b52a07650e8",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-i",
+        "final-uh"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-34",
+          "source_lesson": 1,
+          "source_index": 34,
+          "text": "icnīuh",
+          "translation": "sibling",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/icniuh-1.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/icniuh-1.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-35",
+      "runtime_text": "tōnatiuh",
+      "synthesis_text": "tōnatiuh",
+      "translation": "sun, day",
+      "text_sha256": "e2db13597b66bc606864cc1875df84648aa9da49d8c3a2d987f1f3e7633fd338",
+      "synthesis_text_sha256": "e2db13597b66bc606864cc1875df84648aa9da49d8c3a2d987f1f3e7633fd338",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-o",
+        "final-uh"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-35",
+          "source_lesson": 1,
+          "source_index": 35,
+          "text": "tōnatiuh",
+          "translation": "sun, day",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tonatiuh.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tonatiuh.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-44",
+      "runtime_text": "tzahtzi",
+      "synthesis_text": "tzahtzi",
+      "translation": "to cry",
+      "text_sha256": "c2d6fd7ce98b864b5ed924fec4072556bdb46300ae4ccefe6436db82974765dc",
+      "synthesis_text_sha256": "c2d6fd7ce98b864b5ed924fec4072556bdb46300ae4ccefe6436db82974765dc",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "tz",
+        "h"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-44",
+          "source_lesson": 1,
+          "source_index": 44,
+          "text": "tzahtzi",
+          "translation": "to cry",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tzahtzi.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/tzahtzi.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-49",
+      "runtime_text": "ātl",
+      "synthesis_text": "ātl",
+      "translation": "water",
+      "text_sha256": "1fea474d64f43d49eaf45eb8af6698d334c5335c46018c01144c65ded661c10b",
+      "synthesis_text_sha256": "1fea474d64f43d49eaf45eb8af6698d334c5335c46018c01144c65ded661c10b",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-a",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-49",
+          "source_lesson": 1,
+          "source_index": 49,
+          "text": "ātl",
+          "translation": "water",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/atl.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/atl.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-53",
+      "runtime_text": "ēlōtl",
+      "synthesis_text": "ēlōtl",
+      "translation": "corn",
+      "text_sha256": "99e03ce1904c7e57f21600cd1ff4bd7277527c53fde27bcebb9373e02eba397a",
+      "synthesis_text_sha256": "99e03ce1904c7e57f21600cd1ff4bd7277527c53fde27bcebb9373e02eba397a",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-e",
+        "long-o",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-53",
+          "source_lesson": 1,
+          "source_index": 53,
+          "text": "ēlōtl",
+          "translation": "corn",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/elotl.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/elotl.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-1-54",
+      "runtime_text": "etl",
+      "synthesis_text": "etl",
+      "translation": "bean",
+      "text_sha256": "631fd8e1ffac93e47a9eeeaeb7c7ffa4ed64c93ebc79450f33ff81bd2ff69a91",
+      "synthesis_text_sha256": "631fd8e1ffac93e47a9eeeaeb7c7ffa4ed64c93ebc79450f33ff81bd2ff69a91",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "short-e",
+        "tl"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-1-54",
+          "source_lesson": 1,
+          "source_index": 54,
+          "text": "etl",
+          "translation": "bean",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-ce-lesson-1-piltlahcuiloltzitzin-the-alphabet/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/etl.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/etl.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-2-8",
+      "runtime_text": "Xicalaqui",
+      "synthesis_text": "Xicalaqui",
+      "translation": "Enter",
+      "text_sha256": "7eb288362ee9e384e684283c7fe34fea4bb32ebcb52ee059ec6061b30a4ae42f",
+      "synthesis_text_sha256": "7eb288362ee9e384e684283c7fe34fea4bb32ebcb52ee059ec6061b30a4ae42f",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "x",
+        "qu",
+        "command"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-2-8",
+          "source_lesson": 2,
+          "source_index": 8,
+          "text": "Xicalaqui",
+          "translation": "Enter",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xicalaqui.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xicalaqui.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-2-9",
+      "runtime_text": "Xipano",
+      "synthesis_text": "Xipano",
+      "translation": "Come in",
+      "text_sha256": "8277f3d9c4557bb266786f467ddfd13f6134d2751913be81a746cf3450d585d1",
+      "synthesis_text_sha256": "8277f3d9c4557bb266786f467ddfd13f6134d2751913be81a746cf3450d585d1",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "x",
+        "command"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-2-9",
+          "source_lesson": 2,
+          "source_index": 9,
+          "text": "Xipano",
+          "translation": "Come in",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xipano.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/xipano.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-2-19",
+      "runtime_text": "Ximocehui",
+      "synthesis_text": "Ximocehui",
+      "translation": "Sit down",
+      "text_sha256": "aaa1f7b6f21c4a086d8376095bc223474eb6e2651cc0bb189ded4bbdfcb92f58",
+      "synthesis_text_sha256": "aaa1f7b6f21c4a086d8376095bc223474eb6e2651cc0bb189ded4bbdfcb92f58",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "hu",
+        "command"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-2-19",
+          "source_lesson": 2,
+          "source_index": 19,
+          "text": "Ximocehui",
+          "translation": "Sit down",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ximocehui.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/ximocehui.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-2-37",
+      "runtime_text": "¿Cānin tiitztoc?",
+      "synthesis_text": "¿Cānin tiitztoc?",
+      "translation": "Where are you?",
+      "text_sha256": "452dc41e3d8697b386fe8b643764c48f3ee82dc8244ca98c6004a722f2c76b07",
+      "synthesis_text_sha256": "452dc41e3d8697b386fe8b643764c48f3ee82dc8244ca98c6004a722f2c76b07",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "question",
+        "tiitztoc"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-2-37",
+          "source_lesson": 2,
+          "source_index": 37,
+          "text": "¿Cānin tiitztoc?",
+          "translation": "Where are you?",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/canin-tiitztoc.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/canin-tiitztoc.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-2-38",
+      "runtime_text": "Nicān niitztoc",
+      "synthesis_text": "Nicān niitztoc",
+      "translation": "I am here",
+      "text_sha256": "e4be8a13067f4a5d8e0bba7df1c984ac4ed945e21ada6f7761db7945c2b8e5b4",
+      "synthesis_text_sha256": "e4be8a13067f4a5d8e0bba7df1c984ac4ed945e21ada6f7761db7945c2b8e5b4",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-a",
+        "niitztoc"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-2-38",
+          "source_lesson": 2,
+          "source_index": 38,
+          "text": "Nicān niitztoc",
+          "translation": "I am here",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nican-niitztoc.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nican-niitztoc.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-6-9",
+      "runtime_text": "nitequiti",
+      "synthesis_text": "nitequiti",
+      "translation": "I work",
+      "text_sha256": "c6ebae9db73d547dbb973cac0da7d1e1683bd652b911b37a0d4593fc46e2deb3",
+      "synthesis_text_sha256": "c6ebae9db73d547dbb973cac0da7d1e1683bd652b911b37a0d4593fc46e2deb3",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "qu",
+        "present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-6-9",
+          "source_lesson": 6,
+          "source_index": 9,
+          "text": "nitequiti",
+          "translation": "I work",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-6-lesson-6-tlachihualiztli-verbs/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nitequiti.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nitequiti.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-6-15",
+      "runtime_text": "nimomachtia",
+      "synthesis_text": "nimomachtia",
+      "translation": "I study",
+      "text_sha256": "d05c32b05acc1a81e71f2d602ac01cf728cbd5c4bae8f9ac61daf00daa11189f",
+      "synthesis_text_sha256": "d05c32b05acc1a81e71f2d602ac01cf728cbd5c4bae8f9ac61daf00daa11189f",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "ch",
+        "present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-6-15",
+          "source_lesson": 6,
+          "source_index": 15,
+          "text": "nimomachtia",
+          "translation": "I study",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-6-lesson-6-tlachihualiztli-verbs/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nimomachtia.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/nimomachtia.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-12-4",
+      "runtime_text": "Nimomachtiz",
+      "synthesis_text": "Nimomachtiz",
+      "translation": "I will study",
+      "text_sha256": "a0b1dadc6ea7f541d51209dcf524f65418cdf6cd4c2d9f79420c6fedcf3856a6",
+      "synthesis_text_sha256": "a0b1dadc6ea7f541d51209dcf524f65418cdf6cd4c2d9f79420c6fedcf3856a6",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "ch",
+        "singular-future"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-12-4",
+          "source_lesson": 12,
+          "source_index": 4,
+          "text": "Nimomachtiz",
+          "translation": "I will study",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-12-lesson-12-tlachihualiztli-achiyoc-future-tense-and-indefinite-verbs/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nimomachtiz.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Nimomachtiz.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    },
+    {
+      "kind": "benchmark",
+      "id": "source-11-10",
+      "runtime_text": "Mōztlayoc",
+      "synthesis_text": "Mōztlayoc",
+      "translation": "Until tomorrow",
+      "text_sha256": "ed72e6c1867079c71f56f8ee58ea5e21f747c38051516e12bb7b8b41179d44a6",
+      "synthesis_text_sha256": "ed72e6c1867079c71f56f8ee58ea5e21f747c38051516e12bb7b8b41179d44a6",
+      "content_review": "source-form",
+      "review_status": "unreviewed",
+      "generation_allowed": true,
+      "legacy_hold": false,
+      "units": [],
+      "features": [
+        "long-o",
+        "farewell"
+      ],
+      "source_refs": [
+        {
+          "source_id": "source-11-10",
+          "source_lesson": 11,
+          "source_index": 10,
+          "text": "Mōztlayoc",
+          "translation": "Until tomorrow",
+          "source_url": "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-11-lesson-11-quemman-motlahpaloa-huan-monahuatihtehua-when-you-greet-and-say-farewell/",
+          "audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Moztlayoc.mp3",
+          "attribution": "Nāhuatlahtolli, COERLL / University of Texas at Austin",
+          "license": "CC-BY-SA-4.0; retain source and asset-specific notices"
+        }
+      ],
+      "native_source_audio_url": "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/Moztlayoc.mp3",
+      "limitations": [
+        "Source spelling and recording reference; feature labels do not certify a model's realization."
+      ]
+    }
+  ]
+}

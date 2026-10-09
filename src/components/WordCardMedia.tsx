@@ -12,11 +12,29 @@ export function WordCardMedia({
   image: WordImage | null;
   alt: string;
 }) {
-  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  if (!image) return null;
+  return <WordCardImage key={image.url} image={image} alt={alt} />;
+}
 
-  if (!image || failedUrl === image.url) return null;
+function WordCardImage({ image, alt }: { image: WordImage; alt: string }) {
+  const { locale } = useLocale();
+  const es = locale === "es";
+  const [failed, setFailed] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   const frameAspect = image.source === "itzli" ? "aspect-[5/4]" : "aspect-[4/3]";
+  // Direct delivery keeps the existing reviewed asset URL and browser cache.
+  // eslint-disable-next-line @next/next/no-img-element
+  const artwork = <img
+    key={retryCount}
+    src={image.url}
+    alt={alt}
+    loading="eager"
+    fetchPriority="high"
+    decoding="async"
+    className="h-full w-full object-cover object-top"
+    onError={() => setFailed(true)}
+  />;
 
   return (
     <>
@@ -28,17 +46,13 @@ export function WordCardMedia({
         <div
           className={`relative mx-auto w-full max-w-lg overflow-hidden bg-[#fbf1d8] ${frameAspect}`}
         >
-          {/* Direct S3 delivery avoids image-optimization cold starts and Vercel image charges. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image.url}
-            alt={alt}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="h-full w-full object-cover object-top"
-            onError={() => setFailedUrl(image.url)}
-          />
+          {failed ? <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-5 text-center">
+            <p role="status" className="text-sm text-stone-600">{es ? "No se pudo cargar la imagen." : "The image could not load."}</p>
+            <button type="button" onClick={() => { setRetryCount(count => count + 1); setFailed(false); }}
+              className="rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-800 hover:border-emerald-500">
+              {es ? "Volver a cargar la imagen" : "Retry image"}
+            </button>
+          </div> : artwork}
         </div>
       </div>
     </>

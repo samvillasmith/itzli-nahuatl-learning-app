@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { GRAMMAR_LESSONS } from '@/data/grammar-lessons';
 import { displayNahuatl } from '@/lib/orthography';
+import { displayGrammarText } from '@/lib/grammar-display';
 import { requireAuth } from '@/lib/require-auth';
 import { getRequestLocale } from '@/i18n/server';
 import { tr, translateDeep } from '@/i18n/translate';
@@ -32,7 +33,7 @@ export default async function GrammarPage() {
           {tr(locale, 'EHN Grammar Lessons')}
         </h1>
         <p className="text-stone-500 max-w-xl leading-relaxed">
-          {tr(locale, 'Structured explanations of how Eastern Huasteca Nahuatl works — word formation, verb conjugation, and conversation patterns. Each lesson includes paradigm tables, worked examples, and authentic dialogue.')}
+          {tr(locale, 'Explore Chicontepec Nahuatl grammar through source-based explanations, tables, and practice examples.')}
         </p>
       </div>
 
@@ -51,14 +52,14 @@ export default async function GrammarPage() {
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <h3 className="font-semibold text-stone-900 group-hover:text-emerald-700 transition-colors leading-snug">
-                      {lesson.title}
+                      {displayGrammarText(lesson.title)}
                     </h3>
                     <span className={`shrink-0 text-xs font-bold px-2 py-0.5 rounded-full border ${BAND_STYLES[lesson.band]}`}>
                       {lesson.band}
                     </span>
                   </div>
                   <p className="text-xs text-stone-400 mb-1 italic">{displayNahuatl(lesson.nahuatlTitle)}</p>
-                  <p className="text-sm text-stone-500 leading-snug">{lesson.shortDesc}</p>
+                  <p className="text-sm text-stone-500 leading-snug">{displayGrammarText(lesson.shortDesc)}</p>
                 </Link>
               ))}
             </div>

@@ -19,4 +19,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run verify
+      - name: Prepare software notices for the installed platform
+        run: node scripts/prepare-third-party-notices.cjs --prepare
+      - run: npm run verify:v3
+      - run: npm run images:openai:audit

@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import AudioButton from "@/components/PronunciationAudio";
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { GrammarLesson as GLType, GrammarSection, GRAMMAR_LESSONS } from '@/data/grammar-lessons';
+import type { GrammarLesson as GLType, GrammarSection } from '@/data/grammar-lessons';
+import { GRAMMAR_LESSONS } from '@/data/learner-grammar';
 import {
   getGrammarLab,
   getGrammarLabsForUnit,
@@ -11,49 +13,18 @@ import {
 } from '@/data/grammar-labs';
 import { answerMatches } from '@/lib/grammar-engine';
 import type { GrammarDialogue } from '@/lib/db';
-import { dialogueAudioUrl, playAudio } from '@/lib/audio';
+import { dialogueAudioUrl } from '@/lib/audio';
+import { GENERATED_AUDIO_INDEX, resolvePracticeRecording } from '@/lib/generated-audio';
 import { displayNahuatl } from '@/lib/orthography';
+import { displayGrammarText, displayGrammarComparisonCell } from '@/lib/grammar-display';
 import { pronunciationHintFor } from '@/lib/pronunciation';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { translateDeepClient } from '@/i18n/client-translate';
 import { GuidedAnswerBuilder, splitGuidedAnswer } from '@/components/GuidedAnswerBuilder';
+import { useLessonAudioWarmup } from '@/components/useLessonAudioWarmup';
 
 // ── Audio play button ──────────────────────────────────────────────────────────
 
-function AudioButton({ src }: { src: string }) {
-  const [playing, setPlaying] = useState(false);
-  const { translate } = useLocale();
-
-  function handlePlay(e: React.MouseEvent) {
-    e.stopPropagation();
-    if (playing) return;
-    setPlaying(true);
-    playAudio(src, () => setPlaying(false));
-  }
-
-  return (
-    <button
-      onClick={handlePlay}
-      title={translate('Play pronunciation')}
-      aria-label={translate('Play pronunciation')}
-      className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
-        playing
-          ? "bg-emerald-100 text-emerald-600 border border-emerald-200"
-          : "bg-stone-100 text-stone-400 hover:bg-stone-200 hover:text-stone-600 border border-stone-200"
-      }`}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="w-4 h-4"
-      >
-        <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
-        <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.061z" />
-      </svg>
-    </button>
-  );
-}
 
 const BAND_STYLES: Record<string, { badge: string; ring: string }> = {
   A1: { badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200', ring: 'border-emerald-100' },
@@ -61,27 +32,20 @@ const BAND_STYLES: Record<string, { badge: string; ring: string }> = {
   B1: { badge: 'bg-violet-50 text-violet-700 border border-violet-200', ring: 'border-violet-100' },
 };
 
-function renderInline(text: string) {
+function renderInline(text: string, sourceReference = false) {
   const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\n)/g);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       const content = part.slice(2, -2);
-      return <strong key={i} className="text-stone-800">{displayGrammarForm(content)}</strong>;
+      return <strong key={i} className="text-stone-800">{displayGrammarText(content, sourceReference)}</strong>;
     }
     if (part.startsWith('*') && part.endsWith('*')) {
       const content = part.slice(1, -1);
-      return <em key={i}>{displayGrammarForm(content)}</em>;
+      return <em key={i}>{displayGrammarText(content, sourceReference)}</em>;
     }
     if (part === '\n') return <br key={i} />;
-    return part;
+    return displayGrammarText(part, sourceReference);
   });
-}
-
-function displayGrammarForm(text: string): string {
-  if (/[āēīōūĀĒĪŌŪ]|[·-]|^¿|^(?:ni|ti|xi|mo|no|to|in|on|na|ta|ya|ah|ax|hu|cu|qu|tl|x|cal|calli|cih|cua|cue|cui|cuh|tequi|tla|mace|yau|cochi|amo|pan)\b/iu.test(text)) {
-    return displayNahuatl(text);
-  }
-  return text;
 }
 
 function PronunciationHint({ value }: { value: string }) {
@@ -97,29 +61,37 @@ function PronunciationHint({ value }: { value: string }) {
   );
 }
 
-function ProseSection({ section }: { section: Extract<GrammarSection, { kind: 'prose' }> }) {
+function ProseSection({ section, sourceComparison = false }: { section: Extract<GrammarSection, { kind: 'prose' }>; sourceComparison?: boolean }) {
   return (
     <div className="mb-7">
-      {section.heading && <h3 className="font-semibold text-stone-700 mb-2">{section.heading}</h3>}
-      <p className="text-stone-600 leading-relaxed">{renderInline(section.text)}</p>
+      {section.heading && <h3 className="font-semibold text-stone-700 mb-2">{displayGrammarText(section.heading)}</h3>}
+      <p className="text-stone-600 leading-relaxed">{renderInline(section.text, sourceComparison)}</p>
     </div>
   );
 }
 
-function RuleSection({ section }: { section: Extract<GrammarSection, { kind: 'rule' }> }) {
+function RuleSection({ section, sourceComparison = false }: { section: Extract<GrammarSection, { kind: 'rule' }>; sourceComparison?: boolean }) {
   return (
     <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-7">
-      <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase">{section.title}</h3>
-      <p className="text-stone-700 leading-relaxed text-sm whitespace-pre-line">{renderInline(section.text)}</p>
+      <h3 className="font-bold text-amber-800 mb-2 text-sm uppercase">{displayGrammarText(section.title)}</h3>
+      <p className="text-stone-700 leading-relaxed text-sm whitespace-pre-line">{renderInline(section.text, sourceComparison)}</p>
     </div>
   );
 }
 
-function ParadigmSection({ section }: { section: Extract<GrammarSection, { kind: 'paradigm' }> }) {
+function ParadigmSection({ section, sourceComparison = false, audioContext }: { section: Extract<GrammarSection, { kind: 'paradigm' }>; sourceComparison?: boolean; audioContext: string }) {
+  const cellText = (text: string, column: number) => sourceComparison ? displayGrammarComparisonCell(text, section.headers[column]) : displayGrammarText(text);
+  function cellAudio(text: string, row: number, column: number) {
+    const referenceId = `${audioContext}:${row}:${column}`;
+    // The inventory explicitly identifies Nahuatl cells in every column;
+    // translated labels and English glosses never infer a pronunciation cue.
+    return GENERATED_AUDIO_INDEX.hasReference(referenceId)
+      ? <AudioButton src={null} text={cellText(text, column)} referenceId={referenceId} size="sm" /> : null;
+  }
   return (
     <div className="mb-7">
-      <h3 className="font-semibold text-stone-700 mb-1">{section.heading}</h3>
-      {section.caption && <p className="text-xs text-stone-400 mb-3">{section.caption}</p>}
+      <h3 className="font-semibold text-stone-700 mb-1">{displayGrammarText(section.heading)}</h3>
+      {section.caption && <p className="text-xs text-stone-400 mb-3">{sourceComparison ? section.caption : displayGrammarText(section.caption)}</p>}
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-collapse">
           <thead>
@@ -134,9 +106,9 @@ function ParadigmSection({ section }: { section: Extract<GrammarSection, { kind:
           <tbody>
             {section.rows.map((row, i) => (
               <tr key={i} className="border-b border-stone-100 hover:bg-stone-50/50">
-                <td className="px-3 py-2.5 text-stone-500 text-xs font-medium">{row.person}</td>
-                <td className="px-3 py-2.5 font-mono text-stone-900 font-medium">{displayGrammarForm(row.form)}</td>
-                <td className="px-3 py-2.5 text-stone-500">{row.gloss}</td>
+                <td className="px-3 py-2.5 text-stone-500 text-xs font-medium">{cellText(row.person, 0)}{cellAudio(row.person, i, 0)}</td>
+                <td className="px-3 py-2.5 font-mono text-stone-900 font-medium">{cellText(row.form, 1)}{cellAudio(row.form, i, 1)}</td>
+                <td className="px-3 py-2.5 text-stone-500">{cellText(row.gloss, 2)}{cellAudio(row.gloss, i, 2)}</td>
               </tr>
             ))}
           </tbody>
@@ -146,10 +118,10 @@ function ParadigmSection({ section }: { section: Extract<GrammarSection, { kind:
   );
 }
 
-function ExamplesSection({ section }: { section: Extract<GrammarSection, { kind: 'examples' }> }) {
+function ExamplesSection({ section, sourceComparison, audioContext }: { section: Extract<GrammarSection, { kind: 'examples' }>; sourceComparison: boolean; audioContext: string }) {
   return (
     <div className="mb-7">
-      <h3 className="font-semibold text-stone-700 mb-3">{section.heading}</h3>
+      <h3 className="font-semibold text-stone-700 mb-3">{displayGrammarText(section.heading)}</h3>
       <div className="space-y-3">
         {section.items.map((item, i) => (
           <div key={i} className="bg-white border border-stone-200 rounded-xl p-4">
@@ -158,8 +130,9 @@ function ExamplesSection({ section }: { section: Extract<GrammarSection, { kind:
               <p className="text-xs font-mono text-emerald-700 mb-1">{displayNahuatl(item.breakdown)}</p>
             )}
             <PronunciationHint value={item.nahuatl} />
+            {!sourceComparison && <AudioButton src={null} text={displayNahuatl(item.nahuatl)} referenceId={`${audioContext}:${i}`} />}
             <p className="text-sm text-stone-500 mb-1 italic">&ldquo;{item.translation}&rdquo;</p>
-            {item.note && <p className="text-xs text-stone-400 leading-snug">{item.note}</p>}
+            {item.note && <p className="text-xs text-stone-400 leading-snug">{displayGrammarText(item.note)}</p>}
           </div>
         ))}
       </div>
@@ -167,11 +140,11 @@ function ExamplesSection({ section }: { section: Extract<GrammarSection, { kind:
   );
 }
 
-function Section({ section }: { section: GrammarSection }) {
-  if (section.kind === 'prose') return <ProseSection section={section} />;
-  if (section.kind === 'rule') return <RuleSection section={section} />;
-  if (section.kind === 'paradigm') return <ParadigmSection section={section} />;
-  if (section.kind === 'examples') return <ExamplesSection section={section} />;
+function Section({ section, sourceComparison = false, topic, sectionIndex }: { section: GrammarSection; sourceComparison?: boolean; topic: string; sectionIndex: number }) {
+  if (section.kind === 'prose') return <ProseSection section={section} sourceComparison={sourceComparison} />;
+  if (section.kind === 'rule') return <RuleSection section={section} sourceComparison={sourceComparison} />;
+  if (section.kind === 'paradigm') return <ParadigmSection section={section} sourceComparison={sourceComparison} audioContext={`grammar-table:${topic}:${sectionIndex}`} />;
+  if (section.kind === 'examples') return <ExamplesSection section={section} sourceComparison={sourceComparison} audioContext={`grammar-reference-example:${topic}:${sectionIndex}`} />;
   return null;
 }
 
@@ -203,8 +176,9 @@ function GrammarLabExampleList({ lab }: { lab: GrammarLab }) {
           <p className="text-base font-semibold text-stone-900">{displayNahuatl(item.nahuatl)}</p>
           <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(item.breakdown)}</p>
           <PronunciationHint value={item.nahuatl} />
+          <AudioButton src={null} text={displayNahuatl(item.nahuatl)} referenceId={`grammar-example:${lab.id}:${i}`} />
           <p className="mt-1 text-sm italic text-stone-500">&ldquo;{item.translation}&rdquo;</p>
-          {item.note && <p className="mt-2 text-xs leading-snug text-stone-400">{item.note}</p>}
+          {item.note && <p className="mt-2 text-xs leading-snug text-stone-400">{displayGrammarText(item.note)}</p>}
         </div>
       ))}
     </div>
@@ -215,10 +189,12 @@ function DrillAnswerPanel({
   answer,
   breakdown,
   explanation,
+  audioReferenceId,
 }: {
   answer: string;
   breakdown?: string;
   explanation: string;
+  audioReferenceId?: string;
 }) {
   const { translate } = useLocale();
 
@@ -228,7 +204,8 @@ function DrillAnswerPanel({
       <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(answer)}</p>
       {breakdown && <p className="mt-1 text-xs font-mono text-emerald-700">{displayNahuatl(breakdown)}</p>}
       <PronunciationHint value={answer} />
-      <p className="mt-2 text-xs leading-relaxed text-stone-600">{explanation}</p>
+      {audioReferenceId && <AudioButton src={null} text={displayNahuatl(answer)} referenceId={audioReferenceId} />}
+      <p className="mt-2 text-xs leading-relaxed text-stone-600">{displayGrammarText(explanation)}</p>
     </div>
   );
 }
@@ -275,7 +252,7 @@ function IdentifyItem({
 
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-4">
-      <p className="text-sm font-semibold text-stone-800">{item.prompt}</p>
+      <p className="text-sm font-semibold text-stone-800">{displayGrammarText(item.prompt)}</p>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
           value={input}
@@ -313,8 +290,10 @@ function IdentifyItem({
 
 function TransformItem({
   item,
+  audioReferenceId,
 }: {
   item: Extract<GrammarLabDrill, { kind: 'transform' }>['items'][number];
+  audioReferenceId: string;
 }) {
   const { translate } = useLocale();
   const [input, setInput] = useState('');
@@ -325,8 +304,8 @@ function TransformItem({
 
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-4">
-      <p className="text-xs font-bold uppercase text-stone-400">{item.target}</p>
-      <p className="mt-1 text-sm font-semibold text-stone-800">{displayNahuatl(item.input)}</p>
+      <p className="text-xs font-bold uppercase text-stone-400">{displayGrammarText(item.target)}</p>
+      <p className="mt-1 text-sm font-semibold text-stone-800">{displayNahuatl(item.input)}</p><AudioButton src={null} text={displayNahuatl(item.input)} referenceId={audioReferenceId.replace("grammar-answer:", "grammar-input:")} />
       <div className="mt-3 flex flex-col gap-2">
         <DrillAnswerControl
           answer={item.answer}
@@ -361,6 +340,7 @@ function TransformItem({
       {showAnswer && (
         <DrillAnswerPanel
           answer={item.answer}
+          audioReferenceId={audioReferenceId}
           breakdown={item.breakdown}
           explanation={item.explanation}
         />
@@ -371,8 +351,10 @@ function TransformItem({
 
 function ProduceItem({
   item,
+  audioReferenceId,
 }: {
   item: Extract<GrammarLabDrill, { kind: 'produce' }>['items'][number];
+  audioReferenceId: string;
 }) {
   const { translate } = useLocale();
   const [input, setInput] = useState('');
@@ -384,7 +366,7 @@ function ProduceItem({
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-4">
       <p className="text-xs font-bold uppercase text-stone-400">{translate('Produce')}</p>
-      <p className="mt-1 text-sm font-semibold text-stone-800">{item.english}</p>
+      <p className="mt-1 text-sm font-semibold text-stone-800">{displayGrammarText(item.english)}</p>
       <div className="mt-3 flex flex-col gap-2">
         <DrillAnswerControl
           answer={item.answer}
@@ -419,6 +401,7 @@ function ProduceItem({
       {showAnswer && (
         <DrillAnswerPanel
           answer={item.answer}
+          audioReferenceId={audioReferenceId}
           breakdown={item.breakdown}
           explanation={item.explanation}
         />
@@ -435,23 +418,23 @@ function IdentifyDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'ide
   );
 }
 
-function TransformDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'transform' }> }) {
+function TransformDrill({ drill, audioReferencePrefix }: { drill: Extract<GrammarLabDrill, { kind: 'transform' }>; audioReferencePrefix: string }) {
   return (
     <div className="space-y-3">
-      {drill.items.map((item, i) => <TransformItem key={i} item={item} />)}
+      {drill.items.map((item, i) => <TransformItem key={i} item={item} audioReferenceId={`${audioReferencePrefix}:${i}`} />)}
     </div>
   );
 }
 
-function ProduceDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'produce' }> }) {
+function ProduceDrill({ drill, audioReferencePrefix }: { drill: Extract<GrammarLabDrill, { kind: 'produce' }>; audioReferencePrefix: string }) {
   return (
     <div className="space-y-3">
-      {drill.items.map((item, i) => <ProduceItem key={i} item={item} />)}
+      {drill.items.map((item, i) => <ProduceItem key={i} item={item} audioReferenceId={`${audioReferencePrefix}:${i}`} />)}
     </div>
   );
 }
 
-function ParadigmDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'paradigm' }> }) {
+function ParadigmDrill({ drill, audioReferencePrefix }: { drill: Extract<GrammarLabDrill, { kind: 'paradigm' }>; audioReferencePrefix: string }) {
   const { translate } = useLocale();
 
   return (
@@ -468,10 +451,10 @@ function ParadigmDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'par
         <tbody>
           {drill.rows.map((row, i) => (
             <tr key={i} className="border-b border-stone-100 last:border-b-0">
-              <td className="px-3 py-2.5 text-xs font-medium text-stone-500">{displayNahuatl(row.cue)}</td>
-              <td className="px-3 py-2.5 font-mono font-semibold text-stone-900">{displayNahuatl(row.answer)}</td>
+              <td className="px-3 py-2.5 text-xs font-medium text-stone-500">{displayGrammarText(row.cue)}</td>
+              <td className="px-3 py-2.5 font-mono font-semibold text-stone-900">{displayNahuatl(row.answer)}<AudioButton src={null} text={displayNahuatl(row.answer)} referenceId={`${audioReferencePrefix}:${i}`} size="sm" /></td>
               <td className="px-3 py-2.5 font-mono text-xs text-emerald-700">{displayNahuatl(row.breakdown)}</td>
-              <td className="px-3 py-2.5 text-stone-500">{row.translation}</td>
+              <td className="px-3 py-2.5 text-stone-500">{displayGrammarText(row.translation)}</td>
             </tr>
           ))}
         </tbody>
@@ -480,15 +463,15 @@ function ParadigmDrill({ drill }: { drill: Extract<GrammarLabDrill, { kind: 'par
   );
 }
 
-function GrammarDrillRenderer({ drill }: { drill: GrammarLabDrill }) {
+function GrammarDrillRenderer({ drill, audioReferencePrefix }: { drill: GrammarLabDrill; audioReferencePrefix: string }) {
   return (
     <div className="rounded-xl border border-stone-100 bg-stone-50 p-4">
-      <h4 className="font-semibold text-stone-800">{drill.heading}</h4>
-      <p className="mb-4 mt-1 text-xs leading-relaxed text-stone-500">{drill.prompt}</p>
+      <h4 className="font-semibold text-stone-800">{displayGrammarText(drill.heading)}</h4>
+      <p className="mb-4 mt-1 text-xs leading-relaxed text-stone-500">{displayGrammarText(drill.prompt)}</p>
       {drill.kind === 'identify' && <IdentifyDrill drill={drill} />}
-      {drill.kind === 'transform' && <TransformDrill drill={drill} />}
-      {drill.kind === 'paradigm' && <ParadigmDrill drill={drill} />}
-      {drill.kind === 'produce' && <ProduceDrill drill={drill} />}
+      {drill.kind === 'transform' && <TransformDrill drill={drill} audioReferencePrefix={audioReferencePrefix} />}
+      {drill.kind === 'paradigm' && <ParadigmDrill drill={drill} audioReferencePrefix={audioReferencePrefix} />}
+      {drill.kind === 'produce' && <ProduceDrill drill={drill} audioReferencePrefix={audioReferencePrefix} />}
     </div>
   );
 }
@@ -501,8 +484,8 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="text-xs font-bold uppercase text-emerald-700">{translate('Grammar lab')}</p>
-          <h3 className="mt-1 text-lg font-bold leading-tight text-stone-900">{lab.title}</h3>
-          <p className="mt-1 text-sm text-stone-500">{lab.shortDesc}</p>
+          <h3 className="mt-1 text-lg font-bold leading-tight text-stone-900">{displayGrammarText(lab.title)}</h3>
+          <p className="mt-1 text-sm text-stone-500">{displayGrammarText(lab.shortDesc)}</p>
         </div>
         <span className={`w-fit shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${BAND_STYLES[lab.band].badge}`}>
           {lab.band}
@@ -511,8 +494,8 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
 
       <div className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
         <p className="text-xs font-bold uppercase text-amber-800">{translate('Build it like this')}</p>
-        <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayNahuatl(lab.pattern)}</p>
-        <p className="mt-2 text-sm leading-relaxed text-stone-700">{lab.explanation}</p>
+        <p className="mt-1 font-mono text-sm font-semibold text-stone-900">{displayGrammarText(lab.pattern)}</p>
+        <p className="mt-2 text-sm leading-relaxed text-stone-700">{displayGrammarText(lab.explanation)}</p>
       </div>
 
       <div className="mb-5">
@@ -522,7 +505,7 @@ function GrammarLabCard({ lab }: { lab: GrammarLab }) {
 
       <div className="space-y-4">
         {lab.drills.map((drill, i) => (
-          <GrammarDrillRenderer key={i} drill={drill} />
+          <GrammarDrillRenderer key={i} drill={drill} audioReferencePrefix={`grammar-answer:${lab.id}:${i}`} />
         ))}
       </div>
     </div>
@@ -541,6 +524,8 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
   const next = idx < GRAMMAR_LESSONS.length - 1 ? GRAMMAR_LESSONS[idx + 1] : null;
   const bandStyle = BAND_STYLES[lesson.band];
   const relatedLabs = translateDeepClient(locale, getRelatedGrammarLabs(lesson));
+  const labAudioGroups = useMemo(() => getRelatedGrammarLabs(lesson).map(lab => `grammar-lab:${lab.id}`), [lesson]);
+  useLessonAudioWarmup(labAudioGroups);
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -548,25 +533,26 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
       <div className="flex items-center gap-2 text-xs text-stone-400 mb-6">
         <Link href="/grammar" className="hover:text-stone-600 transition-colors">{translate('Grammar')}</Link>
         <span>›</span>
-        <span className="text-stone-600">{lesson.title}</span>
+        <span className="text-stone-600">{displayGrammarText(lesson.title)}</span>
       </div>
 
       {/* Header */}
       <div className={`bg-white border ${bandStyle.ring} rounded-2xl p-6 mb-8`}>
         <div className="flex items-start justify-between gap-4 mb-2">
-          <h1 className="text-2xl font-bold text-stone-900 leading-tight">{lesson.title}</h1>
+          <h1 className="text-2xl font-bold text-stone-900 leading-tight">{displayGrammarText(lesson.title)}</h1>
           <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${bandStyle.badge}`}>
             {lesson.band}
           </span>
         </div>
         <p className="text-sm text-stone-400 italic mb-2">{displayNahuatl(lesson.nahuatlTitle)}</p>
-        <p className="text-stone-500 text-sm leading-relaxed">{lesson.shortDesc}</p>
+        {lesson.nahuatlTitle.trim() && <AudioButton src={null} text={displayNahuatl(lesson.nahuatlTitle)} referenceId={`grammar-title:${lesson.id}`} size="sm" />}
+        <p className="text-stone-500 text-sm leading-relaxed">{displayGrammarText(lesson.shortDesc)}</p>
       </div>
 
       {/* Sections */}
       <div>
         {lesson.sections.map((section, i) => (
-          <Section key={i} section={section} />
+          <Section key={i} section={section} topic={lesson.id} sectionIndex={i} sourceComparison={lesson.id === 'orthographic-systems'} />
         ))}
       </div>
 
@@ -584,15 +570,15 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
         </div>
       )}
 
-      {/* Real dialogue examples from the DB */}
+      {/* Selected course dialogue examples */}
       {dialogues.length > 0 && (
         <div className="mt-8 mb-8">
           <h2 className="font-semibold text-stone-700 mb-3">
             {translate('From the course dialogues')}
           </h2>
           <div className="space-y-2">
-            {dialogues.map((d, i) => (
-              <div key={i} className="bg-stone-50 border border-stone-100 rounded-xl px-4 py-3">
+            {dialogues.map((d) => (
+              <div key={d.lesson_dialogue_id} className="bg-stone-50 border border-stone-100 rounded-xl px-4 py-3">
                 <div className="flex items-start gap-3">
                   <span className="text-xs font-bold text-stone-400 mt-0.5 w-4 shrink-0">{d.speaker_label}</span>
                   <div className="flex-1">
@@ -600,8 +586,12 @@ export default function GrammarLesson({ lesson, dialogues }: Props) {
                     {d.translation_en && (
                       <p className="text-xs text-stone-400 italic mt-0.5">{d.translation_en}</p>
                     )}
+                    {!resolvePracticeRecording({ text: displayNahuatl(d.utterance_normalized), referenceId: `core-dialogue:${d.lesson_dialogue_id}`,
+                      url: d.audio_available ? dialogueAudioUrl(d.lesson_dialogue_id, displayNahuatl(d.utterance_normalized)) : null }).url && (
+                      <p className="text-xs text-stone-500 mt-1">{translate('Audio awaiting review')}</p>
+                    )}
                   </div>
-                  <AudioButton src={dialogueAudioUrl(d.lesson_dialogue_id)} />
+                  <AudioButton text={displayNahuatl(d.utterance_normalized)} referenceId={`core-dialogue:${d.lesson_dialogue_id}`} src={d.audio_available ? dialogueAudioUrl(d.lesson_dialogue_id, displayNahuatl(d.utterance_normalized)) : null} />
                 </div>
               </div>
             ))}

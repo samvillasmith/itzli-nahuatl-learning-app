@@ -1,4 +1,5 @@
 import rawCourse from "./nahuatlahtolli-course.json";
+import identities from "./source-vocab-identity.json";
 import { isAppContentExcluded } from "@/lib/app-content-safety";
 import { toInaliOrthography } from "@/lib/orthography";
 import { isStudyCardExcluded } from "@/lib/study-card-safety";
@@ -19,33 +20,12 @@ export type SourceVocabPromotion = {
 
 // One-token, source-attested forms selected for usefulness and progression.
 // Inflected forms are retained only where they reinforce the unit's grammar.
-const PROMOTED_SOURCE_INDEXES: Record<number, readonly number[]> = {
-  1: [4, 9, 15, 19, 23, 24, 25, 28, 32, 33, 34, 35, 38, 46, 48, 50],
-  2: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20],
-  4: [3, 4, 5, 9, 10, 11],
-  5: [1, 3, 6, 7, 8, 10, 12],
-  6: [3, 4, 6, 7, 8, 9, 15, 16, 18, 19, 20, 21, 26, 27, 29, 30, 31, 36, 39, 40],
-  7: [2, 3, 6, 9, 10, 12, 13, 15, 16, 17, 18, 19, 22, 24, 25, 26, 27, 30, 32, 34, 36, 37, 38],
-  8: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 32, 34, 36, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52],
-  9: [9, 10, 11, 12, 13, 14, 17, 19, 21, 27, 28, 29],
-  10: [15, 19, 20, 21, 22, 23],
-  11: [2, 3, 4, 7, 8, 9, 10],
-  12: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-  13: [7, 8, 9, 10, 11],
-  14: [2, 3, 4, 5, 6, 7],
-  15: [2, 6, 7, 9],
-  16: [10, 12],
-  17: [2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 16, 31, 32],
-  18: [2, 4, 5, 6, 7, 12, 13, 16, 17, 18, 19, 20, 21, 22],
-  19: [7, 8, 14, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27],
-  20: [1, 7, 8, 9, 10, 12, 13, 15, 16, 30, 31, 33, 37, 41, 47],
-  21: [1, 3, 5, 7, 9, 13, 17, 19, 20, 28, 29, 30],
-};
+// Persisted identities preserve existing progress even when source arrays are edited.
 
 const GLOSS_OVERRIDES: Record<string, string> = {
   "source-1-25": "joy; happiness",
   "source-1-28": "elder; older adult",
-  "source-2-7": "I greet you",
+  "source-2-7": "I will greet you",
   "source-2-18": "stand up, everyone",
   "source-2-20": "sit down, everyone",
   "source-5-8": "painter",
@@ -55,6 +35,7 @@ const GLOSS_OVERRIDES: Record<string, string> = {
   "source-8-50": "the palm of my hand",
   "source-13-9": "he/she/it sees us",
   "source-13-10": "he/she/it sees you all",
+  "source-13-11": "he/she/it sees them",
   "source-14-6": "you all cried",
   "source-18-22": "I knead chili peppers",
   "source-19-8": "go out, everyone",
@@ -96,22 +77,25 @@ function partOfSpeech(headword: string, gloss: string): string {
   return "noun";
 }
 
-function buildPromotions(): SourceVocabPromotion[] {
+export function buildSourceVocabPromotions(specs: readonly (typeof identities)[number][] = identities): SourceVocabPromotion[] {
   const promotions: SourceVocabPromotion[] = [];
   const seen = new Set<string>();
 
-  for (const [lessonKey, indexes] of Object.entries(PROMOTED_SOURCE_INDEXES)) {
-    const lessonNumber = Number(lessonKey);
+  for (const identity of specs) {
+    const lessonNumber = identity.sourceLesson;
+    const sourceIndex = identity.sourceIndex;
     const lesson = rawCourse.lessons.find((candidate) => candidate.number === lessonNumber);
     if (!lesson) throw new Error(`Missing source lesson ${lessonNumber}`);
 
-    for (const sourceIndex of indexes) {
       const item = lesson.vocabulary[sourceIndex - 1];
       if (!item?.headword || !item.audioUrl) {
         throw new Error(`Incomplete source vocabulary item source-${lessonNumber}-${sourceIndex}`);
       }
 
-      const sourceId = `source-${lessonNumber}-${sourceIndex}`;
+      if (item.headword !== identity.sourceSpelling) {
+        throw new Error(`Source identity changed for ${identity.entry_id}; review the source reference instead of reassigning its ID`);
+      }
+      const sourceId = identity.entry_id;
       const gloss = GLOSS_OVERRIDES[sourceId] ?? item.gloss;
       if (
         isAppContentExcluded(item.headword, gloss, item.audioUrl) ||
@@ -126,9 +110,9 @@ function buildPromotions(): SourceVocabPromotion[] {
       seen.add(dedupeKey);
 
       promotions.push({
-        id: 800_000 + lessonNumber * 1_000 + sourceIndex,
+        id: identity.id,
         entry_id: sourceId,
-        rank: 10_000 + sourceIndex,
+        rank: identity.rank,
         headword,
         gloss_en: gloss,
         part_of_speech: partOfSpeech(headword, gloss),
@@ -138,13 +122,12 @@ function buildPromotions(): SourceVocabPromotion[] {
         imageHeadword: item.headword,
         sourceUrl: lesson.originalUrl,
       });
-    }
   }
 
   return promotions;
 }
 
-export const SOURCE_VOCAB_PROMOTIONS = buildPromotions();
+export const SOURCE_VOCAB_PROMOTIONS = buildSourceVocabPromotions();
 
 export function getSourceVocabPromotions(lessonNumber?: number): SourceVocabPromotion[] {
   return lessonNumber == null

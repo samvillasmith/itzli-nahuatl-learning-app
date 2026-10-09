@@ -1,5 +1,11 @@
 export const MAX_LEARNER_CARDS_PER_UNIT = 15;
 
+// Keep source plural-future spellings in the reference import, but withhold
+// flashcard recall until the -zceh/-zqueh transcription and display are reviewed.
+const PLURAL_FUTURE_REVIEW_HOLDS = new Set([
+  811008, 812007, 812008, 812009, 812013, 812014, 812015,
+]);
+
 // Correct cards whose original database lesson does not match the current
 // curriculum topic. Source records remain unchanged; only course placement moves.
 const CORE_UNIT_OVERRIDES = new Map<number, number>([
@@ -60,6 +66,7 @@ export function getCoreVocabUnit(id: number, originalUnit: number): number {
 }
 
 export function isLearnerCardSelected(unit: number, id: number): boolean {
+  if (PLURAL_FUTURE_REVIEW_HOLDS.has(id)) return false;
   const allowlist = UNIT_CARD_ALLOWLISTS.get(unit);
   return allowlist ? allowlist.has(id) : true;
 }

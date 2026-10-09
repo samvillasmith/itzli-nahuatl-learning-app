@@ -1,0 +1,158 @@
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14221e"><title>Itzli · Offline practice</title><style>body{margin:0;background:#f6f3eb;color:#14221e;font:16px/1.6 system-ui,sans-serif}main{max-width:800px;margin:auto;padding:32px 20px}h1{font:700 44px/1.05 Georgia,serif;letter-spacing:-1.5px}button,a.button{display:inline-block;border:1px solid #dedbd1;border-radius:12px;background:white;color:#14221e;padding:12px 18px;font-weight:700;cursor:pointer;text-decoration:none}button.primary{background:#14221e;color:white}.card{margin:24px 0;padding:28px;background:white;border:1px solid #dedbd1;border-radius:24px}.muted{color:#6f6a60;font-size:14px}.word{font-size:32px;font-weight:800;color:#0b594d}.options{display:grid;gap:12px;margin:20px 0}.success{color:#0b594d}.help{color:#925c10}audio{width:100%;margin:15px 0}select{padding:12px;border-radius:10px;border:1px solid #dedbd1;max-width:100%}footer{font-size:12px;color:#6f6a60;margin:32px 0}button:focus-visible,a:focus-visible{outline:3px solid #61c6a9;outline-offset:3px}</style></head><body><main><p>ITZLI 3.0 · <span id="offline"></span></p><h1 id="title"></h1><p id="intro" class="muted"></p><div id="app"></div><a href="/learn" class="button" id="back"></a><footer id="credit"></footer></main><script src="/nahuatl-orthography.js"></script><script src="/offline-audio.js"></script><script>
+
+(() => {
+  'use strict';
+  const app = document.getElementById('app');
+  let pack;
+  try { pack = JSON.parse(localStorage.getItem('itzli_offline_course_v3') || 'null'); } catch {}
+  const displayNahuatl = text => globalThis.ItzliOrthography.toInaliOrthography(String(text ?? ''));
+  let audioIndex = globalThis.ItzliOfflineAudio?.createIndex(null), audioPending = Boolean(globalThis.fetch && globalThis.ItzliOfflineAudio);
+  let audioControls = [];
+  let refreshContent = () => {};
+  const es = pack?.locale !== 'en', copy = (en, spanish) => es ? spanish : en;
+  document.documentElement.lang = es ? 'es-MX' : 'en-US';
+  document.getElementById('offline').textContent = copy('Offline practice', 'Práctica sin conexión');
+  document.getElementById('title').textContent = copy('Keep your words alive.', 'Mantén vivas tus palabras.');
+  document.getElementById('intro').textContent = copy('Choose a meaning or write from memory. Read your source-supported conversations. Audio works offline only if saved.', 'Elige un significado o escribe de memoria. Lee conversaciones documentadas. El audio funciona sin conexión solo si lo guardaste.');
+  document.getElementById('back').textContent = copy('Return to Itzli', 'Volver a Itzli');
+  const publisherLicense = copy('CC BY-SA (publisher listing; version unspecified)', 'CC BY-SA (catálogo del editor; versión no especificada)');
+  const sourceLicense = (url, recorded) => { try { if (new URL(url).hostname === 'tlahtolli.coerll.utexas.edu') return publisherLicense; } catch {} return typeof recorded === 'string' ? recorded : ''; };
+  document.getElementById('credit').textContent = 'Nāhuatlahtolli · COERLL / University of Texas at Austin · ' + publisherLicense + '. ' + copy('Itzli’s original contributions use CC BY-SA 4.0. Source and media notices remain applicable. Source links and author credit accompany each entry.', 'Las aportaciones originales de Itzli usan CC BY-SA 4.0. Siguen vigentes los avisos de las fuentes y sus medios. Los enlaces y el crédito de autor acompañan a cada entrada.');
+  const standard = document.createElement('a'); standard.href = 'https://site.inali.gob.mx/INALIDhuchlab/assets/files/cartel_alfabeto_Nawatlatolli-espanol.pdf'; standard.textContent = copy('Teaching orthography: INALI', 'Ortografía de enseñanza: INALI'); standard.target = '_blank'; standard.rel = 'noreferrer'; document.getElementById('credit').prepend(standard, document.createElement('br'));
+  const publisher = document.createElement('a'); publisher.href = 'https://coerll.utexas.edu/coerll/oer/nahuatlahtolli/'; publisher.textContent = copy('Publisher’s source-license listing', 'Catálogo de licencias de la fuente del editor'); publisher.target = '_blank'; publisher.rel = 'noreferrer';
+  const contributions = document.createElement('a'); contributions.href = 'https://creativecommons.org/licenses/by-sa/4.0/'; contributions.textContent = copy('Itzli contribution license', 'Licencia de las aportaciones de Itzli'); contributions.target = '_blank'; contributions.rel = 'noreferrer';
+  document.getElementById('credit').append(document.createElement('br'), publisher, document.createTextNode(' · '), contributions);
+  const element = (tag, text, cls) => { const node = document.createElement(tag); if (text) node.textContent = text; if (cls) node.className = cls; return node; };
+  function playback(text, referenceId, url, held = false) {
+    const container = element('div'), control = { container, text, referenceId, url, held };
+    audioControls.push(control); updatePlayback(control); return container;
+  }
+  function updatePlayback(control) {
+    control.container.replaceChildren();
+    if (audioPending) { control.container.append(element('p', copy('Preparing recording…', 'Preparando la grabación…'), 'muted')); return; }
+    let recording = audioIndex?.resolve({ text: control.text, displayText: displayNahuatl(control.text), referenceId: control.referenceId, url: control.url, held: control.held });
+    if (!recording) { control.container.append(element('p', copy('Recording unavailable.', 'Grabación no disponible.'), 'muted')); return; }
+    const audio = element('audio'); audio.controls = true; audio.preload = 'none'; audio.src = recording.url;
+    audio.setAttribute('aria-label', copy('Play recording: ', 'Reproducir grabación: ') + displayNahuatl(control.text));
+    const status = element('p', recording.kind === 'source' ? copy('Source recording', 'Grabación de la fuente') : copy('Synthetic practice voice', 'Voz sintética de práctica'), 'muted');
+    audio.onerror = () => { status.textContent = copy('Audio could not play. Return online or finish saving this recording, then retry.', 'No se pudo reproducir el audio. Vuelve con conexión o termina de guardar esta grabación y reintenta.'); status.className = 'help'; };
+    control.container.append(audio, status);
+  }
+  if (audioPending) {
+    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 5000);
+    fetch('/generated-course-audio.json', { credentials: 'omit', redirect: 'error', cache: 'no-store', signal: controller.signal })
+      .then(response => response.status === 200 && response.type !== 'opaque' && /^application\/json(?:;|$)/i.test(response.headers.get('content-type') || '') ? response.json() : null)
+      .then(manifest => { audioIndex = globalThis.ItzliOfflineAudio.createIndex(manifest); })
+      .catch(() => {})
+      .finally(() => { clearTimeout(timeout); audioPending = false; refreshContent(); });
+  }
+  const savedWords = Array.isArray(pack?.words) ? pack.words.filter(w => w && typeof w.id === 'string' && typeof w.nahuatl === 'string' && typeof w.english === 'string' && typeof w.spanish === 'string') : [];
+  let words = savedWords;
+  if (!pack || pack.version !== 3 || !savedWords.length) { app.append(element('p', copy('Save an offline pack from Today while connected, then return here.', 'Guarda un paquete desde Hoy cuando tengas conexión y vuelve aquí.'), 'card')); return; }
+  const wordReference = word => typeof word.audioReferenceId === 'string' ? word.audioReferenceId : /^word:\d+$/.test(word.id) ? 'core-vocab:' + word.id.slice(5) : word.id.startsWith('word:') ? 'vocabulary:' + word.id.slice(5) : word.id;
+  const contentExcluded = (referenceId, item) => audioIndex?.isContentExcluded(referenceId, [item.nahuatl, item.sourceSpelling, item.english, item.spanish]);
+  // Capture ownership once: another account saving a pack must not redirect an
+  // already-open offline page's attempts into that account.
+  let scope;
+  try { scope = typeof pack.scope === 'string' ? pack.scope : localStorage.getItem('itzli_offline_scope_v3') || 'guest'; } catch { scope = 'guest'; }
+  const stream = globalThis.crypto?.randomUUID?.() || Date.now() + '-' + Math.random().toString(36).slice(2);
+  const baseKey = 'itzli_offline_attempts_v3:' + scope;
+  let sequence = 0, index = 0, skill = 'recognition';
+  let currentView = 'words';
+  const tabs = element('div'), practice = element('div');
+  app.append(tabs, practice);
+  const wordButton = element('button', copy('Review words', 'Repasar palabras'));
+  const dialogueButton = element('button', copy('Read conversations', 'Leer conversaciones'));
+  const select = element('select'); select.setAttribute('aria-label', copy('Practice skill', 'Habilidad de práctica'));
+  for (const [value, en, spanish] of [['recognition', 'Choose the meaning', 'Elegir el significado'], ['production', 'Write from memory', 'Escribir de memoria']]) { const option = element('option', copy(en, spanish)); option.value = value; select.append(option); }
+  tabs.append(wordButton, dialogueButton, select);
+  function record(activityId, correct) {
+    try {
+      let count = 0;
+      for (let n = 0; n < localStorage.length; n++) if (localStorage.key(n)?.startsWith(baseKey + ':')) count++;
+      const old = JSON.parse(localStorage.getItem(baseKey) || '[]');
+      if (!Array.isArray(old) || count + old.length >= 2000) return false;
+      const nextSequence = sequence + 1, id = 'offline:' + stream + ':' + nextSequence;
+      const event = { id, stream, sequence: nextSequence, activityId, skill, correct, at: Date.now() };
+      // Immutable event keys avoid overwriting other offline tabs' practice or
+      // dropping newly appended records during import cleanup.
+      const encoded = JSON.stringify([event]), key = baseKey + ':' + id;
+      localStorage.setItem(key, encoded);
+      if (localStorage.getItem(key) !== encoded) return false;
+      sequence = nextSequence;
+      return true;
+    } catch { return false; }
+  }
+  const normalize = text => displayNahuatl(text).normalize('NFC').toLowerCase().replace(/[.,!?¿¡:;"“”]/g, '').trim().replace(/\s+/g, ' ');
+  function contentReady() {
+    if (audioPending) { practice.append(element('p', copy('Preparing saved practice…', 'Preparando la práctica guardada…'), 'muted')); return false; }
+    if (!audioIndex?.contentValid) { practice.append(element('p', copy('Reconnect once to refresh your saved practice, then return offline.', 'Conéctate una vez para actualizar la práctica guardada y luego vuelve sin conexión.'), 'muted')); return false; }
+    return true;
+  }
+  function render() {
+    audioControls = [];
+    practice.replaceChildren();
+    if (!contentReady()) return;
+    words = savedWords.filter(word => !contentExcluded(wordReference(word), word));
+    if (!words.length) { practice.append(element('p', copy('Save a current practice pack from Today while connected.', 'Guarda un paquete de práctica actual desde Hoy cuando tengas conexión.'), 'muted')); return; }
+    const word = words[index % words.length], gloss = w => es ? w.spanish : w.english;
+    const card = element('section', null, 'card'), feedback = element('p', null, 'muted');
+    card.append(element('p', (index % words.length + 1) + ' / ' + words.length, 'muted'), element('p', skill === 'recognition' ? displayNahuatl(word.nahuatl) : gloss(word), 'word'));
+    let checked = false;
+    const buttons = [];
+    function check(correct) {
+      if (checked) return;
+      checked = true;
+      const saved = record(word.id, correct);
+      buttons.forEach(button => { button.disabled = true; });
+      feedback.textContent = copy(correct ? 'You recalled it.' : 'Compare with the answer:', correct ? 'La recordaste.' : 'Compara con la respuesta:') + ' ' + displayNahuatl(word.nahuatl) + ' — ' + gloss(word);
+      if (!saved) feedback.textContent += ' ' + copy('This attempt could not be saved. Return online to import earlier attempts, then retry.', 'No se pudo guardar este intento. Vuelve con conexión para importar los intentos anteriores y reintenta.');
+      feedback.className = correct && saved ? 'success' : 'help';
+    }
+    if (skill === 'recognition') {
+      const options = element('div', null, 'options');
+      const candidates = words.filter(w => w.id !== word.id && gloss(w) !== gloss(word)).filter((w, n, all) => all.findIndex(other => gloss(other) === gloss(w)) === n);
+      const choices = [word, ...candidates.slice(index % 10, index % 10 + 3)].sort((a, b) => a.id.localeCompare(b.id));
+      choices.forEach(choice => { const button = element('button', gloss(choice)); button.onclick = () => check(choice.id === word.id); buttons.push(button); options.append(button); });
+      card.append(options);
+    } else {
+      const form = element('form'), input = element('input'), button = element('button', copy('Check', 'Comprobar'), 'primary');
+      input.setAttribute('aria-label', copy('Your reply in Nahuatl', 'Tu respuesta en náhuatl')); input.autocomplete = 'off'; input.setAttribute('autocorrect', 'off'); input.spellcheck = false; input.required = true;
+      input.style.cssText = 'display:block;width:100%;box-sizing:border-box;padding:14px;font-size:20px;border:1px solid #dedbd1;border-radius:12px;margin:20px 0';
+      buttons.push(button); form.append(input, button); form.onsubmit = event => { event.preventDefault(); const forms = [word.nahuatl, word.sourceSpelling].filter(text => typeof text === 'string'); check(forms.some(text => normalize(text) === normalize(input.value))); if (checked) input.disabled = true; };
+      card.append(form);
+    }
+    card.append(feedback);
+    const audioReferenceId = wordReference(word);
+    card.append(playback(word.nahuatl, audioReferenceId, word.audioUrl, word.audioHeld === true));
+    const next = element('button', copy('Next word', 'Siguiente palabra'), 'primary'); next.onclick = () => { index++; render(); };
+    const source = element('a', copy('Source and rights', 'Fuente y derechos')); source.href = word.sourceUrl; source.target = '_blank'; source.rel = 'noreferrer';
+    card.append(next, element('p', (word.authors || []).join(', ') + ' · ' + sourceLicense(word.sourceUrl, word.license), 'muted'), source);
+    practice.append(card);
+  }
+  function conversations() {
+    audioControls = [];
+    practice.replaceChildren();
+    if (!contentReady()) return;
+    for (const scenario of pack.scenarios || []) {
+      if (audioIndex.isContentExcluded(null, [scenario.titleEn, scenario.titleEs, scenario.descriptionEn, scenario.descriptionEs])) continue;
+      const card = element('section', null, 'card'); card.append(element('h2', es ? scenario.titleEs : scenario.titleEn), element('p', es ? scenario.descriptionEs : scenario.descriptionEn, 'muted'));
+      let retainedTurns = 0;
+      for (const turn of scenario.turns) {
+        const modelReference = 'conversation:' + scenario.id + ':' + turn.id + ':model';
+        const reply = turn.options.find(o => o.correct && o.intent !== 'repeat');
+        if (contentExcluded(modelReference, turn) || reply && contentExcluded('conversation:' + scenario.id + ':' + turn.id + ':' + reply.id, reply)) continue;
+        retainedTurns++;
+        card.append(element('p', turn.speaker, 'muted'), element('p', displayNahuatl(turn.nahuatl), 'word'), element('p', es ? turn.spanish : turn.english));
+        card.append(playback(turn.nahuatl, modelReference, turn.audioUrl));
+        if (reply) card.append(element('p', copy('Example reply', 'Respuesta de ejemplo'), 'muted'), element('p', displayNahuatl(reply.nahuatl), 'word'), element('p', es ? reply.spanish : reply.english), playback(reply.nahuatl, 'conversation:' + scenario.id + ':' + turn.id + ':' + reply.id, reply.audioUrl));
+      }
+      for (const source of scenario.sources) { const link = element('a', 'COERLL · ' + sourceLicense(source.url, source.license)); link.href = source.url; link.target = '_blank'; link.rel = 'noreferrer'; card.append(link); }
+      if (retainedTurns) practice.append(card);
+    }
+  }
+  refreshContent = () => currentView === 'conversations' ? conversations() : render();
+  wordButton.onclick = () => { currentView = 'words'; render(); }; dialogueButton.onclick = () => { currentView = 'conversations'; conversations(); }; select.onchange = () => { skill = select.value; currentView = 'words'; render(); }; render();
+})();
+
+</script></body></html>

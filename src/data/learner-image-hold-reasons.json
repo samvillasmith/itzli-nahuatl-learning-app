@@ -1,0 +1,334 @@
+{
+  "word-images": {},
+  "s3-word-images": {
+    "ichtequi": {
+      "reason": "The illustration depicts a raised knife and a frightened person being grabbed. The asset is withheld from all learner image uses; the allowed vocabulary remains available."
+    }
+  },
+  "openai-word-images": {
+    "-quetl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "-tzi": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "aicmo": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "alahhuenoh": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "altepetl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "altepetlehquetl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "amatlahcuilolli": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "apazotl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "axtlen": {
+      "reason": "The you-are-welcome card instead displays a doorway greeting with the different word ximopanolti."
+    },
+    "cahtzotl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "canin": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "cecec": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "cēmpōhualli": {
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review."
+    },
+    "chalchocoātōlli": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "chichiquilli": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "chicōme": {
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review."
+    },
+    "chicuēyi": {
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review."
+    },
+    "chihchinohtic": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "Chōcac": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Chōcaqueh": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cilchilli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cochi": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cocōa": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cocoliztli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "colantoh": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cototzin": {
+      "reason": "The current INALI kototsin card is illustrated with embedded older spelling cototzin."
+    },
+    "coztlaquemitl": {
+      "reason": "Folded textile does not clearly distinguish a poncho from a blanket; inspect a recognizable poncho before reuse."
+    },
+    "cuaquixtia": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "cuatecpichoa": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "cuatitlamitl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "cuehcuentic": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "enero": {
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations."
+    },
+    "febrero": {
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations."
+    },
+    "huan": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "huehueyāc": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "huēyi": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "huitztli": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "ica": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "ihza": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "intla": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "itlapanca": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "kuaxilotl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "mancohātl": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "matzahtli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "mayo": {
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations."
+    },
+    "Mēchitta": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "mēhua": {
+      "reason": "Expansion reuse candidate E14 embeds the old source spelling mēhua instead of current INALI spelling."
+    },
+    "miac": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "Mītzitta": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "molcatl": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "molcaxitl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "molōni": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "momachtihquetl": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "Mōztlayoc": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Nēchitta": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nelía": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Nicmāmāhqui": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Nitizqui": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nocamac": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nohquía": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "noicxi": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "noīxtiyōl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nomachicniuh": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nomāhpil": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nonacaz": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "notzoncal": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "notzontecon": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "noviembre": {
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations."
+    },
+    "noyācatzol": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "nozo": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "ocachi": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "ohuaatl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "ohuatl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "ohui": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "ōlōtl": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "papaquiliz": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "pilcantelahtzin": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Pilchichitzin": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Pilxilitzin": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "pitzonacatl": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "popochcōmitl": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "quehatza": {
+      "reason": "The how card embeds the different old word quehatza instead of the current INALI form Kenihki."
+    },
+    "septiembre": {
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations."
+    },
+    "tēcciztli": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "tecolli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tēmiqui": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "tenamaztli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tequi": {
+      "reason": "Colored squares do not establish the cutting meaning; no cutting action or tool is visible at the inspected scale."
+    },
+    "Tichōcac": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Timomachtiz": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Titlacuāz": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlacohuani": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlahcoyōhual": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlahuel": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlaocoyaliztli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Tlapiyaltzin": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlatzintla": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "tlazohtlaliztli": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "ximocuepa": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "Xiquīzacān": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "xōchimāntli": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "xoxohuic": {
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "yahualtic": {
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text."
+    },
+    "yancuic": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "yeca": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "zampa": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    },
+    "zan": {
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review."
+    },
+    "zatepan": {
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review."
+    }
+  }
+}

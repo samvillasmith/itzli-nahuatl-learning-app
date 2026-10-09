@@ -5,7 +5,7 @@ const ORIENTATION_OR_SEXUAL_ROLE =
   /\b(gay|lesbian|homosexual(?:ity)?|same[- ]sex|sodom(?:y|ite)|sex|sexual|intercourse)\b/i;
 
 describe("dictionary content exclusions", () => {
-  it("returns no results for excluded orientation searches", () => {
+  it("does not import raw dictionary entries when searching neutral orientation terms", () => {
     expect(searchVocab("gay", 100)).toEqual([]);
     expect(searchVocab("lesbian", 100)).toEqual([]);
     expect(searchVocab("homosexual", 100)).toEqual([]);

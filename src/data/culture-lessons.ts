@@ -223,10 +223,16 @@ export const CULTURE_MODULES: CultureModule[] = [
         note: "National catalogue entry emphasizing contemporary Nahua peoples and regional diversity.",
       },
       {
+        title: "Tlaxilacalli y altepetl en el Acolhuacan central, siglos XIV-XVII",
+        institution: "Estudios de Cultura Náhuatl, UNAM",
+        url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/view/77854",
+        note: "Research on local community institutions and their relationship to the altepetl across the precolonial and colonial periods.",
+      },
+      {
         title: "Altar to the Sun Warrior",
         institution: "The Metropolitan Museum of Art",
         url: "https://www.metmuseum.org/art/collection/search/318674",
-        note: "A public-domain Nahua object from Puebla, useful precisely because Nahua art is not limited to Tenochtitlan.",
+        note: "A public-domain Nahua object whose style scholars associate with central Puebla; its proposed origin illustrates Nahua art beyond Tenochtitlan.",
       },
     ],
   },
@@ -272,15 +278,15 @@ export const CULTURE_MODULES: CultureModule[] = [
         title: "A family of living regional varieties",
         paragraphs: [
           "INALI recognizes multiple Nahuatl variants and specifically lists Nahuatl of the Huasteca of Veracruz. Modern varieties differ in pronunciation, vocabulary, grammar, and preferred orthographies. They remain related, but a form from a central colonial document may not be the ordinary conversational form in Chicontepec.",
-          "Itzli therefore keeps its language curriculum centered on Eastern Huasteca Nahuatl and uses a practical INALI-style spelling. Historical materials appear here to deepen understanding, not to overwrite contemporary speech or turn Classical Nahuatl into a universal correction key.",
+          "INALI's published Nahuatl alphabet governs Itzli's teaching orthography. The Chicontepec-based Eastern Huasteca Nahuatl source course provides regional vocabulary and grammar evidence. Its original IDIEZ spellings, including vowel-length marks, are retained in source references. Historical materials deepen understanding, while local speech remains the reference for a living community's usage.",
         ],
       },
     ],
     sources: [
       {
-        title: "El náhuatl posee una larga historia como lengua escrita",
+        title: "Volumen 70 (Presentación)",
         institution: "Estudios de Cultura Náhuatl, UNAM",
-        url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/view/78800/69785",
+        url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/view/78800",
         note: "Overview of pictorial-glyphic writing, alphabetic adaptation, and Nahua use of writing.",
       },
       {
@@ -296,10 +302,22 @@ export const CULTURE_MODULES: CultureModule[] = [
         note: "Official recognition of Nahuatl variants and their community names.",
       },
       {
+        title: "INALI Nahuatl alphabet",
+        institution: "INALI",
+        url: "https://site.inali.gob.mx/INALIDhuchlab/assets/files/cartel_alfabeto_Nawatlatolli-espanol.pdf",
+        note: "The published 19-grapheme alphabet governing Itzli's teaching orthography.",
+      },
+      {
         title: "Languages and Religion: Molina's 1571 Vocabulario",
         institution: "Library of Congress",
         url: "https://www.loc.gov/exhibits/exploring-the-early-americas/languages-and-religion.html",
         note: "A digitized example of early colonial Nahuatl lexicography and print culture.",
+      },
+      {
+        title: "Nahuatlahtolli: A Beginner to Advanced Level Nahuatl Online Course",
+        institution: "COERLL, University of Texas at Austin",
+        url: "https://tlahtolli.coerll.utexas.edu/",
+        note: "States the source course's Chicontepec variety and its use of IDIEZ orthography and grammatical explanations.",
       },
     ],
   },
@@ -316,7 +334,7 @@ export const CULTURE_MODULES: CultureModule[] = [
       "Huasteca Nahua and Teenek or Huastec are not synonyms. The Huasteca is a multiethnic region where several Indigenous peoples and languages meet.",
     takeaways: [
       "Chicontepec is one important center of Nahuatl in northern Veracruz.",
-      "Eastern Huasteca Nahuatl gives this course a coherent living language rather than a mixture of regional forms.",
+      "The Chicontepec-based source course provides a regional reference; app adaptations still need review by speakers of that variety.",
       "The Huasteca includes Nahua, Teenek, Tepehua, Otomi, and other communities.",
       "Living culture changes; no single custom represents every family or locality.",
     ],
@@ -331,8 +349,8 @@ export const CULTURE_MODULES: CultureModule[] = [
       {
         title: "Why this course teaches Eastern Huasteca Nahuatl",
         paragraphs: [
-          "Central Nahuatl is indispensable for studying Tenochtitlan and much of the colonial written archive, but there is no single neutral modern language called Central Nahuatl. A course in spoken Nahuatl must ultimately choose the speech of particular communities. Itzli chooses the Chicontepec form because it belongs to a substantial living speaker community and is supported by a complete beginner-to-advanced curriculum developed with Nahua teachers, speakers, and researchers.",
-          "That choice gives learners one coherent system of pronunciation, vocabulary, and grammar instead of a mixture assembled from Classical dictionaries and unrelated modern variants. Eastern Huasteca Nahuatl is not a substitute for the language of the Aztecs. It is Nahuatl itself in a living regional form, sharing the inherited Nahuan structures and vocabulary that connect modern speech with Mexica and colonial Nahuatl.",
+          "Classical Nahuatl is useful for studying much of the colonial written archive, but central Mexican Nahuatl also includes distinct modern varieties. A course in spoken Nahuatl must identify the speech of particular communities. Itzli uses the Chicontepec-based source curriculum because it documents a living regional variety and was developed with Nahua teachers, speakers, and researchers.",
+          "This regional reference helps learners keep pronunciation, vocabulary, and grammar together. It does not establish a universal Eastern Huasteca standard or prove that every app adaptation has been reviewed by local speakers. Eastern Huasteca Nahuatl shares inherited Nahuan structures and vocabulary with historical Nahuatl, while also having its own regional history and usage.",
           "Learners primarily interested in reading sixteenth-century Central Mexican texts will still benefit from dedicated Classical Nahuatl study. Itzli begins with spoken competence in a living community language, then makes the historical relationships and regional differences explicit.",
         ],
       },
@@ -372,10 +390,28 @@ export const CULTURE_MODULES: CultureModule[] = [
         note: "Official geo-statistical references and community names for the regional variant.",
       },
       {
+        title: "Museo de la Cultura Huasteca",
+        institution: "INAH",
+        url: "https://lugares.inah.gob.mx/es/node/4287",
+        note: "Describes the Huasteca as a diverse region shared by Teenek, Nahua, Pame, Otomi, Tepehua, and Totonac peoples.",
+      },
+      {
+        title: "Catálogo de las Lenguas Indígenas Nacionales: Huasteco",
+        institution: "INALI",
+        url: "https://www.inali.gob.mx/sitios/clin-inali/html/l_huasteco.html",
+        note: "Identifies the Huastec or Teenek language grouping as part of the Mayan family, distinct from Nahuatl.",
+      },
+      {
         title: "Nahuatlahtolli: A Beginner to Advanced Level Nahuatl Online Course",
         institution: "COERLL, University of Texas at Austin",
         url: "https://tlahtolli.coerll.utexas.edu/",
         note: "Chicontepec-based curriculum developed for learners, teachers, and speakers with native-speaker and IDIEZ participation.",
+      },
+      {
+        title: "Team: Nahuatlahtolli",
+        institution: "COERLL, University of Texas at Austin",
+        url: "https://tlahtolli.coerll.utexas.edu/the-team/",
+        note: "Identifies the source-course contributors, including Nahuatl speakers and teachers from Tecomate, Chicontepec.",
       },
       {
         title: "Nahua / Nahuatl",
@@ -436,7 +472,7 @@ export const CULTURE_MODULES: CultureModule[] = [
       {
         title: "Alphabetic texts preserve voices and pressures",
         paragraphs: [
-          "Nahua annalists and historians such as Chimalpahin and Tezozomoc wrote from particular communities, lineages, and political circumstances. Their work preserves Indigenous intellectual traditions while also responding to colonial genres and audiences.",
+          "Nahua annalists and historians such as Chimalpahin and Tezozomoc wrote from particular communities, lineages, and political circumstances. Language also matters: the Crónica mexicana attributed to Tezozomoc is written mainly in Spanish and contains Nahuatl words. Indigenous authorship does not by itself tell us a text's language, genre, or intended audience.",
           "Spanish clerical and military accounts likewise contain indispensable observations alongside theological assumptions, self-justification, translation problems, and unequal power. Reading critically means identifying those pressures, not discarding every colonial document or accepting it literally.",
         ],
       },
@@ -456,9 +492,9 @@ export const CULTURE_MODULES: CultureModule[] = [
         note: "A free-to-use 1593 Nahuatl pictorial land and genealogy document with detailed catalog context.",
       },
       {
-        title: "El náhuatl posee una larga historia como lengua escrita",
+        title: "Volumen 70 (Presentación)",
         institution: "Estudios de Cultura Náhuatl, UNAM",
-        url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/view/78800/69785",
+        url: "https://nahuatl.historicas.unam.mx/index.php/ecn/article/view/78800",
         note: "Pictorial, glyphic, and alphabetic writing as a connected historical practice.",
       },
       {

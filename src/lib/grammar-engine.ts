@@ -26,8 +26,8 @@ const ANSWER_EQUIVALENTS: Record<string, string[]> = {
   motoka: ["motokah", "motocah", "motocaj", "motōcah"],
   itokah: ["itoka", "itocah", "itocaj", "ītōcah"],
   itoka: ["itokah", "itocah", "itocaj", "ītōcah"],
-  intokah: ["intoka", "intocah", "intocaj", "intōcah"],
-  intoka: ["intokah", "intocah", "intocaj", "intōcah"],
+  inintokah: ["inintoka", "inintocah", "inintocaj", "inintōcah"],
+  inintoka: ["inintokah", "inintocah", "inintocaj", "inintōcah"],
 };
 
 export function normalizeAnswer(input: string): string {
@@ -60,11 +60,16 @@ export type KnownNoun = {
   gloss: string;
   animate?: boolean;
   absolutive?: "-tl" | "-tli" | "-li" | "-n" | "none";
+  // Supply learned forms: neither animate plurals nor possessed stems are uniform.
+  plural?: string;
+  possessedStem?: string;
+  possessedForms?: Partial<Record<Person, string>>;
 };
 
 export type KnownVerb = {
   stem: string;
   gloss: string;
+  presentForms?: Partial<Record<Person, string>>;
 };
 
 const PRESENT_SUBJECTS: Record<Person, { prefix: string; suffix: string }> = {
@@ -72,7 +77,7 @@ const PRESENT_SUBJECTS: Record<Person, { prefix: string; suffix: string }> = {
   "2sg": { prefix: "ti", suffix: "" },
   "3sg": { prefix: "", suffix: "" },
   "1pl": { prefix: "ti", suffix: "h" },
-  "2pl": { prefix: "an", suffix: "h" },
+  "2pl": { prefix: "in", suffix: "h" },
   "3pl": { prefix: "", suffix: "h" },
 };
 
@@ -90,14 +95,13 @@ const POSSESSIVE_PREFIXES: Record<Person, string> = {
   "2sg": "mo",
   "3sg": "i",
   "1pl": "to",
-  "2pl": "amo",
-  "3pl": "in",
+  "2pl": "inmo",
+  "3pl": "inin",
 };
 
 function buildAnimatePlural(noun: KnownNoun): string | null {
   if (!noun.animate) return null;
-  if (!noun.stem) return null;
-  return `${noun.stem}meh`;
+  return noun.plural || null;
 }
 
 export function buildNounPredicate(noun: KnownNoun, person: Person): string | null {
@@ -110,12 +114,14 @@ export function buildNounPredicate(noun: KnownNoun, person: Person): string | nu
 }
 
 export function buildPresentVerb(verb: KnownVerb, person: Person): string | null {
+  if (verb.presentForms) return verb.presentForms[person] || null;
   if (!verb.stem) return null;
   const affixes = PRESENT_SUBJECTS[person];
   return `${affixes.prefix}${verb.stem}${affixes.suffix}`;
 }
 
 export function buildPossessedNoun(noun: KnownNoun, possessor: Person): string | null {
-  if (!noun.stem) return null;
-  return `${POSSESSIVE_PREFIXES[possessor]}${noun.stem}`;
+  if (noun.possessedForms) return noun.possessedForms[possessor] || null;
+  if (!noun.possessedStem) return null;
+  return `${POSSESSIVE_PREFIXES[possessor]}${noun.possessedStem}`;
 }

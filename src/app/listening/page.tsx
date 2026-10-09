@@ -1,0 +1,5 @@
+import { requireAuth } from "@/lib/require-auth";
+import { AUDIO_SOURCE_BENCHMARKS } from "@/data/audio-source-benchmarks";
+import ListeningStudio from "./ListeningStudio";
+const sourceSpanish:Record<string,string>={"butterfly":"mariposa","I work":"Trabajo","I will study":"Voy a estudiar","pepper":"chile","wood, tree":"madera, árbol","thorn":"espina","sibling":"hermano o hermana","sun, day":"sol, día","to cry":"llorar (glosa de la fuente; acepción pendiente de revisión)","bean":"frijol","corn":"elote","Enter":"Entra","Come in":"Pasa","Sit down":"Siéntate","Where are you?":"¿Dónde estás?","I am here":"Estoy aquí","I study":"Estudio","Until tomorrow":"Hasta mañana","house":"casa","water":"agua","flower":"flor","yes":"sí"};
+export default async function Page(){await requireAuth();return <ListeningStudio benchmarks={AUDIO_SOURCE_BENCHMARKS.map(b=>({id:b.id,text:b.runtime_text,translation:b.translation==='to cry'?'to cry (source gloss; sense pending review)':b.translation,spanish:sourceSpanish[b.translation]??b.translation,audioUrl:b.native_source_audio_url,sourceUrl:b.source_refs[0]?.source_url??"",features:b.features}))}/>;}

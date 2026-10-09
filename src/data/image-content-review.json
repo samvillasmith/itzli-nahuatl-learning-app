@@ -1,0 +1,1751 @@
+{
+  "schema_version": 1,
+  "scope": "Current-card metadata plus local-browser thumbnail meaning, spelling, and quantity inspection. This is not full-resolution safety, rights, pronunciation, or linguistic certification.",
+  "contexts": [
+    {
+      "entry_id": "word-v3d-4e937be654a605d3",
+      "headword": "nemi",
+      "meaning_en": "to remain active and get around (an older person)",
+      "url": "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/818001-vivir.webp",
+      "status": "held",
+      "category": "current-sense-image-mismatch",
+      "reason": "The house illustration cues living somewhere; it does not show the selected older-person activity sense.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact current entry and image URL"
+    },
+    {
+      "entry_id": "word-v3rf-2b698351d3ff5afb",
+      "headword": "ihka",
+      "meaning_en": "standing-state stem; needs an ending",
+      "url": "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/130009-puesto.webp",
+      "status": "held",
+      "category": "current-sense-image-mismatch",
+      "reason": "The street-market stand illustration does not depict the standing-state stem.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact current entry and image URL"
+    },
+    {
+      "entry_id": "word-v3r-ced0d631cd1865a5",
+      "headword": "okichtli",
+      "meaning_en": "male animal",
+      "url": "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/401005-senor.webp",
+      "status": "held",
+      "category": "current-sense-image-mismatch",
+      "reason": "The portrait of a man does not depict the selected male-animal sense.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact current entry and image URL"
+    },
+    {
+      "entry_id": "word-v3i-b016d2e31ecef67c",
+      "headword": "walla",
+      "meaning_en": "to come (verbal base)",
+      "url": "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/817004-come.webp",
+      "status": "held",
+      "category": "current-sense-image-mismatch",
+      "reason": "The eating illustration reflects Spanish come, not the selected Nahuatl coming verbal base.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact current entry and image URL"
+    },
+    {
+      "entry_id": "word-v3r-54f227101da61d34",
+      "headword": "ostotl",
+      "meaning_en": "fox",
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ostotl-6265.png",
+      "status": "held",
+      "category": "current-sense-image-mismatch",
+      "reason": "The cave illustration does not depict the selected fox sense.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact current entry and image URL"
+    }
+  ],
+  "cards": [
+    {
+      "id": 35,
+      "status": "corrected",
+      "image_headword": "Kenihki tiistok?",
+      "reason": "Use the existing greeting illustration with the matching how-are-you meaning; the old search-photo fallback displayed a German thank-you card. The card retains its current INALI spelling.",
+      "expected_headword": "Kenihki tiitstok?",
+      "expected_gloss": "how are you?"
+    },
+    {
+      "id": 203,
+      "status": "held",
+      "reason": "The assigned image was made for brother. The current source-backed card means sibling; review a matching image without narrowing gender."
+    },
+    {
+      "id": 204,
+      "status": "held",
+      "reason": "The assigned image was made for grandson. The current source-backed card means my grandchild; review a matching image without narrowing gender."
+    },
+    {
+      "id": 411,
+      "status": "corrected",
+      "reason": "Existing textile image visually matches the source-backed blanket sense; old garment metadata alone did not establish that match.",
+      "image_headword": "tlakemitl",
+      "expected_headword": "tlaquemitl",
+      "expected_gloss": "blanket",
+      "pixel_review": {
+        "asset_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlakemitl-6648.png",
+        "scope": "current-card-thumbnail-meaning; not full-resolution safety, rights, or linguistic certification",
+        "reviewed_by": "Codex local browser visual inspection",
+        "reviewed_at": "2026-10-04",
+        "finding": "Woman holding a striped blanket/textile rather than wearing a garment; suitable as a blanket example at the inspected thumbnail size.",
+        "source_refs": [
+          "https://www.academia.edu/34987634/Tlahtolxitlauhcayotl_Chicontepec_Veracruz#page=518"
+        ]
+      }
+    },
+    {
+      "id": 904001,
+      "status": "corrected",
+      "reason": "Bind the current meaning to the existing visually inspected candidate.",
+      "image_headword": "weyiatl",
+      "expected_headword": "weyatl",
+      "expected_gloss": "sea; large expanse of water",
+      "pixel_review": {
+        "asset_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/weyiatl-684.png",
+        "scope": "current-card-thumbnail-meaning; not full-resolution safety, rights, or linguistic certification",
+        "reviewed_by": "Codex local browser visual inspection",
+        "reviewed_at": "2026-10-04",
+        "finding": "Clear open sea and horizon support the sea sense. This is an image reuse binding, not a claim that the image key is a spelling variant.",
+        "source_refs": [
+          "https://www.academia.edu/34987634/Tlahtolxitlauhcayotl_Chicontepec_Veracruz#page=202"
+        ]
+      }
+    },
+    {
+      "id": 902802,
+      "status": "held",
+      "reason": "The old image was made for visiting or passing by in the present. Inspect it against the corrected I-was-passing-by card before reuse."
+    },
+    {
+      "id": 902804,
+      "status": "corrected",
+      "reason": "Reuse the inspected doorway invitation scene for the current come-in command.",
+      "image_headword": "ximopanolti",
+      "expected_headword": "Xipano",
+      "expected_gloss": "come in",
+      "pixel_review": {
+        "asset_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xipano-source-2-9.png",
+        "scope": "current-card-thumbnail-meaning; not full-resolution safety, rights, or linguistic certification",
+        "reviewed_by": "Codex local browser visual inspection",
+        "reviewed_at": "2026-10-04",
+        "finding": "Woman beckons a man through a doorway; scene supports the invitation to come in.",
+        "source_refs": [
+          "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/"
+        ]
+      }
+    },
+    {
+      "id": 902805,
+      "status": "held",
+      "reason": "The assigned image was made for you feel. The corrected form means you are or you are located."
+    },
+    {
+      "id": 902807,
+      "status": "held",
+      "reason": "The assigned image was made for I am here or I am well. Inspect it against the corrected I-am/I-am-located card before reuse."
+    },
+    {
+      "id": 902803,
+      "status": "corrected",
+      "image_headword": "Xikalaki",
+      "expected_headword": "Xikalaki",
+      "expected_gloss": "enter",
+      "reason": "Bind the current meaning to the existing visually inspected candidate.",
+      "pixel_review": {
+        "asset_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xicalaqui-source-2-8.png",
+        "scope": "current-card-thumbnail-meaning; not full-resolution safety, rights, or linguistic certification",
+        "reviewed_by": "Codex local browser visual inspection",
+        "reviewed_at": "2026-10-04",
+        "finding": "Person enters a doorway; supports the current command enter without relying on the previous empty-door illustration.",
+        "source_refs": [
+          "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/"
+        ]
+      }
+    },
+    {
+      "id": 902806,
+      "status": "corrected",
+      "image_headword": "Ximosewi",
+      "expected_headword": "Ximosewi",
+      "expected_gloss": "sit down",
+      "reason": "Bind the current meaning to the existing visually inspected candidate.",
+      "pixel_review": {
+        "asset_url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximocehui-source-2-19.png",
+        "scope": "current-card-thumbnail-meaning; not full-resolution safety, rights, or linguistic certification",
+        "reviewed_by": "Codex local browser visual inspection",
+        "reviewed_at": "2026-10-04",
+        "finding": "Seated person supports the current sit-down command, unlike the prior chair-only image.",
+        "source_refs": [
+          "https://tlahtolli.coerll.utexas.edu/tlamachtiliztli-2-lesson-2-nicpiya-tlahtlaniliztli-i-have-a-question/"
+        ]
+      }
+    },
+    {
+      "id": 903303,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903304,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903306,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903307,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903308,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903310,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903312,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903608,
+      "status": "held",
+      "category": "legacy-photo-unreviewed",
+      "reason": "The legacy search-result photo lacks a recorded exact image-and-meaning review. It is a reuse candidate, not approved course coverage."
+    },
+    {
+      "id": 903609,
+      "status": "held",
+      "category": "legacy-photo-unreviewed",
+      "reason": "The legacy search-result photo lacks a recorded exact image-and-meaning review. It is a reuse candidate, not approved course coverage."
+    },
+    {
+      "id": 903703,
+      "status": "held",
+      "category": "legacy-photo-unreviewed",
+      "reason": "The legacy search-result photo lacks a recorded exact image-and-meaning review. It is a reuse candidate, not approved course coverage."
+    },
+    {
+      "id": 904003,
+      "status": "held",
+      "category": "legacy-photo-unreviewed",
+      "reason": "The legacy search-result photo lacks a recorded exact image-and-meaning review. It is a reuse candidate, not approved course coverage."
+    },
+    {
+      "id": 62,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 63,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 64,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 65,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 68,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 69,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 71,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 72,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 73,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 78,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 79,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 580,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 7418,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 804011,
+      "status": "structured-cue",
+      "category": "exact-number-cue",
+      "reason": "Use the deterministic number cue with exact digits and quantities; numeral raster art is withheld and is not an image-generation job."
+    },
+    {
+      "id": 903301,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903302,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903305,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903309,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 903311,
+      "status": "structured-cue",
+      "category": "month-order-cue",
+      "reason": "Use the deterministic month-order cue; generic seasonal photos and raster art are withheld and are not image-generation jobs."
+    },
+    {
+      "id": 335,
+      "status": "held",
+      "category": "non-overridable-image-policy",
+      "reason": "Image withheld under the non-overridable injury/death illustration policy. The earlier metadata exception cannot waive this category; this is not a finding that the existing pixels are unsafe.",
+      "reviewed_at": "2026-10-06"
+    },
+    {
+      "id": 645,
+      "status": "held",
+      "category": "non-overridable-image-policy",
+      "reason": "Image withheld under the non-overridable injury/death illustration policy. The earlier metadata exception cannot waive this category; this is not a finding that the existing pixels are unsafe.",
+      "reviewed_at": "2026-10-06"
+    },
+    {
+      "id": 640,
+      "status": "held",
+      "category": "non-overridable-image-policy",
+      "reason": "The prior image metadata conflicts with a non-overridable depiction category and is quarantined. Keep this card text-only pending a safe, meaning-matched illustration or cue; the word remains available.",
+      "reviewed_at": "2026-10-06"
+    },
+    {
+      "id": 7706,
+      "status": "held",
+      "category": "non-overridable-image-policy",
+      "reason": "The prior image metadata conflicts with a non-overridable depiction category and is quarantined. Keep this card text-only pending a safe, meaning-matched illustration or cue; the word remains available.",
+      "reviewed_at": "2026-10-06"
+    },
+    {
+      "id": 802005,
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "image_headword": "momachtihquetl",
+      "expected_headword": "momachtihketl",
+      "expected_gloss": "student",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Preserve the existing exact asset hold on its current card after omitting that asset from the public learner catalog."
+    },
+    {
+      "id": 903506,
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The current INALI kototsin card is illustrated with embedded older spelling cototzin.",
+      "image_headword": "cototzin",
+      "expected_headword": "kototsin",
+      "expected_gloss": "short",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Preserve the existing exact asset hold on its current card after omitting that asset from the public learner catalog."
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://mero-mero-app.s3.us-east-1.amazonaws.com/word-images/350008-robar.webp",
+      "status": "held",
+      "category": "violent-threat-scene",
+      "reason": "The illustration depicts a raised knife and a frightened person being grabbed. The asset is withheld from all learner image uses; the allowed vocabulary remains available.",
+      "reviewed_at": "2026-10-09",
+      "review_scope": "Final release browser pixel inspection; exact image URL, with no recorded historical byte hash"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/hueyi-source-10-18.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 65,
+      "observed_headwords": [
+        "weyi",
+        "weyi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xoxohuic-75.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 67,
+      "observed_headwords": [
+        "xoxowik",
+        "xoxowik"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cochi-source-7-4.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 95,
+      "observed_headwords": [
+        "kochi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlahcoyohual-source-7-27.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 119,
+      "observed_headwords": [
+        "tlahkoyowal"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/notlacal-7706.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 123,
+      "observed_headwords": [
+        "notlakal"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/noixtiyol-source-8-16.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 126,
+      "observed_headwords": [
+        "noixtiyol"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/notzontecon-source-8-17.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 127,
+      "observed_headwords": [
+        "notsontekon"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nonacaz-source-8-18.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 128,
+      "observed_headwords": [
+        "nonakas"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/noyacatzol-source-8-19.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 129,
+      "observed_headwords": [
+        "noyakatsol"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nocamac-source-8-20.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 130,
+      "observed_headwords": [
+        "nokamak"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/notzoncal-source-8-21.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 131,
+      "observed_headwords": [
+        "notsonkal"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nomahpil-source-8-24.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 133,
+      "observed_headwords": [
+        "nomahpil"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/noicxi-source-8-27.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 134,
+      "observed_headwords": [
+        "noikxi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nomachicniuh-source-9-21.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 152,
+      "observed_headwords": [
+        "nomachikniw"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/huehueyac-source-10-14.png",
+      "status": "held",
+      "reason": "Local browser thumbnail inspection found embedded source/older orthography that conflicts with the current INALI learning spelling. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 162,
+      "observed_headwords": [
+        "weweyak"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/moztlayoc-source-11-10.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 177,
+      "observed_headwords": [
+        "Mostlayok"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/timomachtiz-source-12-5.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 186,
+      "observed_headwords": [
+        "Timomachtis"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/titlacuaz-source-12-11.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 189,
+      "observed_headwords": [
+        "Titlakwas"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/moloni-source-7-15.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 198,
+      "observed_headwords": [
+        "moloni"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nechitta-source-13-7.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 199,
+      "observed_headwords": [
+        "Nechitta"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mitzitta-source-13-8.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 200,
+      "observed_headwords": [
+        "Mitsitta"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mechitta-source-13-10.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 202,
+      "observed_headwords": [
+        "Mechitta"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tichocac-source-14-3.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 211,
+      "observed_headwords": [
+        "Tichokak"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chocac-source-14-4.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 212,
+      "observed_headwords": [
+        "Chokak"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chocaqueh-source-14-7.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 215,
+      "observed_headwords": [
+        "Chokakeh"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cocoa-source-8-28.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 221,
+      "observed_headwords": [
+        "kokoa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nitizqui-source-15-6.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 227,
+      "observed_headwords": [
+        "Nitiski"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nicmamahqui-source-16-12.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 231,
+      "observed_headwords": [
+        "Nikmamahki"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/papaquiliz-7709.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 247,
+      "observed_headwords": [
+        "papakilis"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlazohtlaliztli-7710.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 248,
+      "observed_headwords": [
+        "tlasohtlalistli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlaocoyaliztli-7712.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 250,
+      "observed_headwords": [
+        "tlaokoyalistli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximocuepa-7703.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 255,
+      "observed_headwords": [
+        "ximokwepa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xiquizacan-source-19-8.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 259,
+      "observed_headwords": [
+        "Xikisakan"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pilxilitzin-source-20-9.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 269,
+      "observed_headwords": [
+        "Pilxilitsin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pilchichitzin-source-20-12.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 270,
+      "observed_headwords": [
+        "Pilchichitsin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlapiyaltzin-source-20-15.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 271,
+      "observed_headwords": [
+        "Tlapiyaltsin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pilcantelahtzin-source-20-37.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 272,
+      "observed_headwords": [
+        "pilkantelahtsin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/olotl-source-20-34.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 274,
+      "observed_headwords": [
+        "olotl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/alahhuenoh-source-21-3.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 282,
+      "observed_headwords": [
+        "alahwenoh"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/apazotl-source-21-5.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 283,
+      "observed_headwords": [
+        "apasotl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cahtzotl-source-21-7.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 284,
+      "observed_headwords": [
+        "kahtsotl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/colantoh-source-21-13.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 285,
+      "observed_headwords": [
+        "kolantoh"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cilchilli-514.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 302,
+      "observed_headwords": [
+        "silchilli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/molcaxitl-7729.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 312,
+      "observed_headwords": [
+        "molkaxitl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tecolli-7730.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 313,
+      "observed_headwords": [
+        "tekolli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tenamaztli-7731.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 314,
+      "observed_headwords": [
+        "tenamastli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/altepetl-549.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 318,
+      "observed_headwords": [
+        "altepetl",
+        "altepetl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cuatitlamitl-553.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 322,
+      "observed_headwords": [
+        "kwatitlamitl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/altepetlehquetl-554.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 323,
+      "observed_headwords": [
+        "altepetlehketl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/zan-564.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 325,
+      "observed_headwords": [
+        "san"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/yeca-566.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 327,
+      "observed_headwords": [
+        "yeka"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nohquia-570.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 330,
+      "observed_headwords": [
+        "nohkia"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlatzintla-572.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 332,
+      "observed_headwords": [
+        "tlatsintla"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ohuatl-611.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 341,
+      "observed_headwords": [
+        "owatl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ohuaatl-614.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 344,
+      "observed_headwords": [
+        "owaatl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/matzahtli-615.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 345,
+      "observed_headwords": [
+        "matsahtli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/kuaxilotl-616.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 346,
+      "observed_headwords": [
+        "kwaxilotl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlacohuani-7733.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 353,
+      "observed_headwords": [
+        "tlakowani"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cocoliztli-644.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 363,
+      "observed_headwords": [
+        "kokolistli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/intla-661.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 367,
+      "observed_headwords": [
+        "tlan"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nelia-662.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 368,
+      "observed_headwords": [
+        "nelia"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/nozo-7719.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 369,
+      "observed_headwords": [
+        "noso"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/huan-7720.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 370,
+      "observed_headwords": [
+        "wan"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ica-693.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 376,
+      "observed_headwords": [
+        "ika"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tzi-695.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 378,
+      "observed_headwords": [
+        "-tsi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/quetl-696.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 379,
+      "observed_headwords": [
+        "-ketl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tlahuel-699.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 381,
+      "observed_headwords": [
+        "tlawel"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/itlapanca-701.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Local browser thumbnail inspection found embedded source/older spelling or a different word that conflicts with the current INALI learning text. Replace with a text-free or INALI-compatible illustration after review.",
+      "inspection_number": 382,
+      "observed_headwords": [
+        "itlapanka"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail text and spelling; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ximopanolti-7696.png",
+      "status": "held",
+      "category": "semantic-mismatch",
+      "reason": "The you-are-welcome card instead displays a doorway greeting with the different word ximopanolti.",
+      "inspection_number": 170,
+      "observed_headwords": [
+        "axtlen"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail semantic match; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tequi-326.png",
+      "status": "held",
+      "category": "semantic-mismatch",
+      "reason": "Colored squares do not establish the cutting meaning; no cutting action or tool is visible at the inspected scale.",
+      "inspection_number": 197,
+      "observed_headwords": [
+        "teki"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail semantic match; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/coztlaquemitl-413.png",
+      "status": "held",
+      "category": "semantic-mismatch",
+      "reason": "Folded textile does not clearly distinguish a poncho from a blanket; inspect a recognizable poncho before reuse.",
+      "inspection_number": 243,
+      "observed_headwords": [
+        "kostlakemitl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail semantic match; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cocotl-640.png",
+      "status": "held",
+      "category": "semantic-mismatch",
+      "reason": "A rolled cloth/bandage alone does not depict the wound or sore taught on this card.",
+      "inspection_number": 360,
+      "observed_headwords": [
+        "kokotl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "thumbnail semantic match; not safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/tecciztli-source-20-42.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 433,
+      "observed_headwords": [
+        "teksistli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/amatlahcuilolli-6115.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 440,
+      "observed_headwords": [
+        "amatlahkwilolli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/huitztli-6219.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 445,
+      "observed_headwords": [
+        "witstli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/momachtihquetl-source-2-5.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 451,
+      "observed_headwords": [
+        "momachtihketl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ihza-source-7-7.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 455,
+      "observed_headwords": [
+        "ihsa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/temiqui-source-7-20.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 457,
+      "observed_headwords": [
+        "temiki"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/miac-6160.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 459,
+      "observed_headwords": [
+        "miak"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/zampa-6164.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 460,
+      "observed_headwords": [
+        "sampa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/canin-6958.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 461,
+      "observed_headwords": [
+        "kanin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/zatepan-7735.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 463,
+      "observed_headwords": [
+        "satepan"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/aicmo-7737.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 465,
+      "observed_headwords": [
+        "aikmo"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ocachi-7739.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 467,
+      "observed_headwords": [
+        "okachi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chihchinohtic-source-10-20.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 410,
+      "observed_headwords": [
+        "chihchinohtik"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cuehcuentic-source-10-21.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 411,
+      "observed_headwords": [
+        "kwehkwentik"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cecec-source-18-33.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 412,
+      "observed_headwords": [
+        "sesek"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/ohui-6065.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 414,
+      "observed_headwords": [
+        "owi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/yancuic-6069.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The existing image embeds older/source spelling that conflicts with the current INALI learning text. Use a text-free or INALI-compatible asset after review.",
+      "inspection_number": 415,
+      "observed_headwords": [
+        "yankwik"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/enero-curated-33-1.png",
+      "status": "held",
+      "category": "month-meaning-unestablished",
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations.",
+      "inspection_number": 385,
+      "observed_headwords": [
+        "enero"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/febrero-curated-33-2.png",
+      "status": "held",
+      "category": "month-meaning-unestablished",
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations.",
+      "inspection_number": 386,
+      "observed_headwords": [
+        "febrero"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mayo-curated-33-5.png",
+      "status": "held",
+      "category": "month-meaning-unestablished",
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations.",
+      "inspection_number": 387,
+      "observed_headwords": [
+        "mayo"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/septiembre-curated-33-9.png",
+      "status": "held",
+      "category": "month-meaning-unestablished",
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations.",
+      "inspection_number": 388,
+      "observed_headwords": [
+        "septiembre"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/noviembre-6039.png",
+      "status": "held",
+      "category": "month-meaning-unestablished",
+      "reason": "The image is a generic seasonal scene without an actual month/calendar cue; it does not establish the taught month and may import unsuitable seasonal associations.",
+      "inspection_number": 389,
+      "observed_headwords": [
+        "noviembre"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chicome-source-4-18.png",
+      "status": "held",
+      "category": "incorrect-number",
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review.",
+      "inspection_number": 395,
+      "observed_headwords": [
+        "chikome"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chicueyi-source-4-19.png",
+      "status": "held",
+      "category": "incorrect-number",
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review.",
+      "inspection_number": 397,
+      "observed_headwords": [
+        "chikweyi"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cempohualli-source-4-31.png",
+      "status": "held",
+      "category": "incorrect-number",
+      "reason": "Independent thumbnail counts disagree with the number being taught: seven image has eight dots; eight image has six flowers; twenty image has sixteen dots. Replace after exact quantity review.",
+      "inspection_number": 403,
+      "observed_headwords": [
+        "sempowalli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/quehatza-6272.png",
+      "status": "held",
+      "category": "embedded-different-word",
+      "reason": "The how card embeds the different old word quehatza instead of the current INALI form Kenihki.",
+      "inspection_number": 46,
+      "observed_headwords": [
+        "kenihki"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mehua-source-7-10.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "Expansion reuse candidate E14 embeds the old source spelling mēhua instead of current INALI spelling.",
+      "expansion_review_number": "E14",
+      "observed_headwords": [
+        "mewa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cototzin-source-10-15.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The current INALI kototsin card is illustrated with embedded older spelling cototzin.",
+      "inspection_number": 408,
+      "observed_headwords": [
+        "kototsin"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/yahualtic-source-10-22.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E27",
+      "observed_headwords": [
+        "yawaltik"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/pitzonacatl-source-18-6.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E32",
+      "observed_headwords": [
+        "pitsonakatl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chichiquilli-source-18-7.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E33",
+      "observed_headwords": [
+        "chichikilli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mancohatl-source-19-24.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E39",
+      "observed_headwords": [
+        "mankohatl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/chalchocoatolli-source-19-29.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E44",
+      "observed_headwords": [
+        "chalchokoatolli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/popochcomitl-source-20-41.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E47",
+      "observed_headwords": [
+        "popochkomitl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/xochimantli-source-20-47.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E48",
+      "observed_headwords": [
+        "xochimantli"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/molcatl-source-21-21.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E50",
+      "observed_headwords": [
+        "molkatl"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cuaquixtia-source-21-28.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E53",
+      "observed_headwords": [
+        "kwakixtia"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    },
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/cuatecpichoa-source-21-30.png",
+      "status": "held",
+      "category": "embedded-non-inali-text",
+      "reason": "The expansion reuse candidate embeds older/source spelling that conflicts with the current INALI learning text.",
+      "expansion_review_number": "E54",
+      "observed_headwords": [
+        "kwatekpichoa"
+      ],
+      "reviewed_at": "2026-10-04",
+      "review_scope": "local browser thumbnail word match; not full-resolution safety or rights certification"
+    }
+  ],
+  "candidate_notes": [
+    {
+      "url": "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/mixxamia-source-7-11.png",
+      "status": "needs-concept-review",
+      "entry_id": "word-v3-0024",
+      "reason": "The bowl/towel scene may cue washing, but does not clearly show the face-washing action; review the intended teaching role before assignment.",
+      "review_number": "E15"
+    }
+  ],
+  "inspection_summary": {
+    "reviewed_at": "2026-10-04",
+    "reviewed_by": "Codex local browser visual inspection",
+    "core_gallery_assets": 468,
+    "expansion_candidates_inspected": 54,
+    "scope": "Thumbnail-level semantic, quantity, and embedded-spelling inspection. This is not full-resolution safety, rights, pronunciation, or linguistic certification. Remaining historical exact-image review metadata is retained independently.",
+    "gallery": "data/media-audit/page-1.html through page-20.html; expansion-1.html through expansion-3.html"
+  }
+}

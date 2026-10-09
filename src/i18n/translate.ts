@@ -1,3 +1,4 @@
+import "server-only";
 import spanishCatalog from "./es.generated.json";
 import spanishOverrides from "./es.overrides.json";
 import type { AppLocale } from "./config";

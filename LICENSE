@@ -2,11 +2,24 @@ Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-N
 
 Copyright (c) 2025 Sam Villa-Smith
 
-Except where otherwise noted. Imported Nāhuatlahtolli course material in
-src/data/nahuatlahtolli-course.json and rendered source-course lesson pages is
-adapted from COERLL's Nāhuatlahtolli course and remains licensed under Creative
-Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):
+Except where otherwise noted. Imported and adapted Nāhuatlahtolli learning
+content, including src/data/nahuatlahtolli-course.json, source-derived vocabulary,
+grammar examples, dialogue and construction corrections, and their rendered
+lesson pages, retains the publisher's Creative Commons Attribution-ShareAlike
+license and original notices. The live publisher listing confirms CC-BY-SA but
+does not specify its version; the older imported 4.0 label is unconfirmed.
+Itzli-authored expansion content and original contributions are offered under
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):
 https://creativecommons.org/licenses/by-sa/4.0/
+
+The NonCommercial condition below does not apply to that source-derived content.
+See NOTICE.md for author attribution, source links, and adaptation details.
+
+The release SQLite file contains selected course content and an identity-only
+ledger, not the private Kaikki/Wiktionary or Siméon research corpus. Source
+licenses and asset-specific notices remain applicable; the project license
+does not relicense a consulted publication, linked recording, unknown image
+or privately archived Meta MMS diagnostic output. See NOTICE.md.
 
 You are free to:
   Share — copy and redistribute the material in any medium or format

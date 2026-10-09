@@ -1,5 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse, type NextRequest } from "next/server";
+import { isLocalReviewMode } from "@/lib/local-review";
+import { PUBLIC_INDEXABLE_PATHS } from "@/lib/seo";
+import { clerkAuthorizedParties, clerkContentSecurityPolicy } from "@/lib/security-policy";
 import {
   ENGLISH_PATH_PREFIX,
   LEGACY_SPANISH_PATH_PREFIX,
@@ -14,18 +17,42 @@ import {
 } from "@/i18n/config";
 
 const PUBLIC_ROUTES = new Set([
-  "/",
-  "/terms",
-  "/privacy",
-  "/eula",
-  "/curriculum",
+  ...PUBLIC_INDEXABLE_PATHS,
+  // The report handler keeps POST authentication; only delivery status is public.
+  "/api/content-reports",
   "/api/webhooks/clerk",
   "/api/cron/purge-chat-audit",
   "/robots.txt",
   "/sitemap.xml",
+  "/third-party-notices.txt",
+  "/offline.html",
+  "/offline-audio.js",
+  "/nahuatl-orthography.js",
+  "/nahuatl-orthography.d.ts",
+  "/generated-course-audio.json",
+  "/audio-v3/audio-notices.json",
+  "/sw.js",
+  "/manifest.webmanifest",
+  "/favicon.ico",
+  "/itzli-learn-nahuatl.png",
+  "/itzli-learn-nahuatl.svg",
+  "/culture/nahua-sun-warrior-altar.jpg",
+  "/culture/mexica-coiled-serpent.jpg",
+  "/file.svg",
+  "/globe.svg",
+  "/window.svg",
+  "/next.svg",
+  "/vercel.svg",
 ]);
 
 const LOCALIZED_PAGE_ROOTS = [
+  "/learn",
+  "/conversations",
+  "/sentences",
+  "/review",
+  "/listening",
+  "/more-words",
+  "/expansion",
   "/culture",
   "/curriculum",
   "/design-preview",
@@ -55,6 +82,8 @@ function isPublicRoute(pathname: string) {
 }
 
 function isLocalizedPage(pathname: string) {
+  // Public static assets underneath a page prefix do not carry a display locale.
+  if (PUBLIC_ROUTES.has(pathname) && /\.[a-z0-9]+$/i.test(pathname)) return false;
   return (
     pathname === "/" ||
     LOCALIZED_PAGE_ROOTS.some((root) => pathname === root || pathname.startsWith(`${root}/`))
@@ -68,8 +97,9 @@ function localizedRequestHeaders(req: NextRequest, locale: AppLocale, pathname: 
   return requestHeaders;
 }
 
-export default clerkMiddleware(async (auth, req) => {
+async function handleRequest(req: NextRequest, protect?: (options?: { unauthenticatedUrl: string }) => Promise<unknown>) {
   const requestedPathname = req.nextUrl.pathname;
+  // Locale comes from the URL, not a caller-supplied internal request header.
   const locale = localeFromPathname(requestedPathname);
   const pathname = stripLocalePrefix(requestedPathname);
   const hasEnglishPrefix =
@@ -87,6 +117,7 @@ export default clerkMiddleware(async (auth, req) => {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
       sameSite: "lax",
+      secure: req.nextUrl.protocol === "https:",
     });
     return response;
   }
@@ -101,13 +132,13 @@ export default clerkMiddleware(async (auth, req) => {
     return NextResponse.redirect(destination);
   }
 
-  if (!isPublicRoute(pathname)) {
+  if (protect && !isPublicRoute(pathname)) {
     if (isLocalizedPage(pathname)) {
       const signInUrl = new URL(localizedPathname("/sign-in", locale), req.url);
       signInUrl.searchParams.set("redirect_url", req.url);
-      await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
+      await protect({ unauthenticatedUrl: signInUrl.toString() });
     } else {
-      await auth.protect();
+      await protect();
     }
   }
 
@@ -124,14 +155,31 @@ export default clerkMiddleware(async (auth, req) => {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
       sameSite: "lax",
+      secure: req.nextUrl.protocol === "https:",
     });
   }
   return response;
-});
+}
+
+const authenticatedProxy = clerkMiddleware(
+  async (auth, req) => handleRequest(req, (options) => auth.protect(options)),
+  req => ({
+    authorizedParties: clerkAuthorizedParties(),
+    // Cacheable standalone offline HTML uses exact script hashes from config.
+    ...(req.nextUrl.pathname !== "/offline.html" ? {
+      contentSecurityPolicy: clerkContentSecurityPolicy(req.nextUrl.protocol === "https:"),
+    } : {}),
+  }),
+);
+export default function proxy(req: NextRequest, event: Parameters<typeof authenticatedProxy>[1]) {
+  return isLocalReviewMode() ? handleRequest(req) : authenticatedProxy(req, event);
+}
 
 export const config = {
   matcher: [
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|wav|mp3|ogg|opus|aac|flac|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Match dynamic paths regardless of a suffix. Only framework asset trees
+    // are excluded; explicit public assets above remain reachable anonymously.
+    "/((?!_next/static(?:/|$)|_next/image(?:/|$)).*)",
     "/(api|trpc)(.*)",
   ],
 };
