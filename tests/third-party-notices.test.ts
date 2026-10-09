@@ -8,6 +8,7 @@ type Package = { name: string; version: string; location: string; notices: Notic
 const notices = require("../scripts/prepare-third-party-notices.cjs") as {
   createThirdPartyNotices: () => { text: string; manifest: { packages: Package[]; bundledNotices: Array<{ notice: Notice }> } };
   prepareThirdPartyNotices: (options: { check: boolean }) => { text: string; manifest: { packages: Package[] } };
+  packageFallbackNotices: (metadata: { name: string; version: string }, recorded: { integrity?: string }, fallbacks: Record<string, { file: string; sourceUrl: string; sha256: string; registryIntegrity?: string }>) => { notices: Notice[]; attributionNote: string } | null;
 };
 
 describe("public third-party software distribution notices", () => {
@@ -57,5 +58,23 @@ describe("public third-party software distribution notices", () => {
     expect(terms).toContain("Open-source software licenses and notices");
     expect(terms).toContain("Licencias y avisos del software de código abierto");
     expect(fs.existsSync("public/third-party-notices.txt")).toBe(true);
+  });
+
+  it.each(["linux-x64", "linuxmusl-x64"])("preserves the missing %s binary library notices with locked package identity", platform => {
+    const name = `@img/sharp-libvips-${platform}`, version = "1.3.4";
+    const fallbacks = require("../scripts/licenses/notice-fallbacks.json");
+    const lock = require("../package-lock.json");
+    const result = notices.packageFallbackNotices({ name, version }, lock.packages[`node_modules/${name}`], fallbacks)!;
+    expect(result.notices).toHaveLength(1);
+    expect(result.notices[0].file).toBe("scripts/licenses/sharp-libvips-1.3.4-linux.LICENSE");
+    expect(result.notices[0].sourceUrl).toContain("ebb95f8add54eee8bed840e3fb587e4cbec857d7/THIRD-PARTY-NOTICES.md");
+    expect(result.notices[0].text).toContain("GNU LESSER GENERAL PUBLIC LICENSE");
+    expect(result.notices[0].text).toContain("GNU GENERAL PUBLIC LICENSE");
+    expect(result.notices[0].text).toContain("Free Software Foundation");
+    expect(result.notices[0].text).toContain("libvips");
+    expect(result.notices[0].sha256).toBe("07ddfbd5ae4abaff99b138a37daef8d67f97266c79afa1661613dbdfa08ffca9");
+    expect(() => notices.packageFallbackNotices({ name, version }, { integrity: "changed" }, fallbacks)).toThrow(/package integrity changed/);
+    const changed = { ...fallbacks, [`${name}@${version}`]: { ...fallbacks[`${name}@${version}`], sha256: "changed" } };
+    expect(() => notices.packageFallbackNotices({ name, version }, lock.packages[`node_modules/${name}`], changed)).toThrow(/Pinned upstream notice changed/);
   });
 });

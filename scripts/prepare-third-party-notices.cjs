@@ -54,6 +54,17 @@ function repositoryUrl(metadata) {
   return repository?.replace(/^git\+/, "") ?? metadata.homepage ?? null;
 }
 
+function packageFallbackNotices(metadata, recorded, fallbacks) {
+  const fallback = fallbacks[`${metadata.name}@${metadata.version}`];
+  if (!fallback) return null;
+  if (fallback.registryIntegrity && fallback.registryIntegrity !== recorded.integrity) {
+    throw new Error(`Pinned upstream notice package integrity changed: ${metadata.name}`);
+  }
+  const notice = noticeFile(path.join(ROOT, fallback.file), { sourceUrl: fallback.sourceUrl });
+  if (notice.sha256 !== fallback.sha256) throw new Error(`Pinned upstream notice changed: ${metadata.name}`);
+  return { notices: [notice], attributionNote: fallback.note };
+}
+
 function createThirdPartyNotices() {
   const lock = readJson(path.join(ROOT, "package-lock.json"));
   const fallbacks = readJson(path.join(ROOT, "scripts/licenses/notice-fallbacks.json"));
@@ -84,14 +95,10 @@ function createThirdPartyNotices() {
       notices = [noticeFile(path.join(ROOT, "node_modules/react/LICENSE"), { scope: "Parent React project license" })];
       attributionNote = "This React marker package declares MIT and identifies the React project; the parent project's full notice is retained.";
     }
-    const fallback = fallbacks[`${metadata.name}@${metadata.version}`];
-    if (!notices.length && fallback) {
-      if (fallback.registryIntegrity && fallback.registryIntegrity !== recorded.integrity) {
-        throw new Error(`Pinned upstream notice package integrity changed: ${metadata.name}`);
-      }
-      notices = [noticeFile(path.join(ROOT, fallback.file), { sourceUrl: fallback.sourceUrl })];
-      if (notices[0].sha256 !== fallback.sha256) throw new Error(`Pinned upstream notice changed: ${metadata.name}`);
-      attributionNote = fallback.note;
+    const fallback = !notices.length ? packageFallbackNotices(metadata, recorded, fallbacks) : null;
+    if (fallback) {
+      notices = fallback.notices;
+      attributionNote = fallback.attributionNote;
     }
     if (!notices.length) missing.push(`${metadata.name}@${metadata.version}`);
     installed.push({ location, name: metadata.name, version: metadata.version,
@@ -169,4 +176,4 @@ if (require.main === module) {
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }
 
-module.exports = { createThirdPartyNotices, prepareThirdPartyNotices, OUTPUT, MANIFEST };
+module.exports = { createThirdPartyNotices, prepareThirdPartyNotices, packageFallbackNotices, OUTPUT, MANIFEST };
