@@ -125,9 +125,6 @@ export function audioGroupsForPath(pathname: string): string[] {
   return [];
 }
 
-export function backgroundAudioAllowed(connection?: { saveData?: boolean; effectiveType?: string }, online = true) {
-  return online && !connection?.saveData && !["slow-2g", "2g", "3g"].includes(connection?.effectiveType ?? "");
-}
 export function isLearningAudioPath(pathname: string) {
   const path = pathname.replace(/^\/(en|es)(?=\/|$)/, "");
   return /^\/(?:learn|units|practice|grammar|conversations|sentences|listening|review|vocabulary|progress|source-course)(?:\/|$)/.test(path);

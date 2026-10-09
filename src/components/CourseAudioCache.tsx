@@ -3,9 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { GENERATED_AUDIO_ASSETS, GENERATED_AUDIO_INDEX, ORIGINAL_SOURCE_AUDIO_URLS } from "@/lib/generated-audio";
-import { audioGroupsForPath, backgroundAudioAllowed, isLearningAudioPath, precacheGeneratedAudio, type AudioCacheProgress } from "@/lib/audio-cache";
-import { preloadSourceAudio, type SourceAudioProgress } from "@/lib/source-audio-preload";
+import { GENERATED_AUDIO_ASSETS, GENERATED_AUDIO_INDEX } from "@/lib/generated-audio";
+import { audioGroupsForPath, isLearningAudioPath, precacheGeneratedAudio, type AudioCacheProgress } from "@/lib/audio-cache";
+import { preloadSourceAudio } from "@/lib/source-audio-preload";
+
+const packBytes = GENERATED_AUDIO_ASSETS.reduce((total, asset) => total + (asset.byte_length ?? 0), 0);
+const packMegabytes = Math.round(packBytes / 1_000_000);
 
 export default function CourseAudioCache() {
   const pathname = usePathname();
@@ -14,7 +17,7 @@ export default function CourseAudioCache() {
   const learningPath = isLearningAudioPath(pathname);
   const [progress, setProgress] = useState<AudioCacheProgress | null>(null);
   const [running, setRunning] = useState(false);
-  const [sourceProgress, setSourceProgress] = useState<SourceAudioProgress | null>(null);
+  const [downloadStarted, setDownloadStarted] = useState(false);
   const controller = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -26,7 +29,7 @@ export default function CourseAudioCache() {
     // Current lesson has first priority; only its actual next path lesson follows.
     groups.forEach((group, index) => {
       // Register every current-lesson clip now, before the adjacent lesson or
-      // background pack. The queues still bound actual concurrent requests.
+      // optional audio pack. The queues still bound actual concurrent requests.
       void precacheGeneratedAudio(GENERATED_AUDIO_INDEX.lessonAssets(group), { priority: index + 1, signal: abort.signal, enqueueAll: true });
       void preloadSourceAudio(GENERATED_AUDIO_INDEX.lessonSourceUrls(group), { priority: index + 1, signal: abort.signal, enqueueAll: true });
     });
@@ -37,56 +40,48 @@ export default function CourseAudioCache() {
     if (controller.current) return;
     const abort = new AbortController();
     controller.current = abort;
+    setDownloadStarted(true);
     setRunning(true);
-    const [result, originals] = await Promise.all([
-      precacheGeneratedAudio(GENERATED_AUDIO_ASSETS, { priority: 10, signal: abort.signal, onProgress: setProgress }),
-      preloadSourceAudio(ORIGINAL_SOURCE_AUDIO_URLS, { priority: 10, signal: abort.signal, onProgress: setSourceProgress }),
-    ]);
+    const result = await precacheGeneratedAudio(GENERATED_AUDIO_ASSETS, { priority: 10, signal: abort.signal, onProgress: setProgress });
     if (controller.current === abort) {
       controller.current = null;
       setProgress(result);
-      setSourceProgress(originals);
       setRunning(false);
     }
   }, []);
   useEffect(() => {
-    const begin = () => {
-      const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-      if (learningPath && (GENERATED_AUDIO_ASSETS.length || ORIGINAL_SOURCE_AUDIO_URLS.length) && document.visibilityState !== "hidden" && backgroundAudioAllowed(connection, navigator.onLine)) void saveAll();
-    };
     const pause = () => controller.current?.abort();
-    // Fill the course gradually after the page settles. Slow/metered connections
-    // keep lesson preloading and expose the same explicit resumable download.
-    const timer = setTimeout(begin, 4_000);
-    window.addEventListener("online", begin);
+    // Only an explicit learner action starts or resumes the optional pack.
+    // Keep it running across routes, while going offline pauses it safely.
     window.addEventListener("offline", pause);
-    document.addEventListener("visibilitychange", begin);
     return () => {
-      clearTimeout(timer); controller.current?.abort();
-      window.removeEventListener("online", begin); window.removeEventListener("offline", pause);
-      document.removeEventListener("visibilitychange", begin);
+      controller.current?.abort();
+      window.removeEventListener("offline", pause);
     };
-  }, [saveAll, learningPath]);
+  }, []);
   useEffect(() => {
     const requested = () => { if (learningPath) void saveAll(); };
     window.addEventListener("itzli-course-audio-download", requested);
     return () => window.removeEventListener("itzli-course-audio-download", requested);
   }, [saveAll, learningPath]);
 
-  if (!learningPath || (!GENERATED_AUDIO_ASSETS.length && !ORIGINAL_SOURCE_AUDIO_URLS.length)) return null;
+  if ((!learningPath && !downloadStarted) || !GENERATED_AUDIO_ASSETS.length) return null;
   const complete = progress?.saved === GENERATED_AUDIO_ASSETS.length;
-  const allPrepared = complete && (!ORIGINAL_SOURCE_AUDIO_URLS.length || sourceProgress?.prepared === ORIGINAL_SOURCE_AUDIO_URLS.length);
+  const actionLabel = running ? (es ? "Pausar descarga" : "Pause download")
+    : progress?.paused ? (es ? "Continuar descarga" : "Resume download")
+    : progress?.failed ? (es ? "Reintentar descarga" : "Retry download")
+    : (es ? "Descargar todo el audio de práctica" : "Download all practice audio");
   return <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-stone-500">
-    <span role="status">{complete ? (es ? "Voces de práctica guardadas en este dispositivo." : "Practice voices saved on this device.")
-      : progress ? (es ? `${progress.saved} de ${progress.total} grabaciones guardadas.` : `${progress.saved} of ${progress.total} recordings saved.`)
-      : (es ? "El audio de tus lecciones se prepara mientras aprendes." : "Your lesson audio prepares while you learn.")}</span>
-    {sourceProgress && <span>{es ? `${sourceProgress.prepared} de ${sourceProgress.total} grabaciones originales preparadas para escuchar en línea. El navegador controla cuánto tiempo las conserva.`
-      : `${sourceProgress.prepared} of ${sourceProgress.total} original recordings prepared for online playback. Your browser controls how long it keeps them.`}</span>}
-    {!allPrepared && <button type="button" className="font-semibold text-emerald-700 underline" onClick={() => {
+    {!downloadStarted && <span>{es ? "El audio de tus lecciones se prepara mientras aprendes." : "Your lesson audio prepares while you learn."}</span>}
+    <span>{es ? `Opcional para escuchar sin conexión. Usa datos y espacio en tu dispositivo${packBytes ? ` (aprox. ${packMegabytes} MB)` : ""}.`
+      : `Optional for offline listening. Uses data and device storage${packBytes ? ` (about ${packMegabytes} MB)` : ""}.`}</span>
+    {downloadStarted && <span role="status">{complete ? (es ? "Audio de práctica guardado para escuchar sin conexión en este dispositivo." : "Practice audio saved for offline listening on this device.")
+      : progress ? (es ? `${progress.saved} de ${progress.total} grabaciones de práctica guardadas.` : `${progress.saved} of ${progress.total} practice recordings saved.`)
+      : (es ? "Preparando tu descarga de audio de práctica…" : "Preparing your practice audio download…")}</span>}
+    {!complete && <button type="button" className="font-semibold text-emerald-700 underline" onClick={() => {
       if (running) controller.current?.abort();
       else void saveAll();
-    }}>{running ? (es ? "Pausar descarga de audio" : "Pause audio download")
-      : (es ? "Guardar todo el audio del curso" : "Save all course audio")}</button>}
-    {progress?.paused && !running && <span>{es ? "Puedes continuar la descarga cuando tengas conexión y espacio." : "Resume when you have a connection and storage space."}</span>}
+    }}>{actionLabel}</button>}
+    {downloadStarted && progress?.paused && !running && <span>{es ? "Puedes continuar la descarga cuando tengas conexión y espacio." : "Resume when you have a connection and storage space."}</span>}
   </div>;
 }

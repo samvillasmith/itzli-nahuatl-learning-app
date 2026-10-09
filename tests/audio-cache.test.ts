@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { createGeneratedAudioIndex } from "@/lib/generated-audio";
-import { GeneratedAudioCacheQueue, audioGroupsForPath, backgroundAudioAllowed, isLearningAudioPath, precacheGeneratedAudio } from "@/lib/audio-cache";
+import { GeneratedAudioCacheQueue, audioGroupsForPath, isLearningAudioPath, precacheGeneratedAudio } from "@/lib/audio-cache";
 import { audioFixture } from "./helpers/audio-fixture";
 
 function fixture(count = 8, options: { quota?: number; fail?: boolean; type?: string } = {}) {
@@ -130,17 +130,13 @@ describe("bounded resumable course audio cache", () => {
     expect(attempted).toHaveLength(3);
     expect(saved).toEqual([]);
   });
-  it("prepares the actual next path lesson and respects metered/offline connections", () => {
+  it("prepares the actual next path lesson only on learning routes", () => {
     const groups = audioGroupsForPath("/es/units/11");
     expect(groups[0]).toBe("unit:11"); expect(groups).toHaveLength(2);
     expect(audioGroupsForPath("/en/practice/11")).toEqual(groups);
     expect(audioGroupsForPath("/es/source-course/13")).toEqual(["source-course:13"]);
     expect(audioGroupsForPath("/en/grammar/possession")).toEqual(["grammar:possession"]);
     expect(audioGroupsForPath("/api/account")).toEqual([]);
-    expect(backgroundAudioAllowed({ saveData: true })).toBe(false);
-    expect(backgroundAudioAllowed({ effectiveType: "3g" })).toBe(false);
-    expect(backgroundAudioAllowed({}, false)).toBe(false);
-    expect(backgroundAudioAllowed({ effectiveType: "4g" })).toBe(true);
     expect(isLearningAudioPath("/es/units/11")).toBe(true);
     expect(isLearningAudioPath("/privacy")).toBe(false);
     expect(isLearningAudioPath("/en/sign-in")).toBe(false);
