@@ -4,7 +4,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { ROOT, loadTs, loadCurrentAudioManifest, sha256 } = require("./course-audio-inputs");
-const { getExcludedAudioDependencies } = require("../../src/lib/learner-audio-projection.cjs");
+const { getExcludedAudioDependencies, AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT,
+  isAudioEligibilityCodeSource, canonicalAudioEligibilityCodeSource } = require("../../src/lib/learner-audio-projection.cjs");
 
 const SOURCE_FILES = ["src/data/app-content-exclusions.json", "src/data/app-content-reviewed-allowlist.json",
   "src/data/reviewed-vocabulary-labels.json", "src/data/learner-vocabulary-senses.json", "src/lib/reviewed-vocabulary-labels.cjs",
@@ -15,6 +16,20 @@ const SOURCE_FILES = ["src/data/app-content-exclusions.json", "src/data/app-cont
   "src/lib/nahuatlahtolli.ts", "scripts/lib/learner-audio-eligibility.cjs", "src/lib/learner-audio-projection.cjs",
   "src/lib/generated-audio.ts", "src/lib/audio.ts", "public/offline-audio.js", "public/offline.html"];
 const read = file => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
+function audioEligibilitySourceHash(file) {
+  const bytes = fs.readFileSync(path.join(ROOT, file));
+  return sha256(isAudioEligibilityCodeSource(file) ? canonicalAudioEligibilityCodeSource(bytes.toString("utf8")) : bytes);
+}
+function checkedAudioEligibilityFingerprints(policy) {
+  if (policy.source_sha256_format !== AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT ||
+      !policy.source_sha256 || typeof policy.source_sha256 !== "object" || Array.isArray(policy.source_sha256) ||
+      JSON.stringify(Object.keys(policy.source_sha256)) !== JSON.stringify(SOURCE_FILES)) {
+    throw new Error("Learner audio source fingerprint format is stale; refresh the equivalent policy locally.");
+  }
+  for (const file of SOURCE_FILES) if (policy.source_sha256[file] !== audioEligibilitySourceHash(file)) {
+    throw new Error(`Learner audio source changed: ${file}`);
+  }
+}
 
 /** Exact native bindings establish URL eligibility; filenames alone never
  * attest that a file contains a longer sentence or passage. Shared recordings
@@ -88,8 +103,10 @@ function buildLearnerAudioEligibility(records = []) {
     patterns: contentPolicy.learnerSenseRules.map(row => row.pattern) };
   return { schema_version: 1, excluded_reference_ids: [...excluded.keys()].sort(), learner_content_policy,
     excluded_source_urls: [...excludedUrls].sort(),
-    source_sha256: Object.fromEntries(SOURCE_FILES.map(file => [file, sha256(fs.readFileSync(path.join(ROOT, file)))])),
+    source_sha256_format: AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT,
+    source_sha256: Object.fromEntries(SOURCE_FILES.map(file => [file, audioEligibilitySourceHash(file)])),
     evidence: [...excluded].map(([reference_id, reason]) => ({ reference_id, reason })) };
 }
 
-module.exports = { buildLearnerAudioEligibility, getExcludedNativeSourceUrls, SOURCE_FILES };
+module.exports = { buildLearnerAudioEligibility, getExcludedNativeSourceUrls, SOURCE_FILES,
+  audioEligibilitySourceHash, checkedAudioEligibilityFingerprints };

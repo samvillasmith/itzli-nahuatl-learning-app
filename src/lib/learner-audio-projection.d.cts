@@ -1,3 +1,6 @@
+export const AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT: "raw-data-and-utf8-lf-source-v1";
+export function isAudioEligibilityCodeSource(filename: string): boolean;
+export function canonicalAudioEligibilityCodeSource(text: string): string;
 export function projectLearnerAudioManifest<T extends {
   assets: { id: string }[];
   bindings: { reference_id: string; asset_id: string }[];

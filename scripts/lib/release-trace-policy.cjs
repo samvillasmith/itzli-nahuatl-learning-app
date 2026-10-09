@@ -37,21 +37,50 @@ function releaseTraceFiles(output) {
   output = path.resolve(output);
   if (!fs.existsSync(output)) throw new Error("Build the app locally before checking the actual release traces.");
   if (fs.lstatSync(output).isSymbolicLink() || !fs.statSync(output).isDirectory()) throw new Error(`Invalid release trace output directory: ${output}`);
-  const traces = [];
+  const canonicalOutput = fs.realpathSync(output);
+  const functions = path.join(canonicalOutput, "output", "functions");
+  const devCache = path.join(canonicalOutput, "dev");
+  const traces = new Set(), visited = new Set();
+  const within = (base, target) => {
+    const relative = path.relative(base, target);
+    return relative === "" || relative !== ".." && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative);
+  };
   function visit(directory) {
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-      const filename = path.join(directory, entry.name);
+    const canonical = fs.realpathSync(directory);
+    if (visited.has(canonical)) return;
+    visited.add(canonical);
+    for (const entry of fs.readdirSync(canonical, { withFileTypes: true })) {
+      const filename = path.join(canonical, entry.name);
       // Next 16 reserves output/dev for its separate development cache. Only
       // that top-level tree is excluded; a production route named dev is traced.
-      if (directory === output && entry.name === "dev") continue;
-      if (entry.isSymbolicLink()) throw new Error(`Linked build path is not eligible for release trace processing: ${filename}`);
+      if (canonical === canonicalOutput && entry.name === "dev") continue;
+      if (entry.isSymbolicLink()) {
+        // Platform adapters alias RSC function outputs to their canonical .func
+        // directory. Follow only that namespace and validate the final target;
+        // ordinary server/runtime links still fail closed.
+        if (!within(functions, filename) || !entry.name.endsWith(".func")) {
+          throw new Error(`Linked build path is not eligible for release trace processing: ${filename}`);
+        }
+        let target;
+        try { target = fs.realpathSync(filename); } catch {
+          throw new Error(`Broken or cyclic function alias is not eligible for release trace processing: ${filename}`);
+        }
+        const config = path.join(target, ".vc-config.json");
+        if (!within(canonicalOutput, target) || !within(functions, target) || !path.basename(target).endsWith(".func") ||
+            within(devCache, target) || privateReleasePathReason(path.dirname(canonicalOutput), target) ||
+            !fs.statSync(target).isDirectory() || !fs.existsSync(config) || !fs.lstatSync(config).isFile()) {
+          throw new Error(`Function alias target is not an internal production build directory: ${filename}`);
+        }
+        visit(target);
+        continue;
+      }
       if (entry.isDirectory()) visit(filename);
-      else if (entry.isFile() && entry.name.endsWith(".nft.json")) traces.push(filename);
+      else if (entry.isFile() && entry.name.endsWith(".nft.json")) traces.add(filename);
     }
   }
   visit(output);
-  if (!traces.length) throw new Error("No build traces found.");
-  return traces.sort();
+  if (!traces.size) throw new Error("No build traces found.");
+  return [...traces].sort();
 }
 
 function readReleaseTraces(output) {

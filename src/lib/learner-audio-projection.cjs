@@ -1,5 +1,15 @@
 "use strict";
 
+const AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT = "raw-data-and-utf8-lf-source-v1";
+/** Git converts code line endings between Windows and Linux. Canonicalize only
+ * those text sources; source data, image bytes and recordings remain exact. */
+function isAudioEligibilityCodeSource(filename) {
+  return /\.(?:ts|tsx|js|jsx|cjs|mjs|cts|mts|html)$/u.test(filename);
+}
+function canonicalAudioEligibilityCodeSource(text) {
+  return text.replace(/\r\n/g, "\n");
+}
+
 /** Follow explicit identity links only. Source evidence prose never becomes a
  * content classifier, and a form with a retained parent remains eligible. */
 function getExcludedAudioDependencies(records, excludedReferenceIds, excludedEntryIds) {
@@ -43,4 +53,5 @@ function projectLearnerAudioManifest(manifest, policy = {}) {
     ...(policy.learner_content_policy ? { learner_content_policy: policy.learner_content_policy } : {}) };
 }
 
-module.exports = { projectLearnerAudioManifest, getExcludedAudioDependencies };
+module.exports = { projectLearnerAudioManifest, getExcludedAudioDependencies,
+  AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT, isAudioEligibilityCodeSource, canonicalAudioEligibilityCodeSource };

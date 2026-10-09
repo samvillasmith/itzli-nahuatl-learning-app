@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 import published from "@/data/generated-course-audio.json";
 import policy from "@/data/audio-learner-exclusions.json";
-import { projectLearnerAudioManifest, getExcludedAudioDependencies } from "@/lib/learner-audio-projection.cjs";
+import { projectLearnerAudioManifest, getExcludedAudioDependencies, AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT,
+  isAudioEligibilityCodeSource, canonicalAudioEligibilityCodeSource } from "@/lib/learner-audio-projection.cjs";
 import { createGeneratedAudioIndex, GENERATED_AUDIO_INDEX, resolvePracticeRecording } from "@/lib/generated-audio";
 import { getExcludedLearnerPhraseIds } from "@/lib/instructional-lessons";
 import { audioFixture } from "./helpers/audio-fixture";
@@ -12,6 +14,8 @@ import { audioFixture } from "./helpers/audio-fixture";
 const native = "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/shared.mp3";
 const removedNative = "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/excluded.mp3";
 const passage = "https://tlahtolli.coerll.utexas.edu/wp-content/uploads/passage.mp3";
+const require = createRequire(import.meta.url);
+const { checkedAudioEligibilityFingerprints } = require("../scripts/lib/learner-audio-eligibility.cjs");
 
 describe("current learner audio eligibility", () => {
   it("removes excluded downloads and lesson bindings while preserving exact shared clips", () => {
@@ -60,8 +64,12 @@ describe("current learner audio eligibility", () => {
 
   it("ships identical eligible online/offline manifests and blocks every current excluded phrase", () => {
     expect(fs.readFileSync(path.resolve("src/data/generated-course-audio.json")).equals(fs.readFileSync(path.resolve("public/generated-course-audio.json")))).toBe(true);
-    for (const [file, hash] of Object.entries(policy.source_sha256))
-      expect(createHash("sha256").update(fs.readFileSync(path.resolve(file))).digest("hex"), file).toBe(hash);
+    expect(policy.source_sha256_format).toBe(AUDIO_ELIGIBILITY_SOURCE_HASH_FORMAT);
+    for (const [file, hash] of Object.entries(policy.source_sha256)) {
+      const bytes = fs.readFileSync(path.resolve(file));
+      const canonical = isAudioEligibilityCodeSource(file) ? canonicalAudioEligibilityCodeSource(bytes.toString("utf8")) : bytes;
+      expect(createHash("sha256").update(canonical).digest("hex"), file).toBe(hash);
+    }
     const held = new Set(published.held_reference_ids);
     const activeRefs = new Set([...published.bindings, ...published.source_bindings].map(binding => binding.reference_id));
     for (const id of policy.excluded_reference_ids) {
@@ -76,5 +84,38 @@ describe("current learner audio eligibility", () => {
     for (const group of published.lesson_assets) for (const id of group.asset_ids) expect(assets.has(id), group.id).toBe(true);
     expect(GENERATED_AUDIO_INDEX.lookup("wikatl", "core-vocab:680")).toBeTruthy();
     expect(JSON.stringify(projectLearnerAudioManifest(published, policy))).toBe(JSON.stringify(published));
+  });
+});
+
+describe("portable learner audio source fingerprints", () => {
+  const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
+  it("recognizes only source-code/text extensions, keeping data and binary assets exact", () => {
+    for (const file of ["src/lib/policy.ts", "helper.cjs", "page.tsx", "public/offline.html"]) expect(isAudioEligibilityCodeSource(file)).toBe(true);
+    for (const file of ["source.json", "reviewed.png", "clip.mp3", "course.sqlite", "source.ts.json"]) expect(isAudioEligibilityCodeSource(file)).toBe(false);
+  });
+  it("gives identical hashes to LF and Git's Windows CRLF checkout of the same reviewed code", () => {
+    const code = 'const cue = "xiuitl";\nexport const allowed = true;\n';
+    expect(hash(canonicalAudioEligibilityCodeSource(code.replaceAll("\n", "\r\n")))).toBe(hash(canonicalAudioEligibilityCodeSource(code)));
+  });
+  it("still rejects changed source content, spaces, statements and escaped characters", () => {
+    const code = 'const cue = "xiuitl";\nexport const allowed = true;\n';
+    const expected = hash(canonicalAudioEligibilityCodeSource(code));
+    for (const changed of [code.replace("xiuitl", "different"), code.replace("true", "false"), code.replace(" = ", "="), code + "\n", code + "const literal = '\\r\\n';\n"])
+      expect(hash(canonicalAudioEligibilityCodeSource(changed))).not.toBe(expected);
+  });
+  it("does not treat byte changes in a reviewed JSON source as equivalent", () => {
+    const data = '{"evidence":"exact source"}\n';
+    expect(hash(Buffer.from(data))).not.toBe(hash(Buffer.from(data.replaceAll("\n", "\r\n"))));
+    expect(isAudioEligibilityCodeSource("source.json")).toBe(false);
+  });
+  it("checks the complete declared source registry and refuses legacy or unknown hash protocols", () => {
+    expect(() => checkedAudioEligibilityFingerprints(policy)).not.toThrow();
+    for (const format of [undefined, "unknown-v99"])
+      expect(() => checkedAudioEligibilityFingerprints({ ...policy, source_sha256_format: format })).toThrow(/format/);
+    expect(() => checkedAudioEligibilityFingerprints({ ...policy, source_sha256: {} })).toThrow(/format/);
+  });
+  it("rejects changed code fingerprints before learner catalog preparation can continue", () => {
+    const modified = { ...policy, source_sha256: { ...policy.source_sha256, "src/lib/app-content-safety.ts": "0".repeat(64) } };
+    expect(() => checkedAudioEligibilityFingerprints(modified)).toThrow(/source changed/);
   });
 });

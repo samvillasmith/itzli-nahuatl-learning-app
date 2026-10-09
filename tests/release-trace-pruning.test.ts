@@ -114,6 +114,74 @@ describe("exact private release trace references", () => {
     expect(fs.existsSync(target)).toBe(true);
   });
 
+  it("follows platform function aliases once using canonical trace paths and prunes every private reference", () => {
+    const { root, traceFile } = fixture();
+    fs.writeFileSync(traceFile, JSON.stringify({ version: 1, files: [relative(traceFile, path.join(root, "fcn_course_release.sqlite"))] }));
+    const functions = path.join(root, ".next/output/functions"), canonical = path.join(functions, "_global-error.func");
+    const platformTrace = path.join(canonical, "index.js.nft.json"), segments = path.join(functions, "_global-error.segments");
+    fs.mkdirSync(canonical, { recursive: true }); fs.mkdirSync(segments);
+    fs.writeFileSync(path.join(canonical, ".vc-config.json"), JSON.stringify({ runtime: "nodejs22.x", handler: "index.js" }));
+    const privateFile = path.join(root, "data/private.json");
+    fs.mkdirSync(path.dirname(privateFile)); fs.writeFileSync(privateFile, "private-original");
+    fs.writeFileSync(platformTrace, JSON.stringify({ version: 1, files: [relative(platformTrace, privateFile), relative(platformTrace, path.join(root, "fcn_course_release.sqlite"))] }));
+    const alias = path.join(segments, "_full.segment.rsc.func");
+    fs.symlinkSync(canonical, alias, "junction");
+    fs.symlinkSync(canonical, path.join(functions, "_global-error.rsc.func"), "junction");
+    expect(prunePrivateReleaseTraces({ root, write: true })).toMatchObject({ traceFiles: 2, tracesChanged: 1, privateReferencesRemoved: 1, generatedTraceWrites: 1, assetFilesChanged: 0 });
+    expect(JSON.parse(fs.readFileSync(platformTrace, "utf8")).files).toEqual([relative(platformTrace, path.join(root, "fcn_course_release.sqlite"))]);
+    expect(fs.readFileSync(privateFile, "utf8")).toBe("private-original");
+    expect(fs.lstatSync(alias).isSymbolicLink()).toBe(true);
+    expect(prunePrivateReleaseTraces({ root, write: true })).toMatchObject({ traceFiles: 2, tracesChanged: 0 });
+  });
+
+  it("safely visits a canonical function directory once when an internal alias points back to it", () => {
+    const { root, traceFile } = fixture();
+    const original = JSON.stringify({ version: 1, files: [relative(traceFile, path.join(root, "data/private.json"))] });
+    fs.writeFileSync(traceFile, original);
+    const canonical = path.join(root, ".next/output/functions/page.func");
+    fs.mkdirSync(canonical, { recursive: true });
+    fs.writeFileSync(path.join(canonical, ".vc-config.json"), JSON.stringify({ runtime: "nodejs22.x", handler: "index.js" }));
+    fs.symlinkSync(canonical, path.join(canonical, "ancestor.func"), "junction");
+    expect(prunePrivateReleaseTraces({ root, write: true })).toMatchObject({ traceFiles: 1, privateReferencesRemoved: 1 });
+    expect(JSON.parse(fs.readFileSync(traceFile, "utf8")).files).toEqual([]);
+  });
+
+  it.each(["outside", "private", "dev", "broken", "missing-config", ...(process.platform !== "win32" ? ["file"] : [])])("rejects a %s function alias target before modifying any trace", kind => {
+    const { root, traceFile } = fixture();
+    const original = JSON.stringify({ version: 1, files: [relative(traceFile, path.join(root, "data/private.json"))] });
+    fs.writeFileSync(traceFile, original);
+    const functions = path.join(root, ".next/output/functions"); fs.mkdirSync(functions, { recursive: true });
+    const target = kind === "outside" ? fixture().root : kind === "private" ? path.join(root, "data/private") :
+      kind === "dev" ? path.join(root, ".next/dev") : ["missing-config", "file"].includes(kind) ? path.join(functions, "canonical.func") : path.join(root, ".next", `${kind}-target`);
+    if (kind === "file") fs.writeFileSync(target, "plain-file");
+    else if (kind !== "broken") fs.mkdirSync(target, { recursive: true });
+    const alias = path.join(functions, "unsafe.func");
+    fs.symlinkSync(target, alias, kind === "file" ? "file" : "junction");
+    expect(() => prunePrivateReleaseTraces({ root, write: true })).toThrow(alias);
+    expect(fs.readFileSync(traceFile, "utf8")).toBe(original);
+  });
+
+  it("rejects mutually cyclic function links before modifying trace metadata", () => {
+    const { root, traceFile } = fixture();
+    const original = JSON.stringify({ version: 1, files: [relative(traceFile, path.join(root, "data/private.json"))] });
+    fs.writeFileSync(traceFile, original);
+    const functions = path.join(root, ".next/output/functions"); fs.mkdirSync(functions, { recursive: true });
+    const a = path.join(functions, "a.func"), b = path.join(functions, "b.func");
+    fs.symlinkSync(b, a, "junction"); fs.symlinkSync(a, b, "junction");
+    expect(() => prunePrivateReleaseTraces({ root, write: true })).toThrow(/Broken or cyclic function alias/);
+    expect(fs.readFileSync(traceFile, "utf8")).toBe(original);
+  });
+
+  it("rejects internal aliases outside the platform function namespace", () => {
+    const { root, traceFile } = fixture();
+    const original = JSON.stringify({ version: 1, files: [relative(traceFile, path.join(root, "data/private.json"))] });
+    fs.writeFileSync(traceFile, original);
+    const target = path.join(root, ".next/server/canonical"); fs.mkdirSync(target);
+    const alias = path.join(root, ".next/server/linked.func"); fs.symlinkSync(target, alias, "junction");
+    expect(() => prunePrivateReleaseTraces({ root, write: true })).toThrow(alias);
+    expect(fs.readFileSync(traceFile, "utf8")).toBe(original);
+  });
+
   it.each([null, [], {}, { version: 2, files: [] }, { version: 1, files: "not-an-array" },
     { version: 1, files: [42] }, { version: 1, files: [""] }, { version: 1, files: ["bad\0path"] },
     { version: 1, files: ["C:\\absolute\\file.json"] }, { version: 1, files: ["/absolute/file.json"] }])(

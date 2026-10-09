@@ -5,6 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { loadTs } = require("./lib/course-audio-inputs.js");
 const { projectLearnerAudioManifest } = require("../src/lib/learner-audio-projection.cjs");
+const { checkedAudioEligibilityFingerprints } = require("./lib/learner-audio-eligibility.cjs");
 const ROOT = path.resolve(__dirname, "..");
 const read = (name) => JSON.parse(fs.readFileSync(path.join(ROOT, name), "utf8"));
 const S3_WORD_IMAGE_BASE = "https://nahuatl-language.s3.us-east-1.amazonaws.com/itzli-app/images/";
@@ -44,6 +45,7 @@ function safetyProjection() {
 }
 
 function prepareLearnerCatalogs({ check = false } = {}) {
+  checkedAudioEligibilityFingerprints(read("src/data/audio-learner-exclusions.json"));
   const expected = new Map([["src/data/learner-safety-policy.json", safetyProjection()]]);
   const policyFilename = path.join(ROOT, "src/data/learner-safety-policy.json");
   // Runtime selection reads this minimal policy. Refresh it before deriving catalogs.

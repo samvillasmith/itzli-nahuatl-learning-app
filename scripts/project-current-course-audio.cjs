@@ -56,7 +56,8 @@ function projectCurrentAudio({ write = false } = {}) {
     }
     preserve(path.join(archive, "asset-preservation.private.json"), Buffer.from(JSON.stringify(assetArchive, null, 2) + "\n"));
     const publicPolicy = { schema_version: policy.schema_version, excluded_reference_ids: policy.excluded_reference_ids,
-      excluded_source_urls: policy.excluded_source_urls, learner_content_policy: policy.learner_content_policy, source_sha256: policy.source_sha256 };
+      excluded_source_urls: policy.excluded_source_urls, learner_content_policy: policy.learner_content_policy,
+      source_sha256_format: policy.source_sha256_format, source_sha256: policy.source_sha256 };
     fs.writeFileSync(path.join(ROOT, "src/data/audio-learner-exclusions.json"), JSON.stringify(publicPolicy, null, 2) + "\n");
     fs.writeFileSync(runtimeFile, serialized); fs.writeFileSync(publicFile, serialized);
     fs.writeFileSync(path.join(archive, "projection-audit.private.json"), JSON.stringify({ ...summary,
@@ -79,10 +80,12 @@ function refreshAudioEligibilityFingerprints() {
   assert.deepEqual(current.excluded_source_urls, old.excluded_source_urls, "A fingerprint refresh cannot change source eligibility");
   assert.deepEqual(current.learner_content_policy, old.learner_content_policy, "Changed offline content rules require a full manifest projection");
   fs.writeFileSync(file, JSON.stringify({ schema_version:1, excluded_reference_ids:old.excluded_reference_ids,
-    excluded_source_urls:old.excluded_source_urls, learner_content_policy:current.learner_content_policy, source_sha256:current.source_sha256 }, null, 2) + "\n");
+    excluded_source_urls:old.excluded_source_urls, learner_content_policy:current.learner_content_policy,
+    source_sha256_format:current.source_sha256_format, source_sha256:current.source_sha256 }, null, 2) + "\n");
   assert(original.equals(fs.readFileSync(runtimeFile)) && offline.equals(fs.readFileSync(publicFile)), "Current audio changed during fingerprint refresh");
   return { excluded_reference_ids:old.excluded_reference_ids.length, audio_manifest_sha256:sha256(original),
-    policy_sha256:sha256(fs.readFileSync(file)), audio_manifest_writes:0, provider_calls:0 };
+    policy_sha256:sha256(fs.readFileSync(file)), source_sha256_format:current.source_sha256_format,
+    audio_manifest_writes:0, provider_calls:0 };
 }
 
 if (require.main === module) console.log(JSON.stringify(process.argv.includes("--refresh-policy-only")

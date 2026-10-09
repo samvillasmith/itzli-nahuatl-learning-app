@@ -444,6 +444,7 @@
       "\\b(?:run|runs|running|ran) over (?:someone|somebody|a person|people|a pedestrian|a child|a man|a woman|him|her|them)\\b|\\batropell(?:ar|a|ado|ando) (?:a )?(?:alguien|una persona|personas|un peat[oó]n|un ni[nñ]o|una ni[nñ]a|un hombre|una mujer)\\b"
     ]
   },
+  "source_sha256_format": "raw-data-and-utf8-lf-source-v1",
   "source_sha256": {
     "src/data/app-content-exclusions.json": "cb621445e11f4c5a4701493b17a50a796d08ed54bc26fed210b6a4d3325c748d",
     "src/data/app-content-reviewed-allowlist.json": "f9dec878ce23dd9c27241ee27ab538a96d888b9617dc301e85c290a4a8e8d9f4",
@@ -457,14 +458,14 @@
     "src/data/instructional-lesson-blueprints.json": "7baaba161367e2ea0326f819f70368dca2769b8050999765c22fbdab951ee3c5",
     "src/data/nahuatlahtolli-course.json": "36711d31d650fde124cee333463b81daf63848d3ad1126d701d0003f4056716f",
     "src/data/conversation-scenarios.ts": "70837f9aced7fdfd4f9b6fbfef96f7ca670d9b613bc75d2a50396ed3c36a679c",
-    "src/lib/app-content-safety.ts": "b29881b2b0e1f17be9b9b7cff61560c1ccbcc47ffdb3021590782d5ab4014896",
+    "src/lib/app-content-safety.ts": "cb3ffc1642fef37cc1e272901546ac8f744d0c2c3dd8befae27e2aea0536a74f",
     "src/lib/instructional-lessons.ts": "2f93a5bc44b81d1518b62200784bdf40c1c2e501d8286f1ca143b443f930524e",
-    "src/lib/nahuatlahtolli.ts": "0bd16861b2798dc0bd3ce44747da629fc4f351022abe05f10a8680462c001b60",
-    "scripts/lib/learner-audio-eligibility.cjs": "258f3f6c927cc7504c77f58eaac3ff5b95d092aa4dd3e230f774c4119ecc7879",
-    "src/lib/learner-audio-projection.cjs": "4482be4e83caa86f0a67403be14c36c769934f2f92b43958566889de1df01300",
+    "src/lib/nahuatlahtolli.ts": "d976c91db2ff88fbb86ff5878c561d9b54d4aef1b398b09e030fb78f92aa05eb",
+    "scripts/lib/learner-audio-eligibility.cjs": "57a0115d8d279545e9e409bc5afbbb05abb7e20c3820b9bb27fd1eaa75f15d27",
+    "src/lib/learner-audio-projection.cjs": "10dd8022cacba94e58e16aede4db86d15385fb06bd305b1c40c853cc354ae99b",
     "src/lib/generated-audio.ts": "37fd1cd8e7346978e136359d5f64198ab1ad3e9f1cf8ac4565591d552c336d8b",
-    "src/lib/audio.ts": "466b3e25f6087ba3e5bd8bbe455dbbcb945897bdc168c572f650586d14430a3a",
+    "src/lib/audio.ts": "c0775de34425c06b3b94ced30fdc44c16cea4417a81a542b380737e8793ca0ea",
     "public/offline-audio.js": "1b31b3081f3cd4f4ebc1e074436d9da44871f40ea60156a8936fb4ba57fa79b6",
-    "public/offline.html": "cde1c869426837e984892e1aecb395b92f29526f1821c4b43e9d5a46fb07c4f7"
+    "public/offline.html": "5df3e3ff42d876cf8bc43bde1f256a7879d5ec0f1835f2344bd30b9aa9ba02bd"
   }
 }
