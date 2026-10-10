@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import Link from "next/link";
 import { ClerkProvider, UserButton } from "@clerk/nextjs";
@@ -200,6 +201,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </footer>
           </LearningAccountProvider>
           </LocaleProvider>
+          <Analytics />
         </body>
       </html>
   );
